@@ -8,4 +8,4 @@ Obre `FASE4-mockups/home/index.html` directament al navegador. La maqueta actual
 
 Les imatges a `Referencies/` són només inspiració i no són assets per publicar. Les fotografies de les maquetes també són conceptuals i s'han de substituir o validar abans de producció. Els textos legals, les traduccions i altres dades pendents estan registrats a `FASE3-revisio.md`.
 
-Aquest repositori s'ha de mantenir **privat** mentre contingui documentació interna del projecte. No despleguis els mockups públicament.
+Aquest és un repositori públic de treball. La seva visibilitat no equival a la validació dels continguts ni dels mockups per publicar-los com a web.

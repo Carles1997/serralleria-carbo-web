@@ -1,8 +1,0 @@
-{
-  "name": "serralleria-carbo-mockups",
-  "private": true,
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "node scripts/serve-mockup.cjs"
-  }
-}

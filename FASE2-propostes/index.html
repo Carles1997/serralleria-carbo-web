@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Fase 2 · Direccions de marca — Serralleria Carbó</title>
+  <link rel="stylesheet" href="../design/tokens.css">
+  <style>
+    :root { color-scheme: light; --accent:#7c2a30; --ink:#202124; --paper:#f6f5f2; --line:#d9d8d5; font-family:"Source Sans 3","Segoe UI",Arial,sans-serif; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#eae9e6; color:var(--ink); }
+    button,a { -webkit-tap-highlight-color:transparent; }
+    button { font:inherit; }
+    button:focus-visible,a:focus-visible { outline:3px solid #bd7378; outline-offset:4px; }
+    .shell { max-width:1480px; margin:auto; padding:28px clamp(16px,4vw,64px) 80px; }
+    .topline { display:flex; gap:24px; align-items:start; justify-content:space-between; border-bottom:1px solid #bcbcb8; padding-bottom:24px; }
+    .eyebrow { margin:0 0 10px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:700; color:var(--accent); }
+    h1 { margin:0; max-width:780px; font-size:clamp(28px,3.5vw,52px); line-height:1.04; letter-spacing:-.045em; }
+    .intro { max-width:450px; margin:5px 0 0; font-size:14px; line-height:1.55; color:#4b4a48; }
+    .notice { margin:20px 0 26px; padding:12px 16px; border-left:3px solid var(--accent); background:#f7f4f3; font-size:13px; line-height:1.45; }
+    .controls { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 18px; }
+    .controls .label { font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin-right:12px; }
+    .choice { min-height:44px; padding:10px 15px; border:1px solid #bdbdb9; border-radius:4px; background:#f9f8f5; color:#272726; cursor:pointer; }
+    .choice[aria-pressed="true"] { background:#272727; border-color:#272727; color:white; }
+    .choice:hover { border-color:var(--accent); }
+    .board { --brand-font:"Source Sans 3","Segoe UI",Arial,sans-serif; --head-font:"Source Sans 3","Segoe UI",Arial,sans-serif; --brand-track:-.035em; --brand-weight:700; --surface:#f8f7f4; --surface-2:#252627; --round:4px; background:var(--surface); border:1px solid #d4d3d0; box-shadow:0 12px 45px #25221f15; transition:background-color .2s ease; }
+    .board[data-style="b"] { --brand-font:Bahnschrift,"Arial Narrow",Arial,sans-serif; --head-font:Bahnschrift,"Arial Narrow",Arial,sans-serif; --brand-track:.015em; --brand-weight:600; --surface:#e9eaeb; --surface-2:#17191c; --round:0px; }
+    .board[data-style="c"] { --brand-font:Georgia,"Times New Roman",serif; --head-font:Georgia,"Times New Roman",serif; --brand-track:-.05em; --brand-weight:400; --surface:#f9f9f7; --surface-2:#262a2b; --round:16px; }
+    .boardhead { display:flex; align-items:baseline; justify-content:space-between; gap:20px; padding:20px clamp(18px,3vw,42px); border-bottom:1px solid var(--line); }
+    .boardhead h2 { margin:0; font-size:24px; letter-spacing:-.03em; }
+    .boardhead p { margin:0; color:#676663; font-size:13px; }
+    .brand-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; padding:clamp(18px,3vw,42px); }
+    .brand-card { min-height:265px; display:flex; flex-direction:column; justify-content:space-between; padding:26px; border:1px solid #d5d4d0; border-radius:var(--round); background:#fff; overflow:hidden; }
+    .brand-card.dark { background:var(--surface-2); color:#fff; border-color:var(--surface-2); }
+    .card-top { display:flex; justify-content:space-between; align-items:center; gap:10px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.13em; color:#75736f; }
+    .dark .card-top { color:#b5b8b8; }
+    .brandline { display:flex; align-items:center; gap:20px; }
+    .symbol { display:grid; place-items:center; width:58px; height:58px; border:2px solid var(--accent); color:var(--accent); flex:0 0 auto; position:relative; }
+    .symbol::before { content:""; width:20px; height:20px; border-left:6px solid currentColor; border-bottom:6px solid currentColor; transform:rotate(45deg); }
+    .board[data-style="b"] .symbol { border:0; width:50px; border-left:8px solid var(--accent); border-right:8px solid var(--accent); transform:skewX(-10deg); }
+    .board[data-style="b"] .symbol::before { width:18px; height:35px; border-left:0; border-right:6px solid currentColor; border-bottom:0; transform:none; }
+    .board[data-style="c"] .symbol { border-radius:50%; border-width:1px; width:62px; height:62px; }
+    .board[data-style="c"] .symbol::before { content:"C"; width:auto; height:auto; border:0; transform:none; font-family:Georgia,serif; font-size:42px; line-height:1; }
+    .brand-name { font-family:var(--brand-font); font-weight:var(--brand-weight); letter-spacing:var(--brand-track); line-height:.92; font-size:clamp(28px,3.2vw,48px); }
+    .brand-name small { display:block; font-family:"Source Sans 3","Segoe UI",Arial,sans-serif; font-size:clamp(11px,1.2vw,16px); letter-spacing:.1em; line-height:1.1; text-transform:uppercase; margin-bottom:4px; font-weight:600; }
+    .board[data-style="b"] .brand-name { text-transform:uppercase; line-height:.88; }
+    .board[data-style="c"] .brand-name { font-style:normal; }
+    .brand-name.industrial { font-size:clamp(25px,3vw,44px); }
+    .subbrand { display:block; margin-top:10px; font-family:"Source Sans 3","Segoe UI",Arial,sans-serif; text-transform:uppercase; font-size:10px; letter-spacing:.2em; color:#c6b4b6; font-weight:700; }
+    .brand-foot { border-top:1px solid #e4e3df; padding-top:13px; font-size:12px; line-height:1.45; color:#64635f; }
+    .dark .brand-foot { border-color:#454748; color:#b8bbbb; }
+    .style-spec { padding:0 clamp(18px,3vw,42px) 32px; display:grid; grid-template-columns:1.2fr 1fr; gap:26px; }
+    .type-example { border-top:1px solid var(--line); padding-top:18px; }
+    .type-example strong { font-family:var(--head-font); font-size:clamp(26px,3vw,42px); letter-spacing:var(--brand-track); font-weight:var(--brand-weight); display:block; line-height:1.08; margin:8px 0; }
+    .type-example span { font-size:13px; color:#64635f; }
+    .palette { border-top:1px solid var(--line); padding-top:18px; }
+    .palette-squares { display:flex; gap:5px; margin-top:14px; }
+    .palette-squares i { display:block; width:54px; height:40px; border:1px solid #0002; background:var(--sw); }
+    .palette p,.type-example p { font-size:13px; color:#4c4b48; line-height:1.55; margin:12px 0 0; }
+    .preview-area { padding:28px clamp(18px,3vw,42px) 42px; background:#dfdfdc; border-top:1px solid #d2d2cf; }
+    .preview-top { display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; align-items:center; margin-bottom:14px; }
+    .preview-top h2 { margin:0; font-size:17px; }
+    .device-buttons { display:flex; gap:5px; }
+    .device-buttons button { min-height:40px; padding:7px 12px; border:1px solid #aaa; background:#f6f6f4; cursor:pointer; font-size:12px; }
+    .device-buttons button[aria-pressed="true"] { background:#252627; border-color:#252627; color:#fff; }
+    .preview { margin:auto; width:min(100%,1240px); background:white; box-shadow:0 15px 35px #0002; transition:width .25s ease; container-type:inline-size; }
+    .preview[data-device="tablet"] { width:min(100%,800px); }
+    .preview[data-device="mobile"] { width:min(100%,390px); }
+    .site-header { min-height:68px; padding:14px 24px; background:#f9f9f7; display:flex; justify-content:space-between; align-items:center; gap:18px; border-bottom:1px solid #e2e1de; }
+    .site-wordmark { font-family:var(--brand-font); font-weight:var(--brand-weight); letter-spacing:var(--brand-track); font-size:23px; line-height:1; white-space:nowrap; }
+    .site-wordmark b { color:var(--accent); font-weight:inherit; }
+    .board[data-style="b"] .site-wordmark { text-transform:uppercase; letter-spacing:.02em; }
+    .site-nav { display:flex; gap:18px; font-size:12px; color:#474744; font-weight:600; white-space:nowrap; }
+    .site-nav span:last-child { color:var(--accent); }
+    .hero-intro { padding:34px 30px 22px; display:flex; justify-content:space-between; gap:20px; align-items:end; }
+    .hero-intro p { margin:0; text-transform:uppercase; letter-spacing:.17em; font-size:11px; color:var(--accent); font-weight:700; }
+    .hero-intro h3 { font-family:var(--head-font); font-size:clamp(28px,3.6vw,50px); letter-spacing:var(--brand-track); font-weight:var(--brand-weight); line-height:1; margin:6px 0 0; }
+    .hero-intro span { max-width:260px; font-size:12px; line-height:1.5; color:#60605e; }
+    .hero-grid { display:grid; grid-template-columns:1fr 1fr; min-height:490px; }
+    .hero-path { display:flex; flex-direction:column; justify-content:end; position:relative; isolation:isolate; overflow:hidden; min-height:490px; padding:32px; color:#fff; text-decoration:none; background:#303338; }
+    .hero-path + .hero-path { border-left:2px solid #fff; }
+    .hero-path img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; filter:grayscale(1); transition:filter .22s ease, transform .22s ease; }
+    .hero-path.particulars img { object-position:62% center; }
+    .hero-path.industrial img { object-position:53% center; }
+    .hero-path::before { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg,#090a0b1c 20%,#090a0b17 42%,#08090ac9 100%); }
+    .hero-path::after { content:""; position:absolute; inset:0; z-index:-1; border:0 solid var(--accent); transition:border-width .16s ease; pointer-events:none; }
+    .hero-path:focus-visible { outline:4px solid #f0bec1; outline-offset:-4px; }
+    .hero-path:focus-visible::after { border-width:6px; }
+    .hero-kicker { display:block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; margin-bottom:10px; }
+    .hero-path strong { display:block; font-family:var(--head-font); font-weight:var(--brand-weight); font-size:clamp(34px,4vw,62px); letter-spacing:var(--brand-track); line-height:.96; max-width:470px; }
+    .hero-action { display:inline-flex; justify-content:space-between; align-items:center; gap:24px; max-width:240px; min-height:48px; margin-top:28px; padding:11px 16px; border-radius:var(--round); background:#f9f9f7; color:#282828; font-size:13px; font-weight:700; }
+    .hero-action em { font-style:normal; color:var(--accent); font-size:20px; line-height:1; }
+    .board[data-style="b"] .hero-intro { background:#17191c; color:#fff; }
+    .board[data-style="b"] .hero-intro span { color:#c4c5c5; }
+    .board[data-style="b"] .site-header { background:#17191c; color:#fff; border-color:#3c3e40; }
+    .board[data-style="b"] .site-nav { color:#e5e5e5; }
+    .board[data-style="c"] .hero-grid { gap:8px; padding:0 12px 12px; }
+    .board[data-style="c"] .hero-path { border-radius:12px; }
+    .board[data-style="c"] .hero-path + .hero-path { border:0; }
+    .board[data-style="c"] .hero-path strong { font-style:italic; }
+    .preview-note { margin:12px 0 0; font-size:12px; color:#545451; }
+    .destination { padding:22px 30px; background:#f9f9f7; border-top:1px solid #dfdfdc; font-size:13px; color:#4c4b48; }
+    .destination strong { color:#222; }
+    @media (hover:hover) and (pointer:fine) { .hero-path:hover img { filter:grayscale(0); transform:scale(1.012); } .hero-path:hover::after { border-width:6px; } }
+    .hero-path:focus-visible img { filter:grayscale(0); }
+    @container (max-width:680px) {
+      .site-header { min-height:60px; padding:12px 16px; }
+      .site-wordmark { font-size:19px; }
+      .site-nav { display:none; }
+      .hero-intro { padding:24px 18px 16px; display:block; }
+      .hero-intro h3 { font-size:30px; }
+      .hero-intro span { display:block; margin-top:9px; }
+      .hero-grid { grid-template-columns:1fr; min-height:auto; }
+      .hero-path { min-height:275px; padding:22px; }
+      .hero-path + .hero-path { border:0; border-top:2px solid white; }
+      .hero-path strong { font-size:40px; }
+      .hero-action { margin-top:18px; }
+      .board[data-style="c"] .hero-grid { padding:0 10px 10px; gap:8px; }
+    }
+    @media (hover:none) { .hero-path img { filter:grayscale(.25); } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition-duration:0s !important; animation-duration:0s !important; } }
+    @media (max-width:800px) { .topline { display:block; } .intro { margin-top:14px; } .brand-grid,.style-spec { grid-template-columns:1fr; } .brand-card { min-height:230px; } .preview-area { padding-left:10px; padding-right:10px; } }
+    @media (max-width:480px) { .shell { padding:18px 10px 40px; } .boardhead { display:block; } .boardhead p { margin-top:6px; } .brand-card { padding:18px; } .brandline { gap:12px; } .symbol { transform:scale(.85); transform-origin:left center; } .brand-name { font-size:30px; } .device-buttons { width:100%; } .device-buttons button { flex:1; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topline">
+      <div><p class="eyebrow">Serralleria Carbó · Fase 2</p><h1>Tres direccions de marca.<br>Una mateixa empresa.</h1></div>
+      <p class="intro">Comparativa exploratòria de tipografia, tractament de marca i primera secció. Els noms de les branques i el missatge industrial provenen de les decisions del projecte; no són textos finals de la web.</p>
+    </header>
+    <p class="notice"><strong>Direcció A escollida.</strong> B i C es conserven per documentar la comparació. Les fotografies de la prova són generades per estudiar composició i comportament: <strong>no representen el taller ni projectes reals de Serralleria Carbó.</strong> Els símbols gràfics són esbossos, no versions aprovades del logotip.</p>
+    <div class="controls" role="group" aria-label="Direcció visual">
+      <span class="label">Direcció</span>
+      <button class="choice" type="button" data-select="a" aria-pressed="true">A · Ofici contemporani</button>
+      <button class="choice" type="button" data-select="b" aria-pressed="false">B · Precisió industrial</button>
+      <button class="choice" type="button" data-select="c" aria-pressed="false">C · Editorial estructural</button>
+    </div>
+    <section class="board" data-style="a" aria-live="polite">
+      <div class="boardhead"><h2 id="variant-title">A · Ofici contemporani</h2><p id="variant-summary">Equilibri entre proximitat i rigor. Punt de partida recomanat.</p></div>
+      <div class="brand-grid">
+        <div class="brand-card"><div class="card-top"><span>Marca mare · Particulars</span><span>01 / 02</span></div><div class="brandline"><span class="symbol" aria-hidden="true"></span><div class="brand-name"><small>Serralleria</small>Carbó</div></div><div class="brand-foot">Expressió oberta i accessible; nom llegible en pantalla petita.</div></div>
+        <div class="brand-card dark"><div class="card-top"><span>Branca industrial</span><span>02 / 02</span></div><div class="brandline"><span class="symbol" aria-hidden="true"></span><div class="brand-name industrial">Carbó<span class="subbrand">Industrial</span></div></div><div class="brand-foot">El mateix gest de marca amb una jerarquia més tècnica.</div></div>
+      </div>
+      <div class="style-spec">
+        <div class="type-example"><span>Mostra tipogràfica · criteri, no text de pàgina</span><strong id="type-sample">Ofici que es veu.<br>Precisió que es comprova.</strong><p id="type-description">Sans humanista de sistema, pesos moderats i lectura còmoda. Industrial augmenta el contrast de pes i l'ordre.</p></div>
+        <div class="palette"><span class="eyebrow">Paleta de la direcció</span><div class="palette-squares" aria-label="Mostra de colors"><i style="--sw:#f6f5f2"></i><i style="--sw:#d4d2cd"></i><i style="--sw:#888c8e"></i><i style="--sw:#252627"></i><i style="--sw:#7c2a30"></i></div><p id="palette-description">Base clara, carbó en seccions de pes i bordeus per a decisions i detalls.</p></div>
+      </div>
+      <div class="preview-area">
+        <div class="preview-top"><h2>Prova de la primera secció</h2><div class="device-buttons" role="group" aria-label="Amplada de la prova"><button type="button" data-device="desktop" aria-pressed="true">Escriptori</button><button type="button" data-device="tablet" aria-pressed="false">Tauleta</button><button type="button" data-device="mobile" aria-pressed="false">Mòbil</button></div></div>
+        <div class="preview" data-device="desktop">
+          <div class="site-header"><div class="site-wordmark">Serralleria <b>Carbó</b></div><div class="site-nav" aria-label="Navegació il·lustrativa"><span>Empresa</span><span>Contacte</span><span>CA / ES / EN</span></div></div>
+          <div class="hero-intro"><div><p>Dues branques · Un taller</p><h3>Tria el teu camí</h3></div><span>Aquesta línia és només una etiqueta de la prova visual, pendent de redacció i validació a la Fase 3.</span></div>
+          <div class="hero-grid">
+            <a class="hero-path particulars" href="#destinacio-particulars" aria-label="Entrar a Particulars"><img src="assets/particulars-concept.png" alt="" decoding="async"><span class="hero-kicker">Serralleria Carbó</span><strong>Particulars</strong><span class="hero-action">Entrar a Particulars <em aria-hidden="true">↗</em></span></a>
+            <a class="hero-path industrial" href="#destinacio-industrial" aria-label="Entrar a Carbó Industrial"><img src="assets/industrial-concept.png" alt="" decoding="async"><span class="hero-kicker">Una branca de Serralleria Carbó</span><strong>Carbó<br>Industrial</strong><span class="hero-action">Entrar a Industrial <em aria-hidden="true">↗</em></span></a>
+          </div>
+          <div class="destination"><strong>Comprova la interacció:</strong> passa-hi el ratolí, navega amb Tab i Enter, o toca cada camí. En aquesta prova, els enllaços van a les notes de destinació següents.</div>
+        </div>
+        <p class="preview-note">El canvi a color és un reforç. Els noms, l'acció i el focus es mantenen visibles sense hover.</p>
+      </div>
+    </section>
+    <div id="destinacio-particulars" class="notice"><strong>Particulars:</strong> en producció aquest camí anirà a <code>/particulars/</code>. En aquesta prova l'ancoratge permet verificar clic, tacte i teclat.</div>
+    <div id="destinacio-industrial" class="notice"><strong>Industrial:</strong> en producció aquest camí anirà a <code>/industrial/</code>.</div>
+  </main>
+  <script>
+    const variants={
+      a:{title:'A · Ofici contemporani',summary:'Equilibri entre proximitat i rigor. Punt de partida recomanat.',sample:'Ofici que es veu.<br>Precisió que es comprova.',type:'Sans humanista de sistema, pesos moderats i lectura còmoda. Industrial augmenta el contrast de pes i l’ordre.',palette:'Base clara, carbó en seccions de pes i bordeus per a decisions i detalls.'},
+      b:{title:'B · Precisió industrial',summary:'Registre més tècnic i compacte; anticipa el creixement d’Industrial.',sample:'Ofici que es veu.<br>Precisió que es comprova.',type:'Sans condensada d’aspecte tècnic, majúscules controlades i alineacions estrictes. Cal vigilar la llegibilitat en textos llargs.',palette:'Carbó com a superfície dominant, gris acer i accent bordeus reservat a punts d’acció.'},
+      c:{title:'C · Editorial estructural',summary:'Marca més singular, amb contrast entre tipografia editorial i mòduls precisos.',sample:'Ofici que es veu.<br>Precisió que es comprova.',type:'Titulars amb serif sòbria i cos sans. Té més personalitat, però requereix comprovar que no sembli una marca d’arquitectura.',palette:'Blanc ampli, gris profund i el bordeus com a traç d’identificació.'}
+    };
+    const board=document.querySelector('.board');
+    document.querySelectorAll('[data-select]').forEach(button=>button.addEventListener('click',()=>{
+      const key=button.dataset.select,variant=variants[key];
+      board.dataset.style=key;
+      document.querySelectorAll('[data-select]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+      document.querySelector('#variant-title').textContent=variant.title;
+      document.querySelector('#variant-summary').textContent=variant.summary;
+      document.querySelector('#type-sample').innerHTML=variant.sample;
+      document.querySelector('#type-description').textContent=variant.type;
+      document.querySelector('#palette-description').textContent=variant.palette;
+    }));
+    const preview=document.querySelector('.preview');
+    document.querySelectorAll('[data-device]').forEach(button=>button.addEventListener('click',()=>{
+      preview.dataset.device=button.dataset.device;
+      document.querySelectorAll('[data-device]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+    }));
+  </script>
+</body>
+</html>

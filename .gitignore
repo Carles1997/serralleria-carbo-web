@@ -1,0 +1,25 @@
+# Configuració local d'assistents i eines
+.agents/
+.claude/
+.codex/
+.cursor/
+.impeccable/
+
+# Dependències i fitxers temporals
+node_modules/
+.astro/
+dist/
+.vercel/
+.netlify/
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+Thumbs.db
+
+# Credencials i configuració local
+.env
+.env.*
+!.env.example
+*.pem
+*.key

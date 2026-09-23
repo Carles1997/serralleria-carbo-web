@@ -1,0 +1,79 @@
+/* Serralleria Carbó · Fase 2 · Design tokens aprovats
+   Font: Source Sans 3, Copyright Adobe, SIL Open Font License 1.1.
+   Llicència: ./fonts/LICENSE-Source-Sans-3.md
+   Aquest fitxer és agnòstic de la versió de Tailwind i es pot importar a Astro.
+*/
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("./fonts/SourceSans3VF-Upright.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+:root {
+  /* Color: la fotografia aporta els matisos metàl·lics; la UI es manté neutra. */
+  --color-paper: #f6f5f2;
+  --color-surface: #ffffff;
+  --color-surface-muted: #e9e9e6;
+  --color-charcoal: #252627;
+  --color-ink: #202124;
+  --color-text-muted: #5f6264;
+  --color-text-on-dark: #ffffff;
+  --color-text-muted-on-dark: #c8c9c7;
+  --color-steel: #858a8c;
+  --color-line: #d6d4cf;
+  --color-accent: #7c2a30;
+  --color-accent-on-dark: #d48e94;
+  --color-focus-light: #7c2a30;
+  --color-focus-dark: #d48e94;
+
+  /* Una família compartida. La branca industrial canvia jerarquia i densitat. */
+  --font-sans: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+  --weight-regular: 400;
+  --weight-medium: 600;
+  --weight-bold: 700;
+  --size-caption: 0.8125rem;
+  --size-small: 0.875rem;
+  --size-body: 1rem;
+  --size-body-large: 1.125rem;
+  --size-heading-3: clamp(1.5rem, 2vw, 2rem);
+  --size-heading-2: clamp(2rem, 3vw, 3rem);
+  --size-heading-1: clamp(2.5rem, 5vw, 5rem);
+  --leading-body: 1.5;
+  --leading-heading: 1.05;
+  --tracking-display: -0.035em;
+  --tracking-label: 0.12em;
+
+  /* Base 4 px. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --content-max: 80rem;
+  --reading-max: 70ch;
+  --page-gutter: clamp(1rem, 4vw, 4rem);
+
+  --radius-small: 0.25rem;
+  --radius-card: 0.375rem;
+  --focus-width: 3px;
+  --target-min: 2.75rem;
+  --motion-fast: 160ms;
+  --motion-standard: 220ms;
+  --motion-ease: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-standard: 0ms;
+  }
+}

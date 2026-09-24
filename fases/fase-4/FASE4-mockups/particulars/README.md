@@ -4,7 +4,7 @@ Primer mockup derivat de la homepage acceptada com a referència visual. La bran
 
 ## Fonts de contingut
 
-- `../../content/ca/particulars.md`: SEO, H1, serveis, projectes, zona i contacte.
+- `../../../../content/ca/particulars.md`: SEO, H1, serveis, projectes, zona i contacte.
 - `../../FASE4-sistema-visual.md`: criteris comuns per a la resta de plantilles.
 - `../home/`: capçalera, menú, peu i estils de marca compartits.
 

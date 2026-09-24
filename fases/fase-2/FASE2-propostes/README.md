@@ -1,10 +1,10 @@
 # Exploració visual · Fase 2
 
-Obre `index.html` en un navegador per veure la direcció **A**, ja escollida, comparar-la amb les alternatives descartades i provar la primera secció. Els botons **Escriptori / Tauleta / Mòbil** canvien l'amplada de la prova. També es pot redimensionar la finestra. Les decisions vigents són a `../DESIGN.md` i els tokens a `../design/tokens.css`.
+Obre `index.html` en un navegador per veure la direcció **A**, ja escollida, comparar-la amb les alternatives descartades i provar la primera secció. Els botons **Escriptori / Tauleta / Mòbil** canvien l'amplada de la prova. També es pot redimensionar la finestra. Les decisions vigents són a `../../../DESIGN.md` i els tokens a `../../../design/tokens.css`.
 
 ## Abast
 
-- **A · Ofici contemporani:** direcció escollida. Dona una base llegible i propera a Particulars i un registre més estructurat a Industrial. La font seleccionada per reproduir-la entre plataformes és Source Sans 3, allotjada a `../design/fonts/` amb la llicència.
+- **A · Ofici contemporani:** direcció escollida. Dona una base llegible i propera a Particulars i un registre més estructurat a Industrial. La font seleccionada per reproduir-la entre plataformes és Source Sans 3, allotjada a `../../../design/fonts/` amb la llicència.
 - **B · Precisió industrial:** alternativa més compacta i tècnica.
 - **C · Editorial estructural:** alternativa més singular; caldria comprovar-la amb la fotografia real abans d'escollir-la.
 - Els símbols són exploracions gràfiques, no el logotip existent ni un redisseny aprovat.

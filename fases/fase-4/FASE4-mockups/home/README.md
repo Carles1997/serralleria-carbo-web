@@ -4,7 +4,7 @@ Obre index.html i actualitza la pestanya del navegador si ja tens la maqueta obe
 
 ## Direcció visual
 
-Aquesta iteració parteix dels exports de la carpeta stitch_serralleria_carbo_design_system i en conserva la fotografia protagonista, la paleta fosca, el contrast editorial, la divisió Particulars / Industrial i les xifres de taller. Els exports originals de Stitch no s'han modificat. La tipografia, el bordeus i els criteris de marca continuen venint de DESIGN.md i design/tokens.css.
+Aquesta iteració parteix dels exports de la carpeta ../../stitch_serralleria_carbo_design_system i en conserva la fotografia protagonista, la paleta fosca, el contrast editorial, la divisió Particulars / Industrial i les xifres de taller. Els exports originals de Stitch no s'han modificat. La tipografia, el bordeus i els criteris de marca continuen venint de ../../../../DESIGN.md i ../../../../design/tokens.css.
 
 Els canvis principals són una sola estructura responsive, formes més rectes, menys ombres i targetes, un menú web mòbil, accessos immediats a les dues branques i informació real de Fases 1–3. La home manté el títol i la descripció SEO aprovats, amb noindex propi de la maqueta.
 

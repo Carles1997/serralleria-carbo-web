@@ -27,7 +27,7 @@
 
 ## Asset conceptual nou
 
-Fitxer: FASE4-mockups/home/project-stage-concept-v2.png. Generat amb la tool integrada image_gen i copiat al projecte. És una fotografia d'estudi del material, no una imatge d'una feina feta ni del taller real.
+Fitxer: project-stage-concept-v2.png. Generat amb la tool integrada image_gen i copiat al projecte. És una fotografia d'estudi del material, no una imatge d'una feina feta ni del taller real.
 
 Prompt utilitzat:
 

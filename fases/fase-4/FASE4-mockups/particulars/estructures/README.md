@@ -4,9 +4,9 @@ Següent mockup després de la portada de Particulars, que el director de projec
 
 ## Fonts
 
-- `../../../content/ca/particulars-estructures.md`: títol SEO, H1 i contingut del servei.
-- `../../../content/ca/projects/`: baranes, passarel·la i estructura d'ascensor, casos documentats.
-- `../../../FASE1-arquitectura-serralleria-carbo.md`: jerarquia i recorregut servei → projectes → contacte.
+- `../../../../../content/ca/particulars-estructures.md`: títol SEO, H1 i contingut del servei.
+- `../../../../../content/ca/projects/`: baranes, passarel·la i estructura d'ascensor, casos documentats.
+- `../../../../fase-1/FASE1-arquitectura-serralleria-carbo.md`: jerarquia i recorregut servei → projectes → contacte.
 - `../../../FASE4-sistema-visual.md`: família visual compartida.
 
 ## Decisions del mockup

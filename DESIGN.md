@@ -3,12 +3,12 @@
 **Projecte:** SC-2026-01  
 **Versió:** 1.0 · 23 de setembre de 2026  
 **Estat:** Fase 2 validada pel client i congelada. La Fase 3 té una base CA i SEO acceptada provisionalment; la Fase 4 està oberta.  
-**Fonts de decisió:** `CONTEXT-serralleria-carbo.md`, `FASE1-arquitectura-serralleria-carbo.md`, `FASE2-marca-disseny.md` i les decisions del director de projecte d'aquesta conversa.
+**Fonts de decisió:** `CONTEXT-serralleria-carbo.md`, `fases/fase-1/FASE1-arquitectura-serralleria-carbo.md`, `fases/fase-2/FASE2-marca-disseny.md` i les decisions del director de projecte d'aquesta conversa.
 
 ## 1. Decisions fixades
 
 - Es manté una marca mare, **Serralleria Carbó**, i una branca, **Carbó Industrial**, dins d'una sola web. No es modifica el sitemap ni cap user journey validat de la Fase 1.
-- La direcció escollida és **A · Ofici contemporani**. Les opcions B i C de `FASE2-propostes/index.html` queden com a exploracions descartades. La família tipogràfica no canvia entre branques; Industrial es diferencia amb jerarquia, densitat, fotografia i més superfícies fosques.
+- La direcció escollida és **A · Ofici contemporani**. Les opcions B i C de `fases/fase-2/FASE2-propostes/index.html` queden com a exploracions descartades. La família tipogràfica no canvia entre branques; Industrial es diferencia amb jerarquia, densitat, fotografia i més superfícies fosques.
 - La base cromàtica combina blancs, grisos i carbó. El bordeus **`#7c2a30`**, aportat com a color d'accent del logotip, és compartit per les dues branques.
 - La primera secció de la home presenta **dos camins equivalents** amb fotografies diferenciades: Particulars a l'esquerra i Carbó Industrial a la dreta en pantalles amples. El tractament inicial és en blanc i negre o molt desaturat; hover i focus recuperen el color. A mòbil, els camins s'apilen i funcionen sense hover.
 - El missatge industrial aprovat és **“Sèries curtes. Peces exigents. Resposta industrial.”** No es fixa en aquesta fase cap altre text comercial de pàgina.
@@ -64,7 +64,7 @@ El bordeus original dona un contrast aproximat de **9,41:1 sobre blanc** i **8,6
 - Prioritzar fotografies pròpies de treballs instal·lats per a Particulars i del taller, peces i procés real per a Industrial. No fer passar imatges generades o de banc per treballs de l'empresa.
 - Mostrar metall real: unions, acabats, proporció i context d'ús. Evitar engranatges, guspires, xapa oxidada i degradats metàl·lics com a decoració recurrent.
 - Base general clara amb moments foscos. Particulars necessita més aire i context humà; Industrial pot utilitzar més carbó i quadrícula compacta, alternats amb zones clares per llegir dades llargues.
-- Els dos panells fotogràfics de la home han de compartir tractament de llum, escala i enquadrament perquè es llegeixin com una sola composició. Fotografies reals del client substituiran `FASE2-propostes/assets/`, que són només material de prova generat.
+- Els dos panells fotogràfics de la home han de compartir tractament de llum, escala i enquadrament perquè es llegeixin com una sola composició. Fotografies reals del client substituiran `fases/fase-2/FASE2-propostes/assets/`, que són només material de prova generat.
 - La fotografia mai no pot assumir sola la funció d'informar o de navegar: nom de branca, acció i focus es mantenen visibles.
 
 ## 6. Components i estats
@@ -78,7 +78,7 @@ El bordeus original dona un contrast aproximat de **9,41:1 sobre blanc** i **8,6
 
 ## 7. Primera secció de la home
 
-La prova executable és `FASE2-propostes/index.html`. El concepte de doble accés queda **aprovat**; la fotografia i el text final s'incorporaran en fases posteriors.
+La prova executable és `fases/fase-2/FASE2-propostes/index.html`. El concepte de doble accés queda **aprovat**; la fotografia i el text final s'incorporaran en fases posteriors.
 
 1. En escriptori, panells equivalents esquerra/dreta, amb tota l'àrea com a enllaç cap a `/particulars/` o `/industrial/`. Cap camí depèn d'un menú amagat.
 2. En hover amb dispositiu apuntador fi, només la imatge activa passa de gris a color. La transició és curta, sense canvi de mida del panell ni salt de contingut.
@@ -94,6 +94,6 @@ La prova s'ha verificat a 1440, 768, 390 i 320 px sense desbordament horitzontal
 - `DESIGN.md`: decisió i regles de la identitat.
 - `design/tokens.css`: paleta, tipografia, espaiat, radis i moviment per a Astro/Tailwind. La integració concreta amb Tailwind es farà quan existeixi el projecte i se'n fixi la versió, sense canviar els valors aprovats.
 - `design/fonts/`: font allotjada localment i llicència.
-- `FASE2-propostes/`: comparativa històrica i prova funcional del concepte. Les opcions B/C i les imatges generades no són assets de producció.
+- `fases/fase-2/FASE2-propostes/`: comparativa històrica i prova funcional del concepte. Les opcions B/C i les imatges generades no són assets de producció.
 
 No formen part de la Fase 2 els textos definitius, les traduccions, les paraules clau per pàgina, els mockups de plantilles ni el desenvolupament de la web. El client encara ha de facilitar fotografies reals, l'arxiu del logotip si en vol integrar un, i les dades de negoci pendents identificades al CONTEXT. La substitució de fotos i l'ajust de retall es faran sense reobrir l'arquitectura ni el llenguatge de marca.

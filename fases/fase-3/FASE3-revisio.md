@@ -20,13 +20,13 @@ Les fotografies continuen **pendents de selecció**. Primer cal recuperar els or
 - `content/ca/projects/`: sis fitxes de treballs reals recuperats del full de càlcul, distribuïdes en cinc casos de Particulars i un d'Industrial. Es mostren a les dues pàgines de projectes aprovades, sense crear rutes noves.
 - `content/ca/legal-*.md`: avís legal i privacitat pendents del client; cookies amb esborrany d'adaptació. Els tres mantenen `publishReady: false` i no són publicables.
 - `SEO-F3.md`: 50 expressions candidates per idioma, assignades a les 15 pàgines comercials, amb propietat de cada intenció, prioritats, criteris d'indexació i punts de migració. És un mapa editorial sense volums de cerca inventats.
-- `scripts/check_fase3.py`: comprovació de rutes, metadades, H1, enllaços interns i bloqueig legal. Resultat actual: **19 rutes esperades, 3 legals bloquejades, 0 incidències estructurals**.
+- `../../scripts/check_fase3.py`: comprovació de rutes, metadades, H1, enllaços interns i bloqueig legal. Resultat actual: **19 rutes esperades, 3 legals bloquejades, 0 incidències estructurals**.
 
 ## Ordre de lectura per validar el contingut
 
-1. [Home](content/ca/home.md), [Particulars](content/ca/particulars.md), [Carbó Industrial](content/ca/industrial.md) i [Contacte](content/ca/contacte.md): to, jerarquia i dues vies de conversió.
+1. [Home](../../content/ca/home.md), [Particulars](../../content/ca/particulars.md), [Carbó Industrial](../../content/ca/industrial.md) i [Contacte](../../content/ca/contacte.md): to, jerarquia i dues vies de conversió.
 2. Pàgines de servei i capacitats de `content/ca/`: precisió de les promeses, informació necessària per contactar i coherència amb cada públic.
-3. [Projectes de Particulars](content/ca/particulars-projectes.md), [Projectes industrials](content/ca/industrial-projectes.md) i les sis fitxes de `content/ca/projects/`: correspondència entre text, any i fotografia real.
+3. [Projectes de Particulars](../../content/ca/particulars-projectes.md), [Projectes industrials](../../content/ca/industrial-projectes.md) i les sis fitxes de `content/ca/projects/`: correspondència entre text, any i fotografia real.
 4. [Mapa SEO](SEO-F3.md): termes candidats i assignació per pàgina, abans d'aprovar els títols i les descripcions.
 
 ## Fonts i límits factuals

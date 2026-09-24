@@ -6,7 +6,7 @@
 
 - Maqueta: FASE4-mockups/home/index.html.
 - Decisions de marca: DESIGN.md i design/tokens.css.
-- Textos i SEO: content/ca/ i SEO-F3.md.
+- Textos i SEO: ../../content/ca/ i ../fase-3/SEO-F3.md.
 - La homepage fixa la família visual: fons carbó, metall, blanc i bordeus #7c2a30; Source Sans 3; fotografia protagonista; grans titulars editorials; juntes fines; cantonades rectes; dades i projectes reals.
 - Els assets conceptuals sempre porten una indicació visible i se substitueixen quan arribin les fotografies originals.
 - A Particulars, la portada utilitza una fotografia a tota l’amplada amb el text al damunt i una seqüència editorial de tres casos destacats activada per l’scroll. Els cinc casos complets són al portafoli de Particulars. El director de projecte l’ha donada per bona provisionalment, pendent de verificació definitiva en escriptori i mòbil.

@@ -1,6 +1,6 @@
 # Fase 4 — Punt de partida del disseny UI
 
-**Estat:** oberta el 23/09/2026 per decisió del director de projecte. La base de contingut és el català auditat de `content/ca/`; el mapa SEO és `SEO-F3.md`. La Fase 4 acabarà quan el client validi els mockups de les plantilles clau.
+**Estat:** oberta el 23/09/2026 per decisió del director de projecte. La base de contingut és el català auditat de `../../content/ca/`; el mapa SEO és `../fase-3/SEO-F3.md`. La Fase 4 acabarà quan el client validi els mockups de les plantilles clau.
 
 **Estat actual (24/09/2026):** `FASE4-mockups/home/index.html` fixa la referència visual acceptada pel director de projecte. `FASE4-mockups/particulars/index.html` està aprovat provisionalment, pendent de verificació definitiva en escriptori i mòbil. La pàgina interior `FASE4-mockups/particulars/estructures/index.html` ha estat aprovada pel director de projecte. El portafoli `FASE4-mockups/particulars/projectes/index.html` es manté provisionalment; la seva revisió estètica queda pendent. La portada de Particulars mostra tres casos destacats i hi enllaça els cinc casos complets. La Fase 4 continua oberta.
 
@@ -8,9 +8,9 @@
 
 ## Marc fixat
 
-- Respectar el sitemap, la navegació i els tres recorreguts de `FASE1-arquitectura-serralleria-carbo.md`.
+- Respectar el sitemap, la navegació i els tres recorreguts de `../fase-1/FASE1-arquitectura-serralleria-carbo.md`.
 - Aplicar la direcció A, els tokens i les regles d'accessibilitat de `DESIGN.md` i `design/tokens.css`.
-- Mantenir la primera secció de doble accés aprovada: Particulars i Carbó Industrial visibles, accionables amb ratolí, teclat i tacte; panells apilats en mòbil. `FASE2-propostes/index.html` és el punt de partida funcional, no un mockup final.
+- Mantenir la primera secció de doble accés aprovada: Particulars i Carbó Industrial visibles, accionables amb ratolí, teclat i tacte; panells apilats en mòbil. `../fase-2/FASE2-propostes/index.html` és el punt de partida funcional, no un mockup final.
 - Diferenciar la lectura de Particulars, més propera i tranquil·litzadora, i la d'Industrial, més tècnica i directa, dins d'un mateix sistema visual.
 
 ## Plantilles que cal resoldre
@@ -27,7 +27,7 @@
 - Comprovar contrast, focus visible, navegació amb teclat, àrees tàctils i moviment reduït segons `DESIGN.md`.
 - Reservar espais adaptables per a fotografies reals encara pendents. Les imatges de la prova de Fase 2 són conceptuals i no s'han de presentar com a feines de l'empresa.
 - Preveure llargades diferents per als textos ES/EN sense traduir-los ni inventar-ne el contingut durant el disseny.
-- No convertir les dades encara pendents de `FASE3-revisio.md` en promeses, especificacions o indicadors visuals definitius.
+- No convertir les dades encara pendents de `../fase-3/FASE3-revisio.md` en promeses, especificacions o indicadors visuals definitius.
 
 ## Sortida de la fase
 

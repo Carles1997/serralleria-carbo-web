@@ -4,9 +4,9 @@ Mockup de la ruta validada `/particulars/projectes/`. El director de projecte ha
 
 ## Fonts de veritat
 
-- `../../../content/ca/particulars-projectes.md`: títol, descripció SEO i ordre.
-- `../../../content/ca/projects/`: títols, descripcions, categories i anys recuperats dels cinc casos.
-- `../../../FASE1-arquitectura-serralleria-carbo.md`: enllaç servei → projectes → contacte, amb filtre per categoria si és possible.
+- `../../../../../content/ca/particulars-projectes.md`: títol, descripció SEO i ordre.
+- `../../../../../content/ca/projects/`: títols, descripcions, categories i anys recuperats dels cinc casos.
+- `../../../../fase-1/FASE1-arquitectura-serralleria-carbo.md`: enllaç servei → projectes → contacte, amb filtre per categoria si és possible.
 - `../../../FASE4-sistema-visual.md`: llenguatge visual compartit.
 
 ## Decisions de disseny

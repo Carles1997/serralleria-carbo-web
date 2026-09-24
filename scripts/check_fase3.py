@@ -94,7 +94,7 @@ def check_locale(lang: str) -> list[str]:
     if lang == "ca" and (len(project_refs.get("/particulars/projectes/", [])) != 5 or len(project_refs.get("/industrial/projectes/", [])) != 1):
         errors.append("ca: repartiment de projectes diferent de 5 particulars + 1 industrial")
     if lang == "ca":
-        seo = (ROOT / "SEO-F3.md").read_text(encoding="utf-8")
+        seo = (ROOT / "fases" / "fase-3" / "SEO-F3.md").read_text(encoding="utf-8")
         assignment = seo.split("## Assignació per pàgina", 1)[1].split("## Cinc expressions", 1)[0]
         assigned = []
         term_counts = [0, 0, 0]

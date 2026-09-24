@@ -7,17 +7,17 @@
 
 **ESTAT ACTUAL DEL PROJECTE (v1.7 — 23 de setembre de 2026)**
 - Fase 0 (context i setup): **TANCADA**. Auditoria completa de la web antiga feta — veure secció 8.
-- Fase 1 (arquitectura): **TANCADA**. Sitemap i user journeys validats al document annex `FASE1-arquitectura-serralleria-carbo.md`.
-- Fase 2 (marca i disseny): **TANCADA I VALIDADA PEL CLIENT**. Decisions congelades a `DESIGN.md` i `design/tokens.css`; prova visual a `FASE2-propostes/`.
+- Fase 1 (arquitectura): **TANCADA**. Sitemap i user journeys validats al document annex `fases/fase-1/FASE1-arquitectura-serralleria-carbo.md`.
+- Fase 2 (marca i disseny): **TANCADA I VALIDADA PEL CLIENT**. Decisions congelades a `DESIGN.md` i `design/tokens.css`; prova visual a `fases/fase-2/FASE2-propostes/`.
 - Fase 3 (continguts): **TANCADA PROVISIONALMENT PER AL PAS A FASE 4**, per decisió del director de projecte després de l'auditoria del català i de les correccions. Textos CA i mapa SEO per pàgina congelats com a base de disseny. Les dades i fotografies pendents, les versions ES/EN i els textos legals es completaran i validaran abans de publicar.
 - Fase 4 (disseny UI): **OBERTA**. Preparar mockups de les plantilles clau a partir de l'arquitectura i del contingut català validat com a base.
 - Fase 5 en endavant: no iniciades.
 
 **Documents annexos d'aquest projecte:**
-- `FASE1-arquitectura-serralleria-carbo.md` — sitemap definitiu, navegació i user journeys.
-- `Mapa-redireccions-serralleriacarbo.xlsx` — inventari d'URLs antigues, contingut recuperat, projectes reals i notes d'auditoria.
+- `fases/fase-1/FASE1-arquitectura-serralleria-carbo.md` — sitemap definitiu, navegació i user journeys.
+- `fases/fase-3/Mapa-redireccions-serralleriacarbo.xlsx` — inventari d'URLs antigues, contingut recuperat, projectes reals i notes d'auditoria.
 - `DESIGN.md` i `design/tokens.css` — decisions de marca i sistema visual de la Fase 2.
-- `FASE2-propostes/` — comparativa de direccions i prova funcional de la primera secció; les fotografies són conceptuals, no treballs reals.
+- `fases/fase-2/FASE2-propostes/` — comparativa de direccions i prova funcional de la primera secció; les fotografies són conceptuals, no treballs reals.
 
 ---
 
@@ -118,7 +118,7 @@ Les quatre categories de particulars (Urgències, Estructures, Automatismes, Mob
 
 ## 3. Estratègia SEO (MAPA EDITORIAL DE FASE 3 EN REVISIÓ)
 
-> El mapa concret d'intencions i expressions candidates és a `SEO-F3.md`. L'assignació inicial a les pàgines aprovades es pot fixar ara; la prioritat i les variants s'afinaran amb dades reals de Search Console i Analytics quan hi hagi accés. Cap xifra de volum o posició s'ha inventat.
+> El mapa concret d'intencions i expressions candidates és a `fases/fase-3/SEO-F3.md`. L'assignació inicial a les pàgines aprovades es pot fixar ara; la prioritat i les variants s'afinaran amb dades reals de Search Console i Analytics quan hi hagi accés. Cap xifra de volum o posició s'ha inventat.
 
 Línies mestres provisionals:
 - Investigació de paraules clau per idioma, agrupades per intenció i per àmbit.

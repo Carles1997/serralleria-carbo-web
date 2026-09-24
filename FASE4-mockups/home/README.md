@@ -1,37 +1,31 @@
-# Mockup de la home · Fase 4
+# Homepage · Fase 4 (iteració Stitch)
 
-Obre `index.html` al navegador. És una **maqueta navegable de revisió**, no codi de producció ni una pàgina publicada.
+Obre index.html i actualitza la pestanya del navegador si ja tens la maqueta oberta. És una **maqueta navegable de revisió**, no una pàgina publicada.
 
-## Fonts de projecte
+## Direcció visual
 
-- Arquitectura i recorreguts: `../../FASE1-arquitectura-serralleria-carbo.md`.
-- Direcció visual A i comportament del doble accés: `../../DESIGN.md` i `../../FASE2-propostes/index.html`.
-- Text català: `../../content/ca/home.md` i contingut de les pàgines de branca i projectes quan cal identificar els enllaços.
-- Colors, tipografia i espaiat: `../../design/tokens.css`.
-- Direcció editorial d'aquesta iteració: `../../Referencies/Landing page layout Inspo(Mobile and web).jpeg` i `../../Referencies/QUARRA STONE COMPANY _ corporate website redesign - Tony Che.jpeg`. Són referències de ritme, contrast i escala; no s'han incorporat com a assets.
+Aquesta iteració parteix dels exports de la carpeta stitch_serralleria_carbo_design_system i en conserva la fotografia protagonista, la paleta fosca, el contrast editorial, la divisió Particulars / Industrial i les xifres de taller. Els exports originals de Stitch no s'han modificat. La tipografia, el bordeus i els criteris de marca continuen venint de DESIGN.md i design/tokens.css.
 
-## Direcció visual d'aquesta iteració
+Els canvis principals són una sola estructura responsive, formes més rectes, menys ombres i targetes, un menú web mòbil, accessos immediats a les dues branques i informació real de Fases 1–3. La home manté el títol i la descripció SEO aprovats, amb noindex propi de la maqueta.
 
-La revisió del director de projecte demanava una home menys genèrica i més sòbria. La maqueta adopta un fons carbó predominant, una entrada tipogràfica de gran escala, fotografia monocroma integrada en la composició, separadors fins, dades amb jerarquia editorial i un tancament en el bordeus de marca. Els dos camins inicials conserven el mateix pes i funcionen sense hover. La tipografia continua sent Source Sans 3 i el color d'accent continua sent `#7c2a30`.
+## Contingut i límits
 
-## Límits del mockup
+- Textos de content/ca/home.md; projectes documentats de content/ca/projects/.
+- Les quatre xifres provenen de la informació confirmada pel client. No es publiquen promeses de servei 24 h, terminis de resposta, certificacions o especificacions de maquinària no confirmades.
+- Les fotografies són **conceptuals** i no documenten el taller ni els projectes de Serralleria Carbó. Les originals continuen pendents. Els sis projectes es mostren per títol, sense atribuir-los cap fotografia conceptual.
+- Els enllaços de la maqueta porten a seccions de la mateixa home perquè es pugui provar el recorregut. L'atribut data-future-route conserva la ruta final validada de la Fase 1. Les pàgines interiors i el formulari real de /contacte/ s'han de dissenyar en les següents plantilles.
+- Telèfon, WhatsApp i correu obren els canals reals; la maqueta no envia cap consulta per si sola. Els textos legals continuen pendents del client.
 
-- Les dues fotografies de la primera secció provenen de la prova conceptual de Fase 2. No mostren el taller ni treballs reals de l'empresa. Cal substituir-les per fotografies aprovades.
-- `metal-detail-concept.png` és una tercera fotografia conceptual generada amb el mode integrat d'ImageGen per estudiar material, llum i enquadrament. No s'ha de presentar com una fotografia del taller. Prompt final: «A precise close-up of clean fabricated steel elements in a contemporary metal workshop, showing a crafted joint, brushed stainless steel and dark painted steel; asymmetrical architectural photography, controlled side light, deep shadows and silver highlights; charcoal and steel palette; believable fabrication details; no people, logos, text, sparks, rust, gears or watermark.»
-- Els enllaços interns porten a seccions de la mateixa maqueta perquè es pugui comprovar el recorregut sense pàgines interiors dissenyades. L'atribut `data-future-route` indica la ruta final del sitemap.
-- Els accessos de telèfon, WhatsApp i correu són reals i no envien cap missatge automàticament.
-- El selector CA / ES / EN mostra la posició prevista, però encara no canvia d'idioma. Les traduccions continuen pendents.
-- Les pàgines de projectes i Contacte s'il·lustraran amb les seves plantilles pròpies. Aquest mockup només fixa la home.
+## Revisió
 
-## Què cal validar
+El fitxer verify.cjs està preparat per generar captures a 1440, 768, 390 i 320 px i revisar desbordament, imatges, font, menú i interaccions. Les captures de la iteració anterior s'han conservat a preview-anterior/. La versió actual es valora obrint index.html; verify.cjs pot generar captures noves al directori.
 
-1. Equilibri visual i comprensió dels dos camins inicials, amb i sense hover.
-2. Jerarquia de les xifres, serveis, projectes i contacte en escriptori i mòbil.
-3. Visibilitat de la trucada per a una avaria i de l'accés a la branca industrial.
-4. Comportament del menú mòbil, focus de teclat, contrast i lectura a 320 px.
+Cal revisar visualment la versió actual en navegador abans de validar-la amb el client, especialment l'enquadrament de les fotografies i els talls de titular a 768 i 320 px. La Fase 4 continua oberta.
 
-En mòbil, una parella d'accessos ràpids manté les dues opcions visibles abans dels panells apilats; els panells continuen sent enllaços complets.
+## Segon mockup de les seccions
 
-La comprovació automatitzada de `verify.cjs` genera les captures a 1440, 768, 390 i 320 px i revisa desbordament horitzontal, font, fotografies del doble accés, hover, focus, menú mòbil, tacte i moviment reduït. Aquesta maqueta continua pendent de validació visual per part del director de projecte i del client.
+Serveis ara és un mosaic de quatre peces per a Particulars i una peça industrial amb el mateix llenguatge visual. Els esquemes de reparació i automatismes són genèrics, no fitxes de maquinària o obres reals.
 
-L'aprovació d'aquest mockup permetrà derivar-ne els components per a la resta de plantilles de la Fase 4. No tanca la Fase 4 per si sola.
+Els sis treballs documentats es recorren en un visor manual. Sense JavaScript es poden llegir tots seguits. L'asset project-stage-concept-v2.png és una imatge conceptual nova i porta una atribució explícita a la maqueta. Les alternatives valorades, el criteri i la preparació per a l'animació estan a SECCIONS-v2.md.
+
+Les captures arxivades a preview-anterior/ continuen sent de la iteració anterior. Encara cal una revisió visual nova a 1440, 768, 390 i 320 px abans de validar el mockup.

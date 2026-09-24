@@ -41,7 +41,7 @@ Fabriquem mobiliari amb estructura metàl·lica, a mida de l'ús i de l'espai.
 
 ## Treballs reals
 
-Els projectes documentats inclouen baranes, una passarel·la interior, una estructura per a ascensor, una porta de pàrquing i persianes motoritzades. Són treballs fets per a habitatges, comunitats i negocis.
+A la portada destaquem tres treballs documentats: baranes interiors, una estructura per a ascensor i les persianes motoritzades d’un negoci. El portafoli recull els cinc casos recuperats, fets per a habitatges, comunitats i negocis.
 
 [Veure projectes](/particulars/projectes/)
 

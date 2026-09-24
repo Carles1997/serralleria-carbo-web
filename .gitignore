@@ -23,3 +23,6 @@ Thumbs.db
 !.env.example
 *.pem
 *.key
+
+# Captura incompleta exportada per Stitch
+**/serralleria_carb_homepage_fotografia_d_alt_impacte/screen.png

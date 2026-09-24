@@ -4,183 +4,264 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#171819">
+  <meta name="theme-color" content="#101113">
   <meta name="robots" content="noindex, nofollow">
-  <title>Mockup · Home — Serralleria Carbó</title>
+  <meta name="description" content="Serralleria Carbó: des de 1989, treballs de serralleria per a particulars i fabricació metàl·lica per a empreses a Vilafranca del Penedès.">
+  <title>Serralleria a Vilafranca del Penedès | Serralleria Carbó</title>
   <link rel="stylesheet" href="../../design/tokens.css">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="review-note" role="note">
-    <span>Fase 4 · Mockup de revisió</span>
-    <span>Fotografies conceptuals de maqueta; no mostren treballs de Serralleria Carbó.</span>
-  </div>
-
   <a class="skip-link" href="#contingut">Vés al contingut</a>
 
   <header class="site-header" id="inici">
     <div class="header-inner">
       <a class="wordmark" href="#inici" aria-label="Serralleria Carbó, torna a l'inici">
-        <span>Serralleria</span>
-        <strong>Carbó</strong>
+        <span>Serralleria</span><strong>Carbó</strong>
       </a>
-
-      <nav class="desktop-nav" aria-label="Navegació principal del mockup">
-        <a href="#empresa">Empresa</a>
-        <a href="#particulars">Particulars</a>
-        <a href="#industrial">Carbó Industrial</a>
-        <a href="#contacte">Contacte</a>
+      <nav class="desktop-nav" aria-label="Navegació principal">
+        <a href="#particulars" data-future-route="/particulars/">Particulars</a>
+        <a href="#industrial" data-future-route="/industrial/">Carbó Industrial</a>
+        <a href="#serveis">Serveis</a>
+        <a href="#projectes">Projectes</a>
+        <a href="#empresa" data-future-route="/empresa/">Empresa</a>
       </nav>
-
       <div class="header-actions">
-        <span class="language" aria-label="Idioma actual: català. Versions castellana i anglesa pendents">CA <span aria-hidden="true">/ ES / EN</span></span>
-        <a class="header-whatsapp" href="https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta." target="_blank" rel="noopener noreferrer">Escriu-nos <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        <a class="header-phone" href="tel:+34630661908"><span class="header-phone-label">Parlem?</span><span>630 661 908</span></a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Obre el menú"><span></span><span></span></button>
       </div>
     </div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Navegació mòbil del mockup" hidden>
-      <a href="#empresa">Empresa</a>
-      <a href="#particulars">Particulars</a>
-      <a href="#industrial">Carbó Industrial</a>
-      <a href="#contacte">Contacte</a>
-      <a href="https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta." target="_blank" rel="noopener noreferrer">Escriu-nos per WhatsApp</a>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Navegació mòbil" hidden>
+      <a href="#particulars" data-future-route="/particulars/">Particulars</a>
+      <a href="#industrial" data-future-route="/industrial/">Carbó Industrial</a>
+      <a href="#serveis">Serveis</a>
+      <a href="#projectes">Projectes</a>
+      <a href="#empresa" data-future-route="/empresa/">Empresa</a>
+      <a href="#contacte" data-future-route="/contacte/">Contacte</a>
     </nav>
   </header>
 
   <main id="contingut">
-    <section class="opening section-shell" aria-labelledby="home-title">
-      <div class="opening-title">
-        <span class="eyebrow">Ofici del metall · Vilafranca del Penedès</span>
-        <h1 id="home-title"><span class="hero-name">Serralleria<br>Carbó<span class="hero-comma">,</span></span><span class="hero-place">a Vilafranca del Penedès <em>des de 1989</em></span></h1>
+    <section class="hero-intro section-shell" aria-labelledby="home-title">
+      <div class="hero-main">
+        <p class="eyebrow"><span class="eyebrow-line"></span> Vilafranca del Penedès <span class="eyebrow-separator">/</span> Des de 1989</p>
+        <h1 id="home-title"><span>Serralleria </span><span>Carbó<span class="hero-stop">,</span> </span><small>a Vilafranca del Penedès des de 1989</small></h1>
+        <nav class="mobile-path-nav" aria-label="Accés ràpid als dos àmbits"><a href="#serveis" data-future-route="/particulars/">Particulars <span aria-hidden="true">↗</span></a><a href="#capacitats" data-future-route="/industrial/">Carbó Industrial <span aria-hidden="true">↗</span></a></nav>
       </div>
-      <div class="opening-aside"><span class="aside-index">01 / Dues especialitats, un taller</span><p>Fabriquem i instal·lem portes, baranes, estructures i automatismes per a habitatges, comunitats i negocis. Del mateix taller neix Carbó Industrial, la nostra línia de fabricació metàl·lica per a empreses.</p><span class="aside-rule" aria-hidden="true"></span></div>
+      <div class="hero-aside">
+        <span class="index">01 — Dues especialitats, un taller</span>
+        <p>Fabriquem i instal·lem portes, baranes, estructures i automatismes per a habitatges, comunitats i negocis. Del mateix taller neix Carbó Industrial, la nostra línia de fabricació metàl·lica per a empreses.</p>
+        <span class="hero-aside-rule" aria-hidden="true"></span>
+      </div>
     </section>
 
-    <nav class="path-shortcuts" aria-label="Accés ràpid als dos àmbits">
-      <a href="#hero-particulars">Particulars <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-      <a href="#hero-industrial">Carbó Industrial <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-    </nav>
-
-    <section class="choice-grid" aria-label="Tria el teu àmbit">
-      <a class="choice-card choice-particulars" id="hero-particulars" href="#particulars" data-future-route="/particulars/">
-        <img src="../../FASE2-propostes/assets/particulars-concept.png" alt="" fetchpriority="high">
-        <span class="choice-shade" aria-hidden="true"></span>
-        <span class="choice-content">
-          <span class="choice-category">01 / Serralleria Carbó</span>
-          <span class="choice-title">Particulars</span>
-          <span class="choice-description">Baranes, escales, portes, automatismes i mobiliari a mida, fabricats al taller i instal·lats pel nostre equip. També atenem reparacions de portes i automatismes.</span>
-          <span class="choice-action">Serveis per a particulars <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
-        </span>
-      </a>
-      <a class="choice-card choice-industrial" id="hero-industrial" href="#industrial" data-future-route="/industrial/">
-        <img src="../../FASE2-propostes/assets/industrial-concept.png" alt="" fetchpriority="high">
-        <span class="choice-shade" aria-hidden="true"></span>
-        <span class="choice-content">
-          <span class="choice-category">02 / Una branca de Serralleria Carbó</span>
-          <span class="choice-title">Carbó <span>Industrial</span></span>
-          <span class="choice-description"><strong>Sèries curtes. Peces exigents. Resposta industrial.</strong><br>Fabriquem peces i conjunts en acer al carboni i inox 304/316, amb soldadura MIG/MAG i TIG, per a encàrrecs de producció de tercers.</span>
-          <span class="choice-action">Coneix Carbó Industrial <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
-        </span>
-      </a>
+    <section class="paths" aria-label="Tria el teu àmbit">
+      <div class="paths-heading section-shell"><span>Tria el teu camí</span><span>01 / 02</span></div>
+      <div class="paths-grid">
+        <a class="path path-particulars" id="particulars" href="#serveis" data-future-route="/particulars/">
+          <img src="../../FASE2-propostes/assets/particulars-concept.png" alt="" fetchpriority="high">
+          <span class="path-image-shade" aria-hidden="true"></span>
+          <span class="path-top"><span>01 / Serralleria Carbó</span><span class="path-corner" aria-hidden="true">↗</span></span>
+          <span class="path-bottom">
+            <span class="path-kicker">Per a casa, comunitats i negocis</span>
+            <strong>Particulars</strong>
+            <span class="path-copy">Baranes, escales, portes, automatismes i mobiliari a mida. També atenem reparacions.</span>
+            <span class="path-action">Veure serveis <span aria-hidden="true">↗</span></span>
+          </span>
+        </a>
+        <a class="path path-industrial" id="industrial" href="#capacitats" data-future-route="/industrial/">
+          <img src="../../FASE2-propostes/assets/industrial-concept.png" alt="" fetchpriority="high">
+          <span class="path-image-shade" aria-hidden="true"></span>
+          <span class="path-top"><span>02 / Una branca de Serralleria Carbó</span><span class="path-corner" aria-hidden="true">↗</span></span>
+          <span class="path-bottom">
+            <span class="path-kicker">Fabricació per a empreses</span>
+            <strong>Carbó<br>Industrial</strong>
+            <span class="path-copy path-slogan">Sèries curtes. Peces exigents. Resposta industrial.</span>
+            <span class="path-action">Veure capacitats <span aria-hidden="true">↗</span></span>
+          </span>
+        </a>
+      </div>
+      <p class="concept-note section-shell">Fotografies conceptuals per a la maqueta. No mostren treballs ni instal·lacions de Serralleria Carbó.</p>
     </section>
 
-    <div class="urgent-strip">
+    <section class="urgent-strip" aria-labelledby="urgent-title">
       <div class="section-shell urgent-inner">
-        <p><strong>Tens una avaria?</strong> Si falla una porta o un automatisme, pots explicar-nos directament què ha passat.</p>
-        <div class="urgent-links"><a href="tel:+34630661908">Truca al 630 661 908 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a href="#particulars">Consulta reparacions</a></div>
-      </div>
-    </div>
-
-    <section class="numbers-section" id="empresa" aria-labelledby="numbers-title">
-      <div class="section-shell">
-        <div class="numbers-heading">
-          <h2 id="numbers-title">El taller, en xifres</h2>
-          <p>Aquesta capacitat de taller i desplaçament ens permet treballar tant en una barana per a un habitatge com en una sèrie curta per a un fabricant.</p>
-        </div>
-        <div class="numbers-grid">
-          <div class="number-item"><strong>1989</strong><span>Any de fundació</span></div>
-          <div class="number-item"><strong>950 <small>m²</small></strong><span>Taller de fabricació a Vilafranca del Penedès</span></div>
-          <div class="number-item"><strong>12</strong><span>Persones a la plantilla</span></div>
-          <div class="number-item number-vehicles"><strong>6</strong><span>Furgonetes · 1 camió ploma per a instal·lacions i logística</span></div>
-        </div>
+        <div class="urgent-heading"><span class="urgent-marker" aria-hidden="true">+</span><div><span class="index">Reparacions i incidències</span><h2 id="urgent-title">Tens una avaria?</h2></div></div>
+        <p>Si falla una porta o un automatisme, explica'ns què ha passat i t'ajudarem a concretar la consulta.</p>
+        <a href="tel:+34630661908">Truca al 630 661 908 <span aria-hidden="true">↗</span></a>
       </div>
     </section>
 
-    <section class="company-section section-shell" aria-labelledby="company-title">
-      <div class="company-heading"><span class="eyebrow">02 / Arrel i abast</span><h2 id="company-title">Del taller a cada projecte</h2></div>
-      <div class="company-copy">
+    <section class="numbers section-shell" aria-labelledby="numbers-title">
+      <div class="section-lead">
+        <span class="index">02 — El taller</span>
+        <h2 id="numbers-title">Fets que<br>ens defineixen<span class="accent-dot">.</span></h2>
+        <p>Un taller a Vilafranca del Penedès, equip propi i capacitat per treballar en encàrrecs de particulars i en sèries curtes per a empreses.</p>
+      </div>
+      <div class="number-grid">
+        <div class="number-item"><strong>1989</strong><span>Any de fundació</span></div>
+        <div class="number-item"><strong>950 <small>m²</small></strong><span>Taller de fabricació a Vilafranca del Penedès</span></div>
+        <div class="number-item"><strong>12</strong><span>Persones a la plantilla</span></div>
+        <div class="number-item"><strong>6 <small>+ 1</small></strong><span>6 furgonetes i 1 camió ploma</span></div>
+      </div>
+    </section>
+
+    <section class="company" id="empresa" aria-labelledby="company-title">
+      <div class="company-image"><img src="metal-detail-concept.png" alt="" loading="lazy"><span>Fotografia conceptual · estudi de material</span></div>
+      <div class="company-content">
+        <span class="index">03 — Empresa / ofici</span>
+        <h2 id="company-title">Del taller a cada projecte<span class="accent-dot">.</span></h2>
         <p>La major part de la feina es fa a Vilafranca i la rodalia; també treballem en projectes fins a Barcelona. Per a sèries industrials podem valorar encàrrecs d'arreu de Catalunya.</p>
-        <a class="text-link" href="#contacte" data-future-route="/empresa/">Coneix l'empresa <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        <a class="underlined-link" href="#contacte" data-future-route="/empresa/">Coneix l'empresa <span aria-hidden="true">↗</span></a>
       </div>
-      <figure class="company-image"><img src="metal-detail-concept.png" alt="" loading="eager"><figcaption>Estudi visual de material · fotografia conceptual</figcaption></figure>
     </section>
 
-    <section class="services-section" id="particulars" aria-labelledby="services-title">
+    <section class="services" id="serveis" aria-labelledby="services-title">
       <div class="section-shell">
-        <div class="section-heading">
-          <h2 id="services-title">Serveis i capacitats</h2>
-          <p>Consulta el servei concret si ja saps què necessites.</p>
+        <div class="section-lead services-lead">
+          <span class="index">04 — Què fem</span>
+          <h2 id="services-title">Solucions amb<br>ofici<span class="accent-dot">.</span></h2>
+          <p>Troba el servei que s'ajusta al que necessites, tant si és una reparació com una feina feta a mida.</p>
         </div>
-        <div class="services-layout">
-          <div class="service-list" aria-label="Serveis per a particulars">
-            <a href="#contacte" data-future-route="/particulars/urgencies/"><span>Reparació de portes</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-            <a href="#projectes" data-future-route="/particulars/estructures/"><span>Baranes i estructures</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-            <a href="#projectes" data-future-route="/particulars/automatismes/"><span>Automatismes</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-            <a href="#contacte" data-future-route="/particulars/mobiliari/"><span>Mobiliari a mida</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        <div class="offer-grid">
+          <div class="offer-branch offer-particulars">
+            <div class="offer-branch-heading"><span>Serralleria Carbó</span><h3>Particulars</h3><span>01 / 02</span></div>
+            <div class="service-tiles">
+              <a class="service-tile tile-diagram tile-repair" href="#contacte" data-future-route="/particulars/urgencies/">
+                <span class="tile-top"><span>01 / Reparacions</span><span aria-hidden="true">↗</span></span>
+                <svg class="service-drawing service-drawing-door" viewBox="0 0 400 320" fill="none" aria-hidden="true">
+                  <path d="M94 264V37h173v227M94 264h173M120 66h119v168H120zM267 37l39 22v205h-39M307 264h22M105 104h-12m12 91h-12" />
+                  <circle cx="222" cy="153" r="6" /><path d="M228 153h40M155 244h50M132 266v20M241 266v20" />
+                </svg>
+                <span class="tile-bottom"><strong>Reparació<br>de portes</strong><span>Portes i automatismes</span></span>
+              </a>
+              <a class="service-tile tile-photo tile-structures" href="#projectes" data-future-route="/particulars/estructures/">
+                <img src="../../FASE2-propostes/assets/particulars-concept.png" alt="" loading="lazy">
+                <span class="tile-shade" aria-hidden="true"></span>
+                <span class="tile-top"><span>02 / Estructures</span><span aria-hidden="true">↗</span></span>
+                <span class="tile-bottom"><strong>Baranes i<br>estructures</strong><span>Escales i passarel·les</span></span>
+              </a>
+              <a class="service-tile tile-diagram tile-automatisms" href="#projectes" data-future-route="/particulars/automatismes/">
+                <span class="tile-top"><span>03 / Moviment</span><span aria-hidden="true">↗</span></span>
+                <svg class="service-drawing service-drawing-gate" viewBox="0 0 400 320" fill="none" aria-hidden="true">
+                  <path d="M40 75h315M40 231h315M74 90h199v128H74zM273 98h48v120h-48M321 141h27v77h-27M92 90v128m24-128v128m24-128v128m24-128v128m24-128v128m24-128v128m24-128v128" />
+                  <circle cx="96" cy="246" r="11" /><circle cx="251" cy="246" r="11" /><path d="M72 272h236M302 67l18-12 18 12M320 55v30" />
+                </svg>
+                <span class="tile-bottom"><strong>Automatismes</strong><span>Portes i motors</span></span>
+              </a>
+              <a class="service-tile tile-photo tile-furniture" href="#contacte" data-future-route="/particulars/mobiliari/">
+                <img src="metal-detail-concept.png" alt="" loading="lazy">
+                <span class="tile-shade" aria-hidden="true"></span>
+                <span class="tile-top"><span>04 / A mida</span><span aria-hidden="true">↗</span></span>
+                <span class="tile-bottom"><strong>Mobiliari<br>a mida</strong><span>Ferro i inoxidable</span></span>
+              </a>
+            </div>
+            <a class="offer-overview" href="#particulars" data-future-route="/particulars/">Explora els serveis per a particulars <span aria-hidden="true">↗</span></a>
           </div>
-          <a class="industrial-link" id="industrial" href="#projectes" data-future-route="/industrial/capacitats/">
-            <span>Carbó Industrial</span>
-            <strong>Capacitats<br>industrials</strong>
-            <span class="industrial-bottom">Materials, soldadura i maquinària del taller <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
-          </a>
+          <div class="offer-branch offer-industrial">
+            <div class="offer-branch-heading"><span>Carbó Industrial</span><h3>Empreses</h3><span>02 / 02</span></div>
+            <a class="service-tile industrial-tile tile-photo" id="capacitats" href="#contacte" data-future-route="/industrial/capacitats/">
+              <img src="../../FASE2-propostes/assets/industrial-concept.png" alt="" loading="lazy">
+              <span class="tile-shade" aria-hidden="true"></span>
+              <span class="tile-top"><span>01 / Producció</span><span aria-hidden="true">↗</span></span>
+              <span class="industrial-tile-content">
+                <span class="industrial-mark" aria-hidden="true">C<span>.</span></span>
+                <strong>Capacitats<br>industrials</strong>
+                <span class="industrial-tile-slogan">Sèries curtes. Peces exigents. Resposta industrial.</span>
+                <span class="industrial-tile-detail">Acer al carboni i inox 304/316 · Soldadura MIG/MAG i TIG</span>
+              </span>
+            </a>
+            <a class="offer-overview" href="#industrial" data-future-route="/industrial/">Coneix Carbó Industrial <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <p class="services-image-note">Fotografies i dibuixos conceptuals de la maqueta. No documenten treballs ni instal·lacions de Serralleria Carbó.</p>
+      </div>
+    </section>
+
+    <section class="projects" id="projectes" aria-labelledby="projects-title">
+      <div class="section-shell">
+        <div class="section-lead projects-lead">
+          <span class="index">05 — Treballs documentats</span>
+          <h2 id="projects-title">Feines que<br>ja hem fet<span class="accent-dot">.</span></h2>
+          <p>Sis casos recuperats de l'empresa, amb les fotografies originals encara pendents. Aquí pots recórrer-los un a un.</p>
+        </div>
+        <div class="project-showcase">
+          <figure class="project-media">
+            <img src="project-stage-concept-v2.png" alt="" loading="lazy">
+            <span class="project-media-number" aria-hidden="true">01</span>
+            <figcaption>Fotografia conceptual · no correspon a cap d'aquests projectes</figcaption>
+          </figure>
+          <div class="project-stage-copy" id="project-stage-copy" aria-live="polite">
+            <article class="project-slide">
+              <div class="project-slide-meta"><span>01 / 06</span><span>Particulars · Estructures</span></div>
+              <h3>Baranes interiors d'habitatge</h3>
+              <p>Fabricació i instal·lació de baranes per a la reforma interior d'un habitatge.</p>
+              <a class="underlined-link" href="#particulars" data-future-route="/particulars/projectes/">Veure projectes de particulars <span aria-hidden="true">↗</span></a>
+            </article>
+            <article class="project-slide">
+              <div class="project-slide-meta"><span>02 / 06</span><span>Particulars · Estructures</span></div>
+              <h3>Passarel·la interior</h3>
+              <p>Baranes de ferro negre i una passarel·la per a l'interior d'un habitatge en reforma. Tot es va soldar i pintar a la mateixa obra.</p>
+              <a class="underlined-link" href="#particulars" data-future-route="/particulars/projectes/">Veure projectes de particulars <span aria-hidden="true">↗</span></a>
+            </article>
+            <article class="project-slide">
+              <div class="project-slide-meta"><span>03 / 06</span><span>Particulars · Estructures</span></div>
+              <h3>Estructura per a ascensor</h3>
+              <p>Fabricació i instal·lació d'una estructura per incorporar un ascensor a una comunitat que buscava millorar la mobilitat dins de l'edifici.</p>
+              <a class="underlined-link" href="#particulars" data-future-route="/particulars/projectes/">Veure projectes de particulars <span aria-hidden="true">↗</span></a>
+            </article>
+            <article class="project-slide">
+              <div class="project-slide-meta"><span>04 / 06</span><span>Particulars · Automatismes</span></div>
+              <h3>Porta de pàrquing</h3>
+              <p>Fabricació, instal·lació i motorització de la porta de pàrquing d'una comunitat de veïns.</p>
+              <a class="underlined-link" href="#particulars" data-future-route="/particulars/projectes/">Veure projectes de particulars <span aria-hidden="true">↗</span></a>
+            </article>
+            <article class="project-slide">
+              <div class="project-slide-meta"><span>05 / 06</span><span>Particulars · Automatismes</span></div>
+              <h3>Persianes motoritzades d'un negoci</h3>
+              <p>Fabricació, instal·lació i motorització de sis persianes enrotllables i de la porta d'un negoci.</p>
+              <a class="underlined-link" href="#particulars" data-future-route="/particulars/projectes/">Veure projectes de particulars <span aria-hidden="true">↗</span></a>
+            </article>
+            <article class="project-slide">
+              <div class="project-slide-meta"><span>06 / 06</span><span>Carbó Industrial · Sèries curtes</span></div>
+              <h3>Deu gàbies per a un client industrial</h3>
+              <p>Fabricació i subministrament de deu gàbies per a un client industrial. El material i la soldadura es van escollir per a les exigències de pes de l'ús previst.</p>
+              <a class="underlined-link" href="#industrial" data-future-route="/industrial/projectes/">Veure el projecte industrial <span aria-hidden="true">↗</span></a>
+            </article>
+          </div>
+        </div>
+        <div class="project-navigator" hidden>
+          <div class="project-steps" role="group" aria-label="Tria un projecte">
+            <button type="button" data-project="0" aria-controls="project-stage-copy" aria-pressed="true"><span>01</span><span>Baranes interiors</span></button>
+            <button type="button" data-project="1" aria-controls="project-stage-copy" aria-pressed="false"><span>02</span><span>Passarel·la</span></button>
+            <button type="button" data-project="2" aria-controls="project-stage-copy" aria-pressed="false"><span>03</span><span>Ascensor</span></button>
+            <button type="button" data-project="3" aria-controls="project-stage-copy" aria-pressed="false"><span>04</span><span>Porta de pàrquing</span></button>
+            <button type="button" data-project="4" aria-controls="project-stage-copy" aria-pressed="false"><span>05</span><span>Persianes</span></button>
+            <button type="button" data-project="5" aria-controls="project-stage-copy" aria-pressed="false"><span>06</span><span>Gàbies industrials</span></button>
+          </div>
+          <div class="project-controls"><span class="project-current">01 / 06</span><div><button type="button" class="project-prev" aria-label="Projecte anterior">←</button><button type="button" class="project-next" aria-label="Projecte següent">→</button></div></div>
         </div>
       </div>
     </section>
 
-    <section class="projects-section section-shell" id="projectes" aria-labelledby="projects-title">
-      <div class="section-heading projects-heading">
-        <h2 id="projects-title">Treballs fets, no només possibilitats</h2>
-        <p>Els projectes documentats mostren baranes, una passarel·la interior, una estructura d'ascensor, una porta de pàrquing i persianes motoritzades d'un negoci. A la branca industrial, el primer cas és una sèrie de deu gàbies fabricades per a un client.</p>
-      </div>
-      <div class="project-layout">
-        <a class="project-panel project-panel-light" href="#contacte" data-future-route="/particulars/projectes/">
-          <span>Projectes de particulars</span>
-          <strong>Projectes de serralleria.</strong>
-          <span class="project-examples">Baranes · Passarel·la interior · Porta de pàrquing</span>
-          <span class="panel-action">Veure projectes de particulars <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
-        </a>
-        <a class="project-panel project-panel-dark" href="#contacte" data-future-route="/industrial/projectes/">
-          <span>Projecte industrial</span>
-          <strong>Deu gàbies per a un client industrial.</strong>
-          <span class="project-examples">Sèrie curta · Fabricació i subministrament</span>
-          <span class="panel-action">Veure el projecte industrial <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
-        </a>
-      </div>
-      <p class="image-note">Les fotografies originals dels projectes s'incorporaran després de verificar-les amb el client.</p>
-    </section>
-
-    <section class="contact-section" id="contacte" aria-labelledby="contact-title">
+    <section class="contact" id="contacte" aria-labelledby="contact-title">
       <div class="section-shell contact-inner">
-        <div>
-          <h2 id="contact-title">Parlem del teu encàrrec</h2>
-          <p>Explica'ns una incidència, descriu el projecte que tens previst o envia els requisits d'una peça. El contacte s'adapta a particulars i empreses perquè la consulta arribi amb la informació adequada.</p>
-        </div>
+        <div><span class="index">06 — Contacte</span><h2 id="contact-title">Parlem del<br>teu encàrrec<span>.</span></h2><p>Explica'ns una incidència, descriu el projecte que tens previst o envia els requisits d'una peça. El contacte s'adapta a particulars i empreses.</p></div>
         <div class="contact-actions">
-          <a class="contact-primary" href="https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta." target="_blank" rel="noopener noreferrer">Escriu-nos per WhatsApp <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-          <a class="contact-secondary" href="mailto:carbo@serralleriacarbo.com" data-future-route="/contacte/">Contacta amb Serralleria Carbó</a>
+          <a class="contact-primary" href="https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta." target="_blank" rel="noopener noreferrer">Escriu-nos per WhatsApp <span aria-hidden="true">↗</span></a>
+          <a href="tel:+34630661908">Truca al 630 661 908 <span aria-hidden="true">↗</span></a>
+          <a href="mailto:carbo@serralleriacarbo.com" data-future-route="/contacte/">carbo@serralleriacarbo.com <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="section-shell footer-main">
-      <div><strong>Serralleria Carbó</strong><span>Vilafranca del Penedès · Des de 1989</span></div>
-      <a href="tel:+34630661908">630 661 908</a>
-      <a href="mailto:carbo@serralleriacarbo.com">carbo@serralleriacarbo.com</a>
-      <div class="footer-legal" aria-label="Pàgines legals pendents de contingut"><span>Avís legal</span><span>Privacitat</span><span>Cookies</span></div>
-      <span>© Serralleria Carbó S.L.</span>
+    <div class="section-shell footer-inner">
+      <div class="footer-brand"><span>Serralleria</span><strong>Carbó</strong><small>Vilafranca del Penedès · Des de 1989</small></div>
+      <div class="footer-meta"><span>Fase 4 · Mockup de revisió</span><span>Avís legal, privacitat i fotografies originals pendents.</span><span>© Serralleria Carbó S.L.</span></div>
+      <a class="back-top" href="#inici">Torna a l'inici ↑</a>
     </div>
   </footer>
 </body>

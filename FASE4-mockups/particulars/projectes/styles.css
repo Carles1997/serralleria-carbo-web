@@ -1,0 +1,77 @@
+.desktop-nav { gap: clamp(.75rem,1.25vw,1.35rem); }
+.desktop-nav a { font-size: .82rem; }
+.desktop-nav a[aria-current="page"], .mobile-nav a[aria-current="page"] { color: #e7afb3; border-color: var(--accent-text); }
+.header-inner { gap: clamp(1rem,1.8vw,2rem); }
+
+.folio-hero { position: relative; isolation: isolate; min-height: clamp(610px,78svh,850px); overflow: hidden; border-bottom: 1px solid #575d5f; background: #252b2d; }
+.folio-hero-image { position: absolute; z-index: -1; inset: 0; }
+.folio-hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: 54% center; filter: grayscale(1) contrast(1.12); }
+.folio-hero-image::after { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(8,10,12,.95),rgba(8,10,12,.69) 51%,rgba(8,10,12,.28)),linear-gradient(0deg,rgba(8,10,12,.78),transparent 52%,rgba(8,10,12,.42)); content: ""; }
+.folio-hero-content { position: relative; display: flex; flex-direction: column; min-height: inherit; padding-block: clamp(1.5rem,2.8vw,3rem); }
+.folio-breadcrumb { display: flex; align-items: center; gap: .8rem; min-height: 44px; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,.5); color: #e6e9e7; font-size: .81rem; font-weight: 600; }
+.folio-breadcrumb a { display: inline-flex; align-items: center; min-height: 38px; text-decoration: none; }
+.folio-breadcrumb a:hover { color: #ecc4c6; }
+.folio-breadcrumb>span[aria-hidden] { color: #d39599; }
+.folio-hero-main { max-width: 1320px; margin-top: auto; padding-top: 8rem; }
+.folio-hero-main .index { color: #f0c2c4; }
+.folio-hero h1 { margin: 1.8rem 0 0; font-size: clamp(4.6rem,8vw,9rem); font-weight: 700; letter-spacing: -.07em; line-height: .82; text-transform: uppercase; }
+.folio-hero h1 em { color: #d4d8d7; font-style: normal; font-weight: 400; }
+.folio-hero-bottom { display: flex; align-items: end; justify-content: space-between; gap: 3rem; max-width: 1110px; margin-top: clamp(2.5rem,4vw,4rem); padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,.55); }
+.folio-hero-bottom p { max-width: 53ch; margin: 0; color: #e9edeb; font-size: clamp(1rem,1.24vw,1.25rem); line-height: 1.5; }
+.folio-hero-bottom a { display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; flex: none; min-width: 13rem; min-height: 48px; padding-bottom: .5rem; border-bottom: 1px solid #fff; font-weight: 700; text-decoration: none; }
+.folio-hero-bottom a:hover { color: #f0c1c4; }
+.folio-hero-bottom a span { color: #e6a8ac; font-size: 1.25rem; }
+.folio-hero-caption { display: block; align-self: flex-end; max-width: 38ch; margin-top: 2rem; color: #f0f3f1; font-size: .72rem; font-weight: 700; letter-spacing: .1em; line-height: 1.35; text-align: right; text-transform: uppercase; text-shadow: 0 1px 8px #000; }
+
+.folio-work { background: #151719; }
+.folio-work-top { display: grid; grid-template-columns: minmax(0,1fr) minmax(250px,.42fr); gap: 2rem clamp(2rem,6vw,8rem); align-items: end; padding-block: clamp(5rem,8vw,9rem) clamp(3rem,5vw,5rem); }
+.folio-work-top h2 { margin: 1.5rem 0 0; font-size: clamp(3.8rem,6.4vw,7rem); font-weight: 700; letter-spacing: -.065em; line-height: .88; text-transform: uppercase; }
+.folio-work-top>p { max-width: 42ch; margin: 0; color: #cbd1cf; font-size: clamp(1rem,1.18vw,1.16rem); line-height: 1.5; }
+.folio-filters { position: sticky; z-index: 30; top: 76px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 76px; border-block: 1px solid #62676a; background: rgba(16,18,20,.98); backdrop-filter: blur(12px); }
+.folio-filters>span { color: #bfc6c4; font-size: .76rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+.folio-filters>div { display: flex; align-items: stretch; gap: 1px; min-height: 55px; background: #555b5d; }
+.folio-filters button { display: flex; align-items: center; gap: .8rem; padding: .6rem clamp(.8rem,1.5vw,1.5rem); border: 0; border-bottom: 2px solid transparent; background: #1c2022; color: #d7dcd9; font: inherit; font-size: .88rem; font-weight: 700; cursor: pointer; }
+.folio-filters button small { color: #d2979b; font-size: .72rem; font-variant-numeric: tabular-nums; }
+.folio-filters button[aria-pressed="true"] { border-bottom-color: #d2979b; background: #313639; color: #fff; }
+.folio-filters button:hover { background: #373d40; }
+.folio-filter-status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.folio-case-list { margin-top: 0; }
+.folio-case { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); min-height: clamp(590px,48vw,760px); border-top: 1px solid #5b6264; }
+.folio-case:last-child { border-bottom: 1px solid #5b6264; }
+.folio-case[hidden] { display: none !important; }
+.folio-case-media { position: relative; isolation: isolate; min-width: 0; min-height: 590px; margin: 0; overflow: hidden; background: linear-gradient(145deg,#383f41,#171c1f); }
+.folio-case-media::before { position: absolute; z-index: -1; inset: 0; background: repeating-linear-gradient(90deg,transparent 0 13.8%,rgba(255,255,255,.04) 14% 14.1%,transparent 14.3% 28%); content: ""; }
+.folio-case-media::after { position: absolute; inset: 0; background: linear-gradient(180deg,rgba(7,9,11,.1),transparent 45%,rgba(7,9,11,.72)); content: ""; }
+.folio-case-media-automation { background: linear-gradient(145deg,#303237,#15171b); }
+.folio-case-glyph { position: absolute; top: .04em; left: -.045em; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.55); font-size: clamp(14rem,29vw,36rem); font-weight: 700; letter-spacing: -.1em; line-height: .8; font-variant-numeric: tabular-nums; }
+.folio-case-geometry { position: absolute; inset: 25% 10% 16% 22%; transform: rotate(-10deg); }
+.folio-case-geometry i { position: absolute; display: block; border: 1px solid #a8b6b8; }
+.folio-case-geometry i:nth-child(1) { inset: 0 7% 21% 0; }
+.folio-case-geometry i:nth-child(2) { inset: 14% 0 7% 15%; }
+.folio-case-geometry i:nth-child(3) { inset: 30% 19% 0 2%; border-color: #b26b71; }
+.folio-case-media-automation .folio-case-geometry { transform: rotate(9deg); }
+.folio-case-media-automation .folio-case-geometry i { border-radius: 50%; }
+.folio-case-media figcaption { position: absolute; z-index: 2; right: clamp(1.5rem,3vw,3rem); bottom: clamp(1.5rem,3vw,3rem); left: clamp(1.5rem,3vw,3rem); padding-top: .8rem; border-top: 1px solid rgba(255,255,255,.65); color: #fff; font-size: .75rem; font-weight: 700; letter-spacing: .11em; line-height: 1.4; text-transform: uppercase; }
+.folio-case-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; min-width: 0; padding: clamp(2rem,4vw,5rem); background: #1e2224; }
+.folio-case:nth-child(even) .folio-case-copy { background: #141719; }
+.folio-case-meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; align-self: stretch; padding-bottom: 1rem; border-bottom: 1px solid #5a6162; color: #e6adb1; font-size: .78rem; font-weight: 700; letter-spacing: .09em; line-height: 1.35; text-transform: uppercase; }
+.folio-case-meta span:last-child { font-variant-numeric: tabular-nums; }
+.folio-case-copy h3 { max-width: 15ch; margin: 2rem 0 1.5rem; font-size: clamp(3.2rem,5.1vw,6rem); font-weight: 600; letter-spacing: -.055em; line-height: .9; text-transform: uppercase; text-wrap: balance; overflow-wrap: break-word; }
+.folio-case-copy p { max-width: 48ch; margin: 0; color: #d8ddda; font-size: clamp(1.05rem,1.3vw,1.25rem); line-height: 1.55; }
+.folio-case-copy .underlined-link { margin-top: 2rem; }
+.folio-case-reverse .folio-case-media { order: 2; }
+.folio-case-reverse .folio-case-copy { order: 1; }
+
+.folio-more { padding-block: clamp(5rem,8vw,9rem); background: #101214; }
+.folio-more-inner { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(250px,.8fr); gap: 2rem clamp(2rem,6vw,8rem); align-items: end; }
+.folio-more h2 { margin: 2rem 0 0; font-size: clamp(3.8rem,6.2vw,7rem); font-weight: 700; letter-spacing: -.065em; line-height: .88; text-transform: uppercase; }
+.folio-more-links { border-top: 1px solid #5f6667; }
+.folio-more-links a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 84px; border-bottom: 1px solid #5f6667; font-size: clamp(1.5rem,2.2vw,2.6rem); font-weight: 600; letter-spacing: -.035em; text-decoration: none; text-transform: uppercase; }
+.folio-more-links a:hover { color: #e1a8ac; }
+.folio-more-links a span { color: #d2979b; font-size: 1.5rem; font-weight: 400; }
+
+@media (max-width: 1270px) { .desktop-nav { display: none; } .header-actions { margin-left: auto; } .menu-toggle { display: flex; } }
+@media (max-width: 1000px) { .folio-hero h1 { font-size: clamp(4rem,8vw,7rem); } .folio-hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.5rem; } .folio-case { min-height: 560px; } .folio-case-media { min-height: 560px; } .folio-case-copy h3 { font-size: clamp(2.8rem,5vw,4.4rem); } .folio-case-meta { flex-wrap: wrap; } }
+@media (max-width: 760px) { .folio-hero { min-height: max(690px,calc(100svh - 68px)); } .folio-hero-image::after { background: linear-gradient(0deg,rgba(8,10,12,.97),rgba(8,10,12,.72) 48%,rgba(8,10,12,.3)); } .folio-hero-content { padding-block: 1.3rem 2rem; } .folio-hero-main { padding-top: 9rem; } .folio-hero h1 { font-size: clamp(3.3rem,9vw,5.4rem); } .folio-hero-caption { align-self: flex-start; text-align: left; } .folio-work-top { grid-template-columns: 1fr; } .folio-work-top h2 { font-size: clamp(3.4rem,8vw,5.5rem); } .folio-filters { top: 68px; flex-direction: column; align-items: stretch; gap: .5rem; padding-block: .65rem; } .folio-filters>div { min-height: 48px; } .folio-filters button { justify-content: center; flex: 1; } .folio-case { display: flex; flex-direction: column; } .folio-case-media, .folio-case-reverse .folio-case-media { order: 0; min-height: 400px; height: 400px; } .folio-case-copy, .folio-case-reverse .folio-case-copy { order: 1; min-height: 470px; } .folio-case-copy h3 { font-size: clamp(3rem,7vw,5rem); } .folio-more-inner { grid-template-columns: 1fr; gap: 3rem; } }
+@media (max-width: 520px) { .folio-breadcrumb { gap: .5rem; font-size: .76rem; } .folio-hero { min-height: 700px; } .folio-hero h1 { font-size: clamp(2.8rem,10vw,4rem); } .folio-hero-bottom p { font-size: .98rem; } .folio-hero-caption { font-size: .64rem; } .folio-work-top h2 { font-size: clamp(2.9rem,10vw,3.8rem); } .folio-filters>span { font-size: .68rem; } .folio-filters button { gap: .25rem; padding: .55rem .35rem; font-size: .75rem; } .folio-filters button small { font-size: .65rem; } .folio-case-media, .folio-case-reverse .folio-case-media { min-height: 310px; height: 310px; } .folio-case-glyph { font-size: 13rem; } .folio-case-copy, .folio-case-reverse .folio-case-copy { min-height: 430px; padding: 2rem var(--page-gutter); } .folio-case-copy h3 { font-size: clamp(2.6rem,9vw,3.8rem); } .folio-case-copy p { font-size: 1rem; } .folio-case-meta { font-size: .68rem; } .folio-more h2 { font-size: clamp(3rem,10vw,4.3rem); } }
+@media (max-width: 360px) { .folio-hero { min-height: 730px; } .folio-hero h1 { font-size: 9.4vw; } .folio-case-copy h3 { font-size: 8.6vw; } .folio-case-media, .folio-case-reverse .folio-case-media { height: 280px; min-height: 280px; } .folio-case-copy, .folio-case-reverse .folio-case-copy { min-height: 450px; } }

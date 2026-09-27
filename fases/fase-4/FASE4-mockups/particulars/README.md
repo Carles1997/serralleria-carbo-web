@@ -20,3 +20,7 @@ Primer mockup derivat de la homepage acceptada com a referència visual. La bran
 ## Revisió pendent
 
 Validar visualment la llegibilitat del titular sobre la imatge, el retall fotogràfic, la quadrícula de serveis i la seqüència de projectes a 1440, 768, 390 i 320 px. Les fotografies originals i les dades que encara espera el client s'incorporaran quan es confirmin.
+
+**Identitat aprovada el 24/09/2026:** el bordeus `#7c2a30` té més protagonisme a la franja d’atenció i la primera peça de serveis; la secció de serveis usa carbó `#1d2022`. La prova s’ha incorporat a `index.html` amb `identitat.css`. Resta la revisió transversal final.
+
+**Navegació final 25/09/2026:** després dels tres casos destacats, un botó blanc principal porta als cinc treballs documentats; el contacte passa a ser secundari. Revisat a 1440, 768, 390 i 320 px.

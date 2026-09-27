@@ -3,13 +3,13 @@ pageId: industrial-series-curtes
 route: /industrial/series-curtes/
 lang: ca
 status: draft
-seoTitle: "Fabricació de sèries curtes metàl·liques | Carbó Industrial"
-seoDescription: "Carbó Industrial fabrica sèries curtes de peces metàl·liques per a tercers, amb soldadura i muntatge propis. Explica'ns material i unitats."
+seoTitle: "Fabricació de sèries curtes metàl·liques | Industrial"
+seoDescription: "Industrial fabrica sèries curtes de peces metàl·liques per a tercers, amb soldadura i muntatge propis. Explica'ns material i unitats."
 ---
 
 # Sèries curtes per a peces exigents
 
-Una sèrie curta requereix entendre bé la peça abans de fabricar-la. A Carbó Industrial treballem encàrrecs de producció per a tercers en què el material, la soldadura, el muntatge i la quantitat s'han de valorar conjuntament.
+Una sèrie curta requereix entendre bé la peça abans de fabricar-la. A Industrial treballem encàrrecs de producció per a tercers en què el material, la soldadura, el muntatge i la quantitat s'han de valorar conjuntament.
 
 ## Com valorem l'encàrrec
 

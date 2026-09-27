@@ -4,7 +4,7 @@ route: /contacte/
 lang: ca
 status: draft
 seoTitle: "Contacte i pressupostos | Serralleria Carbó"
-seoDescription: "Contacta amb Serralleria Carbó a Vilafranca del Penedès. Explica una feina particular o envia plànol i requisits a Carbó Industrial."
+seoDescription: "Contacta amb Serralleria Carbó a Vilafranca del Penedès. Explica una feina particular o envia plànol i requisits a Industrial."
 ---
 
 # Contacta amb Serralleria Carbó
@@ -17,7 +17,7 @@ El número principal és el **630 661 908**. Pots iniciar una conversa de WhatsA
 
 ## Si ets particular
 
-Indica el tipus de servei —urgències, estructures, automatismes o mobiliari— i descriu la feina o la incidència. Si tens una fotografia, unes mides o un document, adjunta'l.
+Indica el tipus de servei —urgències, estructures, automatismes, carros o mobiliari— i descriu la feina o la incidència. Si tens una fotografia, unes mides o un document, adjunta'l.
 
 Per a una incidència, pots trucar al **630 661 908**. Explica'ns què ha passat i on és la instal·lació.
 
@@ -25,7 +25,11 @@ Per a una incidència, pots trucar al **630 661 908**. Explica'ns què ha passat
 
 Indica el sector, el material, el tipus de peça, les unitats i el termini que necessites. Adjunta un plànol o la documentació tècnica disponible perquè puguem valorar la consulta.
 
-El contacte industrial és **Jordi Mas**: **605 779 694** · **gerencia@serralleriacarbo.com**.
+El contacte industrial comparteix el número **630 661 908** i el correu **carbo@serralleriacarbo.com**. El formulari identifica cada consulta segons la branca seleccionada.
+
+## Horari d’atenció
+
+De dilluns a divendres, de 8 a 13 h i de 15 a 18 h. Dissabtes i diumenges, tancat.
 
 ## Dades generals
 

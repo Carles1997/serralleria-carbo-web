@@ -13,14 +13,14 @@ Els canvis principals són una sola estructura responsive, formes més rectes, m
 - Textos de content/ca/home.md; projectes documentats de content/ca/projects/.
 - Les quatre xifres provenen de la informació confirmada pel client. No es publiquen promeses de servei 24 h, terminis de resposta, certificacions o especificacions de maquinària no confirmades.
 - Les fotografies són **conceptuals** i no documenten el taller ni els projectes de Serralleria Carbó. Les originals continuen pendents. Els sis projectes es mostren per títol, sense atribuir-los cap fotografia conceptual.
-- Els enllaços de la maqueta porten a seccions de la mateixa home perquè es pugui provar el recorregut. L'atribut data-future-route conserva la ruta final validada de la Fase 1. Les pàgines interiors i el formulari real de /contacte/ s'han de dissenyar en les següents plantilles.
+- Els enllaços de les rutes que ja tenen maqueta obren la plantilla corresponent (Particulars, Industrial, projectes, estructures, capacitats i contacte). Les rutes que encara no tenen maqueta conserven un destí dins la pàgina per poder revisar el recorregut; l'atribut data-future-route n'indica la ruta final validada a la Fase 1. El formulari continua sent una simulació sense enviament.
 - Telèfon, WhatsApp i correu obren els canals reals; la maqueta no envia cap consulta per si sola. Els textos legals continuen pendents del client.
 
 ## Revisió
 
 El fitxer verify.cjs està preparat per generar captures a 1440, 768, 390 i 320 px i revisar desbordament, imatges, font, menú i interaccions. Les captures de la iteració anterior s'han conservat a preview-anterior/. La versió actual es valora obrint index.html; verify.cjs pot generar captures noves al directori.
 
-Cal revisar visualment la versió actual en navegador abans de validar-la amb el client, especialment l'enquadrament de les fotografies i els talls de titular a 768 i 320 px. La Fase 4 continua oberta.
+La versió actual s'ha revisat a 1440, 768, 390 i 320 px, inclosos els enquadraments i els talls de titular. El detall és a ../../FASE4-QA-final.md. La Fase 4 s’ha tancat amb la validació del client el 25/09/2026.
 
 ## Segon mockup de les seccions
 
@@ -28,4 +28,4 @@ Serveis ara és un mosaic de quatre peces per a Particulars i una peça industri
 
 Els sis treballs documentats es recorren en un visor manual. Sense JavaScript es poden llegir tots seguits. L'asset project-stage-concept-v2.png és una imatge conceptual nova i porta una atribució explícita a la maqueta. Les alternatives valorades, el criteri i la preparació per a l'animació estan a SECCIONS-v2.md.
 
-Les captures arxivades a preview-anterior/ continuen sent de la iteració anterior. Encara cal una revisió visual nova a 1440, 768, 390 i 320 px abans de validar el mockup.
+Les captures arxivades a preview-anterior/ continuen sent de la iteració anterior. La passada transversal de les set plantilles a 1440, 768, 390 i 320 px queda documentada a ../../FASE4-QA-final.md. La Fase 4 ha quedat validada pel client el 25/09/2026; aquesta és la referència de disseny per al desenvolupament.

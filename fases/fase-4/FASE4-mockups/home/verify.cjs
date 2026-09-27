@@ -56,9 +56,12 @@ const path = require('node:path');
   const touchPage = await browser.newPage({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
   await touchPage.goto(file);
   await touchPage.locator('.mobile-path-nav a').last().tap();
-  const touchShortcut = new URL(touchPage.url()).hash === '#capacitats';
+  await touchPage.waitForURL('**/industrial/index.html');
+  const touchShortcut = touchPage.url().includes('/industrial/index.html');
+  await touchPage.goto(file);
   await touchPage.locator('.path-industrial').tap();
-  const touchPath = new URL(touchPage.url()).hash === '#capacitats';
+  await touchPage.waitForURL('**/industrial/index.html');
+  const touchPath = touchPage.url().includes('/industrial/index.html');
   await touchPage.close();
 
   console.log(JSON.stringify({ results, before, afterHover, afterFocus, reducedMotion, menuOpened, menuClosed, touchShortcut, touchPath, projectNavigatorVisible, projectAdvanced, errors }, null, 2));

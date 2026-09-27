@@ -3,13 +3,13 @@ pageId: industrial-proces
 route: /industrial/proces/
 lang: ca
 status: draft
-seoTitle: "Procés de fabricació industrial | Carbó Industrial"
-seoDescription: "Definim, preparem, fabriquem i comprovem: coneix el procés de treball de Carbó Industrial per a projectes de fabricació metàl·lica."
+seoTitle: "Procés de fabricació industrial | Industrial"
+seoDescription: "Definim, preparem, fabriquem i comprovem: coneix el procés de treball de Industrial per a projectes de fabricació metàl·lica."
 ---
 
 # Procés de fabricació: definim, preparem, fabriquem, comprovem
 
-El procés de Carbó Industrial s'organitza en quatre passos. Ens serveix per compartir els requisits abans de fabricar i mantenir una conversa tècnica al llarg de l'encàrrec.
+El procés de Industrial s'organitza en quatre passos. Ens serveix per compartir els requisits abans de fabricar i mantenir una conversa tècnica al llarg de l'encàrrec.
 
 ## Definim
 
@@ -33,4 +33,4 @@ Explica'ns quin resultat necessites i adjunta els plànols o arxius disponibles.
 
 [Veure capacitats](/industrial/capacitats/) · [Enviar una consulta](/contacte/)
 
-Per comentar els requisits tècnics, contacta amb Jordi Mas al [605 779 694](tel:+34605779694) o a [gerencia@serralleriacarbo.com](mailto:gerencia@serralleriacarbo.com).
+Per comentar els requisits tècnics, truca al [630 661 908](tel:+34630661908) o escriu a [carbo@serralleriacarbo.com](mailto:carbo@serralleriacarbo.com).

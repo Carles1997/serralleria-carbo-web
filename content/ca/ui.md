@@ -12,7 +12,7 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 - Inici
 - Empresa
 - Particulars
-- Carbó Industrial
+- Industrial
 - Contacte
 - Idioma
 
@@ -26,7 +26,7 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 - Projectes
 - Contacte
 
-## Navegació Carbó Industrial
+## Navegació Industrial
 
 - Inici
 - Capacitats
@@ -42,7 +42,7 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 - Número general: **630 661 908** (`+34 630 661 908` per a l'enllaç internacional)
 - Missatge inicial proposat: **Hola, us escric des de la web de Serralleria Carbó. Voldria fer una consulta.**
 - A Urgències, conservar també **Truca al 630 661 908** com a acció directa de trucada.
-- Les consultes industrials continuen mostrant el contacte tècnic de Jordi Mas a la pàgina de contacte.
+- Les consultes particulars i industrials comparteixen el 630 661 908 i carbo@serralleriacarbo.com; el formulari identifica la branca seleccionada en l’assumpte ([Particulars] o [Industrial]) quan s’implementi l’enviament.
 - Traduir el missatge inicial a ES/EN després de validar el català. El visitant el pot editar abans d'enviar-lo; obrir WhatsApp no envia cap missatge automàticament.
 
 ## Selecció del formulari

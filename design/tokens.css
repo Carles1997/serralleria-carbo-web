@@ -25,6 +25,12 @@
   --color-line: #d6d4cf;
   --color-accent: #7c2a30;
   --color-accent-on-dark: #d48e94;
+  /* Fase 4: accents de branca. La home compartida conserva el bordeus de marca. */
+  --color-particulars-accent: #7c2a30;
+  --color-particulars-charcoal: #1d2022;
+  --color-industrial-silver: #c5ceca;
+  --color-industrial-graphite: #2d3130;
+  --color-industrial-ink: #454b4a;
   --color-focus-light: #7c2a30;
   --color-focus-dark: #d48e94;
 

@@ -3,8 +3,8 @@ pageId: industrial-projectes
 route: /industrial/projectes/
 lang: ca
 status: draft
-seoTitle: "Projectes de fabricació industrial | Carbó Industrial"
-seoDescription: "Coneix el primer cas real de Carbó Industrial: fabricació i subministrament de deu gàbies per a un client del sector industrial."
+seoTitle: "Projectes de fabricació industrial | Industrial"
+seoDescription: "Coneix el primer cas real de Industrial: fabricació i subministrament de deu gàbies per a un client del sector industrial."
 projectIds: "gavia-industrial"
 reviewNeeded:
   - "No publicar cap xifra de càrrega sense especificació confirmada."
@@ -12,7 +12,7 @@ reviewNeeded:
 
 # Projectes industrials
 
-Un cas de fabricació per a tercers que mostra una feina real de Carbó Industrial.
+Un cas de fabricació per a tercers que mostra una feina real de Industrial.
 
 ## Un primer cas documentat
 
@@ -24,4 +24,4 @@ La fabricació i el subministrament de **deu gàbies** per a un client industria
 
 Comparteix el plànol, les unitats, el material i l'aplicació de la peça perquè puguem valorar-ne l'encaix.
 
-[Veure capacitats](/industrial/capacitats/) · [Contactar amb Carbó Industrial](/contacte/)
+[Veure capacitats](/industrial/capacitats/) · [Contactar amb Industrial](/contacte/)

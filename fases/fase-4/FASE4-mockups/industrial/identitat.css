@@ -1,0 +1,70 @@
+/* Carbó Industrial: approved neutral-metal identity for Fase 4 mockups. */
+:root { --accent:var(--color-industrial-ink); --accent-text:var(--color-industrial-silver); }
+.industrial-page { --i-accent:var(--color-industrial-silver); }
+
+/* A stronger silver reflection, restricted to the highlighted words in headings. */
+.industrial-page :is(h1,h2,h3) em {
+  /* A full line box and a small paint margin keep the last glyph from being clipped by background-clip. */
+  display:inline-block;
+  max-width:calc(100% + .16em);
+  padding-inline-end:.16em;
+  margin-inline-end:-.16em;
+  line-height:1.06;
+  color:#dfe5df;
+  font-style:normal;
+  background-image:linear-gradient(105deg,#f8faf7 0%,#a2aca5 17%,#fbfdf9 32%,#7e8983 51%,#f7faf6 68%,#9ba69f 85%,#f8faf7 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+/* The light capacity panel needs the inverse reflection to keep its headline legible. */
+.c-overview h2 em {
+  color:#303936;
+  background-image:linear-gradient(105deg,#26302b 0%,#69756e 19%,#27312d 39%,#737f76 60%,#27312d 81%,#606b64 100%);
+}
+@media (forced-colors:active) {
+  .industrial-page :is(h1,h2,h3) em {
+    background:none;
+    color:CanvasText;
+    -webkit-text-fill-color:CanvasText;
+  }
+}
+
+.i-section-link:hover,.i-text-link:hover,.i-proof a:hover { color:#e5e9e6; }
+.i-proof strong { color:#c5ceca; }
+.i-button-solid:hover { background:#e0e4e1; }
+.i-section-heading-light .i-index { color:#454b4a; }
+
+/* Graphite workshop, neutral metal cards and readable small labels. */
+.i-capabilities { background:var(--color-industrial-graphite); color:#f4f5f2; }
+.i-cap-intro .i-index { color:#c5ceca; }
+.i-cap-intro p,.i-cap-bottom p { color:#d6ddda; }
+.i-cap-bottom { border-top-color:#7b8480; }
+.i-capabilities .i-section-link-dark { color:#fff; border-color:#7b8480; }
+.i-capabilities .i-section-link-dark span { color:#c5ceca; }
+.i-capabilities .i-section-link-dark:hover { color:#e5e9e6; }
+.i-capabilities :focus-visible { outline-color:#c5ceca; }
+.i-cap-machines { background:#d9ddda; }
+.i-cap-machines .i-cap-item-head,.i-cap-machines-foot span:last-child { color:#454b4a; }
+.i-cap-mounting { background:#424947; }
+.i-cap-mounting p { color:#edf0ed; }
+
+/* Neutral silver process line and contact action. */
+.i-series-steps::before { background:rgba(197,206,202,.33); }
+.i-series-steps::after { background:#c5ceca; box-shadow:0 0 16px rgba(197,206,202,.8); }
+.i-series-step::before { border-color:#c5ceca; background:#c5ceca; }
+.has-series-motion .i-series-step::before { background:#222528; }
+.i-series-step.is-visible::before,.has-series-motion .i-series-step.is-visible::before { background:#c5ceca; box-shadow:0 0 0 5px rgba(197,206,202,.16),0 0 18px rgba(197,206,202,.7); }
+.i-series-step-number { color:#c5ceca; }
+.i-contact { border-top-color:#c5ceca; }
+.i-contact-guide li::before { color:#c5ceca; }
+.i-contact-main { background:#c5ceca; color:#151719; }
+.i-contact-main:hover,.i-contact-main:focus-visible { background:#e5e9e6; }
+
+/* Capacity interior: the light information panels use dark neutral labels. */
+.c-section-head .i-index,.c-machine-block .c-block-label span:last-child,
+.c-plan-note span,.c-requirements .i-index,.c-progress>span { color:#454b4a; }
+.c-material-block .c-block-label span:last-child { color:#c5ceca; }
+.c-plate-inox { background:#444c49; }
+.c-plate strong i { color:#d5ddd7; }
+.c-machine svg { stroke:#67726d; }

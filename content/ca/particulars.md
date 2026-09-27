@@ -15,11 +15,11 @@ Si tens una avaria o un projecte nou, explica'ns què necessites i ho valorarem 
 
 ## En què et podem ajudar
 
-### Urgències
+### Portes i motors
 
-Si tens una avaria en una porta o un automatisme, pots trucar-nos directament per explicar què ha passat.
+Fabriquem, motoritzem i reparem portes i accessos. Si tens una avaria, pots trucar-nos durant l’horari d’atenció.
 
-[Veure urgències](/particulars/urgencies/)
+[Veure automatismes](/particulars/automatismes/) · [Reparacions](/particulars/urgencies/)
 
 ### Estructures
 
@@ -27,11 +27,11 @@ Fabriquem i instal·lem baranes, escales, passarel·les i altres estructures met
 
 [Veure estructures](/particulars/estructures/)
 
-### Automatismes
+### Carros industrials
 
-Instal·lem i reparem automatismes per a portes de garatge, persianes i altres accessos, i motoritzem portes noves o existents.
+Fabriquem carros adaptats a una necessitat concreta, tant si es tracta d’una unitat com d’una sèrie.
 
-[Veure automatismes](/particulars/automatismes/)
+[Explica’ns la feina](/contacte/?tipus=particular&servei=carros)
 
 ### Mobiliari
 

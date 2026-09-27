@@ -1,0 +1,327 @@
+/* Carbó Industrial · mockup de Fase 4, direcció editorial tècnica */
+.industrial-page { --i-dark:#151719; --i-deep:#101113; --i-steel:#222528; --i-line:#555b5d; --i-paper:#eeede9; --i-paper-line:#c5c7c2; --i-ink:#202124; --i-muted:#cbd0cf; --i-accent:#d48e94; background:var(--i-deep); }
+.industrial-page .desktop-nav { gap:clamp(.7rem,1.2vw,1.25rem); }
+.industrial-page .desktop-nav a { font-size:.82rem; }
+.industrial-page .header-inner { gap:clamp(1rem,1.8vw,2rem); }
+.industrial-page main { overflow:hidden; }
+.industrial-page section[id] { scroll-margin-top:76px; }
+.i-index { display:block; color:var(--i-accent); font-size:.75rem; font-weight:700; letter-spacing:.15em; line-height:1.3; text-transform:uppercase; }
+.i-section-heading { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(280px,.55fr); gap:1.5rem clamp(2rem,5vw,6rem); align-items:end; margin-bottom:clamp(3rem,5vw,5.5rem); }
+.i-section-heading .i-index { grid-column:1/-1; }
+.i-section-heading h2 { margin:0; font-size:clamp(3.6rem,6.6vw,7.6rem); font-weight:700; letter-spacing:-.067em; line-height:.87; text-transform:uppercase; }
+.i-section-heading h2 em { color:var(--i-accent); font-style:normal; }
+.i-section-heading p { max-width:45ch; margin:0; color:var(--i-muted); font-size:clamp(1.06rem,1.28vw,1.22rem); line-height:1.5; }
+.i-section-heading-light .i-index,.i-section-heading-light h2 em { color:#7c2a30; }
+.i-section-heading-light p { color:#4d5252; }
+.i-button { display:inline-flex; align-items:center; justify-content:space-between; gap:2rem; min-height:54px; padding:.8rem 1.1rem; font-weight:700; text-decoration:none; transition:background .22s ease,color .22s ease,transform .22s ease; }
+.i-button:hover { transform:translateY(-2px); }
+.i-button span,.i-text-link span,.i-section-link span { font-size:1.25em; font-weight:400; }
+.i-button-solid { background:#f1efeb; color:#17191a; }
+.i-button-solid:hover { background:#d8bbbd; }
+.i-button-outline { border:1px solid #ced2d0; color:#fff; }
+.i-button-outline:hover { background:#fff; color:#161819; }
+.i-section-link { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; width:fit-content; max-width:100%; min-height:56px; margin-top:clamp(2rem,4vw,4rem); padding:.7rem 0; border-top:1px solid #c3cac8; border-bottom:1px solid #c3cac8; font-weight:700; text-decoration:none; }
+.i-section-link:hover { color:#e9adb2; }
+.i-section-link-dark { border-color:#555b5c; color:var(--i-ink); }
+.i-section-link-dark:hover { color:#7c2a30; }
+.i-section-link span { color:var(--i-accent); }
+.i-section-link-dark span { color:#7c2a30; }
+
+/* Portada fotogràfica, amb el contingut sobre una sola imatge panoràmica. */
+.i-hero { position:relative; isolation:isolate; min-height:clamp(760px,calc(100svh - 76px),1050px); overflow:hidden; background:#17191b; }
+.i-hero-image,.i-hero-shade { position:absolute; inset:0; width:100%; height:100%; }
+.i-hero-image { z-index:-2; object-fit:cover; object-position:60% center; filter:saturate(.7) contrast(1.08); }
+.i-hero-shade { z-index:-1; background:linear-gradient(90deg,rgba(10,11,12,.96) 0%,rgba(10,11,12,.89) 29%,rgba(10,11,12,.62) 55%,rgba(10,11,12,.16) 100%),linear-gradient(0deg,rgba(9,10,11,.78),transparent 31%,rgba(9,10,11,.25)); }
+.i-hero-layout { display:flex; flex-direction:column; min-height:inherit; }
+.i-hero-overline { display:flex; justify-content:space-between; gap:2rem; padding-top:clamp(1.5rem,2.5vw,2.5rem); color:#e0e4e2; font-size:.73rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; }
+.i-hero-overline span:last-child { text-align:right; }
+.i-hero-copy { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; flex:1; padding-block:clamp(5rem,9vw,10rem) 4rem; }
+.i-kicker { display:flex; align-items:center; gap:1rem; color:var(--i-accent); font-size:.76rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+.i-kicker-rule { width:44px; height:2px; background:var(--i-accent); }
+.i-hero h1 { max-width:13.5ch; margin:clamp(2.2rem,4.4vw,5rem) 0 2.2rem; font-size:clamp(4.6rem,6.7vw,8.3rem); font-weight:700; letter-spacing:-.073em; line-height:.86; text-transform:uppercase; }
+.i-hero h1 em { color:var(--i-accent); font-style:normal; }
+.i-hero-copy>p { max-width:40ch; margin:0; color:#f0f2ef; font-size:clamp(1.12rem,1.45vw,1.4rem); line-height:1.48; }
+.i-hero-actions { display:flex; align-items:center; flex-wrap:wrap; gap:1rem 2rem; margin-top:2.7rem; }
+.i-text-link { display:inline-flex; align-items:center; justify-content:space-between; gap:1.2rem; min-height:50px; padding:.5rem 0; border-bottom:1px solid #d3d7d4; font-weight:700; text-decoration:none; }
+.i-text-link:hover { color:var(--i-accent); }
+.i-hero-bottom { display:flex; justify-content:space-between; gap:1rem; padding-block:1.2rem 1.5rem; border-top:1px solid rgba(255,255,255,.62); color:#e1e4e1; font-size:.7rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
+.i-hero-credit { position:absolute; right:var(--page-gutter); bottom:5.7rem; max-width:27ch; color:#e7e9e7; font-size:.65rem; font-weight:700; letter-spacing:.12em; line-height:1.35; text-align:right; text-transform:uppercase; }
+
+/* Indicadors que realment coneixem. */
+.i-proof { border-bottom:1px solid #485052; background:#272a2c; }
+.i-proof-inner { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.55fr) minmax(0,.55fr) auto; align-items:center; gap:clamp(1rem,2.5vw,3rem); min-height:164px; }
+.i-proof p { max-width:19ch; margin:0; font-size:clamp(1.4rem,2vw,2.2rem); font-weight:600; letter-spacing:-.04em; line-height:1.08; text-transform:uppercase; }
+.i-proof-inner>div { display:flex; flex-direction:column; gap:.1rem; padding-left:clamp(1rem,2vw,2rem); border-left:1px solid #737a7b; }
+.i-proof strong { font-size:clamp(2.8rem,4vw,5rem); font-weight:600; letter-spacing:-.065em; line-height:.95; white-space:nowrap; }
+.i-proof strong small { font-size:.36em; font-weight:500; letter-spacing:-.02em; }
+.i-proof-inner>div span { color:#cbd0cf; font-size:.9rem; }
+.i-proof a { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; min-height:50px; border-bottom:1px solid #cbd0cf; font-size:.88rem; font-weight:700; text-decoration:none; }
+.i-proof a:hover { color:var(--i-accent); }
+
+/* Materials, maquinària i soldadura passen a primer pla. */
+.i-capabilities { padding-block:clamp(4.75rem,7vw,7rem); background:var(--i-paper); color:var(--i-ink); }
+.i-cap-intro { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(260px,.55fr); gap:1.5rem clamp(2rem,6vw,8rem); align-items:end; margin-bottom:clamp(2.5rem,4vw,4rem); }
+.i-cap-intro .i-index { grid-column:1/-1; color:#7c2a30; }
+.i-cap-intro h2 { margin:0; font-size:clamp(3.7rem,6.8vw,8rem); font-weight:700; letter-spacing:-.067em; line-height:.86; text-transform:uppercase; }
+.i-cap-intro h2 em { color:#7c2a30; font-style:normal; }
+.i-cap-intro p { max-width:43ch; margin:0; color:#4d5252; font-size:clamp(1.08rem,1.3vw,1.24rem); line-height:1.5; }
+.i-cap-showcase { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:clamp(.75rem,1.2vw,1.25rem); }
+.i-cap-showcase article { position:relative; isolation:isolate; display:flex; flex-direction:column; justify-content:space-between; min-width:0; overflow:hidden; padding:clamp(1.5rem,2.6vw,3rem); }
+.i-cap-item-head { position:relative; z-index:2; display:flex; justify-content:space-between; gap:1rem; font-size:.72rem; font-weight:700; letter-spacing:.14em; line-height:1.3; text-transform:uppercase; }
+.i-cap-showcase h3 { position:relative; z-index:2; margin:0; font-weight:600; letter-spacing:-.065em; line-height:.94; text-transform:uppercase; }
+.i-cap-asset { position:relative; z-index:2; font-size:.65rem; font-weight:700; letter-spacing:.1em; line-height:1.3; text-transform:uppercase; }
+.i-cap-materials { grid-column:span 7; min-height:430px; background:#25282a; color:#fff; }
+.i-cap-materials img,.i-cap-welding img { position:absolute; z-index:-2; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(.63) contrast(1.07); transition:transform 700ms var(--motion-ease); }
+.i-cap-materials img { object-position:60% center; }
+.i-cap-materials::after,.i-cap-welding::after { position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg,rgba(7,8,9,.88),rgba(7,8,9,.3) 72%),linear-gradient(0deg,rgba(7,8,9,.85),transparent 40%); content:""; }
+.i-cap-materials h3 { max-width:12ch; font-size:clamp(3.4rem,4.5vw,6rem); }
+.i-cap-materials h3 em { color:var(--i-accent); font-style:normal; }
+.i-cap-machines { grid-column:span 5; min-height:430px; background:#dce0da; color:#202425; }
+.i-cap-machines::before { position:absolute; inset:0; background-image:linear-gradient(90deg,rgba(32,36,37,.07) 1px,transparent 1px); background-size:20% 100%; content:""; pointer-events:none; }
+.i-cap-machines .i-cap-item-head { color:#7c2a30; }
+.i-cap-machines h3 { display:block; width:100%; padding-block:.35em; border-block:1px solid #89918d; font-size:clamp(2.8rem,3.55vw,4.6rem); }
+.i-cap-machines-foot { position:relative; z-index:2; display:flex; justify-content:space-between; gap:1rem; color:#6d7470; font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+.i-cap-machines-foot span:last-child { color:#7c2a30; font-size:1.3rem; line-height:1; }
+.i-cap-welding::after { background:linear-gradient(90deg,rgba(7,8,9,.72),rgba(7,8,9,.12) 80%),linear-gradient(0deg,rgba(7,8,9,.65),transparent 45%); }
+.i-cap-welding { grid-column:span 5; min-height:340px; background:#282c2e; color:#fff; }
+.i-cap-welding img { object-position:45% center; }
+.i-cap-welding h3 { font-size:clamp(4rem,5.4vw,7rem); }
+.i-cap-welding h3 em { color:var(--i-accent); font-style:normal; }
+.i-cap-mounting { grid-column:span 7; min-height:340px; background:#51292d; color:#fff; }
+.i-cap-mounting h3 { max-width:11ch; margin:auto 0 1.3rem; font-size:clamp(3.4rem,4.6vw,6rem); }
+.i-cap-mounting p { position:relative; z-index:2; max-width:37ch; margin:0; color:#f0e3e2; font-size:1.1rem; line-height:1.46; }
+.i-cap-mounting-mark { position:absolute; right:-.1em; bottom:-.15em; color:transparent; -webkit-text-stroke:1px rgba(255,255,255,.25); font-size:clamp(9rem,20vw,26rem); font-weight:700; letter-spacing:-.11em; line-height:1; pointer-events:none; }
+.i-cap-bottom { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:clamp(1.5rem,3vw,4rem); align-items:center; margin-top:clamp(2rem,3vw,3.5rem); padding-top:1.5rem; border-top:1px solid #959b97; }
+.i-cap-bottom p { max-width:43ch; margin:0; color:#48504d; font-size:1rem; line-height:1.45; }
+.i-cap-bottom .i-button { min-width:300px; }
+@media (hover:hover) and (pointer:fine) { .i-cap-materials:hover img,.i-cap-welding:hover img { transform:scale(1.035); } }
+
+/* Sèries curtes i mètode formen una sola secció fotogràfica. */
+.i-series { position:relative; isolation:isolate; overflow:hidden; background:#1c1d1f; }
+.i-series-image { position:absolute; z-index:-2; inset:0; }
+.i-series-image img { width:100%; height:100%; object-fit:cover; object-position:center 48%; filter:saturate(.65) contrast(1.08); }
+.i-series-image::after { position:absolute; inset:0; background:linear-gradient(90deg,rgba(11,12,13,.96),rgba(11,12,13,.83) 45%,rgba(11,12,13,.4)),linear-gradient(0deg,rgba(11,12,13,.96),rgba(11,12,13,.3) 55%); content:""; }
+.i-series-image>span { position:absolute; z-index:1; right:var(--page-gutter); bottom:.7rem; color:#eff0ee; font-size:.66rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase; }
+.i-series-inner { padding-block:clamp(4rem,6vw,7rem) clamp(4rem,5vw,6rem); }
+.i-series-head { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(250px,.6fr); gap:clamp(2rem,6vw,8rem); align-items:end; margin-block:2rem clamp(3.5rem,6vw,6rem); }
+.i-series h2 { margin:0; font-size:clamp(4rem,6.8vw,8rem); font-weight:700; letter-spacing:-.07em; line-height:.87; text-transform:uppercase; }
+.i-series h2 em,.i-series-method h3 em { color:var(--i-accent); font-style:normal; }
+.i-series-head p { max-width:38ch; margin:0; color:#f1f1ee; font-size:clamp(1.08rem,1.35vw,1.27rem); line-height:1.52; }
+.i-series-method { scroll-margin-top:90px; margin-bottom:clamp(2.5rem,5vw,5rem); padding:clamp(1.5rem,2.7vw,3rem); border:1px solid rgba(202,211,208,.38); background:rgba(13,15,16,.9); }
+.i-series-method-head { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.9fr); gap:1rem clamp(2rem,4vw,5rem); align-items:end; margin-bottom:clamp(3rem,5vw,5rem); }
+.i-series-method-head>span { grid-column:1/-1; color:var(--i-accent); font-size:.75rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+.i-series-method h3 { margin:0; font-size:clamp(2.2rem,3.2vw,4rem); font-weight:700; letter-spacing:-.055em; line-height:.98; text-transform:uppercase; }
+.i-series-method-head p { max-width:43ch; margin:0; color:#d8dfdc; font-size:1.05rem; line-height:1.5; }
+.i-series-steps { --series-progress:1; position:relative; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin:0; padding:0; list-style:none; }
+.i-series-steps::before,.i-series-steps::after { position:absolute; top:0; right:12.5%; left:12.5%; height:2px; content:""; }
+.i-series-steps::before { background:rgba(212,142,148,.32); }
+.i-series-steps::after { background:#d48e94; box-shadow:0 0 15px rgba(212,142,148,.8); transform:scaleX(var(--series-progress)); transform-origin:left center; }
+.i-series-step { position:relative; min-width:0; padding:2.3rem clamp(.5rem,1.2vw,1.25rem) 0; text-align:center; }
+.i-series-step::before { position:absolute; z-index:1; top:0; left:50%; width:12px; height:12px; border:2px solid #d48e94; border-radius:50%; background:#d48e94; content:""; transform:translate(-50%,-5px); transition:background-color 250ms ease,box-shadow 250ms ease; }
+.has-series-motion .i-series-step::before { background:#222528; }
+.i-series-step.is-visible::before,.has-series-motion .i-series-step.is-visible::before { background:#d48e94; box-shadow:0 0 0 5px rgba(212,142,148,.15),0 0 18px rgba(212,142,148,.65); }
+.i-series-step-number { color:#d48e94; font-size:.73rem; font-weight:700; letter-spacing:.13em; }
+.i-series-step h4 { margin:1.15rem 0 .8rem; font-size:clamp(1.5rem,2vw,2.2rem); font-weight:700; letter-spacing:-.045em; line-height:1; text-transform:uppercase; }
+.i-series-step p { max-width:25ch; margin:0 auto; color:#d8dfdc; font-size:.93rem; line-height:1.48; }
+.has-series-motion .i-series-step { opacity:0; transform:translateY(12px); transition:opacity 600ms cubic-bezier(.77,0,.175,1),transform 600ms cubic-bezier(.77,0,.175,1); }
+.has-series-motion .i-series-step.is-visible { opacity:1; transform:translateY(0); }
+.i-series-foot { display:flex; justify-content:space-between; align-items:end; gap:3rem; padding-top:1.5rem; border-top:1px solid #bdc2bf; }
+.i-series-foot>div { max-width:60ch; }
+.i-series-foot>div span { color:var(--i-accent); font-size:.73rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
+.i-series-foot p { margin:.5rem 0 0; font-size:1.06rem; line-height:1.45; }
+
+/* Sis sectors visibles, cadascun amb consulta directa. La il·lustració és abstracta. */
+.i-sectors { padding-block:clamp(5.5rem,7.5vw,8.5rem); border-top:1px solid #53595a; background:#141719; }
+.i-sector-gallery { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:1px; margin:0; padding:1px; background:#596260; list-style:none; }
+.i-sector-gallery li { min-width:0; }
+.i-sector-gallery li:nth-child(1),.i-sector-gallery li:nth-child(5) { grid-column:span 5; }
+.i-sector-gallery li:nth-child(2),.i-sector-gallery li:nth-child(6) { grid-column:span 3; }
+.i-sector-gallery li:nth-child(3),.i-sector-gallery li:nth-child(4) { grid-column:span 4; }
+.i-sector-card { position:relative; isolation:isolate; display:flex; flex-direction:column; justify-content:space-between; min-height:370px; height:100%; overflow:hidden; padding:clamp(1.25rem,2vw,2.5rem); background:#222729; color:#fff; text-decoration:none; transition:background-color var(--motion-fast) ease; }
+.i-sector-gallery li:nth-child(2) .i-sector-card,.i-sector-gallery li:nth-child(4) .i-sector-card,.i-sector-gallery li:nth-child(6) .i-sector-card { background:#1c2022; }
+.i-sector-card::before { position:absolute; top:0; bottom:0; left:0; width:4px; background:var(--i-accent); content:""; transform:scaleY(0); transform-origin:top; transition:transform var(--motion-standard) var(--motion-ease); }
+.i-sector-card-top { position:relative; z-index:2; display:flex; justify-content:space-between; gap:1rem; color:#d7dddd; font-size:.72rem; font-weight:700; letter-spacing:.13em; line-height:1.25; text-transform:uppercase; }
+.i-sector-card-top span { color:#9facaa; text-align:right; }
+.i-sector-art { position:absolute; z-index:1; top:6%; right:-8%; width:min(86%,370px); height:auto; color:#9ca6a3; opacity:.6; transform:translate3d(0,0,0); transition:transform var(--motion-standard) var(--motion-ease),opacity var(--motion-standard) ease; }
+.i-sector-art-accent { stroke:var(--i-accent); }
+.i-sector-card-bottom { position:relative; z-index:2; display:flex; flex-direction:column; align-items:flex-start; gap:1.4rem; }
+.i-sector-card-bottom strong { max-width:12ch; font-size:clamp(2.25rem,3vw,3.8rem); font-weight:700; letter-spacing:-.06em; line-height:.94; text-transform:uppercase; }
+.i-sector-card-bottom>span { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; width:100%; min-height:44px; padding-top:.7rem; border-top:1px solid #afb8b4; font-size:.88rem; font-weight:700; }
+.i-sector-card-bottom>span span { color:var(--i-accent); font-size:1.2rem; font-weight:400; }
+.i-sector-card:focus-visible { outline:3px solid var(--i-accent); outline-offset:-4px; }
+.i-sector-caption { margin:1.1rem 0 0; color:#b8c1be; font-size:.82rem; line-height:1.45; }
+@media (hover:hover) and (pointer:fine) {
+  .i-sector-card:hover { background:#303638; }
+  .i-sector-card:hover::before { transform:scaleY(1); }
+  .i-sector-card:hover .i-sector-art { opacity:.88; transform:translate3d(-8px,-6px,0); }
+}
+.i-sector-card:focus-visible::before { transform:scaleY(1); }
+.i-sector-card:focus-visible .i-sector-art { opacity:.88; transform:translate3d(-8px,-6px,0); }
+
+/* Cas documentat amb tractament gràfic honest fins que hi hagi imatges reals. */
+.i-project { padding-block:clamp(6rem,9vw,10rem); border-top:1px solid #555c5e; background:#202325; }
+.i-project-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(3rem,6vw,8rem); align-items:center; }
+.i-project-art { position:relative; isolation:isolate; display:flex; align-items:center; justify-content:center; min-height:590px; overflow:hidden; border:1px solid #6e7575; background:#323739; }
+.i-project-art::before { position:absolute; z-index:-2; inset:0; background-image:linear-gradient(rgba(255,255,255,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.075) 1px,transparent 1px); background-size:54px 54px; content:""; }
+.i-project-lines { position:absolute; inset:13% 17%; border:1px solid rgba(255,255,255,.28); transform:skewY(-12deg); }
+.i-project-lines::before,.i-project-lines::after { position:absolute; inset:15% 20%; border:1px solid rgba(255,255,255,.22); content:""; }
+.i-project-lines::after { inset:30% 40%; }
+.i-project-art strong { font-size:clamp(12rem,21vw,28rem); font-weight:700; letter-spacing:-.13em; line-height:1; text-shadow:0 4px 35px #1c1f20; }
+.i-project-art-caption { position:absolute; right:1.4rem; bottom:1.2rem; left:1.4rem; padding-top:.7rem; border-top:1px solid #9da4a2; color:#e8eae8; font-size:.69rem; font-weight:700; letter-spacing:.12em; line-height:1.3; text-transform:uppercase; }
+.i-project-copy h2 { margin:clamp(2rem,4vw,4rem) 0 2rem; font-size:clamp(3.6rem,5.6vw,6.8rem); font-weight:700; letter-spacing:-.066em; line-height:.88; text-transform:uppercase; }
+.i-project-copy h2 em { color:var(--i-accent); font-style:normal; }
+.i-project-copy p { max-width:45ch; margin:0; color:#d9ddda; font-size:clamp(1.08rem,1.28vw,1.22rem); line-height:1.55; }
+
+/* Contacte directe i honest en aquesta maqueta. */
+.i-contact { padding-block:clamp(6rem,9vw,10rem); border-top:5px solid #7c2a30; background:#111314; }
+.i-contact-heading { display:grid; grid-template-columns:minmax(0,1fr) minmax(250px,.55fr); gap:1rem clamp(2rem,7vw,8rem); align-items:end; margin-bottom:clamp(3rem,5vw,6rem); }
+.i-contact-heading .i-index { grid-column:1/-1; }
+.i-contact h2 { margin:0; font-size:clamp(4rem,7vw,8rem); font-weight:700; letter-spacing:-.075em; line-height:.84; text-transform:uppercase; }
+.i-contact h2 em { color:var(--i-accent); font-style:normal; }
+.i-contact-heading p { max-width:43ch; margin:0; color:#d5dad8; font-size:clamp(1.07rem,1.32vw,1.25rem); line-height:1.5; }
+.i-contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,6vw,8rem); border-top:1px solid #6e7676; }
+.i-contact-guide,.i-contact-method { padding-top:1.5rem; }
+.i-contact-guide>span,.i-contact-method>span { color:var(--i-accent); font-size:.75rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+.i-contact-guide ol { display:grid; grid-template-columns:1fr 1fr; gap:0 2rem; margin:2rem 0 0; padding:0; list-style:none; counter-reset:contact; }
+.i-contact-guide li { display:flex; align-items:center; gap:1rem; min-height:75px; border-top:1px solid #4d5556; font-size:1.05rem; font-weight:600; }
+.i-contact-guide li::before { counter-increment:contact; content:"0" counter(contact); color:#d48e94; font-size:.76rem; font-weight:700; letter-spacing:.1em; }
+.i-contact-method { display:flex; flex-direction:column; align-items:flex-start; }
+.i-contact-main { display:flex; justify-content:space-between; align-items:center; gap:2rem; width:100%; min-height:70px; margin:1.4rem 0 1.3rem; padding:1rem 1.3rem; background:#7c2a30; color:#fff; font-size:1.16rem; font-weight:700; text-decoration:none; }
+.i-contact-main:hover { background:#954047; }
+.i-contact-method>a:not(.i-contact-main) { display:block; min-height:44px; padding-block:.5rem; font-size:1.08rem; font-weight:600; text-decoration:none; overflow-wrap:anywhere; }
+.i-contact-method>a:not(.i-contact-main):hover { color:var(--i-accent); }
+.i-contact-method p { max-width:45ch; margin:1.5rem 0 0; color:#abb3b1; font-size:.88rem; }
+
+@media (max-width:1320px) {
+  .industrial-page .desktop-nav { display:none; }
+  .industrial-page .header-actions { margin-left:auto; }
+  .industrial-page .menu-toggle { display:flex; }
+}
+@media (max-width:1100px) {
+  .i-hero h1 { font-size:clamp(4.2rem,8vw,6.8rem); }
+  .i-proof-inner { grid-template-columns:1fr 1fr; gap:1.4rem; padding-block:2rem; }
+  .i-proof-inner>div { min-height:90px; }
+  .i-proof a { justify-self:start; }
+  .i-cap-intro { grid-template-columns:1fr; }
+  .i-cap-intro .i-index { grid-column:1; }
+  .i-cap-showcase article { padding:1.6rem; }
+  .i-cap-materials,.i-cap-mounting { grid-column:span 6; }
+  .i-cap-machines,.i-cap-welding { grid-column:span 6; }
+  .i-cap-machines h3 { font-size:clamp(2.35rem,4.2vw,3.5rem); }
+  .i-cap-bottom { grid-template-columns:1fr; }
+  .i-cap-bottom .i-button { justify-self:start; }
+  .i-series-head { grid-template-columns:1fr; }
+}
+@media (max-width:760px) {
+  .i-section-heading,.i-contact-heading { grid-template-columns:1fr; }
+  .i-section-heading .i-index,.i-contact-heading .i-index { grid-column:1; }
+  .i-section-heading h2 { font-size:clamp(3.2rem,10vw,5rem); }
+  .i-hero { min-height:760px; }
+  .i-hero-image { object-position:70% center; }
+  .i-hero-shade { background:linear-gradient(90deg,rgba(10,11,12,.88),rgba(10,11,12,.54)),linear-gradient(0deg,rgba(9,10,11,.9),transparent 44%,rgba(9,10,11,.22)); }
+  .i-hero h1 { font-size:clamp(3.6rem,9.6vw,5.8rem); }
+  .i-hero-credit { right:var(--page-gutter); bottom:5.2rem; }
+  .i-proof-inner { grid-template-columns:1fr 1fr; }
+  .i-proof p,.i-proof a { grid-column:1/-1; }
+  .i-proof-inner>div { border-left:0; border-top:1px solid #687071; padding:1rem 0 0; }
+  .i-cap-showcase { grid-template-columns:1fr; }
+  .i-cap-showcase article { grid-column:1; }
+  .i-cap-materials { min-height:330px; }
+  .i-cap-machines { min-height:300px; }
+  .i-cap-welding { min-height:310px; }
+  .i-cap-mounting { min-height:310px; }
+  .i-cap-showcase h3 { font-size:clamp(3.1rem,8vw,5.2rem); }
+  .i-cap-machines h3 { font-size:clamp(2.9rem,7.5vw,4.4rem); }
+  .i-cap-bottom { grid-template-columns:1fr; }
+  .i-cap-bottom .i-button { width:100%; min-width:0; }
+  .i-series-head { margin-block:2rem; }
+  .i-series h2 { font-size:clamp(3.5rem,10vw,5rem); }
+  .i-series-foot { flex-direction:column; align-items:flex-start; gap:1.5rem; }
+  .i-project-layout { grid-template-columns:1fr; }
+  .i-project-art { min-height:460px; }
+  .i-contact-grid { grid-template-columns:1fr; gap:2rem; }
+  .i-contact h2 { font-size:clamp(3.8rem,11vw,6rem); }
+}
+@media (max-width:480px) {
+  .industrial-page .header-phone { display:none; }
+  .i-hero { min-height:800px; }
+  .i-hero-overline { font-size:.61rem; }
+  .i-hero-overline span:last-child { display:none; }
+  .i-kicker { font-size:.69rem; }
+  .i-hero-copy { padding-block:4rem 6rem; }
+  .i-hero h1 { max-width:100%; margin:2.6rem 0 2rem; font-size:clamp(2.7rem,10.4vw,4.4rem); line-height:.89; }
+  .i-hero-copy>p { font-size:1.07rem; }
+  .i-hero-actions { align-items:stretch; flex-direction:column; width:100%; }
+  .i-hero-actions .i-button { width:100%; }
+  .i-text-link { width:fit-content; }
+  .i-hero-bottom { font-size:.61rem; }
+  .i-hero-credit { bottom:5.7rem; max-width:23ch; font-size:.59rem; }
+  .i-proof strong { font-size:2.9rem; }
+  .i-cap-intro h2 { font-size:clamp(3.2rem,10.7vw,4.8rem); }
+  .i-cap-showcase article { padding:1.4rem; }
+  .i-cap-materials h3,.i-cap-welding h3,.i-cap-mounting h3 { font-size:clamp(3rem,11vw,4.8rem); }
+  .i-cap-machines h3 { font-size:clamp(2.25rem,8.5vw,3.8rem); }
+  .i-cap-item-head { font-size:.62rem; }
+  .i-series h2 { font-size:clamp(2.95rem,10vw,4rem); }
+  .i-series-head p { font-size:1.05rem; }
+  .i-project-art { min-height:330px; }
+  .i-project-art strong { font-size:55vw; }
+  .i-project-copy h2 { font-size:clamp(3.1rem,11vw,4.7rem); }
+  .i-contact-guide ol { grid-template-columns:1fr; }
+  .i-contact-guide li { min-height:62px; }
+}
+@media (max-width:350px) {
+  .i-hero h1 { font-size:10.2vw; }
+  .i-section-heading h2,.i-cap-intro h2 { font-size:10vw; }
+  .i-contact h2 { font-size:11vw; }
+}
+@media (max-width:760px) {
+  .i-series-method-head { grid-template-columns:1fr; }
+  .i-series-steps { display:flex; flex-direction:column; padding-left:.3rem; }
+  .i-series-steps::before,.i-series-steps::after { top:1.35rem; right:auto; bottom:1.35rem; left:1rem; width:2px; height:auto; }
+  .i-series-steps::after { transform:scaleY(var(--series-progress)); transform-origin:center top; }
+  .i-series-step { min-height:165px; padding:1rem 0 1.5rem 3rem; text-align:left; }
+  .i-series-step::before { top:1.35rem; left:.7rem; transform:none; }
+  .i-series-step h4 { margin:.65rem 0 .5rem; }
+  .i-series-step p { max-width:46ch; margin:0; }
+}
+@media (max-width:480px) {
+  .i-series-method { padding:1.4rem 1.1rem; }
+  .i-series-method h3 { font-size:clamp(1.75rem,7vw,2.5rem); }
+  .i-series-method-head { margin-bottom:2rem; }
+  .i-series-step { min-height:150px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .i-button,.i-cap-materials img,.i-cap-welding img,.i-sector-card,.i-sector-card::before,.i-sector-art,.i-series-step,.i-series-step::before { transition:none; }
+  .has-series-motion .i-series-step { opacity:1; transform:none; }
+  .i-series-steps::after { transform:none; }
+  .i-sector-card:hover .i-sector-art,.i-sector-card:focus-visible .i-sector-art { transform:none; }
+  .i-button:hover { transform:none; }
+}
+
+@media (max-width:900px) {
+  .i-sector-gallery li:nth-child(n) { grid-column:span 6; }
+  .i-sector-card { min-height:300px; }
+}
+@media (max-width:760px) {
+  .i-capabilities,.i-sectors,.i-project,.i-contact { padding-block:4.75rem; }
+  .i-cap-materials { min-height:290px; }
+  .i-cap-machines { min-height:270px; }
+  .i-cap-welding { min-height:280px; }
+  .i-cap-mounting { min-height:280px; }
+
+}
+@media (max-width:480px) {
+  .i-sector-card { min-height:260px; padding:1rem; }
+  .i-sector-card-top { font-size:.64rem; }
+  .i-sector-card-top span { display:none; }
+  .i-sector-art { top:11%; right:-19%; width:110%; opacity:.47; }
+  .i-sector-card-bottom { gap:.7rem; }
+  .i-sector-card-bottom strong { font-size:clamp(1.45rem,6vw,2.3rem); line-height:.98; }
+  .i-sector-card-bottom>span { gap:.4rem; font-size:.875rem; line-height:1.2; }
+  .i-sector-caption { font-size:.75rem; }
+}
+@media (max-width:350px) {
+  .i-sector-card { min-height:275px; padding:.85rem; }
+  .i-sector-card-bottom strong { font-size:1.35rem; }
+}

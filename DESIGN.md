@@ -2,14 +2,14 @@
 
 **Projecte:** SC-2026-01  
 **Versió:** 1.0 · 23 de setembre de 2026  
-**Estat:** Fase 2 validada pel client i congelada. La Fase 3 té una base CA i SEO acceptada provisionalment; la Fase 4 està oberta.  
+**Estat:** Fase 2 validada pel client i congelada. La Fase 3 té una base CA i SEO acceptada provisionalment; la Fase 4 està oberta. La decisió de color per branques de la Fase 4 es documenta a l’apartat 9.
 **Fonts de decisió:** `CONTEXT-serralleria-carbo.md`, `fases/fase-1/FASE1-arquitectura-serralleria-carbo.md`, `fases/fase-2/FASE2-marca-disseny.md` i les decisions del director de projecte d'aquesta conversa.
 
 ## 1. Decisions fixades
 
 - Es manté una marca mare, **Serralleria Carbó**, i una branca, **Carbó Industrial**, dins d'una sola web. No es modifica el sitemap ni cap user journey validat de la Fase 1.
 - La direcció escollida és **A · Ofici contemporani**. Les opcions B i C de `fases/fase-2/FASE2-propostes/index.html` queden com a exploracions descartades. La família tipogràfica no canvia entre branques; Industrial es diferencia amb jerarquia, densitat, fotografia i més superfícies fosques.
-- La base cromàtica combina blancs, grisos i carbó. El bordeus **`#7c2a30`**, aportat com a color d'accent del logotip, és compartit per les dues branques.
+- La base cromàtica combina blancs, grisos i carbó. El bordeus **`#7c2a30`**, aportat com a color d'accent del logotip, identifica la marca mare i la home compartida. La Fase 4 ha definit un accent propi per a cada branca; vegeu l’apartat 9.
 - La primera secció de la home presenta **dos camins equivalents** amb fotografies diferenciades: Particulars a l'esquerra i Carbó Industrial a la dreta en pantalles amples. El tractament inicial és en blanc i negre o molt desaturat; hover i focus recuperen el color. A mòbil, els camins s'apilen i funcionen sense hover.
 - El missatge industrial aprovat és **“Sèries curtes. Peces exigents. Resposta industrial.”** No es fixa en aquesta fase cap altre text comercial de pàgina.
 
@@ -32,7 +32,7 @@ Es pot recuperar la proximitat i el vocabulari útil de la web antiga, però la 
 **Família escollida:** Source Sans 3, font variable allotjada localment a `design/fonts/SourceSans3VF-Upright.woff2`; llicència OFL a la mateixa carpeta. S'ha triat per preservar la llegibilitat i el caràcter humà de la direcció A de manera consistent entre plataformes. La família està dissenyada per a interfícies i es distribueix amb llicència SIL Open Font License 1.1, segons el [repositori oficial d'Adobe](https://github.com/adobe-fonts/source-sans) i la seva [llicència](https://github.com/adobe-fonts/source-sans/blob/release/LICENSE.md).
 
 - **Marca mare:** “Serralleria” en una línia petita i espaiada, “Carbó” com a pes principal. En entorns reduïts es pot disposar el nom complet en una sola línia si continua llegible.
-- **Branca industrial:** “Carbó” com a nucli i “Industrial” com a descriptor separat. El parentiu visual prové de la mateixa família, el mateix accent i la mateixa construcció, sense una segona font tècnica.
+- **Branca industrial:** “Carbó” com a nucli i “Industrial” com a descriptor separat. El parentiu visual prové de la mateixa família i la mateixa construcció, sense una segona font tècnica.
 - **Text corrent:** 16 px mínim, pes 400, interlineat 1.5. Text introductori pot arribar a 18 px. No condensar paràgrafs industrials.
 - **Titulars:** pes 700, interlineat 1.05, tracking lleugerament negatiu. Escala fluida definida als tokens; evitar titulars tan grans que forcin particions incòmodes en CA/ES/EN.
 - **Etiquetes curtes:** pes 600, majúscules i tracking positiu només quan tenen funció d'orientació. No aplicar majúscules a frases ni a blocs de dades.
@@ -62,7 +62,7 @@ El bordeus original dona un contrast aproximat de **9,41:1 sobre blanc** i **8,6
 ## 5. Imatge i composició
 
 - Prioritzar fotografies pròpies de treballs instal·lats per a Particulars i del taller, peces i procés real per a Industrial. No fer passar imatges generades o de banc per treballs de l'empresa.
-- Mostrar metall real: unions, acabats, proporció i context d'ús. Evitar engranatges, guspires, xapa oxidada i degradats metàl·lics com a decoració recurrent.
+- Mostrar metall real: unions, acabats, proporció i context d'ús. Evitar engranatges, guspires, xapa oxidada i degradats metàl·lics com a decoració recurrent. La Fase 4 aprova un reflex de metall aplicat només a paraules destacades dels titulars industrials.
 - Base general clara amb moments foscos. Particulars necessita més aire i context humà; Industrial pot utilitzar més carbó i quadrícula compacta, alternats amb zones clares per llegir dades llargues.
 - Els dos panells fotogràfics de la home han de compartir tractament de llum, escala i enquadrament perquè es llegeixin com una sola composició. Fotografies reals del client substituiran `fases/fase-2/FASE2-propostes/assets/`, que són només material de prova generat.
 - La fotografia mai no pot assumir sola la funció d'informar o de navegar: nom de branca, acció i focus es mantenen visibles.
@@ -70,7 +70,7 @@ El bordeus original dona un contrast aproximat de **9,41:1 sobre blanc** i **8,6
 ## 6. Components i estats
 
 - **Capçalera:** la jerarquia i els elements són els fixats a la Fase 1. A Particulars, el telèfon ha de ser localitzable des de totes les pàgines. **Dada posterior de Fase 3:** el número principal confirmat és el 630 661 908, amb acció de WhatsApp; a Urgències es conserva també la trucada directa.
-- **Enllaços i botons:** àrea interactiva d'almenys 44 × 44 px, text explícit, estat de focus visible i contrast suficient. El bordeus és principal en fons clar; en fons fosc, ús de blanc o del bordeus aclarit segons la funció.
+- **Enllaços i botons:** àrea interactiva d'almenys 44 × 44 px, text explícit, estat de focus visible i contrast suficient. A Particulars, el bordeus és principal en fons clar; a Industrial, s’usen plata sobre fosc i gris neutre sobre clar. El blanc continua sent una opció per a accions sobre fons fosc.
 - **Targetes de servei i projecte:** fotografia o detall real, títol llegible i acció identificable sense hover. Particulars pot tenir més espai; Industrial, dades més alineades i compactes.
 - **Fitxes de capacitat i procés:** estructura regular per comparar informació, sense pictogrames que substitueixin els termes tècnics. No incloure toleràncies, terminis, maquinària ni certificacions no confirmades.
 - **Formulari compartit:** estructura unificada amb camps adaptats a Particular o Empresa com estableix la Fase 1. L'adjunt industrial ha de ser prominent. Els estats d'error s'expliquen amb text, no només color.
@@ -97,3 +97,9 @@ La prova s'ha verificat a 1440, 768, 390 i 320 px sense desbordament horitzontal
 - `fases/fase-2/FASE2-propostes/`: comparativa històrica i prova funcional del concepte. Les opcions B/C i les imatges generades no són assets de producció.
 
 No formen part de la Fase 2 els textos definitius, les traduccions, les paraules clau per pàgina, els mockups de plantilles ni el desenvolupament de la web. El client encara ha de facilitar fotografies reals, l'arxiu del logotip si en vol integrar un, i les dades de negoci pendents identificades al CONTEXT. La substitució de fotos i l'ajust de retall es faran sense reobrir l'arquitectura ni el llenguatge de marca.
+
+## 9. Decisió d'identitat de Fase 4 · 24/09/2026
+
+El director de projecte ha aprovat el tractament de Particulars amb el bordeus del logotip `#7c2a30` com a accent més visible i un fons carbó `#1d2022` a la secció de serveis. Els titulars i les accions han de continuar llegibles sobre aquests fons.
+
+Per a Carbó Industrial s'aprova una paleta neutra de plata `#c5ceca`, grafit `#2d3130` i gris fosc `#454b4a`. Les paraules destacades dels titulars porten un reflex metàl·lic més marcat sobre fons fosc; al bloc clar de Capacitats s'usa la variant inversa. Es manté Source Sans 3 i la construcció tipogràfica comuna. El reflex és estàtic i no altera la lectura ni depèn d'animació. Aquest acord substitueix l'ús compartit del bordeus com a accent de pàgina a la branca industrial; la home compartida manté el bordeus de marca. Els valors de branca són a `design/tokens.css` i les aplicacions de mockup a `identitat.css` de cada branca.

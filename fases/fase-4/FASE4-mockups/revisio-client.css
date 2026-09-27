@@ -1,0 +1,172 @@
+/* Ajustos aprovats per a la revisió del client. Les plantilles originals es mantenen. */
+:root{--client-paper:#eeefeb;--client-ink:#1b2020;--client-slate:#2a3030}
+
+/* Densitat i alternança de la pàgina d'entrada */
+.home-page .hero-intro{min-height:260px;padding-block:2.7rem 2.5rem}
+.home-page .hero-intro h1{font-size:clamp(4.1rem,7.1vw,7.4rem)}
+.home-page .path{min-height:clamp(430px,39vw,570px)}
+.home-page .numbers{position:relative;isolation:isolate;padding-block:clamp(3.5rem,5vw,5.5rem);color:var(--client-ink)}
+.home-page .numbers::before{position:absolute;z-index:-1;top:0;bottom:0;left:50%;width:100vw;background:var(--client-paper);content:"";transform:translateX(-50%)}
+.home-page .numbers .index,.home-page .numbers .section-lead p,.home-page .number-item span{color:#4d5754}
+.home-page .number-item{min-height:170px;border-color:#aeb6b2}
+.home-page .number-item strong{color:#7c2a30}
+.home-page .company,.home-page .company-image{min-height:510px}
+.home-page .company-content{padding:clamp(2.5rem,4.5vw,5rem)}
+.home-page .company-content h2{margin:1.6rem 0 1.3rem;font-size:clamp(3rem,4.8vw,5.5rem)}
+.home-page .company-content p{margin-bottom:1.5rem}
+.home-page .services{padding-block:clamp(3.5rem,5vw,6rem);border-color:#bac1bc;background:var(--client-paper);color:var(--client-ink)}
+.home-page .services .index,.home-page .services .section-lead p,.home-page .services-image-note,.home-page .offer-branch-heading>span:last-child{color:#4f5956}
+.home-page .services-lead{padding-bottom:2.4rem}
+.home-page .services .section-lead h2{font-size:clamp(3.5rem,5.4vw,6rem)}
+.home-page .offer-branch-heading,.home-page .offer-overview{color:var(--client-ink);border-color:#aeb6b2}
+.home-page .service-tile{min-height:260px}
+.home-page .industrial-tile{min-height:521px}
+.home-page .tile-bottom strong{font-size:clamp(1.55rem,2.5vw,3.2rem)}
+.home-page .contact{padding-block:clamp(3.5rem,5vw,5.5rem)}
+.home-page .contact h2{font-size:clamp(3.5rem,5.5vw,6.1rem)}
+
+/* Particulars: mateixa jerarquia amb una lectura més curta i més llum. */
+.particulars-page .p-hero{min-height:clamp(570px,78svh,760px)}
+.particulars-page .p-hero h1{font-size:clamp(4rem,6.4vw,7.2rem)}
+.particulars-page .p-intro{min-height:250px;padding-block:clamp(3rem,5vw,5rem)}
+.particulars-page .p-services{padding-block:clamp(3.5rem,5.5vw,6rem);background:var(--client-paper);color:var(--client-ink)}
+.particulars-page .p-services .index,.particulars-page .p-services .section-lead p{color:#4c5652}
+.particulars-page .p-services .section-lead h2{font-size:clamp(3.5rem,5.4vw,5.8rem)}
+.particulars-page .p-service{min-height:320px}
+.particulars-page .p-service h3{font-size:clamp(2.1rem,3vw,3.7rem)}
+.particulars-page .p-service-art-cart i:nth-child(1){top:22%;left:16%;width:68%;height:41%;border-width:5px}
+.particulars-page .p-service-art-cart i:nth-child(2){top:64%;left:22%;width:55%;height:0;border-width:3px 0 0}
+.particulars-page .p-service-art-cart i:nth-child(3){top:65%;left:25%;width:12%;height:12%;border-radius:50%;background:#7c2a30;box-shadow:170px 0 0 #7c2a30}
+.particulars-page .p-projects{padding-top:clamp(3.5rem,5vw,5.5rem)}
+.particulars-page .p-projects .section-lead{padding-bottom:2.5rem}
+.particulars-page .p-area{padding-block:clamp(3rem,5vw,5rem);border-color:#b8bfba;background:#e0e4df;color:var(--client-ink)}
+.particulars-page .p-area .index,.particulars-page .p-area-copy p,.particulars-page .p-area-copy>span:last-child{color:#424d49}
+.particulars-page .p-area h2{margin-top:1.4rem;font-size:clamp(3.5rem,5.5vw,6rem)}
+.particulars-page .contact{padding-block:clamp(3.5rem,5vw,5.5rem)}
+
+/* Plantilles de servei i portafoli: menys espai buit. */
+.structures-page .s-hero{min-height:clamp(560px,78svh,760px)}
+.structures-page .s-hero-main{padding-top:5rem}
+.structures-page .s-hero h1{font-size:clamp(3.9rem,6.2vw,7rem)}
+.structures-page .s-scope,.structures-page .s-approach{padding-block:clamp(3.5rem,5vw,5.5rem)}
+.structures-page .s-scope-gallery{min-height:390px}
+.structures-page .s-scope-panel h3{font-size:clamp(2rem,3vw,3.9rem)}
+.portfolio-page .folio-case{min-height:520px}
+
+/* Industrial conserva la identitat metàl·lica en una escala de grisos coherents. */
+.industrial-page .i-hero{min-height:clamp(600px,82svh,820px)}
+.industrial-page .i-hero-copy{padding-block:3.5rem 2.5rem}
+.industrial-page .i-hero h1{margin-block:2rem 1.4rem;font-size:clamp(4rem,5.8vw,7rem)}
+.industrial-page .i-hero-actions{margin-top:1.7rem}
+.industrial-page .i-capabilities{padding-block:clamp(3.5rem,5vw,5.5rem);background:#303635;color:#f4f5f2}
+.industrial-page .i-capabilities .i-section-heading p,.industrial-page .i-capabilities .i-section-index,.industrial-page .i-cap-intro p,.industrial-page .i-cap-bottom p{color:#d1d9d4}
+.industrial-page .i-capabilities .i-section-heading h2{font-size:clamp(3.7rem,5.5vw,6rem)}
+.industrial-page .i-capabilities .i-cap-materials,.industrial-page .i-capabilities .i-cap-welding{min-height:330px}
+.industrial-page .i-progress-note{margin-top:1px;padding:1.2rem 1.4rem;background:#222929;color:#f1f4f1}
+.industrial-page .i-progress-note>span{display:block;margin-bottom:.9rem;color:#d1d9d4;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.industrial-page .i-progress-note>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#64706c}
+.industrial-page .i-progress-note p{margin:0;padding:.9rem 1rem;background:#222929}
+.industrial-page .i-progress-note strong{display:block;color:#f1f4f1;font-size:.93rem;line-height:1.35;text-transform:uppercase}
+.industrial-page .i-progress-note small{display:block;margin-top:.4rem;color:#cbd3ce;font-size:.8rem;line-height:1.4}
+.industrial-page .i-series-inner{padding-block:clamp(3rem,4vw,4.5rem)}
+.industrial-page .i-series-head{margin-block:1.4rem 2.1rem}
+.industrial-page .i-series h2{font-size:clamp(3.7rem,5.5vw,6.4rem)}
+.industrial-page .i-series-method{margin-bottom:2rem;padding:clamp(1.3rem,2vw,2rem)}
+.industrial-page .i-series-method-head{margin-bottom:2.6rem}
+.industrial-page .i-series-method h3{font-size:clamp(2rem,2.8vw,3.3rem)}
+.industrial-page .i-series-step{padding-top:1.8rem}
+.industrial-page .i-series-step h4{margin-block:.8rem .5rem;font-size:clamp(1.3rem,1.7vw,1.8rem)}
+.industrial-page .i-sectors{padding-block:clamp(3.5rem,5vw,5.5rem);background:#282e2e}
+.industrial-page .i-sector-gallery li.i-sector-dual{grid-column:span 8}
+.industrial-page .i-sector-card{min-height:285px}
+.industrial-page .i-sector-card-bottom strong{font-size:clamp(1.9rem,2.5vw,3rem)}
+.industrial-page .i-project{padding-block:clamp(3.5rem,5vw,5.5rem)}
+.industrial-page .i-project-art{min-height:420px}
+.industrial-page .i-contact{padding-block:clamp(3.5rem,5vw,5.5rem)}
+
+/* Capacitats: la informació confirmada queda en primer terme. */
+.capacity-page .c-overview{padding-block:clamp(3rem,4vw,4.5rem);background:#343b39;color:#f5f7f4}
+.capacity-page .c-overview .c-section-head p,.capacity-page .c-overview .c-plan-note,.capacity-page .c-overview .c-plan-note span,.capacity-page .c-overview .i-index{color:#d7dfd9}
+.capacity-page .c-overview h2 em{background-image:linear-gradient(105deg,#f8faf7,#a2aca5 19%,#fbfdf9 37%,#7e8983 60%,#f8faf7 100%)}
+.capacity-page .c-production{min-height:440px}
+.capacity-page .c-requirements{padding-block:clamp(3rem,4vw,4.5rem);background:#2d3332;color:#f5f7f4}
+.capacity-page .c-requirements .i-index,.capacity-page .c-requirements .c-progress>span,.capacity-page .c-requirements .c-requirements-copy p,.capacity-page .c-requirements .c-progress>p{color:#d7dfd9}
+.capacity-page .c-contact{padding-block:clamp(3rem,4vw,4.5rem)}
+
+/* Contacte: el formulari comença abans i les dades clau es llegeixen juntes. */
+.contact-page .contact-hero-grid{min-height:270px;padding-block:2.6rem 2.4rem}
+.contact-page .contact-hero h1{margin-top:1rem;font-size:clamp(4.4rem,6.7vw,7.5rem)}
+.contact-page .contact-hero-actions{margin-top:1rem}
+.contact-page .contact-layout{padding-block:clamp(2.5rem,3.5vw,4rem);gap:clamp(2rem,4vw,4rem)}
+.contact-page .contact-aside{top:82px;padding:1.55rem}
+.contact-page .contact-hours{margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid #6d7773}
+.contact-page .contact-hours span,.contact-page .contact-hours strong,.contact-page .contact-hours small{display:block}
+.contact-page .contact-hours span{color:#d48e94;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.contact-page .contact-hours strong{margin-top:.6rem;font-size:1.05rem}
+.contact-page .contact-hours p{margin:.35rem 0;color:#f1f4f0;line-height:1.45}
+.contact-page .contact-hours small{color:#cbd3ce;line-height:1.4}
+
+@media(max-width:1000px){
+ .industrial-page .i-sector-gallery li.i-sector-dual{grid-column:span 8}
+ .industrial-page .i-sector-card{min-height:245px}
+ .industrial-page .i-progress-note>div{grid-template-columns:1fr 1fr 1fr}
+}
+@media(max-width:760px){
+ .home-page .hero-intro{min-height:0;padding-block:2.6rem}
+ .home-page .path{min-height:410px}
+ .home-page .numbers{padding-block:3rem}
+ .home-page .number-item{min-height:135px}
+ .home-page .company,.home-page .company-image{min-height:0}
+ .home-page .company-image{height:320px}
+ .home-page .services{padding-block:3.2rem}
+ .home-page .service-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .home-page .service-tile{min-height:230px}
+ .home-page .industrial-tile{min-height:350px}
+ .home-page .tile-bottom strong{font-size:clamp(1.2rem,3vw,1.65rem)}
+ .home-page .tile-bottom>span{font-size:.75rem;line-height:1.28}
+ .particulars-page .p-hero{min-height:640px}
+ .particulars-page .p-intro{min-height:0;padding-block:3rem}
+ .particulars-page .p-services{padding-block:3rem}
+ .particulars-page .p-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .particulars-page .p-service{min-height:275px;padding:1.1rem}
+ .particulars-page .p-service h3{font-size:clamp(1.45rem,3.8vw,2.4rem)}
+ .particulars-page .p-service p{font-size:.82rem;line-height:1.32}
+ .particulars-page .p-service-category{font-size:.64rem}
+ .particulars-page .p-area{padding-block:3rem}
+ .structures-page .s-hero{min-height:680px}
+ .structures-page .s-scope,.structures-page .s-approach{padding-block:3rem}
+ .industrial-page .i-hero{min-height:690px}
+ .industrial-page .i-capabilities,.industrial-page .i-sectors,.industrial-page .i-project,.industrial-page .i-contact{padding-block:3rem}
+ .industrial-page .i-series-inner{padding-block:3rem}
+ .industrial-page .i-sector-gallery li.i-sector-dual{grid-column:span 12}
+ .industrial-page .i-progress-note>div{grid-template-columns:1fr}
+ .contact-page .contact-hero-grid{min-height:0;padding-block:2.7rem}
+ .contact-page .contact-hero h1{font-size:clamp(3.5rem,10vw,5.7rem)}
+ .contact-page .contact-layout{padding-block:2.7rem}
+}
+@media(max-width:520px){
+ .home-page .service-tiles{gap:1px}
+ .home-page .service-tile{min-height:220px;padding:1rem}
+ .home-page .tile-top{font-size:.62rem}
+ .home-page .tile-bottom strong{font-size:clamp(1.08rem,4.5vw,1.55rem)}
+ .home-page .tile-bottom>span{font-size:.69rem}
+ .home-page .service-drawing{width:100%}
+ .particulars-page .p-service-grid{gap:1px}
+ .particulars-page .p-service{min-height:265px;padding:.9rem}
+ .particulars-page .p-service h3{font-size:clamp(1.16rem,4.4vw,1.65rem);margin-bottom:.4rem}
+ .particulars-page .p-service p{font-size:.72rem;line-height:1.25}
+ .particulars-page .p-service-category{margin-bottom:.35rem;font-size:.57rem}
+ .particulars-page .p-service-number{font-size:.65rem}
+ .particulars-page .p-service-art-cart i:nth-child(3){box-shadow:90px 0 0 #7c2a30}
+ .industrial-page .i-sector-card{min-height:240px}
+ .contact-page .contact-hero h1{font-size:11vw}
+}
+@media(max-width:360px){
+ .home-page .hero-intro h1{font-size:3.42rem}
+ .home-page .service-tile{min-height:205px;padding:.75rem}
+ .home-page .tile-bottom strong{font-size:1.04rem}
+ .home-page .tile-bottom>span{font-size:.64rem}
+ .particulars-page .p-service{min-height:245px;padding:.7rem}
+ .particulars-page .p-service h3{font-size:1.05rem}
+ .particulars-page .p-service p{font-size:.66rem}
+}

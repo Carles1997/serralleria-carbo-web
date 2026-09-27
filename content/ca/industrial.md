@@ -3,13 +3,13 @@ pageId: industrial
 route: /industrial/
 lang: ca
 status: draft
-seoTitle: "Fabricació metàl·lica per a tercers | Carbó Industrial"
+seoTitle: "Fabricació metàl·lica per a tercers | Industrial"
 seoDescription: "Fabricació metàl·lica per a tercers a Vilafranca del Penedès: sèries curtes en acer al carboni i inox 304/316, soldadura MIG/MAG i TIG."
 ---
 
 # Sèries curtes. Peces exigents. Resposta industrial.
 
-Carbó Industrial és la línia de fabricació per a tercers de Serralleria Carbó. Fabriquem peces i conjunts metàl·lics en sèries curtes per a fabricants, enginyeries i integradors.
+Industrial és la línia de fabricació per a tercers de Serralleria Carbó. Fabriquem peces, carros i conjunts metàl·lics en sèries curtes. També valorem estructures per a constructores, caps d’obra i promotores en projectes de gran escala.
 
 ## Comprova l'encaix del taller
 
@@ -23,7 +23,7 @@ Podem valorar projectes que requereixin suport d'arquitectura tècnica. Estem im
 
 ## Per a quins sectors treballem
 
-L'experiència de l'empresa inclou alimentació, sanitari, packaging, cellers, seguretat i defensa, i tecnologies duals. Cada encàrrec es valora segons els seus requisits concrets.
+L’experiència de l’empresa inclou alimentació, sanitari, packaging, cellers i tecnologies duals. Per a la construcció a gran escala també podem valorar escales, baranes, estructures per a ascensors i altres elements metàl·lics. Cada encàrrec es concreta segons els seus requisits.
 
 [Veure sectors](/industrial/sectors/)
 
@@ -35,7 +35,7 @@ Definim → Preparem → Fabriquem → Comprovem. Aquest procés ordena la conve
 
 ## Un cas real
 
-El primer projecte publicat de Carbó Industrial és la fabricació i el subministrament de deu gàbies per a un client industrial.
+El primer projecte publicat de Industrial és la fabricació i el subministrament de deu gàbies per a un client industrial.
 
 [Veure el projecte](/industrial/projectes/)
 
@@ -43,6 +43,6 @@ El primer projecte publicat de Carbó Industrial és la fabricació i el submini
 
 Indica material, tipus de peça, unitats i termini que necessites. Adjunta un plànol o la documentació disponible perquè l'equip pugui valorar la consulta. Per a feines de sèries, podem estudiar encàrrecs d'arreu de Catalunya.
 
-[Contactar amb Carbó Industrial](/contacte/)
+[Contactar amb Industrial](/contacte/)
 
-Per a una consulta tècnica directa, contacta amb Jordi Mas al [605 779 694](tel:+34605779694) o a [gerencia@serralleriacarbo.com](mailto:gerencia@serralleriacarbo.com).
+Per a una consulta tècnica directa, truca al [630 661 908](tel:+34630661908) o escriu a [carbo@serralleriacarbo.com](mailto:carbo@serralleriacarbo.com).

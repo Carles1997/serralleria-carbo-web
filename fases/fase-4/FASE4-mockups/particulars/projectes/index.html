@@ -11,10 +11,12 @@
   <link rel="stylesheet" href="../../../../../design/tokens.css">
   <link rel="stylesheet" href="../../home/styles.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../identitat.css">
   <script src="../../home/script.js" defer></script>
   <script src="script.js" defer></script>
+  <link rel="stylesheet" href="../../revisio-client.css">
 </head>
-<body>
+<body class="portfolio-page">
   <a class="skip-link" href="#contingut">Vés al contingut</a>
 
   <header class="site-header" id="inici">
@@ -26,7 +28,7 @@
         <a href="../index.html#serveis" data-future-route="/particulars/automatismes/">Automatismes</a>
         <a href="../index.html#serveis" data-future-route="/particulars/mobiliari/">Mobiliari</a>
         <a href="#contingut" aria-current="page">Projectes</a>
-        <a href="#contacte" data-future-route="/contacte/">Contacte</a>
+        <a href="../../contacte/index.html?tipus=particular" data-future-route="/contacte/">Contacte</a>
       </nav>
       <div class="header-actions">
         <a class="header-phone" href="tel:+34630661908"><span class="header-phone-label">Parlem?</span><span>630 661 908</span></a>
@@ -39,8 +41,8 @@
       <a href="../index.html#serveis" data-future-route="/particulars/automatismes/">Automatismes</a>
       <a href="../index.html#serveis" data-future-route="/particulars/mobiliari/">Mobiliari</a>
       <a href="#contingut" aria-current="page">Projectes</a>
-      <a href="#contacte" data-future-route="/contacte/">Contacte</a>
-      <a href="../../home/index.html#industrial" data-future-route="/industrial/">Carbó Industrial ↗</a>
+      <a href="../../contacte/index.html?tipus=particular" data-future-route="/contacte/">Contacte</a>
+      <a href="../../industrial/index.html" data-future-route="/industrial/">Industrial ↗</a>
     </nav>
   </header>
 
@@ -49,13 +51,13 @@
       <div class="folio-hero-image" aria-hidden="true"><img src="../../home/metal-detail-concept.png" alt="" fetchpriority="high"></div>
       <div class="section-shell folio-hero-content">
         <nav class="folio-breadcrumb" aria-label="Fil d'Ariadna"><a href="../../home/index.html">Inici</a><span aria-hidden="true">/</span><a href="../index.html">Particulars</a><span aria-hidden="true">/</span><span aria-current="page">Projectes</span></nav>
-        <div class="folio-hero-main"><span class="index">Serralleria Carbó / treballs reals</span><h1 id="folio-title">Projectes de<br><em>serralleria</em><span class="accent-dot">.</span></h1><div class="folio-hero-bottom"><p>Feines fetes per a habitatges, comunitats i negocis. Cinc casos documentats, de les estructures interiors als accessos motoritzats.</p><a href="#casos">Explora els projectes <span aria-hidden="true">↘</span></a></div></div>
+        <div class="folio-hero-main"><span class="index">Serralleria Carbó / treballs reals</span><h1 id="folio-title">Projectes de<br><em>serralleria</em></h1><div class="folio-hero-bottom"><p>Feines fetes per a habitatges, comunitats i negocis. Cinc casos documentats, de les estructures interiors als accessos motoritzats.</p><a href="#casos">Explora els projectes <span aria-hidden="true">↘</span></a></div></div>
         <span class="folio-hero-caption">Imatge conceptual de material · no correspon a cap dels projectes</span>
       </div>
     </section>
 
     <section class="folio-work" id="casos" aria-labelledby="work-title">
-      <div class="section-shell folio-work-top"><div><span class="index">Portafoli / Particulars</span><h2 id="work-title">Cinc feines.<br>Cinc contextos<span class="accent-dot">.</span></h2></div><p>Les fotografies originals encara s'han d'incorporar. Els espais visuals següents queden reservats per mostrar cada treball tal com es va executar.</p></div>
+      <div class="section-shell folio-work-top"><div><span class="index">Portafoli / Particulars</span><h2 id="work-title">Cinc feines<br>Cinc contextos</h2></div><p>Les fotografies originals encara s'han d'incorporar. Els espais visuals següents queden reservats per mostrar cada treball tal com es va executar.</p></div>
       <div class="section-shell folio-filters" role="group" aria-label="Filtra els projectes per servei" hidden><span>Filtra per servei</span><div><button type="button" data-filter="tots" aria-pressed="true" aria-controls="case-list">Tots <small>05</small></button><button type="button" data-filter="estructures" aria-pressed="false" aria-controls="case-list">Estructures <small>03</small></button><button type="button" data-filter="automatismes" aria-pressed="false" aria-controls="case-list">Automatismes <small>02</small></button></div><p class="folio-filter-status" aria-live="polite"></p></div>
       <div class="folio-case-list" id="case-list">
         <article class="folio-case" data-category="estructures" aria-labelledby="case-1-title">
@@ -81,9 +83,9 @@
       </div>
     </section>
 
-    <section class="folio-more" aria-labelledby="more-title"><div class="section-shell folio-more-inner"><div><span class="index">Serveis relacionats</span><h2 id="more-title">De la feina<br>al teu projecte<span class="accent-dot">.</span></h2></div><div class="folio-more-links"><a href="../estructures/index.html" data-future-route="/particulars/estructures/">Estructures <span aria-hidden="true">↗</span></a><a href="../index.html#serveis" data-future-route="/particulars/automatismes/">Automatismes <span aria-hidden="true">↗</span></a></div></div></section>
+    <section class="folio-more" aria-labelledby="more-title"><div class="section-shell folio-more-inner"><div><span class="index">Serveis relacionats</span><h2 id="more-title">De la feina<br>al teu projecte</h2></div><div class="folio-more-links"><a href="../estructures/index.html" data-future-route="/particulars/estructures/">Estructures <span aria-hidden="true">↗</span></a><a href="../index.html#serveis" data-future-route="/particulars/automatismes/">Automatismes <span aria-hidden="true">↗</span></a></div></div></section>
 
-    <section class="contact" id="contacte" aria-labelledby="contact-title"><div class="section-shell contact-inner"><div><span class="index">Parlem del teu projecte</span><h2 id="contact-title">Explica'ns<br>la idea<span>.</span></h2><p>Si algun d'aquests casos s'assembla al que necessites, envia'ns una fotografia, mesures o una breu descripció de l'espai.</p></div><div class="contact-actions"><a class="contact-primary" href="https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta." target="_blank" rel="noopener noreferrer">Escriu-nos per WhatsApp <span aria-hidden="true">↗</span></a><a href="tel:+34630661908">Truca al 630 661 908 <span aria-hidden="true">↗</span></a><a href="mailto:carbo@serralleriacarbo.com">carbo@serralleriacarbo.com <span aria-hidden="true">↗</span></a></div></div></section>
+    <section class="contact" id="contacte" aria-labelledby="contact-title"><div class="section-shell contact-inner"><div><span class="index">Parlem del teu projecte</span><h2 id="contact-title">Explica'ns<br>la idea</h2><p>Si algun d'aquests casos s'assembla al que necessites, envia'ns una fotografia, mesures o una breu descripció de l'espai.</p></div><div class="contact-actions"><a class="contact-primary" href="https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta." target="_blank" rel="noopener noreferrer">Escriu-nos per WhatsApp <span aria-hidden="true">↗</span></a><a href="tel:+34630661908">Truca al 630 661 908 <span aria-hidden="true">↗</span></a><a href="mailto:carbo@serralleriacarbo.com">carbo@serralleriacarbo.com <span aria-hidden="true">↗</span></a></div></div></section>
   </main>
 
   <footer class="site-footer"><div class="section-shell footer-inner"><div class="footer-brand"><span>Serralleria</span><strong>Carbó</strong><small>Vilafranca del Penedès · Des de 1989</small></div><div class="footer-meta"><span>Fase 4 · Mockup de revisió</span><span>Avís legal, privacitat i fotografies originals pendents.</span><span>© Serralleria Carbó S.L.</span></div><a class="back-top" href="#inici">Torna a l'inici ↑</a></div></footer>

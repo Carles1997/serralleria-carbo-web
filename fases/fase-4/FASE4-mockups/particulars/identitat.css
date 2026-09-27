@@ -1,0 +1,24 @@
+/* Identitat de Particulars aprovada en Fase 4. */
+:root { --accent:var(--color-particulars-accent); --accent-text:#dca5a9; }
+
+/* El bordeus de marca ocupa superfícies; el text menut sobre fosc continua clar. */
+.p-urgent { background:#7c2a30; border-color:#9b545a; }
+.p-urgent .index,.p-urgent p,.p-urgent-sign,.p-urgent a span { color:#fff; }
+.p-urgent-sign,.p-urgent a { border-color:rgba(255,255,255,.75); }
+.p-urgent a:hover,.p-urgent a:focus-visible { background:#fff; color:#7c2a30; }
+.p-urgent a:hover span,.p-urgent a:focus-visible span { color:#7c2a30; }
+.p-urgent :focus-visible { outline-color:#fff; }
+
+/* Carbó proper a la resta de la pàgina; la primera peça manté el bordeus. */
+.p-services { background:var(--color-particulars-charcoal); color:#fff; }
+.p-services .index { color:#e2a9ad; }
+.p-services .section-lead p { color:#d3d8d6; }
+.p-services .p-service { color:#fff; }
+.p-services :focus-visible { outline-color:#e2a9ad; }
+.p-service-urgent .p-service-art { background:repeating-linear-gradient(0deg,transparent 0 74px,rgba(255,255,255,.08) 75px 76px),repeating-linear-gradient(90deg,transparent 0 74px,rgba(255,255,255,.08) 75px 76px),linear-gradient(135deg,#8f3c43,#541c21); }
+.p-service-urgent .p-service-art i { border-color:#e4b8bb; }
+.p-service-urgent .p-service-art i:nth-child(3) { background:#fff; }
+.p-service-urgent .p-service-category { color:#f0cfd2; }
+@media (min-width:1101px) {
+  .p-urgent-inner { grid-template-columns:auto minmax(0,1fr) auto auto; gap:clamp(1rem,2vw,2rem); }
+}

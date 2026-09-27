@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151719">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Contacta amb Serralleria Carbó a Vilafranca del Penedès. Explica una feina particular o envia els requisits d'una peça a Industrial.">
+  <title>Contacte i pressupostos | Serralleria Carbó</title>
+  <link rel="stylesheet" href="../../../../design/tokens.css">
+  <link rel="stylesheet" href="../home/styles.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="../home/script.js" defer></script>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="../revisio-client.css">
+</head>
+<body class="contact-page">
+  <a class="skip-link" href="#contingut">Vés al contingut</a>
+  <header class="site-header" id="inici">
+    <div class="header-inner">
+      <a class="wordmark" href="../home/index.html" aria-label="Serralleria Carbó, pàgina principal"><span>Serralleria</span><strong>Carbó</strong></a>
+      <nav class="desktop-nav" aria-label="Navegació principal">
+        <a href="../home/index.html">Inici</a>
+        <a href="../particulars/index.html">Particulars</a>
+        <a href="../industrial/index.html">Industrial</a>
+        <a href="index.html" aria-current="page">Contacte</a>
+      </nav>
+      <div class="header-actions">
+        <a class="header-phone" href="tel:+34630661908"><span class="header-phone-label">Parlem?</span><span>630 661 908</span></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Obre el menú"><span></span><span></span></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Navegació mòbil" hidden>
+      <a href="../home/index.html">Inici</a>
+      <a href="../particulars/index.html">Particulars</a>
+      <a href="../industrial/index.html">Industrial</a>
+      <a href="index.html" aria-current="page">Contacte</a>
+    </nav>
+  </header>
+
+  <main id="contingut">
+    <section class="contact-hero" aria-labelledby="contact-title"><div class="section-shell contact-hero-grid">
+      <div>
+        <span class="contact-kicker">Serralleria Carbó / Contacte</span>
+        <h1 id="contact-title">Parlem<br>de la <em>feina</em></h1>
+      </div>
+      <div class="contact-hero-intro">
+        <p>Explica'ns què necessites. Tria si ens escrius com a particular o com a empresa i et demanarem la informació adequada per començar a valorar-ho.</p>
+        <div class="contact-hero-actions"><a href="https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta." target="_blank" rel="noopener noreferrer">WhatsApp · 630 661 908 <span aria-hidden="true">↗</span></a><a href="tel:+34630661908">Truca'ns <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </div></section>
+
+    <section class="contact-workspace" aria-labelledby="form-title"><div class="section-shell contact-layout">
+      <div class="form-column">
+        <div class="form-heading"><span class="contact-kicker contact-kicker-dark">01 / La teva consulta</span><h2 id="form-title">Explica'ns el projecte</h2><p>Els camps marcats amb * són necessaris. Si es tracta d'una incidència urgent, truca directament al <a href="tel:+34630661908">630 661 908</a>.</p></div>
+        <form id="contact-form" novalidate>
+          <fieldset class="branch-picker"><legend>Tipus de consulta <span aria-hidden="true">*</span></legend>
+            <label class="branch-option"><input type="radio" name="tipus" value="particular" checked><span class="branch-option-content"><strong>Particular</strong><small>Habitatge, comunitat o negoci</small><span aria-hidden="true">↗</span></span></label>
+            <label class="branch-option"><input type="radio" name="tipus" value="empresa"><span class="branch-option-content"><strong>Empresa</strong><small>Fabricació i projectes industrials</small><span aria-hidden="true">↗</span></span></label>
+          </fieldset>
+
+          <div class="form-section-title"><span>02 / Dades de contacte</span><p>Com podem parlar amb tu?</p></div>
+          <div class="field-grid">
+            <div class="field"><label for="nom">Nom i cognoms <span aria-hidden="true">*</span></label><input id="nom" name="nom" autocomplete="name" required><p class="field-error" id="nom-error" hidden></p></div>
+            <div class="field"><label for="correu">Correu electrònic <span aria-hidden="true">*</span></label><input id="correu" name="correu" type="email" inputmode="email" autocomplete="email" required><p class="field-error" id="correu-error" hidden></p></div>
+            <div class="field"><label for="telefon">Telèfon</label><input id="telefon" name="telefon" type="tel" inputmode="tel" autocomplete="tel"><p class="field-error" id="telefon-error" hidden></p></div>
+            <div class="field"><label for="ubicacio">Població o ubicació de la feina</label><input id="ubicacio" name="ubicacio" autocomplete="address-level2"><p class="field-error" id="ubicacio-error" hidden></p></div>
+          </div>
+
+          <div class="form-section-title"><span>03 / La feina</span><p>Només els detalls que ja coneguis.</p></div>
+          <fieldset class="branch-fields" id="fields-particular"><legend class="visually-hidden">Detalls per a particulars</legend>
+            <div class="field-grid">
+              <div class="field field-full"><label for="servei">Quin servei necessites? <span aria-hidden="true">*</span></label><select id="servei" name="servei" required><option value="">Selecciona un servei</option><option value="urgencies">Urgències i reparacions</option><option value="estructures">Estructures</option><option value="automatismes">Automatismes</option><option value="mobiliari">Mobiliari a mida</option><option value="carros">Carros industrials</option></select><p class="field-error" id="servei-error" hidden></p></div>
+            </div>
+            <p class="branch-help">Si tens una fotografia de l'espai, unes mides o un esbós, els pots adjuntar més avall.</p>
+          </fieldset>
+          <fieldset class="branch-fields" id="fields-empresa" hidden disabled><legend class="visually-hidden">Detalls per a empreses</legend>
+            <div class="field-grid">
+              <div class="field"><label for="sector">Sector</label><input id="sector" name="sector" autocomplete="off" placeholder="El teu sector"></div>
+              <div class="field"><label for="material">Material</label><input id="material" name="material" placeholder="Material previst"></div>
+              <div class="field field-full"><label for="peca">Tipus de peça o conjunt <span aria-hidden="true">*</span></label><input id="peca" name="peca" placeholder="Què cal fabricar?" required><p class="field-error" id="peca-error" hidden></p></div>
+              <div class="field"><label for="unitats">Unitats previstes</label><input id="unitats" name="unitats" inputmode="numeric" placeholder="Quantitat aproximada"></div>
+              <div class="field"><label for="termini">Termini desitjat</label><input id="termini" name="termini" placeholder="Quan ho necessites?"></div>
+            </div>
+            <p class="branch-help">El plànol o la documentació tècnica disponible ens ajuda a valorar la consulta.</p>
+          </fieldset>
+          <div class="field field-description"><label for="descripcio">Explica'ns què necessites <span aria-hidden="true">*</span></label><textarea id="descripcio" name="descripcio" rows="5" required placeholder="Descriu la feina amb les teves paraules."></textarea><p class="field-error" id="descripcio-error" hidden></p></div>
+
+          <div class="form-section-title form-section-title-upload"><span>04 / Documentació</span><p>Adjunta el que ja tinguis, si en disposes.</p></div>
+          <div class="upload-area"><div class="upload-mark" aria-hidden="true">↑</div><div><label for="adjunt">Fotografia, plànol o document</label><p id="upload-help">El fitxer no s'enviarà des d'aquest mockup.</p></div><input id="adjunt" name="adjunt" type="file" aria-describedby="upload-help"><span class="file-name" id="file-name" aria-live="polite">Cap fitxer seleccionat</span></div>
+
+          <div class="form-finish"><button type="submit">Enviar consulta <span aria-hidden="true">↗</span></button><p>Maqueta de Fase 4: aquest formulari no envia dades. El text de privacitat i el consentiment s'incorporaran abans de publicar-lo.</p></div>
+          <p id="form-status" class="form-status" role="status" tabindex="-1" hidden></p>
+        </form>
+      </div>
+
+      <aside class="contact-aside" aria-label="Altres maneres de contactar">
+        <span class="contact-kicker">Contacte directe</span>
+        <div class="aside-path" id="aside-particular">
+          <h2>Si et va millor,<br>parlem-ne ara</h2>
+          <p>Per a una avaria o una reparació, truca'ns i explica què ha passat i on és la instal·lació.</p>
+          <a class="aside-primary" href="tel:+34630661908">630 661 908 <span aria-hidden="true">↗</span></a>
+          <a href="https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta." target="_blank" rel="noopener noreferrer">Escriu-nos per WhatsApp <span aria-hidden="true">↗</span></a>
+          <a href="mailto:carbo@serralleriacarbo.com">carbo@serralleriacarbo.com <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="aside-path" id="aside-empresa" hidden>
+          <h2>Consulta<br>tècnica directa</h2>
+          <p>Comparteix els requisits de la peça per començar a valorar l’encaix del projecte.</p>
+          <a class="aside-primary" href="tel:+34630661908">630 661 908 <span aria-hidden="true">↗</span></a>
+          <a href="mailto:carbo@serralleriacarbo.com">carbo@serralleriacarbo.com <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="contact-hours"><span>Horari d’atenció</span><strong>De dilluns a divendres</strong><p>De 8 a 13 h i de 15 a 18 h</p><small>Dissabtes i diumenges, tancat</small></div><div class="aside-note"><span>Altres dades</span><p>Fix: <a href="tel:+34938902794">93 890 27 94</a></p><p>La major part de les feines per a particulars es fa a Vilafranca i rodalia. Per a sèries industrials podem estudiar encàrrecs de tot Catalunya.</p></div>
+      </aside>
+    </div></section>
+
+    <section class="contact-place" aria-labelledby="place-title"><div class="section-shell place-grid"><div><span class="contact-kicker contact-kicker-dark">Taller i oficina</span><h2 id="place-title">Ens trobaràs<br>a Vilafranca</h2></div><div class="place-info"><strong>Serralleria Carbó S.L.</strong><address>Carrer d'Eugeni d'Ors, 59<br>08720 Vilafranca del Penedès, Barcelona</address><a href="https://www.google.com/maps/search/?api=1&amp;query=Carrer%20d%27Eugeni%20d%27Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s" target="_blank" rel="noopener noreferrer">Veure ubicació al mapa <span aria-hidden="true">↗</span></a></div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="section-shell footer-inner"><div class="footer-brand"><span>Serralleria</span><strong>Carbó</strong><small>Vilafranca del Penedès · Des de 1989</small></div><div class="footer-meta"><span>Fase 4 · Mockup de revisió</span><span>Formulari, fotografies i textos legals definitius pendents.</span><span>© Serralleria Carbó S.L.</span></div><a class="back-top" href="#inici">Torna a l'inici ↑</a></div></footer>
+</body>
+</html>

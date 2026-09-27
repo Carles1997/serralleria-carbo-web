@@ -3,13 +3,13 @@ pageId: industrial-capacitats
 route: /industrial/capacitats/
 lang: ca
 status: draft
-seoTitle: "Capacitats de soldadura i fabricació | Carbó Industrial"
-seoDescription: "Taller de 950 m² amb plegadora, cisalla i punxonadora; acer al carboni, inox 304/316, soldadura MIG/MAG i TIG a Carbó Industrial."
+seoTitle: "Capacitats de soldadura i fabricació | Industrial"
+seoDescription: "Taller de 950 m² amb plegadora, cisalla i punxonadora; acer al carboni, inox 304/316, soldadura MIG/MAG i TIG a Industrial."
 ---
 
 # Capacitats del taller
 
-Materials, processos i maquinària del taller de Carbó Industrial. Els gruixos, les mides i les toleràncies de cada peça es revisen amb el plànol.
+Materials, processos i maquinària del taller de Industrial. Els gruixos, les mides i les toleràncies de cada peça es revisen amb el plànol.
 
 ## Espai i equip
 
@@ -47,4 +47,4 @@ Envia el plànol o la documentació que tinguis, el material, la quantitat i el 
 
 [Enviar una consulta tècnica](/contacte/)
 
-També pots parlar de la feina amb Jordi Mas al [605 779 694](tel:+34605779694) o escriure a [gerencia@serralleriacarbo.com](mailto:gerencia@serralleriacarbo.com).
+També pots parlar de la feina al [630 661 908](tel:+34630661908) o escriure a [carbo@serralleriacarbo.com](mailto:carbo@serralleriacarbo.com).

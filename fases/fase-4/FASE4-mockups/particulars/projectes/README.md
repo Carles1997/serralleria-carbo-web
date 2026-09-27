@@ -1,6 +1,6 @@
 # Portafoli de Particulars · Fase 4
 
-Mockup de la ruta validada `/particulars/projectes/`. El director de projecte ha indicat mantenir aquesta proposta de moment, tot i que la seva estètica continua pendent de revisió. Presenta exactament els cinc casos de `content/ca/particulars-projectes.md`, en l'ordre de `projectIds`; no crea pàgines de detall noves.
+Mockup de la ruta validada `/particulars/projectes/`. El director de projecte ha validat el mockup el 24/09/2026; les fotografies originals i els ajustos finals continuen pendents. Presenta exactament els cinc casos de `content/ca/particulars-projectes.md`, en l'ordre de `projectIds`; no crea pàgines de detall noves.
 
 ## Fonts de veritat
 
@@ -17,6 +17,6 @@ Mockup de la ruta validada `/particulars/projectes/`. El director de projecte ha
 - Cada cas enllaça al servei relacionat. Estructures ja té mockup; Automatismes apunta de moment a la secció de serveis de la portada de Particulars i conserva `data-future-route` per a la ruta final.
 - `noindex, nofollow` evita la indexació de la maqueta. Les fotografies, formulari final i textos legals segueixen pendents.
 
-## Revisió pendent
+## Verificació posterior
 
 Comprovar el ritme de les cinc peces, el retall de la foto conceptual, els filtres, l'absència de desbordaments i la lectura a 1440, 768, 390 i 320 px. Amb les fotografies originals, substituir els marcs i redactar els textos alternatius corresponents abans de la publicació.

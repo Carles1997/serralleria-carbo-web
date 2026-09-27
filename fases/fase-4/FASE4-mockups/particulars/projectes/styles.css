@@ -9,7 +9,7 @@
 .folio-hero-image::after { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(8,10,12,.95),rgba(8,10,12,.69) 51%,rgba(8,10,12,.28)),linear-gradient(0deg,rgba(8,10,12,.78),transparent 52%,rgba(8,10,12,.42)); content: ""; }
 .folio-hero-content { position: relative; display: flex; flex-direction: column; min-height: inherit; padding-block: clamp(1.5rem,2.8vw,3rem); }
 .folio-breadcrumb { display: flex; align-items: center; gap: .8rem; min-height: 44px; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,.5); color: #e6e9e7; font-size: .81rem; font-weight: 600; }
-.folio-breadcrumb a { display: inline-flex; align-items: center; min-height: 38px; text-decoration: none; }
+.folio-breadcrumb a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; text-decoration: none; }
 .folio-breadcrumb a:hover { color: #ecc4c6; }
 .folio-breadcrumb>span[aria-hidden] { color: #d39599; }
 .folio-hero-main { max-width: 1320px; margin-top: auto; padding-top: 8rem; }

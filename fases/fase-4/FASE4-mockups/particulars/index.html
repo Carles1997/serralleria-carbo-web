@@ -11,10 +11,12 @@
   <link rel="stylesheet" href="../../../../design/tokens.css">
   <link rel="stylesheet" href="../home/styles.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="identitat.css">
   <script src="../home/script.js" defer></script>
   <script src="script.js" defer></script>
+  <link rel="stylesheet" href="../revisio-client.css">
 </head>
-<body>
+<body class="particulars-page">
   <a class="skip-link" href="#contingut">Vés al contingut</a>
 
   <header class="site-header" id="inici">
@@ -22,11 +24,11 @@
       <a class="wordmark" href="../home/index.html" aria-label="Serralleria Carbó, pàgina principal"><span>Serralleria</span><strong>Carbó</strong></a>
       <nav class="desktop-nav" aria-label="Navegació de Particulars">
         <a href="#urgencies" data-future-route="/particulars/urgencies/">Urgències</a>
-        <a href="#serveis" data-future-route="/particulars/estructures/">Estructures</a>
+        <a href="estructures/index.html" data-future-route="/particulars/estructures/">Estructures</a>
         <a href="#serveis" data-future-route="/particulars/automatismes/">Automatismes</a>
         <a href="#serveis" data-future-route="/particulars/mobiliari/">Mobiliari</a>
         <a href="projectes/index.html" data-future-route="/particulars/projectes/">Projectes</a>
-        <a href="#contacte" data-future-route="/contacte/">Contacte</a>
+        <a href="../contacte/index.html?tipus=particular" data-future-route="/contacte/">Contacte</a>
       </nav>
       <div class="header-actions">
         <a class="header-phone" href="tel:+34630661908"><span class="header-phone-label">Parlem?</span><span>630 661 908</span></a>
@@ -35,12 +37,12 @@
     </div>
     <nav class="mobile-nav" id="mobile-nav" aria-label="Navegació mòbil" hidden>
       <a href="#urgencies" data-future-route="/particulars/urgencies/">Urgències</a>
-      <a href="#serveis" data-future-route="/particulars/estructures/">Estructures</a>
+      <a href="estructures/index.html" data-future-route="/particulars/estructures/">Estructures</a>
       <a href="#serveis" data-future-route="/particulars/automatismes/">Automatismes</a>
       <a href="#serveis" data-future-route="/particulars/mobiliari/">Mobiliari</a>
       <a href="projectes/index.html" data-future-route="/particulars/projectes/">Projectes</a>
-      <a href="#contacte" data-future-route="/contacte/">Contacte</a>
-      <a href="../home/index.html#industrial" data-future-route="/industrial/">Carbó Industrial ↗</a>
+      <a href="../contacte/index.html?tipus=particular" data-future-route="/contacte/">Contacte</a>
+      <a href="../industrial/index.html" data-future-route="/industrial/">Industrial ↗</a>
     </nav>
   </header>
 
@@ -48,9 +50,9 @@
     <section class="p-hero" aria-labelledby="p-title">
       <div class="p-hero-image" aria-hidden="true"><img src="../../../fase-2/FASE2-propostes/assets/particulars-concept.png" alt="" fetchpriority="high"></div>
       <div class="p-hero-copy section-shell">
-        <div class="p-hero-top"><span class="index">Serralleria Carbó / Particulars</span><a href="../home/index.html#industrial" data-future-route="/industrial/">Carbó Industrial <span aria-hidden="true">↗</span></a></div>
+        <div class="p-hero-top"><span class="index">Serralleria Carbó / Particulars</span><a href="../industrial/index.html" data-future-route="/industrial/">Industrial <span aria-hidden="true">↗</span></a></div>
         <div class="p-hero-main">
-          <h1 id="p-title"><span>Serralleria per a </span><em>particulars </em><small>a Vilafranca i rodalia<span class="accent-dot">.</span></small></h1>
+          <h1 id="p-title"><span>Serralleria per a </span><em>particulars </em><small>a Vilafranca i rodalia</small></h1>
           <div class="p-hero-bottom">
             <p>Fabriquem i instal·lem peces a mida per a habitatges, comunitats i negocis. Si tens una avaria o un projecte nou, explica'ns què necessites i ho valorarem amb tu.</p>
             <a class="p-arrow-link" href="#serveis">Descobreix com et podem ajudar <span aria-hidden="true">↘</span></a>
@@ -67,22 +69,22 @@
     </section>
 
     <section class="p-urgent" id="urgencies" aria-labelledby="p-urgent-title">
-      <div class="section-shell p-urgent-inner"><span class="p-urgent-sign" aria-hidden="true">+</span><div><span class="index">Atenció directa</span><h2 id="p-urgent-title">Tens una avaria?</h2><p>Si falla una porta o un automatisme, truca'ns i explica'ns què ha passat.</p></div><a href="tel:+34630661908">Truca al 630 661 908 <span aria-hidden="true">↗</span></a></div>
+      <div class="section-shell p-urgent-inner"><span class="p-urgent-sign" aria-hidden="true">+</span><div><span class="index">Atenció directa</span><h2 id="p-urgent-title">Tens una avaria?</h2><p>Si falla una porta o un automatisme, truca’ns i explica’ns què ha passat. Atenció de dilluns a divendres, de 8 a 13 h i de 15 a 18 h.</p></div><a href="../contacte/index.html?tipus=particular">Formulari de contacte <span aria-hidden="true">↗</span></a><a href="tel:+34630661908">Truca al 630 661 908 <span aria-hidden="true">↗</span></a></div>
     </section>
 
-    <section class="p-services section-shell" id="serveis" aria-labelledby="p-services-title">
-      <div class="section-lead"><span class="index">02 — En què et podem ajudar</span><h2 id="p-services-title">Feines a mida.<br>Respostes clares<span class="accent-dot">.</span></h2><p>Des d'una reparació fins a una estructura nova. Quatre àmbits per trobar el que necessites.</p></div>
+    <section class="p-services" id="serveis" aria-labelledby="p-services-title"><div class="section-shell">
+      <div class="section-lead"><span class="index">02 — En què et podem ajudar</span><h2 id="p-services-title">Feines a mida<br>Respostes clares</h2><p>Des d'una reparació fins a una estructura nova. Quatre àmbits per trobar el que necessites.</p></div>
       <div class="p-service-grid">
-        <article class="p-service p-service-urgent"><span class="p-service-number">01 / 04</span><div class="p-service-art p-service-art-urgent" aria-hidden="true"><i></i><i></i><i></i></div><div class="p-service-copy"><span class="p-service-category">Reparacions</span><h3>Urgències</h3><p>Si tens una avaria en una porta o un automatisme, pots trucar-nos directament per explicar què ha passat.</p></div></article>
+        <article class="p-service p-service-urgent"><span class="p-service-number">01 / 04</span><div class="p-service-art p-service-art-urgent" aria-hidden="true"><i></i><i></i><i></i></div><div class="p-service-copy"><span class="p-service-category">Fabricació i reparació</span><h3>Portes i motors</h3><p>Fabriquem, motoritzem i reparem portes i accessos. Per a una avaria, truca’ns durant l’horari d’atenció.</p></div></article>
         <article class="p-service p-service-structures"><span class="p-service-number">02 / 04</span><div class="p-service-art p-service-art-structures" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="p-service-copy"><span class="p-service-category">Ferro a mida</span><h3>Estructures</h3><p>Fabriquem i instal·lem baranes, escales, passarel·les i altres estructures metàl·liques a mida de cada espai.</p></div></article>
-        <article class="p-service p-service-auto"><span class="p-service-number">03 / 04</span><div class="p-service-art p-service-art-auto" aria-hidden="true"><i></i><i></i><i></i></div><div class="p-service-copy"><span class="p-service-category">Accessos</span><h3>Automatismes</h3><p>Instal·lem i reparem automatismes per a portes de garatge, persianes i altres accessos, i motoritzem portes noves o existents.</p></div></article>
+        <article class="p-service p-service-carts"><span class="p-service-number">03 / 04</span><div class="p-service-art p-service-art-cart" aria-hidden="true"><i></i><i></i><i></i></div><div class="p-service-copy"><span class="p-service-category">Unitats a mida</span><h3>Carros</h3><p>Fabriquem carros industrials adaptats a una necessitat concreta, tant una unitat com una sèrie.</p></div></article>
         <article class="p-service p-service-furniture"><span class="p-service-number">04 / 04</span><div class="p-service-art p-service-art-furniture" aria-hidden="true"><i></i><i></i><i></i></div><div class="p-service-copy"><span class="p-service-category">Peces singulars</span><h3>Mobiliari</h3><p>Fabriquem mobiliari amb estructura metàl·lica, a mida de l'ús i de l'espai.</p></div></article>
-      </div>
+      </div></div>
     </section>
 
     <section class="p-projects" id="projectes" aria-labelledby="p-projects-title">
       <div class="section-shell">
-        <div class="section-lead"><span class="index">03 — Treballs reals</span><h2 id="p-projects-title">Fets, no només<br>paraules<span class="accent-dot">.</span></h2><p>Una selecció de tres feines fetes per a habitatges, comunitats i negocis. Els cinc casos són al portafoli.</p></div>
+        <div class="section-lead"><span class="index">03 — Treballs reals</span><h2 id="p-projects-title">Fets, no només<br>paraules</h2><p>Una selecció de tres feines fetes per a habitatges, comunitats i negocis. Els cinc casos són al portafoli.</p></div>
       </div>
       <div class="p-project-story">
         <div class="p-story-stage" aria-hidden="true">
@@ -111,12 +113,15 @@
           </article>
         </div>
       </div>
-      <div class="section-shell p-story-outro"><span>Treballs a mida per a espais reals.</span><a class="underlined-link" href="projectes/index.html" data-future-route="/particulars/projectes/">Veure els cinc treballs <span aria-hidden="true">↗</span></a><a class="underlined-link" href="#contacte">Parlem del teu projecte <span aria-hidden="true">↗</span></a></div>
+      <div class="section-shell p-story-outro">
+        <div class="p-story-outro-copy"><span class="index">Tres casos destacats / cinc documentats</span><strong>Els cinc treballs, al portafoli</strong></div>
+        <div class="p-story-outro-actions"><a class="p-story-all" href="projectes/index.html" data-future-route="/particulars/projectes/">Veure els cinc treballs <span aria-hidden="true">↗</span></a><a class="underlined-link" href="#contacte">Parlem del teu projecte <span aria-hidden="true">↗</span></a></div>
+      </div>
     </section>
 
-    <section class="p-area" aria-labelledby="p-area-title"><div class="section-shell p-area-inner"><div><span class="index">04 — A prop, amb capacitat de taller</span><h2 id="p-area-title">Vilafranca.<br>I quan cal,<br>més enllà<span class="accent-dot">.</span></h2></div><div class="p-area-copy"><span class="p-area-line" aria-hidden="true"></span><p>Treballem principalment a Vilafranca del Penedès i la rodalia i també fem encàrrecs fins a Barcelona. Tenim taller i vehicles propis per instal·lar; els desplaçaments fora de la zona habitual es valoren en cada cas.</p><span>Explica'ns on és la feina i què necessites.</span></div></div></section>
+    <section class="p-area" aria-labelledby="p-area-title"><div class="section-shell p-area-inner"><div><span class="index">04 — A prop, amb capacitat de taller</span><h2 id="p-area-title">Vilafranca<br>I quan cal,<br>més enllà</h2></div><div class="p-area-copy"><span class="p-area-line" aria-hidden="true"></span><p>Treballem principalment a Vilafranca del Penedès i la rodalia i també fem encàrrecs fins a Barcelona. Tenim taller i vehicles propis per instal·lar; els desplaçaments fora de la zona habitual es valoren en cada cas.</p><span>Explica'ns on és la feina i què necessites.</span></div></div></section>
 
-    <section class="contact" id="contacte" aria-labelledby="contact-title"><div class="section-shell contact-inner"><div><span class="index">05 — Contacte</span><h2 id="contact-title">Explica'ns<br>la feina<span>.</span></h2><p>Descriu la feina i, si en tens, envia una fotografia, les mides o un document. Així podem començar a valorar el projecte amb informació concreta.</p></div><div class="contact-actions"><a class="contact-primary" href="https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta." target="_blank" rel="noopener noreferrer">Escriu-nos per WhatsApp <span aria-hidden="true">↗</span></a><a href="tel:+34630661908">Truca al 630 661 908 <span aria-hidden="true">↗</span></a><a href="mailto:carbo@serralleriacarbo.com">carbo@serralleriacarbo.com <span aria-hidden="true">↗</span></a></div></div></section>
+    <section class="contact" id="contacte" aria-labelledby="contact-title"><div class="section-shell contact-inner"><div><span class="index">05 — Contacte</span><h2 id="contact-title">Explica'ns<br>la feina</h2><p>Descriu la feina i, si en tens, envia una fotografia, les mides o un document. Així podem començar a valorar el projecte amb informació concreta.</p></div><div class="contact-actions"><a class="contact-primary" href="https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta." target="_blank" rel="noopener noreferrer">Escriu-nos per WhatsApp <span aria-hidden="true">↗</span></a><a href="../contacte/index.html?tipus=particular">Formulari de contacte <span aria-hidden="true">↗</span></a><a href="tel:+34630661908">Truca al 630 661 908 <span aria-hidden="true">↗</span></a><a href="mailto:carbo@serralleriacarbo.com">carbo@serralleriacarbo.com <span aria-hidden="true">↗</span></a></div></div></section>
   </main>
 
   <footer class="site-footer"><div class="section-shell footer-inner"><div class="footer-brand"><span>Serralleria</span><strong>Carbó</strong><small>Vilafranca del Penedès · Des de 1989</small></div><div class="footer-meta"><span>Fase 4 · Mockup de revisió</span><span>Avís legal, privacitat i fotografies originals pendents.</span><span>© Serralleria Carbó S.L.</span></div><a class="back-top" href="#inici">Torna a l'inici ↑</a></div></footer>

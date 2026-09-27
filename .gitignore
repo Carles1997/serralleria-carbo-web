@@ -1,6 +1,9 @@
 # Configuració local d'assistents i eines
 .agents/
-.claude/
+.claude/*
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/serralleria-carbo-project/
 .codex/
 .cursor/
 .impeccable/
@@ -26,3 +29,6 @@ Thumbs.db
 
 # Captura incompleta exportada per Stitch
 **/serralleria_carb_homepage_fotografia_d_alt_impacte/screen.png
+# Resultats locals de treball i QA; no publicar al repositori
+/tmp/
+/outputs/

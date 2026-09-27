@@ -9,21 +9,21 @@ seoDescription: "Serralleria Carbó: des de 1989, treballs de serralleria per a 
 
 # Serralleria Carbó, a Vilafranca del Penedès des de 1989
 
-Fabriquem i instal·lem portes, baranes, estructures i automatismes per a habitatges, comunitats i negocis. Del mateix taller neix Carbó Industrial, la nostra línia de fabricació metàl·lica per a empreses.
+Fabriquem i instal·lem portes, baranes, estructures i automatismes per a habitatges, comunitats i negocis. El mateix taller fabrica peces i estructures per a empreses, constructores i promotores.
 
 ## Particulars
 
-Baranes, escales, portes, automatismes i mobiliari a mida, fabricats al taller i instal·lats pel nostre equip. També atenem reparacions de portes i automatismes.
+Portes i motors, baranes i estructures, carros industrials i mobiliari a mida. Fabriquem i instal·lem al taller; també atenem reparacions de portes i automatismes durant l’horari d’atenció.
 
 [Serveis per a particulars](/particulars/)
 
-## Carbó Industrial
+## Industrial
 
 Sèries curtes. Peces exigents. Resposta industrial.
 
-Fabriquem peces i conjunts en acer al carboni i inox 304/316, amb soldadura MIG/MAG i TIG, per a encàrrecs de producció de tercers.
+Fabriquem peces, carros i conjunts en acer al carboni i inox 304/316, amb soldadura MIG/MAG i TIG. Valorem sèries curtes i estructures per a projectes de construcció de gran escala.
 
-[Coneix Carbó Industrial](/industrial/)
+[Coneix Industrial](/industrial/)
 
 Si tens una avaria en una porta o un automatisme, [consulta reparacions i contacte directe](/particulars/urgencies/).
 
@@ -48,13 +48,7 @@ La major part de la feina es fa a Vilafranca i la rodalia; també treballem en p
 
 Consulta el servei concret si ja saps què necessites:
 
-[Reparació de portes](/particulars/urgencies/) · [Baranes i estructures](/particulars/estructures/) · [Automatismes](/particulars/automatismes/) · [Mobiliari a mida](/particulars/mobiliari/) · [Capacitats industrials](/industrial/capacitats/)
-
-## Treballs fets, no només possibilitats
-
-Els projectes documentats mostren baranes, una passarel·la interior, una estructura d'ascensor, una porta de pàrquing i persianes motoritzades d'un negoci. A la branca industrial, el primer cas és una sèrie de deu gàbies fabricades per a un client.
-
-[Veure projectes de particulars](/particulars/projectes/) · [Veure el projecte industrial](/industrial/projectes/)
+[Portes i motors](/particulars/automatismes/) · [Baranes i estructures](/particulars/estructures/) · [Carros industrials](/contacte/?tipus=particular&servei=carros) · [Mobiliari a mida](/particulars/mobiliari/) · [Capacitats industrials](/industrial/capacitats/)
 
 ## Parlem del teu encàrrec
 

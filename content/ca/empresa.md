@@ -9,7 +9,7 @@ seoDescription: "Serralleria Carbó, fundada el 1989: taller de 950 m² a Vilafr
 
 # Empresa i taller de Serralleria Carbó
 
-Serralleria Carbó va néixer a Vilafranca del Penedès el desembre de 1989. Des d'aleshores ha treballat el metall per a habitatges, comunitats i negocis. Avui aquesta trajectòria també dona suport a Carbó Industrial, la línia de fabricació per a tercers.
+Serralleria Carbó va néixer a Vilafranca del Penedès el desembre de 1989. Des d'aleshores ha treballat el metall per a habitatges, comunitats i negocis. Avui aquesta trajectòria també dona suport a Industrial, la línia de fabricació per a tercers.
 
 ## El taller i l'equip
 
@@ -23,7 +23,7 @@ La major part de la feina es fa a Vilafranca del Penedès i la rodalia. També a
 
 ## Dues maneres de treballar el metall
 
-Per a particulars, fabriquem i instal·lem estructures, treballem amb portes i automatismes i atenem reparacions. Per a fabricants, enginyeries i integradors, Carbó Industrial presenta les capacitats del taller, el procés i la informació necessària per valorar una sèrie curta.
+Per a particulars, fabriquem i instal·lem estructures, treballem amb portes i automatismes i atenem reparacions. Per a fabricants, enginyeries i integradors, Industrial presenta les capacitats del taller, el procés i la informació necessària per valorar una sèrie curta.
 
 [Serveis per a particulars](/particulars/) · [Capacitats industrials](/industrial/capacitats/)
 

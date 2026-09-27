@@ -9,7 +9,7 @@
 .s-hero-image::after { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(8,10,12,.96) 0%,rgba(8,10,12,.7) 45%,rgba(8,10,12,.25) 85%),linear-gradient(0deg,rgba(8,10,12,.8),transparent 50%,rgba(8,10,12,.38)); content: ""; }
 .s-hero-content { position: relative; display: flex; flex-direction: column; min-height: inherit; padding-top: clamp(1.5rem,2.7vw,2.8rem); padding-bottom: clamp(2rem,3vw,3rem); }
 .s-breadcrumb { display: flex; align-items: center; gap: .8rem; min-height: 44px; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,.43); color: #e6e8e7; font-size: .81rem; font-weight: 600; }
-.s-breadcrumb a { display: inline-flex; align-items: center; min-height: 38px; text-decoration: none; }
+.s-breadcrumb a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; text-decoration: none; }
 .s-breadcrumb a:hover { color: #ecc4c6; }
 .s-breadcrumb>span[aria-hidden] { color: #d39599; }
 .s-hero-main { max-width: 1400px; margin-top: auto; padding-top: clamp(8rem,12vw,15rem); }

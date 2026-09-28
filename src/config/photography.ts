@@ -91,7 +91,7 @@ export const sitePhotography = {
     furnitureTile,
     doorsTile: homeDoorRepair,
     cartTile: cartPhoto,
-    industrialTile: homeIndustrial,
+    industrialTile: workshopMachine,
   },
   particulars: {
     hero: particularsHero,

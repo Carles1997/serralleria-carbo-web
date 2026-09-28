@@ -36,7 +36,6 @@
 
 .p-urgent { border-block: 1px solid #55585a; background: #25282b; }
 .p-urgent-inner { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(1.5rem,3vw,4rem); align-items: center; min-height: 150px; padding-block: 1.6rem; }
-.p-urgent-sign { display: grid; place-items: center; width: 70px; height: 70px; border: 1px solid; font-size: 3.5rem; font-weight: 300; line-height: 1; }
 .p-urgent h2 { margin: .35rem 0 .25rem; font-size: clamp(1.8rem,2.5vw,3rem); font-weight: 700; letter-spacing: -.04em; line-height: 1; }
 .p-urgent p { margin: 0; color: #cfd3d3; }
 .p-urgent a { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 54px; padding: .7rem 1rem; border: 1px solid #b7bbbb; font-weight: 700; text-decoration: none; white-space: nowrap; }
@@ -147,8 +146,8 @@
 
 /* particulars/identitat.css */
 .p-urgent { background:#7c2a30; border-color:#9b545a; }
-.p-urgent .index,.p-urgent p,.p-urgent-sign,.p-urgent a span { color:#fff; }
-.p-urgent-sign,.p-urgent a { border-color:rgba(255,255,255,.75); }
+.p-urgent .index,.p-urgent p,.p-urgent a span { color:#fff; }
+.p-urgent a { border-color:rgba(255,255,255,.75); }
 .p-urgent a:hover,.p-urgent a:focus-visible { background:#fff; color:#7c2a30; }
 .p-urgent a:hover span,.p-urgent a:focus-visible span { color:#7c2a30; }
 .p-services { background:var(--color-particulars-charcoal); color:#fff; }
@@ -359,8 +358,17 @@
 
 .p-service-note { margin: .8rem 0 0; color: #5e6564; font-size: .78rem; line-height: 1.4; }
 
-
-/* El senyal d'avaries comunica ajuda immediata sense suggerir servei fora d'horari. */
-.p-urgent-sign { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.12rem; }
-.p-urgent-sign > span { font-size:3.25rem; font-weight:300; line-height:.72; }
-.p-urgent-sign > small { color:#fff; font-size:.63rem; font-weight:800; letter-spacing:.13em; line-height:1; }
+/* Franja d'avaries compacta (indicació del director, 28/09/2026): sense el senyal «Ajuda», text i
+   accions en una sola franja baixa. */
+.particulars-page .p-urgent-inner { grid-template-columns: minmax(0,1fr) auto auto; gap: .75rem clamp(.75rem,1.5vw,1.25rem); min-height: 0; padding-block: clamp(1rem,1.5vw,1.25rem); }
+.particulars-page .p-urgent h2 { margin: 0 0 .2rem; font-size: clamp(1.35rem,1.7vw,1.7rem); line-height: 1.05; }
+.particulars-page .p-urgent p { max-width: none; font-size: .95rem; line-height: 1.45; }
+.particulars-page .p-urgent a { grid-column: auto; min-height: 44px; gap: 1rem; padding: .45rem .9rem; font-size: .95rem; }
+@media (max-width: 1100px) {
+  .particulars-page .p-urgent-inner { grid-template-columns: auto auto 1fr; }
+  .particulars-page .p-urgent-inner > div { grid-column: 1 / -1; }
+}
+@media (max-width: 520px) {
+  .particulars-page .p-urgent-inner { grid-template-columns: 1fr; gap: .6rem; }
+  .particulars-page .p-urgent a { justify-self: stretch; }
+}

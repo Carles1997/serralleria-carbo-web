@@ -1,0 +1,209 @@
+---
+// Plantilla PP (portafoli de Particulars). Composició: fases/fase-4/FASE4-mockups/particulars/projectes/
+// amb revisio-client.css i els ajustos del director de projecte (vegeu portfolio.css).
+// Text: content/{idioma}/particulars-projectes.md (H1, entrada, paràgraf d'enllaços a serveis i
+// secció de contacte); casos: content/{idioma}/projects/ en l'ordre de projectIds. Els filtres no
+// creen rutes noves: `?servei=` només selecciona el filtre.
+import { Picture } from 'astro:assets';
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+// Bloc 3 del pla d'afinament: sense etiquetes sobre la H1 i els H2 ni rètol al contacte; es
+// conserven el número, el servei, el context i l'any de cada cas i l'etiqueta del filtre.
+import Inlines from '../components/Inlines.astro';
+import type { Page } from '../i18n/pages';
+import { useUi } from '../i18n/ui';
+import { one, paragraphs, parseInlines, parseMarkdown, plainText } from '../lib/markdown';
+import { projectPhotography, sitePhotography, type ProjectPhotoId } from '../config/photography';
+import './mockup-base.css';
+import './portfolio.css';
+
+interface Props {
+  page: Page;
+}
+
+const { page } = Astro.props;
+const { lang: locale, route, projectIds = [] } = page.data;
+const ui = useUi(locale);
+const t = ui.portfolio;
+const nav = ui.particulars.nav;
+
+// Estructura de particulars-projectes.md: H1, entrada, paràgraf amb enllaços als serveis i una H2 de contacte.
+const doc = parseMarkdown(page.body ?? '');
+if (t.hero.title.join(' ') !== doc.title) {
+  throw new Error(`El titular compost («${t.hero.title.join(' ')}») no coincideix amb la H1 de particulars-projectes.md.`);
+}
+const [intro, servicesText] = paragraphs(doc.intro);
+const serviceLinks = (servicesText ?? []).flatMap((inline) => (inline.type === 'link' ? [{ label: inline.value, href: inline.href }] : []));
+if (!intro || !serviceLinks.length) throw new Error("particulars-projectes.md necessita l'entrada i el paràgraf d'enllaços als serveis.");
+const contact = one(doc.sections, 'una secció de contacte');
+const contactText = one(paragraphs(contact.blocks), 'un paràgraf a la secció de contacte');
+const contactLink = contact.blocks
+  .flatMap((block) => (block.type === 'paragraph' ? block.inlines : []))
+  .find((inline) => inline.type === 'link');
+if (contactLink?.type !== 'link') throw new Error('La secció de contacte necessita un enllaç.');
+
+// Casos, en l'ordre de projectIds: han d'existir, ser de Particulars i tenir servei amb ruta.
+const cases = await Promise.all(
+  projectIds.map(async (id, index) => {
+    const project = await getEntry('projects', `${locale}/projects/${id}`);
+    if (!project || project.data.branch !== 'particulars') throw new Error(`El cas «${id}» no existeix a Particulars.`);
+    const service = nav.find((item) => item.href === `/particulars/${project.data.category}/`);
+    const context = ui.projectContexts[id];
+    const linkLabel = t.caseLink[project.data.category];
+    if (!service || !context || !linkLabel) throw new Error(`Falten el servei, el context o l'enllaç del cas «${id}».`);
+    return {
+      number: String(index + 1).padStart(2, '0'),
+      category: project.data.category,
+      title: project.data.title,
+      year: project.data.year,
+      text: parseInlines((project.body ?? '').trim().replace(/\s+/g, ' ')),
+      service,
+      context,
+      linkLabel,
+      photo: projectPhotography[id as ProjectPhotoId],
+    };
+  }),
+);
+const total = String(cases.length).padStart(2, '0');
+const filters = [
+  { value: 'tots', label: t.filters.all, count: cases.length },
+  ...[...new Set(cases.map((item) => item.category))].map((category) => ({
+    value: category,
+    label: nav.find((item) => item.href === `/particulars/${category}/`)?.label ?? category,
+    count: cases.filter((item) => item.category === category).length,
+  })),
+];
+const pad = (value: number) => String(value).padStart(2, '0');
+const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
+---
+
+<BaseLayout page={page} surface="dark">
+  <SiteHeader ui={ui} homeHref="/" nav={nav} mobileExtra={ui.particulars.mobileExtra} collapse="wide" current={route} />
+
+  <main id="contingut" class="portfolio-page">
+    <section class="folio-hero" aria-labelledby="folio-title">
+      <div class="folio-hero-image" aria-hidden="true">
+        <Picture src={sitePhotography.particulars.portfolioHero} alt="" widths={[640, 960, 1280, 1536]} sizes="100vw" formats={['avif', 'webp']} fallbackFormat="jpg" priority />
+      </div>
+      <div class="section-shell folio-hero-content">
+        <nav class="folio-breadcrumb enter" aria-label={ui.service.breadcrumb.label}>
+          <a href="/">{ui.service.breadcrumb.home}</a><span aria-hidden="true">/</span>
+          <a href={ui.service.breadcrumb.branch.href}>{ui.service.breadcrumb.branch.label}</a><span aria-hidden="true">/</span>
+          <span aria-current="page">{nav.find((item) => item.href === route)?.label ?? doc.title}</span>
+        </nav>
+        <div class="folio-hero-main">
+          <h1 id="folio-title" style={fit(...t.hero.title)}>
+            <span class="enter" style="--i:2">{t.hero.title[0]}</span>{' '}
+            <br />
+            <em class="enter" style="--i:3">{t.hero.title[1]}</em>
+          </h1>
+          <div class="folio-hero-bottom enter" style="--i:4">
+            <p><Inlines inlines={intro} /></p>
+            <a href="#casos">{t.hero.cta} <span class="arrow" aria-hidden="true">↘</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="folio-work" id="casos" aria-labelledby="work-title" data-surface="light">
+      <div class="section-shell folio-work-top">
+        <div>
+          <h2 id="work-title" data-reveal style={fit(...t.work.heading)}>
+            {t.work.heading[0]}<br />{' '}{t.work.heading[1]}
+          </h2>
+        </div>
+      </div>
+      <div
+        class="section-shell folio-filters"
+        role="group"
+        aria-label={t.filters.label}
+        data-filters="case-list"
+        data-status={t.filters.status}
+        hidden
+      >
+        <span>{t.filters.title}</span>
+        <div>
+          {
+            filters.map((filter) => (
+              <button type="button" data-filter={filter.value} aria-pressed={filter.value === 'tots' ? 'true' : 'false'} aria-controls="case-list">
+                {filter.label} <small>{pad(filter.count)}</small>
+              </button>
+            ))
+          }
+          <span class="folio-filter-indicator" data-filter-indicator aria-hidden="true"></span>
+        </div>
+        <p class="sr-only" aria-live="polite" data-filter-status></p>
+      </div>
+      <div class="folio-case-list" id="case-list">
+        {
+          cases.map((item, index) => (
+            <article
+              class:list={['folio-case', { 'folio-case-reverse': index % 2 === 1 }]}
+              data-category={item.category}
+              aria-labelledby={`case-${index + 1}-title`}
+              data-reveal="group"
+            >
+              <figure class={`folio-case-media folio-case-media-${item.category}`} data-surface="dark">
+                <Picture src={item.photo.primary} alt={item.photo.alt} widths={[400, 640, 960, 1200]} sizes="(max-width: 760px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                <span class="folio-case-glyph" aria-hidden="true">{item.number}</span>
+              </figure>
+              <div class="folio-case-copy">
+                <div class="folio-case-meta">
+                  <span>
+                    {item.number} / {total}
+                  </span>
+                  <span>
+                    {item.service.label} · {item.context}
+                  </span>
+                  <span>{item.year}</span>
+                </div>
+                <div>
+                  <h3 id={`case-${index + 1}-title`}>{item.title}</h3>
+                  <p>
+                    <Inlines inlines={item.text} />
+                  </p>
+                </div>
+                <a class="underlined-link" href={item.service.href}>
+                  {item.linkLabel} <span class="arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="folio-more" aria-labelledby="more-title">
+      <div class="section-shell folio-more-inner">
+        <div data-reveal>
+          <h2 id="more-title" style={fit(...t.more.heading)}>{t.more.heading[0]}<br />{' '}{t.more.heading[1]}</h2>
+        </div>
+        <div class="folio-more-links" data-reveal style="--i:1">
+          {
+            serviceLinks.map((link) => (
+              <a href={link.href}>
+                {link.label} <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <ContactBlock
+      ui={ui}
+      heading={t.contactHeading}
+      text={contactText}
+      form={{ label: plainText([contactLink]), href: contactLink.href }}
+    />
+  </main>
+
+  <SiteFooter ui={ui} locale={locale} contactHref={contactLink.href} />
+</BaseLayout>
+
+<script>
+  import '../scripts/portfolio';
+</script>

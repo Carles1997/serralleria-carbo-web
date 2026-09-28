@@ -1,0 +1,42 @@
+/* Rols visuals compartits · Bloc 2 del pla d'afinament (fases/fase-5/FASE5-pla-millora-integral.md §3).
+   Un sol lloc per a les funcions que es repeteixen entre plantilles: superfícies, tinta, línies,
+   acció, escala tipogràfica i espaiat. Parteix de design/tokens.css, src/styles/fase4.css i la
+   revisió de Fase 4, sense reescriure'n els valors congelats: les plantilles apunten a aquests rols.
+   Excepcions documentades a cada plantilla. */
+:root {
+  /* Superfícies. Prova del 27/09/2026: blanc pur per a la lectura principal; #eeefeb (el paper de
+     la revisió del client) queda com a única superfície neutra secundària per separar fitxes,
+     formulari o nivells d'informació. La variant #eeefeb es compara a les captures del Bloc 2. */
+  --surface-read: #ffffff;
+  --surface-read-alt: var(--client-paper);
+  --surface-dark: #1e2225;
+  --surface-deep: #111315;
+
+  /* Tinta i línies segons el fons. */
+  --ink: var(--client-ink);
+  --ink-muted: #4c5652;
+  --line-on-light: #c9cfcb;
+  --line-on-dark: rgb(255 255 255 / 0.22);
+
+  /* Acció i marca: bordeus únic (#7c2a30). A Industrial, plata sobre grafit, també a la línia de
+     progrés del mètode (decisió del director, 27/09/2026); el bordeus hi queda com a parentiu discret. */
+  --action: var(--color-particulars-accent);
+  --industrial-accent: var(--color-industrial-silver);
+
+  /* Escala tipogràfica: una funció, una mida (Source Sans 3). */
+  --type-hero: clamp(3.9rem, 6.2vw, 7rem);      /* H1 d'interior */
+  --type-h2: clamp(3.5rem, 5.4vw, 5.8rem);      /* titular de secció */
+  --type-h3: clamp(1.9rem, 2.6vw, 2.8rem);      /* peça, cas, targeta, bloc */
+  --type-h4: clamp(1.3rem, 1.7vw, 1.8rem);      /* pas, element de llista, targeta petita */
+  --type-intro: clamp(1.05rem, 1.25vw, 1.2rem); /* paràgraf que acompanya un titular */
+  --type-body: 1.0625rem;                       /* cos explicatiu (17 px) */
+  --type-meta: 0.75rem;                         /* etiqueta en majúscules */
+  --type-caption: 0.72rem;                      /* avís d'imatge conceptual */
+  --tracking-meta: 0.12em;
+
+  /* Espaiat. Les seccions ordinàries creixen pel contingut; les alçades escèniques es reserven
+     a l'entrada, al projecte visual i a seqüències que ho necessiten. */
+  --space-section: clamp(3.5rem, 5vw, 4.5rem);
+  --space-lead: clamp(2rem, 3.5vw, 3rem);
+  --space-block: clamp(1.5rem, 2.5vw, 2.5rem);
+}

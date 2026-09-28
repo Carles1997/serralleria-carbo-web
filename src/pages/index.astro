@@ -1,0 +1,8 @@
+---
+import HomeTemplate from '../templates/HomeTemplate.astro';
+import { getPage } from '../i18n/pages';
+
+const page = await getPage('home');
+---
+
+<HomeTemplate page={page} />

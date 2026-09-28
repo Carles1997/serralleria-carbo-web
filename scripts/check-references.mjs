@@ -1,0 +1,104 @@
+// Protegeix les referències validades durant la Fase 5 comparant-les amb la línia
+// base de la Fase 4, no amb HEAD: un commit no pot «legitimar» un canvi accidental.
+//
+// - Estrictes (idèntics a la línia base, sense fitxers nous ni eliminats):
+//   fases/fase-1 … fase-4 (inclosos els mockups) i design/.
+// - content/: el cos i el frontmatter dels fitxers validats han de coincidir, excepte
+//   els camps de la porta de publicació (APPROVAL_KEYS). Es poden afegir fitxers nous
+//   (per exemple content/es/ i content/en/).
+//
+// Canviar BASELINE només quan el director de projecte validi una nova revisió de
+// referències; vegeu fases/fase-5/FASE5-indexacio.md.
+import { execFileSync } from 'node:child_process';
+import { existsSync, readFileSync } from 'node:fs';
+
+const BASELINE = '5e0ffc9'; // Finalize phase 4 mockups and prepare Claude phase 5 (27/09/2026)
+const STRICT_PATHS = ['fases/fase-1', 'fases/fase-2', 'fases/fase-3', 'fases/fase-4', 'design'];
+const CONTENT_PATH = 'content';
+const APPROVAL_KEYS = new Set(['status', 'publishReady', 'noindex', 'reviewNeeded']);
+
+const git = (args, input) => execFileSync('git', args, { encoding: 'utf8', input, maxBuffer: 64 * 1024 * 1024 });
+const list = (output) => output.split('\0').filter(Boolean);
+
+try {
+  git(['cat-file', '-e', `${BASELINE}^{commit}`]);
+} catch {
+  console.error(`No es troba el commit de referència ${BASELINE}. Cal l'historial complet de Git (no un clon superficial).`);
+  process.exit(2);
+}
+
+/** Fitxers de la línia base: camí → blob. */
+function baselineFiles(paths) {
+  const files = new Map();
+  for (const line of list(git(['ls-tree', '-r', '-z', BASELINE, '--', ...paths]))) {
+    const [meta, path] = line.split('\t');
+    files.set(path, meta.split(' ')[2]);
+  }
+  return files;
+}
+
+/** Fitxers actuals, versionats o nous, respectant .gitignore. */
+function workingFiles(paths) {
+  return new Set(list(git(['ls-files', '-z', '--cached', '--others', '--exclude-standard', '--', ...paths])).filter(existsSync));
+}
+
+/** Blob que tindria el fitxer actual, amb els filtres de .gitattributes (eol). */
+function workingBlobs(paths) {
+  if (!paths.length) return new Map();
+  const hashes = git(['hash-object', '--stdin-paths'], paths.join('\n') + '\n').trim().split('\n');
+  return new Map(paths.map((path, index) => [path, hashes[index]]));
+}
+
+/** Frontmatter en blocs per clau de primer nivell, i cos del document. */
+function parseMarkdown(text) {
+  const normalized = text.replace(/\r\n/g, '\n');
+  const match = normalized.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  if (!match) return { keys: new Map(), body: normalized };
+  const keys = new Map();
+  let current;
+  for (const line of match[1].split('\n')) {
+    const key = line.match(/^([A-Za-z][\w-]*):/)?.[1];
+    if (key) keys.set((current = key), line);
+    else if (current) keys.set(current, `${keys.get(current)}\n${line}`);
+  }
+  return { keys, body: match[2] };
+}
+
+const errors = [];
+const notes = [];
+
+// 1. Referències estrictes.
+const strictBase = baselineFiles(STRICT_PATHS);
+const strictNow = workingFiles(STRICT_PATHS);
+const strictBlobs = workingBlobs([...strictNow].filter((path) => strictBase.has(path)));
+for (const [path, blob] of strictBase) {
+  if (!strictNow.has(path)) errors.push(`eliminat: ${path}`);
+  else if (strictBlobs.get(path) !== blob) errors.push(`modificat: ${path}`);
+}
+for (const path of strictNow) if (!strictBase.has(path)) errors.push(`fitxer nou en una referència validada: ${path}`);
+
+// 2. Continguts validats.
+const contentBase = baselineFiles([CONTENT_PATH]);
+const contentNow = workingFiles([CONTENT_PATH]);
+for (const path of contentBase.keys()) {
+  if (!contentNow.has(path)) {
+    errors.push(`contingut eliminat: ${path}`);
+    continue;
+  }
+  const before = parseMarkdown(git(['show', `${BASELINE}:${path}`]));
+  const after = parseMarkdown(readFileSync(path, 'utf8'));
+  if (before.body !== after.body) errors.push(`text modificat: ${path}`);
+  for (const key of new Set([...before.keys.keys(), ...after.keys.keys()])) {
+    if (before.keys.get(key) === after.keys.get(key)) continue;
+    if (APPROVAL_KEYS.has(key)) notes.push(`${path}: ${after.keys.get(key)?.replace(/\n\s*/g, ' ') ?? `${key} eliminat`}`);
+    else errors.push(`frontmatter modificat (${key}): ${path}`);
+  }
+}
+for (const path of contentNow) if (!contentBase.has(path)) notes.push(`contingut nou: ${path}`);
+
+if (notes.length) console.log(`Canvis permesos respecte a ${BASELINE}:\n  ${notes.join('\n  ')}`);
+if (errors.length) {
+  console.error(`Referències validades alterades respecte a ${BASELINE}:\n  ${errors.join('\n  ')}`);
+  process.exit(1);
+}
+console.log(`Referències intactes respecte a ${BASELINE} (${strictBase.size} fitxers estrictes, ${contentBase.size} continguts).`);

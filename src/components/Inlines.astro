@@ -1,0 +1,22 @@
+---
+// Text en línia del Markdown editorial (text, negreta i enllaços), sense set:html.
+import type { Inline } from '../lib/markdown';
+
+interface Props {
+  inlines: Inline[];
+}
+
+const { inlines } = Astro.props;
+---
+
+{
+  inlines.map((inline) =>
+    inline.type === 'strong' ? (
+      <strong>{inline.value}</strong>
+    ) : inline.type === 'link' ? (
+      <a href={inline.href}>{inline.value}</a>
+    ) : (
+      inline.value
+    ),
+  )
+}

@@ -1,0 +1,324 @@
+---
+// Plantilla I (portada d'Industrial). Composició: fases/fase-4/FASE4-mockups/industrial/
+// amb identitat.css i revisio-client.css (vegeu industrial.css). Text i enllaços:
+// content/{idioma}/industrial.md. Etiquetes i titulars de la maqueta: i18n/ui.ts.
+// Imatges sense llegendes (director, 28/09/2026); el cas de les gàbies usa la fotografia del projecte.
+// Bloc 1 del pla d'afinament (fases/fase-5/FASE5-pla-millora-integral.md): sense rètols numerats
+// ni frases que repeteixen l'entrada o la guia de contacte. Els enllaços del contingut a rutes
+// ajornades (config/routes.ts) resolen a seccions d'aquesta mateixa pàgina i no es mostren; quan
+// les rutes es publiquin, tornaran a aparèixer.
+// Bloc 2: rols tipogràfics comuns; la línia del mètode es manté en plata (decisió del director).
+import { Picture } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Inlines from '../components/Inlines.astro';
+import type { Page } from '../i18n/pages';
+import { useUi } from '../i18n/ui';
+import { company } from '../config/site';
+import { resolveRoute } from '../config/routes';
+import { links, one, paragraphs, parseInlines, parseMarkdown, plainText } from '../lib/markdown';
+import { projectPhotography, sitePhotography } from '../config/photography';
+import './mockup-base.css';
+import './industrial-base.css';
+import './industrial.css';
+
+interface Props {
+  page: Page;
+}
+
+const { page } = Astro.props;
+const locale = page.data.lang;
+const ui = useUi(locale);
+const t = ui.industrial;
+
+// Estructura d'industrial.md: H1, un paràgraf d'entrada i sis seccions H2 en aquest ordre.
+const doc = parseMarkdown(page.body ?? '');
+if (doc.sections.length !== 6) throw new Error(`industrial.md ha de tenir 6 seccions H2; en té ${doc.sections.length}.`);
+const [workshop, quality, sectors, method, project, contact] = doc.sections;
+
+if (`${t.hero.title.join('. ')}.` !== doc.title) {
+  throw new Error(`El titular compost («${t.hero.title.join(' / ')}») no coincideix amb la H1 d'industrial.md.`);
+}
+const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada a industrial.md");
+
+const workshopText = one(paragraphs(workshop.blocks), `un paràgraf a «${workshop.heading}»`);
+const workshopLink = one(links(workshop.blocks), `un enllaç a «${workshop.heading}»`);
+const qualityText = one(paragraphs(quality.blocks), `un paràgraf a «${quality.heading}»`);
+
+const sectorsText = one(paragraphs(sectors.blocks), `un paràgraf a «${sectors.heading}»`);
+const sectorsLink = one(links(sectors.blocks), `un enllaç a «${sectors.heading}»`);
+// Enllaç del contingut que, resolt, porta a una secció d'aquesta pàgina (ruta ajornada).
+const onThisPage = (href: string) => resolveRoute(href).startsWith(`${page.data.route}#`);
+const sectorsOut = onThisPage(sectorsLink.href) ? undefined : sectorsLink;
+const sectorsPlain = plainText(sectorsText).toLowerCase();
+const missingSector = t.sectors.items.find((sector) => !sectorsPlain.includes(sector.name.toLowerCase()));
+if (missingSector) throw new Error(`El sector «${missingSector.name}» no consta a «${sectors.heading}».`);
+
+// El paràgraf del mètode comença amb la seqüència de passos; la plantilla la mostra com a
+// llista, de manera que el text visible és la resta del paràgraf.
+const methodText = plainText(one(paragraphs(method.blocks), `un paràgraf a «${method.heading}»`));
+const sequence = `${t.series.steps.map((step) => step.title).join(' → ')}. `;
+if (!methodText.startsWith(sequence)) throw new Error(`«${method.heading}» ha de començar amb «${sequence.trim()}».`);
+const methodLead = parseInlines(methodText.slice(sequence.length));
+const methodLinks = links(method.blocks);
+if (methodLinks.length !== 2) throw new Error(`«${method.heading}» ha de tenir dos enllaços (procés i sèries curtes).`);
+const methodOut = methodLinks.filter((link) => !onThisPage(link.href));
+
+const projectText = one(paragraphs(project.blocks), `un paràgraf a «${project.heading}»`);
+const projectLink = one(links(project.blocks), `un enllaç a «${project.heading}»`);
+// Mentre el cas no té pàgina pròpia, la sortida del cas és el contacte (text de la maqueta).
+const projectAction = onThisPage(projectLink.href) ? { label: t.project.action, href: '#contacte' } : projectLink;
+
+const [contactText, directText] = paragraphs(contact.blocks);
+if (!contactText || !directText) throw new Error(`«${contact.heading}» necessita dos paràgrafs.`);
+const contactLink = one(links(contact.blocks), `un enllaç a «${contact.heading}»`);
+// El formulari obre la branca Empresa (ruta de la maqueta i del traspàs: /contacte/?tipus=empresa).
+const contactForm = contactLink.href === '/contacte/' ? '/contacte/?tipus=empresa' : contactLink.href;
+const directLinks = directText.flatMap((inline) => (inline.type === 'link' ? [inline.href] : []));
+if (!directLinks.includes(company.phone.href) || !directLinks.includes(`mailto:${company.email}`)) {
+  throw new Error(`El contacte directe de «${contact.heading}» no coincideix amb src/config/site.ts.`);
+}
+
+const pad = (value: number) => String(value).padStart(2, '0');
+const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
+---
+
+<BaseLayout page={page} surface="dark">
+  <SiteHeader ui={ui} homeHref="/" nav={t.nav} mobileExtra={t.mobileExtra} collapse="industrial" phoneLabel={t.phoneLabel} />
+
+  <main id="contingut" class="industrial-page">
+    <section class="i-hero" aria-labelledby="i-title">
+      <div class="i-media i-hero-image" aria-hidden="true">
+        <Picture src={sitePhotography.industrial.hero} alt="" widths={[640, 960, 1280, 1672]} sizes="100vw" formats={['avif', 'webp']} fallbackFormat="jpg" priority />
+      </div>
+      <div class="i-hero-shade" aria-hidden="true"></div>
+      <div class="section-shell i-hero-layout">
+        <div class="i-hero-overline enter"><span>{t.hero.overline[0]}</span><span>{t.hero.overline[1]}</span></div>
+        <div class="i-hero-copy">
+          <div class="i-kicker enter" style="--i:1"><span class="i-kicker-rule" aria-hidden="true"></span>{t.hero.kicker}</div>
+          <h1 id="i-title" style={fit(...t.hero.title)}>
+            <span class="enter" style="--i:2">{t.hero.title[0]}</span>{' '}<br /><span class="enter" style="--i:3">{t.hero.title[1]}</span>{' '}<br /><em class="enter" style="--i:4">{t.hero.title[2]}</em>
+          </h1>
+          <p class="enter" style="--i:5"><Inlines inlines={intro} /></p>
+          <div class="i-hero-actions enter" style="--i:6">
+            <a class="i-button i-button-solid" href={workshopLink.href}>{t.hero.primary} <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="i-text-link" href="#contacte">{t.hero.secondary} <span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="i-hero-bottom enter" style="--i:7"><span>{t.hero.bottom}</span></div>
+      </div>
+    </section>
+
+    <div class="i-proof" role="group" aria-label={t.proof.label}>
+      <div class="section-shell i-proof-inner" data-counters>
+        <p data-reveal>{t.proof.lead}</p>
+        {
+          t.proof.items.map(({ value, unit, label }, index) => (
+            <div data-reveal style={`--i:${index + 1}`}>
+              <strong>
+                <span class="count" data-count={value} style={`--digits:${String(value).length}`} aria-hidden="true">
+                  {value}
+                </span>
+                <span class="sr-only">{value}</span>
+                {unit && ' '}
+                {unit && <small>{unit}</small>}
+              </strong>
+              <span>{label}</span>
+            </div>
+          ))
+        }
+        <a href="#contacte" data-reveal style="--i:3">{t.proof.action} <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+
+    <section class="i-capabilities" id="capacitats" aria-labelledby="i-cap-title">
+      <div class="section-shell">
+        <div class="i-cap-intro">
+          <h2 id="i-cap-title" style={fit(...t.workshop.heading)} data-reveal>
+            {t.workshop.heading[0]}{' '}<br /><em>{t.workshop.heading[1]}</em>
+          </h2>
+        </div>
+        <div class="i-cap-showcase">
+          <article class="i-cap-materials" data-reveal="clip">
+            <div class="i-media" aria-hidden="true">
+              <Picture src={sitePhotography.industrial.materials} alt="" widths={[640, 960, 1280]} sizes="(max-width: 760px) 100vw, 58vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+            </div>
+            <div class="i-cap-item-head">{t.workshop.materials.head.map((part) => <span>{part}</span>)}</div>
+            <h3>{t.workshop.materials.title[0]}{' '}<br /><em>{t.workshop.materials.title[1]}</em></h3>
+          </article>
+          <article class="i-cap-machines" data-reveal style="--i:1">
+            <div class="i-media" aria-hidden="true">
+              <Picture src={sitePhotography.industrial.machines} alt="" widths={[480, 720, 960]} sizes="(max-width: 760px) 100vw, 42vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+            </div>
+            <div class="i-cap-item-head">{t.workshop.machines.head.map((part) => <span>{part}</span>)}</div>
+            <h3>{t.workshop.machines.title[0]}{' '}<br />{t.workshop.machines.title[1]}</h3>
+            <div class="i-cap-machines-foot"><span>{t.workshop.machines.foot}</span></div>
+          </article>
+          <article class="i-cap-welding" data-reveal="clip">
+            <div class="i-media" aria-hidden="true">
+              <Picture src={sitePhotography.industrial.welding} alt="" widths={[640, 960, 1280]} sizes="(max-width: 760px) 100vw, 42vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+            </div>
+            <div class="i-cap-item-head">{t.workshop.welding.head.map((part) => <span>{part}</span>)}</div>
+            <h3>{t.workshop.welding.title[0]}{' '}<br /><em>{t.workshop.welding.title[1]}</em></h3>
+          </article>
+          <article class="i-cap-mounting" data-reveal style="--i:1">
+            <div class="i-media" aria-hidden="true">
+              <Picture src={sitePhotography.industrial.mounting} alt="" widths={[640, 960, 1280]} sizes="(max-width: 760px) 100vw, 58vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+            </div>
+            <div class="i-cap-item-head">{t.workshop.mounting.head.map((part) => <span>{part}</span>)}</div>
+            <h3>{t.workshop.mounting.title[0]}{' '}<br />{t.workshop.mounting.title[1]}</h3>
+            <p>{t.workshop.mounting.text}</p>
+          </article>
+        </div>
+        <div class="i-cap-close">
+          <div class="i-cap-summary" data-reveal>
+            <p><Inlines inlines={workshopText} /></p>
+            <a class="i-button i-button-solid" href={workshopLink.href}>{t.workshop.action} <span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
+          <div class="i-quality" data-reveal style="--i:1">
+            <div class="i-quality-copy">
+              <h3>{t.workshop.progress.label}</h3>
+              <p><Inlines inlines={qualityText} /></p>
+            </div>
+            <ul class="i-quality-list">
+              {
+                t.workshop.progress.items.map((item) => (
+                  <li>
+                    <span class="i-quality-mark" aria-hidden="true"></span>
+                    <strong>{item.title}</strong>
+                    <span>{item.state}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="i-series" id="series" aria-labelledby="i-series-title">
+      <div class="i-media i-series-image" aria-hidden="true">
+        <Picture src={sitePhotography.industrial.series} alt="" widths={[640, 960, 1280, 1672]} sizes="100vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+      </div>
+      <span class="i-series-credit">{t.series.image}</span>
+      <div class="section-shell i-series-inner">
+        <div class="i-series-head">
+          <h2 id="i-series-title" style={fit(...t.series.heading)} data-reveal>
+            {t.series.heading[0]}{' '}<br />{t.series.heading[1]} <em>{t.series.heading[2]}</em>
+          </h2>
+          <p data-reveal style="--i:2">{t.series.lead}</p>
+        </div>
+        <div class="i-series-method" id="proces" aria-labelledby="i-process-title">
+          <div class="i-series-method-head" data-reveal>
+            <h3 id="i-process-title">{t.series.method.heading[0]}{' '}<br /><em>{t.series.method.heading[1]}</em></h3>
+            <div>
+              <p><Inlines inlines={methodLead} /></p>
+              {
+                methodOut.length > 0 && (
+                  <p class="i-series-links">
+                    {methodOut.map((link) => (
+                      <a class="i-text-link" href={link.href}>
+                        {link.label} <span class="arrow" aria-hidden="true">↗</span>
+                      </a>
+                    ))}
+                  </p>
+                )
+              }
+            </div>
+          </div>
+          <ol class="i-series-steps" aria-label={t.series.method.label} data-series style={`--steps:${t.series.steps.length}`}>
+            {
+              t.series.steps.map((step, index) => (
+                <li class="i-series-step" style={`--i:${index}`}>
+                  <span class="i-series-step-number">
+                    {pad(index + 1)} / {pad(t.series.steps.length)}
+                  </span>
+                  <h4>{step.title}</h4>
+                  <p>{step.text}</p>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+        <div class="i-series-foot" data-reveal>
+          <a class="i-button i-button-outline" href="#contacte">{t.series.action} <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="i-sectors" id="sectors" aria-labelledby="i-sectors-title">
+      <div class="section-shell">
+        <div class="i-section-heading">
+          <h2 id="i-sectors-title" style={fit(...t.sectors.heading)} data-reveal>
+            {t.sectors.heading[0]}{' '}<br /><em>{t.sectors.heading[1]}</em>
+          </h2>
+          <p data-reveal style="--i:2"><Inlines inlines={sectorsText} /></p>
+        </div>
+        <ul class="i-sectors-grid" aria-label={t.sectors.label} data-reveal="group">
+          {
+            t.sectors.items.map((sector, index) => (
+              <li class="i-sector" style={`--i:${index}`}>
+                <Picture src={sitePhotography.sectors[sector.art as keyof typeof sitePhotography.sectors]} alt="" widths={[320, 480, 720, 960]} sizes="(max-width: 760px) 50vw, 20vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                <h3>{sector.name}</h3>
+              </li>
+            ))
+          }
+        </ul>
+        {
+          sectorsOut && (
+            <div class="i-sector-foot">
+              <a class="i-text-link" href={sectorsOut.href}>{sectorsOut.label} <span class="arrow" aria-hidden="true">↗</span></a>
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    <section class="i-project" id="projectes" aria-labelledby="i-project-title">
+      <div class="section-shell i-project-layout">
+        <figure class="i-project-art" data-reveal="clip">
+          <Picture src={sitePhotography.industrial.project} alt={projectPhotography['gavia-industrial'].alt} widths={[400, 640, 960, 1200]} sizes="(max-width: 760px) 100vw, 55vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+        </figure>
+        <div class="i-project-copy">
+          <h2 id="i-project-title" style={fit(...t.project.heading)} data-reveal>
+            {t.project.heading[0]}{' '}<br /><em>{t.project.heading[1]}</em>
+          </h2>
+          <p data-reveal style="--i:2"><Inlines inlines={projectText} /></p>
+          <a class="i-section-link" href={projectAction.href} data-reveal style="--i:3">{projectAction.label} <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="i-contact" id="contacte" aria-labelledby="i-contact-title">
+      <div class="section-shell">
+        <div class="i-contact-heading">
+          <h2 id="i-contact-title" style={fit(...t.contact.heading)} data-reveal>
+            {t.contact.heading[0]}{' '}<br /><em>{t.contact.heading[1]}</em>
+          </h2>
+          <p data-reveal style="--i:2"><Inlines inlines={contactText} /></p>
+        </div>
+        <div class="i-contact-grid" data-reveal>
+          <div class="i-contact-guide">
+            <span>{t.contact.guideLabel}</span>
+            <ol>
+              {t.contact.guide.map((item) => <li>{item}</li>)}
+            </ol>
+          </div>
+          <div class="i-contact-method">
+            <span>{t.contact.methodLabel}</span>
+            <a class="i-contact-main" href={contactForm}>{t.contact.form} <span class="arrow" aria-hidden="true">↗</span></a>
+            <a href={`mailto:${company.email}`}>{company.email}</a>
+            <a href={company.phone.href}>{company.phone.display}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter ui={ui} locale={locale} contactHref={contactForm} variant="industrial" />
+</BaseLayout>
+
+<script>
+  import '../scripts/series';
+</script>

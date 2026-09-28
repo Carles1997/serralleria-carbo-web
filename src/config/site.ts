@@ -1,0 +1,19 @@
+// Dades de contacte confirmades: CONTEXT-serralleria-carbo.md §2.4, content/ca/ui.md,
+// content/ca/contacte.md i el traspàs de Fase 4. No afegir-hi dades que no tinguin aquestes fonts.
+export const company = {
+  legalName: 'Serralleria Carbó S.L.',
+  phone: { display: '630 661 908', href: 'tel:+34630661908' },
+  landline: { display: '93 890 27 94', href: 'tel:+34938902794' },
+  email: 'carbo@serralleriacarbo.com',
+  address: ["Carrer d'Eugeni d'Ors, 59", '08720 Vilafranca del Penedès, Barcelona'],
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=Carrer%20d'Eugeni%20d'Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s",
+  // Mateixa adreça, per camps (dades estructurades). Fundació i plantilla: content/ca/empresa.md.
+  postalAddress: { street: "Carrer d'Eugeni d'Ors, 59", postalCode: '08720', locality: 'Vilafranca del Penedès', region: 'Barcelona', country: 'ES' },
+  foundingDate: '1989-12',
+  employees: 12,
+} as const;
+
+/** WhatsApp amb el missatge inicial de content/ca/ui.md; el visitant l'edita abans d'enviar-lo. */
+export function whatsappUrl(message: string) {
+  return `https://wa.me/34630661908?text=${encodeURIComponent(message)}`;
+}

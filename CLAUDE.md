@@ -33,6 +33,7 @@ Si dues fonts es contradiuen, localitza la decisió posterior validada i informa
 - La skill local serralleria-carbo-project detalla el flux d'implementació d'una ruta o component. El context estable d'aquest fitxer s'aplica sempre.
 - Impeccable: només auditoria manual i informes, sense canvis de codi ni hooks automàtics.
 - emil-design-eng: criteri complementari de detall quan estigui instal·lada; review-animations: revisió de moviment implementat; mobile-native: QA de tacte i mòbil. No són portes obligatòries ni poden modificar decisions aprovades.
-- pick-ui-library només si el director de projecte ho demana. Taste Skill i el plugin Codex no formen part de la configuració inicial.
+- pick-ui-library només si el director de projecte ho demana. Taste Skill no forma part de la configuració inicial.
+- El plugin Codex és revisor puntual de només lectura: usa /codex:review després de cada plantilla o diff coherent, i /codex:adversarial-review quan calgui qüestionar una decisió tècnica. Revisa les troballes abans de corregir; no deleguis edicions a /codex:rescue, no activis el review gate automàtic i no facis revisions en bucle.
 
 Per a l'ordre de treball de la Fase 5, consulta fases/fase-5/FASE5-entorn-i-flux.md.

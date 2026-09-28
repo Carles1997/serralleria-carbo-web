@@ -1,0 +1,70 @@
+---
+import { getImage } from 'astro:assets';
+import logo from '../assets/branding/carbo-logo.png';
+
+interface Props {
+  variant?: 'serralleria' | 'industrial';
+  place?: 'header' | 'footer';
+}
+
+const { variant = 'serralleria', place = 'header' } = Astro.props;
+const name = variant === 'industrial' ? 'Carbó Industrial' : 'Serralleria Carbó';
+const optimizedLogo = await getImage({ src: logo, width: 336, format: 'webp' });
+---
+
+<span class:list={['brand-lockup', place, variant]}>
+  <span class="brand-mark" role="img" aria-label={name} style={`--brand-mask: url("${optimizedLogo.src}")`}></span>
+  {variant === 'industrial' && <span class="brand-descriptor" aria-hidden="true">Industrial</span>}
+</span>
+
+<style>
+  .brand-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    line-height: 1;
+  }
+
+  .brand-mark {
+    display: block;
+    flex: none;
+    width: 144px;
+    aspect-ratio: 1983 / 793;
+    background-color: color-mix(in srgb, var(--color-accent) 75%, white);
+    -webkit-mask: var(--brand-mask) center / contain no-repeat;
+    mask: var(--brand-mask) center / contain no-repeat;
+  }
+
+  .industrial .brand-mark {
+    background-color: var(--color-industrial-silver);
+  }
+
+  .brand-descriptor {
+    color: #eef0ee;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .industrial .brand-descriptor {
+    color: #c5ceca;
+  }
+
+  .footer .brand-mark {
+    width: 166px;
+  }
+
+  @media (max-width: 760px) {
+    .header .brand-descriptor {
+      display: none;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .header .brand-mark {
+      width: 112px;
+    }
+  }
+</style>

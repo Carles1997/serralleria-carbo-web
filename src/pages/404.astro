@@ -1,0 +1,15 @@
+---
+// 404 en català. Les variants ES/EN es crearan amb el seu contingut traduït.
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPage } from '../i18n/pages';
+
+const page = await getPage('404');
+const { Content } = await render(page);
+---
+
+<BaseLayout page={page}>
+  <main class="mx-auto max-w-reading px-(--page-gutter) py-16 [&_h1]:text-heading-2 [&_h1]:font-bold [&_h1]:leading-heading [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center [&_a]:text-accent [&_a]:underline [&_p]:mt-4">
+    <Content />
+  </main>
+</BaseLayout>

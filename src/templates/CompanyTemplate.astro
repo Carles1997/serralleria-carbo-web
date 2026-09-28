@@ -1,0 +1,185 @@
+---
+// Pàgina d'empresa (/empresa/). Interior editorial compartit derivat de la Home (traspàs de Fase 4:
+// «la ruta queda pròpia, sense maqueta individual»). Text: content/{idioma}/empresa.md, llegit per
+// seccions; xifres i àmbits de treball es comproven contra el contingut al build. Fotografies
+// originals del taller i de la logística. Sistema visual i de moviment de la Fase 5 (roles.css,
+// motion.css, interactions.css).
+import { Picture } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import StructuredData from '../components/StructuredData.astro';
+import Inlines from '../components/Inlines.astro';
+import type { Page } from '../i18n/pages';
+import { useUi } from '../i18n/ui';
+import { sitePhotography } from '../config/photography';
+import { links, one, paragraphs, parseInlines, parseMarkdown, plainText } from '../lib/markdown';
+import './mockup-base.css';
+import './company.css';
+
+interface Props {
+  page: Page;
+}
+
+const { page } = Astro.props;
+const locale = page.data.lang;
+const ui = useUi(locale);
+const t = ui.company;
+const photos = sitePhotography.company;
+
+// Estructura d'empresa.md: H1, un paràgraf d'entrada i quatre seccions H2 en aquest ordre.
+const doc = parseMarkdown(page.body ?? '');
+if (doc.sections.length !== 4) throw new Error(`empresa.md ha de tenir 4 seccions H2; en té ${doc.sections.length}.`);
+const [workshop, roots, ways, contact] = doc.sections;
+
+if (t.title.join(' ') !== doc.title) {
+  throw new Error(`El titular compost («${t.title.join(' / ')}») no coincideix amb la H1 d'empresa.md.`);
+}
+const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada a empresa.md");
+
+const [workshopText, fleetText] = paragraphs(workshop.blocks);
+if (!workshopText || !fleetText) throw new Error(`«${workshop.heading}» necessita dos paràgrafs.`);
+// Cada xifra ha de constar al text de l'empresa.
+const companyText = [intro, workshopText, fleetText].map(plainText).join(' ');
+const missingFigure = t.figures.find((figure) => !companyText.includes(figure.source));
+if (missingFigure) throw new Error(`La xifra «${missingFigure.source}» no consta a empresa.md.`);
+
+const rootsText = one(paragraphs(roots.blocks), `un paràgraf a «${roots.heading}»`);
+const rootsPlain = plainText(rootsText);
+const missingScope = t.scopes.find((scope) => !rootsPlain.includes(scope.source));
+if (missingScope) throw new Error(`L'àmbit «${missingScope.source}» no consta a «${roots.heading}».`);
+
+// «Dues maneres»: una frase per branca, en el mateix ordre que els dos enllaços.
+const waysText = plainText(one(paragraphs(ways.blocks), `un paràgraf a «${ways.heading}»`));
+const waysLinks = links(ways.blocks);
+const sentences = waysText.split(/(?<=\.)\s+(?=Per a )/);
+if (sentences.length !== 2 || waysLinks.length !== 2) {
+  throw new Error(`«${ways.heading}» ha de tenir dues frases («Per a …») i dos enllaços.`);
+}
+const branches = [
+  { key: 'particulars', ...t.ways.particulars, text: parseInlines(sentences[0]), link: waysLinks[0], image: photos.particulars },
+  { key: 'industrial', ...t.ways.industrial, text: parseInlines(sentences[1]), link: waysLinks[1], image: photos.industrial },
+] as const;
+
+const contactText = one(paragraphs(contact.blocks), `un paràgraf a «${contact.heading}»`);
+const contactLink = one(links(contact.blocks), `un enllaç a «${contact.heading}»`);
+
+const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
+const nav = ui.home.nav;
+---
+
+<BaseLayout page={page} surface="dark">
+  <SiteHeader ui={ui} homeHref="/" nav={nav} mobileExtra={ui.home.mobileExtra} current={page.data.route} />
+
+  <main id="contingut" class="company-page">
+    <section class="co-hero" aria-labelledby="co-title">
+      <div class="section-shell co-hero-grid">
+        <div class="co-hero-copy">
+          <nav class="co-crumb enter" aria-label={ui.service.breadcrumb.label}>
+            <a href="/">{ui.service.breadcrumb.home}</a><span aria-hidden="true">/</span><span aria-current="page">{t.crumb}</span>
+          </nav>
+          <h1 id="co-title" style={fit(...t.title)}>
+            <span class="enter" style="--i:1">{t.title[0]}</span>{' '}<br /><span class="co-hero-soft enter" style="--i:2">{t.title[1]}</span>
+          </h1>
+          <p class="enter" style="--i:3"><Inlines inlines={intro} /></p>
+        </div>
+        <div class="co-hero-media enter" style="--i:2">
+          <div class="co-hero-image">
+            <Picture src={photos.hero} alt={t.heroAlt} widths={[480, 720, 960, 1200]} sizes="(max-width: 900px) 100vw, 44vw" formats={['avif', 'webp']} fallbackFormat="jpg" priority />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="co-workshop" aria-labelledby="co-workshop-title" data-surface="light">
+      <div class="section-shell">
+        <div class="section-lead co-lead">
+          <h2 id="co-workshop-title" data-reveal style={fit(workshop.heading)}>{workshop.heading}</h2>
+          <p data-reveal style="--i:1"><Inlines inlines={workshopText} /></p>
+        </div>
+        <ul class="co-figures" aria-label={t.figuresLabel} data-counters>
+          {
+            t.figures.map(({ value, unit, label }, index) => (
+              <li data-reveal style={`--i:${index}`}>
+                <strong>
+                  <span class="count" data-count={value} style={`--digits:${String(value).length}`} aria-hidden="true">
+                    {value}
+                  </span>
+                  <span class="sr-only">{value}</span>
+                  {unit && ' '}
+                  {unit && <small>{unit}</small>}
+                </strong>
+                <span>{label}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="co-fleet" data-reveal><Inlines inlines={fleetText} /></p>
+      </div>
+    </section>
+
+    <section class="co-roots" aria-labelledby="co-roots-title">
+      <div class="section-shell co-roots-grid">
+        <figure class="co-roots-media" data-reveal="clip">
+          <div class="co-roots-image">
+            <Picture src={photos.logistics} alt={t.logisticsAlt} widths={[480, 720, 960, 1200]} sizes="(max-width: 900px) 100vw, 40vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+          </div>
+        </figure>
+        <div class="co-roots-copy">
+          <h2 id="co-roots-title" data-reveal style={fit(roots.heading)}>{roots.heading}</h2>
+          <p data-reveal style="--i:1"><Inlines inlines={rootsText} /></p>
+          <div class="co-scopes" data-reveal style="--i:2">
+            <svg class="co-scopes-art" viewBox="0 0 240 240" aria-hidden="true" focusable="false" data-draw>
+              <circle cx="120" cy="120" r="112" />
+              <circle cx="120" cy="120" r="74" />
+              <circle cx="120" cy="120" r="36" />
+              <circle class="co-scopes-centre" cx="120" cy="120" r="5" />
+            </svg>
+            <ol class="co-scopes-list" aria-label={t.scopesLabel}>
+              {
+                t.scopes.map((scope) => (
+                  <li>
+                    <strong>{scope.place}</strong>
+                    <span>{scope.note}</span>
+                  </li>
+                ))
+              }
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="co-ways" aria-labelledby="co-ways-title" data-surface="light">
+      <div class="section-shell">
+        <div class="section-lead co-lead">
+          <h2 id="co-ways-title" data-reveal style={fit(ways.heading)}>{ways.heading}</h2>
+        </div>
+        <div class="co-ways-grid">
+          {
+            branches.map((branch, index) => (
+              <a class={`co-way co-way-${branch.key}`} href={branch.link.href} data-reveal="clip" style={`--i:${index}`}>
+                <span class="co-way-image">
+                  <Picture src={branch.image} alt={branch.alt} widths={[480, 720, 960, 1200]} sizes="(max-width: 760px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                </span>
+                <span class="co-way-body">
+                  <span class="co-way-eyebrow">{branch.eyebrow}</span>
+                  <span class="co-way-text"><Inlines inlines={branch.text} /></span>
+                  <span class="co-way-action">
+                    {branch.link.label} <span class="arrow" aria-hidden="true">↗</span>
+                  </span>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <ContactBlock ui={ui} heading={t.contactHeading} text={contactText} form={contactLink} />
+  </main>
+
+  <StructuredData />
+  <SiteFooter ui={ui} locale={locale} contactHref={contactLink.href} />
+</BaseLayout>

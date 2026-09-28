@@ -1,0 +1,317 @@
+---
+// Plantilla PS (servei de Particulars). Composició: fases/fase-4/FASE4-mockups/particulars/estructures/
+// amb revisio-client.css i els ajustos del director de projecte (vegeu service.css).
+// Text i enllaços: content/{idioma}/<servei>.md (H1, paràgraf d'entrada i seccions H2).
+// La configuració del servei (i18n/ui.ts → service.pages[pageId]) assigna un rol a cada H2:
+//   process  dades per començar la valoració (els passos en deriven)
+//   works    casos reals: text i enllaç sota la galeria
+//   related  secció clara amb text i enllaços a altres rutes
+//   urgent   sortida per avaries amb text del contingut
+//   direct   trucada i WhatsApp com a accions principals (variant d'incidència)
+//   contact  text i enllaç del bloc final de contacte
+// Seccions: entrada → [galeria, clar] → procés (fosc) → [relacionat, clar] → [avaries] → contacte.
+import { Picture } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import Inlines from '../components/Inlines.astro';
+import type { Page } from '../i18n/pages';
+import { useUi } from '../i18n/ui';
+import { company, whatsappUrl } from '../config/site';
+import { links, one, paragraphs, parseMarkdown, type Inline, type Link, type Section } from '../lib/markdown';
+import { sitePhotography } from '../config/photography';
+import './mockup-base.css';
+import './service.css';
+// Redisseny (28/09/2026): la secció de procés passa a fitxa de preparació (què cal tenir a punt,
+// nota opcional i accés directe al formulari del servei); la frase de resultat era redundant.
+// Bloc 3 del pla d'afinament: sense etiquetes sobre la H1 i els H2 (repetien el titular o el títol
+// del contingut) ni rètol al bloc de contacte; rols tipogràfics i superfícies de styles/roles.css.
+
+type Role = 'process' | 'works' | 'related' | 'urgent' | 'direct' | 'contact';
+interface ServiceConfig {
+  sections: Role[];
+  hero: { title: string[]; cta?: string; hours?: string };
+  scope?: {
+    heading: string[];
+    lead: string;
+    label: string;
+    panels: { meta: string; title: string; diagram: string }[];
+    works: Link;
+  };
+  process: {
+    heading: string[];
+    lead?: string;
+    label: string;
+    steps: { title: string; text: string }[];
+    optional: string;
+  };
+  repair?: false;
+  contactHeading: string[];
+}
+
+interface Props {
+  page: Page;
+}
+
+const { page } = Astro.props;
+const { pageId, lang: locale, route } = page.data;
+const ui = useUi(locale);
+const shared = ui.service;
+const config = (shared.pages as Record<string, ServiceConfig>)[pageId];
+if (!config) throw new Error(`Falta la configuració de la plantilla PS per a «${pageId}».`);
+
+// Contingut: H1 igual al titular compost i una secció H2 per a cada rol configurat.
+const doc = parseMarkdown(page.body ?? '');
+if (config.hero.title.join(' ') !== doc.title) {
+  throw new Error(`El titular compost («${config.hero.title.join(' ')}») no coincideix amb la H1 de ${pageId}.md.`);
+}
+if (config.sections.length !== doc.sections.length) {
+  throw new Error(`${pageId}.md té ${doc.sections.length} seccions H2; la configuració n'espera ${config.sections.length}.`);
+}
+// Fitxa de preparació: el botó obre el formulari amb aquest servei ja triat.
+const briefService = pageId.replace('particulars-', '');
+if (!ui.contactPage.form.fields.services.some((service) => service.value === briefService)) {
+  throw new Error(`El servei «${briefService}» no existeix al desplegable del formulari de contacte.`);
+}
+const briefHref = `/contacte/?tipus=particular&servei=${briefService}`;
+const byRole = new Map<Role, Section>(config.sections.map((role, index) => [role, doc.sections[index]]));
+const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada");
+const allLinks = doc.sections.flatMap((section) => links(section.blocks));
+
+const direct = byRole.get('direct');
+// En la variant d'incidència, el paràgraf del formulari del contingut fa d'entrada del procés.
+const processLead: Inline[] | string | undefined = direct ? paragraphs(direct.blocks)[0] : config.process.lead;
+
+const worksSection = byRole.get('works');
+let works: { text: Inline[]; link: Link } | undefined;
+if (worksSection) {
+  if (!config.scope) throw new Error(`El rol «works» de ${pageId} necessita una galeria (scope).`);
+  const link = one(links(worksSection.blocks), `un enllaç a «${worksSection.heading}»`);
+  // L'enllaç de la maqueta afegeix el filtre del portafoli; ha d'apuntar a la mateixa ruta.
+  if (new URL(config.scope.works.href, 'https://x').pathname !== link.href) {
+    throw new Error(`L'enllaç de treballs (${config.scope.works.href}) no coincideix amb ${link.href}.`);
+  }
+  works = { text: one(paragraphs(worksSection.blocks), `un paràgraf a «${worksSection.heading}»`), link };
+}
+
+const relatedSection = byRole.get('related');
+const related = relatedSection && {
+  heading: relatedSection.heading,
+  text: one(paragraphs(relatedSection.blocks), `un paràgraf a «${relatedSection.heading}»`),
+  links: links(relatedSection.blocks).filter((link) => !link.href.startsWith('/contacte/')),
+};
+
+// Sortida per avaries: amb text propi si el contingut en té (urgent); si no, la compartida.
+const urgentSection = byRole.get('urgent');
+const repair = urgentSection
+  ? {
+      index: urgentSection.heading,
+      text: one(paragraphs(urgentSection.blocks), `un paràgraf a «${urgentSection.heading}»`),
+      link: links(urgentSection.blocks).find((link) => !link.href.startsWith('/contacte/')),
+    }
+  : config.repair === false
+    ? undefined
+    : { index: shared.repair.index, text: shared.repair.text, link: undefined };
+// Alternança de fons: després d'una secció clara, la sortida d'avaries va en fosc.
+const repairTone = related ? 'dark' : 'light';
+
+const directLinks = direct ? links(direct.blocks) : [];
+const call = directLinks.find((link) => link.href.startsWith('tel:'));
+const whatsapp = directLinks.find((link) => link.href.startsWith('https://wa.me/'));
+
+const contactSection = byRole.get('contact');
+const contactText = contactSection ? one(paragraphs(contactSection.blocks), 'un paràgraf a la secció de contacte') : undefined;
+const contactLink = allLinks.find((link) => link.href.startsWith('/contacte/'));
+if (!contactLink) throw new Error(`${pageId}.md necessita un enllaç a /contacte/.`);
+
+const nav = ui.particulars.nav;
+const current = nav.find((item) => item.href === route);
+const [titleStart, titleAccent, titleEnd] = config.hero.title;
+// Paraula més llarga de cada titular: en pantalles estretes la mida s'ajusta perquè hi càpiga
+// (vegeu service.css). Així la plantilla serveix per a qualsevol servei.
+const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
+---
+
+<BaseLayout page={page} surface="dark">
+  <SiteHeader ui={ui} homeHref="/" nav={nav} mobileExtra={ui.particulars.mobileExtra} collapse="wide" current={route} />
+
+  <main id="contingut" class="structures-page">
+    <section class="s-hero" aria-labelledby="s-title">
+      <div class="s-hero-image" aria-hidden="true">
+        <Picture src={sitePhotography.services[pageId as keyof typeof sitePhotography.services]} alt="" widths={[640, 960, 1280, 1536]} sizes="100vw" formats={['avif', 'webp']} fallbackFormat="jpg" priority />
+      </div>
+      <div class="section-shell s-hero-content">
+        <nav class="s-breadcrumb enter" aria-label={shared.breadcrumb.label}>
+          <a href="/">{shared.breadcrumb.home}</a><span aria-hidden="true">/</span>
+          <a href={shared.breadcrumb.branch.href}>{shared.breadcrumb.branch.label}</a><span aria-hidden="true">/</span>
+          <span aria-current="page">{current?.label ?? doc.title}</span>
+        </nav>
+        <div class="s-hero-main">
+          <h1 id="s-title" style={fit(...config.hero.title)}>
+            <span class="enter" style="--i:2">{titleStart}</span>{' '}
+            <br />
+            <em class="enter" style="--i:3">{titleAccent}</em>{' '}
+            <br />
+            <span class="enter" style="--i:4">{titleEnd}</span>
+          </h1>
+          <div class="s-hero-bottom enter" style="--i:5">
+            <div>
+              <p><Inlines inlines={intro} /></p>
+              {config.hero.hours && <p class="s-hero-hours">{config.hero.hours}</p>}
+            </div>
+            {
+              call || whatsapp ? (
+                <div class="s-hero-actions">
+                  {call && (
+                    <a class="s-hero-action s-hero-action-primary" href={call.href}>
+                      {call.label} <span class="arrow" aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                  {whatsapp && (
+                    <a class="s-hero-action" href={whatsappUrl(ui.contact.whatsappMessage)} target="_blank" rel="noopener noreferrer">
+                      {whatsapp.label} <span class="arrow" aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                </div>
+              ) : (
+                config.hero.cta && (
+                  <a href="#contacte" class="s-hero-cta">
+                    {config.hero.cta} <span class="arrow" aria-hidden="true">↗</span>
+                  </a>
+                )
+              )
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {
+      config.scope && (
+        <section class="s-scope" aria-labelledby="scope-title" data-surface="light">
+          <div class="section-shell">
+            <div class="s-section-heading">
+              <h2 id="scope-title" data-reveal style={fit(...config.scope.heading)}>
+                {config.scope.heading[0]}
+                <br /> {config.scope.heading[1]}
+              </h2>
+              <p data-reveal style="--i:2">
+                {config.scope.lead}
+              </p>
+            </div>
+            <div class="s-scope-gallery" role="group" aria-label={config.scope.label}>
+              {config.scope.panels.map((panel, index) => (
+                <article class={`s-scope-panel s-panel-${panel.diagram}`} data-reveal style={`--i:${index}`}>
+                  <span class="s-panel-meta">{panel.meta}</span>
+                  <Picture src={sitePhotography.serviceScope[panel.diagram as keyof typeof sitePhotography.serviceScope]} alt="" widths={[400, 640, 960]} sizes="(max-width: 760px) 100vw, 33vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                  <h3>{panel.title}</h3>
+                </article>
+              ))}
+            </div>
+            <div class="s-scope-outro" data-reveal>
+              <div>
+                {works && (
+                  <p>
+                    <Inlines inlines={works.text} />
+                  </p>
+                )}
+              </div>
+              <a class="underlined-link" href={config.scope.works.href}>
+                {config.scope.works.label} <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <section class="s-approach s-brief" aria-labelledby="approach-title">
+      <div class="section-shell s-brief-grid">
+        <div class="s-process-heading s-brief-head">
+          <h2 id="approach-title" data-reveal style={fit(...config.process.heading)}>
+            {config.process.heading[0]}<br />{' '}{config.process.heading[1]}
+          </h2>
+          {
+            processLead && (
+              <p data-reveal style="--i:1">
+                {typeof processLead === 'string' ? processLead : <Inlines inlines={processLead} />}
+              </p>
+            )
+          }
+        </div>
+        <div class="s-brief-body">
+          <ol class="s-brief-list" aria-label={config.process.label} data-reveal="group">
+            {
+              config.process.steps.map((step, index) => (
+                <li style={`--i:${index}`}>
+                  <span class="s-brief-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                  <div>
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+          <p class="s-brief-optional" data-reveal style="--i:1"><span>{shared.brief.optional}</span> {config.process.optional}</p>
+        </div>
+        <a class="s-brief-action" href={briefHref} data-reveal style="--i:2">{shared.brief.action} <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    {
+      related && (
+        <section class="s-related" aria-labelledby="related-title" data-surface="light">
+          <div class="section-shell s-related-inner">
+            <h2 id="related-title" data-reveal style={fit(related.heading)}>
+              {related.heading}
+            </h2>
+            <div data-reveal style="--i:1">
+              <p>
+                <Inlines inlines={related.text} />
+              </p>
+              {related.links.map((link) => (
+                <a class="underlined-link" href={link.href}>
+                  {link.label} <span class="arrow" aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      repair && (
+        <aside class:list={['s-repair', `s-repair-${repairTone}`]} aria-label={repair.index} data-surface={repairTone}>
+          <div class="section-shell s-repair-inner" data-reveal>
+            <div>
+              <span class="index">{repair.index}</span>
+              <p>{typeof repair.text === 'string' ? repair.text : <Inlines inlines={repair.text} />}</p>
+            </div>
+            <div class="s-repair-actions">
+              <a href={company.phone.href}>
+                {ui.contact.call(company.phone.display)} <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+              {repair.link && (
+                <a href={repair.link.href}>
+                  {repair.link.label} <span class="arrow" aria-hidden="true">↗</span>
+                </a>
+              )}
+            </div>
+          </div>
+        </aside>
+      )
+    }
+
+    <ContactBlock
+      ui={ui}
+      heading={config.contactHeading}
+      text={contactText}
+      form={contactLink}
+    />
+  </main>
+
+  <SiteFooter ui={ui} locale={locale} contactHref={contactLink.href} />
+</BaseLayout>

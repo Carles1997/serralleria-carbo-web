@@ -1,0 +1,251 @@
+---
+// Plantilla C (contacte compartit). Composició: fases/fase-4/FASE4-mockups/contacte/ amb
+// revisio-client.css i els ajustos del director de projecte (vegeu contact.css).
+// Text: content/{idioma}/contacte.md (H1, entrada i cinc H2: contacte directe, particular,
+// empresa, horari i dades generals); etiquetes del formulari: i18n/ui.ts (content/ca/ui.md).
+// Bloc 3 del pla d'afinament: sense rètols sobre la H1 i els H2; els grups del formulari conserven el
+// nom funcional sense número (Dades de contacte, La feina, Documentació).
+// El formulari NO envia: sense backend, validació al servidor ni textos legals no s'activa
+// (traspàs de Fase 4). Sense JavaScript el botó queda desactivat i ho explica.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StructuredData from '../components/StructuredData.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Inlines from '../components/Inlines.astro';
+import type { Page } from '../i18n/pages';
+import { useUi } from '../i18n/ui';
+import { company, whatsappUrl } from '../config/site';
+import { one, paragraphs, parseMarkdown } from '../lib/markdown';
+import './mockup-base.css';
+import './contact.css';
+
+interface Props {
+  page: Page;
+}
+
+const { page } = Astro.props;
+const { lang: locale, route } = page.data;
+const ui = useUi(locale);
+const t = ui.contactPage;
+const f = t.form;
+
+const doc = parseMarkdown(page.body ?? '');
+if (t.hero.title.join(' ') !== doc.title) {
+  throw new Error(`El titular compost («${t.hero.title.join(' ')}») no coincideix amb la H1 de contacte.md.`);
+}
+if (doc.sections.length !== 5) throw new Error(`contacte.md ha de tenir 5 seccions H2; en té ${doc.sections.length}.`);
+// «Contacte directe» (número principal, WhatsApp, trucada i fix) es resol amb les accions de
+// l'entrada, el lateral i l'enllaç del fix; no se'n repeteix el paràgraf.
+const [, particular, empresa, hours, general] = doc.sections;
+const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada");
+const [particularHelp, particularAside] = paragraphs(particular.blocks);
+const [empresaHelp, empresaAside] = paragraphs(empresa.blocks);
+if (!particularAside || !empresaAside) throw new Error('Les seccions de branca necessiten dos paràgrafs cadascuna.');
+const hoursText = one(paragraphs(hours.blocks), `un paràgraf a «${hours.heading}»`);
+const area = paragraphs(general.blocks).at(-1);
+if (!area) throw new Error(`«${general.heading}» necessita el paràgraf d'àmbit de treball.`);
+
+const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
+const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
+---
+
+<BaseLayout page={page} surface="dark">
+  <SiteHeader ui={ui} homeHref="/" nav={t.nav} current={route} />
+
+  <main id="contingut" class="contact-page">
+    <section class="contact-hero" aria-labelledby="contact-title">
+      <div class="section-shell contact-hero-grid">
+        <div>
+          <h1 id="contact-title" style={fit(...t.hero.title)}>
+            <span class="enter" style="--i:1">{t.hero.title[0]}</span>{' '}
+            <br />
+            <em class="enter" style="--i:2">{t.hero.title[1]}</em>
+          </h1>
+        </div>
+        <div class="contact-hero-intro enter" style="--i:3">
+          <p><Inlines inlines={intro} /></p>
+          <div class="contact-hero-actions">
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer">{t.hero.whatsapp} <span class="arrow" aria-hidden="true">↗</span></a>
+            <a href={company.phone.href}>{t.hero.call} <span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-workspace" aria-labelledby="form-title" data-surface="light">
+      <div class="section-shell contact-layout">
+        <div class="form-column">
+          <div class="form-heading" data-reveal>
+            <h2 id="form-title" style={fit(f.heading)}>{f.heading}</h2>
+            <p>{f.intro} <a href={company.phone.href}>{company.phone.display}</a>.</p>
+          </div>
+
+          <form id="contact-form" novalidate data-contact-form data-errors={JSON.stringify(f.errors)} data-not-sent={f.notSent}>
+            <fieldset class="branch-picker">
+              <legend>{f.branch.legend} <span aria-hidden="true">*</span></legend>
+              {
+                (['particular', 'empresa'] as const).map((branch) => (
+                  <label class="branch-option">
+                    <input type="radio" name="tipus" value={branch} checked={branch === 'particular'} />
+                    <span class="branch-option-content">
+                      <strong>{f.branch[branch].label}</strong>
+                      <small>{f.branch[branch].detail}</small>
+                      <span class="arrow" aria-hidden="true">↗</span>
+                    </span>
+                  </label>
+                ))
+              }
+            </fieldset>
+
+            <div class="form-section-title"><span>{f.sections.contact[0]}</span><p>{f.sections.contact[1]}</p></div>
+            <div class="field-grid">
+              <div class="field">
+                <label for="nom">{f.fields.nom} <span aria-hidden="true">*</span></label>
+                <input id="nom" name="nom" autocomplete="name" required />
+                <p class="field-error" id="nom-error" hidden></p>
+              </div>
+              <div class="field">
+                <label for="correu">{f.fields.correu} <span aria-hidden="true">*</span></label>
+                <input id="correu" name="correu" type="email" inputmode="email" autocomplete="email" required />
+                <p class="field-error" id="correu-error" hidden></p>
+              </div>
+              <div class="field">
+                <label for="telefon">{f.fields.telefon}</label>
+                <input id="telefon" name="telefon" type="tel" inputmode="tel" autocomplete="tel" />
+                <p class="field-error" id="telefon-error" hidden></p>
+              </div>
+              <div class="field">
+                <label for="ubicacio">{f.fields.ubicacio}</label>
+                <input id="ubicacio" name="ubicacio" autocomplete="address-level2" />
+              </div>
+            </div>
+
+            <div class="form-section-title"><span>{f.sections.work[0]}</span><p>{f.sections.work[1]}</p></div>
+            <fieldset class="branch-fields" id="fields-particular" data-branch="particular">
+              <legend class="sr-only">{particular.heading}</legend>
+              <div class="field-grid">
+                <div class="field field-full">
+                  <label for="servei">{f.fields.servei} <span aria-hidden="true">*</span></label>
+                  <select id="servei" name="servei" required>
+                    <option value="">{f.fields.serveiPlaceholder}</option>
+                    {f.fields.services.map((service) => <option value={service.value}>{service.label}</option>)}
+                  </select>
+                  <p class="field-error" id="servei-error" hidden></p>
+                </div>
+              </div>
+              <p class="branch-help"><Inlines inlines={particularHelp} /></p>
+            </fieldset>
+            <fieldset class="branch-fields" id="fields-empresa" data-branch="empresa" hidden disabled>
+              <legend class="sr-only">{empresa.heading}</legend>
+              <div class="field-grid">
+                <div class="field"><label for="sector">{f.fields.sector}</label><input id="sector" name="sector" autocomplete="off" /></div>
+                <div class="field"><label for="material">{f.fields.material}</label><input id="material" name="material" /></div>
+                <div class="field field-full">
+                  <label for="peca">{f.fields.peca} <span aria-hidden="true">*</span></label>
+                  <input id="peca" name="peca" required />
+                  <p class="field-error" id="peca-error" hidden></p>
+                </div>
+                <div class="field"><label for="unitats">{f.fields.unitats}</label><input id="unitats" name="unitats" inputmode="numeric" /></div>
+                <div class="field"><label for="termini">{f.fields.termini}</label><input id="termini" name="termini" /></div>
+              </div>
+              <p class="branch-help"><Inlines inlines={empresaHelp} /></p>
+            </fieldset>
+            <div class="field field-description">
+              <label for="descripcio">{f.fields.descripcio} <span aria-hidden="true">*</span></label>
+              <textarea
+                id="descripcio"
+                name="descripcio"
+                rows="5"
+                required
+                placeholder={f.fields.descripcioPlaceholder.particular}
+                data-placeholder-particular={f.fields.descripcioPlaceholder.particular}
+                data-placeholder-empresa={f.fields.descripcioPlaceholder.empresa}
+              ></textarea>
+              <p class="field-error" id="descripcio-error" hidden></p>
+            </div>
+
+            <div class="form-section-title form-section-title-upload"><span>{f.sections.files[0]}</span><p>{f.sections.files[1]}</p></div>
+            <div class="upload-area" data-upload>
+              <div class="upload-mark" aria-hidden="true">↑</div>
+              <div>
+                <label for="adjunt" data-label-particular={f.upload.particular.label} data-label-empresa={f.upload.empresa.label}>
+                  {f.upload.particular.label}
+                </label>
+                <p id="upload-help" data-help-particular={f.upload.particular.help} data-help-empresa={f.upload.empresa.help}>
+                  {f.upload.particular.help}
+                </p>
+              </div>
+              <div class="upload-control">
+                <input id="adjunt" name="adjunt" type="file" aria-describedby="upload-help file-name" />
+                <label for="adjunt" class="upload-button" aria-hidden="true">{f.upload.choose}</label>
+                <span class="file-name" id="file-name" aria-live="polite">{f.upload.none}</span>
+              </div>
+            </div>
+
+            <div class="form-finish">
+              <button type="submit" disabled data-submit>{f.submit} <span class="arrow" aria-hidden="true">↗</span></button>
+              <p id="form-pending">{f.pending}</p>
+            </div>
+            <p id="form-status" class="form-status" role="status" tabindex="-1" hidden></p>
+          </form>
+        </div>
+
+        <aside class="contact-aside" aria-label={t.aside.index} data-surface="dark" data-reveal style="--i:1">
+          {
+            (['particular', 'empresa'] as const).map((branch) => (
+              <div class="aside-path" data-aside={branch} hidden={branch === 'empresa'}>
+                <h2>
+                  {t.aside[branch][0]}
+                  <br /> {t.aside[branch][1]}
+                </h2>
+                <p>
+                  <Inlines inlines={branch === 'particular' ? particularAside : empresaAside} />
+                </p>
+                <a class="aside-primary" href={company.phone.href}>
+                  {company.phone.display} <span class="arrow" aria-hidden="true">↗</span>
+                </a>
+                {branch === 'particular' && (
+                  <a href={whatsapp} target="_blank" rel="noopener noreferrer">
+                    {ui.contact.whatsapp} <span class="arrow" aria-hidden="true">↗</span>
+                  </a>
+                )}
+                <a href={`mailto:${company.email}`}>
+                  {company.email} <span class="arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            ))
+          }
+          <div class="contact-hours">
+            <span>{hours.heading}</span>
+            <p><Inlines inlines={hoursText} /></p>
+          </div>
+          <div class="aside-note">
+            <span>{t.aside.other}</span>
+            <p>{t.aside.landline}: <a href={company.landline.href}>{company.landline.display}</a></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="contact-place" aria-labelledby="place-title" data-surface="light">
+      <div class="section-shell place-grid">
+        <div data-reveal>
+          <h2 id="place-title" style={fit(...t.place.heading)}>{t.place.heading[0]}<br />{' '}{t.place.heading[1]}</h2>
+        </div>
+        <div class="place-info" data-reveal style="--i:1">
+          <strong>{company.legalName}</strong>
+          <address>{company.address[0]}<br />{company.address[1]}</address>
+          <p><Inlines inlines={area} /></p>
+          <a href={company.mapUrl} target="_blank" rel="noopener noreferrer">{t.place.map} <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <StructuredData />
+  <SiteFooter ui={ui} locale={locale} contactHref={route ?? '/contacte/'} />
+</BaseLayout>
+
+<script>
+  import '../scripts/contact-form';
+</script>

@@ -1,0 +1,32 @@
+{
+  "name": "serralleria-carbo-web",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "check:references": "node scripts/check-references.mjs",
+    "verify": "npm run check && npm run build && npm run check:references",
+    "astro": "astro",
+    "check:links": "node scripts/check-links.mjs",
+    "check:redirects": "node scripts/check-redirects.mjs"
+  },
+  "allowScripts": {
+    "esbuild": true
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "4.3.3",
+    "astro": "7.3.5",
+    "tailwindcss": "4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "typescript": "6.0.3"
+  }
+}

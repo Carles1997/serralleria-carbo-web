@@ -1,0 +1,1405 @@
+---
+// Plantilla H (Home). Composició: fases/fase-4/FASE4-mockups/home/ amb
+// revisio-client.css i els ajustos del director de projecte del 27/09/2026.
+// Text: content/{idioma}/home.md, llegit per seccions; el doble accés i les xifres
+// usen els textos de la maqueta (i18n/ui.ts), contrastats amb les dades de home.md.
+// Imatges: fotografies dels projectes i imatges de servei, sense llegendes (director, 28/09/2026).
+// Moviment: styles/motion.css i scripts/motion.ts; tot és llegible sense JS i amb moviment reduït.
+// Bloc 1 del pla d'afinament (fases/fase-5/FASE5-pla-millora-integral.md): sense rètols numerats
+// decoratius ni etiquetes que repeteixen el nom de la rajola; el mosaic de serveis no torna a
+// presentar les branques del doble accés.
+import { Picture } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import StructuredData from '../components/StructuredData.astro';
+import Inlines from '../components/Inlines.astro';
+import type { Page } from '../i18n/pages';
+import { useUi } from '../i18n/ui';
+import { sitePhotography } from '../config/photography';
+import { links, listItems, one, paragraphs, parseMarkdown } from '../lib/markdown';
+
+interface Props {
+  page: Page;
+}
+
+const { page } = Astro.props;
+const locale = page.data.lang;
+const ui = useUi(locale);
+const t = ui.home;
+
+// Estructura de home.md: H1 + entrada i sis seccions H2, en aquest ordre.
+const doc = parseMarkdown(page.body ?? '');
+if (doc.sections.length !== 6) throw new Error(`home.md ha de tenir 6 seccions H2; en té ${doc.sections.length}.`);
+const [particulars, industrial, numbers, company, services, contact] = doc.sections;
+
+const [titleMain, ...titleRest] = doc.title.split(',');
+const titleWords = titleMain.trim().split(' ');
+const titleSmall = titleRest.join(',').trim();
+const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada");
+
+const particularsLink = one(links(particulars.blocks), 'un enllaç a la secció Particulars');
+const industrialSlogan = paragraphs(industrial.blocks)[0];
+if (!industrialSlogan) throw new Error('La secció Industrial necessita el missatge de marca.');
+const industrialLink = one(links(industrial.blocks), 'un enllaç a la secció Industrial');
+
+// Les xifres visibles han de correspondre a dades de home.md; si no hi consten, el build s'atura.
+const confirmed = new Set(listItems(numbers.blocks).map(([value]) => (value?.type === 'strong' ? value.value : '')));
+for (const item of t.numbers.items) {
+  if (!confirmed.has(item.source)) throw new Error(`La xifra «${item.source}» no consta a home.md.`);
+}
+
+const companyText = one(paragraphs(company.blocks), "un paràgraf a la secció d'empresa");
+const companyLink = one(links(company.blocks), "un enllaç a la secció d'empresa");
+
+const servicesLead = one(paragraphs(services.blocks), 'un paràgraf a la secció de serveis');
+const serviceLinks = links(services.blocks);
+if (serviceLinks.length !== t.services.tiles.length) {
+  throw new Error(`La secció de serveis ha de tenir ${t.services.tiles.length} enllaços; en té ${serviceLinks.length}.`);
+}
+const tiles = serviceLinks.map((link, index) => ({ ...link, ...t.services.tiles[index] }));
+const [doorTile, structuresTile, cartTile, furnitureTile, industrialTile] = tiles;
+
+const contactText = one(paragraphs(contact.blocks), 'un paràgraf a la secció de contacte');
+const contactLink = one(links(contact.blocks), 'un enllaç a la secció de contacte');
+
+const pathSizes = '(max-width: 760px) 100vw, 50vw';
+const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
+const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
+---
+
+<BaseLayout page={page} surface="dark">
+  <SiteHeader ui={ui} homeHref={page.data.route ?? '/'} nav={t.nav} mobileExtra={t.mobileExtra} />
+
+  <main id="contingut" class="home">
+    <section class="hero-intro shell" aria-labelledby="home-title">
+      <div class="hero-main">
+        <h1 id="home-title">
+          {
+            titleWords.map((word, index) => (
+              <span class="enter" style={`--i:${index}`}>
+                {word}
+                {index === titleWords.length - 1 && titleSmall && <span class="hero-stop">,</span>}{' '}
+              </span>
+            ))
+          }
+          {titleSmall && <small class="enter" style={`--i:${titleWords.length}`}>{titleSmall}</small>}
+        </h1>
+        <nav class="quick-paths enter" style={`--i:${titleWords.length + 1}`} aria-label={t.quickPaths}>
+          <a href={particularsLink.href}>{particulars.heading} <span class="arrow" aria-hidden="true">↗</span></a>
+          <a href={industrialLink.href}>{industrial.heading} <span class="arrow" aria-hidden="true">↗</span></a>
+        </nav>
+      </div>
+      <div class="hero-aside">
+        <p class="enter" style="--i:2"><Inlines inlines={intro} /></p>
+        <span class="hero-aside-rule" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    <section class="paths" aria-label={t.paths.label}>
+      <div class="paths-heading shell" data-reveal><span>{t.paths.heading}</span></div>
+      <div class="paths-grid">
+        <a class="path path-particulars" href={particularsLink.href} data-reveal="clip">
+          <Picture src={sitePhotography.home.particulars} alt="" widths={[640, 960, 1280, 1672]} sizes={pathSizes} formats={['avif', 'webp']} fallbackFormat="jpg" priority />
+          <span class="path-shade" aria-hidden="true"></span>
+          <span class="path-top">
+            <span class="corner" aria-hidden="true"><span class="arrow">↗</span></span>
+          </span>
+          <span class="path-kicker">{t.paths.particulars.kicker}</span>
+          <strong class="path-title">{particulars.heading}</strong>
+          <span class="path-copy">{t.paths.particulars.copy}</span>
+          <span class="path-action">{t.paths.particulars.action} <span class="arrow" aria-hidden="true">↗</span></span>
+        </a>
+        <a class="path path-industrial" href={industrialLink.href} data-reveal="clip" style="--i:2">
+          <Picture src={sitePhotography.home.industrial} alt="" widths={[640, 960, 1280, 1536]} sizes={pathSizes} formats={['avif', 'webp']} fallbackFormat="jpg" priority />
+          <span class="path-shade" aria-hidden="true"></span>
+          <span class="path-top">
+            <span class="corner" aria-hidden="true"><span class="arrow">↗</span></span>
+          </span>
+          <span class="path-kicker">{t.paths.industrial.kicker}</span>
+          <strong class="path-title">{industrial.heading}</strong>
+          <span class="path-copy path-slogan"><Inlines inlines={industrialSlogan} /></span>
+          <span class="path-action">{industrialLink.label} <span class="arrow" aria-hidden="true">↗</span></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="numbers" aria-labelledby="numbers-title" data-surface="light">
+      <div class="shell">
+        <div class="section-lead">
+          <h2 id="numbers-title" data-reveal style={fit(...t.numbers.heading)}>
+            {t.numbers.heading.map((line, index) => (index ? [' ', <br />, line] : line))}
+          </h2>
+          <p data-reveal style="--i:2">{t.numbers.lead}</p>
+        </div>
+        <ul class="number-grid" data-counters>
+          {
+            t.numbers.items.map(({ value, unit, label }, index) => (
+              <li class="number-item" data-reveal style={`--i:${index}`}>
+                <strong>
+                  <span class="count" data-count={value} style={`--digits:${String(value).length}`} aria-hidden="true">
+                    {value}
+                  </span>
+                  <span class="sr-only">{value}</span>
+                  {unit && ' '}
+                  {unit && <small>{unit}</small>}
+                </strong>
+                <span>{label}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="company" id="empresa" aria-labelledby="company-title">
+      <div class="company-image" data-reveal="clip">
+        <Picture src={sitePhotography.home.company} alt="" widths={[480, 720, 960, 1200]} sizes="(max-width: 760px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+      </div>
+      <div class="company-content">
+        <h2 id="company-title" data-reveal style={`${fit(company.heading)};--i:2`}>{company.heading}</h2>
+        <p data-reveal style="--i:3"><Inlines inlines={companyText} /></p>
+        <a class="underlined-link" href={companyLink.href} data-reveal style="--i:4">
+          {companyLink.label} <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="services" id="serveis" aria-labelledby="services-title" data-surface="light">
+      <div class="shell">
+        <div class="section-lead services-lead">
+          <h2 id="services-title" data-reveal style={fit(services.heading)}>{services.heading}</h2>
+          <p data-reveal style="--i:2"><Inlines inlines={servicesLead} /></p>
+        </div>
+        <div class="offer-grid">
+          <div class="offer-branch">
+            <div class="offer-branch-heading" data-reveal>
+              <span>{t.services.particulars.eyebrow}</span>
+              <h3>{t.services.particulars.title}</h3>
+            </div>
+            <div class="service-tiles">
+              <a class="tile tile-photo tile-doors" href={doorTile.href} data-reveal style="--i:1">
+                <span class="tile-top"><span class="corner" aria-hidden="true"><span class="arrow">↗</span></span></span>
+                <Picture src={sitePhotography.home.doorsTile} alt="" widths={[400, 800]} sizes={tileSizes} formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                <span class="tile-shade" aria-hidden="true"></span>
+                <span class="tile-bottom"><strong>{doorTile.label}</strong><span>{doorTile.detail}</span></span>
+              </a>
+              <a class="tile tile-photo tile-structures" href={structuresTile.href} data-reveal style="--i:2">
+                <Picture src={sitePhotography.home.structuresTile} alt="" widths={[400, 800]} sizes={tileSizes} formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                <span class="tile-shade" aria-hidden="true"></span>
+                <span class="tile-top"><span class="corner" aria-hidden="true"><span class="arrow">↗</span></span></span>
+                <span class="tile-bottom"><strong>{structuresTile.label}</strong><span>{structuresTile.detail}</span></span>
+              </a>
+              <a class="tile tile-photo tile-cart" href={cartTile.href} data-reveal style="--i:3">
+                <span class="tile-top"><span class="corner" aria-hidden="true"><span class="arrow">↗</span></span></span>
+                <Picture src={sitePhotography.home.cartTile} alt="" widths={[400, 800]} sizes={tileSizes} formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                <span class="tile-shade" aria-hidden="true"></span>
+                <span class="tile-bottom"><strong>{cartTile.label}</strong><span>{cartTile.detail}</span></span>
+              </a>
+              <a class="tile tile-photo tile-furniture" href={furnitureTile.href} data-reveal style="--i:4">
+                <Picture src={sitePhotography.home.furnitureTile} alt="" widths={[400, 800]} sizes={tileSizes} formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                <span class="tile-shade" aria-hidden="true"></span>
+                <span class="tile-top"><span class="corner" aria-hidden="true"><span class="arrow">↗</span></span></span>
+                <span class="tile-bottom"><strong>{furnitureTile.label}</strong><span>{furnitureTile.detail}</span></span>
+              </a>
+            </div>
+            <a class="offer-overview" href={particularsLink.href}>
+              {t.services.particulars.overview} <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div class="offer-branch">
+            <div class="offer-branch-heading" data-reveal style="--i:1">
+              <span>{t.services.industrial.eyebrow}</span>
+              <h3>{t.services.industrial.title}</h3>
+            </div>
+            <a class="tile tile-photo tile-industrial" href={industrialTile.href} data-reveal="clip" style="--i:2">
+              <Picture src={sitePhotography.home.industrialTile} alt="" widths={[640, 960, 1280]} sizes="(max-width: 1000px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+              <span class="tile-shade" aria-hidden="true"></span>
+              <span class="tile-top"><span class="corner" aria-hidden="true"><span class="arrow">↗</span></span></span>
+              <span class="industrial-content">
+                <strong>{industrialTile.label}</strong>
+                <span class="industrial-detail">{industrialTile.detail}</span>
+              </span>
+            </a>
+            <a class="offer-overview" href={industrialLink.href}>
+              {t.services.industrial.overview} <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <ContactBlock ui={ui} heading={contact.heading} text={contactText} form={contactLink} />
+  </main>
+
+  <StructuredData />
+  <SiteFooter ui={ui} locale={locale} contactHref={contactLink.href} />
+</BaseLayout>
+
+<style>
+  /* Valors de maqueta resolts amb la cascada de revisio-client.css (.home-page .x),
+     que preval sobre styles.css també dins les media queries. */
+  .shell {
+    width: min(100%, 1600px);
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+  }
+
+  /* <picture> ocupa el mateix mòdul que la imatge; les <source> no són elements flex. */
+  .home :global(picture) {
+    position: absolute;
+    z-index: -3;
+    inset: 0;
+  }
+
+  /* Entrada */
+  .hero-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(290px, 0.7fr);
+    align-items: end;
+    gap: clamp(2rem, 5vw, 6rem);
+    min-height: 260px;
+    padding-block: 2.7rem 2.5rem;
+  }
+
+  .hero-main {
+    min-width: 0;
+  }
+
+  h1 {
+    font-size: clamp(4.1rem, 7.1vw, 7.4rem);
+    font-weight: 700;
+    letter-spacing: -0.075em;
+    line-height: 0.76;
+    text-transform: uppercase;
+  }
+
+  h1 > span {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .hero-stop {
+    color: var(--color-accent);
+  }
+
+  h1 small {
+    display: block;
+    margin-top: 1.75rem;
+    color: #c9cbcb;
+    font-size: clamp(1.15rem, 1.7vw, 1.75rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-transform: none;
+  }
+
+  .quick-paths {
+    display: none;
+  }
+
+  .hero-aside {
+    padding-bottom: 0.3rem;
+  }
+
+  .hero-aside p {
+    max-width: 43ch;
+    margin: 0 0 1.6rem;
+    color: #d8dad9;
+    font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+    line-height: 1.46;
+  }
+
+  .hero-aside-rule {
+    display: block;
+    height: 1px;
+    background: var(--f4-line);
+  }
+
+  /* Doble accés */
+  .paths {
+    border-top: 1px solid var(--f4-line);
+  }
+
+  .paths-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 50px;
+    color: var(--f4-muted);
+    font-size: 0.77rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .paths-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    border-block: 1px solid #505357;
+    background: #505357;
+  }
+
+  /* Files fixes: capçalera, espai, etiqueta, títol, text i acció. En dues columnes,
+     subgrid comparteix les files entre panells i els títols queden alineats. */
+  .path {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-rows: auto 1fr auto auto auto auto;
+    justify-items: start;
+    min-width: 0;
+    min-height: clamp(430px, 39vw, 570px);
+    overflow: hidden;
+    padding: clamp(1.5rem, 3vw, 3.5rem);
+    background: var(--f4-steel);
+    color: #fff;
+  }
+
+  .path :global(img),
+  .tile-photo :global(img) {
+    position: absolute;
+    z-index: -3;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1);
+  }
+
+  .path-particulars :global(img) {
+    object-position: 55% center;
+  }
+
+  .path-industrial :global(img) {
+    object-position: 47% center;
+  }
+
+  .path-shade {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(9 10 12 / 0.68), rgb(9 10 12 / 0.12) 30%, rgb(9 10 12 / 0.46) 58%, rgb(9 10 12 / 0.95));
+  }
+
+  .path-top,
+  .tile-top {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    color: #f1f2f0;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .path-top {
+    font-size: 0.8rem;
+  }
+
+  .corner {
+    display: grid;
+    flex: none;
+    place-items: center;
+    border: 1px solid rgb(255 255 255 / 0.66);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  .path .corner {
+    width: 44px;
+    height: 44px;
+    margin: -0.7rem -0.7rem 0 auto;
+    font-size: 1.4rem;
+  }
+
+  .path-top {
+    justify-self: stretch;
+  }
+
+  .path-kicker {
+    grid-row: 3;
+    margin-bottom: 1rem;
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .path-title {
+    grid-row: 4;
+    font-size: clamp(3.6rem, 6vw, 7rem);
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    line-height: 0.84;
+    text-transform: uppercase;
+  }
+
+  .path-copy {
+    grid-row: 5;
+    max-width: 42ch;
+    margin-top: 1.5rem;
+    font-size: clamp(1.04rem, 1.28vw, 1.27rem);
+    line-height: 1.4;
+  }
+
+  .path-slogan {
+    max-width: 28ch;
+    font-weight: 600;
+  }
+
+  .path-action {
+    grid-row: 6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: min(100%, 440px);
+    min-height: 54px;
+    margin-top: 1.75rem;
+    padding: 0.8rem 0;
+    border-top: 1px solid rgb(255 255 255 / 0.55);
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .path-action .arrow {
+    font-size: 1.25rem;
+  }
+
+  @media (min-width: 761px) {
+    /* L'alçada mínima passa a la graella: en subgrid, les files són compartides. */
+    .paths-grid {
+      grid-template-rows: auto 1fr auto auto auto auto;
+      row-gap: 0;
+      min-height: calc(clamp(430px, 39vw, 570px) + 2px);
+    }
+
+    .path {
+      grid-row: span 6;
+      grid-template-rows: subgrid;
+      row-gap: 0;
+    }
+  }
+
+  .concept-note {
+    padding-block: 0.7rem;
+    color: #aeb3b6;
+    font-size: 0.82rem;
+  }
+
+  /* Xifres (revisió del client: bloc clar) */
+  .numbers {
+    padding-block: clamp(3.5rem, 5vw, 5.5rem);
+    background: var(--client-paper);
+    color: var(--client-ink);
+  }
+
+  .section-lead {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(250px, 0.55fr);
+    align-items: end;
+    gap: 1rem 5rem;
+    padding-bottom: clamp(2.5rem, 4vw, 4.5rem);
+  }
+
+  .section-lead h2 {
+    font-size: clamp(3.5rem, 6.5vw, 7rem);
+    font-weight: 700;
+    letter-spacing: -0.065em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+
+  .section-lead p {
+    max-width: 48ch;
+    font-size: clamp(1rem, 1.25vw, 1.22rem);
+    line-height: 1.5;
+  }
+
+  .numbers .section-lead p,
+  .number-item > span {
+    color: #4d5754;
+  }
+
+  .number-grid {
+    display: grid;
+    grid-template-columns: 1.3fr repeat(3, minmax(0, 1fr));
+    border-top: 1px solid #aeb6b2;
+  }
+
+  .number-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 170px;
+    padding: 1.5rem 1.2rem 0;
+    border-left: 1px solid #aeb6b2;
+  }
+
+  .number-item:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .number-item strong {
+    color: var(--color-accent);
+    font-size: clamp(3.3rem, 5vw, 6.2rem);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    letter-spacing: -0.065em;
+    line-height: 0.95;
+  }
+
+  .number-item:first-child strong {
+    font-size: clamp(4.5rem, 7.3vw, 9rem);
+  }
+
+  .number-item strong {
+    white-space: nowrap;
+  }
+
+  .number-item small {
+    font-size: 0.42em;
+    font-weight: 500;
+  }
+
+  /* Amplada reservada per al valor final: el comptador no desplaça la unitat. */
+  .count {
+    display: inline-block;
+    min-width: calc(var(--digits) * (1ch - 0.065em));
+  }
+
+  .number-item > span {
+    max-width: 24ch;
+    font-size: 0.98rem;
+    line-height: 1.32;
+  }
+
+  /* Empresa */
+  .company {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 510px;
+    border-block: 1px solid var(--f4-line);
+    background: #1c1f22;
+  }
+
+  .company-image {
+    position: relative;
+    isolation: isolate;
+    min-height: 510px;
+    overflow: hidden;
+    background: #34383a;
+  }
+
+  .company-image :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.08);
+  }
+
+  .company-image > span {
+    position: absolute;
+    right: 1.5rem;
+    bottom: 1.4rem;
+    left: 1.5rem;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-shadow: 0 1px 8px #000;
+    text-transform: uppercase;
+  }
+
+  .company-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: clamp(2.5rem, 4.5vw, 5rem);
+  }
+
+  .company-content h2 {
+    max-width: 12ch;
+    margin: 0 0 1.3rem;
+    font-size: clamp(3rem, 4.8vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -0.065em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+
+  .company-content p {
+    max-width: 48ch;
+    margin-bottom: 1.5rem;
+    color: #d1d3d3;
+    font-size: 1.15rem;
+    line-height: 1.55;
+  }
+
+  .underlined-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    min-height: var(--target-min);
+    padding-block: 0.5rem;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 38%, transparent);
+    font-weight: 700;
+  }
+
+  .underlined-link span {
+    font-size: 1.15rem;
+    font-weight: 400;
+  }
+
+  /* Serveis (revisió del client: bloc clar amb peces fosques) */
+  .services {
+    padding-block: clamp(3.5rem, 5vw, 6rem);
+    border-top: 1px solid #bac1bc;
+    background: var(--client-paper);
+    color: var(--client-ink);
+  }
+
+  .services-lead {
+    padding-bottom: 2.4rem;
+  }
+
+  .services .section-lead h2 {
+    font-size: clamp(3.5rem, 5.4vw, 6rem);
+  }
+
+  .services .section-lead p,
+  .services-note {
+    color: #4f5956;
+  }
+
+  .offer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.25rem, 2.5vw, 3rem);
+  }
+
+  .offer-branch {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .offer-branch-heading {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 0.3rem 1rem;
+    min-height: 87px;
+    padding-bottom: 1rem;
+    border-top: 1px solid #aeb6b2;
+  }
+
+  .offer-branch-heading > span:first-child {
+    grid-column: 1 / -1;
+    align-self: start;
+    padding-top: 0.8rem;
+    color: var(--color-accent);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .offer-branch-heading h3 {
+    font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  /* Les dues branques fan la mateixa alçada: la graella de l'esquerra creix fins a
+     igualar la peça industrial i les dues accions finals queden alineades. */
+  .service-tiles {
+    display: grid;
+    flex: 1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 1px;
+    border: 1px solid #4b5052;
+    background: #4b5052;
+  }
+
+  .tile {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    min-height: 260px;
+    overflow: hidden;
+    padding: clamp(1.15rem, 1.9vw, 2rem);
+    background: #202428;
+    color: #fff;
+  }
+
+  .tile-top {
+    gap: 0.5rem;
+    color: #f3f4f2;
+    font-size: 0.73rem;
+    line-height: 1.2;
+  }
+
+  /* Sense etiqueta superior (Bloc 1), el cantó queda a la dreta amb el marge esquerre automàtic. */
+  .tile .corner {
+    width: 38px;
+    height: 38px;
+    margin: -0.55rem -0.55rem 0 auto;
+    border-color: rgb(255 255 255 / 0.72);
+    font-size: 1.18rem;
+  }
+
+  .tile-bottom {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .tile-bottom strong {
+    font-size: clamp(1.55rem, 2.5vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 0.96;
+    text-transform: uppercase;
+  }
+
+  .tile-bottom > span {
+    color: #d2d6d5;
+    font-size: 0.87rem;
+  }
+
+  .tile-structures :global(img) {
+    object-position: 65% center;
+  }
+
+  .tile-furniture :global(img) {
+    object-position: 50% 43%;
+  }
+
+  .tile-shade {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(8 10 11 / 0.68), rgb(8 10 11 / 0.12) 38%, rgb(8 10 11 / 0.92));
+  }
+
+  .tile-diagram {
+    background: linear-gradient(150deg, #252a2d, #171a1d);
+  }
+
+  .tile-diagram::before {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 49.9%, rgb(255 255 255 / 0.07) 50%, transparent 50.1%);
+    content: '';
+  }
+
+  .drawing {
+    position: absolute;
+    z-index: -1;
+    inset: 9% -10% auto auto;
+    width: 105%;
+    height: 80%;
+    opacity: 0.8;
+    stroke: #899599;
+    stroke-width: 1.4;
+  }
+
+  .drawing :global(*) {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .tile-diagram .tile-bottom {
+    padding-top: 2rem;
+    background: linear-gradient(transparent, rgb(18 20 23 / 0.92) 28%, rgb(18 20 23 / 0.97));
+  }
+
+  .tile-industrial {
+    flex: 1;
+    min-height: 521px;
+  }
+
+  .tile-industrial .tile-shade {
+    background: linear-gradient(180deg, rgb(8 10 11 / 0.72), rgb(8 10 11 / 0.08) 32%, rgb(8 10 11 / 0.86) 75%, rgb(8 10 11 / 0.97));
+  }
+
+  .industrial-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .industrial-content strong {
+    font-size: clamp(3.2rem, 5vw, 6rem);
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    line-height: 0.86;
+    text-transform: uppercase;
+  }
+
+  .industrial-detail {
+    max-width: 44ch;
+    margin-top: 0.9rem;
+    color: #d0d4d4;
+    font-size: 0.93rem;
+    line-height: 1.4;
+  }
+
+  .offer-overview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 64px;
+    margin-top: auto;
+    border-bottom: 1px solid #aeb6b2;
+    color: var(--client-ink);
+    font-size: 0.94rem;
+    font-weight: 700;
+  }
+
+  .offer-overview span {
+    color: var(--color-accent);
+    font-size: 1.2rem;
+  }
+
+  .offer-overview:hover {
+    color: var(--color-accent);
+  }
+
+  .services-note {
+    margin-top: 1.3rem;
+    font-size: 0.8rem;
+  }
+
+  /* Interacció: color només amb punter fi; en tacte, lleugerament desaturat. */
+  @media (hover: hover) and (pointer: fine) {
+    .path :global(img),
+    .tile-photo :global(img) {
+      transition:
+        filter 500ms ease,
+        transform 800ms var(--motion-ease);
+    }
+
+    .drawing {
+      transition:
+        transform 700ms var(--motion-ease),
+        stroke 300ms ease;
+    }
+
+    .corner {
+      transition:
+        background var(--motion-standard),
+        color var(--motion-standard);
+    }
+  }
+
+  .path:hover :global(img),
+  .path:focus-visible :global(img) {
+    filter: grayscale(0);
+    transform: scale(1.035);
+  }
+
+  .tile-photo:hover :global(img),
+  .tile-photo:focus-visible :global(img) {
+    filter: grayscale(0.05);
+    transform: scale(1.035);
+  }
+
+  .path:hover .corner,
+  .path:focus-visible .corner,
+  .tile:hover .corner,
+  .tile:focus-visible .corner {
+    background: #fff;
+    color: var(--f4-black);
+  }
+
+  .tile-diagram:hover .drawing,
+  .tile-diagram:focus-visible .drawing {
+    transform: translateX(-8px);
+    stroke: #fff;
+  }
+
+  @media (hover: none) {
+    .path :global(img),
+    .tile-photo :global(img) {
+      filter: grayscale(0.25);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .path:hover :global(img),
+    .path:focus-visible :global(img),
+    .tile-photo:hover :global(img),
+    .tile-photo:focus-visible :global(img),
+    .tile-diagram:hover .drawing,
+    .tile-diagram:focus-visible .drawing {
+      transform: none;
+    }
+  }
+
+  /* Moviment de la plantilla (criteri emil-design-eng). Entrada inicial només amb CSS;
+     la resta, amb data-reveal. Tot queda desactivat amb moviment reduït. */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-aside-rule {
+      transform-origin: left center;
+      animation: rule-grow 700ms var(--ease-in-out-strong) 250ms backwards;
+    }
+
+    .path.is-revealed :is(.path-top, .path-kicker, .path-title, .path-copy, .path-action) {
+      animation: reveal-rise-soft 520ms var(--ease-out-strong) backwards;
+      animation-delay: calc(var(--i, 0) * var(--stagger) + 120ms + var(--j, 0) * 45ms);
+    }
+
+    .path-kicker {
+      --j: 1;
+    }
+
+    .path-title {
+      --j: 2;
+    }
+
+    .path-copy {
+      --j: 3;
+    }
+
+    .path-action {
+      --j: 4;
+    }
+
+  }
+
+  /* Resposta al prémer (també en tacte) i fletxes que acompanyen el cursor. */
+  .quick-paths a,
+  .path,
+  .tile,
+  .offer-overview,
+  .underlined-link {
+    transition: scale 160ms var(--ease-out-strong);
+  }
+
+  .quick-paths a:active,
+  .offer-overview:active,
+  .underlined-link:active {
+    scale: 0.97;
+  }
+
+  .path:active,
+  .tile:active {
+    scale: 0.99;
+  }
+
+  .arrow {
+    display: inline-block;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .arrow {
+      transition: translate 220ms var(--ease-out-strong);
+    }
+
+    :is(.path, .tile, .offer-overview, .underlined-link, .quick-paths a):hover .arrow {
+      translate: 3px -3px;
+    }
+  }
+
+  /* Responsive (maqueta + revisió del client) */
+  @media (max-width: 1200px) {
+    .path-title {
+      font-size: clamp(3.4rem, 5.7vw, 6rem);
+    }
+  }
+
+  @media (min-width: 1001px) and (max-width: 1200px) {
+    .tile-bottom strong {
+      font-size: clamp(1.6rem, 2.15vw, 2.5rem);
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .hero-intro {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .number-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .number-item {
+      border-bottom: 1px solid #aeb6b2;
+    }
+
+    .number-item:nth-child(odd) {
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    .offer-grid {
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
+    }
+  }
+
+  @media (min-width: 761px) and (max-width: 900px) {
+    .hero-intro {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .hero-aside p {
+      max-width: 60ch;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .hero-intro {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      min-height: 0;
+      padding-block: 2.6rem;
+    }
+
+    h1 small {
+      margin-top: 1.25rem;
+      font-size: 1.18rem;
+    }
+
+    .quick-paths {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 1.6rem;
+      border: 1px solid #64696b;
+      background: #64696b;
+    }
+
+    .quick-paths a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+      min-height: 48px;
+      padding: 0.6rem 0.75rem;
+      background: var(--f4-coal);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .quick-paths .arrow {
+      color: var(--f4-muted);
+      font-size: 1rem;
+    }
+
+    .hero-aside p {
+      max-width: 55ch;
+      margin-block: 0.8rem 1rem;
+      font-size: 1rem;
+    }
+
+    .paths-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .path {
+      min-height: 410px;
+    }
+
+    .path-title {
+      font-size: clamp(3.8rem, 9.5vw, 5.2rem);
+    }
+
+    .path-copy {
+      margin-top: 0.9rem;
+    }
+
+    .path-action {
+      margin-top: 1rem;
+    }
+
+    .section-lead {
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+
+    .section-lead h2 {
+      font-size: clamp(3.7rem, 9vw, 5.5rem);
+    }
+
+    .numbers {
+      padding-block: 3rem;
+    }
+
+    .number-item {
+      min-height: 135px;
+    }
+
+    .company {
+      grid-template-columns: 1fr;
+      min-height: 0;
+    }
+
+    .company-image {
+      min-height: 0;
+      height: 320px;
+    }
+
+    .services {
+      padding-block: 3.2rem;
+    }
+
+    .tile {
+      min-height: 230px;
+    }
+
+    .tile-industrial {
+      min-height: 350px;
+    }
+
+    .tile-bottom strong {
+      font-size: clamp(1.2rem, 3vw, 1.65rem);
+    }
+
+    .tile-bottom > span {
+      font-size: 0.75rem;
+      line-height: 1.28;
+    }
+
+  }
+
+  @media (max-width: 600px) {
+    .industrial-content strong {
+      font-size: clamp(2.75rem, 10vw, 4.5rem);
+    }
+  }
+
+  @media (max-width: 520px) {
+    .hero-aside p {
+      font-size: 0.96rem;
+    }
+
+    .paths-heading {
+      min-height: 40px;
+      font-size: 0.7rem;
+    }
+
+    .path {
+      padding: 1.25rem;
+    }
+
+    .path-top,
+    .path-kicker {
+      font-size: 0.7rem;
+    }
+
+    .path-title {
+      font-size: clamp(3.1rem, 12vw, 4.3rem);
+    }
+
+    .path-copy {
+      font-size: 0.96rem;
+    }
+
+    .path .corner {
+      width: 38px;
+      height: 38px;
+    }
+
+    .concept-note {
+      font-size: 0.76rem;
+    }
+
+    .number-item {
+      padding: 1.2rem 0.6rem 1rem;
+    }
+
+    .number-item:nth-child(odd) {
+      padding-left: 0;
+    }
+
+    .number-item strong,
+    .number-item:first-child strong {
+      font-size: clamp(3.1rem, 11.5vw, 4.5rem);
+    }
+
+    .number-item > span {
+      font-size: 0.86rem;
+    }
+
+    .section-lead h2 {
+      font-size: clamp(2.7rem, 10vw, 3.6rem);
+    }
+
+    .tile {
+      min-height: 220px;
+      padding: 1rem;
+    }
+
+    .tile-top {
+      font-size: 0.62rem;
+    }
+
+    .tile-bottom strong {
+      font-size: clamp(1.08rem, 4.5vw, 1.55rem);
+    }
+
+    .tile-bottom > span {
+      font-size: 0.69rem;
+    }
+
+    .drawing {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 360px) {
+    h1 {
+      font-size: 3.42rem;
+    }
+
+    .path-title {
+      font-size: 11.4vw;
+    }
+
+    .number-item strong,
+    .number-item:first-child strong {
+      font-size: 12vw;
+    }
+
+    .tile {
+      min-height: 205px;
+      padding: 0.75rem;
+    }
+
+    .tile-bottom strong {
+      font-size: 1.04rem;
+    }
+
+    .tile-bottom > span {
+      font-size: 0.64rem;
+    }
+
+    .industrial-content strong {
+      font-size: 10vw;
+    }
+  }
+
+  /* Bloc 2 del pla d'afinament (27/09/2026): rols compartits de src/styles/roles.css.
+     Superfície de lectura en blanc (variant #eeefeb comparada a les captures), H2 i H3 a l'escala
+     comuna, text d'entrada i etiquetes amb una sola mida, espaiat de secció comú. Excepcions: el
+     títol dels dos camins és un moment d'elecció (mida d'entrada) i les rajoles petites de serveis
+     mantenen la seva escala per sota de 1200 px. */
+  .numbers,
+  .services {
+    padding-block: var(--space-section);
+    background: var(--surface-read);
+  }
+
+  .section-lead {
+    padding-bottom: var(--space-lead);
+  }
+
+  .section-lead h2,
+  .services .section-lead h2,
+  .company-content h2 {
+    font-size: var(--type-h2);
+  }
+
+  .hero-aside p,
+  .section-lead p,
+  .company-content p {
+    font-size: var(--type-intro);
+  }
+
+  .offer-branch-heading h3,
+  .industrial-content strong {
+    font-size: var(--type-h3);
+  }
+
+  .paths-heading,
+  .path-kicker,
+  .offer-branch-heading > span:first-child {
+    font-size: var(--type-meta);
+    letter-spacing: var(--tracking-meta);
+  }
+
+  .concept-note,
+  .services-note,
+  .company-image > span {
+    font-size: var(--type-caption);
+  }
+
+  @media (min-width: 1201px) {
+    .tile-bottom strong {
+      font-size: var(--type-h3);
+    }
+  }
+
+  @media (max-width: 760px) {
+    .section-lead h2,
+    .services .section-lead h2,
+    .company-content h2 {
+      font-size: min(var(--type-h2), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * 0.53)));
+    }
+  }
+
+  /* Fotografia: el pas de blanc i negre a color queda només al doble accés, on comunica una
+     elecció. Rajoles i empresa: una correcció de llum coherent, sense canvi de filtre en passar-hi. */
+  .company-image :global(img),
+  .tile-photo :global(img),
+  .tile-photo:hover :global(img),
+  .tile-photo:focus-visible :global(img) {
+    filter: saturate(0.8) contrast(1.05);
+  }
+
+  @media (hover: none) {
+    .tile-photo :global(img) {
+      filter: saturate(0.8) contrast(1.05);
+    }
+  }
+
+
+  /* La fotografia documental de reparacio conserva el logo real a la samarreta:
+     text a dalt, vestuari visible a la part inferior dreta. */
+  .tile-doors .tile-bottom {
+    margin-top: clamp(2.3rem, 3vw, 3.2rem);
+    margin-bottom: auto;
+    max-width: 20ch;
+  }
+  .tile-doors .tile-shade {
+    background: linear-gradient(90deg, rgb(8 10 11 / .78), rgb(8 10 11 / .35) 53%, rgb(8 10 11 / .08)),
+                linear-gradient(180deg, rgb(8 10 11 / .35), transparent 45%, rgb(8 10 11 / .12));
+  }
+  .tile-doors :global(img),
+  .tile-doors:hover :global(img),
+  .tile-doors:focus-visible :global(img) {
+    filter: saturate(1.04) contrast(1.04) brightness(1.05);
+  }
+  @media (max-width: 600px) {
+    .tile-doors .tile-bottom { margin-top: 2.25rem; }
+  }
+</style>

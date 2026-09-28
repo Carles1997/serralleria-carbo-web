@@ -1,0 +1,572 @@
+/* Plantilla I (portada d'Industrial). Només es carrega a les pàgines que usen
+   IndustrialTemplate.
+   Origen, en aquest ordre de cascada: mockup-base.css i industrial-base.css (importats abans a
+   la plantilla; la base conté les regles compartides amb les pàgines interiors d'Industrial),
+   industrial/styles.css, industrial/identitat.css i les regles .industrial-page de
+   revisio-client.css. Es mantenen els selectors, l'ordre i l'especificitat perquè els ajustos
+   del client guanyin igual que a la maqueta.
+   Canvis respecte a la maqueta:
+   - .industrial-page és el <main>: la capçalera i el peu són components propis.
+   - Les imatges van dins .i-media (Picture d'Astro) en lloc d'un <img> directe.
+   - Sense scroll-margin-top de la maqueta: ja el cobreix el scroll-padding-top global.
+   - Identitat aprovada d'Industrial: plata #c5ceca sobre grafit. Els tons bordeus i rosa de
+     la base de la maqueta queden sobreescrits per identitat.css, com a la maqueta.
+   - Els ajustos del director (escala comuna de titulars, ajust a mòbil i moviment) van al
+     final. */
+
+/* industrial/styles.css */
+.i-section-heading { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(280px,.55fr); gap:1.5rem clamp(2rem,5vw,6rem); align-items:end; margin-bottom:clamp(3rem,5vw,5.5rem); }
+.i-section-heading h2 { margin:0; font-size:clamp(3.6rem,6.6vw,7.6rem); font-weight:700; letter-spacing:-.067em; line-height:.87; text-transform:uppercase; }
+.i-section-heading h2 em { color:var(--i-accent); font-style:normal; }
+.i-section-heading p { max-width:45ch; margin:0; color:var(--i-muted); font-size:clamp(1.06rem,1.28vw,1.22rem); line-height:1.5; }
+
+/* Portada fotogràfica, amb el contingut sobre una sola imatge panoràmica. */
+.i-hero { position:relative; isolation:isolate; min-height:clamp(760px,calc(100svh - 76px),1050px); overflow:hidden; background:#17191b; }
+.i-hero-image,.i-hero-shade { position:absolute; inset:0; width:100%; height:100%; }
+.i-hero-image { z-index:-2; }
+.i-hero-image img { object-position:60% center; filter:saturate(.7) contrast(1.08); }
+.i-hero-shade { z-index:-1; background:linear-gradient(90deg,rgba(10,11,12,.96) 0%,rgba(10,11,12,.89) 29%,rgba(10,11,12,.62) 55%,rgba(10,11,12,.16) 100%),linear-gradient(0deg,rgba(9,10,11,.78),transparent 31%,rgba(9,10,11,.25)); }
+.i-hero-layout { display:flex; flex-direction:column; min-height:inherit; }
+.i-hero-overline { display:flex; justify-content:space-between; gap:2rem; padding-top:clamp(1.5rem,2.5vw,2.5rem); color:#e0e4e2; font-size:.73rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; }
+.i-hero-overline span:last-child { text-align:right; }
+.i-hero-copy { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; flex:1; padding-block:clamp(5rem,9vw,10rem) 4rem; }
+.i-kicker { display:flex; align-items:center; gap:1rem; color:var(--i-accent); font-size:.76rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+.i-kicker-rule { width:44px; height:2px; background:var(--i-accent); }
+.i-hero h1 { max-width:13.5ch; margin:clamp(2.2rem,4.4vw,5rem) 0 2.2rem; font-size:clamp(4.6rem,6.7vw,8.3rem); font-weight:700; letter-spacing:-.073em; line-height:.86; text-transform:uppercase; }
+.i-hero h1 em { color:var(--i-accent); font-style:normal; }
+.i-hero-copy>p { max-width:40ch; margin:0; color:#f0f2ef; font-size:clamp(1.12rem,1.45vw,1.4rem); line-height:1.48; }
+.i-hero-actions { display:flex; align-items:center; flex-wrap:wrap; gap:1rem 2rem; margin-top:2.7rem; }
+.i-hero-bottom { display:flex; justify-content:space-between; gap:1rem; padding-block:1.2rem 1.5rem; border-top:1px solid rgba(255,255,255,.62); color:#e1e4e1; font-size:.7rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
+.i-hero-credit { position:absolute; right:var(--page-gutter); bottom:5.7rem; max-width:27ch; color:#e7e9e7; font-size:.65rem; font-weight:700; letter-spacing:.12em; line-height:1.35; text-align:right; text-transform:uppercase; }
+
+/* Indicadors que realment coneixem. */
+.i-proof { border-bottom:1px solid #485052; background:#272a2c; }
+.i-proof-inner { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.55fr) minmax(0,.55fr) auto; align-items:center; gap:clamp(1rem,2.5vw,3rem); min-height:164px; }
+.i-proof p { max-width:19ch; margin:0; font-size:clamp(1.4rem,2vw,2.2rem); font-weight:600; letter-spacing:-.04em; line-height:1.08; text-transform:uppercase; }
+.i-proof-inner>div { display:flex; flex-direction:column; gap:.1rem; padding-left:clamp(1rem,2vw,2rem); border-left:1px solid #737a7b; }
+.i-proof strong { font-size:clamp(2.8rem,4vw,5rem); font-weight:600; letter-spacing:-.065em; line-height:.95; white-space:nowrap; }
+.i-proof strong small { font-size:.36em; font-weight:500; letter-spacing:-.02em; }
+.i-proof-inner>div>span { color:#cbd0cf; font-size:.9rem; }
+.i-proof a { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; min-height:50px; border-bottom:1px solid #cbd0cf; font-size:.88rem; font-weight:700; text-decoration:none; }
+.i-proof a:hover { color:var(--i-accent); }
+
+/* Materials, maquinària i soldadura passen a primer pla. */
+.i-capabilities { padding-block:clamp(4.75rem,7vw,7rem); background:var(--i-paper); color:var(--i-ink); }
+.i-cap-intro { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(260px,.55fr); gap:1.5rem clamp(2rem,6vw,8rem); align-items:end; margin-bottom:clamp(2.5rem,4vw,4rem); }
+.i-cap-intro h2 { margin:0; font-size:clamp(3.7rem,6.8vw,8rem); font-weight:700; letter-spacing:-.067em; line-height:.86; text-transform:uppercase; }
+.i-cap-intro h2 em { color:#7c2a30; font-style:normal; }
+.i-cap-showcase { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:clamp(.75rem,1.2vw,1.25rem); }
+.i-cap-showcase article { position:relative; isolation:isolate; display:flex; flex-direction:column; justify-content:space-between; min-width:0; overflow:hidden; padding:clamp(1.5rem,2.6vw,3rem); }
+.i-cap-item-head { position:relative; z-index:2; display:flex; justify-content:space-between; gap:1rem; font-size:.72rem; font-weight:700; letter-spacing:.14em; line-height:1.3; text-transform:uppercase; }
+.i-cap-showcase h3 { position:relative; z-index:2; margin:0; font-weight:600; letter-spacing:-.065em; line-height:.94; text-transform:uppercase; }
+.i-cap-asset { position:relative; z-index:2; font-size:.65rem; font-weight:700; letter-spacing:.1em; line-height:1.3; text-transform:uppercase; }
+.i-cap-materials { grid-column:span 7; min-height:430px; background:#25282a; color:#fff; }
+.i-cap-materials .i-media,.i-cap-welding .i-media { z-index:-2; }
+.i-cap-materials img,.i-cap-welding img { filter:saturate(.63) contrast(1.07); transition:transform 700ms var(--motion-ease); }
+.i-cap-materials img { object-position:60% center; }
+.i-cap-materials::after,.i-cap-welding::after { position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg,rgba(7,8,9,.88),rgba(7,8,9,.3) 72%),linear-gradient(0deg,rgba(7,8,9,.85),transparent 40%); content:""; }
+.i-cap-materials h3 { max-width:12ch; font-size:clamp(3.4rem,4.5vw,6rem); }
+.i-cap-materials h3 em { color:var(--i-accent); font-style:normal; }
+.i-cap-machines { grid-column:span 5; min-height:430px; background:#dce0da; color:#202425; }
+.i-cap-machines::before { position:absolute; inset:0; background-image:linear-gradient(90deg,rgba(32,36,37,.07) 1px,transparent 1px); background-size:20% 100%; content:""; pointer-events:none; }
+.i-cap-machines .i-cap-item-head { color:#7c2a30; }
+.i-cap-machines h3 { display:block; width:100%; padding-block:.35em; border-block:1px solid #89918d; font-size:clamp(2.8rem,3.55vw,4.6rem); }
+.i-cap-machines-foot { position:relative; z-index:2; display:flex; justify-content:space-between; gap:1rem; color:#6d7470; font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+.i-cap-machines-foot span:last-child { color:#7c2a30; font-size:1.3rem; line-height:1; }
+.i-cap-welding::after { background:linear-gradient(90deg,rgba(7,8,9,.72),rgba(7,8,9,.12) 80%),linear-gradient(0deg,rgba(7,8,9,.65),transparent 45%); }
+.i-cap-welding { grid-column:span 5; min-height:340px; background:#282c2e; color:#fff; }
+.i-cap-welding img { object-position:45% center; }
+.i-cap-welding h3 { font-size:clamp(4rem,5.4vw,7rem); }
+.i-cap-welding h3 em { color:var(--i-accent); font-style:normal; }
+.i-cap-mounting { grid-column:span 7; min-height:340px; background:#51292d; color:#fff; }
+.i-cap-mounting h3 { max-width:11ch; margin:auto 0 1.3rem; font-size:clamp(3.4rem,4.6vw,6rem); }
+.i-cap-mounting p { position:relative; z-index:2; max-width:37ch; margin:0; color:#f0e3e2; font-size:1.1rem; line-height:1.46; }
+.i-cap-mounting-mark { position:absolute; right:-.1em; bottom:-.15em; color:transparent; -webkit-text-stroke:1px rgba(255,255,255,.25); font-size:clamp(9rem,20vw,26rem); font-weight:700; letter-spacing:-.11em; line-height:1; pointer-events:none; }
+.i-cap-bottom { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:clamp(1.5rem,3vw,4rem); align-items:center; margin-top:clamp(2rem,3vw,3.5rem); padding-top:1.5rem; border-top:1px solid #959b97; }
+.i-cap-bottom p { max-width:43ch; margin:0; color:#48504d; font-size:1rem; line-height:1.45; }
+.i-cap-bottom .i-button { min-width:300px; }
+
+/* Sèries curtes i mètode formen una sola secció fotogràfica. */
+.i-series { position:relative; isolation:isolate; overflow:hidden; background:#1c1d1f; }
+.i-series-image { z-index:-2; }
+.i-series-image img { object-position:center 48%; filter:saturate(.65) contrast(1.08); }
+.i-series-image::after { position:absolute; inset:0; background:linear-gradient(90deg,rgba(11,12,13,.96),rgba(11,12,13,.83) 45%,rgba(11,12,13,.4)),linear-gradient(0deg,rgba(11,12,13,.96),rgba(11,12,13,.3) 55%); content:""; }
+.i-series-credit { position:absolute; z-index:1; right:var(--page-gutter); bottom:.7rem; color:#eff0ee; font-size:.66rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase; }
+.i-series-inner { padding-block:clamp(4rem,6vw,7rem) clamp(4rem,5vw,6rem); }
+.i-series-head { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(250px,.6fr); gap:clamp(2rem,6vw,8rem); align-items:end; margin-block:2rem clamp(3.5rem,6vw,6rem); }
+.i-series h2 { margin:0; font-size:clamp(4rem,6.8vw,8rem); font-weight:700; letter-spacing:-.07em; line-height:.87; text-transform:uppercase; }
+.i-series h2 em,.i-series-method h3 em { color:var(--i-accent); font-style:normal; }
+.i-series-head p { max-width:38ch; margin:0; color:#f1f1ee; font-size:clamp(1.08rem,1.35vw,1.27rem); line-height:1.52; }
+.i-series-method { margin-bottom:clamp(2.5rem,5vw,5rem); padding:clamp(1.5rem,2.7vw,3rem); border:1px solid rgba(202,211,208,.38); background:rgba(13,15,16,.9); }
+.i-series-method-head { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.9fr); gap:1rem clamp(2rem,4vw,5rem); align-items:end; margin-bottom:clamp(3rem,5vw,5rem); }
+.i-series-method-head>span { grid-column:1/-1; color:var(--i-accent); font-size:.75rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+.i-series-method h3 { margin:0; font-size:clamp(2.2rem,3.2vw,4rem); font-weight:700; letter-spacing:-.055em; line-height:.98; text-transform:uppercase; }
+.i-series-method-head p { max-width:43ch; margin:0; color:#d8dfdc; font-size:1.05rem; line-height:1.5; }
+.i-series-steps { --series-progress:1; position:relative; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin:0; padding:0; list-style:none; }
+.i-series-steps::before,.i-series-steps::after { position:absolute; top:0; right:12.5%; left:12.5%; height:2px; content:""; }
+.i-series-steps::before { background:rgba(212,142,148,.32); }
+.i-series-steps::after { background:#d48e94; box-shadow:0 0 15px rgba(212,142,148,.8); transform:scaleX(var(--series-progress)); transform-origin:left center; }
+.i-series-step { position:relative; min-width:0; padding:2.3rem clamp(.5rem,1.2vw,1.25rem) 0; text-align:center; }
+.i-series-step::before { position:absolute; z-index:1; top:0; left:50%; width:12px; height:12px; border:2px solid #d48e94; border-radius:50%; background:#d48e94; content:""; transform:translate(-50%,-5px); transition:background-color 250ms ease,box-shadow 250ms ease; }
+.has-series-motion .i-series-step::before { background:#222528; }
+.i-series-step.is-visible::before,.has-series-motion .i-series-step.is-visible::before { background:#d48e94; box-shadow:0 0 0 5px rgba(212,142,148,.15),0 0 18px rgba(212,142,148,.65); }
+.i-series-step-number { color:#d48e94; font-size:.73rem; font-weight:700; letter-spacing:.13em; }
+.i-series-step h4 { margin:1.15rem 0 .8rem; font-size:clamp(1.5rem,2vw,2.2rem); font-weight:700; letter-spacing:-.045em; line-height:1; text-transform:uppercase; }
+.i-series-step p { max-width:25ch; margin:0 auto; color:#d8dfdc; font-size:.93rem; line-height:1.48; }
+.has-series-motion .i-series-step { opacity:0; transform:translateY(12px); transition:opacity 420ms cubic-bezier(.23,1,.32,1),transform 420ms cubic-bezier(.23,1,.32,1); }
+.has-series-motion .i-series-step.is-visible { opacity:1; transform:translateY(0); }
+.i-series-foot { display:flex; justify-content:space-between; align-items:end; gap:3rem; padding-top:1.5rem; border-top:1px solid #bdc2bf; }
+
+/* Sectors visibles, cadascun amb consulta directa. La il·lustració és abstracta. */
+.i-sectors { padding-block:clamp(5.5rem,7.5vw,8.5rem); border-top:1px solid #53595a; background:#141719; }
+.i-sector-gallery { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:1px; margin:0; padding:1px; background:#596260; list-style:none; }
+.i-sector-gallery li { min-width:0; }
+.i-sector-gallery li:nth-child(1),.i-sector-gallery li:nth-child(5) { grid-column:span 5; }
+.i-sector-gallery li:nth-child(2),.i-sector-gallery li:nth-child(6) { grid-column:span 3; }
+.i-sector-gallery li:nth-child(3),.i-sector-gallery li:nth-child(4) { grid-column:span 4; }
+.i-sector-card { position:relative; isolation:isolate; display:flex; flex-direction:column; justify-content:space-between; min-height:370px; height:100%; overflow:hidden; padding:clamp(1.25rem,2vw,2.5rem); background:#222729; color:#fff; text-decoration:none; transition:background-color var(--motion-fast) ease; }
+.i-sector-gallery li:nth-child(2) .i-sector-card,.i-sector-gallery li:nth-child(4) .i-sector-card,.i-sector-gallery li:nth-child(6) .i-sector-card { background:#1c2022; }
+.i-sector-card::before { position:absolute; top:0; bottom:0; left:0; width:4px; background:var(--i-accent); content:""; transform:scaleY(0); transform-origin:top; transition:transform var(--motion-standard) var(--motion-ease); }
+.i-sector-art { position:absolute; z-index:1; top:6%; right:-8%; width:min(86%,370px); height:auto; color:#9ca6a3; opacity:.6; transform:translate3d(0,0,0); transition:transform var(--motion-standard) var(--motion-ease),opacity var(--motion-standard) ease; }
+.i-sector-art-accent { stroke:var(--i-accent); }
+.i-sector-card-bottom { position:relative; z-index:2; display:flex; flex-direction:column; align-items:flex-start; gap:1.4rem; }
+.i-sector-card-bottom strong { max-width:12ch; font-size:clamp(2.25rem,3vw,3.8rem); font-weight:700; letter-spacing:-.06em; line-height:.94; text-transform:uppercase; }
+.i-sector-card-bottom>span { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; width:100%; min-height:44px; padding-top:.7rem; border-top:1px solid #afb8b4; font-size:.88rem; font-weight:700; }
+.i-sector-card-bottom>span span { color:var(--i-accent); font-size:1.2rem; font-weight:400; }
+.i-sector-card:focus-visible { outline:3px solid var(--i-accent); outline-offset:-4px; }
+.i-sector-caption { margin:1.1rem 0 0; color:#b8c1be; font-size:.82rem; line-height:1.45; }
+/* Bloc 4 (revisió del director, 28/09/2026): les peces que no porten enlloc no reaccionen al punter. */
+
+/* Cas documentat amb fotografia original. */
+.i-project { padding-block:clamp(6rem,9vw,10rem); border-top:1px solid #555c5e; background:#202325; }
+.i-project-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(3rem,6vw,8rem); align-items:center; }
+.i-project-art { position:relative; isolation:isolate; display:flex; align-items:center; justify-content:center; min-height:590px; overflow:hidden; border:1px solid #6e7575; background:#323739; }
+.i-project-art::before { position:absolute; z-index:-2; inset:0; background-image:linear-gradient(rgba(255,255,255,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.075) 1px,transparent 1px); background-size:54px 54px; content:""; }
+.i-project-lines { position:absolute; inset:13% 17%; border:1px solid rgba(255,255,255,.28); transform:skewY(-12deg); }
+.i-project-lines::before,.i-project-lines::after { position:absolute; inset:15% 20%; border:1px solid rgba(255,255,255,.22); content:""; }
+.i-project-lines::after { inset:30% 40%; }
+.i-project-art strong { font-size:clamp(12rem,21vw,28rem); font-weight:700; letter-spacing:-.13em; line-height:1; text-shadow:0 4px 35px #1c1f20; }
+.i-project-art-caption { position:absolute; right:1.4rem; bottom:1.2rem; left:1.4rem; padding-top:.7rem; border-top:1px solid #9da4a2; color:#e8eae8; font-size:.69rem; font-weight:700; letter-spacing:.12em; line-height:1.3; text-transform:uppercase; }
+.i-project-copy h2 { margin:clamp(2rem,4vw,4rem) 0 2rem; font-size:clamp(3.6rem,5.6vw,6.8rem); font-weight:700; letter-spacing:-.066em; line-height:.88; text-transform:uppercase; }
+.i-project-copy h2 em { color:var(--i-accent); font-style:normal; }
+.i-project-copy p { max-width:45ch; margin:0; color:#d9ddda; font-size:clamp(1.08rem,1.28vw,1.22rem); line-height:1.55; }
+
+/* Contacte directe. */
+.i-contact { padding-block:clamp(6rem,9vw,10rem); border-top:5px solid #7c2a30; background:#111314; }
+.i-contact-heading { display:grid; grid-template-columns:minmax(0,1fr) minmax(250px,.55fr); gap:1rem clamp(2rem,7vw,8rem); align-items:end; margin-bottom:clamp(3rem,5vw,6rem); }
+.i-contact h2 { margin:0; font-size:clamp(4rem,7vw,8rem); font-weight:700; letter-spacing:-.075em; line-height:.84; text-transform:uppercase; }
+.i-contact h2 em { color:var(--i-accent); font-style:normal; }
+.i-contact-heading p { max-width:43ch; margin:0; color:#d5dad8; font-size:clamp(1.07rem,1.32vw,1.25rem); line-height:1.5; }
+.i-contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,6vw,8rem); border-top:1px solid #6e7676; }
+.i-contact-guide,.i-contact-method { padding-top:1.5rem; }
+.i-contact-guide>span,.i-contact-method>span { color:var(--i-accent); font-size:.75rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+.i-contact-guide ol { display:grid; grid-template-columns:1fr 1fr; gap:0 2rem; margin:2rem 0 0; padding:0; list-style:none; counter-reset:contact; }
+.i-contact-guide li { display:flex; align-items:center; gap:1rem; min-height:75px; border-top:1px solid #4d5556; font-size:1.05rem; font-weight:600; }
+.i-contact-guide li::before { counter-increment:contact; content:"0" counter(contact); color:#d48e94; font-size:.76rem; font-weight:700; letter-spacing:.1em; }
+.i-contact-method { display:flex; flex-direction:column; align-items:flex-start; }
+.i-contact-main { display:flex; justify-content:space-between; align-items:center; gap:2rem; width:100%; min-height:70px; margin:1.4rem 0 1.3rem; padding:1rem 1.3rem; background:#7c2a30; color:#fff; font-size:1.16rem; font-weight:700; text-decoration:none; }
+.i-contact-main:hover { background:#954047; }
+.i-contact-method>a:not(.i-contact-main) { display:block; min-height:44px; padding-block:.5rem; font-size:1.08rem; font-weight:600; text-decoration:none; overflow-wrap:anywhere; }
+.i-contact-method>a:not(.i-contact-main):hover { color:var(--i-accent); }
+
+@media (max-width:1100px) {
+  .i-hero h1 { font-size:clamp(4.2rem,8vw,6.8rem); }
+  .i-proof-inner { grid-template-columns:1fr 1fr; gap:1.4rem; padding-block:2rem; }
+  .i-proof-inner>div { min-height:90px; }
+  .i-proof a { justify-self:start; }
+  .i-cap-intro { grid-template-columns:1fr; }
+  .i-cap-showcase article { padding:1.6rem; }
+  .i-cap-materials,.i-cap-mounting { grid-column:span 6; }
+  .i-cap-machines,.i-cap-welding { grid-column:span 6; }
+  .i-cap-machines h3 { font-size:clamp(2.35rem,4.2vw,3.5rem); }
+  .i-cap-bottom { grid-template-columns:1fr; }
+  .i-cap-bottom .i-button { justify-self:start; }
+  .i-series-head { grid-template-columns:1fr; }
+}
+@media (max-width:760px) {
+  .i-section-heading,.i-contact-heading { grid-template-columns:1fr; }
+  .i-section-heading h2 { font-size:clamp(3.2rem,10vw,5rem); }
+  .i-hero { min-height:760px; }
+  .i-hero-image img { object-position:70% center; }
+  .i-hero-shade { background:linear-gradient(90deg,rgba(10,11,12,.88),rgba(10,11,12,.54)),linear-gradient(0deg,rgba(9,10,11,.9),transparent 44%,rgba(9,10,11,.22)); }
+  .i-hero h1 { font-size:clamp(3.6rem,9.6vw,5.8rem); }
+  .i-hero-credit { right:var(--page-gutter); bottom:5.2rem; }
+  .i-proof-inner { grid-template-columns:1fr 1fr; }
+  .i-proof p,.i-proof a { grid-column:1/-1; }
+  .i-proof-inner>div { border-left:0; border-top:1px solid #687071; padding:1rem 0 0; }
+  .i-cap-showcase { grid-template-columns:1fr; }
+  .i-cap-showcase article { grid-column:1; }
+  .i-cap-materials { min-height:330px; }
+  .i-cap-machines { min-height:300px; }
+  .i-cap-welding { min-height:310px; }
+  .i-cap-mounting { min-height:310px; }
+  .i-cap-showcase h3 { font-size:clamp(3.1rem,8vw,5.2rem); }
+  .i-cap-machines h3 { font-size:clamp(2.9rem,7.5vw,4.4rem); }
+  .i-cap-bottom { grid-template-columns:1fr; }
+  .i-cap-bottom .i-button { width:100%; min-width:0; }
+  .i-series-head { margin-block:2rem; }
+  .i-series h2 { font-size:clamp(3.5rem,10vw,5rem); }
+  .i-series-foot { flex-direction:column; align-items:flex-start; gap:1.5rem; }
+  .i-project-layout { grid-template-columns:1fr; }
+  .i-project-art { min-height:460px; }
+  .i-contact-grid { grid-template-columns:1fr; gap:2rem; }
+  .i-contact h2 { font-size:clamp(3.8rem,11vw,6rem); }
+}
+@media (max-width:480px) {
+  .i-hero { min-height:800px; }
+  .i-hero-overline { font-size:.61rem; }
+  .i-hero-overline span:last-child { display:none; }
+  .i-kicker { font-size:.69rem; }
+  .i-hero-copy { padding-block:4rem 6rem; }
+  .i-hero h1 { max-width:100%; margin:2.6rem 0 2rem; font-size:clamp(2.7rem,10.4vw,4.4rem); line-height:.89; }
+  .i-hero-copy>p { font-size:1.07rem; }
+  .i-hero-actions { align-items:stretch; flex-direction:column; width:100%; }
+  .i-hero-actions .i-button { width:100%; }
+  .i-text-link { width:fit-content; }
+  .i-hero-bottom { font-size:.61rem; }
+  .i-hero-credit { bottom:5.7rem; max-width:23ch; font-size:.59rem; }
+  .i-proof strong { font-size:2.9rem; }
+  .i-cap-intro h2 { font-size:clamp(3.2rem,10.7vw,4.8rem); }
+  .i-cap-showcase article { padding:1.4rem; }
+  .i-cap-materials h3,.i-cap-welding h3,.i-cap-mounting h3 { font-size:clamp(3rem,11vw,4.8rem); }
+  .i-cap-machines h3 { font-size:clamp(2.25rem,8.5vw,3.8rem); }
+  .i-cap-item-head { font-size:.62rem; }
+  .i-series h2 { font-size:clamp(2.95rem,10vw,4rem); }
+  .i-series-head p { font-size:1.05rem; }
+  .i-project-art { min-height:330px; }
+  .i-project-art strong { font-size:55vw; }
+  .i-project-copy h2 { font-size:clamp(3.1rem,11vw,4.7rem); }
+  .i-contact-guide ol { grid-template-columns:1fr; }
+  .i-contact-guide li { min-height:62px; }
+}
+@media (max-width:350px) {
+  .i-hero h1 { font-size:10.2vw; }
+  .i-section-heading h2,.i-cap-intro h2 { font-size:10vw; }
+  .i-contact h2 { font-size:11vw; }
+}
+@media (max-width:760px) {
+  .i-series-method-head { grid-template-columns:1fr; }
+  .i-series-steps { display:flex; flex-direction:column; padding-left:.3rem; }
+  .i-series-steps::before,.i-series-steps::after { top:1.35rem; right:auto; bottom:1.35rem; left:1rem; width:2px; height:auto; }
+  .i-series-steps::after { transform:scaleY(var(--series-progress)); transform-origin:center top; }
+  .i-series-step { min-height:165px; padding:1rem 0 1.5rem 3rem; text-align:left; }
+  .i-series-step::before { top:1.35rem; left:.7rem; transform:none; }
+  .i-series-step h4 { margin:.65rem 0 .5rem; }
+  .i-series-step p { max-width:46ch; margin:0; }
+}
+@media (max-width:480px) {
+  .i-series-method { padding:1.4rem 1.1rem; }
+  .i-series-method h3 { font-size:clamp(1.75rem,7vw,2.5rem); }
+  .i-series-method-head { margin-bottom:2rem; }
+  .i-series-step { min-height:150px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .i-button,.i-cap-materials img,.i-cap-welding img,.i-sector-card,.i-sector-card::before,.i-sector-art,.i-series-step,.i-series-step::before { transition:none; }
+  .has-series-motion .i-series-step { opacity:1; transform:none; }
+  .i-series-steps::after { transform:none; }
+  .i-button:hover { transform:none; }
+}
+@media (max-width:900px) {
+  .i-sector-gallery li:nth-child(n) { grid-column:span 6; }
+  .i-sector-card { min-height:300px; }
+}
+@media (max-width:760px) {
+  .i-capabilities,.i-sectors,.i-project,.i-contact { padding-block:4.75rem; }
+  .i-cap-materials { min-height:290px; }
+  .i-cap-machines { min-height:270px; }
+  .i-cap-welding { min-height:280px; }
+  .i-cap-mounting { min-height:280px; }
+}
+@media (max-width:480px) {
+  .i-sector-card { min-height:260px; padding:1rem; }
+  .i-sector-art { top:11%; right:-19%; width:110%; opacity:.47; }
+  .i-sector-card-bottom { gap:.7rem; }
+  .i-sector-card-bottom strong { font-size:clamp(1.45rem,6vw,2.3rem); line-height:.98; }
+  .i-sector-card-bottom>span { gap:.4rem; font-size:.875rem; line-height:1.2; }
+  .i-sector-caption { font-size:.75rem; }
+}
+@media (max-width:350px) {
+  .i-sector-card { min-height:275px; padding:.85rem; }
+  .i-sector-card-bottom strong { font-size:1.35rem; }
+}
+
+/* industrial/identitat.css: identitat neutra metàl·lica aprovada. */
+.i-proof a:hover { color:#e5e9e6; }
+.i-proof strong { color:#c5ceca; }
+/* Taller en grafit, targetes de metall neutre i etiquetes petites llegibles. */
+.i-capabilities { background:var(--color-industrial-graphite); color:#f4f5f2; }
+.i-cap-bottom p { color:#d6ddda; }
+.i-cap-bottom { border-top-color:#7b8480; }
+.i-capabilities :focus-visible { outline-color:#c5ceca; }
+.i-cap-machines { background:#d9ddda; }
+.i-cap-machines .i-cap-item-head,.i-cap-machines-foot span:last-child { color:#454b4a; }
+.i-cap-mounting { background:#424947; }
+.i-cap-mounting p { color:#edf0ed; }
+/* Línia del procés i acció de contacte en plata neutra. */
+.i-series-steps::before { background:rgba(197,206,202,.33); }
+.i-series-steps::after { background:#c5ceca; box-shadow:0 0 16px rgba(197,206,202,.8); }
+.i-series-step::before { border-color:#c5ceca; background:#c5ceca; }
+.has-series-motion .i-series-step::before { background:#222528; }
+.i-series-step.is-visible::before,.has-series-motion .i-series-step.is-visible::before { background:#c5ceca; box-shadow:0 0 0 5px rgba(197,206,202,.16),0 0 18px rgba(197,206,202,.7); }
+.i-series-step-number { color:#c5ceca; }
+.i-contact { border-top-color:#c5ceca; }
+.i-contact-guide li::before { color:#c5ceca; }
+.i-contact-main { background:#c5ceca; color:#151719; }
+.i-contact-main:hover,.i-contact-main:focus-visible { background:#e5e9e6; }
+
+/* revisio-client.css (.industrial-page) */
+.industrial-page .i-hero{min-height:clamp(600px,82svh,820px)}
+.industrial-page .i-hero-copy{padding-block:3.5rem 2.5rem}
+.industrial-page .i-hero h1{margin-block:2rem 1.4rem;font-size:clamp(4rem,5.8vw,7rem)}
+.industrial-page .i-hero-actions{margin-top:1.7rem}
+.industrial-page .i-capabilities{padding-block:clamp(3.5rem,5vw,5.5rem);background:#303635;color:#f4f5f2}
+.industrial-page .i-cap-bottom p{color:#d1d9d4}
+.industrial-page .i-capabilities .i-cap-materials,.industrial-page .i-capabilities .i-cap-welding{min-height:330px}
+.industrial-page .i-progress-note{margin-top:1px;padding:1.2rem 1.4rem;background:#222929;color:#f1f4f1}
+.industrial-page .i-progress-note>span{display:block;margin-bottom:.9rem;color:#d1d9d4;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.industrial-page .i-progress-note>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#64706c}
+.industrial-page .i-progress-note p{margin:0;padding:.9rem 1rem;background:#222929}
+.industrial-page .i-progress-note strong{display:block;color:#f1f4f1;font-size:.93rem;line-height:1.35;text-transform:uppercase}
+.industrial-page .i-progress-note small{display:block;margin-top:.4rem;color:#cbd3ce;font-size:.8rem;line-height:1.4}
+.industrial-page .i-series-inner{padding-block:clamp(3rem,4vw,4.5rem)}
+.industrial-page .i-series-head{margin-block:1.4rem 2.1rem}
+.industrial-page .i-series h2{font-size:clamp(3.7rem,5.5vw,6.4rem)}
+.industrial-page .i-series-method{margin-bottom:2rem;padding:clamp(1.3rem,2vw,2rem)}
+.industrial-page .i-series-method-head{margin-bottom:2.6rem}
+.industrial-page .i-series-method h3{font-size:clamp(2rem,2.8vw,3.3rem)}
+.industrial-page .i-series-step{padding-top:1.8rem}
+.industrial-page .i-series-step h4{margin-block:.8rem .5rem;font-size:clamp(1.3rem,1.7vw,1.8rem)}
+.industrial-page .i-sectors{padding-block:clamp(3.5rem,5vw,5.5rem);background:#282e2e}
+.industrial-page .i-sector-gallery li.i-sector-dual{grid-column:span 8}
+.industrial-page .i-sector-card{min-height:285px}
+.industrial-page .i-sector-card-bottom strong{font-size:clamp(1.9rem,2.5vw,3rem)}
+.industrial-page .i-project{padding-block:clamp(3.5rem,5vw,5.5rem)}
+.industrial-page .i-project-art{min-height:420px}
+.industrial-page .i-contact{padding-block:clamp(3.5rem,5vw,5.5rem)}
+@media (max-width:1000px){
+  .industrial-page .i-sector-gallery li.i-sector-dual{grid-column:span 8}
+  .industrial-page .i-sector-card{min-height:245px}
+  .industrial-page .i-progress-note>div{grid-template-columns:1fr 1fr 1fr}
+}
+@media (max-width:760px){
+  .industrial-page .i-hero{min-height:690px}
+  .industrial-page .i-capabilities,.industrial-page .i-sectors,.industrial-page .i-project,.industrial-page .i-contact{padding-block:3rem}
+  .industrial-page .i-series-inner{padding-block:3rem}
+  .industrial-page .i-sector-gallery li.i-sector-dual{grid-column:span 12}
+  .industrial-page .i-progress-note>div{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .industrial-page .i-sector-card{min-height:240px}
+}
+
+/* Fase 5: elements nous de la plantilla. */
+/* Paràgraf de qualitat d'industrial.md dins la nota de millores en curs. */
+.industrial-page .i-progress-note .i-progress-text { max-width:70ch; margin:0 0 1rem; padding:0; background:none; color:#d1d9d4; font-size:.95rem; line-height:1.5; }
+/* Enllaços del mètode (procés i sèries curtes) i dels sectors cap a les rutes pròpies. */
+.i-series-method-head>div { display:grid; gap:1rem; }
+.industrial-page .i-series-links { display:flex; flex-wrap:wrap; gap:.25rem 1.75rem; }
+.i-sector-foot { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem 2rem; margin-top:1.1rem; }
+.i-sector-foot .i-sector-caption { margin:0; }
+/* Els paràgrafs d'industrial.md són més llargs que els de la maqueta: una mica més d'amplada
+   evita que l'entrada i el taller creixin en alçada. */
+.industrial-page .i-hero-copy>p { max-width:54ch; }
+.industrial-page .i-cap-bottom p { max-width:58ch; }
+.industrial-page .i-series-method-head .i-series-links { max-width:none; }
+
+/* Ajustos del director de projecte (27/09/2026): titulars de secció a l'escala comuna del web
+   i, en pantalles estretes, ajust de la paraula més llarga (--chars, calculat a la plantilla)
+   a l'amplada útil: ~0,53 em per caràcter en majúscula amb aquest tracking. */
+.industrial-page :is(.i-cap-intro,.i-series-head,.i-section-heading,.i-project-copy,.i-contact-heading) h2 { font-size:clamp(3.5rem,5.4vw,5.8rem); }
+@media (max-width:760px) {
+  .industrial-page .i-hero h1 { font-size:min(clamp(3.6rem,9.6vw,5.8rem), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .53))); }
+  .industrial-page :is(.i-cap-intro,.i-series-head,.i-section-heading,.i-project-copy,.i-contact-heading) h2 { font-size:min(3.5rem, calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .53))); }
+}
+
+/* A mòbil, dues targetes per fila: el nom del sector (fins a 11 lletres, «Alimentació») ha de
+   cabre a la targeta. La maqueta el deixava sortir per la vora. */
+@media (max-width:520px) {
+  .industrial-page .i-sector-card-bottom strong { font-size:min(1.9rem, calc((50vw - var(--page-gutter) - 2rem) / 6.6)); }
+}
+
+/* Moviment de la plantilla (criteri emil-design-eng; vegeu styles/motion.css). */
+.i-proof a,.i-contact-main { transition:transform .22s ease, scale 160ms var(--motion-ease), background var(--motion-fast) ease, color var(--motion-fast) ease; }
+.i-proof a:active,.i-contact-main:active { scale:.97; }
+.count { display:inline-block; min-width:calc(var(--digits) * (1ch - .065em)); }
+@media (prefers-reduced-motion:no-preference) {
+  .industrial-page .i-hero-image img { animation:settle-image 1100ms var(--ease-out-strong) backwards; }
+  /* La regla del kicker es dibuixa d'esquerra a dreta en entrar. */
+  .industrial-page .i-kicker.enter .i-kicker-rule { transform-origin:left center; animation:rule-grow 700ms var(--ease-out-strong) 260ms backwards; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .i-proof a,.i-contact-main { transition:none; }
+  .i-proof a:active,.i-contact-main:active { scale:1; }
+}
+
+/* Bloc 1 del pla d'afinament (27/09/2026): portada com a resum i prova ràpida. Les targetes de
+   sector ja no tenen etiqueta superior (el nom queda a baix) i, a mòbil, el mosaic del taller, els
+   passos del mètode, els sectors i el gràfic del cas prenen l'alçada del contingut en lloc d'alçades
+   mínimes escèniques. */
+.i-sector-card { justify-content:flex-end; }
+@media (max-width:760px) {
+  .industrial-page .i-capabilities .i-cap-materials,.industrial-page .i-capabilities .i-cap-welding { min-height:250px; }
+  .industrial-page .i-cap-machines,.industrial-page .i-cap-mounting { min-height:0; gap:1.5rem; }
+  .industrial-page .i-series-step { min-height:0; padding-bottom:1.25rem; }
+  .industrial-page .i-sector-card { min-height:190px; }
+  .industrial-page .i-project-art { min-height:260px; }
+}
+@media (max-width:480px) {
+  .industrial-page .i-sector-card { min-height:170px; }
+  .industrial-page .i-project-art strong { font-size:40vw; }
+}
+
+/* Bloc 2 del pla d'afinament (27/09/2026): rols compartits de src/styles/roles.css. Identitat
+   plata sobre grafit: el reflex metàl·lic només als fragments destacats dels titulars. H3 comú per
+   al mosaic, el mètode i els sectors (el mosaic resumeix; la fitxa de Capacitats n'és el detall),
+   H4 per als passos, text d'entrada i avisos amb una sola mida i espaiat de secció comú.
+   La línia de progrés del mètode es manté en plata (decisió del director, 27/09/2026). */
+.i-series-method-head>span { display:none; }
+.industrial-page :is(.i-capabilities,.i-sectors,.i-project,.i-contact) { padding-block:var(--space-section); }
+.industrial-page .i-series-inner { padding-block:var(--space-section); }
+.industrial-page .i-cap-intro,.industrial-page .i-section-heading,.industrial-page .i-contact-heading { margin-bottom:var(--space-lead); }
+.industrial-page .i-cap-showcase h3,
+.industrial-page .i-series-method h3 { font-size:var(--type-h3); }
+.industrial-page .i-series-step h4 { font-size:var(--type-h4); }
+.industrial-page :is(.i-series-head,.i-section-heading,.i-contact-heading,.i-project-copy)>p,
+.industrial-page .i-series-method-head p { font-size:var(--type-intro); }
+.industrial-page .i-series-step p { font-size:1rem; }
+.industrial-page :is(.i-cap-item-head,.i-hero-overline,.i-kicker,.i-hero-bottom,.i-contact-guide>span,.i-contact-method>span,.i-progress-note>span) { font-size:var(--type-meta); letter-spacing:var(--tracking-meta); }
+.industrial-page :is(.i-hero-credit,.i-cap-asset,.i-series-credit,.i-project-art-caption) { font-size:var(--type-caption); }
+.industrial-page .i-sector-caption { font-size:.82rem; }
+@media (min-width:521px) {
+  .industrial-page .i-sector-card-bottom strong { font-size:var(--type-h3); }
+}
+/* Fotografia: una correcció de llum coherent per a tota la branca. */
+.industrial-page :is(.i-hero-image,.i-cap-materials,.i-cap-welding,.i-series-image) img { filter:saturate(.65) contrast(1.08); }
+
+
+/* El cas de les gàbies es documenta amb la fotografia original recuperada. */
+.i-project-art { margin: 0; }
+.i-project-art picture { display: contents; }
+.i-project-art img { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.82) contrast(1.04); }
+.i-project-art::before { z-index: -1; background: linear-gradient(180deg,rgba(10,12,14,.03) 40%,rgba(10,12,14,.82)); }
+.i-project-art-caption { z-index: 1; }
+
+
+/* Cinc sectors: fotografies conceptuals de context amb contrast de lectura constant. */
+.i-sector-card picture { position: absolute; z-index: -3; inset: 0; display: block; }
+.i-sector-card img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.4) contrast(1.04) brightness(.8); }
+.i-sector-card::after { position: absolute; z-index: -2; inset: 0; background: linear-gradient(180deg,rgba(9,11,12,.14),rgba(9,11,12,.33) 35%,rgba(9,11,12,.82) 68%,rgba(9,11,12,.96)); content: ""; }
+.i-sector-card-bottom { z-index: 2; }
+
+
+
+/* Mosaic del taller: maquinaria conceptual i muntatge amb la fotografia original de l'equip. */
+.industrial-page .i-cap-machines,
+.industrial-page .i-cap-mounting { background:#24292a; color:#fff; }
+.industrial-page .i-cap-machines .i-media,
+.industrial-page .i-cap-mounting .i-media { z-index:-2; }
+.industrial-page .i-cap-machines img,
+.industrial-page .i-cap-mounting img {
+  filter:saturate(.7) contrast(1.04);
+  transition:transform 700ms var(--motion-ease);
+}
+.industrial-page .i-cap-machines img { object-position:63% center; }
+.industrial-page .i-cap-mounting img { object-position:60% center; filter:saturate(1) contrast(1.06) brightness(1.04); }
+.industrial-page .i-cap-machines::before {
+  z-index:-1;
+  background:linear-gradient(180deg,rgba(7,9,10,.7),rgba(7,9,10,.18) 30%,rgba(7,9,10,.65) 65%,rgba(7,9,10,.91));
+}
+.industrial-page .i-cap-mounting::after {
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  background:linear-gradient(90deg,rgba(8,10,11,.86),rgba(8,10,11,.62) 48%,rgba(8,10,11,.13)),
+             linear-gradient(0deg,rgba(8,10,11,.62),transparent 58%);
+  content:"";
+}
+.industrial-page .i-cap-machines .i-cap-item-head,
+.industrial-page .i-cap-machines-foot,
+.industrial-page .i-cap-machines-foot span:last-child,
+.industrial-page .i-cap-mounting p { color:#f2f4f2; }
+.industrial-page .i-cap-machines h3 { border-color:rgba(255,255,255,.55); }
+.industrial-page .i-cap-machines-foot {
+  flex-wrap:wrap;
+  font-size:var(--type-caption);
+  line-height:1.35;
+}
+.industrial-page .i-cap-machines-foot span:last-child { font-size:var(--type-caption); letter-spacing:.1em; line-height:1.35; }
+.industrial-page .i-cap-mounting .i-cap-asset { margin-top:.9rem; }
+@media (hover:hover) and (pointer:fine) {
+  .industrial-page .i-cap-machines:hover img,
+  .industrial-page .i-cap-mounting:hover img { transform:scale(1.025); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .industrial-page .i-cap-machines img,
+  .industrial-page .i-cap-mounting img { transition:none; }
+}
+
+/* Redisseny del director (28/09/2026).
+   Tancament del taller: una franja de resum (text d'industrial.md + accés a la fitxa) i, a sota,
+   l'estat de qualitat alineat a la mateixa graella, amb filets en lloc de la caixa fosca anterior.
+   Sectors: peces informatives (sense enllaç, acció ni fletxa), en una tira de cinc fotografies
+   verticals amb el nom a baix; no reaccionen al punter i entren escalonades en arribar-hi. */
+.i-cap-close { margin-top: var(--space-lead); }
+.i-cap-summary { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 1.5rem 3rem; align-items: center; padding-block: 1.75rem; border-top: 1px solid rgb(255 255 255 / .16); }
+.industrial-page .i-cap-summary p { max-width: 62ch; margin: 0; color: #d6ddda; font-size: var(--type-intro); line-height: 1.5; }
+.i-quality { display: grid; grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr); gap: 1.5rem clamp(2rem,4vw,4rem); align-items: start; padding-top: 1.75rem; border-top: 1px solid rgb(255 255 255 / .16); }
+.i-quality-copy h3 { margin: 0 0 .75rem; color: var(--color-industrial-silver); font-size: var(--type-meta); font-weight: 700; letter-spacing: var(--tracking-meta); line-height: 1.3; text-transform: uppercase; }
+.i-quality-copy p { max-width: 52ch; margin: 0; color: #c9d1cd; font-size: 1rem; line-height: 1.55; }
+.i-quality-list { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); margin: 0; padding: 0; list-style: none; }
+.i-quality-list li { display: grid; grid-template-columns: auto minmax(0,1fr); column-gap: .8rem; row-gap: .3rem; align-content: start; padding: .2rem 1.25rem .2rem 0; }
+.i-quality-list li + li { padding-left: 1.25rem; border-left: 1px solid rgb(255 255 255 / .14); }
+.i-quality-mark { grid-row: span 2; width: 11px; height: 11px; margin-top: .3rem; border: 1px solid var(--color-industrial-silver); border-radius: 50%; background: radial-gradient(circle, var(--color-industrial-silver) 0 2px, transparent 2.5px); }
+.i-quality-list strong { color: #f1f4f1; font-size: 1.05rem; letter-spacing: .01em; line-height: 1.3; text-transform: uppercase; }
+.i-quality-list span:last-child { color: #b9c3be; font-size: .92rem; line-height: 1.4; }
+@media (max-width: 1000px) {
+  .i-quality { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .i-cap-summary { grid-template-columns: 1fr; }
+  .i-cap-summary .i-button { width: 100%; }
+  .i-quality-list { grid-template-columns: 1fr; }
+  .i-quality-list li { padding: .9rem 0; }
+  .i-quality-list li + li { padding-left: 0; border-left: 0; border-top: 1px solid rgb(255 255 255 / .14); }
+}
+
+.i-sectors-grid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: clamp(.5rem,1vw,1rem); margin: 0; padding: 0; list-style: none; }
+.i-sector { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; aspect-ratio: 3 / 4; overflow: hidden; padding: clamp(1rem,1.6vw,1.5rem); background: #222729; }
+.i-sector picture { position: absolute; z-index: -2; inset: 0; display: block; }
+.i-sector img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.45) contrast(1.05) brightness(.82); }
+.i-sector::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg, rgb(9 11 12 / 0) 38%, rgb(9 11 12 / .55) 68%, rgb(9 11 12 / .9)); content: ""; }
+/* El nom reserva dues línies: la línia platejada queda a la mateixa alçada a les cinc peces. */
+.i-sector h3 { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: calc(2em + 1.1rem); margin: 0; padding-top: 1.1rem; color: #fff; font-size: var(--type-h4); font-weight: 700; letter-spacing: -.03em; line-height: 1; text-transform: uppercase; overflow-wrap: break-word; }
+.i-sector h3::before { position: absolute; top: 0; left: 0; width: 28px; height: 1px; background: var(--color-industrial-silver); content: ""; }
+@media (max-width: 1000px) {
+  .i-sectors-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+@media (max-width: 760px) {
+  .i-sectors-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .i-sector:last-child { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+  .i-sector h3 { font-size: min(var(--type-h4), calc((50vw - var(--page-gutter) - 2.5rem) / 6.2)); }
+  .i-sector:last-child h3 { font-size: var(--type-h4); }
+}
+
+
+/* La nova foto de la serie queda visible al costat del titular; el metode te contrast propi. */
+.industrial-page .i-series-image img {
+  object-position:66% 48%;
+  filter:saturate(.76) contrast(1.04) brightness(1.12);
+}
+.industrial-page .i-series-image::after {
+  background:linear-gradient(90deg,rgba(9,11,12,.94) 0%,rgba(9,11,12,.77) 42%,rgba(9,11,12,.18) 100%),
+             linear-gradient(0deg,rgba(9,11,12,.91),rgba(9,11,12,.15) 58%,rgba(9,11,12,.27));
+}
+.industrial-page .i-series-method { background:rgba(13,15,16,.87); }
+@media (max-width:760px) {
+  .industrial-page .i-series-image { bottom:auto; height:440px; }
+  .industrial-page .i-series-image img { object-position:72% center; }
+  .industrial-page .i-series-image::after {
+    background:linear-gradient(180deg,rgba(9,11,12,.55),rgba(9,11,12,.67) 48%,#1c1d1f 100%),
+               linear-gradient(90deg,rgba(9,11,12,.58),rgba(9,11,12,.12));
+  }
+}

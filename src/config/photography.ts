@@ -12,6 +12,7 @@ import structuresHero from '../../assets/imatges-conceptuals/particulars-estruct
 import automationsHero from '../../assets/imatges-conceptuals/particulars-automatismes-hero-v1.png';
 import furnitureHero from '../../assets/imatges-conceptuals/particulars-mobiliari-hero-v1.png';
 import furnitureTile from '../../assets/imatges-conceptuals/home-mobiliari-targeta-v2.png';
+import homeIndustrialCapabilities from '../../assets/imatges-conceptuals/home-capacitats-industrials-targeta-v1.png';
 import repairsHero from '../../assets/imatges-conceptuals/particulars-urgencies-hero-v1.png';
 import industrialHero from '../../assets/imatges-conceptuals/industrial-series-hero-v1.png';
 import industrialMaterials from '../../assets/imatges-conceptuals/industrial-materials-v1.png';
@@ -91,7 +92,7 @@ export const sitePhotography = {
     furnitureTile,
     doorsTile: homeDoorRepair,
     cartTile: cartPhoto,
-    industrialTile: workshopMachine,
+    industrialTile: homeIndustrialCapabilities,
   },
   particulars: {
     hero: particularsHero,

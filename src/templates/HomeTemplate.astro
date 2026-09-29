@@ -86,10 +86,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
           }
           {titleSmall && <small class="enter" style={`--i:${titleWords.length}`}>{titleSmall}</small>}
         </h1>
-        <nav class="quick-paths enter" style={`--i:${titleWords.length + 1}`} aria-label={t.quickPaths}>
-          <a href={particularsLink.href}>{particulars.heading} <span class="arrow" aria-hidden="true">↗</span></a>
-          <a href={industrialLink.href}>{industrial.heading} <span class="arrow" aria-hidden="true">↗</span></a>
-        </nav>
       </div>
       <div class="hero-aside">
         <p class="enter" style="--i:2"><Inlines inlines={intro} /></p>
@@ -293,10 +289,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     letter-spacing: -0.02em;
     line-height: 1.1;
     text-transform: none;
-  }
-
-  .quick-paths {
-    display: none;
   }
 
   .hero-aside {
@@ -995,7 +987,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   /* Resposta al prémer (també en tacte) i fletxes que acompanyen el cursor. */
-  .quick-paths a,
   .path,
   .tile,
   .offer-overview,
@@ -1003,7 +994,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     transition: scale 160ms var(--ease-out-strong);
   }
 
-  .quick-paths a:active,
   .offer-overview:active,
   .underlined-link:active {
     scale: 0.97;
@@ -1023,7 +1013,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
       transition: translate 220ms var(--ease-out-strong);
     }
 
-    :is(.path, .tile, .offer-overview, .underlined-link, .quick-paths a):hover .arrow {
+    :is(.path, .tile, .offer-overview, .underlined-link):hover .arrow {
       translate: 3px -3px;
     }
   }
@@ -1087,32 +1077,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     h1 small {
       margin-top: 1.25rem;
       font-size: 1.18rem;
-    }
-
-    .quick-paths {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1px;
-      margin-top: 1.6rem;
-      border: 1px solid #64696b;
-      background: #64696b;
-    }
-
-    .quick-paths a {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.4rem;
-      min-height: 48px;
-      padding: 0.6rem 0.75rem;
-      background: var(--f4-coal);
-      font-size: 0.84rem;
-      font-weight: 700;
-    }
-
-    .quick-paths .arrow {
-      color: var(--f4-muted);
-      font-size: 1rem;
     }
 
     .hero-aside p {
@@ -1383,23 +1347,23 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
 
-  /* La fotografia documental de reparacio conserva el logo real a la samarreta:
-     text a dalt, vestuari visible a la part inferior dreta. */
-  .tile-doors .tile-bottom {
-    margin-top: clamp(2.3rem, 3vw, 3.2rem);
-    margin-bottom: auto;
-    max-width: 20ch;
+  /* Rajoles de serveis alineades (indicació del director, 29/09/2026): el text de totes queda a
+     baix. El titular reserva dues línies i s'hi assenta per sota; el detall en reserva dues per
+     dalt. Així, en cada fila, titulars i detalls comencen a la mateixa altura. */
+  .service-tiles .tile-bottom strong {
+    display: flex;
+    align-items: flex-end;
+    min-height: calc(2 * 0.96em);
   }
-  .tile-doors .tile-shade {
-    background: linear-gradient(90deg, rgb(8 10 11 / .78), rgb(8 10 11 / .35) 53%, rgb(8 10 11 / .08)),
-                linear-gradient(180deg, rgb(8 10 11 / .35), transparent 45%, rgb(8 10 11 / .12));
+
+  .service-tiles .tile-bottom > span {
+    min-height: calc(2 * 1.28em);
+    line-height: 1.28;
   }
+
   .tile-doors :global(img),
   .tile-doors:hover :global(img),
   .tile-doors:focus-visible :global(img) {
     filter: saturate(1.04) contrast(1.04) brightness(1.05);
-  }
-  @media (max-width: 600px) {
-    .tile-doors .tile-bottom { margin-top: 2.25rem; }
   }
 </style>

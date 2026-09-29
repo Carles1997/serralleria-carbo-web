@@ -44,6 +44,9 @@ const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada a industrial.md
 
 const workshopText = one(paragraphs(workshop.blocks), `un paràgraf a «${workshop.heading}»`);
 const workshopLink = one(links(workshop.blocks), `un enllaç a «${workshop.heading}»`);
+// Cartells del taller → secció corresponent de la fitxa de capacitats (indicació del director,
+// 29/09/2026): materials i maquinària a «El taller», soldadura i muntatge a «Producció».
+const capacityHref = (section: 'taller' | 'produccio') => `${workshopLink.href}#${section}`;
 const qualityText = one(paragraphs(quality.blocks), `un paràgraf a «${quality.heading}»`);
 
 const sectorsText = one(paragraphs(sectors.blocks), `un paràgraf a «${sectors.heading}»`);
@@ -145,14 +148,14 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
               <Picture src={sitePhotography.industrial.materials} alt="" widths={[640, 960, 1280]} sizes="(max-width: 760px) 100vw, 58vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
             </div>
             <div class="i-cap-item-head">{t.workshop.materials.head.map((part) => <span>{part}</span>)}</div>
-            <h3>{t.workshop.materials.title[0]}{' '}<br /><em>{t.workshop.materials.title[1]}</em></h3>
+            <h3><a class="i-cap-link" href={capacityHref('taller')}>{t.workshop.materials.title[0]}{' '}<br /><em>{t.workshop.materials.title[1]}</em><span class="i-cap-arrow" aria-hidden="true">↗</span></a></h3>
           </article>
           <article class="i-cap-machines" data-reveal style="--i:1">
             <div class="i-media" aria-hidden="true">
               <Picture src={sitePhotography.industrial.machines} alt="" widths={[480, 720, 960]} sizes="(max-width: 760px) 100vw, 42vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
             </div>
             <div class="i-cap-item-head">{t.workshop.machines.head.map((part) => <span>{part}</span>)}</div>
-            <h3>{t.workshop.machines.title[0]}{' '}<br />{t.workshop.machines.title[1]}</h3>
+            <h3><a class="i-cap-link" href={capacityHref('taller')}>{t.workshop.machines.title[0]}{' '}<br />{t.workshop.machines.title[1]}<span class="i-cap-arrow" aria-hidden="true">↗</span></a></h3>
             <div class="i-cap-machines-foot"><span>{t.workshop.machines.foot}</span></div>
           </article>
           <article class="i-cap-welding" data-reveal="clip">
@@ -160,14 +163,14 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
               <Picture src={sitePhotography.industrial.welding} alt="" widths={[640, 960, 1280]} sizes="(max-width: 760px) 100vw, 42vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
             </div>
             <div class="i-cap-item-head">{t.workshop.welding.head.map((part) => <span>{part}</span>)}</div>
-            <h3>{t.workshop.welding.title[0]}{' '}<br /><em>{t.workshop.welding.title[1]}</em></h3>
+            <h3><a class="i-cap-link" href={capacityHref('produccio')}>{t.workshop.welding.title[0]}{' '}<br /><em>{t.workshop.welding.title[1]}</em><span class="i-cap-arrow" aria-hidden="true">↗</span></a></h3>
           </article>
           <article class="i-cap-mounting" data-reveal style="--i:1">
             <div class="i-media" aria-hidden="true">
               <Picture src={sitePhotography.industrial.mounting} alt="" widths={[640, 960, 1280]} sizes="(max-width: 760px) 100vw, 58vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
             </div>
             <div class="i-cap-item-head">{t.workshop.mounting.head.map((part) => <span>{part}</span>)}</div>
-            <h3>{t.workshop.mounting.title[0]}{' '}<br />{t.workshop.mounting.title[1]}</h3>
+            <h3><a class="i-cap-link" href={capacityHref('produccio')}>{t.workshop.mounting.title[0]}{' '}<br />{t.workshop.mounting.title[1]}<span class="i-cap-arrow" aria-hidden="true">↗</span></a></h3>
             <p>{t.workshop.mounting.text}</p>
           </article>
         </div>

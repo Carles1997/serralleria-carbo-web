@@ -139,7 +139,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
                   {pad(index + 1)} / {pad(services.length)}
                 </span>
                 <div class={`p-service-art p-service-art-${service.art}`} aria-hidden="true">
-                  <Picture src={service.image} alt="" widths={[400, 640, 960]} sizes="(max-width: 760px) 50vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                  <Picture src={service.image} alt="" widths={[400, 640, 960]} sizes="(max-width: 560px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
                 </div>
                 <div class="p-service-copy">
                   <h3>{service.title}</h3>
@@ -170,7 +170,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
         <div class="p-story-stage" aria-hidden="true">
           {chapters.map((chapter, index) => (
             <span class:list={['p-story-frame', { 'is-active': index === 0 }]} data-story-image={index}>
-              <Picture src={chapter.photo.stage} alt="" widths={[480, 720, 960, 1200]} sizes="48vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+              <Picture src={chapter.photo.stage} alt="" widths={[480, 720, 960, 1200]} sizes="(max-width: 760px) 100vw, 48vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
             </span>
           ))}
           <div class="p-story-stage-shade"></div>
@@ -187,9 +187,6 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
                   </span>
                   <a href={chapter.service.href}>{chapter.service.label}</a>
                 </div>
-                <figure class="p-story-mobile-photo">
-                  <Picture src={chapter.photo.stage} alt={chapter.photo.alt} widths={[360, 640, 800]} sizes="100vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
-                </figure>
                 <div data-reveal>
                   <span class="p-story-overline">{chapter.overline}</span>
                   <h3>{chapter.title}</h3>

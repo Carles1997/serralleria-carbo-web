@@ -30,7 +30,6 @@ const ca = {
       { label: 'Empresa', href: '/empresa/' },
     ],
     mobileExtra: [{ label: 'Contacte', href: '/contacte/' }],
-    quickPaths: 'Accés ràpid als dos àmbits',
     // Doble accés i xifres: textos de la maqueta Home validada, per indicació del
     // director de projecte (27/09/2026). home.md en conserva la versió llarga.
     paths: {

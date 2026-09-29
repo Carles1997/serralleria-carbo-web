@@ -570,3 +570,38 @@
                linear-gradient(90deg,rgba(9,11,12,.58),rgba(9,11,12,.12));
   }
 }
+
+/* Cartells del taller enllaçats a la fitxa de capacitats (indicació del director, 29/09/2026). Tot
+   el cartell és l'enllaç (el nom del títol el descriu) i una fletxa petita al títol ho indica.
+   Com la resta de peces enllaçades: zoom lent de la fotografia i fletxa que acompanya el punter. */
+.i-cap-showcase h3 { z-index:3; }
+.i-cap-link { color:inherit; text-decoration:none; }
+.i-cap-link::after { position:absolute; inset:-100vmax; content:""; }
+.i-cap-link:focus-visible { outline:none; }
+.i-cap-showcase article:has(.i-cap-link:focus-visible) { outline:2px solid #fff; outline-offset:3px; }
+.i-cap-arrow { display:inline-block; margin-left:.2em; font-size:.42em; font-weight:700; letter-spacing:0; vertical-align:.7em; transition:translate 220ms var(--motion-ease); }
+.i-cap-showcase article .i-media img { transition:transform 700ms var(--motion-ease); }
+.i-cap-showcase article:active { scale:.995; }
+@media (hover: hover) and (pointer: fine) {
+  .i-cap-showcase article:has(.i-cap-link:hover) .i-media img { transform:scale(1.035); }
+  .i-cap-showcase article:has(.i-cap-link:hover) .i-cap-arrow { translate:3px -3px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .i-cap-arrow,.i-cap-showcase article .i-media img { transition:none; }
+}
+
+
+/* Mètode (indicació del director, 29/09/2026). El node s'encén quan la línia hi arriba (is-lit),
+   no quan el pas apareix (is-visible): la línia comença més endins de la secció. A mòbil, la línia
+   es dibuixa per trams entre nodes, amb el mateix centre horitzontal (--node) i vertical (--dot-y),
+   perquè passi exactament pel mig de cada punt i acabi a l'últim; cada tram s'omple amb --fill
+   (src/scripts/series.ts). Sense JavaScript, trams plens. */
+.has-series-motion .i-series-step.is-visible::before { background:#222528; box-shadow:none; }
+.has-series-motion .i-series-step.is-lit::before { background:#c5ceca; box-shadow:0 0 0 5px rgba(197,206,202,.16),0 0 18px rgba(197,206,202,.7); }
+@media (max-width:760px) {
+  .industrial-page .i-series-steps { --node:1rem; --dot-y:2.2rem; padding-left:0; }
+  .industrial-page .i-series-steps::before,.industrial-page .i-series-steps::after { display:none; }
+  .industrial-page .i-series-step { padding-left:3rem; }
+  .industrial-page .i-series-step::before { top:var(--dot-y); left:var(--node); transform:translate(-50%,-50%); }
+  .industrial-page .i-series-step:not(:last-child)::after { position:absolute; top:var(--dot-y); bottom:calc(-1 * var(--dot-y)); left:calc(var(--node) - 1px); width:2px; background:linear-gradient(#c5ceca calc(var(--fill, 1) * 100%), rgba(197,206,202,.33) 0); content:""; }
+}

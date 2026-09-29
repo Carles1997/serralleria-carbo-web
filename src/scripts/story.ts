@@ -1,6 +1,8 @@
-// Història de casos destacats (plantilla P): el capítol més proper al centre de la
-// pantalla marca el número i el progrés de l'escenari. Sense JavaScript, els
-// capítols es llegeixen seguits i l'escenari mostra el primer cas.
+// Història de casos destacats (plantilla P): el capítol més proper al centre de la zona de
+// lectura marca la fotografia, el número i el progrés de l'escenari. A escriptori, l'escenari és al
+// costat i la zona de lectura és la pantalla; a mòbil, l'escenari queda ancorat a dalt i la zona de
+// lectura és l'espai que deixa a sota. Sense JavaScript, els capítols es llegeixen seguits i
+// l'escenari mostra el primer cas.
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 document.querySelectorAll<HTMLElement>('[data-story]').forEach((story) => {
@@ -8,6 +10,7 @@ document.querySelectorAll<HTMLElement>('[data-story]').forEach((story) => {
   const number = story.querySelector<HTMLElement>('[data-story-number]');
   const progress = story.querySelector<HTMLElement>('[data-story-progress]');
   const images = [...story.querySelectorAll<HTMLElement>('[data-story-image]')];
+  const stage = story.querySelector<HTMLElement>('.p-story-stage');
   if (!chapters.length) return;
 
   let active = -1;
@@ -17,7 +20,10 @@ document.querySelectorAll<HTMLElement>('[data-story]').forEach((story) => {
     pending = false;
     const bounds = story.getBoundingClientRect();
     if (bounds.top >= window.innerHeight || bounds.bottom <= 0) return;
-    const center = window.innerHeight * 0.52;
+    // Escenari apilat (mòbil): la lectura comença sota la fotografia ancorada.
+    const stacked = stage !== null && stage.offsetWidth > story.offsetWidth * 0.9;
+    const top = stacked ? Math.max(0, stage.getBoundingClientRect().bottom) : 0;
+    const center = top + (window.innerHeight - top) * (stacked ? 0.45 : 0.52);
     let closest = 0;
     let distance = Infinity;
     chapters.forEach((chapter, index) => {

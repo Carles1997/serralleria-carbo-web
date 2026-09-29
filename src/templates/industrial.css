@@ -605,3 +605,17 @@
   .industrial-page .i-series-step::before { top:var(--dot-y); left:var(--node); transform:translate(-50%,-50%); }
   .industrial-page .i-series-step:not(:last-child)::after { position:absolute; top:var(--dot-y); bottom:calc(-1 * var(--dot-y)); left:calc(var(--node) - 1px); width:2px; background:linear-gradient(#c5ceca calc(var(--fill, 1) * 100%), rgba(197,206,202,.33) 0); content:""; }
 }
+
+/* Entrada d'Industrial com la de la Home (indicació del director, 29/09/2026): a escriptori, el
+   paràgraf va a la dreta del titular, amb la mateixa proporció de columnes, mida de lletra,
+   amplada de línia i filet inferior que .hero-aside de la Home. */
+@media (min-width:901px) {
+  .industrial-page .i-hero-copy { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(290px,.7fr); grid-template-areas:"kicker kicker" "title intro" "actions actions"; align-items:end; column-gap:clamp(2rem,5vw,6rem); }
+  .industrial-page .i-hero-copy .i-kicker { grid-area:kicker; }
+  .industrial-page .i-hero h1 { grid-area:title; }
+  .industrial-page .i-hero-copy>p { grid-area:intro; max-width:43ch; margin:0 0 1.4rem; padding-bottom:1.6rem; border-bottom:1px solid var(--f4-line); color:#d8dad9; font-size:var(--type-intro); line-height:1.46; }
+  .industrial-page .i-hero-actions { grid-area:actions; }
+  /* El paràgraf queda sobre la fotografia: més ombra a la dreta i una ombra suau al text. */
+  .industrial-page .i-hero-shade { background:linear-gradient(90deg,rgba(10,11,12,.96) 0%,rgba(10,11,12,.89) 29%,rgba(10,11,12,.7) 55%,rgba(10,11,12,.42) 100%),linear-gradient(0deg,rgba(9,10,11,.78),transparent 31%,rgba(9,10,11,.25)); }
+  .industrial-page .i-hero-copy>p { text-shadow:0 1px 14px rgba(0,0,0,.75); }
+}

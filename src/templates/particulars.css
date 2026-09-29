@@ -227,10 +227,6 @@
 }
 @keyframes p-story-reveal { from { translate: 0 14px; } }
 
-/* Bloc 1 del pla d'afinament (27/09/2026): enllaços de l'entrada (Urgències i serveis). */
-.p-hero-links { display: flex; flex-direction: column; flex: none; gap: .35rem; }
-@media (hover: hover) and (pointer: fine) { .p-arrow-link-out:hover .arrow { translate: 3px -3px; } }
-@media (max-width: 760px) { .p-hero-links { flex-direction: row; flex-wrap: wrap; gap: .5rem 1.5rem; } }
 /* Serveis 2×2 a mòbil: el cos explicatiu es llegeix (≥ 15 px) i la targeta creix pel contingut.
    L'etiqueta de categoria de la maqueta (Fabricació i reparació…) deixa lloc al text a ≤ 520 px. */
 @media (max-width: 760px) {

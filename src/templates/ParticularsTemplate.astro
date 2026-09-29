@@ -41,6 +41,8 @@ const [help, works, area, contact] = doc.sections;
 if (t.hero.title.join(' ') !== doc.title) {
   throw new Error(`El titular compost («${t.hero.title.join(' ')}») no coincideix amb la H1 de particulars.md.`);
 }
+// El segon paràgraf d'entrada ja no es mostra (indicació del director, 29/09/2026: fora el peu de
+// l'entrada); l'estructura del contingut no canvia.
 const [introWorks, introHelp] = paragraphs(doc.intro);
 if (!introHelp) throw new Error("particulars.md necessita dos paràgrafs d'entrada.");
 
@@ -103,13 +105,6 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           <h1 id="p-title" style={`--chars:${t.hero.title[1].length}`}>
             <span class="enter" style="--i:1">{t.hero.title[0]} </span><em class="enter" style="--i:2">{t.hero.title[1]} </em><small class="enter" style="--i:3">{t.hero.title[2]}</small>
           </h1>
-          <div class="p-hero-bottom enter" style="--i:4">
-            <p><Inlines inlines={introHelp} /></p>
-            <div class="p-hero-links">
-              <a class="p-arrow-link p-arrow-link-out" href={t.hero.urgent.href}>{t.hero.urgent.label} <span class="arrow" aria-hidden="true">↗</span></a>
-              <a class="p-arrow-link" href="#serveis">{t.hero.scroll} <span class="arrow" aria-hidden="true">↘</span></a>
-            </div>
-          </div>
         </div>
       </div>
     </section>

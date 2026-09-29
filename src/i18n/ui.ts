@@ -45,7 +45,6 @@ const ca = {
     },
     numbers: {
       heading: ['Fets que', 'ens defineixen'],
-      lead: 'Un taller a Vilafranca del Penedès, equip propi i capacitat per treballar en encàrrecs de particulars i en sèries curtes per a empreses.',
       // «source» ha de coincidir amb una xifra en negreta de home.md: el build ho comprova.
       items: [
         { source: '1989', value: 1989, unit: '', label: 'Any de fundació' },
@@ -83,9 +82,6 @@ const ca = {
       otherBranch: { label: 'Industrial', href: '/industrial/' },
       // Mateix text que la H1 de particulars.md, repartit per a la composició (es comprova al build).
       title: ['Serralleria per a', 'particulars', 'a Vilafranca i rodalia'],
-      scroll: 'Descobreix com et podem ajudar',
-      // Accés a Urgències dins del primer viewport (pla §2).
-      urgent: { label: 'Urgències i reparacions', href: '/particulars/urgencies/' },
     },
     urgent: {
       heading: 'Tens una avaria?',

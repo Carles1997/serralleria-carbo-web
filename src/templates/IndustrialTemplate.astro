@@ -16,8 +16,7 @@ import Inlines from '../components/Inlines.astro';
 import type { Page } from '../i18n/pages';
 import { useUi } from '../i18n/ui';
 import { company } from '../config/site';
-import { resolveRoute } from '../config/routes';
-import { links, one, paragraphs, parseInlines, parseMarkdown, plainText } from '../lib/markdown';
+import { labelledItem, links, listItems, one, paragraphs, parseMarkdown, plainText, sameText } from '../lib/markdown';
 import { projectPhotography, sitePhotography } from '../config/photography';
 import './mockup-base.css';
 import './industrial-base.css';
@@ -42,6 +41,15 @@ if (`${t.hero.title.join('. ')}.` !== doc.title) {
 }
 const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada a industrial.md");
 
+// Revisió editorial (30/09/2026): titulars, textos i enllaços visibles surten d'industrial.md; els
+// titulars es reparteixen en línies a i18n/ui.ts i el build comprova que diguin el mateix. Els
+// enllaços a les quatre interiors ajornades ja no són al contingut.
+sameText(t.workshop.heading, workshop.heading, 'industrial.md');
+sameText(t.workshop.progress.label, quality.heading, 'industrial.md');
+sameText(t.sectors.heading, sectors.heading, 'industrial.md');
+sameText(t.series.heading, method.heading, 'industrial.md');
+sameText(t.project.heading, project.heading, 'industrial.md');
+sameText(t.contact.heading, contact.heading, 'industrial.md');
 const workshopText = one(paragraphs(workshop.blocks), `un paràgraf a «${workshop.heading}»`);
 const workshopLink = one(links(workshop.blocks), `un enllaç a «${workshop.heading}»`);
 // Cartells del taller → secció corresponent de la fitxa de capacitats (indicació del director,
@@ -50,38 +58,24 @@ const capacityHref = (section: 'taller' | 'produccio') => `${workshopLink.href}#
 const qualityText = one(paragraphs(quality.blocks), `un paràgraf a «${quality.heading}»`);
 
 const sectorsText = one(paragraphs(sectors.blocks), `un paràgraf a «${sectors.heading}»`);
-const sectorsLink = one(links(sectors.blocks), `un enllaç a «${sectors.heading}»`);
-// Enllaç del contingut que, resolt, porta a una secció d'aquesta pàgina (ruta ajornada).
-const onThisPage = (href: string) => resolveRoute(href).startsWith(`${page.data.route}#`);
-const sectorsOut = onThisPage(sectorsLink.href) ? undefined : sectorsLink;
 const sectorsPlain = plainText(sectorsText).toLowerCase();
 const missingSector = t.sectors.items.find((sector) => !sectorsPlain.includes(sector.name.toLowerCase()));
 if (missingSector) throw new Error(`El sector «${missingSector.name}» no consta a «${sectors.heading}».`);
 
-// El paràgraf del mètode comença amb la seqüència de passos; la plantilla la mostra com a
-// llista, de manera que el text visible és la resta del paràgraf.
-const methodText = plainText(one(paragraphs(method.blocks), `un paràgraf a «${method.heading}»`));
-const sequence = `${t.series.steps.map((step) => step.title).join(' → ')}. `;
-if (!methodText.startsWith(sequence)) throw new Error(`«${method.heading}» ha de començar amb «${sequence.trim()}».`);
-const methodLead = parseInlines(methodText.slice(sequence.length));
-const methodLinks = links(method.blocks);
-if (methodLinks.length !== 2) throw new Error(`«${method.heading}» ha de tenir dos enllaços (procés i sèries curtes).`);
-const methodOut = methodLinks.filter((link) => !onThisPage(link.href));
+// Sèries: entrada de la secció i, en un apartat H3, el mètode (entrada i quatre passos).
+const seriesLead = one(paragraphs(method.blocks), `un paràgraf a «${method.heading}»`);
+const methodBox = one(method.subsections, `un apartat H3 (mètode) a «${method.heading}»`);
+sameText(t.series.method.heading, methodBox.heading, 'industrial.md');
+const methodLead = one(paragraphs(methodBox.blocks), `un paràgraf a «${methodBox.heading}»`);
+const steps = listItems(methodBox.blocks).map(labelledItem);
+if (steps.length !== 4) throw new Error(`«${methodBox.heading}» ha de tenir quatre passos; en té ${steps.length}.`);
 
 const projectText = one(paragraphs(project.blocks), `un paràgraf a «${project.heading}»`);
-const projectLink = one(links(project.blocks), `un enllaç a «${project.heading}»`);
-// Mentre el cas no té pàgina pròpia, la sortida del cas és el contacte (text de la maqueta).
-const projectAction = onThisPage(projectLink.href) ? { label: t.project.action, href: '#contacte' } : projectLink;
+const projectAction = one(links(project.blocks), `un enllaç a «${project.heading}»`);
 
-const [contactText, directText] = paragraphs(contact.blocks);
-if (!contactText || !directText) throw new Error(`«${contact.heading}» necessita dos paràgrafs.`);
+const contactText = one(paragraphs(contact.blocks), `un paràgraf a «${contact.heading}»`);
 const contactLink = one(links(contact.blocks), `un enllaç a «${contact.heading}»`);
-// El formulari obre la branca Empresa (ruta de la maqueta i del traspàs: /contacte/?tipus=empresa).
-const contactForm = contactLink.href === '/contacte/' ? '/contacte/?tipus=empresa' : contactLink.href;
-const directLinks = directText.flatMap((inline) => (inline.type === 'link' ? [inline.href] : []));
-if (!directLinks.includes(company.phone.href) || !directLinks.includes(`mailto:${company.email}`)) {
-  throw new Error(`El contacte directe de «${contact.heading}» no coincideix amb src/config/site.ts.`);
-}
+const contactForm = contactLink.href;
 
 const pad = (value: number) => String(value).padStart(2, '0');
 const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
@@ -177,7 +171,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
         <div class="i-cap-close">
           <div class="i-cap-summary" data-reveal>
             <p><Inlines inlines={workshopText} /></p>
-            <a class="i-button i-button-solid" href={workshopLink.href}>{t.workshop.action} <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="i-button i-button-solid" href={workshopLink.href}>{workshopLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
           </div>
           <div class="i-quality" data-reveal style="--i:1">
             <div class="i-quality-copy">
@@ -204,41 +198,29 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
       <div class="i-media i-series-image" aria-hidden="true">
         <Picture src={sitePhotography.industrial.series} alt="" widths={[640, 960, 1280, 1672]} sizes="100vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
       </div>
-      <span class="i-series-credit">{t.series.image}</span>
       <div class="section-shell i-series-inner">
         <div class="i-series-head">
           <h2 id="i-series-title" style={fit(...t.series.heading)} data-reveal>
             {t.series.heading[0]}{' '}<br />{t.series.heading[1]} <em>{t.series.heading[2]}</em>
           </h2>
-          <p data-reveal style="--i:2">{t.series.lead}</p>
+          <p data-reveal style="--i:2"><Inlines inlines={seriesLead} /></p>
         </div>
         <div class="i-series-method" id="proces" aria-labelledby="i-process-title">
           <div class="i-series-method-head" data-reveal>
             <h3 id="i-process-title">{t.series.method.heading[0]}{' '}<br /><em>{t.series.method.heading[1]}</em></h3>
             <div>
               <p><Inlines inlines={methodLead} /></p>
-              {
-                methodOut.length > 0 && (
-                  <p class="i-series-links">
-                    {methodOut.map((link) => (
-                      <a class="i-text-link" href={link.href}>
-                        {link.label} <span class="arrow" aria-hidden="true">↗</span>
-                      </a>
-                    ))}
-                  </p>
-                )
-              }
             </div>
           </div>
-          <ol class="i-series-steps" aria-label={t.series.method.label} data-series style={`--steps:${t.series.steps.length}`}>
+          <ol class="i-series-steps" aria-label={t.series.method.label} data-series style={`--steps:${steps.length}`}>
             {
-              t.series.steps.map((step, index) => (
+              steps.map((step, index) => (
                 <li class="i-series-step" style={`--i:${index}`}>
                   <span class="i-series-step-number">
-                    {pad(index + 1)} / {pad(t.series.steps.length)}
+                    {pad(index + 1)} / {pad(steps.length)}
                   </span>
-                  <h4>{step.title}</h4>
-                  <p>{step.text}</p>
+                  <h4>{step.value}</h4>
+                  <p>{step.label}</p>
                 </li>
               ))
             }
@@ -268,13 +250,6 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
             ))
           }
         </ul>
-        {
-          sectorsOut && (
-            <div class="i-sector-foot">
-              <a class="i-text-link" href={sectorsOut.href}>{sectorsOut.label} <span class="arrow" aria-hidden="true">↗</span></a>
-            </div>
-          )
-        }
       </div>
     </section>
 
@@ -310,7 +285,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           </div>
           <div class="i-contact-method">
             <span>{t.contact.methodLabel}</span>
-            <a class="i-contact-main" href={contactForm}>{t.contact.form} <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="i-contact-main" href={contactForm}>{contactLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
             <a href={`mailto:${company.email}`}>{company.email}</a>
             <a href={company.phone.href}>{company.phone.display}</a>
           </div>

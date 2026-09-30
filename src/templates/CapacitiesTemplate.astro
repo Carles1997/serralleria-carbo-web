@@ -13,7 +13,7 @@ import Inlines from '../components/Inlines.astro';
 import type { Page } from '../i18n/pages';
 import { useUi } from '../i18n/ui';
 import { company } from '../config/site';
-import { links, listItems, one, paragraphs, parseInlines, parseMarkdown, plainText } from '../lib/markdown';
+import { links, listItems, one, paragraphs, parseInlines, parseMarkdown, plainText, sameText } from '../lib/markdown';
 import { sitePhotography } from '../config/photography';
 import './mockup-base.css';
 import './industrial-base.css';
@@ -38,6 +38,16 @@ if (t.hero.title.join(' ') !== doc.title) {
   throw new Error(`El titular compost («${t.hero.title.join(' / ')}») no coincideix amb la H1 d'industrial-capacitats.md.`);
 }
 const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada a industrial-capacitats.md");
+// Revisió editorial (30/09/2026): els titulars visibles són els del contingut, repartits en línies a
+// i18n/ui.ts; maquinària, materials i soldadura es mostren amb les etiquetes del seu H2.
+sameText(t.overview.heading, space.heading, 'industrial-capacitats.md');
+sameText(t.overview.machinery.label[0], machinery.heading, 'industrial-capacitats.md');
+sameText(t.overview.materials.label[0], materials.heading, 'industrial-capacitats.md');
+sameText(t.production.welding.label, welding.heading, 'industrial-capacitats.md');
+sameText(t.production.logistics.label, mounting.heading, 'industrial-capacitats.md');
+sameText(t.requirements.heading, requirements.heading, 'industrial-capacitats.md');
+sameText(t.requirements.progress.label, progress.heading, 'industrial-capacitats.md');
+sameText(t.contact.heading, contact.heading, 'industrial-capacitats.md');
 const spaceText = one(paragraphs(space.blocks), `un paràgraf a «${space.heading}»`);
 
 // Dades visuals que han de sortir del contingut.
@@ -67,15 +77,11 @@ if (progressBreak < 0 || t.requirements.progress.items.some((item) => !progressI
 }
 const progressRest = parseInlines(progressText.slice(progressBreak + 2));
 
-const [contactText, directText] = paragraphs(contact.blocks);
-if (!contactText || !directText) throw new Error(`«${contact.heading}» necessita dos paràgrafs.`);
+const contactText = one(paragraphs(contact.blocks), `un paràgraf a «${contact.heading}»`);
+// L'enllaç del contingut obre el formulari a la branca Empresa (/contacte/?tipus=empresa); el
+// telèfon i el correu del bloc «Contacte industrial» surten de src/config/site.ts.
 const contactLink = one(links(contact.blocks), `un enllaç a «${contact.heading}»`);
-// El formulari obre la branca Empresa (ruta de la maqueta i del traspàs: /contacte/?tipus=empresa).
-const contactForm = contactLink.href === '/contacte/' ? '/contacte/?tipus=empresa' : contactLink.href;
-const directLinks = directText.flatMap((inline) => (inline.type === 'link' ? [inline.href] : []));
-if (!directLinks.includes(company.phone.href) || !directLinks.includes(`mailto:${company.email}`)) {
-  throw new Error(`El contacte directe de «${contact.heading}» no coincideix amb src/config/site.ts.`);
-}
+const contactForm = contactLink.href;
 
 const pad = (value: number) => String(value).padStart(2, '0');
 const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
@@ -233,7 +239,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           </h2>
           <p data-reveal style="--i:2"><Inlines inlines={contactText} /></p>
           <div class="c-contact-actions" data-reveal style="--i:3">
-            <a class="i-button i-button-solid" href={contactForm}>{t.contact.action} <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="i-button i-button-solid" href={contactForm}>{contactLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
             <a class="c-contact-return" href={branch.home.href}>{t.contact.back} <span class="arrow arrow-back" aria-hidden="true">↖</span></a>
           </div>
         </div>

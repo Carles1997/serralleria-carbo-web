@@ -114,3 +114,25 @@ export function one<T>(items: T[], what: string): T {
   if (items.length !== 1) throw new Error(`S'esperava ${what}; se n'han trobat ${items.length}.`);
   return items[0];
 }
+
+/**
+ * Revisió editorial del 30/09/2026 (fases/fase-5/FASE5-revisio-editorial.md): els titulars es
+ * mostren repartits en línies per a la composició (i18n/ui.ts), però el text és el del contingut.
+ * Si no diuen el mateix (llevat de puntuació i majúscules), el build s'atura.
+ */
+export function sameText(visible: string | string[], source: string, where: string) {
+  const normalize = (value: string) =>
+    value.replace(/[’‘]/g, "'").replace(/[.,:;!?]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+  const shown = Array.isArray(visible) ? visible.join(' ') : visible;
+  if (normalize(shown) !== normalize(source)) {
+    throw new Error(`El text visible «${shown}» no coincideix amb «${source}» de ${where}.`);
+  }
+}
+
+/** Element de llista «**dada** · etiqueta»: la dada en negreta i, si n'hi ha, l'etiqueta. */
+export function labelledItem(item: Inline[]) {
+  const [first, ...rest] = item;
+  const value = first?.type === 'strong' ? first.value : plainText(item);
+  const label = plainText(rest).replace(/^\s*·\s*/, '').trim();
+  return { value, label: label || value };
+}

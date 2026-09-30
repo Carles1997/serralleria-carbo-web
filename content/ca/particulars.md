@@ -11,9 +11,7 @@ seoDescription: "Baranes, estructures, portes i automatismes a mida per a habita
 
 Una passarel·la interior, baranes per a una reforma, una porta de pàrquing motoritzada: són treballs que hem fet i que pots veure a Projectes. Fabriquem i instal·lem peces a mida per a habitatges, comunitats i negocis des del nostre taller a Vilafranca del Penedès.
 
-Si tens una avaria o un projecte nou, explica'ns què necessites i ho valorarem amb tu.
-
-## En què et podem ajudar
+## Feines a mida. Respostes clares
 
 ### Portes i motors
 
@@ -39,20 +37,18 @@ Fabriquem mobiliari amb estructura metàl·lica, a mida de l'ús i de l'espai.
 
 [Veure mobiliari](/particulars/mobiliari/)
 
-## Treballs reals
+## Fets, no només paraules
 
 A la portada destaquem tres treballs documentats: baranes interiors, una estructura per a ascensor i les persianes motoritzades d’un negoci. El portafoli recull els cinc casos recuperats, fets per a habitatges, comunitats i negocis.
 
-[Veure projectes](/particulars/projectes/)
+[Veure els cinc treballs](/particulars/projectes/)
 
 ## A prop, amb capacitat de taller
 
 Treballem principalment a Vilafranca del Penedès i la rodalia i també fem encàrrecs fins a Barcelona. Tenim taller i vehicles propis per instal·lar; els desplaçaments fora de la zona habitual es valoren en cada cas.
 
-## Explica'ns què necessites
+## Explica'ns la feina
 
 Descriu la feina i, si en tens, adjunta una fotografia, les mides o un document. Així podem començar a valorar el projecte amb informació concreta.
 
-[Explica'ns la feina](/contacte/)
-
-També pots escriure'ns per WhatsApp al **630 661 908**.
+[Formulari de contacte](/contacte/)

@@ -15,7 +15,7 @@ import ContactBlock from '../components/ContactBlock.astro';
 import Inlines from '../components/Inlines.astro';
 import type { Page } from '../i18n/pages';
 import { useUi } from '../i18n/ui';
-import { one, paragraphs, parseInlines, parseMarkdown, plainText } from '../lib/markdown';
+import { links, one, paragraphs, parseInlines, parseMarkdown, plainText, sameText } from '../lib/markdown';
 import { projectPhotography, sitePhotography, type ProjectPhotoId } from '../config/photography';
 import './mockup-base.css';
 import './portfolio.css';
@@ -35,10 +35,15 @@ const doc = parseMarkdown(page.body ?? '');
 if (t.hero.title.join(' ') !== doc.title) {
   throw new Error(`El titular compost («${t.hero.title.join(' ')}») no coincideix amb la H1 de particulars-projectes.md.`);
 }
-const [intro, servicesText] = paragraphs(doc.intro);
-const serviceLinks = (servicesText ?? []).flatMap((inline) => (inline.type === 'link' ? [{ label: inline.value, href: inline.href }] : []));
-if (!intro || !serviceLinks.length) throw new Error("particulars-projectes.md necessita l'entrada i el paràgraf d'enllaços als serveis.");
-const contact = one(doc.sections, 'una secció de contacte');
+// Revisió editorial (30/09/2026): entrada, serveis relacionats i contacte, amb els titulars del
+// contingut repartits en línies a i18n/ui.ts.
+const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada a particulars-projectes.md");
+if (doc.sections.length !== 2) throw new Error(`particulars-projectes.md ha de tenir 2 seccions H2; en té ${doc.sections.length}.`);
+const [more, contact] = doc.sections;
+sameText(t.more.heading, more.heading, 'particulars-projectes.md');
+sameText(t.contactHeading, contact.heading, 'particulars-projectes.md');
+const serviceLinks = links(more.blocks);
+if (!serviceLinks.length) throw new Error(`«${more.heading}» necessita els enllaços als serveis.`);
 const contactText = one(paragraphs(contact.blocks), 'un paràgraf a la secció de contacte');
 const contactLink = contact.blocks
   .flatMap((block) => (block.type === 'paragraph' ? block.inlines : []))

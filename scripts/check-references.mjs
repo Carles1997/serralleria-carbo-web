@@ -9,13 +9,40 @@
 //
 // Canviar BASELINE només quan el director de projecte validi una nova revisió de
 // referències; vegeu fases/fase-5/FASE5-indexacio.md.
+//
+// Revisions editorials validades del contingut (VALIDATED_REVISIONS): el cos d'un fitxer pot
+// diferir de la línia base si coincideix amb l'empremta registrada per a una revisió validada pel
+// director. Així la validació queda al mateix commit que el canvi. Per obtenir les empremtes:
+// node scripts/check-references.mjs --hashes
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 
 const BASELINE = '5e0ffc9'; // Finalize phase 4 mockups and prepare Claude phase 5 (27/09/2026)
 const STRICT_PATHS = ['fases/fase-1', 'fases/fase-2', 'fases/fase-3', 'fases/fase-4', 'design'];
 const CONTENT_PATH = 'content';
 const APPROVAL_KEYS = new Set(['status', 'publishReady', 'noindex', 'reviewNeeded']);
+/** Revisions validades: fitxer → empremta SHA-256 del cos (sense frontmatter, amb salts LF). */
+const VALIDATED_REVISIONS = [
+  {
+    // Alineació del text visible amb content/ca/ (fases/fase-5/FASE5-revisio-editorial.md).
+    label: 'revisió editorial validada pel director el 30/09/2026',
+    bodies: {
+      'content/ca/contacte.md': '5a51aa82a36b1d5a67e5eaea505a7db13e476d5226af07e154135d28e97e7f9a',
+      'content/ca/home.md': '9a45f7c4d19ee10efff81809cfe1957b773013c522f2825b691e179155e33827',
+      'content/ca/industrial-capacitats.md': 'c12ba268538f4ea8883895ecd78922feb68ef94397de038a10ffb79781d74e12',
+      'content/ca/industrial.md': '0b94b1d9abebd992944f669dc1f4b641f7fedbd1a853a91734f22a07bc80938e',
+      'content/ca/particulars-automatismes.md': '75762acea060ca9d463b922637a3aa929034ca50efefef2e8c533566a9e91035',
+      'content/ca/particulars-estructures.md': 'a8d44cbfb2d50972d36fd24f3003d2a6d518d2aaa6f8b3854ff4fe19120620ed',
+      'content/ca/particulars-mobiliari.md': '0b007ee2200723d4172b41e4610ea55821db932c4237eb2a56875da04e7dc9ca',
+      'content/ca/particulars-projectes.md': '5fbee9dde1ce6287809575f5a60dfb0b078cc00e0d71b9376bbf85718f761da6',
+      'content/ca/particulars-urgencies.md': 'e0bd8500bf500e94d3ab296b2c0c3c3b98ada43e04910b59b0feefbcd68e4e25',
+      'content/ca/particulars.md': '4ae7478c14d659d5ba506842ca20e1054b16e5280f164acb7f7be7c5207a4950',
+    },
+  },
+];
+const printHashes = process.argv.includes('--hashes');
+const bodyHash = (body) => createHash('sha256').update(body).digest('hex');
 
 const git = (args, input) => execFileSync('git', args, { encoding: 'utf8', input, maxBuffer: 64 * 1024 * 1024 });
 const list = (output) => output.split('\0').filter(Boolean);
@@ -87,7 +114,13 @@ for (const path of contentBase.keys()) {
   }
   const before = parseMarkdown(git(['show', `${BASELINE}:${path}`]));
   const after = parseMarkdown(readFileSync(path, 'utf8'));
-  if (before.body !== after.body) errors.push(`text modificat: ${path}`);
+  if (before.body !== after.body) {
+    const hash = bodyHash(after.body);
+    const revision = VALIDATED_REVISIONS.find(({ bodies }) => bodies[path] === hash);
+    if (printHashes) console.log(`    '${path}': '${hash}',`);
+    else if (revision) notes.push(`${path}: ${revision.label}`);
+    else errors.push(`text modificat: ${path}`);
+  }
   for (const key of new Set([...before.keys.keys(), ...after.keys.keys()])) {
     if (before.keys.get(key) === after.keys.get(key)) continue;
     if (APPROVAL_KEYS.has(key)) notes.push(`${path}: ${after.keys.get(key)?.replace(/\n\s*/g, ' ') ?? `${key} eliminat`}`);
@@ -96,6 +129,7 @@ for (const path of contentBase.keys()) {
 }
 for (const path of contentNow) if (!contentBase.has(path)) notes.push(`contingut nou: ${path}`);
 
+if (printHashes) process.exit(0);
 if (notes.length) console.log(`Canvis permesos respecte a ${BASELINE}:\n  ${notes.join('\n  ')}`);
 if (errors.length) {
   console.error(`Referències validades alterades respecte a ${BASELINE}:\n  ${errors.join('\n  ')}`);

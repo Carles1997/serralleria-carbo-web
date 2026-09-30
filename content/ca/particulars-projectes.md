@@ -14,9 +14,11 @@ Feines fetes per a habitatges, comunitats i negocis. Cada cas mostra el treball 
 
 <!-- Renderitzar aquí els cinc casos de content/ca/projects/ indicats a projectIds; no crear pàgines de detall noves. -->
 
-Consulta també els serveis d'[estructures](/particulars/estructures/) i d'[automatismes](/particulars/automatismes/).
+## De la feina al teu projecte
 
-## Parlem del teu projecte
+[Estructures](/particulars/estructures/) · [Automatismes](/particulars/automatismes/)
+
+## Explica'ns la idea
 
 Si algun d'aquests casos s'assembla al que necessites, envia'ns una fotografia, mesures o una breu descripció de l'espai.
 

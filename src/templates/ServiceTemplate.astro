@@ -19,12 +19,14 @@ import Inlines from '../components/Inlines.astro';
 import type { Page } from '../i18n/pages';
 import { useUi } from '../i18n/ui';
 import { company, whatsappUrl } from '../config/site';
-import { links, one, paragraphs, parseMarkdown, type Inline, type Link, type Section } from '../lib/markdown';
+import { labelledItem, links, listItems, one, paragraphs, parseMarkdown, sameText, type Inline, type Link, type Section } from '../lib/markdown';
 import { sitePhotography } from '../config/photography';
 import './mockup-base.css';
 import './service.css';
 // Redisseny (28/09/2026): la secció de procés passa a fitxa de preparació (què cal tenir a punt,
 // nota opcional i accés directe al formulari del servei); la frase de resultat era redundant.
+// Revisió editorial (30/09/2026): la fitxa (entrada, tres dades «**títol** · text» i nota opcional),
+// l'enllaç de la galeria i els titulars de secció surten del contingut.
 // Bloc 3 del pla d'afinament: sense etiquetes sobre la H1 i els H2 (repetien el titular o el títol
 // del contingut) ni rètol al bloc de contacte; rols tipogràfics i superfícies de styles/roles.css.
 
@@ -37,14 +39,10 @@ interface ServiceConfig {
     lead: string;
     label: string;
     panels: { meta: string; title: string; diagram: string }[];
-    works: Link;
   };
   process: {
     heading: string[];
-    lead?: string;
     label: string;
-    steps: { title: string; text: string }[];
-    optional: string;
   };
   repair?: false;
   contactHeading: string[];
@@ -80,18 +78,20 @@ const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada");
 const allLinks = doc.sections.flatMap((section) => links(section.blocks));
 
 const direct = byRole.get('direct');
-// En la variant d'incidència, el paràgraf del formulari del contingut fa d'entrada del procés.
-const processLead: Inline[] | string | undefined = direct ? paragraphs(direct.blocks)[0] : config.process.lead;
+// Fitxa de preparació: a la variant d'incidència és la secció de contacte directe.
+const brief = byRole.get('process') ?? direct;
+if (!brief) throw new Error(`${pageId}.md necessita una secció de preparació (process o direct).`);
+sameText(config.process.heading, brief.heading, `${pageId}.md`);
+const [processLead, optionalText] = paragraphs(brief.blocks);
+if (!processLead || !optionalText) throw new Error(`«${brief.heading}» necessita l'entrada i la nota opcional.`);
+const steps = listItems(brief.blocks).map(labelledItem);
+if (steps.length !== 3) throw new Error(`«${brief.heading}» ha de tenir tres dades; en té ${steps.length}.`);
 
 const worksSection = byRole.get('works');
 let works: { text: Inline[]; link: Link } | undefined;
 if (worksSection) {
   if (!config.scope) throw new Error(`El rol «works» de ${pageId} necessita una galeria (scope).`);
   const link = one(links(worksSection.blocks), `un enllaç a «${worksSection.heading}»`);
-  // L'enllaç de la maqueta afegeix el filtre del portafoli; ha d'apuntar a la mateixa ruta.
-  if (new URL(config.scope.works.href, 'https://x').pathname !== link.href) {
-    throw new Error(`L'enllaç de treballs (${config.scope.works.href}) no coincideix amb ${link.href}.`);
-  }
   works = { text: one(paragraphs(worksSection.blocks), `un paràgraf a «${worksSection.heading}»`), link };
 }
 
@@ -122,6 +122,7 @@ const whatsapp = directLinks.find((link) => link.href.startsWith('https://wa.me/
 
 const contactSection = byRole.get('contact');
 const contactText = contactSection ? one(paragraphs(contactSection.blocks), 'un paràgraf a la secció de contacte') : undefined;
+if (contactSection) sameText(config.contactHeading, contactSection.heading, `${pageId}.md`);
 const contactLink = allLinks.find((link) => link.href.startsWith('/contacte/'));
 if (!contactLink) throw new Error(`${pageId}.md necessita un enllaç a /contacte/.`);
 
@@ -217,9 +218,11 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
                   </p>
                 )}
               </div>
-              <a class="underlined-link" href={config.scope.works.href}>
-                {config.scope.works.label} <span class="arrow" aria-hidden="true">↗</span>
-              </a>
+              {works && (
+                <a class="underlined-link" href={works.link.href}>
+                  {works.link.label} <span class="arrow" aria-hidden="true">↗</span>
+                </a>
+              )}
             </div>
           </div>
         </section>
@@ -235,7 +238,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           {
             processLead && (
               <p data-reveal style="--i:1">
-                {typeof processLead === 'string' ? processLead : <Inlines inlines={processLead} />}
+                <Inlines inlines={processLead} />
               </p>
             )
           }
@@ -243,18 +246,18 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
         <div class="s-brief-body">
           <ol class="s-brief-list" aria-label={config.process.label} data-reveal="group">
             {
-              config.process.steps.map((step, index) => (
+              steps.map((step, index) => (
                 <li style={`--i:${index}`}>
                   <span class="s-brief-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                   <div>
-                    <h3>{step.title}</h3>
-                    <p>{step.text}</p>
+                    <h3>{step.value}</h3>
+                    <p>{step.label}</p>
                   </div>
                 </li>
               ))
             }
           </ol>
-          <p class="s-brief-optional" data-reveal style="--i:1"><span>{shared.brief.optional}</span> {config.process.optional}</p>
+          <p class="s-brief-optional" data-reveal style="--i:1"><span>{shared.brief.optional}</span> <Inlines inlines={optionalText} /></p>
         </div>
         <a class="s-brief-action" href={briefHref} data-reveal style="--i:2">{shared.brief.action} <span class="arrow" aria-hidden="true">↗</span></a>
       </div>

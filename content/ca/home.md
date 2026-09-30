@@ -13,30 +13,24 @@ Fabriquem i instal·lem portes, baranes, estructures i automatismes per a habita
 
 ## Particulars
 
-Portes i motors, baranes i estructures, carros industrials i mobiliari a mida. Fabriquem i instal·lem al taller; també atenem reparacions de portes i automatismes durant l’horari d’atenció.
+Baranes, escales, portes, automatismes i mobiliari a mida. També atenem reparacions.
 
-[Serveis per a particulars](/particulars/)
+[Veure serveis](/particulars/)
 
 ## Industrial
 
 Sèries curtes. Peces exigents. Resposta industrial.
 
-Fabriquem peces, carros i conjunts en acer al carboni i inox 304/316, amb soldadura MIG/MAG i TIG. Valorem sèries curtes i estructures per a projectes de construcció de gran escala.
-
 [Coneix Industrial](/industrial/)
 
-Si tens una avaria en una porta o un automatisme, [consulta reparacions i contacte directe](/particulars/urgencies/).
-
-## El taller, en xifres
+## Fets que ens defineixen
 
 - **1989** · Any de fundació
 - **950 m²** · Taller de fabricació a Vilafranca del Penedès
-- **12 persones** · Plantilla
-- **6 furgonetes i 1 camió ploma** · Vehicles per a instal·lacions i logística
+- **12 persones** · Persones a la plantilla
+- **6 furgonetes i 1 camió ploma**
 
-<!-- Aquestes quatre dades formen el bloc de xifres de la home. La jerarquia i el format visual es definiran a la Fase 4; mantenir les etiquetes llegibles en mòbil. -->
-
-Aquesta capacitat de taller i desplaçament ens permet treballar tant en una barana per a un habitatge com en una sèrie curta per a un fabricant.
+<!-- Bloc de xifres de la Home: la dada en negreta és la xifra animada i el text després de «·», l'etiqueta visible (si no n'hi ha, es mostra la dada). -->
 
 ## Del taller a cada projecte
 

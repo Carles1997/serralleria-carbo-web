@@ -11,7 +11,7 @@ seoDescription: "Taller de 950 m² amb plegadora, cisalla i punxonadora; acer al
 
 Materials, processos i maquinària del taller de Industrial. Els gruixos, les mides i les toleràncies de cada peça es revisen amb el plànol.
 
-## Espai i equip
+## Del material a la peça
 
 Disposem d'un taller de fabricació de **950 m²**, amb equip propi de soldadura i muntatge. L'empresa té una plantilla de **12 persones**.
 
@@ -29,22 +29,20 @@ Disposem de **plegadora, cisalla i punxonadora**.
 
 Treballem amb processos **MIG/MAG** i **TIG**.
 
-## Muntatge i logística
+## Desplaçaments i muntatge
 
 Disposem de sis furgonetes i un camió ploma per als desplaçaments i el muntatge.
 
-## Projectes amb requisits tècnics
+## Quan el projecte demana suport tècnic
 
 Podem valorar encàrrecs que requereixin suport d'arquitectura tècnica. La documentació del projecte ens permet concretar-ne l'abast.
 
-## Millora en curs
+## Millores en curs · no són certificacions vigents
 
 Estem implantant l'ISO 9001 i estudiant l'ISO 3834. La digitalització i l'automatització de la soldadura també són línies de treball en procés.
 
-## Què necessitem per valorar la feina
+## Parlem de la peça
 
 Envia el plànol o la documentació que tinguis, el material, la quantitat i el termini que necessites. Amb aquesta informació podrem revisar l'encaix tècnic.
 
-[Enviar una consulta tècnica](/contacte/)
-
-També pots parlar de la feina al [630 661 908](tel:+34630661908) o escriure a [carbo@serralleriacarbo.com](mailto:carbo@serralleriacarbo.com).
+[Envia una consulta tècnica](/contacte/?tipus=empresa)

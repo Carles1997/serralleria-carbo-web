@@ -15,7 +15,7 @@ import Inlines from '../components/Inlines.astro';
 import type { Page } from '../i18n/pages';
 import { useUi } from '../i18n/ui';
 import { company, whatsappUrl } from '../config/site';
-import { one, paragraphs, parseMarkdown } from '../lib/markdown';
+import { one, paragraphs, parseMarkdown, sameText } from '../lib/markdown';
 import './mockup-base.css';
 import './contact.css';
 
@@ -33,10 +33,12 @@ const doc = parseMarkdown(page.body ?? '');
 if (t.hero.title.join(' ') !== doc.title) {
   throw new Error(`El titular compost («${t.hero.title.join(' ')}») no coincideix amb la H1 de contacte.md.`);
 }
-if (doc.sections.length !== 5) throw new Error(`contacte.md ha de tenir 5 seccions H2; en té ${doc.sections.length}.`);
-// «Contacte directe» (número principal, WhatsApp, trucada i fix) es resol amb les accions de
-// l'entrada, el lateral i l'enllaç del fix; no se'n repeteix el paràgraf.
-const [, particular, empresa, hours, general] = doc.sections;
+// Revisió editorial (30/09/2026): «Contacte directe» ja no és al contingut (el número principal,
+// el WhatsApp, la trucada i el fix són accions de l'entrada i del lateral). Els H2 de branca fan de
+// títol accessible de cada grup del formulari.
+if (doc.sections.length !== 4) throw new Error(`contacte.md ha de tenir 4 seccions H2; en té ${doc.sections.length}.`);
+const [particular, empresa, hours, general] = doc.sections;
+sameText(t.place.heading, general.heading, 'contacte.md');
 const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada");
 const [particularHelp, particularAside] = paragraphs(particular.blocks);
 const [empresaHelp, empresaAside] = paragraphs(empresa.blocks);

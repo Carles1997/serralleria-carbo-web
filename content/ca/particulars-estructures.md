@@ -11,17 +11,25 @@ seoDescription: "Baranes, escales i passarel·les metàl·liques per a habitatge
 
 Fabriquem i instal·lem baranes, escales, passarel·les i altres estructures metàl·liques per a habitatges, comunitats i negocis. Cada peça es defineix segons l'espai, l'ús i l'acabat que demana el projecte.
 
-## Del projecte al muntatge
+## Comencem per entendre l'espai
 
-El taller disposa d'equip propi de soldadura i muntatge. Per valorar la teva estructura, ens ajuda conèixer les mides, la ubicació i l'ús previst; pots adjuntar fotografies o plànols a la consulta. Amb aquesta informació podrem parlar de materials, acabats i instal·lació.
+Per valorar la teva estructura, ens ajuda tenir tres dades sobre la feina. El taller disposa d'equip propi de soldadura i muntatge.
+
+- **Mides** · De la peça o de l'espai.
+- **Ubicació** · On s'haurà d'instal·lar.
+- **Ús previst** · Per a què la necessites.
+
+Si en tens, adjunta fotografies o plànols a la consulta.
 
 ## Feines que ja hem fet
 
+<!-- La galeria es mostra sense titular (revisió editorial del 30/09/2026): aquest H2 només ordena el contingut. -->
+
 Entre els treballs documentats hi ha una passarel·la interior amb baranes de ferro negre, baranes per a la reforma d'un habitatge i una estructura per incorporar un ascensor a una comunitat.
 
-[Veure els projectes](/particulars/projectes/)
+[Veure projectes d'estructures](/particulars/projectes/?servei=estructures)
 
-## Explica'ns el teu projecte
+## Comencem pel teu espai
 
 Descriu l'espai i la peça que necessites. Si disposes de mesures o imatges, adjunta-les al formulari.
 

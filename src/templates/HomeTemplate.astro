@@ -1,8 +1,8 @@
 ---
 // Plantilla H (Home). Composició: fases/fase-4/FASE4-mockups/home/ amb
 // revisio-client.css i els ajustos del director de projecte del 27/09/2026.
-// Text: content/{idioma}/home.md, llegit per seccions; el doble accés i les xifres
-// usen els textos de la maqueta (i18n/ui.ts), contrastats amb les dades de home.md.
+// Text: content/{idioma}/home.md, llegit per seccions (revisió editorial del 30/09/2026: el text
+// visible és el del contingut). Les etiquetes de maqueta validades (i18n/ui.ts) completen la composició.
 // Imatges: fotografies dels projectes i imatges de servei, sense llegendes (director, 28/09/2026).
 // Moviment: styles/motion.css i scripts/motion.ts; tot és llegible sense JS i amb moviment reduït.
 // Bloc 1 del pla d'afinament (fases/fase-5/FASE5-pla-millora-integral.md): sense rètols numerats
@@ -18,7 +18,7 @@ import Inlines from '../components/Inlines.astro';
 import type { Page } from '../i18n/pages';
 import { useUi } from '../i18n/ui';
 import { sitePhotography } from '../config/photography';
-import { links, listItems, one, paragraphs, parseMarkdown } from '../lib/markdown';
+import { labelledItem, links, listItems, one, paragraphs, parseMarkdown, sameText } from '../lib/markdown';
 
 interface Props {
   page: Page;
@@ -39,16 +39,21 @@ const titleWords = titleMain.trim().split(' ');
 const titleSmall = titleRest.join(',').trim();
 const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada");
 
+const particularsCopy = one(paragraphs(particulars.blocks), 'un paràgraf a la secció Particulars');
 const particularsLink = one(links(particulars.blocks), 'un enllaç a la secció Particulars');
 const industrialSlogan = paragraphs(industrial.blocks)[0];
 if (!industrialSlogan) throw new Error('La secció Industrial necessita el missatge de marca.');
 const industrialLink = one(links(industrial.blocks), 'un enllaç a la secció Industrial');
 
-// Les xifres visibles han de correspondre a dades de home.md; si no hi consten, el build s'atura.
-const confirmed = new Set(listItems(numbers.blocks).map(([value]) => (value?.type === 'strong' ? value.value : '')));
-for (const item of t.numbers.items) {
-  if (!confirmed.has(item.source)) throw new Error(`La xifra «${item.source}» no consta a home.md.`);
-}
+// Xifres: dada i etiqueta de home.md; ui.ts només hi afegeix el valor numèric per al comptador.
+sameText(t.numbers.heading, numbers.heading, 'home.md');
+const figures = listItems(numbers.blocks).map(labelledItem);
+const numberItems = t.numbers.items.map((item) => {
+  const figure = figures.find((entry) => entry.value === item.source);
+  if (!figure) throw new Error(`La xifra «${item.source}» no consta a home.md.`);
+  return { ...item, label: figure.label };
+});
+if (numberItems.length !== figures.length) throw new Error('Cada xifra de home.md necessita el seu valor a i18n/ui.ts.');
 
 const companyText = one(paragraphs(company.blocks), "un paràgraf a la secció d'empresa");
 const companyLink = one(links(company.blocks), "un enllaç a la secció d'empresa");
@@ -104,8 +109,8 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
           </span>
           <span class="path-kicker">{t.paths.particulars.kicker}</span>
           <strong class="path-title">{particulars.heading}</strong>
-          <span class="path-copy">{t.paths.particulars.copy}</span>
-          <span class="path-action">{t.paths.particulars.action} <span class="arrow" aria-hidden="true">↗</span></span>
+          <span class="path-copy"><Inlines inlines={particularsCopy} /></span>
+          <span class="path-action">{particularsLink.label} <span class="arrow" aria-hidden="true">↗</span></span>
         </a>
         <a class="path path-industrial" href={industrialLink.href} data-reveal="clip" style="--i:2">
           <Picture src={sitePhotography.home.industrial} alt="" widths={[640, 960, 1280, 1536]} sizes={pathSizes} formats={['avif', 'webp']} fallbackFormat="jpg" priority />
@@ -130,7 +135,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
         </div>
         <ul class="number-grid" data-counters>
           {
-            t.numbers.items.map(({ value, unit, label }, index) => (
+            numberItems.map(({ value, unit, label }, index) => (
               <li class="number-item" data-reveal style={`--i:${index}`}>
                 <strong>
                   <span class="count" data-count={value} style={`--digits:${String(value).length}`} aria-hidden="true">

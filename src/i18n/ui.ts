@@ -37,20 +37,18 @@ const ca = {
       heading: 'Tria el teu camí',
       particulars: {
         kicker: 'Per a casa, comunitats i negocis',
-        copy: 'Baranes, escales, portes, automatismes i mobiliari a mida. També atenem reparacions.',
-        action: 'Veure serveis',
       },
       // L'acció d'Industrial usa l'etiqueta de l'enllaç de home.md («Coneix Industrial»), que descriu el destí.
       industrial: { kicker: 'Empreses · construcció · producció' },
     },
     numbers: {
       heading: ['Fets que', 'ens defineixen'],
-      // «source» ha de coincidir amb una xifra en negreta de home.md: el build ho comprova.
+      // «source»: xifra en negreta de home.md, d'on surt també l'etiqueta (es comprova al build).
       items: [
-        { source: '1989', value: 1989, unit: '', label: 'Any de fundació' },
-        { source: '950 m²', value: 950, unit: 'm²', label: 'Taller de fabricació a Vilafranca del Penedès' },
-        { source: '12 persones', value: 12, unit: '', label: 'Persones a la plantilla' },
-        { source: '6 furgonetes i 1 camió ploma', value: 6, unit: '+1', label: '6 furgonetes i 1 camió ploma' },
+        { source: '1989', value: 1989, unit: '' },
+        { source: '950 m²', value: 950, unit: 'm²' },
+        { source: '12 persones', value: 12, unit: '' },
+        { source: '6 furgonetes i 1 camió ploma', value: 6, unit: '+1' },
       ],
     },
     services: {
@@ -97,11 +95,9 @@ const ca = {
       // Casos destacats del paràgraf «Treballs reals» de particulars.md.
       featured: ['baranes-interior-casa', 'estructura-ascensor', 'persianes-negoci'],
       outroTitle: 'Els cinc treballs, al portafoli',
-      all: 'Veure els cinc treballs',
       talk: 'Parlem del teu projecte',
     },
     contactHeading: ["Explica'ns", 'la feina'],
-    contactForm: 'Formulari de contacte',
   },
   // Context de cada cas (maquetes P i PP), derivat de la descripció del cas a content/ca/projects/.
   projectContexts: {
@@ -168,28 +164,19 @@ const ca = {
       machines: { head: ['Maquinària', 'Equip del taller'], title: ['Transformació', 'del metall'], foot: 'Plegadora' },
       welding: { head: ['Soldadura', 'Processos disponibles'], title: ['Processos', 'de soldadura'] },
       mounting: { head: ['Muntatge', 'Equip propi'], title: ['Del taller', 'al muntatge'], text: 'Equip propi per als desplaçaments i el muntatge.' },
-      action: 'Consulta la fitxa de capacitats',
       progress: {
         label: 'En procés, no certificacions vigents',
         items: [
           { title: 'ISO 9001', state: 'En implantació' },
           { title: 'ISO 3834', state: 'En estudi' },
-          { title: 'Robotització', state: 'I automatització en curs' },
+          // Revisió editorial (30/09/2026): «Robotització» no constava al contingut.
+          { title: 'Automatització', state: 'Digitalització i automatització de la soldadura en curs' },
         ],
       },
     },
     series: {
       heading: ['La sèrie comença', 'amb una', 'peça'],
-      lead: 'Material, soldadura, muntatge i quantitat es valoren conjuntament abans de fabricar. Cada sèrie es concreta segons els seus requisits.',
       method: { label: 'Del requisit a la peça', heading: ['Quatre passos', 'Una feina ben definida'] },
-      // Passos de content/ca/industrial-proces.md (Definim → Preparem → Fabriquem → Comprovem).
-      steps: [
-        { title: 'Definim', text: 'Revisem què cal fabricar, el material, les unitats i la documentació disponible.' },
-        { title: 'Preparem', text: 'Organitzem la feina segons la peça i resolem els dubtes tècnics.' },
-        { title: 'Fabriquem', text: "Fabriquem, soldem i muntem segons l'abast acordat." },
-        { title: 'Comprovem', text: "Revisem el treball d'acord amb els requisits concretats per al projecte." },
-      ],
-      image: 'Imatge conceptual · no mostra producció pròpia',
       action: 'Consultar una sèrie',
     },
     sectors: {
@@ -206,15 +193,12 @@ const ca = {
     },
     project: {
       heading: ['Un encàrrec real', 'Deu gàbies'],
-      // Text de la maqueta: mentre /industrial/projectes/ està ajornada, el cas porta al contacte.
-      action: "Parlem d'un projecte semblant",
     },
     contact: {
       heading: ['Parlem de', 'la peça'],
       guideLabel: 'Per valorar la consulta',
       guide: ['Plànol o documentació', 'Material i aplicació', 'Unitats previstes', 'Termini que necessites'],
       methodLabel: 'Contacte directe',
-      form: 'Formulari de consulta tècnica',
     },
   },
   // Pàgina d'empresa: interior editorial derivat de la Home (traspàs de Fase 4). Cos de text,
@@ -308,7 +292,6 @@ const ca = {
     },
     contact: {
       heading: ['Parlem', 'de la peça'],
-      action: 'Envia una consulta tècnica',
       back: 'Torna a Industrial',
       fieldsLabel: 'Què ens ajuda a començar',
       fields: ['Plànol o documentació', 'Material i tipus de peça', 'Unitats previstes', 'Termini necessari'],
@@ -421,18 +404,10 @@ const ca = {
             { meta: 'Ferro a mida', title: 'Escales', diagram: 'escala' },
             { meta: 'Estructures metàl·liques', title: 'Passarel·les', diagram: 'passarella' },
           ],
-          works: { label: "Veure projectes d'estructures", href: '/particulars/projectes/?servei=estructures' },
         },
         process: {
           heading: ['Comencem per', "entendre l'espai"],
-          lead: "Per valorar la teva estructura, ens ajuda tenir tres dades sobre la feina. El taller disposa d'equip propi de soldadura i muntatge.",
           label: 'Informació per començar la valoració',
-          steps: [
-            { title: 'Mides', text: "De la peça o de l'espai." },
-            { title: 'Ubicació', text: "On s'haurà d'instal·lar." },
-            { title: 'Ús previst', text: 'Per a què la necessites.' },
-          ],
-          optional: 'Si en tens, adjunta fotografies o plànols a la consulta.',
         },
         contactHeading: ['Comencem', 'pel teu espai'],
       },
@@ -453,18 +428,10 @@ const ca = {
             { meta: 'Enrotllables', title: 'Persianes', diagram: 'persiana' },
             { meta: 'Revisió de sistemes instal·lats', title: 'Altres accessos', diagram: 'acces' },
           ],
-          works: { label: "Veure projectes d'automatismes", href: '/particulars/projectes/?servei=automatismes' },
         },
         process: {
           heading: ['Comencem per', 'conèixer la porta'],
-          lead: 'Per valorar quin treball cal fer, ens ajuda saber tres coses de la porta.',
           label: 'Informació per valorar la feina',
-          steps: [
-            { title: 'Tipus', text: "Garatge, persiana o un altre accés." },
-            { title: 'Estat actual', text: 'Com funciona ara.' },
-            { title: 'Canvi', text: 'Què vols canviar.' },
-          ],
-          optional: 'Si és possible, adjunta una fotografia a la consulta.',
         },
         contactHeading: ["Explica'ns", 'el teu cas'],
       },
@@ -476,14 +443,7 @@ const ca = {
         },
         process: {
           heading: ['Comencem per', "l'ús de la peça"],
-          lead: 'Per definir la peça i el seu acabat, ens ajuda tenir tres dades.',
           label: 'Informació per començar la valoració',
-          steps: [
-            { title: 'Ús', text: 'Per a què servirà.' },
-            { title: 'Ubicació', text: 'On anirà.' },
-            { title: 'Mides', text: 'Aproximades, si en tens.' },
-          ],
-          optional: "Una fotografia de l'espai o un esbós també ens ajuda.",
         },
         contactHeading: ["Explica'ns", 'el projecte'],
       },
@@ -491,18 +451,13 @@ const ca = {
         sections: ['direct', 'related'],
         hero: {
           title: ['Reparació de portes', 'i automatismes', 'a Vilafranca'],
-          // Horari confirmat al traspàs de Fase 4 (25/09/2026). Sense promeses de temps de resposta.
+          // Horari confirmat al traspàs de Fase 4 (25/09/2026) i pel director (30/09/2026); és el de
+          // contacte.md. Sense promeses de temps de resposta.
           hours: 'Atenció de dilluns a divendres, de 8 a 13 h i de 15 a 18 h.',
         },
         process: {
           heading: ["Explica'ns", 'la incidència'],
           label: 'Informació sobre la incidència',
-          steps: [
-            { title: 'La porta', text: 'Porta, persiana o motor.' },
-            { title: 'Què passa', text: 'Què ha deixat de funcionar.' },
-            { title: 'On és', text: 'On és la instal·lació.' },
-          ],
-          optional: 'Si pots, adjunta una fotografia.',
         },
         repair: false,
         contactHeading: ["Explica'ns", 'què ha passat'],

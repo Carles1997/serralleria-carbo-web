@@ -92,21 +92,21 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
                     <span class="branch-option-content">
                       <strong>{f.branch[branch].label}</strong>
                       <small>{f.branch[branch].detail}</small>
-                      <span class="arrow" aria-hidden="true">↗</span>
                     </span>
                   </label>
                 ))
               }
             </fieldset>
 
-            <div class="form-section-title"><span>{f.sections.contact[0]}</span><p>{f.sections.contact[1]}</p></div>
-            <div class="field-grid">
-              <div class="field">
+            <fieldset class="form-group">
+            <legend class="form-group-title">{f.sections.contact}</legend>
+            <div class="field-grid field-grid-contact">
+              <div class="field field-wide">
                 <label for="nom">{f.fields.nom} <span aria-hidden="true">*</span></label>
                 <input id="nom" name="nom" autocomplete="name" required />
                 <p class="field-error" id="nom-error" hidden></p>
               </div>
-              <div class="field">
+              <div class="field field-wide">
                 <label for="correu">{f.fields.correu} <span aria-hidden="true">*</span></label>
                 <input id="correu" name="correu" type="email" inputmode="email" autocomplete="email" required />
                 <p class="field-error" id="correu-error" hidden></p>
@@ -121,43 +121,45 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
                 <input id="ubicacio" name="ubicacio" autocomplete="address-level2" />
               </div>
             </div>
+            </fieldset>
 
-            <div class="form-section-title"><span>{f.sections.work[0]}</span><p>{f.sections.work[1]}</p></div>
+            <fieldset class="form-group">
+            <legend class="form-group-title">{f.sections.work}</legend>
             <fieldset class="branch-fields" id="fields-particular" data-branch="particular">
               <legend class="sr-only">{particular.heading}</legend>
               <div class="field-grid">
                 <div class="field field-full">
                   <label for="servei">{f.fields.servei} <span aria-hidden="true">*</span></label>
-                  <select id="servei" name="servei" required>
+                  <select id="servei" name="servei" required aria-describedby="servei-help">
                     <option value="">{f.fields.serveiPlaceholder}</option>
                     {f.fields.services.map((service) => <option value={service.value}>{service.label}</option>)}
                   </select>
                   <p class="field-error" id="servei-error" hidden></p>
+                  <p class="branch-help" id="servei-help"><Inlines inlines={particularHelp} /></p>
                 </div>
               </div>
-              <p class="branch-help"><Inlines inlines={particularHelp} /></p>
             </fieldset>
             <fieldset class="branch-fields" id="fields-empresa" data-branch="empresa" hidden disabled>
               <legend class="sr-only">{empresa.heading}</legend>
-              <div class="field-grid">
-                <div class="field"><label for="sector">{f.fields.sector}</label><input id="sector" name="sector" autocomplete="off" /></div>
-                <div class="field"><label for="material">{f.fields.material}</label><input id="material" name="material" /></div>
-                <div class="field field-full">
+              <div class="field-grid field-grid-3">
+                <div class="field field-span-2">
                   <label for="peca">{f.fields.peca} <span aria-hidden="true">*</span></label>
-                  <input id="peca" name="peca" required />
+                  <input id="peca" name="peca" required aria-describedby="peca-help" />
                   <p class="field-error" id="peca-error" hidden></p>
                 </div>
-                <div class="field"><label for="unitats">{f.fields.unitats}</label><input id="unitats" name="unitats" inputmode="numeric" /></div>
                 <div class="field"><label for="termini">{f.fields.termini}</label><input id="termini" name="termini" /></div>
+                <div class="field"><label for="sector">{f.fields.sector}</label><input id="sector" name="sector" autocomplete="off" /></div>
+                <div class="field"><label for="material">{f.fields.material}</label><input id="material" name="material" /></div>
+                <div class="field"><label for="unitats">{f.fields.unitats}</label><input id="unitats" name="unitats" inputmode="numeric" /></div>
               </div>
-              <p class="branch-help"><Inlines inlines={empresaHelp} /></p>
+              <p class="branch-help" id="peca-help"><Inlines inlines={empresaHelp} /></p>
             </fieldset>
             <div class="field field-description">
               <label for="descripcio">{f.fields.descripcio} <span aria-hidden="true">*</span></label>
               <textarea
                 id="descripcio"
                 name="descripcio"
-                rows="5"
+                rows="4"
                 required
                 placeholder={f.fields.descripcioPlaceholder.particular}
                 data-placeholder-particular={f.fields.descripcioPlaceholder.particular}
@@ -166,7 +168,6 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
               <p class="field-error" id="descripcio-error" hidden></p>
             </div>
 
-            <div class="form-section-title form-section-title-upload"><span>{f.sections.files[0]}</span><p>{f.sections.files[1]}</p></div>
             <div class="upload-area" data-upload>
               <div class="upload-mark" aria-hidden="true">↑</div>
               <div>
@@ -183,6 +184,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
                 <span class="file-name" id="file-name" aria-live="polite">{f.upload.none}</span>
               </div>
             </div>
+            </fieldset>
 
             <div class="form-finish">
               <button type="submit" disabled data-submit>{f.submit} <span class="arrow" aria-hidden="true">↗</span></button>
@@ -231,14 +233,22 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
 
     <section class="contact-place" aria-labelledby="place-title" data-surface="light">
       <div class="section-shell place-grid">
-        <div data-reveal>
+        <div class="place-info" data-reveal>
           <h2 id="place-title" style={fit(...t.place.heading)}>{t.place.heading[0]}<br />{' '}{t.place.heading[1]}</h2>
-        </div>
-        <div class="place-info" data-reveal style="--i:1">
           <strong>{company.legalName}</strong>
           <address>{company.address[0]}<br />{company.address[1]}</address>
           <p><Inlines inlines={area} /></p>
           <a href={company.mapUrl} target="_blank" rel="noopener noreferrer">{t.place.map} <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <div class="place-map" data-map data-src={company.mapEmbedUrl} data-title={t.place.mapTitle} data-reveal style="--i:1">
+          <div class="place-map-facade">
+            <span class="place-map-pin" aria-hidden="true"></span>
+            <p class="place-map-address">{company.address[0]} · {company.postalAddress.locality}</p>
+            <div class="place-map-enhanced" hidden data-map-enhanced>
+              <button type="button" class="place-map-load" data-map-load>{t.place.mapLoad} <span class="arrow" aria-hidden="true">↗</span></button>
+              <p class="place-map-note">{t.place.mapNote}</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -250,4 +260,5 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
 
 <script>
   import '../scripts/contact-form';
+  import '../scripts/place-map';
 </script>

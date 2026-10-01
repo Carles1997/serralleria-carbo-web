@@ -7,6 +7,9 @@ export const company = {
   email: 'carbo@serralleriacarbo.com',
   address: ["Carrer d'Eugeni d'Ors, 59", '08720 Vilafranca del Penedès, Barcelona'],
   mapUrl: "https://www.google.com/maps/search/?api=1&query=Carrer%20d'Eugeni%20d'Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s",
+  // Mapa interactiu de Google Maps amb la mateixa adreça. Només es carrega si el visitant ho demana
+  // (src/scripts/place-map.ts): fins aleshores no es fa cap petició a Google.
+  mapEmbedUrl: "https://maps.google.com/maps?q=Carrer%20d'Eugeni%20d'Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s&z=16&hl=ca&output=embed",
   // Mateixa adreça, per camps (dades estructurades). Fundació i plantilla: content/ca/empresa.md.
   postalAddress: { street: "Carrer d'Eugeni d'Ors, 59", postalCode: '08720', locality: 'Vilafranca del Penedès', region: 'Barcelona', country: 'ES' },
   foundingDate: '1989-12',

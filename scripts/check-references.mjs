@@ -40,6 +40,15 @@ const VALIDATED_REVISIONS = [
       'content/ca/particulars.md': '4ae7478c14d659d5ba506842ca20e1054b16e5280f164acb7f7be7c5207a4950',
     },
   },
+  {
+    // Mobiliari deriva al formulari, com Carros; automatització i robotització de processos.
+    label: 'indicació del director del 01/10/2026',
+    bodies: {
+      'content/ca/home.md': '17930545a80204aa514b1f6469c1f0b2f056aa6a5df7a2e6164d59c2fa1dc024',
+      'content/ca/industrial-capacitats.md': 'b2f87d513e2d6c840bfb6bb5f643f530c24fe8099a8bcd275aa06d870ee6c68e',
+      'content/ca/particulars.md': '35af8c38479231b6b1b101b438d23bdafcc5aaae4f02064f46a02cad879d8c76',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

@@ -42,7 +42,7 @@ La major part de la feina es fa a Vilafranca i la rodalia; també treballem en p
 
 Consulta el servei concret si ja saps què necessites:
 
-[Portes i motors](/particulars/automatismes/) · [Baranes i estructures](/particulars/estructures/) · [Carros industrials](/contacte/?tipus=particular&servei=carros) · [Mobiliari a mida](/particulars/mobiliari/) · [Capacitats industrials](/industrial/capacitats/)
+[Portes i motors](/particulars/automatismes/) · [Baranes i estructures](/particulars/estructures/) · [Carros industrials](/contacte/?tipus=particular&servei=carros) · [Mobiliari a mida](/contacte/?tipus=particular&servei=mobiliari) · [Capacitats industrials](/industrial/capacitats/)
 
 ## Parlem del teu encàrrec
 

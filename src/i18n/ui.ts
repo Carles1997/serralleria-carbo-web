@@ -169,8 +169,9 @@ const ca = {
         items: [
           { title: 'ISO 9001', state: 'En implantació' },
           { title: 'ISO 3834', state: 'En estudi' },
-          // Revisió editorial (30/09/2026): «Robotització» no constava al contingut.
-          { title: 'Automatització', state: 'Digitalització i automatització de la soldadura en curs' },
+          // Indicació del director (01/10/2026): automatització i robotització de processos en general,
+          // com a industrial-capacitats.md.
+          { title: 'Automatització', state: 'I robotització de processos, en curs' },
         ],
       },
     },
@@ -322,22 +323,19 @@ const ca = {
         particular: { label: 'Particular', detail: 'Habitatge, comunitat o negoci' },
         empresa: { label: 'Empresa', detail: 'Fabricació i projectes industrials' },
       },
-      sections: {
-        contact: ['Dades de contacte', 'Com podem parlar amb tu?'],
-        work: ['La feina', 'Només els detalls que ja coneguis.'],
-        files: ['Documentació', 'Adjunta el que ja tinguis, si en disposes.'],
-      },
+      // Formulari compacte (indicació del director, 01/10/2026): dos grups, sense frases auxiliars.
+      sections: { contact: 'Dades de contacte', work: 'La feina' },
       fields: {
         nom: 'Nom i cognoms',
         correu: 'Correu electrònic',
         telefon: 'Telèfon',
-        ubicacio: 'Població o ubicació de la feina',
+        ubicacio: 'Població',
         servei: 'Quin servei necessites?',
         serveiPlaceholder: 'Selecciona un servei',
         services: [
           { value: 'urgencies', label: 'Urgències i reparacions' },
           { value: 'estructures', label: 'Estructures' },
-          { value: 'automatismes', label: 'Automatismes' },
+          { value: 'automatismes', label: 'Automatismes, portes i motors' },
           { value: 'mobiliari', label: 'Mobiliari a mida' },
           { value: 'carros', label: 'Carros industrials' },
         ],
@@ -377,7 +375,15 @@ const ca = {
       other: 'Altres dades',
       landline: 'Fix',
     },
-    place: { heading: ['Ens trobaràs', 'a Vilafranca'], map: 'Veure ubicació al mapa' },
+    place: {
+      heading: ['Ens trobaràs', 'a Vilafranca'],
+      map: 'Obrir a Google Maps',
+      // Mapa interactiu a petició (indicació del director, 01/10/2026): fins que no es carrega no
+      // es connecta amb Google. Revisar aquest avís amb la política de cookies quan s'aprovi.
+      mapLoad: 'Mostra el mapa interactiu',
+      mapNote: 'El mapa és de Google Maps. En mostrar-lo, Google pot desar galetes al teu navegador.',
+      mapTitle: 'Mapa amb la ubicació del taller de Serralleria Carbó a Vilafranca del Penedès',
+    },
   },
   // Plantilla PS (serveis de Particulars). Patró: fases/fase-4/FASE4-mockups/particulars/estructures/.
   // Cada servei declara els seus titulars i esquemes; el cos de text surt del seu fitxer de contingut.

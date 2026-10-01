@@ -39,7 +39,7 @@ Podem valorar encàrrecs que requereixin suport d'arquitectura tècnica. La docu
 
 ## Millores en curs · no són certificacions vigents
 
-Estem implantant l'ISO 9001 i estudiant l'ISO 3834. La digitalització i l'automatització de la soldadura també són línies de treball en procés.
+Estem implantant l'ISO 9001 i estudiant l'ISO 3834. La digitalització, l'automatització i la robotització de processos també són línies de treball en curs.
 
 ## Parlem de la peça
 

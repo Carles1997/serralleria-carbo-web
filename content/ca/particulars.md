@@ -35,7 +35,7 @@ Fabriquem carros adaptats a una necessitat concreta, tant si es tracta d’una u
 
 Fabriquem mobiliari amb estructura metàl·lica, a mida de l'ús i de l'espai.
 
-[Veure mobiliari](/particulars/mobiliari/)
+[Descriu la peça al formulari](/contacte/?tipus=particular&servei=mobiliari)
 
 ## Fets, no només paraules
 

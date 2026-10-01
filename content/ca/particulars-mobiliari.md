@@ -13,9 +13,15 @@ reviewNeeded:
 
 Fabriquem mobiliari amb estructura metàl·lica a mida. L'ús, l'espai i les dimensions de cada encàrrec són el punt de partida per definir la peça i el seu acabat.
 
-## Una peça definida per l'espai
+## Comencem per l'ús de la peça
 
-Explica'ns per a què servirà, on anirà i quines mides aproximades tens. Una fotografia de l'espai o un esbós ens permetrà valorar materials, forma i muntatge.
+Per definir la peça i el seu acabat, ens ajuda tenir tres dades.
+
+- **Ús** · Per a què servirà.
+- **Ubicació** · On anirà.
+- **Mides** · Aproximades, si en tens.
+
+Una fotografia de l'espai o un esbós també ens ajuda.
 
 ## Taller propi, treball a mida
 

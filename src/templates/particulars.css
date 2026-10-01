@@ -1,0 +1,372 @@
+/* Plantilla P (portada de Particulars). Només es carrega a les pàgines que usen
+   ParticularsTemplate.
+   Origen, en aquest ordre de cascada: mockup-base.css (importat abans a la plantilla),
+   particulars/styles.css, particulars/identitat.css i les
+   regles .particulars-page de revisio-client.css. Es mantenen els selectors, l'ordre i
+   l'especificitat perquè els ajustos del client guanyin igual que a la maqueta.
+   Canvis respecte a la maqueta:
+   - Accent únic #7c2a30 (director de projecte, 27/09/2026): els tons rosa passen a
+     bordeus sobre clar, i a neutres o blanc sobre fosc.
+   - Serveis i capítols enllacen a les rutes reals.
+   - Capçalera, contacte i peu són components propis. */
+
+/* particulars/styles.css */
+.p-hero { position: relative; isolation: isolate; min-height: clamp(760px,90svh,980px); overflow: hidden; border-bottom: 1px solid var(--f4-line); background: #292d2f; }
+.p-hero-image { position: absolute; z-index: -1; inset: 0; }
+.p-hero-image::after { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(8,10,11,.93) 0%,rgba(8,10,11,.72) 41%,rgba(8,10,11,.24) 78%),linear-gradient(0deg,rgba(8,10,11,.82),transparent 55%,rgba(8,10,11,.42)); content: ""; }
+.p-hero-image picture { display: contents; }
+.p-hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 48%; filter: grayscale(.54) contrast(1.1); }
+.p-hero-copy { position: relative; display: flex; flex-direction: column; min-height: inherit; padding-top: clamp(1.5rem,3vw,3rem); padding-bottom: clamp(2rem,3vw,3rem); }
+.p-hero-top { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,.48); }
+.p-hero-top .index { color: #fff; }
+.p-hero-top a { display: inline-flex; align-items: center; min-height: 44px; color: #f2f3f2; font-size: .83rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.p-hero-top a span { padding-left: .5rem; color: var(--f4-muted); }
+.p-hero-main { max-width: 1400px; margin-top: auto; padding-top: 10rem; }
+.p-hero h1 { max-width: 15ch; margin: 0; font-size: clamp(4.2rem,8vw,9rem); font-weight: 700; letter-spacing: -.07em; line-height: .82; text-transform: uppercase; text-wrap: balance; }
+.p-hero h1>span, .p-hero h1 em, .p-hero h1 small { display: block; }
+.p-hero h1>span { font-size: .53em; letter-spacing: -.045em; line-height: 1; }
+.p-hero h1 em { color: #fff; font-style: normal; }
+.p-hero h1 small { margin-top: 1.2rem; color: #e3e5e4; font-size: clamp(1.35rem,2.4vw,2.6rem); font-weight: 500; letter-spacing: -.02em; line-height: 1.05; text-transform: none; }
+.p-hero-bottom { display: flex; align-items: end; justify-content: space-between; gap: 2.5rem; max-width: 1120px; margin-top: clamp(2.5rem,4vw,5rem); padding-top: 1.1rem; border-top: 1px solid rgba(255,255,255,.53); }
+.p-hero-bottom p { max-width: 48ch; margin: 0; color: #f0f1f0; font-size: clamp(1rem,1.2vw,1.2rem); line-height: 1.5; }
+.p-arrow-link { display: flex; align-items: center; min-height: 44px; justify-content: space-between; gap: 1rem; max-width: 16rem; min-width: 12rem; padding-bottom: .7rem; border-bottom: 1px solid #d6dbd9; font-size: .89rem; font-weight: 700; line-height: 1.3; text-decoration: none; }
+.p-arrow-link span { font-size: 1.25rem; }
+.p-image-caption { position: absolute; top: 6.2rem; right: var(--page-gutter); max-width: 25ch; color: #f4f5f4; font-size: .72rem; font-weight: 700; letter-spacing: .11em; line-height: 1.4; text-align: right; text-transform: uppercase; text-shadow: 0 1px 8px #000; }
+
+
+.p-urgent { border-block: 1px solid #55585a; background: #25282b; }
+.p-urgent-inner { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(1.5rem,3vw,4rem); align-items: center; min-height: 150px; padding-block: 1.6rem; }
+.p-urgent h2 { margin: .35rem 0 .25rem; font-size: clamp(1.8rem,2.5vw,3rem); font-weight: 700; letter-spacing: -.04em; line-height: 1; }
+.p-urgent p { margin: 0; color: #cfd3d3; }
+.p-urgent a { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 54px; padding: .7rem 1rem; border: 1px solid #b7bbbb; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.p-urgent a span { font-size: 1.2rem; }
+
+.p-services { padding-block: clamp(5rem,8vw,9rem); }
+.p-service-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1px; border: 1px solid #54595b; background: #54595b; }
+.p-service { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; min-height: clamp(360px,36vw,540px); overflow: hidden; padding: clamp(1.5rem,2.7vw,3rem); background: #23272a; }
+.p-service::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg,rgba(13,15,16,.25),transparent 30%,rgba(9,11,13,.55) 62%,rgba(9,11,13,.92)); content: ""; }
+.p-service-number { position: relative; z-index: 2; color: #e7e9e8; font-size: .77rem; font-weight: 700; letter-spacing: .14em; }
+.p-service-art { position: absolute; z-index: -2; inset: 0; overflow: hidden; background: repeating-linear-gradient(0deg,transparent 0 74px,rgba(255,255,255,.04) 75px 76px),repeating-linear-gradient(90deg,transparent 0 74px,rgba(255,255,255,.04) 75px 76px),linear-gradient(135deg,#353c3e,#15191c); }
+.p-service-art i { position: absolute; display: block; border: 2px solid #9ba9aa; box-shadow: 1px 2px 13px rgba(0,0,0,.3); transform: skewY(-11deg); }
+.p-service-art-urgent i:nth-child(1) { top: 10%; left: 12%; width: 72%; height: 61%; border-width: 6px; }
+.p-service-art-urgent i:nth-child(2) { top: 17%; left: 48%; width: 30%; height: 45%; border-width: 3px; }
+.p-service-art-urgent i:nth-child(3) { top: 41%; left: 58%; width: 7%; height: 7%; border-radius: 50%; background: var(--color-particulars-accent); }
+.p-service-art-structures i:nth-child(1) { top: 12%; left: 13%; width: 74%; height: 63%; border-width: 5px; transform: skewY(-13deg) rotate(-6deg); }
+.p-service-art-structures i:nth-child(2) { top: 18%; left: 30%; height: 55%; border-width: 0 0 0 3px; transform: skewY(-13deg) rotate(-6deg); }
+.p-service-art-structures i:nth-child(3) { top: 18%; left: 49%; height: 55%; border-width: 0 0 0 3px; transform: skewY(-13deg) rotate(-6deg); }
+.p-service-art-structures i:nth-child(4) { top: 18%; left: 68%; height: 55%; border-width: 0 0 0 3px; transform: skewY(-13deg) rotate(-6deg); }
+.p-service-art-furniture i:nth-child(1) { top: 24%; left: 17%; width: 64%; height: 10%; border-width: 5px; transform: rotate(-7deg) skewY(-5deg); }
+.p-service-art-furniture i:nth-child(2) { top: 32%; left: 22%; width: 0; height: 47%; border-width: 0 0 0 5px; transform: rotate(7deg); }
+.p-service-art-furniture i:nth-child(3) { top: 32%; left: 72%; width: 0; height: 47%; border-width: 0 0 0 5px; transform: rotate(-7deg); }
+.p-service-copy { z-index: 2; max-width: 47ch; }
+.p-service-category { display: block; margin-bottom: .7rem; color: #c9cfcf; font-size: .77rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.p-service h3 { margin: 0 0 .9rem; font-size: clamp(2.5rem,4.4vw,5rem); font-weight: 700; letter-spacing: -.055em; line-height: .95; text-transform: uppercase; overflow-wrap: anywhere; }
+.p-service p { max-width: 48ch; margin: 0; color: #e2e5e3; font-size: clamp(.96rem,1.05vw,1.12rem); line-height: 1.45; }
+
+.p-projects { padding-top: clamp(5rem,8vw,9rem); border-top: 1px solid var(--f4-line); background: #1b1e21; }
+.p-projects .section-lead { padding-bottom: clamp(3rem,5vw,5rem); }
+.p-project-story { display: grid; grid-template-columns: minmax(0,.95fr) minmax(0,1.05fr); border-block: 1px solid #596063; }
+.p-story-stage { position: sticky; top: 76px; align-self: start; isolation: isolate; height: calc(100svh - 76px); min-height: 580px; overflow: hidden; background: #343a3d; }
+.p-story-stage picture { display: contents; }
+.p-story-stage img { position: absolute; z-index: -3; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1); }
+.p-story-stage-shade { position: absolute; z-index: -2; inset: 0; background: linear-gradient(180deg,rgba(8,10,12,.74),rgba(8,10,12,.08) 38%,rgba(8,10,12,.76)); }
+.p-story-stage-label { position: absolute; top: clamp(1.5rem,3vw,3rem); left: clamp(1.5rem,3vw,3rem); color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.p-story-stage-number { position: absolute; top: 50%; left: 50%; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.78); font-size: clamp(14rem,30vw,36rem); font-weight: 700; letter-spacing: -.11em; line-height: .8; font-variant-numeric: tabular-nums; transform: translate(-58%,-50%); pointer-events: none; }
+.p-story-progress { position: absolute; right: clamp(1.5rem,3vw,3rem); bottom: clamp(4.6rem,7vw,7rem); left: clamp(1.5rem,3vw,3rem); height: 2px; background: rgba(255,255,255,.35); }
+/* Progrés amb scale (transform) en lloc de width; indicador blanc per contrast sobre fosc. */
+.p-story-progress span { display: block; width: 100%; height: 100%; background: #fff; transform-origin: left center; transition: scale 450ms var(--motion-ease); }
+.p-story-stage-caption { position: absolute; right: clamp(1.5rem,3vw,3rem); bottom: clamp(1.5rem,3vw,3rem); left: clamp(1.5rem,3vw,3rem); color: #f0f1f0; font-size: .73rem; font-weight: 700; letter-spacing: .1em; line-height: 1.35; text-transform: uppercase; text-shadow: 0 1px 8px #000; }
+.p-story-chapters { min-width: 0; background: #141719; }
+.p-story-chapter { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between; min-height: clamp(570px,78svh,880px); overflow: hidden; padding: clamp(2rem,4.5vw,5.5rem); border-bottom: 1px solid #555b5d; background: #16191c; }
+.p-story-chapter:nth-child(even) { background: #202326; }
+.p-story-chapter:last-child { border-bottom: 0; }
+.p-story-chapter::before { position: absolute; z-index: -1; right: -.06em; bottom: -.3em; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.08); content: attr(data-story-chapter); font-size: clamp(16rem,31vw,36rem); font-weight: 700; letter-spacing: -.1em; line-height: 1; pointer-events: none; }
+.p-story-chapter::after { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: #fff; content: ""; transform: scaleY(0); transform-origin: top; transition: transform 600ms var(--motion-ease); }
+.p-story-chapter.is-active::after { transform: scaleY(1); }
+.p-story-chapter-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #676c6e; color: #c9cfcf; font-size: .78rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.p-story-chapter-top a { display: inline-flex; align-items: center; min-height: 44px; margin-block: -.6rem; text-decoration: underline; text-decoration-color: rgba(255,255,255,.35); text-underline-offset: .3em; }
+.p-story-overline { display: block; margin-bottom: 1rem; color: #d2d6d6; font-size: .82rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.p-story-chapter h3 { max-width: 16ch; margin: 0 0 1.7rem; font-size: clamp(3.2rem,5.3vw,6rem); font-weight: 600; letter-spacing: -.06em; line-height: .9; text-transform: uppercase; text-wrap: balance; overflow-wrap: break-word; }
+.p-story-chapter p { max-width: 46ch; margin: 0; color: #d9dddd; font-size: clamp(1.05rem,1.35vw,1.28rem); line-height: 1.5; }
+.p-story-chapter-foot { padding-top: 1.2rem; border-top: 1px solid #676c6e; color: #afb6b7; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.p-story-outro { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 2rem 3rem; min-height: 194px; padding-block: 2.5rem; }
+.p-story-outro-copy strong { display: block; margin-top: .7rem; color: #f3f4f1; font-size: clamp(1.4rem,2.2vw,2.5rem); font-weight: 600; letter-spacing: -.04em; line-height: 1.1; }
+.p-story-outro-actions { display: flex; align-items: center; gap: 1.75rem; }
+.p-story-all { display: inline-flex; align-items: center; justify-content: space-between; gap: 1.6rem; min-width: 290px; min-height: 66px; padding: .95rem 1.3rem; background: #f1f2ef; color: #17191a; font-weight: 700; text-decoration: none; transition: background var(--motion-fast) ease, translate var(--motion-fast) var(--motion-ease), scale 160ms var(--motion-ease); }
+.p-story-all span { font-size: 1.4rem; font-weight: 400; }
+
+
+@media (max-width: 1000px) { .p-hero h1 { font-size: clamp(4.2rem,8vw,7rem); } .p-story-stage { top: 76px; } .p-story-chapter { padding: 2.5rem; } .p-story-chapter h3 { font-size: clamp(2.8rem,5vw,4.6rem); } }
+@media (max-width: 760px) {
+  .p-hero { min-height: max(730px,calc(100svh - 68px)); }
+  .p-hero-image::after { background: linear-gradient(0deg,rgba(8,10,11,.96) 0%,rgba(8,10,11,.7) 43%,rgba(8,10,11,.18) 77%,rgba(8,10,11,.5)); }
+  .p-hero-image img { object-position: 58% center; }
+  .p-hero-copy { padding-block: 1.5rem 2.5rem; }
+  .p-hero-main { padding-top: 13rem; }
+  .p-hero h1 { font-size: clamp(3.6rem,9vw,5.4rem); }
+  .p-hero h1 small { font-size: clamp(1.25rem,3.3vw,1.8rem); }
+  .p-hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.5rem; margin-top: 2.3rem; }
+  .p-image-caption { top: 5.8rem; }
+  .p-urgent-inner { grid-template-columns: auto 1fr; }
+  .p-urgent a { grid-column: 2; justify-self: start; }
+  .p-service-grid { grid-template-columns: 1fr; }
+  .p-service { min-height: 400px; }
+  .p-service h3 { font-size: clamp(2.7rem,7vw,4rem); }
+  .p-project-story { display: block; }
+  .p-story-stage { position: relative; top: auto; height: 340px; min-height: 0; }
+  .p-story-stage-number { font-size: 13rem; }
+  .p-story-chapter { min-height: 470px; padding: clamp(2rem,5vw,3rem); }
+  .p-story-chapter h3 { font-size: clamp(2.8rem,7vw,4.7rem); }
+  .p-story-outro { grid-template-columns: 1fr; }
+  .p-story-outro-actions { flex-wrap: wrap; }
+}
+@media (max-width: 520px) {
+  .p-hero { min-height: 760px; }
+  .p-hero-top a { max-width: 9rem; font-size: .72rem; text-align: right; white-space: normal; }
+  .p-hero-top .index { max-width: 11rem; font-size: .7rem; }
+  .p-hero h1 { font-size: clamp(2.95rem,10.5vw,4.3rem); }
+  .p-hero h1>span { font-size: .5em; }
+  .p-hero-bottom p { font-size: .99rem; }
+  .p-image-caption { top: 5.3rem; max-width: 18ch; font-size: .63rem; }
+  .p-urgent-inner { grid-template-columns: 1fr; gap: 1rem; }
+  .p-urgent a { grid-column: 1; }
+  .p-service { min-height: 350px; padding: 1.5rem; }
+  .p-service h3 { font-size: clamp(2.3rem,9vw,3.3rem); }
+  .p-story-outro-actions { align-items: stretch; flex-direction: column; }
+  .p-story-all { width: 100%; min-width: 0; }
+  .p-story-stage { height: 265px; }
+  .p-story-stage-number { font-size: 10rem; }
+  .p-story-stage-label { font-size: .68rem; }
+  .p-story-stage-caption { font-size: .62rem; }
+  .p-story-chapter { min-height: 420px; padding: 1.7rem var(--page-gutter); }
+  .p-story-chapter h3 { font-size: clamp(2.4rem,9vw,3.5rem); }
+  .p-story-chapter p { font-size: 1rem; }
+}
+@media (max-width: 360px) { .p-hero { min-height: 760px; } .p-hero h1 { font-size: 10.2vw; } .p-hero-main { padding-top: 12rem; } .p-urgent a { width: 100%; white-space: normal; } .p-service h3 { font-size: 8.4vw; } .p-story-chapter h3 { font-size: 8.5vw; } }
+
+/* particulars/identitat.css */
+.p-urgent { background:#7c2a30; border-color:#9b545a; }
+.p-urgent .index,.p-urgent p,.p-urgent a span { color:#fff; }
+.p-urgent a { border-color:rgba(255,255,255,.75); }
+.p-urgent a:hover,.p-urgent a:focus-visible { background:#fff; color:#7c2a30; }
+.p-urgent a:hover span,.p-urgent a:focus-visible span { color:#7c2a30; }
+.p-services { background:var(--color-particulars-charcoal); color:#fff; }
+.p-services .section-lead p { color:#d3d8d6; }
+.p-services .p-service { color:#fff; }
+.p-service-urgent .p-service-art { background:repeating-linear-gradient(0deg,transparent 0 74px,rgba(255,255,255,.08) 75px 76px),repeating-linear-gradient(90deg,transparent 0 74px,rgba(255,255,255,.08) 75px 76px),linear-gradient(135deg,#8f3c43,#541c21); }
+.p-service-urgent .p-service-art i { border-color:#e4b8bb; }
+.p-service-urgent .p-service-art i:nth-child(3) { background:#fff; }
+.p-service-urgent .p-service-category { color:#fff; }
+@media (min-width:1101px) {
+  .p-urgent-inner { grid-template-columns:auto minmax(0,1fr) auto auto; gap:clamp(1rem,2vw,2rem); }
+}
+
+/* revisio-client.css (.particulars-page) */
+.particulars-page .p-hero{min-height:clamp(570px,78svh,760px)}
+.particulars-page .p-hero h1{font-size:clamp(4rem,6.4vw,7.2rem)}
+.particulars-page .p-services{padding-block:clamp(3.5rem,5.5vw,6rem);background:var(--client-paper);color:var(--client-ink)}
+.particulars-page .p-services .index,.particulars-page .p-services .section-lead p{color:#4c5652}
+.particulars-page .p-services .section-lead h2{font-size:clamp(3.5rem,5.4vw,5.8rem)}
+.particulars-page .p-service{min-height:320px}
+.particulars-page .p-service h3{font-size:clamp(2.1rem,3vw,3.7rem)}
+.particulars-page .p-service-art-cart i:nth-child(1){top:22%;left:16%;width:68%;height:41%;border-width:5px}
+.particulars-page .p-service-art-cart i:nth-child(2){top:64%;left:22%;width:55%;height:0;border-width:3px 0 0}
+.particulars-page .p-service-art-cart i:nth-child(3){top:65%;left:25%;width:12%;height:12%;border-radius:50%;background:#7c2a30;box-shadow:170px 0 0 #7c2a30}
+.particulars-page .p-projects{padding-top:clamp(3.5rem,5vw,5.5rem)}
+.particulars-page .p-projects .section-lead{padding-bottom:2.5rem}
+@media(max-width:760px){
+ .particulars-page .p-hero{min-height:640px}
+ .particulars-page .p-services{padding-block:3rem}
+ .particulars-page .p-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .particulars-page .p-service{min-height:275px;padding:1.1rem}
+ .particulars-page .p-service h3{font-size:clamp(1.45rem,3.8vw,2.4rem)}
+ .particulars-page .p-service p{font-size:.82rem;line-height:1.32}
+ .particulars-page .p-service-category{font-size:.64rem}
+}
+@media(max-width:520px){
+ .particulars-page .p-service-grid{gap:1px}
+ .particulars-page .p-service{min-height:265px;padding:.9rem}
+ .particulars-page .p-service h3{font-size:clamp(1.16rem,4.4vw,1.65rem);margin-bottom:.4rem}
+ .particulars-page .p-service p{font-size:.72rem;line-height:1.25}
+ .particulars-page .p-service-category{margin-bottom:.35rem;font-size:.57rem}
+ .particulars-page .p-service-number{font-size:.65rem}
+ .particulars-page .p-service-art-cart i:nth-child(3){box-shadow:90px 0 0 #7c2a30}
+}
+@media(max-width:360px){
+ .particulars-page .p-service{min-height:245px;padding:.7rem}
+ .particulars-page .p-service h3{font-size:1.05rem}
+ .particulars-page .p-service p{font-size:.66rem}
+}
+
+/* Afegits de Fase 5: enllaços reals als serveis (enllaç estès a tota la peça). */
+.p-service-actions { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; margin-top: 1rem; }
+.p-service-actions a { position: relative; display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; font-size: .88rem; font-weight: 700; text-decoration: underline; text-decoration-color: rgba(255,255,255,.4); text-underline-offset: .3em; }
+.p-service-actions a:first-child::after { position: absolute; z-index: -1; inset: -100vmax; content: ""; }
+.p-service-actions a:not(:first-child) { z-index: 1; }
+.p-service { contain: paint; }
+.p-service:has(a:hover) .p-service-art,.p-service:focus-within .p-service-art { filter: brightness(1.12); }
+@media(max-width:520px){ .particulars-page .p-service-actions{margin-top:.5rem;gap:0 .8rem} .particulars-page .p-service-actions a{font-size:.72rem} }
+
+/* Moviment de la plantilla (criteri emil-design-eng; vegeu styles/motion.css). */
+.particulars-page .arrow { display: inline-block; }
+.p-urgent a,.p-arrow-link,.underlined-link { transition: scale 160ms var(--motion-ease), background var(--motion-fast) ease, color var(--motion-fast) ease; }
+.p-urgent a:active,.p-arrow-link:active,.underlined-link:active,.p-story-all:active { scale: .97; }
+.p-service:has(.p-service-actions a:active) { scale: .99; }
+.p-service { transition: scale 160ms var(--motion-ease); }
+@media (hover: hover) and (pointer: fine) {
+  .particulars-page .arrow { transition: translate 220ms var(--motion-ease); }
+  .particulars-page a:hover .arrow,.p-service:has(a:hover) .p-service-actions a:first-child .arrow { translate: 3px -3px; }
+  .p-arrow-link:hover .arrow { translate: 3px 3px; }
+  .p-hero-top a:hover,.p-story-chapter-top a:hover { text-decoration: underline; text-underline-offset: .3em; }
+  .p-story-all:hover { background: #fff; translate: 0 -2px; }
+  .p-service-art { transition: filter 300ms ease; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .p-hero-image img { animation: settle-image 1100ms var(--ease-out-strong) backwards; }
+  .p-story-chapter.is-active h3 { animation: p-story-reveal 650ms var(--ease-out-strong) both; }
+}
+@keyframes p-story-reveal { from { translate: 0 14px; } }
+
+/* Serveis 2×2 a mòbil: el cos explicatiu es llegeix (≥ 15 px) i la targeta creix pel contingut.
+   L'etiqueta de categoria de la maqueta (Fabricació i reparació…) deixa lloc al text a ≤ 520 px. */
+@media (max-width: 760px) {
+  .particulars-page .p-service { min-height: 0; gap: .75rem; }
+  .particulars-page .p-service p { font-size: .94rem; line-height: 1.4; }
+  /* El text ocupa tota la targeta: l'esquema passa a segon pla i el fons s'enfosqueix de manera
+     uniforme perquè el traç no creui les lletres. */
+  .particulars-page .p-service-art { opacity: .3; }
+  /* La targeta d'urgències conserva el fons bordeus; només el traç passa a segon pla. */
+  .particulars-page .p-service-urgent .p-service-art { opacity: 1; }
+  .particulars-page .p-service-urgent .p-service-art i { opacity: .3; }
+  .particulars-page .p-service-urgent::after { background: linear-gradient(180deg,rgba(60,14,18,.25),rgba(40,10,13,.55)); }
+  .particulars-page .p-service::after { background: linear-gradient(180deg,rgba(9,11,13,.55),rgba(9,11,13,.8)); }
+}
+@media (max-width: 520px) {
+  .particulars-page .p-service { padding: 1rem .85rem; }
+  .particulars-page .p-service-category { display: none; }
+  .particulars-page .p-service-actions a { font-size: .88rem; }
+}
+/* Tres casos com a avenç compacte: la lectura extensa és al portafoli. A escriptori, capítols més
+   baixos; a mòbil, cada capítol mostra la fotografia real del projecte. */
+.particulars-page .p-story-chapter { min-height: clamp(400px, 56svh, 600px); }
+@media (max-width: 760px) {
+  .particulars-page .p-story-stage { display: none; }
+  .particulars-page .p-story-chapter { min-height: 0; gap: 1.5rem; padding-block: 1.75rem; }
+  .particulars-page .p-story-chapter h3 { margin-bottom: 1rem; font-size: clamp(1.9rem, 7.5vw, 2.6rem); }
+}
+/* La paraula gran de la H1 («particulars», --chars) ha de cabre a l'amplada útil: a 320 px la regla
+   de la revisió del client (4rem) la retallava. ~0,53 em per caràcter amb aquest tracking. */
+@media (max-width: 760px) {
+  .particulars-page .p-hero h1 { font-size: min(clamp(4rem,6.4vw,7.2rem), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .53))); }
+}
+/* Mòbils petits (≤ 360 px, p. ex. 320×568): l'entrada deixa l'alçada escènica (ja sense avís d'imatge a sobre) perquè l'accés a
+   Urgències entri a la primera pantalla. */
+@media (max-width: 360px) {
+  .particulars-page .p-hero { min-height: 0; }
+  .particulars-page .p-hero-main { padding-top: 3.5rem; }
+}
+
+/* Bloc 2 del pla d'afinament (27/09/2026): rols compartits de src/styles/roles.css. Superfície de
+   lectura en blanc, H2 i H3 a l'escala comuna (els casos ja no competeixen amb l'H2 de secció),
+   text d'entrada i cos amb una sola mida, etiquetes i avisos amb una sola mida i espaiat comú.
+   Excepcions: la franja d'urgències usa H3 (és una franja d'acció) i les targetes 2×2 de mòbil
+   usen H4. Fotografia: una correcció de llum coherent, sense blanc i negre. */
+.p-hero-top { justify-content: flex-end; }
+.particulars-page .p-services { padding-block: var(--space-section); background: var(--surface-read); }
+.particulars-page .p-projects { padding-top: var(--space-section); }
+.particulars-page .section-lead { padding-bottom: var(--space-lead); }
+.particulars-page .section-lead h2 { font-size: var(--type-h2); }
+.particulars-page .section-lead p,
+.particulars-page .p-hero-bottom p { font-size: var(--type-intro); }
+.particulars-page .p-urgent h2,
+.particulars-page .p-service h3,
+.particulars-page .p-story-chapter h3 { font-size: var(--type-h3); }
+.particulars-page .p-story-chapter h3 { max-width: 20ch; margin-bottom: 1rem; line-height: .95; }
+.particulars-page .p-service p,
+.particulars-page .p-story-chapter p { font-size: var(--type-body); }
+.particulars-page .p-story-chapter { min-height: clamp(340px, 44svh, 460px); padding: clamp(1.75rem, 3.5vw, 3.5rem); }
+.particulars-page :is(.p-service-number, .p-story-chapter-top, .p-story-overline) { font-size: var(--type-meta); letter-spacing: var(--tracking-meta); }
+.particulars-page :is(.p-image-caption, .p-story-stage-caption) { font-size: var(--type-caption); }
+.particulars-page .p-hero-image img,
+.particulars-page .p-story-stage img { filter: saturate(.85) contrast(1.05); }
+@media (max-width: 760px) {
+  .particulars-page .section-lead h2 { font-size: min(var(--type-h2), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .53))); }
+  .particulars-page .p-service h3 { font-size: var(--type-h4); }
+  .particulars-page .p-service p { font-size: .94rem; }
+  .particulars-page .p-story-chapter { min-height: 0; padding: 1.75rem var(--page-gutter); }
+}
+
+
+/* Fotografies documentals: l'escenari canvia amb cada cas. */
+.p-story-frame { position: absolute; z-index: -3; inset: 0; opacity: 0; transition: opacity 560ms ease; }
+.p-story-frame.is-active { opacity: 1; }
+.p-story-stage .p-story-frame img { z-index: auto; }
+@media (prefers-reduced-motion: reduce) { .p-story-frame { transition: none; } }
+
+
+/* Fotografies de servei: mateixa família visual que les portades, amb espai de lectura net. */
+.p-service-art { background: #23272a; }
+.p-service-art picture { display: contents; }
+.p-service-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: grayscale(.55) contrast(1.08) brightness(.83); transition: filter 320ms ease, transform 520ms var(--motion-ease); }
+.p-service-urgent .p-service-art img { object-position: 60% center; }
+.p-service-cart .p-service-art img { object-position: center 48%; }
+@media (hover: hover) and (pointer: fine) {
+  .p-service:has(a:hover) .p-service-art img,
+  .p-service:focus-within .p-service-art img { filter: grayscale(.15) contrast(1.05) brightness(.88); transform: scale(1.035); }
+}
+@media (max-width: 760px) {
+  .particulars-page .p-service-art { opacity: 1; }
+  .particulars-page .p-service::after { background: linear-gradient(180deg,rgba(9,11,13,.52),rgba(9,11,13,.77) 45%,rgba(9,11,13,.92)); }
+  .particulars-page .p-service-urgent::after { background: linear-gradient(180deg,rgba(43,12,16,.42),rgba(30,9,12,.79) 50%,rgba(24,8,10,.94)); }
+}
+@media (prefers-reduced-motion: reduce) { .p-service-art img { transition: none; } }
+
+
+/* Serveis a mòbil (indicació del director, 29/09/2026): targetes més baixes, amb la fotografia de
+   fons visible a tota la targeta i el text a sobre. L'ombra s'enfosqueix cap a baix, on és el text,
+   perquè es llegeixi sencer. Per sota de 560 px, una sola columna: el text ja no allarga la targeta. */
+@media (max-width: 760px) {
+  .particulars-page .p-service { min-height: 320px; padding: 1rem; justify-content: space-between; gap: 1.25rem; }
+  .particulars-page .p-service-art { inset: 0; height: auto; opacity: 1; }
+  .particulars-page .p-service-art img { filter: grayscale(.35) contrast(1.05) brightness(.92); }
+  .particulars-page .p-service::after { inset: 0; height: auto; background: linear-gradient(180deg,rgba(7,9,10,.5),rgba(7,9,10,.08) 26%,rgba(7,9,10,.7) 55%,rgba(7,9,10,.95)); }
+  .particulars-page .p-service-urgent::after { background: linear-gradient(180deg,rgba(43,12,16,.55),rgba(43,12,16,.12) 26%,rgba(40,10,14,.78) 55%,rgba(30,8,11,.96)); }
+  .particulars-page .p-service-number { position: relative; top: auto; left: auto; }
+  .particulars-page .p-service-copy { width: 100%; margin-top: auto; }
+  .particulars-page .p-service-copy p:not(.p-service-actions) { text-shadow: 0 1px 10px rgba(0,0,0,.55); }
+  .particulars-page .p-service-actions { margin-top: .5rem; }
+}
+@media (max-width: 560px) {
+  .particulars-page .p-service-grid { grid-template-columns: 1fr; }
+  .particulars-page .p-service { min-height: 290px; padding: 1.1rem 1rem .75rem; }
+}
+
+
+.p-service-note { margin: .8rem 0 0; color: #5e6564; font-size: .78rem; line-height: 1.4; }
+
+/* Franja d'avaries compacta (indicació del director, 28/09/2026): sense el senyal «Ajuda», text i
+   accions en una sola franja baixa. */
+.particulars-page .p-urgent-inner { grid-template-columns: minmax(0,1fr) auto auto; gap: .75rem clamp(.75rem,1.5vw,1.25rem); min-height: 0; padding-block: clamp(1rem,1.5vw,1.25rem); }
+.particulars-page .p-urgent h2 { margin: 0 0 .2rem; font-size: clamp(1.35rem,1.7vw,1.7rem); line-height: 1.05; }
+.particulars-page .p-urgent p { max-width: none; font-size: .95rem; line-height: 1.45; }
+.particulars-page .p-urgent a { grid-column: auto; min-height: 44px; gap: 1rem; padding: .45rem .9rem; font-size: .95rem; }
+@media (max-width: 1100px) {
+  .particulars-page .p-urgent-inner { grid-template-columns: auto auto 1fr; }
+  .particulars-page .p-urgent-inner > div { grid-column: 1 / -1; }
+}
+@media (max-width: 520px) {
+  .particulars-page .p-urgent-inner { grid-template-columns: 1fr; gap: .6rem; }
+  .particulars-page .p-urgent a { justify-self: stretch; }
+}
+
+/* Casos a mòbil (indicació del director, 29/09/2026): la fotografia queda ancorada a dalt, sota la
+   capçalera, i les targetes dels casos hi passen per sota; en arribar cada targeta a la zona de
+   lectura, l'escenari mostra la seva fotografia (src/scripts/story.ts). Sense JavaScript, es veu la
+   fotografia del primer cas i els textos seguits. */
+@media (max-width: 760px) {
+  .particulars-page .p-story-stage { display: block; position: sticky; z-index: 2; top: 69px; height: clamp(190px, 32svh, 280px); min-height: 0; }
+  .particulars-page .p-story-stage-number { font-size: clamp(6rem, 30vw, 8.5rem); }
+  .particulars-page .p-story-progress { right: 1rem; bottom: 1rem; left: 1rem; }
+  .particulars-page .p-story-chapter { min-height: clamp(300px, 46svh, 420px); justify-content: flex-start; }
+}
+

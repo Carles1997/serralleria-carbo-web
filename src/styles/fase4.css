@@ -1,0 +1,16 @@
+/* Valors de les maquetes validades de Fase 4 que no consten a design/tokens.css.
+   Origen: fases/fase-4/FASE4-mockups/home/styles.css (:root) i
+   fases/fase-4/FASE4-mockups/revisio-client.css (revisió del client, 25/09/2026).
+   Pendent de decidir si passen a tokens.css; mentrestant no s'hi afegeixen valors nous. */
+:root {
+  --f4-black: #101113;
+  --f4-coal: #17191c;
+  --f4-steel: #22252a;
+  --f4-line: #3a3d41;
+  --f4-text: #f3f4f2;
+  --f4-muted: #b9bdc0;
+
+  --client-paper: #eeefeb;
+  --client-ink: #1b2020;
+  --client-slate: #2a3030;
+}

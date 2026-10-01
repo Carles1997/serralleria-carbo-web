@@ -1,0 +1,8 @@
+---
+import ParticularsTemplate from '../../templates/ParticularsTemplate.astro';
+import { getPage } from '../../i18n/pages';
+
+const page = await getPage('particulars');
+---
+
+<ParticularsTemplate page={page} />

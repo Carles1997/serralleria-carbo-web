@@ -1,0 +1,36 @@
+---
+// Dades estructurades de l'empresa (Schema.org LocalBusiness) per a Google (SEO-F3 §6). Només dades
+// confirmades a src/config/site.ts: nom, raó social, adreça, telèfons, correu, fundació i plantilla.
+// Sense horaris, ressenyes, certificacions ni zones de servei fins que es comprovi que coincideixen
+// amb la fitxa de Google Business Profile.
+import { company } from '../config/site';
+
+const site = Astro.site ?? new URL('https://www.serralleriacarbo.com');
+const { postalAddress } = company;
+const data = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': new URL('/#empresa', site).href,
+  name: 'Serralleria Carbó',
+  legalName: company.legalName,
+  url: new URL('/', site).href,
+  telephone: company.phone.href.replace('tel:', ''),
+  email: company.email,
+  foundingDate: company.foundingDate,
+  numberOfEmployees: { '@type': 'QuantitativeValue', value: company.employees },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: postalAddress.street,
+    postalCode: postalAddress.postalCode,
+    addressLocality: postalAddress.locality,
+    addressRegion: postalAddress.region,
+    addressCountry: postalAddress.country,
+  },
+  contactPoint: [
+    { '@type': 'ContactPoint', contactType: 'customer service', telephone: company.phone.href.replace('tel:', ''), email: company.email },
+    { '@type': 'ContactPoint', contactType: 'customer service', telephone: company.landline.href.replace('tel:', '') },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

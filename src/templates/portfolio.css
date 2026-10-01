@@ -1,0 +1,187 @@
+/* Plantilla PP (portafoli de Particulars). Només es carrega a les pàgines que usen
+   PortfolioTemplate, després de mockup-base.css.
+   Origen, en aquest ordre de cascada: particulars/projectes/styles.css i la regla
+   .portfolio-page de revisio-client.css. Es mantenen selectors, ordre i especificitat.
+   Ajustos del director de projecte (27/09/2026) al final: fons alterns clar / fosc #1e2225,
+   titulars a l'escala comuna, entrada igual que la resta de Particulars i accent únic. */
+
+.folio-hero { position: relative; isolation: isolate; min-height: clamp(610px,78svh,850px); overflow: hidden; border-bottom: 1px solid #575d5f; background: #252b2d; }
+.folio-hero-image { position: absolute; z-index: -1; inset: 0; }
+.folio-hero-image picture { display: contents; }
+.folio-hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: 54% center; filter: grayscale(1) contrast(1.12); }
+.folio-hero-image::after { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(8,10,12,.95),rgba(8,10,12,.69) 51%,rgba(8,10,12,.28)),linear-gradient(0deg,rgba(8,10,12,.78),transparent 52%,rgba(8,10,12,.42)); content: ""; }
+.folio-hero-content { position: relative; display: flex; flex-direction: column; min-height: inherit; padding-block: clamp(1.5rem,2.8vw,3rem); }
+.folio-breadcrumb { display: flex; align-items: center; gap: .8rem; min-height: 44px; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,.5); color: #e6e9e7; font-size: .81rem; font-weight: 600; }
+.folio-breadcrumb a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; text-decoration: none; }
+.folio-breadcrumb>span[aria-hidden] { color: var(--f4-muted); }
+.folio-hero-main { max-width: 1320px; margin-top: auto; padding-top: 8rem; }
+.folio-hero-main .index { color: #fff; }
+.folio-hero h1 { margin: 1.8rem 0 0; font-size: clamp(4.6rem,8vw,9rem); font-weight: 700; letter-spacing: -.07em; line-height: .82; text-transform: uppercase; }
+.folio-hero h1 em { color: #d4d8d7; font-style: normal; font-weight: 400; }
+.folio-hero h1 > span, .folio-hero h1 > em { display: inline-block; }
+.folio-hero-bottom { display: flex; align-items: end; justify-content: space-between; gap: 3rem; max-width: 1110px; margin-top: clamp(2.5rem,4vw,4rem); padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,.55); }
+.folio-hero-bottom p { max-width: 53ch; margin: 0; color: #e9edeb; font-size: clamp(1rem,1.24vw,1.25rem); line-height: 1.5; }
+.folio-hero-bottom a { display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; flex: none; min-width: 13rem; min-height: 48px; padding-bottom: .5rem; border-bottom: 1px solid #fff; font-weight: 700; text-decoration: none; }
+.folio-hero-bottom a span { font-size: 1.25rem; }
+.folio-hero-caption { display: block; align-self: flex-end; max-width: 38ch; margin-top: 2rem; color: #f0f3f1; font-size: .72rem; font-weight: 700; letter-spacing: .1em; line-height: 1.35; text-align: right; text-transform: uppercase; text-shadow: 0 1px 8px #000; }
+
+.folio-work { background: #151719; }
+.folio-work-top { display: grid; grid-template-columns: minmax(0,1fr) minmax(250px,.42fr); gap: 2rem clamp(2rem,6vw,8rem); align-items: end; padding-block: clamp(5rem,8vw,9rem) clamp(3rem,5vw,5rem); }
+.folio-work-top h2 { margin: 1.5rem 0 0; font-size: clamp(3.8rem,6.4vw,7rem); font-weight: 700; letter-spacing: -.065em; line-height: .88; text-transform: uppercase; }
+.folio-work-top>p { max-width: 42ch; margin: 0; color: #cbd1cf; font-size: clamp(1rem,1.18vw,1.16rem); line-height: 1.5; }
+.folio-filters { position: sticky; z-index: 30; top: 76px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 76px; border-block: 1px solid #62676a; background: rgba(16,18,20,.98); backdrop-filter: blur(12px); }
+.folio-filters[hidden] { display: none; }
+.folio-filters>span { color: #bfc6c4; font-size: .76rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+.folio-filters>div { position: relative; display: flex; align-items: stretch; gap: 1px; min-height: 55px; background: #555b5d; }
+.folio-filters button { display: flex; align-items: center; gap: .8rem; padding: .6rem clamp(.8rem,1.5vw,1.5rem); border: 0; background: #1c2022; color: #d7dcd9; font: inherit; font-size: .88rem; font-weight: 700; cursor: pointer; }
+.folio-filters button small { font-size: .72rem; font-variant-numeric: tabular-nums; }
+.folio-filters button[aria-pressed="true"] { background: #313639; color: #fff; }
+.folio-case-list { margin-top: 0; }
+.folio-case { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); min-height: clamp(590px,48vw,760px); border-top: 1px solid #5b6264; }
+.folio-case:last-child { border-bottom: 1px solid #5b6264; }
+.folio-case[hidden] { display: none !important; }
+.folio-case-media { position: relative; isolation: isolate; min-width: 0; min-height: 590px; margin: 0; overflow: hidden; background: linear-gradient(145deg,#383f41,#171c1f); }
+.folio-case-media::before { position: absolute; z-index: -1; inset: 0; background: repeating-linear-gradient(90deg,transparent 0 13.8%,rgba(255,255,255,.04) 14% 14.1%,transparent 14.3% 28%); content: ""; }
+.folio-case-media::after { position: absolute; inset: 0; background: linear-gradient(180deg,rgba(7,9,11,.1),transparent 45%,rgba(7,9,11,.72)); content: ""; }
+.folio-case-media-automatismes { background: linear-gradient(145deg,#303237,#15171b); }
+.folio-case-glyph { position: absolute; top: .04em; left: -.045em; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.55); font-size: clamp(14rem,29vw,36rem); font-weight: 700; letter-spacing: -.1em; line-height: .8; font-variant-numeric: tabular-nums; }
+.folio-case-geometry { position: absolute; inset: 25% 10% 16% 22%; transform: rotate(-10deg); }
+.folio-case-geometry i { position: absolute; display: block; border: 1px solid #a8b6b8; }
+.folio-case-geometry i:nth-child(1) { inset: 0 7% 21% 0; }
+.folio-case-geometry i:nth-child(2) { inset: 14% 0 7% 15%; }
+/* Traç destacat en bordeus de marca (maqueta: #b26b71), una mica més gruixut sobre fosc. */
+.folio-case-geometry i:nth-child(3) { inset: 30% 19% 0 2%; border: 2px solid var(--color-particulars-accent); }
+.folio-case-media-automatismes .folio-case-geometry { transform: rotate(9deg); }
+.folio-case-media-automatismes .folio-case-geometry i { border-radius: 50%; }
+.folio-case-media figcaption { position: absolute; z-index: 2; right: clamp(1.5rem,3vw,3rem); bottom: clamp(1.5rem,3vw,3rem); left: clamp(1.5rem,3vw,3rem); padding-top: .8rem; border-top: 1px solid rgba(255,255,255,.65); color: #fff; font-size: .75rem; font-weight: 700; letter-spacing: .11em; line-height: 1.4; text-transform: uppercase; }
+.folio-case-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; min-width: 0; padding: clamp(2rem,4vw,5rem); background: #1e2224; }
+.folio-case:nth-child(even) .folio-case-copy { background: #141719; }
+.folio-case-meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; align-self: stretch; padding-bottom: 1rem; border-bottom: 1px solid #5a6162; font-size: .78rem; font-weight: 700; letter-spacing: .09em; line-height: 1.35; text-transform: uppercase; }
+.folio-case-meta span:last-child { font-variant-numeric: tabular-nums; }
+.folio-case-copy h3 { max-width: 15ch; margin: 2rem 0 1.5rem; font-size: clamp(3.2rem,5.1vw,6rem); font-weight: 600; letter-spacing: -.055em; line-height: .9; text-transform: uppercase; text-wrap: balance; overflow-wrap: break-word; }
+.folio-case-copy p { max-width: 48ch; margin: 0; color: #d8ddda; font-size: clamp(1.05rem,1.3vw,1.25rem); line-height: 1.55; }
+.folio-case-copy .underlined-link { margin-top: 2rem; }
+.folio-case-reverse .folio-case-media { order: 2; }
+.folio-case-reverse .folio-case-copy { order: 1; }
+
+.folio-more { padding-block: clamp(5rem,8vw,9rem); background: #101214; }
+.folio-more-inner { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(250px,.8fr); gap: 2rem clamp(2rem,6vw,8rem); align-items: end; }
+.folio-more h2 { margin: 2rem 0 0; font-size: clamp(3.8rem,6.2vw,7rem); font-weight: 700; letter-spacing: -.065em; line-height: .88; text-transform: uppercase; }
+.folio-more-links { border-top: 1px solid #5f6667; }
+.folio-more-links a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 84px; border-bottom: 1px solid #5f6667; font-size: clamp(1.5rem,2.2vw,2.6rem); font-weight: 600; letter-spacing: -.035em; text-decoration: none; text-transform: uppercase; }
+.folio-more-links a span { color: var(--f4-muted); font-size: 1.5rem; font-weight: 400; }
+
+@media (max-width: 1000px) { .folio-hero h1 { font-size: clamp(4rem,8vw,7rem); } .folio-hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.5rem; } .folio-case { min-height: 560px; } .folio-case-media { min-height: 560px; } .folio-case-copy h3 { font-size: clamp(2.8rem,5vw,4.4rem); } .folio-case-meta { flex-wrap: wrap; } }
+@media (max-width: 760px) { .folio-hero { min-height: max(690px,calc(100svh - 68px)); } .folio-hero-image::after { background: linear-gradient(0deg,rgba(8,10,12,.97),rgba(8,10,12,.72) 48%,rgba(8,10,12,.3)); } .folio-hero-content { padding-block: 1.3rem 2rem; } .folio-hero-main { padding-top: 9rem; } .folio-hero h1 { font-size: clamp(3.3rem,9vw,5.4rem); } .folio-hero-caption { align-self: flex-start; text-align: left; } .folio-work-top { grid-template-columns: 1fr; } .folio-work-top h2 { font-size: clamp(3.4rem,8vw,5.5rem); } .folio-filters { top: 68px; flex-direction: column; align-items: stretch; gap: .5rem; padding-block: .65rem; } .folio-filters>div { min-height: 48px; } .folio-filters button { justify-content: center; flex: 1; } .folio-case { display: flex; flex-direction: column; } .folio-case-media, .folio-case-reverse .folio-case-media { order: 0; min-height: 400px; height: 400px; } .folio-case-copy, .folio-case-reverse .folio-case-copy { order: 1; min-height: 470px; } .folio-case-copy h3 { font-size: clamp(3rem,7vw,5rem); } .folio-more-inner { grid-template-columns: 1fr; gap: 3rem; } }
+@media (max-width: 520px) { .folio-breadcrumb { gap: .5rem; font-size: .76rem; } .folio-hero { min-height: 700px; } .folio-hero h1 { font-size: clamp(2.8rem,10vw,4rem); } .folio-hero-bottom p { font-size: .98rem; } .folio-hero-caption { font-size: .64rem; } .folio-work-top h2 { font-size: clamp(2.9rem,10vw,3.8rem); } .folio-filters>span { font-size: .68rem; } .folio-filters button { gap: .25rem; padding: .55rem .35rem; font-size: .75rem; } .folio-filters button small { font-size: .65rem; } .folio-case-media, .folio-case-reverse .folio-case-media { min-height: 310px; height: 310px; } .folio-case-glyph { font-size: 13rem; } .folio-case-copy, .folio-case-reverse .folio-case-copy { min-height: 430px; padding: 2rem var(--page-gutter); } .folio-case-copy h3 { font-size: clamp(2.6rem,9vw,3.8rem); } .folio-case-copy p { font-size: 1rem; } .folio-case-meta { font-size: .68rem; } .folio-more h2 { font-size: clamp(3rem,10vw,4.3rem); } }
+@media (max-width: 360px) { .folio-hero { min-height: 730px; } .folio-hero h1 { font-size: 9.4vw; } .folio-case-copy h3 { font-size: 8.6vw; } .folio-case-media, .folio-case-reverse .folio-case-media { height: 280px; min-height: 280px; } .folio-case-copy, .folio-case-reverse .folio-case-copy { min-height: 450px; } }
+
+/* revisio-client.css (.portfolio-page) */
+.portfolio-page .folio-case{min-height:520px}
+
+/* Ajustos del director de projecte (27/09/2026). */
+/* Entrada igual que la resta de pàgines interiors de Particulars (valors de la revisió del client a PS). */
+.portfolio-page .folio-hero { min-height: clamp(560px,78svh,760px); }
+.portfolio-page .folio-hero-main { padding-top: 5rem; }
+.portfolio-page .folio-hero h1 { font-size: clamp(3.9rem,6.2vw,7rem); }
+/* Titulars de secció a l'escala comuna i secció d'obertura més compacta. */
+.portfolio-page .folio-work-top h2,
+.portfolio-page .folio-more h2 { font-size: clamp(3.5rem,5.4vw,5.8rem); }
+.portfolio-page .folio-work-top { padding-block: clamp(3.5rem,5vw,5.5rem) clamp(2rem,3.5vw,3.5rem); }
+.portfolio-page .folio-more { padding-block: clamp(3.5rem,5vw,5.5rem); }
+/* Fons alterns: obertura i filtres en clar; cada cas combina text en clar i espai de foto en fosc
+   (zig-zag); serveis relacionats en el fosc #1e2225. */
+.portfolio-page .folio-work { background: var(--client-paper); color: var(--client-ink); }
+.portfolio-page .folio-work .index,
+.portfolio-page .folio-work-top > p { color: #4c5652; }
+.portfolio-page .folio-filters { border-color: #aeb6b2; background: rgb(238 239 235 / .97); }
+.portfolio-page .folio-filters > span { color: #4c5652; }
+.portfolio-page .folio-filters > div { background: #aeb6b2; }
+.portfolio-page .folio-filters button { background: #e2e5e0; color: var(--client-ink); transition: background 200ms ease, color 200ms ease, scale 160ms var(--motion-ease); }
+.portfolio-page .folio-filters button small { color: var(--color-particulars-accent); }
+.portfolio-page .folio-filters button[aria-pressed="true"] { background: #fff; color: var(--client-ink); }
+.portfolio-page .folio-filters button:active { scale: .97; }
+/* Indicador del filtre actiu: una sola barra que llisca fins al botó premut (JS). Sense JS o
+   abans de posicionar-se, cada botó premut té la seva vora inferior. */
+.folio-filter-indicator { position: absolute; z-index: 1; bottom: 0; left: 0; width: 0; height: 2px; background: var(--color-particulars-accent); pointer-events: none; }
+.folio-filters:not(.has-indicator) button[aria-pressed="true"] { box-shadow: inset 0 -2px var(--color-particulars-accent); }
+.folio-filters.has-indicator .folio-filter-indicator.is-ready { transition: translate 320ms var(--ease-out-strong), width 320ms var(--ease-out-strong); }
+.portfolio-page .folio-case { border-top-color: #aeb6b2; }
+.portfolio-page .folio-case:last-child { border-bottom-color: #aeb6b2; }
+.portfolio-page .folio-case-copy { background: var(--client-paper); color: var(--client-ink); }
+.portfolio-page .folio-case:nth-child(even) .folio-case-copy { background: #e6e9e4; }
+.portfolio-page .folio-case-meta { border-bottom-color: #aeb6b2; color: var(--color-particulars-accent); }
+.portfolio-page .folio-case-copy p { color: #3f4845; }
+.portfolio-page .folio-more { border-top: 1px solid #33393c; background: #1e2225; color: #fff; }
+.portfolio-page .folio-more .index { color: var(--f4-muted); }
+@media (max-width: 760px) {
+  .portfolio-page .folio-hero { min-height: 680px; }
+  /* La paraula més llarga de cada titular (--chars, calculat a la plantilla) ha de cabre. */
+  .portfolio-page .folio-hero h1 { font-size: min(clamp(3.9rem,6.2vw,7rem), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .53))); }
+  .portfolio-page .folio-work-top h2,
+  .portfolio-page .folio-more h2 { font-size: min(clamp(3.5rem,5.4vw,5.8rem), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .53))); }
+}
+
+/* Moviment (criteri emil-design-eng; vegeu styles/motion.css). */
+.portfolio-page .arrow { display: inline-block; }
+.folio-hero-bottom a,.underlined-link,.folio-more-links a { transition: scale 160ms var(--motion-ease), color var(--motion-fast) ease; }
+.folio-hero-bottom a:active,.underlined-link:active,.folio-more-links a:active { scale: .98; }
+@media (hover: hover) and (pointer: fine) {
+  .portfolio-page .arrow { transition: translate 220ms var(--motion-ease); }
+  .portfolio-page a:hover .arrow { translate: 3px -3px; }
+  .folio-hero-bottom a:hover .arrow { translate: 3px 3px; }
+  .folio-breadcrumb a:hover { text-decoration: underline; text-underline-offset: .3em; }
+  .portfolio-page .folio-filters button:not([aria-pressed="true"]):hover { background: #f4f5f2; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .folio-hero-image img { animation: settle-image 1100ms var(--ease-out-strong) backwards; }
+  /* Cada cas: la fotografia apareix i s'assenta, i després el text puja (sense cortines). */
+  .folio-case.is-revealed .folio-case-media { animation: reveal-fade 520ms var(--ease-out-strong) backwards; }
+  .folio-case.is-revealed .folio-case-media img { animation: settle-image 900ms var(--ease-out-strong) backwards; }
+  .folio-case.is-revealed .folio-case-glyph { animation: reveal-rise-soft 520ms var(--ease-out-strong) 120ms backwards; }
+  .folio-case.is-revealed .folio-case-copy > * { animation: reveal-rise var(--reveal-duration) var(--ease-settle) backwards; animation-delay: calc(160ms + var(--j, 0) * 60ms); }
+  .folio-case-meta { --j: 0; }
+  .folio-case-copy > div { --j: 1; }
+  .folio-case-copy > .underlined-link { --j: 2; }
+  /* En canviar de filtre, els casos visibles tornen a entrar breument, esglaonats. */
+  .folio-case.is-entering { animation: reveal-rise-soft 480ms var(--ease-out-strong) calc(var(--enter-i, 0) * 60ms) backwards; }
+}
+
+/* Bloc 3 del pla d'afinament (27/09/2026): rols compartits de src/styles/roles.css, com al pilot
+   validat. Obertura, filtres i fitxes en blanc; la fitxa parella usa la superfície neutra
+   secundària per separar casos. H3 comú per als casos (ja no competeixen amb l'H2), cos i
+   etiquetes amb una sola mida, espaiat comú i fotografia sense blanc i negre. */
+.portfolio-page .folio-hero h1 { margin-top: 0; }
+.portfolio-page .folio-work,
+.portfolio-page .folio-case-copy { background: var(--surface-read); }
+.portfolio-page .folio-case:nth-child(even) .folio-case-copy { background: var(--surface-read-alt); }
+.portfolio-page .folio-filters { background: rgb(255 255 255 / .97); }
+.portfolio-page .folio-filters button { background: var(--surface-read-alt); }
+.portfolio-page .folio-work-top { padding-block: var(--space-section) var(--space-lead); }
+.portfolio-page .folio-more { padding-block: var(--space-section); }
+.portfolio-page .folio-hero-bottom p,
+.portfolio-page .folio-work-top > p { font-size: var(--type-intro); }
+.portfolio-page .folio-case h3 { font-size: var(--type-h3); }
+.portfolio-page .folio-case-copy p { font-size: var(--type-body); }
+.portfolio-page .folio-case-meta,
+.portfolio-page .folio-filters > span { font-size: var(--type-meta); letter-spacing: var(--tracking-meta); }
+.portfolio-page .folio-hero-caption { font-size: var(--type-caption); }
+.portfolio-page .folio-hero-image img { filter: saturate(.85) contrast(1.05); }
+/* A mòbil, lectura contínua: la fitxa creix pel text i l'espai reservat a la fotografia (encara
+   sense imatges originals) no ocupa mitja pantalla. */
+@media (max-width: 760px) {
+  .portfolio-page .folio-case-copy,
+  .portfolio-page .folio-case-reverse .folio-case-copy { min-height: 0; }
+  .portfolio-page .folio-case-media,
+  .portfolio-page .folio-case-reverse .folio-case-media { min-height: 240px; height: 240px; }
+}
+
+
+/* Casos reals: la fotografia té el protagonisme i el número queda com a marca editorial. */
+.folio-case-media picture { display: contents; }
+.folio-case-media img { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.82) contrast(1.04); }
+.folio-case-media::before { display: none; }
+.folio-case-media::after { z-index: -1; background: linear-gradient(180deg,rgba(7,9,11,.12),transparent 50%,rgba(7,9,11,.78)); }
+.folio-case-glyph { z-index: 1; top: .1em; left: .07em; font-size: clamp(6rem,12vw,11rem); -webkit-text-stroke-color: rgba(255,255,255,.78); }
+.folio-case-media-estructures img { object-position: center; }
+.folio-case-media-automatismes img { object-position: center; }

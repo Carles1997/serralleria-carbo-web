@@ -11,6 +11,7 @@
 | CLAUDE.md | Regles persistents, curtes i versionades que Claude llegeix a cada sessió. |
 | Skill de projecte | Flux sota demanda per a una ruta o component; el context estable és a CLAUDE.md. |
 | Impeccable | Auditoria visual manual i informe. Cap edició, inicialització ni hook automàtic. |
+| Plugin Codex | Revisions independents i manuals del codi amb /codex:review; sense gate automàtic ni delegació de canvis. Instal·lat localment en aquest projecte. |
 | Skills d'Emil | Criteri selectiu: detall d'interacció, revisió de moviment i QA mòbil. emil-design-eng i review-animations ja estan instal·lades localment amb invocació manual; mobile-native s'afegirà quan hi hagi interaccions mòbils per provar. |
 
 ## Posada en marxa
@@ -35,8 +36,19 @@
 - serralleria-carbo-project: invocar per a treball de Fase 5. Les regles essencials també consten a CLAUDE.md perquè no depenguin d'una invocació automàtica.
 - Impeccable: es pot demanar una auditoria de només lectura d'una pàgina o diff. Revisar les conclusions manualment. Evitar ordres init, craft, shape, adapt, polish, harden i qualsevol instal·lador que activi hooks. La còpia local actual de la skill queda ignorada per Git.
 - emil-design-eng: consultar quan una interacció o acabat necessiti criteri addicional. review-animations: després d'implementar moviment, per a revisió sense canvis. Aquestes dues skills ja són disponibles localment i només s'invoquen manualment. mobile-native: instal·lar-la selectivament abans d'acceptar navegació i gestos mòbils, verificant-ne permisos i efectes.
+- Codex: executar /codex:review en acabar una plantilla o un conjunt coherent de canvis, preferentment amb --base main si la branca té commits. Per a decisions d'arquitectura, /codex:adversarial-review. Claude examina els resultats, aplica només correccions justificades i repeteix la revisió només si queda un risc concret. No activar /codex:setup --enable-review-gate ni utilitzar /codex:rescue per editar.
 - La proposta externa esmenta DESIGN-2.md, Taste Skill i nou skills funcionals: DESIGN-2.md no existeix; Taste i els nou embolcalls addicionals no són necessaris per iniciar. No executar una cadena de comandes d'Impeccable que alteri els mockups validats.
 
+## Plugin Codex en aquesta màquina
+
+El marketplace oficial openai-codex i codex@openai-codex estan instal·lats amb abast local; la configuració queda a .claude/settings.local.json i no es publica a Git. Codex CLI està autenticat amb ChatGPT. La prova de /codex:setup ha passat i /codex:review ha retornat un informe de només lectura. La revisió del plugin pot no executar npm o proves dins del seu entorn: Claude ha de passar les comprovacions del projecte i adjuntar-ne el resultat abans de demanar la revisió.
+
+En un altre equip, amb Claude Code i Codex CLI ja autenticats, repetir:
+
+    claude plugin marketplace add --scope local openai/codex-plugin-cc
+    claude plugin install --scope local codex@openai-codex
+
+Després, reiniciar la sessió de Claude i executar /codex:setup. Mantenir desactivat el review gate automàtic. Fer /codex:review al final de cada bloc coherent, no després de cada fitxer.
 ## Punts de control
 
 | Punt | Condició per avançar |

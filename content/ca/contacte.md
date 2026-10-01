@@ -11,10 +11,6 @@ seoDescription: "Contacta amb Serralleria Carbó a Vilafranca del Penedès. Expl
 
 Explica'ns què necessites i tria si la consulta és **Particular** o **Empresa**. Així podem demanar-te la informació adequada des del primer moment.
 
-## Contacte directe
-
-El número principal és el **630 661 908**. Pots iniciar una conversa de WhatsApp amb un missatge preparat i completar-lo amb els detalls de la feina. També pots trucar-hi directament. El fix **93 890 27 94** continua disponible.
-
 ## Si ets particular
 
 Indica el tipus de servei —urgències, estructures, automatismes, carros o mobiliari— i descriu la feina o la incidència. Si tens una fotografia, unes mides o un document, adjunta'l.
@@ -31,7 +27,7 @@ El contacte industrial comparteix el número **630 661 908** i el correu **carbo
 
 De dilluns a divendres, de 8 a 13 h i de 15 a 18 h. Dissabtes i diumenges, tancat.
 
-## Dades generals
+## Ens trobaràs a Vilafranca
 
 **Serralleria Carbó S.L.**  
 Carrer d'Eugeni d'Ors, 59  

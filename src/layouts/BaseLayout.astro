@@ -1,0 +1,70 @@
+---
+import '../styles/global.css';
+import { getAlternates, isIndexable, type Page } from '../i18n/pages';
+import { defaultLocale } from '../i18n/config';
+// Font web reduïda (Fase 7): vegeu src/styles/global.css i scripts/subset-font.py.
+import fontUrl from '../assets/fonts/CarboText-VF.woff2?url';
+
+interface Props {
+  page: Page;
+  /** Superfície de la pàgina: clara (tokens) o fosca (maquetes de Fase 4). */
+  surface?: 'light' | 'dark';
+}
+
+const { page, surface = 'light' } = Astro.props;
+const { lang, route, seoTitle, seoDescription, noindex } = page.data;
+const indexable = isIndexable(page);
+
+// Els esborranys porten noindex però conserven canonical per revisar-lo; les pàgines
+// marcades noindex al contingut (404, legals bloquejades) no en declaren.
+const canonicalRoute = noindex ? undefined : route;
+const canonical = canonicalRoute ? new URL(canonicalRoute, Astro.site) : undefined;
+const alternates = await getAlternates(page);
+const defaultAlternate = alternates.find((alternate) => alternate.lang === defaultLocale);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      // Marques abans del primer pintat: «js» (menú) i «motion-ready» (revelacions).
+      // Si el mòdul de moviment no arriba a activar-se, es retira i tot queda visible.
+      (() => {
+        const root = document.documentElement;
+        root.classList.add('js');
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+          root.classList.add('motion-ready');
+          setTimeout(() => root.classList.contains('motion-live') || root.classList.remove('motion-ready'), 2500);
+        }
+      })();
+    </script>
+    <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
+    <title>{seoTitle ?? 'Serralleria Carbó'}</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    {seoDescription && <meta name="description" content={seoDescription} />}
+    {!indexable && <meta name="robots" content="noindex" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    {
+      alternates.map(({ lang, route }) => (
+        <link rel="alternate" hreflang={lang} href={new URL(route, Astro.site)} />
+      ))
+    }
+    {
+      defaultAlternate && (
+        <link rel="alternate" hreflang="x-default" href={new URL(defaultAlternate.route, Astro.site)} />
+      )
+    }
+  </head>
+  <body
+    class:list={['min-h-dvh antialiased', surface === 'dark' ? 'surface-dark' : 'bg-paper text-ink']}
+    data-surface={surface}
+  >
+    <slot />
+    <script>
+      import '../scripts/motion';
+    </script>
+  </body>
+</html>

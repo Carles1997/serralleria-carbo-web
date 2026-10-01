@@ -1,0 +1,260 @@
+---
+// Plantilla II (Capacitats d'Industrial). Composició: fases/fase-4/FASE4-mockups/industrial/capacitats/
+// amb identitat.css i revisio-client.css (vegeu capacities.css). Text i dades:
+// content/{idioma}/industrial-capacitats.md. Etiquetes i titulars de la maqueta: i18n/ui.ts.
+// Materials, màquines, processos i vehicles es comproven contra el contingut al build.
+// Bloc 3 del pla d'afinament: sense rètols numerats ni etiqueta sobre la H1; es conserva l'índex de
+// la navegació local (01–04), que identifica les parts reals de la pàgina.
+import { Picture } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Inlines from '../components/Inlines.astro';
+import type { Page } from '../i18n/pages';
+import { useUi } from '../i18n/ui';
+import { company } from '../config/site';
+import { links, listItems, one, paragraphs, parseInlines, parseMarkdown, plainText, sameText } from '../lib/markdown';
+import { sitePhotography } from '../config/photography';
+import './mockup-base.css';
+import './industrial-base.css';
+import './capacities.css';
+
+interface Props {
+  page: Page;
+}
+
+const { page } = Astro.props;
+const locale = page.data.lang;
+const ui = useUi(locale);
+const branch = ui.industrial;
+const t = ui.industrialCapacities;
+
+// Estructura d'industrial-capacitats.md: H1, un paràgraf d'entrada i vuit seccions H2 en aquest ordre.
+const doc = parseMarkdown(page.body ?? '');
+if (doc.sections.length !== 8) throw new Error(`industrial-capacitats.md ha de tenir 8 seccions H2; en té ${doc.sections.length}.`);
+const [space, machinery, materials, welding, mounting, requirements, progress, contact] = doc.sections;
+
+if (t.hero.title.join(' ') !== doc.title) {
+  throw new Error(`El titular compost («${t.hero.title.join(' / ')}») no coincideix amb la H1 d'industrial-capacitats.md.`);
+}
+const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada a industrial-capacitats.md");
+// Revisió editorial (30/09/2026): els titulars visibles són els del contingut, repartits en línies a
+// i18n/ui.ts; maquinària, materials i soldadura es mostren amb les etiquetes del seu H2.
+sameText(t.overview.heading, space.heading, 'industrial-capacitats.md');
+sameText(t.overview.machinery.label[0], machinery.heading, 'industrial-capacitats.md');
+sameText(t.overview.materials.label[0], materials.heading, 'industrial-capacitats.md');
+sameText(t.production.welding.label, welding.heading, 'industrial-capacitats.md');
+sameText(t.production.logistics.label, mounting.heading, 'industrial-capacitats.md');
+sameText(t.requirements.heading, requirements.heading, 'industrial-capacitats.md');
+sameText(t.requirements.progress.label, progress.heading, 'industrial-capacitats.md');
+sameText(t.contact.heading, contact.heading, 'industrial-capacitats.md');
+const spaceText = one(paragraphs(space.blocks), `un paràgraf a «${space.heading}»`);
+
+// Dades visuals que han de sortir del contingut.
+const materialItems = listItems(materials.blocks).map(plainText);
+const plated = t.overview.plates.flatMap((plate) => plate.items);
+if (plated.length !== materialItems.length || plated.some((item) => !materialItems.includes(item))) {
+  throw new Error(`Les plaques de materials (${plated.join(', ')}) no coincideixen amb la llista «${materials.heading}» (${materialItems.join(', ')}).`);
+}
+const machineryText = plainText(one(paragraphs(machinery.blocks), `un paràgraf a «${machinery.heading}»`)).toLowerCase();
+const missingMachine = t.overview.machines.find((machine) => !machineryText.includes(machine.name.toLowerCase()));
+if (missingMachine) throw new Error(`La màquina «${missingMachine.name}» no consta a «${machinery.heading}».`);
+const weldingText = plainText(one(paragraphs(welding.blocks), `un paràgraf a «${welding.heading}»`));
+const missingProcess = t.production.welding.processes.find((process) => !weldingText.includes(process));
+if (missingProcess) throw new Error(`El procés «${missingProcess}» no consta a «${welding.heading}».`);
+const mountingText = plainText(one(paragraphs(mounting.blocks), `un paràgraf a «${mounting.heading}»`));
+const missingVehicle = t.production.logistics.items.find((item) => !mountingText.includes(`${item.word} ${item.label}`));
+if (missingVehicle) throw new Error(`«${missingVehicle.word} ${missingVehicle.label}» no consta a «${mounting.heading}».`);
+
+const requirementsText = one(paragraphs(requirements.blocks), `un paràgraf a «${requirements.heading}»`);
+// La primera frase de «Millora en curs» són les ISO, que la plantilla mostra com a llista; el text
+// visible és la resta del paràgraf.
+const progressText = plainText(one(paragraphs(progress.blocks), `un paràgraf a «${progress.heading}»`));
+const progressBreak = progressText.indexOf('. ');
+const progressIsos = progressText.slice(0, progressBreak);
+if (progressBreak < 0 || t.requirements.progress.items.some((item) => !progressIsos.includes(item.title))) {
+  throw new Error(`«${progress.heading}» ha de començar amb una frase sobre ${t.requirements.progress.items.map((item) => item.title).join(' i ')}.`);
+}
+const progressRest = parseInlines(progressText.slice(progressBreak + 2));
+
+const contactText = one(paragraphs(contact.blocks), `un paràgraf a «${contact.heading}»`);
+// L'enllaç del contingut obre el formulari a la branca Empresa (/contacte/?tipus=empresa); el
+// telèfon i el correu del bloc «Contacte industrial» surten de src/config/site.ts.
+const contactLink = one(links(contact.blocks), `un enllaç a «${contact.heading}»`);
+const contactForm = contactLink.href;
+
+const pad = (value: number) => String(value).padStart(2, '0');
+const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
+---
+
+<BaseLayout page={page} surface="dark">
+  <SiteHeader ui={ui} homeHref="/" nav={[branch.home, ...branch.nav]} mobileExtra={branch.mobileExtra} collapse="industrial" phoneLabel={branch.phoneLabel} current={page.data.route} />
+
+  <main id="contingut" class="industrial-page capacity-page">
+    <section class="c-hero" aria-labelledby="c-title">
+      <div class="i-media c-hero-image" aria-hidden="true">
+        <Picture src={sitePhotography.capacities.hero} alt="" widths={[640, 960, 1280, 1448]} sizes="100vw" formats={['avif', 'webp']} fallbackFormat="jpg" priority />
+      </div>
+      <div class="c-hero-shade" aria-hidden="true"></div>
+      <div class="section-shell c-hero-inner">
+        <nav class="c-crumb enter" aria-label={ui.service.breadcrumb.label}>
+          <a href={branch.home.href}>{ui.industrial.hero.overline[0]}</a><span aria-hidden="true">/</span><span aria-current="page">{t.hero.title[0]}</span>
+        </nav>
+        <div class="c-hero-main">
+          <h1 id="c-title" style={fit(...t.hero.title)}>
+            <span class="enter" style="--i:2">{t.hero.title[0]}</span>{' '}<br /><em class="enter" style="--i:3">{t.hero.title[1]}</em>
+          </h1>
+          <p class="enter" style="--i:4"><Inlines inlines={intro} /></p>
+          <a class="i-button i-button-solid enter" style="--i:5" href="#taller">{t.hero.action} <span class="arrow" aria-hidden="true">↘</span></a>
+        </div>
+      </div>
+    </section>
+
+    <nav class="c-local-nav" aria-label={t.local.label}>
+      <div class="section-shell c-local-inner">
+        {
+          t.local.items.map((item, index) => (
+            <a href={item.href}>
+              <span>{pad(index + 1)}</span> {item.label}
+              {index === t.local.items.length - 1 && <span class="arrow" aria-hidden="true">↗</span>}
+            </a>
+          ))
+        }
+      </div>
+    </nav>
+
+    <section class="c-overview" id="taller" aria-labelledby="c-overview-title">
+      <div class="section-shell">
+        <div class="c-section-head">
+          <div>
+            <h2 id="c-overview-title" style={`${fit(...t.overview.heading)}`} data-reveal>
+              {t.overview.heading[0]}{' '}<br /><em>{t.overview.heading[1]}</em>
+            </h2>
+          </div>
+          <p data-reveal style="--i:2"><Inlines inlines={spaceText} /></p>
+        </div>
+        <div class="c-cap-grid">
+          <figure class="c-workshop-photo" data-reveal="clip">
+            <Picture src={sitePhotography.capacities.workshop} alt="" widths={[640, 960, 1280]} sizes="(max-width: 720px) 100vw, 52vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+          </figure>
+          <div class="c-material-block" data-reveal style="--i:1">
+            <div class="c-block-label"><h3>{t.overview.materials.label[0]}</h3><span>{t.overview.materials.label[1]}</span></div>
+            <ul class="c-metal-plates">
+              {
+                t.overview.plates.map((plate) => (
+                  <li class={`c-plate c-plate-${plate.art}`}>
+                    <Picture src={sitePhotography.capacities.materials[plate.art as keyof typeof sitePhotography.capacities.materials]} alt="" widths={[240, 360, 480, 640]} sizes="(max-width: 720px) 50vw, 24vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                    <span aria-hidden="true">{plate.tag}</span>
+                    <strong aria-hidden="true">
+                      {plate.name.split(' / ').map((part, index) => (index ? [' ', <i>/</i>, ' ', part] : part))}
+                    </strong>
+                    <span class="sr-only">{plate.items.join(', ')}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <div class="c-machine-block" data-reveal style="--i:2">
+            <div class="c-block-label"><h3>{t.overview.machinery.label[0]}</h3><span>{t.overview.machinery.label[1]}</span></div>
+            <ul class="c-machines" data-reveal="group">
+              {
+                t.overview.machines.map((machine, index) => (
+                  <li class="c-machine" style={`--i:${index}`}>
+                    <Picture src={sitePhotography.capacities.machines[machine.art as keyof typeof sitePhotography.capacities.machines]} alt="" widths={[240, 360, 480, 640]} sizes="(max-width: 720px) 33vw, 16vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                    <strong>{machine.name}</strong>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+        <p class="c-plan-note" data-reveal><span>{t.overview.note.label}</span> {t.overview.note.text}</p>
+      </div>
+    </section>
+
+    <section class="c-production" id="produccio" aria-labelledby="c-production-title">
+      <div class="i-media c-production-image" aria-hidden="true">
+        <Picture src={sitePhotography.capacities.production} alt="" widths={[640, 960, 1280, 1672]} sizes="100vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+      </div>
+      <div class="c-production-shade" aria-hidden="true"></div>
+      <div class="section-shell c-production-inner">
+        <div class="c-production-lead">
+          <h2 id="c-production-title" style={`${fit(...t.production.heading)}`} data-reveal>
+            {t.production.heading[0]}{' '}<br /><em>{t.production.heading[1]}</em>
+          </h2>
+          <p data-reveal style="--i:2">{t.production.lead}</p>
+        </div>
+        <div class="c-production-data" data-reveal style="--i:1">
+          <div class="c-weld-data">
+            <h3>{t.production.welding.label}</h3>
+            <strong>
+              {t.production.welding.processes[0].split('/').map((part, index) => (index ? [<span>/</span>, part] : part))}{' '}
+              <small>+ </small>{t.production.welding.processes[1]}
+            </strong>
+          </div>
+          <div class="c-logistics-data">
+            <h3>{t.production.logistics.label}</h3>
+            <div>
+              {
+                t.production.logistics.items.map((item) => (
+                  <p>
+                    <strong>{item.value}</strong> {item.label}
+                  </p>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="c-requirements" id="requisits" aria-labelledby="c-requirements-title">
+      <div class="section-shell c-requirements-inner">
+        <div class="c-requirements-copy" data-reveal>
+          <h2 id="c-requirements-title">{t.requirements.heading}</h2>
+          <p><Inlines inlines={requirementsText} /></p>
+        </div>
+        <div class="c-progress" role="group" aria-label={t.requirements.progress.label} data-reveal style="--i:1">
+          <span>{t.requirements.progress.label}</span>
+          <div>
+            {
+              t.requirements.progress.items.map((item) => (
+                <p>
+                  <strong>{item.title}</strong>
+                  <small>{item.state}</small>
+                </p>
+              ))
+            }
+          </div>
+          <p><Inlines inlines={progressRest} /></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="c-contact" id="consulta" aria-labelledby="c-contact-title">
+      <div class="section-shell c-contact-inner">
+        <div class="c-contact-copy">
+          <h2 id="c-contact-title" style={`${fit(...t.contact.heading)}`} data-reveal>
+            {t.contact.heading[0]}{' '}<br /><em>{t.contact.heading[1]}</em>
+          </h2>
+          <p data-reveal style="--i:2"><Inlines inlines={contactText} /></p>
+          <div class="c-contact-actions" data-reveal style="--i:3">
+            <a class="i-button i-button-solid" href={contactForm}>{contactLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="c-contact-return" href={branch.home.href}>{t.contact.back} <span class="arrow arrow-back" aria-hidden="true">↖</span></a>
+          </div>
+        </div>
+        <div class="c-contact-detail" data-reveal style="--i:1">
+          <h3>{t.contact.fieldsLabel}</h3>
+          <ul class="c-contact-fields">{t.contact.fields.map((field) => <li>{field}</li>)}</ul>
+          <div class="c-contact-person">
+            <h3>{t.contact.person}</h3>
+            <a href={company.phone.href}>{company.phone.display}</a>
+            <a href={`mailto:${company.email}`}>{company.email}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter ui={ui} locale={locale} contactHref={contactForm} variant="industrial" />
+</BaseLayout>

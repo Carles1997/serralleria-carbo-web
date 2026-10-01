@@ -1,0 +1,177 @@
+/* Interaccions i transicions · Bloc 4 del pla d'afinament (revisió del director, 28/09/2026).
+   Criteri: subtil i només on hi ha una acció. Les peces que no porten enlloc (sectors d'Industrial,
+   mosaic del taller, panells d'esquemes dels serveis) no reaccionen al punter; les que sí (camins i
+   rajoles de la Home, serveis de Particulars, botons i enllaços) conserven la resposta breu de
+   color, zoom lent de la imatge i pressió que ja tenien a cada plantilla.
+   - Entre pàgines: View Transitions entre documents (només CSS). El contingut es fon breument i la
+     capçalera es queda al seu lloc, de manera que navegar no fa parpellejar la pàgina.
+   - Dins la pàgina: la mateixa API per als canvis d'estat (filtres del portafoli i branca del
+     formulari, a scripts/portfolio.ts i scripts/contact-form.ts); els casos es recol·loquen suaument.
+   Navegadors sense suport: navegació i canvis instantanis, com fins ara. Amb moviment reduït, cap
+   transició. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+.site-header {
+  view-transition-name: site-header;
+}
+
+/* Fos creuat del navegador (sense passar per negre ni blanc), més breu. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 240ms;
+}
+
+::view-transition-group(site-header) {
+  animation-duration: 220ms;
+}
+
+/* Casos del portafoli: es desplacen fins a la posició nova en filtrar. */
+::view-transition-group(*.folio-case) {
+  animation-duration: 380ms;
+  animation-timing-function: var(--ease-out-strong);
+}
+
+/* ── Línia de càrrega ──────────────────────────────────────────────────────────────────────
+   Als enllaços amb una línia fina (vora d'1 px), en passar-hi el ratolí una línia del color del
+   text es carrega d'esquerra a dreta sobre la vora, com una barra de progrés, i en sortir es
+   retira cap a la dreta. Mateixa resposta amb el focus de teclat. Els botons amb requadre i les
+   peces que no porten enlloc no en tenen. */
+:is(.underlined-link, .offer-overview, .contact-actions a:not(.contact-primary), .p-arrow-link, .s-hero-cta, .folio-hero-bottom a, .folio-more-links a, .contact-hero-actions a, .place-info > a, .i-text-link, .i-section-link, .i-proof a, .c-crumb a, .c-contact-return, .desktop-nav a, .path-action, .co-way-action, .aside-path > a) {
+  position: relative;
+}
+
+:is(.underlined-link, .offer-overview, .contact-actions a:not(.contact-primary), .p-arrow-link, .s-hero-cta, .folio-hero-bottom a, .folio-more-links a, .contact-hero-actions a, .place-info > a, .i-text-link, .i-section-link, .i-proof a, .c-crumb a, .c-contact-return, .desktop-nav a, .path-action, .co-way-action, .aside-path > a)::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  pointer-events: none;
+  scale: 0 1;
+  transform-origin: right center;
+}
+
+/* La línia de l'acció dels camins (Home) i dels enllaços del lateral de Contacte és a dalt. */
+:is(.path-action, .co-way-action, .aside-path > a)::after {
+  top: -1px;
+  bottom: auto;
+}
+
+/* Vores que eren del mateix color que el text: es rebaixen perquè la càrrega es vegi. */
+main :is(.underlined-link, .s-hero-cta, .folio-hero-bottom a, .place-info > a) {
+  border-bottom-color: color-mix(in srgb, currentColor 38%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :is(.underlined-link, .offer-overview, .contact-actions a:not(.contact-primary), .p-arrow-link, .s-hero-cta, .folio-hero-bottom a, .folio-more-links a, .contact-hero-actions a, .place-info > a, .i-text-link, .i-section-link, .i-proof a, .c-crumb a, .c-contact-return, .desktop-nav a, .aside-path > a):hover::after,
+  .path:hover .path-action::after,
+  .co-way:hover .co-way-action::after {
+    scale: 1 1;
+    transform-origin: left center;
+  }
+}
+
+:is(.underlined-link, .offer-overview, .contact-actions a:not(.contact-primary), .p-arrow-link, .s-hero-cta, .folio-hero-bottom a, .folio-more-links a, .contact-hero-actions a, .place-info > a, .i-text-link, .i-section-link, .i-proof a, .c-crumb a, .c-contact-return, .desktop-nav a, .aside-path > a):focus-visible::after,
+.path:focus-visible .path-action::after,
+.co-way:focus-visible .co-way-action::after {
+  scale: 1 1;
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :is(.underlined-link, .offer-overview, .contact-actions a:not(.contact-primary), .p-arrow-link, .s-hero-cta, .folio-hero-bottom a, .folio-more-links a, .contact-hero-actions a, .place-info > a, .i-text-link, .i-section-link, .i-proof a, .c-crumb a, .c-contact-return, .desktop-nav a, .path-action, .co-way-action, .aside-path > a)::after {
+    transition: scale 360ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Entrada: 700 ms amb acceleració i frenada, com una càrrega. */
+  :is(.underlined-link, .offer-overview, .contact-actions a:not(.contact-primary), .p-arrow-link, .s-hero-cta, .folio-hero-bottom a, .folio-more-links a, .contact-hero-actions a, .place-info > a, .i-text-link, .i-section-link, .i-proof a, .c-crumb a, .c-contact-return, .desktop-nav a, .aside-path > a):is(:hover, :focus-visible)::after,
+  .path:is(:hover, :focus-visible) .path-action::after,
+  .co-way:is(:hover, :focus-visible) .co-way-action::after {
+    transition: scale 700ms cubic-bezier(0.65, 0, 0.35, 1);
+  }
+}
+
+/* ── Profunditat ───────────────────────────────────────────────────────────────────────────
+   Vidre: panells translúcids amb desenfocament on hi ha fotografia o contingut al darrere
+   (capçalera, a SiteHeader; barra de filtres del portafoli; mètode d'Industrial; dades de
+   producció de Capacitats). Parallax: les fotografies de capçalera i de fons es desplacen més
+   lentes que el contingut, lligades a l'scroll (animacions CSS lligades a l'scroll, sense
+   JavaScript). Sense suport, les peces queden fixes com abans. */
+@supports (backdrop-filter: blur(1px)) {
+  main.portfolio-page .folio-filters {
+    background: rgb(255 255 255 / 0.78);
+    backdrop-filter: blur(14px) saturate(1.3);
+  }
+
+  main .i-series-method {
+    background: rgb(13 15 16 / 0.6);
+    backdrop-filter: blur(14px) saturate(1.2);
+  }
+
+  main .c-production-data {
+    background: rgb(20 24 25 / 0.58);
+    backdrop-filter: blur(16px) saturate(1.2);
+  }
+}
+
+@keyframes depth-hero {
+  to {
+    translate: 0 14%;
+  }
+}
+
+@keyframes depth-section {
+  from {
+    translate: 0 -6%;
+    scale: 1.14;
+  }
+
+  to {
+    translate: 0 6%;
+    scale: 1.14;
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Fotografia de capçalera: baixa al 14 % de la velocitat mentre la pàgina puja el primer
+       viewport (l'espai que deixa queda sempre fora de la vista). */
+    :is(.p-hero-image, .i-hero-image, .s-hero-image, .folio-hero-image, .c-hero-image, .co-hero-image) {
+      /* Longhands: el minificador fusionaria «animation» + «animation-timeline» en una forma
+         abreujada que els navegadors encara no accepten. */
+      animation-name: depth-hero;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 100vh;
+    }
+
+    /* Seccions amb fotografia de fons: la imatge (ampliada un 14 %) recorre ±6 % mentre la
+       secció creua la finestra. */
+    :is(.i-series, .c-production, .company, .co-roots-media) {
+      view-timeline: --depth block;
+    }
+
+    :is(.i-series-image, .c-production-image, .company-image picture, .co-roots-image) {
+      animation-name: depth-section;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --depth;
+      animation-range: cover;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

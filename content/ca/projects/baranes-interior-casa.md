@@ -4,7 +4,7 @@ branch: particulars
 category: estructures
 year: 2022
 sourceWorkbookRow: 7
-status: draft
+status: approved
 title: "Baranes interiors d'habitatge"
 ---
 

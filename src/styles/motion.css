@@ -1,0 +1,118 @@
+/* Sistema de moviment · Bloc 4 del pla d'afinament (revisió del director, 28/09/2026).
+   El moviment acompanya la lectura: no la retarda, no fa espectacle i no convida a clicar el que no
+   és interactiu. Entrades a aquest fitxer; interaccions i transicions a styles/interactions.css.
+   - Contingut i CTA llegibles sense JavaScript i amb moviment reduït: l'estat ocult només existeix
+     amb html.motion-ready, que posa BaseLayout i retira si el mòdul de moviment no s'activa.
+   - Entrades d'un sol ús (keyframes «backwards»): opacitat i 12 px de desplaçament en ~420 ms amb
+     una corba d'assentament natural; en acabar, l'element torna al seu estil i no interfereix amb
+     hover ni :active.
+   - Peces amb imatge: apareixen sense cortina ni desenfocament i la fotografia s'assenta
+     (escala 1,04 → 1). Els traços dels esquemes es dibuixen un sol cop.
+   - Propietats individuals (translate, scale) per no trepitjar els transform d'interacció. */
+:root {
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+  /* Assentament natural (corba linear() interpolada, sense rebot). */
+  --ease-settle: linear(0, 0.14 6%, 0.46 18%, 0.73 32%, 0.89 47%, 0.97 64%, 0.995 82%, 1);
+  --stagger: 50ms;
+  --reveal-duration: 420ms;
+  --reveal-distance: 12px;
+}
+
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    translate: 0 var(--reveal-distance);
+  }
+}
+
+@keyframes reveal-rise-soft {
+  from {
+    opacity: 0;
+    translate: 0 0.25em;
+  }
+}
+
+@keyframes reveal-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes reveal-clip-right {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes settle-image {
+  from {
+    scale: 1.04;
+  }
+}
+
+@keyframes rule-grow {
+  from {
+    scale: 0 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Entrada inicial de capçaleres de pàgina: només CSS, no depèn de JavaScript. */
+  .enter {
+    animation: reveal-rise-soft 520ms var(--ease-settle) calc(var(--i, 0) * var(--stagger) + 40ms) backwards;
+  }
+
+  html.motion-ready [data-reveal]:not(.is-revealed) {
+    opacity: 0;
+  }
+
+  /* Grup: el contenidor només dispara; els fills entren escalonats (--i de cada fill). */
+  html.motion-ready [data-reveal='group']:not(.is-revealed) {
+    opacity: 1;
+  }
+
+  html.motion-ready [data-reveal='group']:not(.is-revealed) > * {
+    opacity: 0;
+  }
+
+  [data-reveal].is-revealed {
+    animation: reveal-rise var(--reveal-duration) var(--ease-settle) calc(var(--i, 0) * var(--stagger)) backwards;
+  }
+
+  [data-reveal='group'].is-revealed {
+    animation: none;
+  }
+
+  [data-reveal='group'].is-revealed > * {
+    animation: reveal-rise var(--reveal-duration) var(--ease-settle) calc(var(--i, 0) * var(--stagger)) backwards;
+  }
+
+  /* Peces amb imatge («clip», nom heretat): fos breu i fotografia que s'assenta. */
+  [data-reveal='clip'].is-revealed {
+    animation: reveal-fade 520ms var(--ease-out-strong) calc(var(--i, 0) * var(--stagger)) backwards;
+  }
+
+  [data-reveal='clip'].is-revealed img,
+  [data-reveal='group'].is-revealed > * img {
+    animation: settle-image 900ms var(--ease-out-strong) calc(var(--i, 0) * var(--stagger)) backwards;
+  }
+
+  /* Les escenes s'hi dibuixen d'esquerra a dreta un cop visible la peça. */
+  .is-revealed [data-draw] {
+    animation: reveal-clip-right 800ms var(--ease-in-out-strong) calc(var(--i, 0) * var(--stagger) + 120ms) backwards;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

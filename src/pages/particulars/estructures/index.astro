@@ -1,0 +1,8 @@
+---
+import ServiceTemplate from '../../../templates/ServiceTemplate.astro';
+import { getPage } from '../../../i18n/pages';
+
+const page = await getPage('particulars-estructures');
+---
+
+<ServiceTemplate page={page} />

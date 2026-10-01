@@ -13,15 +13,23 @@ reviewNeeded:
 
 Instal·lem i reparem automatismes per a portes i accessos. Treballem tant en la motorització d'una porta com en la revisió d'un sistema que ja està instal·lat.
 
-## Quina porta tens?
+## Comencem per conèixer la porta
 
-Explica'ns si es tracta d'una porta de garatge, d'una persiana o d'un altre accés. Indica com funciona ara, què vols canviar i, si és possible, adjunta una fotografia. Amb aquestes dades podem valorar quin treball cal fer.
+Per valorar quin treball cal fer, ens ajuda saber tres coses de la porta.
+
+- **Tipus** · Garatge, persiana o un altre accés.
+- **Estat actual** · Com funciona ara.
+- **Canvi** · Què vols canviar.
+
+Si és possible, adjunta una fotografia a la consulta.
 
 ## Instal·lacions reals
 
+<!-- La galeria es mostra sense titular (revisió editorial del 30/09/2026): aquest H2 només ordena el contingut. -->
+
 Hem fabricat, instal·lat i motoritzat una porta de pàrquing d'una comunitat de veïns. També hem fabricat, instal·lat i motoritzat sis persianes enrotllables i la porta d'un negoci.
 
-[Veure els projectes](/particulars/projectes/)
+[Veure projectes d'automatismes](/particulars/projectes/?servei=automatismes)
 
 ## Si el problema és ara
 

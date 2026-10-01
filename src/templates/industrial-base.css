@@ -1,0 +1,66 @@
+/* Base compartida de la branca Industrial: portada (plantilla I) i pàgines interiors
+   (plantilla II). Regles comunes de fases/fase-4/FASE4-mockups/industrial/styles.css i
+   identitat.css (identitat plata #c5ceca sobre grafit). .industrial-page és el <main>.
+   S'importa després de mockup-base.css i abans del full de cada plantilla. */
+
+/* industrial/styles.css */
+.industrial-page { --i-dark:#151719; --i-deep:#101113; --i-steel:#222528; --i-line:#555b5d; --i-paper:#eeede9; --i-paper-line:#c5c7c2; --i-ink:#202124; --i-muted:#cbd0cf; --i-accent:#d48e94; background:var(--i-deep); }
+/* clip (no hidden): retalla igual però no crea un contenidor d'scroll, perquè les animacions
+   lligades a l'scroll de les seccions (parallax) segueixin la finestra. */
+.industrial-page { overflow:clip; }
+.i-index { display:block; color:var(--i-accent); font-size:.75rem; font-weight:700; letter-spacing:.15em; line-height:1.3; text-transform:uppercase; }
+.i-button { display:inline-flex; align-items:center; justify-content:space-between; gap:2rem; min-height:54px; padding:.8rem 1.1rem; font-weight:700; text-decoration:none; transition:background .22s ease,color .22s ease,transform .22s ease; }
+.i-button:hover { transform:translateY(-2px); }
+.i-button span,.i-text-link span,.i-section-link span { font-size:1.25em; font-weight:400; }
+.i-button-solid { background:#f1efeb; color:#17191a; }
+.i-button-solid:hover { background:#d8bbbd; }
+.i-button-outline { border:1px solid #ced2d0; color:#fff; }
+.i-button-outline:hover { background:#fff; color:#161819; }
+.i-section-link { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; width:fit-content; max-width:100%; min-height:56px; margin-top:clamp(2rem,4vw,4rem); padding:.7rem 0; border-top:1px solid #c3cac8; border-bottom:1px solid #c3cac8; font-weight:700; text-decoration:none; }
+.i-section-link:hover { color:#e9adb2; }
+.i-section-link span { color:var(--i-accent); }
+.i-text-link { display:inline-flex; align-items:center; justify-content:space-between; gap:1.2rem; min-height:50px; padding:.5rem 0; border-bottom:1px solid #d3d7d4; font-weight:700; text-decoration:none; }
+.i-text-link:hover { color:var(--i-accent); }
+
+/* industrial/identitat.css */
+.industrial-page { --i-accent:var(--color-industrial-silver); }
+/* Reflex platejat, limitat a les paraules destacades dels titulars. «main» manté la prioritat que
+   tenia identitat.css al final de la cascada sobre els colors d'em de cada plantilla. */
+main.industrial-page :is(h1,h2,h3) em {
+  /* Una caixa de línia completa i un petit marge de pintura eviten que background-clip talli l'últim glif. */
+  display:inline-block;
+  max-width:calc(100% + .16em);
+  padding-inline-end:.16em;
+  margin-inline-end:-.16em;
+  line-height:1.06;
+  color:#dfe5df;
+  font-style:normal;
+  background-image:linear-gradient(105deg,#f8faf7 0%,#a2aca5 17%,#fbfdf9 32%,#7e8983 51%,#f7faf6 68%,#9ba69f 85%,#f8faf7 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+@media (forced-colors:active) {
+  main.industrial-page :is(h1,h2,h3) em { background:none; color:CanvasText; -webkit-text-fill-color:CanvasText; }
+}
+.i-section-link:hover,.i-text-link:hover { color:#e5e9e6; }
+.i-button-solid:hover { background:#e0e4e1; }
+
+/* Fase 5 */
+/* Imatges de Picture: omplen el contenidor posicionat. */
+.i-media { position:absolute; inset:0; }
+.i-media picture { display:contents; }
+.i-media img { display:block; width:100%; height:100%; object-fit:cover; }
+/* Moviment comú (criteri emil-design-eng; vegeu styles/motion.css). */
+.industrial-page .arrow { display:inline-block; }
+.i-button,.i-text-link,.i-section-link { transition:transform .22s ease, scale 160ms var(--motion-ease), background var(--motion-fast) ease, color var(--motion-fast) ease; }
+.i-button:active,.i-text-link:active,.i-section-link:active { scale:.97; }
+@media (hover:hover) and (pointer:fine) {
+  .industrial-page .arrow { transition:translate 220ms var(--motion-ease); }
+  .industrial-page a:hover .arrow { translate:3px -3px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .i-button,.i-text-link,.i-section-link { transition:none; }
+  .i-button:hover { transform:none; }
+  .i-button:active,.i-text-link:active,.i-section-link:active { scale:1; }
+}

@@ -1,0 +1,206 @@
+---
+// Bloc final de contacte de les portades (maqueta Home de Fase 4). Destí principal
+// al formulari unificat; canals directes amb les dades confirmades de config/site.
+import Inlines from './Inlines.astro';
+import { company, whatsappUrl } from '../config/site';
+import type { Inline, Link } from '../lib/markdown';
+import type { UiStrings } from '../i18n/ui';
+
+interface Props {
+  ui: UiStrings;
+  /** Rètol sobre el titular. Les portades del pilot del Bloc 1 ja no en porten. */
+  index?: string;
+  /** Text del titular; una llista força els salts de línia de la maqueta. */
+  heading: string | string[];
+  /** Text de la secció de contacte del contingut, si en té. */
+  text?: Inline[];
+  form: Link;
+  /** Informació complementària breu sota el text (p. ex. l'àrea de treball de Particulars). */
+  note?: { label: string; text: Inline[] };
+}
+
+const { ui, index, heading, text, form, note } = Astro.props;
+// Paraula més llarga del titular: a mòbil, l'H2 comú s'ajusta perquè hi càpiga.
+const chars = Math.max(...[heading].flat().join(' ').split(/\s+/).map((word) => word.length));
+---
+
+<section class="contact" id="contacte" aria-labelledby="contact-title" data-surface="accent">
+  <div class="contact-inner">
+    <div>
+      {index && <span class="contact-index" data-reveal>{index}</span>}
+      <h2 id="contact-title" data-reveal style={`--i:1;--chars:${chars}`}>
+        {Array.isArray(heading) ? heading.map((line, index) => (index ? [' ', <br />, line] : line)) : heading}
+      </h2>
+      {text && <p data-reveal style="--i:2"><Inlines inlines={text} /></p>}
+      {
+        note && (
+          <div class="contact-note" data-reveal style="--i:3">
+            <h3>{note.label}</h3>
+            <p><Inlines inlines={note.text} /></p>
+          </div>
+        )
+      }
+    </div>
+    <div class="contact-actions">
+      <a class="contact-primary" href={whatsappUrl(ui.contact.whatsappMessage)} target="_blank" rel="noopener noreferrer" data-reveal style="--i:2">
+        {ui.contact.whatsapp} <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <a href={form.href} data-reveal style="--i:3">{form.label} <span class="arrow" aria-hidden="true">↗</span></a>
+      <a href={company.phone.href} data-reveal style="--i:4">
+        {ui.contact.call(company.phone.display)} <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <a href={`mailto:${company.email}`} data-reveal style="--i:5">{company.email} <span class="arrow" aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3.5rem, 5vw, 5.5rem);
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  .contact::after {
+    position: absolute;
+    right: -0.14em;
+    bottom: -0.5em;
+    color: rgb(255 255 255 / 0.055);
+    content: 'C';
+    font-size: clamp(18rem, 33vw, 42rem);
+    font-weight: 700;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .contact-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    align-items: end;
+    gap: clamp(2rem, 6vw, 8rem);
+    width: min(100%, 1600px);
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+  }
+
+  .contact-index {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 2rem 0 2.5rem;
+    font-size: var(--type-h2);
+    font-weight: 700;
+    letter-spacing: -0.07em;
+    line-height: 0.85;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .contact-note {
+    max-width: 55ch;
+    margin-top: 2rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid rgb(255 255 255 / 0.38);
+  }
+
+  .contact-note h3 {
+    margin-bottom: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .contact-note p {
+    font-size: 1rem;
+  }
+
+  /* Sense rètol, el titular obre el bloc. */
+  h2:first-child {
+    margin-top: 0;
+  }
+
+  p {
+    max-width: 55ch;
+    color: #fff;
+    font-size: var(--type-intro);
+    line-height: 1.5;
+  }
+
+  .contact-actions {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-actions a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 66px;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgb(255 255 255 / 0.65);
+    font-weight: 700;
+  }
+
+  .contact-actions a {
+    transition: scale 160ms var(--ease-out-strong);
+  }
+
+  .contact-actions a:active {
+    scale: 0.98;
+  }
+
+  .arrow {
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  .contact-actions .contact-primary {
+    min-height: 70px;
+    margin-bottom: 0.7rem;
+    padding: 0.8rem 1.2rem;
+    border: 0;
+    background: #fff;
+    color: var(--color-ink);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .arrow {
+      transition: translate 220ms var(--ease-out-strong);
+    }
+
+    .contact-actions a:hover .arrow {
+      translate: 3px -3px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .contact-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    h2 {
+      font-size: min(var(--type-h2), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * 0.53)));
+    }
+  }
+
+  @media (max-width: 520px) {
+    .contact-actions a {
+      overflow-wrap: anywhere;
+    }
+  }
+</style>

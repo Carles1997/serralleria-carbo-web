@@ -1,0 +1,393 @@
+---
+// Capçalera compartida (maqueta Home de Fase 4). Sense JavaScript, el menú mòbil
+// queda desplegat com a llista d'enllaços; amb JavaScript es converteix en botó.
+import { company } from '../config/site';
+import BrandLogo from './BrandLogo.astro';
+import type { UiStrings } from '../i18n/ui';
+
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  ui: UiStrings;
+  homeHref: string;
+  nav: NavItem[];
+  mobileExtra?: NavItem[];
+  /** «wide»: navegació llarga de branca (maqueta de Particulars), menú fins a 1270 px.
+   *  «industrial»: navegació d'Industrial (maqueta d'Industrial), menú fins a 1320 px. */
+  collapse?: 'standard' | 'wide' | 'industrial';
+  /** Ruta de la pàgina actual: l'enllaç corresponent porta aria-current="page". */
+  current?: string;
+  /** Etiqueta sobre el telèfon (per defecte, la general). */
+  phoneLabel?: string;
+}
+
+const { ui, homeHref, nav, mobileExtra = [], collapse = 'standard', current, phoneLabel = ui.headerPhoneLabel } = Astro.props;
+const currentAttr = (href: string) => (href === current ? 'page' : undefined);
+---
+
+<a class="skip-link" href="#contingut">{ui.skipLink}</a>
+<header class="site-header" id="inici" data-surface="dark" data-collapse={collapse}>
+  <div class="header-inner">
+    <a class="wordmark" href={homeHref} aria-label={ui.brandHome}>
+      <BrandLogo variant={collapse === "industrial" ? "industrial" : "serralleria"} place="header" />
+    </a>
+    <nav class="desktop-nav" aria-label={ui.menu.main}>
+      {nav.map((item) => <a href={item.href} aria-current={currentAttr(item.href)}>{item.label}</a>)}
+    </nav>
+    <div class="header-actions">
+      <a class="header-phone" href={company.phone.href}>
+        <span class="header-phone-label">{phoneLabel}</span><span>{company.phone.display}</span>
+      </a>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label={ui.menu.open}
+        data-label-open={ui.menu.open}
+        data-label-close={ui.menu.close}
+      >
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label={ui.menu.mobile}>
+    {[...nav, ...mobileExtra].map((item) => <a href={item.href} aria-current={currentAttr(item.href)}>{item.label}</a>)}
+  </nav>
+</header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.getElementById('mobile-nav');
+
+  if (button && nav) {
+    const setOpen = (open: boolean, restoreFocus = false) => {
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', (open ? button.dataset.labelClose : button.dataset.labelOpen) ?? '');
+      nav.classList.toggle('is-open', open);
+      if (open) nav.querySelector('a')?.focus();
+      else if (restoreFocus) button.focus();
+    };
+
+    button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
+    nav.addEventListener('click', (event) => {
+      if ((event.target as Element).closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && nav.classList.contains('is-open')) setOpen(false, true);
+    });
+    const header = button.closest<HTMLElement>('.site-header');
+    const breakpoints: Record<string, string> = { wide: '(min-width: 1271px)', industrial: '(min-width: 1321px)' };
+    const desktop = breakpoints[header?.dataset.collapse ?? ''] ?? '(min-width: 1001px)';
+    window.matchMedia(desktop).addEventListener('change', (event) => {
+      if (event.matches) setOpen(false);
+    });
+  }
+</script>
+
+<style>
+  .skip-link {
+    position: fixed;
+    z-index: 100;
+    top: -5rem;
+    left: 1rem;
+    padding: 0.7rem 1rem;
+    background: #fff;
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  .site-header {
+    position: sticky;
+    z-index: 50;
+    top: 0;
+    border-bottom: 1px solid var(--f4-line);
+    background: rgb(16 17 19 / 0.97);
+    color: var(--f4-text);
+  }
+
+  /* Vidre fosc (profunditat): el contingut es percep difuminat sota la capçalera en fer scroll.
+     El 84 % d'opacitat manté el to fosc i el contrast del text blanc sobre seccions blanques. */
+  @supports (backdrop-filter: blur(1px)) {
+    .site-header {
+      background: rgb(16 17 19 / 0.84);
+      backdrop-filter: blur(18px) saturate(1.4);
+    }
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    max-width: 1600px;
+    min-height: 76px;
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+  }
+
+  .wordmark {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    min-height: var(--target-min);
+  }
+
+  .desktop-nav {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(1rem, 2vw, 2.4rem);
+  }
+
+  .desktop-nav a {
+    display: flex;
+    align-items: center;
+    min-height: var(--target-min);
+    border-bottom: 1px solid transparent;
+    font-size: 0.92rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .desktop-nav a {
+    transition: border-color 200ms ease;
+  }
+
+  /* Pàgina actual: línia sencera. En passar-hi, la línia es carrega (styles/interactions.css). */
+  .desktop-nav a[aria-current='page'] {
+    border-color: currentColor;
+  }
+
+  .mobile-nav a[aria-current='page'] {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .header-phone {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: var(--target-min);
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--f4-line);
+    white-space: nowrap;
+  }
+
+  .header-phone-label {
+    color: var(--f4-muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .header-phone > span:last-child {
+    font-size: 1.03rem;
+    font-weight: 700;
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 1px solid #707477;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: scale 160ms var(--motion-ease);
+  }
+
+  .menu-toggle:active {
+    scale: 0.96;
+  }
+
+  .menu-toggle span {
+    width: 19px;
+    height: 2px;
+    background: currentColor;
+    transition: transform var(--motion-fast) var(--motion-ease);
+  }
+
+  .menu-toggle[aria-expanded='true'] span:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded='true'] span:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+
+  .mobile-nav {
+    display: none;
+    padding: 0.25rem var(--page-gutter) 1rem;
+    border-top: 1px solid var(--f4-line);
+    background: var(--f4-coal);
+  }
+
+  .mobile-nav a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    border-bottom: 1px solid var(--f4-line);
+    font-weight: 600;
+  }
+
+  .mobile-nav a:last-child {
+    border-bottom: 0;
+  }
+
+  /* Obertura discreta, sense entrada teatral (traspàs); el tancament és immediat. */
+  @media (prefers-reduced-motion: no-preference) {
+    .mobile-nav.is-open {
+      transition:
+        opacity 180ms var(--motion-ease),
+        translate 180ms var(--motion-ease);
+
+      @starting-style {
+        opacity: 0;
+        translate: 0 -0.375rem;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .desktop-nav {
+      gap: 1rem;
+    }
+
+    .header-phone-label {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .desktop-nav {
+      display: none;
+    }
+
+    .header-actions {
+      margin-left: auto;
+    }
+
+    /* Sense JS: navegació desplegada i capçalera no fixa. Amb JS: botó de menú. */
+    :global(html:not(.js)) .site-header {
+      position: static;
+    }
+
+    :global(html:not(.js)) .mobile-nav,
+    .mobile-nav.is-open {
+      display: grid;
+    }
+
+    :global(html.js) .menu-toggle {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .header-inner {
+      min-height: 68px;
+    }
+
+  }
+
+  @media (max-width: 520px) {
+    .header-phone {
+      padding-left: 0;
+      border: 0;
+    }
+
+    .header-phone > span:last-child {
+      font-size: 0.88rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .header-phone > span:last-child {
+      font-size: 0.77rem;
+    }
+  }
+
+  /* Variants «wide» i «industrial»: mateixa lògica que a 1000 px, aplicada fins a 1270 i
+     1320 px respectivament. */
+  :is([data-collapse='wide'], [data-collapse='industrial']) .header-inner {
+    gap: clamp(1rem, 1.8vw, 2rem);
+  }
+
+  [data-collapse='wide'] .desktop-nav {
+    gap: clamp(0.75rem, 1.25vw, 1.35rem);
+  }
+
+  [data-collapse='industrial'] .desktop-nav {
+    gap: clamp(0.7rem, 1.2vw, 1.25rem);
+  }
+
+  :is([data-collapse='wide'], [data-collapse='industrial']) .desktop-nav a {
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 1320px) {
+    [data-collapse='industrial'] .desktop-nav {
+      display: none;
+    }
+
+    [data-collapse='industrial'] .header-actions {
+      margin-left: auto;
+    }
+
+    :global(html:not(.js)) [data-collapse='industrial'].site-header {
+      position: static;
+    }
+
+    :global(html:not(.js)) [data-collapse='industrial'] .mobile-nav,
+    [data-collapse='industrial'] .mobile-nav.is-open {
+      display: grid;
+    }
+
+    :global(html.js) [data-collapse='industrial'] .menu-toggle {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 1270px) {
+    [data-collapse='wide'] .desktop-nav {
+      display: none;
+    }
+
+    [data-collapse='wide'] .header-actions {
+      margin-left: auto;
+    }
+
+    :global(html:not(.js)) [data-collapse='wide'].site-header {
+      position: static;
+    }
+
+    :global(html:not(.js)) [data-collapse='wide'] .mobile-nav,
+    [data-collapse='wide'] .mobile-nav.is-open {
+      display: grid;
+    }
+
+    :global(html.js) [data-collapse='wide'] .menu-toggle {
+      display: flex;
+    }
+  }
+</style>

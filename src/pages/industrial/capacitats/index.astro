@@ -1,0 +1,8 @@
+---
+import CapacitiesTemplate from '../../../templates/CapacitiesTemplate.astro';
+import { getPage } from '../../../i18n/pages';
+
+const page = await getPage('industrial-capacitats');
+---
+
+<CapacitiesTemplate page={page} />

@@ -1,0 +1,8 @@
+---
+import PortfolioTemplate from '../../../templates/PortfolioTemplate.astro';
+import { getPage } from '../../../i18n/pages';
+
+const page = await getPage('particulars-projectes');
+---
+
+<PortfolioTemplate page={page} />

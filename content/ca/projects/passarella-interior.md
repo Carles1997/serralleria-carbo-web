@@ -4,7 +4,7 @@ branch: particulars
 category: estructures
 year: 2024
 sourceWorkbookRow: 2
-status: draft
+status: approved
 title: "Passarel·la interior"
 ---
 

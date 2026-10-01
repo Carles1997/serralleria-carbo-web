@@ -1,0 +1,8 @@
+---
+import IndustrialTemplate from '../../templates/IndustrialTemplate.astro';
+import { getPage } from '../../i18n/pages';
+
+const page = await getPage('industrial');
+---
+
+<IndustrialTemplate page={page} />

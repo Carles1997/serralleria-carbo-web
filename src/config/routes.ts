@@ -1,12 +1,15 @@
-// Rutes del sitemap de Fase 1 ajornades en aquesta entrega (FASE5-pla-millora-integral.md §2.1,
-// decisió del 27/09/2026). No es generen com a pàgines, no van al sitemap XML ni s'indexen; els
-// esborranys de content/ca/ es conserven. Mentre no tinguin contingut propi, els enllaços que hi
-// apunten porten a la secció corresponent de la portada d'Industrial.
+// Rutes del sitemap de Fase 1 ajornades en aquesta entrega. No es generen com a pàgines, no van al
+// sitemap XML ni s'indexen; els esborranys de content/ca/ es conserven. Mentre no tinguin contingut
+// propi, els enllaços que hi apunten porten al destí provisional:
+// - interiors d'Industrial (FASE5-pla-millora-integral.md §2.1, 27/09/2026): secció de la portada;
+// - Mobiliari (indicació del director, 01/10/2026: encara no hi ha exemples): el formulari amb el
+//   servei preseleccionat, com Carros industrials.
 export const deferredRoutes: Record<string, string> = {
   '/industrial/series-curtes/': '/industrial/#series',
   '/industrial/sectors/': '/industrial/#sectors',
   '/industrial/proces/': '/industrial/#proces',
   '/industrial/projectes/': '/industrial/#projectes',
+  '/particulars/mobiliari/': '/contacte/?tipus=particular&servei=mobiliari',
 };
 
 /** Destí real d'un enllaç: la ruta mateixa o, si està ajornada, la seva àncora provisional. */

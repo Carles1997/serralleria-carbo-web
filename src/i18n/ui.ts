@@ -71,7 +71,8 @@ const ca = {
       { label: 'Urgències', href: '/particulars/urgencies/' },
       { label: 'Estructures', href: '/particulars/estructures/' },
       { label: 'Automatismes', href: '/particulars/automatismes/' },
-      { label: 'Mobiliari', href: '/particulars/mobiliari/' },
+      // Ruta ajornada (config/routes.ts): porta al formulari amb Mobiliari preseleccionat.
+      { label: 'Mobiliari', href: resolveRoute('/particulars/mobiliari/') },
       { label: 'Projectes', href: '/particulars/projectes/' },
       { label: 'Contacte', href: '/contacte/?tipus=particular' },
     ],

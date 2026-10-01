@@ -4,7 +4,7 @@ branch: particulars
 category: automatismes
 year: 2024
 sourceWorkbookRow: 6
-status: draft
+status: approved
 title: "Persianes motoritzades d'un negoci"
 ---
 

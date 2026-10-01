@@ -2,7 +2,7 @@
 pageId: particulars-projectes
 route: /particulars/projectes/
 lang: ca
-status: draft
+status: approved
 seoTitle: "Projectes de serralleria reals | Serralleria Carbó"
 seoDescription: "Baranes, passarel·la interior, estructura d'ascensor, porta de pàrquing i persianes motoritzades d'un negoci: cinc treballs reals de Serralleria Carbó."
 projectIds: "passarella-interior,estructura-ascensor,porta-parquing,persianes-negoci,baranes-interior-casa"

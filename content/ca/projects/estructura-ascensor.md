@@ -4,7 +4,7 @@ branch: particulars
 category: estructures
 year: 2023
 sourceWorkbookRow: 4
-status: draft
+status: approved
 title: "Estructura per a ascensor"
 ---
 

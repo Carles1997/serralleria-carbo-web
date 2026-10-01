@@ -2,7 +2,7 @@
 pageId: empresa
 route: /empresa/
 lang: ca
-status: draft
+status: approved
 seoTitle: "Empresa i taller de serralleria | Serralleria Carbó"
 seoDescription: "Serralleria Carbó, fundada el 1989: taller de 950 m² a Vilafranca del Penedès, equip de 12 persones i treballs per a particulars i empreses."
 ---

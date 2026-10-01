@@ -64,6 +64,8 @@ const ca = {
       ],
     },
   },
+  // Pàgina 404: nom de la navegació amb els camins per continuar (el text és de content/ca/404.md).
+  notFound: { waysLabel: 'Camins per continuar' },
   // Plantilla P. Etiquetes i titulars de la maqueta fases/fase-4/FASE4-mockups/particulars/;
   // el cos de text surt de content/ca/particulars.md.
   particulars: {

@@ -112,3 +112,20 @@
     }
   }
 }
+
+/* Fase 7 (01/10/2026): font web reduïda. «Carbo Text» és Source Sans 3 (la font validada de
+   design/tokens.css, que no es modifica) limitada als caràcters de la web: 54 KB en lloc de 166 KB
+   a cada pàgina. La genera scripts/subset-font.py; el nom canvia perquè la llicència OFL reserva
+   «Source» per a la font original. Source Sans 3 queda al darrere com a reserva: només es
+   descarregaria si un text nou fes servir un caràcter fora del subconjunt. */
+@font-face {
+  font-family: "Carbo Text";
+  src: url("../assets/fonts/CarboText-VF.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+:root {
+  --font-sans: "Carbo Text", "Source Sans 3", "Segoe UI", Arial, sans-serif;
+}

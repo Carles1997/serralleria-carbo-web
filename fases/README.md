@@ -9,6 +9,8 @@
 | [5 · Desenvolupament](fase-5/FASE5-tancament.md) | Desenvolupament tancat l'1/10/2026; publicació pendent de tercers | [Tancament](fase-5/FASE5-tancament.md), [pendents](fase-5/FASE5-pendents.md), [revisió editorial](fase-5/FASE5-revisio-editorial.md), [redireccions](fase-5/FASE5-redireccions.md), [idiomes](fase-5/FASE5-idiomes.md), [indexació](fase-5/FASE5-indexacio.md) i [entorn i flux](fase-5/FASE5-entorn-i-flux.md) |
 | 6 · SEO tècnic i analítica | En espera de l'accés a Google Analytics i Search Console | Analítica amb consentiment i Search Console; el SEO a la pàgina es revisa a la Fase 7 |
 | [7 · QA i optimització](fase-7/FASE7-qa.md) | Primera passada l'1/10/2026 | Rendiment, imatges, SEO a la pàgina, accessibilitat estructural i propostes |
+| [8 · Compliment legal, privacitat i accessibilitat](fase-8/FASE8-compliment-i-confianca.md) | Validada el 02/10/2026 | Auditoria, valoració i tasques abans de publicar |
+| 9 · Publicació | Pendent | Desplegament, domini, HTTPS, redireccions 301/410 i revisió final |
 
 Els recursos comuns continuen a l'arrel del repositori: `content/`, `design/`, `Referencies/`, `CONTEXT-serralleria-carbo.md` i `DESIGN.md`. L'export original de Stitch és a `fase-4/stitch_serralleria_carbo_design_system/`.
 

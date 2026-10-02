@@ -18,6 +18,18 @@ export function isIndexable(page: Page) {
 }
 
 /**
+ * Text legal visible a la web (pàgines legals i informació de privacitat del formulari):
+ * - aprovat (status: approved, sense publishReady: false): definitiu i indexable;
+ * - en revisió jurídica (publishReady: true sense aprovar): es mostra amb un avís i noindex, perquè
+ *   el client i el seu advocat el revisin a la web (indicació del director, 02/10/2026).
+ * Qualsevol altre estat no es mostra.
+ */
+export function isLegalVisible(page: Page) {
+  const { status, publishReady } = page.data;
+  return publishReady === true || (status === 'approved' && publishReady !== false);
+}
+
+/**
  * Versions d'idioma per a hreflang. Una pàgina no indexable no en declara cap, i
  * només s'hi inclouen les traduccions indexables: mai una URL noindex o esborrany.
  * Amb una sola versió no cal hreflang.

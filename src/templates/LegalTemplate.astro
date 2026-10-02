@@ -30,6 +30,12 @@ const { Content, headings } = await render(page);
 const title = headings.find((heading) => heading.depth === 1)?.text ?? ui.footer.legal[pageId as keyof typeof ui.footer.legal] ?? pageId;
 const sections = headings.filter((heading) => heading.depth === 2);
 const isDraft = status !== 'approved' || publishReady === false;
+// En revisió jurídica: visible a la web amb avís (publishReady: true); esborrany: només en desenvolupament.
+const inReview = isDraft && publishReady === true;
+// Un text no es pot aprovar mentre tingui dades pendents marcades «[PENDENT: …]».
+if (status === 'approved' && (page.body ?? '').includes('[PENDENT')) {
+  throw new Error(`${pageId}.md està aprovat però encara té dades «[PENDENT: …]».`);
+}
 const hasBody = headings.length > 0 || (page.body ?? '').replace(/<!--[\s\S]*?-->/g, '').trim().length > 0;
 const updated = page.data.updated
   ? new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' }).format(page.data.updated)
@@ -55,9 +61,9 @@ const chars = Math.max(...title.split(/\s+/).map((word) => word.length));
       isDraft && (
         <aside class="legal-draft" role="note">
           <div class="section-shell">
-            <strong>{t.draft.title}</strong>
-            <p>{t.draft.text}</p>
-            {requiredSource && <p class="legal-draft-source">{requiredSource}</p>}
+            <strong>{inReview ? t.review.title : t.draft.title}</strong>
+            <p>{inReview ? t.review.text : t.draft.text}</p>
+            {!inReview && requiredSource && <p class="legal-draft-source">{requiredSource}</p>}
           </div>
         </aside>
       )
@@ -253,6 +259,7 @@ const chars = Math.max(...title.split(/\s+/).map((word) => word.length));
   /* Cos de lectura: una columna estreta i ritme de text llarg. */
   .legal-body {
     grid-column: 2;
+    min-width: 0;
     max-width: 72ch;
     font-size: 1.06rem;
     line-height: 1.65;

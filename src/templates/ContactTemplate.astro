@@ -16,6 +16,7 @@ import type { Page } from '../i18n/pages';
 import { useUi } from '../i18n/ui';
 import { company, whatsappUrl } from '../config/site';
 import { one, paragraphs, parseMarkdown, sameText } from '../lib/markdown';
+import { getPage, isLegalVisible } from '../i18n/pages';
 import './mockup-base.css';
 import './contact.css';
 
@@ -46,6 +47,17 @@ if (!particularAside || !empresaAside) throw new Error('Les seccions de branca n
 const hoursText = one(paragraphs(hours.blocks), `un paràgraf a «${hours.heading}»`);
 const area = paragraphs(general.blocks).at(-1);
 if (!area) throw new Error(`«${general.heading}» necessita el paràgraf d'àmbit de treball.`);
+
+// Informació de privacitat del formulari (Fase 8, tasca 8.4): text del client o l'assessor a
+// content/{idioma}/legal-formulari.md. Només es mostra quan està aprovat; fins aleshores, l'avís del
+// formulari diu que s'incorporarà abans d'activar-lo. La casella apareix només si consent: true.
+const privacyPage = await getPage('legal-formulari', locale);
+const privacyReady = isLegalVisible(privacyPage);
+if (privacyPage.data.status === 'approved' && (privacyPage.body ?? '').includes('[PENDENT')) {
+  throw new Error('legal-formulari.md està aprovat però encara té dades «[PENDENT: …]».');
+}
+const privacy = privacyReady ? parseMarkdown(privacyPage.body ?? '') : undefined;
+const consentLabel = privacyReady && privacyPage.data.consent ? privacyPage.data.consentLabel : undefined;
 
 const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
 const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
@@ -186,9 +198,41 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
             </div>
             </fieldset>
 
+            {
+              privacy && (
+                <div class="form-privacy" id="form-privacy">
+                  <p class="form-privacy-title">{privacy.title}</p>
+                  {privacy.intro.map((block) =>
+                    block.type === 'paragraph' ? (
+                      <p>
+                        <Inlines inlines={block.inlines} />
+                      </p>
+                    ) : (
+                      <ul>
+                        {block.items.map((item) => (
+                          <li>
+                            <Inlines inlines={item} />
+                          </li>
+                        ))}
+                      </ul>
+                    ),
+                  )}
+                  {consentLabel && (
+                    <div class="field field-consent">
+                      <label for="consentiment">
+                        <input id="consentiment" name="consentiment" type="checkbox" required />
+                        <span>{consentLabel}</span>
+                      </label>
+                      <p class="field-error" id="consentiment-error" hidden></p>
+                    </div>
+                  )}
+                </div>
+              )
+            }
+
             <div class="form-finish">
-              <button type="submit" disabled data-submit>{f.submit} <span class="arrow" aria-hidden="true">↗</span></button>
-              <p id="form-pending">{f.pending}</p>
+              <button type="submit" disabled data-submit aria-describedby={privacy ? 'form-privacy' : undefined}>{f.submit} <span class="arrow" aria-hidden="true">↗</span></button>
+              <p id="form-pending">{f.pending}{!privacy && ` ${f.pendingPrivacy}`}</p>
             </div>
             <p id="form-status" class="form-status" role="status" tabindex="-1" hidden></p>
           </form>

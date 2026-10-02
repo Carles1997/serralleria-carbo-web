@@ -6,7 +6,7 @@ import { withViewTransition } from './view-transition';
 const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
 
 if (form) {
-  const errors = JSON.parse(form.dataset.errors ?? '{}') as Record<'required' | 'email' | 'phone' | 'summary', string>;
+  const errors = JSON.parse(form.dataset.errors ?? '{}') as Record<'required' | 'email' | 'phone' | 'summary' | 'consent', string>;
   const radios = [...form.querySelectorAll<HTMLInputElement>('input[name="tipus"]')];
   const fieldsets = [...form.querySelectorAll<HTMLFieldSetElement>('[data-branch]')];
   const asides = [...document.querySelectorAll<HTMLElement>('[data-aside]')];
@@ -101,7 +101,9 @@ if (form) {
       clearError(input);
       const value = input.value.trim();
       let message = '';
-      if (input.required && !value) message = errors.required;
+      // Casella de consentiment (si l'assessor la demana): el valor sempre és «on», cal mirar si està marcada.
+      if (input.type === 'checkbox') message = input.required && !(input as HTMLInputElement).checked ? errors.consent : '';
+      else if (input.required && !value) message = errors.required;
       else if (input.type === 'email' && value && !(input as HTMLInputElement).validity.valid) message = errors.email;
       else if (input.type === 'tel' && value && !/^[+()\d\s.-]{7,}$/.test(value)) message = errors.phone;
       if (message) {

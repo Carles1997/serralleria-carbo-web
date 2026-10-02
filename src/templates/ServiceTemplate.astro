@@ -12,6 +12,7 @@
 // Seccions: entrada → [galeria, clar] → procés (fosc) → [relacionat, clar] → [avaries] → contacte.
 import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbData from '../components/BreadcrumbData.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import ContactBlock from '../components/ContactBlock.astro';
@@ -148,6 +149,13 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           <a href={shared.breadcrumb.branch.href}>{shared.breadcrumb.branch.label}</a><span aria-hidden="true">/</span>
           <span aria-current="page">{current?.label ?? doc.title}</span>
         </nav>
+        <BreadcrumbData
+          items={[
+            { name: shared.breadcrumb.home, href: '/' },
+            { name: shared.breadcrumb.branch.label, href: shared.breadcrumb.branch.href },
+            { name: current?.label ?? doc.title, href: route },
+          ]}
+        />
         <div class="s-hero-main">
           <h1 id="s-title" style={fit(...config.hero.title)}>
             <span class="enter" style="--i:2">{titleStart}</span>{' '}

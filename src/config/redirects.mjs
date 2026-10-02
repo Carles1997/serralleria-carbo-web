@@ -67,6 +67,7 @@ export const redirects = [
     status: 301,
     to: { pageId: 'legal-cookies', lang: 'ca' },
     note: "La pàgina antiga només conté la política de cookies. /legal/ no existeix al sitemap nou (SEO-F3).",
+    requires: ['La política de cookies ha de quedar aprovada després de la revisió jurídica (FASE5-redireccions.md: «En espera»).'],
   },
 
   // Plantilles de WordPress i Elementor sense contingut real.

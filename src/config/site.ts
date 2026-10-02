@@ -1,5 +1,7 @@
 // Dades de contacte confirmades: CONTEXT-serralleria-carbo.md §2.4, content/ca/ui.md,
-// content/ca/contacte.md i el traspàs de Fase 4. No afegir-hi dades que no tinguin aquestes fonts.
+// content/ca/contacte.md, el traspàs de Fase 4 i, per a la fitxa de Google, el Perfil d'Empresa
+// verificat de l'empresa (fases/fase-6/FASE6-dades-google-business-profile.md). No afegir-hi dades
+// que no tinguin aquestes fonts.
 export const company = {
   legalName: 'Serralleria Carbó S.L.',
   phone: { display: '630 661 908', href: 'tel:+34630661908' },
@@ -14,6 +16,15 @@ export const company = {
   postalAddress: { street: "Carrer d'Eugeni d'Ors, 59", postalCode: '08720', locality: 'Vilafranca del Penedès', region: 'Barcelona', country: 'ES' },
   foundingDate: '1989-12',
   employees: 12,
+  // Horari d'atenció: traspàs de Fase 4 (25/09/2026) i director (30/09/2026); coincideix amb el
+  // Perfil d'Empresa (comprovat el 02/10/2026). Dissabte i diumenge, tancat.
+  openingHours: { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], slots: [['08:00', '13:00'], ['15:00', '18:00']] },
+  // Fitxa verificada del Perfil d'Empresa de Google (Fase 6, 02/10/2026): enllaç estable per CID i
+  // coordenades del punt de la fitxa.
+  googleBusinessProfile: {
+    mapsUrl: 'https://maps.google.com/?cid=17022313983401974151',
+    geo: { latitude: 41.3424819, longitude: 1.6916747 },
+  },
 } as const;
 
 /** WhatsApp amb el missatge inicial de content/ca/ui.md; el visitant l'edita abans d'enviar-lo. */

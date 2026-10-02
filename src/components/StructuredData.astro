@@ -1,12 +1,17 @@
 ---
 // Dades estructurades de l'empresa (Schema.org LocalBusiness) per a Google (SEO-F3 §6). Només dades
-// confirmades a src/config/site.ts: nom, raó social, adreça, telèfons, correu, fundació i plantilla.
-// Sense horaris, ressenyes, certificacions ni zones de servei fins que es comprovi que coincideixen
-// amb la fitxa de Google Business Profile.
+// confirmades a src/config/site.ts: nom, raó social, adreça, telèfons, correu, fundació, plantilla,
+// horari (coincideix amb la fitxa de Google Business Profile, comprovat el 02/10/2026), coordenades i
+// enllaç de la fitxa verificada. Sense ressenyes ni valoracions pròpies, certificacions ni zones de
+// servei.
+import { getImage } from 'astro:assets';
+import logo from '../assets/branding/carbo-logo.png';
 import { company } from '../config/site';
 
 const site = Astro.site ?? new URL('https://www.serralleriacarbo.com');
-const { postalAddress } = company;
+const { postalAddress, openingHours, googleBusinessProfile } = company;
+const logoImage = await getImage({ src: logo, width: 600, format: 'png' });
+const logoUrl = new URL(logoImage.src, site).href;
 const data = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
@@ -14,6 +19,8 @@ const data = {
   name: 'Serralleria Carbó',
   legalName: company.legalName,
   url: new URL('/', site).href,
+  logo: logoUrl,
+  image: logoUrl,
   telephone: company.phone.href.replace('tel:', ''),
   email: company.email,
   foundingDate: company.foundingDate,
@@ -26,6 +33,15 @@ const data = {
     addressRegion: postalAddress.region,
     addressCountry: postalAddress.country,
   },
+  geo: { '@type': 'GeoCoordinates', ...googleBusinessProfile.geo },
+  hasMap: googleBusinessProfile.mapsUrl,
+  sameAs: [googleBusinessProfile.mapsUrl],
+  openingHoursSpecification: openingHours.slots.map(([opens, closes]) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: openingHours.days.map((day) => `https://schema.org/${day}`),
+    opens,
+    closes,
+  })),
   contactPoint: [
     { '@type': 'ContactPoint', contactType: 'customer service', telephone: company.phone.href.replace('tel:', ''), email: company.email },
     { '@type': 'ContactPoint', contactType: 'customer service', telephone: company.landline.href.replace('tel:', '') },

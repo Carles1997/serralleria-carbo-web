@@ -7,6 +7,7 @@
 import { Picture } from 'astro:assets';
 import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbData from '../components/BreadcrumbData.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import ContactBlock from '../components/ContactBlock.astro';
@@ -99,6 +100,13 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           <a href={ui.service.breadcrumb.branch.href}>{ui.service.breadcrumb.branch.label}</a><span aria-hidden="true">/</span>
           <span aria-current="page">{nav.find((item) => item.href === route)?.label ?? doc.title}</span>
         </nav>
+        <BreadcrumbData
+          items={[
+            { name: ui.service.breadcrumb.home, href: '/' },
+            { name: ui.service.breadcrumb.branch.label, href: ui.service.breadcrumb.branch.href },
+            { name: nav.find((item) => item.href === route)?.label ?? doc.title, href: route },
+          ]}
+        />
         <div class="folio-hero-main">
           <h1 id="folio-title" style={fit(...t.hero.title)}>
             <span class="enter" style="--i:2">{t.hero.title[0]}</span>{' '}

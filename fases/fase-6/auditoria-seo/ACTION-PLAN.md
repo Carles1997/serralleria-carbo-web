@@ -1,5 +1,7 @@
 # Pla d'acció SEO
 
+> **Substituït** pel pla de referència [FASE6-pla-accio.md](../FASE6-pla-accio.md), que separa el que implementa Claude, el que cal validar i el que s'ha de fer al Perfil d'Empresa, i porta l'estat al dia. Aquest document és la foto del 02/10/2026.
+
 Ordenat per prioritat. Prové de [FULL-AUDIT-REPORT.md](FULL-AUDIT-REPORT.md) i de les [dades del Perfil d'Empresa](../FASE6-dades-google-business-profile.md). Cap acció s'ha aplicat. Les que toquen continguts o dades validades necessiten l'aprovació del director o del client.
 
 ## Crític: abans de publicar

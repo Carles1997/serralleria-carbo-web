@@ -64,6 +64,22 @@ const ca = {
       ],
     },
   },
+  // Pàgines legals (Fase 8): etiquetes de la plantilla; el text legal és del client o l'assessor.
+  legal: {
+    crumb: 'Textos legals',
+    toc: 'En aquesta pàgina',
+    others: 'Altres textos legals',
+    updated: 'Darrera actualització',
+    empty: 'Text pendent: el redactarà o validarà el client o el seu assessor.',
+    review: {
+      title: 'Text pendent de revisió jurídica',
+      text: "Aquest text és un esborrany preparat per a la revisió del client i del seu assessor jurídic. Les dades marcades «[PENDENT]» encara s'han de completar.",
+    },
+    draft: {
+      title: 'Esborrany no publicable',
+      text: 'Aquesta vista només existeix en desenvolupament per revisar la plantilla. La pàgina no es genera al build fins que el text estigui aprovat.',
+    },
+  },
   // Pàgina 404: nom de la navegació amb els camins per continuar (el text és de content/ca/404.md).
   notFound: { waysLabel: 'Camins per continuar' },
   // Plantilla P. Etiquetes i titulars de la maqueta fases/fase-4/FASE4-mockups/particulars/;
@@ -360,13 +376,15 @@ const ca = {
         none: 'Cap fitxer seleccionat',
       },
       submit: 'Enviar consulta',
-      pending:
-        "Formulari en preparació: encara no envia consultes. El text de privacitat i el consentiment s'incorporaran abans d'activar-lo.",
+      pending: 'Formulari en preparació: encara no envia consultes.',
+      // S'afegeix a l'avís mentre content/ca/legal-formulari.md no estigui aprovat (Fase 8, tasca 8.4).
+      pendingPrivacy: "El text de privacitat i el consentiment s'incorporaran abans d'activar-lo.",
       errors: {
         required: 'Falta informació en aquest camp.',
         email: 'Revisa el format del correu electrònic.',
         phone: 'Revisa el format del telèfon.',
         summary: 'Revisa els camps marcats per continuar.',
+        consent: 'Marca aquesta casella per continuar.',
       },
       // Sense backend no hi ha enviament ni confirmació: s'ofereix el contacte directe.
       notSent: "La consulta no s'ha enviat: el formulari encara no està actiu. Escriu-nos per WhatsApp o truca al 630 661 908.",

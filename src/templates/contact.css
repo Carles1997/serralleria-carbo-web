@@ -311,3 +311,17 @@
  .place-map{min-height:280px}
 }
 @media(prefers-reduced-motion:reduce){.place-map iframe,.place-map-load{transition:none}}
+
+/* Informació de privacitat del formulari (Fase 8, tasca 8.4). Text del client o l'assessor a
+   content/ca/legal-formulari.md; només apareix quan està aprovat. Lectura petita però clara, just
+   abans del botó; la casella de consentiment, si n'hi ha, segueix el patró dels camps. */
+.form-privacy{margin-top:1.2rem;padding:.9rem 1rem;border-left:3px solid #7c2a30;background:var(--surface-read-alt);color:#3f4845;font-size:.86rem;line-height:1.45}
+.form-privacy-title{margin:0 0 .35rem;color:#202423;font-size:.84rem;font-weight:700}
+.form-privacy p{margin:0 0 .4rem}
+.form-privacy ul{margin:0 0 .4rem;padding-left:1.1rem;list-style:disc}
+.form-privacy a{display:inline-block;padding-block:.8rem;margin-block:-.8rem;color:#7c2a30;font-weight:700;text-decoration:underline;text-underline-offset:.2em}
+.contact-page .field-consent{margin-top:.6rem}
+.contact-page .field-consent label{display:flex;flex-wrap:nowrap;align-items:flex-start;gap:.6rem;min-height:44px;margin:0;padding-top:.6rem;color:#202423;font-size:.9rem;font-weight:600;line-height:1.4;cursor:pointer}
+.contact-page .field-consent label span{color:inherit}
+.contact-page .field-consent input{display:block;flex:none;width:20px;height:20px;min-height:0;margin:0;padding:0;border:0;box-shadow:none;accent-color:#7c2a30}
+.contact-page .field-consent input:focus-visible{outline:3px solid #7c2a30;outline-offset:2px}

@@ -24,6 +24,12 @@ const pages = defineCollection({
       noindex: z.boolean().optional(),
       publishReady: z.boolean().optional(),
       requiredSource: z.string().optional(),
+      // Data de la darrera revisió d'un text legal (es mostra a la pàgina si hi és).
+      updated: z.coerce.date().optional(),
+      // Informació de privacitat del formulari (legal-formulari.md): casella de consentiment, només
+      // si l'assessor la demana, i el seu text.
+      consent: z.boolean().optional(),
+      consentLabel: z.string().optional(),
       usage: z.string().optional(),
       reviewNeeded,
       // Al frontmatter és una llista separada per comes.
@@ -45,6 +51,9 @@ const pages = defineCollection({
           : page.route.startsWith(`/${page.lang}/`)),
       { message: `La ruta ha de començar pel prefix del seu idioma (/es/, /en/); el català (${defaultLocale}) no en porta.` },
     )
+    .refine((page) => !page.consent || Boolean(page.consentLabel?.trim()), {
+      message: 'Una casella de consentiment (consent: true) necessita el seu text a consentLabel.',
+    })
     // approved = publicable; la indexació depèn a més de noindex (fases/fase-5/FASE5-indexacio.md).
     .refine((page) => page.status !== 'approved' || (page.publishReady !== false && !page.reviewNeeded?.length), {
       message: 'Una pàgina approved no pot tenir publishReady: false ni reviewNeeded pendents.',

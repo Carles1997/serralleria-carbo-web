@@ -23,9 +23,15 @@ const builtRoutes = new Set(
     .filter((route) => route !== '/404/'),
 );
 
+// Pàgines legals: les genera src/pages/legal/[page].astro, però només si el contingut és publicable
+// (status: approved, sense publishReady: false). Com que isPublishedRoute sempre es combina amb
+// isIndexable (que exigeix aquest mateix estat), una ruta legal compta com a publicada.
+const legalRoute = /^\/legal\/[a-z0-9-]+\/$/;
+
 /**
  * Una ruta és publicada si una pàgina la genera en aquest build i no està ajornada. Només les
- * rutes publicades poden sortir al sitemap o com a alternativa hreflang: una traducció o una
- * legal aprovades sense pàgina pròpia no han d'apuntar a un 404.
+ * rutes publicades poden sortir al sitemap o com a alternativa hreflang: una traducció
+ * aprovada sense pàgina pròpia no ha d'apuntar a un 404.
  */
-export const isPublishedRoute = (route: string | undefined) => Boolean(route) && builtRoutes.has(route as string) && !((route as string) in deferredRoutes);
+export const isPublishedRoute = (route: string | undefined) =>
+  Boolean(route) && (builtRoutes.has(route as string) || legalRoute.test(route as string)) && !((route as string) in deferredRoutes);

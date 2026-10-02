@@ -1,0 +1,35 @@
+---
+// Pàgines legals (/legal/avis-legal/, /legal/privacitat/, /legal/cookies/). Fase 8, tasca 8.3.
+// Es generen les que el contingut marca com a visibles (isLegalVisible: aprovades, o en revisió
+// jurídica amb publishReady: true, aquestes amb avís i noindex); la resta no es publica i el peu
+// les mostra com a «pendent». En desenvolupament (astro dev) es generen totes, per revisar-les.
+import { getCollection } from 'astro:content';
+import LegalTemplate from '../../templates/LegalTemplate.astro';
+import { defaultLocale } from '../../i18n/config';
+import { useUi } from '../../i18n/ui';
+import { isLegalVisible } from '../../i18n/pages';
+
+export async function getStaticPaths() {
+  const legal = (await getCollection('pages', ({ data }) => data.lang === defaultLocale && data.pageId.startsWith('legal-') && Boolean(data.route)))
+    .filter((page) => import.meta.env.DEV || isLegalVisible(page));
+  const labels = useUi(defaultLocale).footer.legal as Record<string, string>;
+  // Mateix ordre que el peu: avís legal, privacitat, cookies.
+  const order = Object.keys(labels);
+  legal.sort((a, b) => order.indexOf(a.data.pageId) - order.indexOf(b.data.pageId));
+  return legal.map((page) => {
+    const route = page.data.route as string;
+    const slug = route.replace(/^\/legal\//, '').replace(/\/$/, '');
+    if (!slug || slug.includes('/')) throw new Error(`Ruta legal no admesa: ${route}`);
+    const siblings = legal.map((other) => ({
+      label: labels[other.data.pageId] ?? other.data.pageId,
+      href: other.data.route as string,
+      current: other.id === page.id,
+    }));
+    return { params: { page: slug }, props: { page, siblings } };
+  });
+}
+
+const { page, siblings } = Astro.props;
+---
+
+<LegalTemplate page={page} siblings={siblings} />

@@ -12,7 +12,8 @@
 //
 // Revisions editorials validades del contingut (VALIDATED_REVISIONS): el cos d'un fitxer pot
 // diferir de la línia base si coincideix amb l'empremta registrada per a una revisió validada pel
-// director. Així la validació queda al mateix commit que el canvi. Per obtenir les empremtes:
+// director. Així la validació queda al mateix commit que el canvi. Una revisió també pot admetre
+// metadades noves o canviades (frontmatter: títol, descripció, data…). Per obtenir les empremtes:
 // node scripts/check-references.mjs --hashes
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -49,9 +50,27 @@ const VALIDATED_REVISIONS = [
       'content/ca/particulars.md': '35af8c38479231b6b1b101b438d23bdafcc5aaae4f02064f46a02cad879d8c76',
     },
   },
+  {
+    // Esborranys de l'avís legal, la privacitat i les cookies redactats per encàrrec del director,
+    // per a la revisió del client i del seu advocat (fases/fase-8/FASE8-compliment-i-confianca.md).
+    label: 'textos legals en revisió jurídica (02/10/2026)',
+    bodies: {
+      'content/ca/legal-avis-legal.md': '72581d1dda0e03520082dadd45ec7964ec4de8a41a8a6b892e35f80697bf4ea8',
+      'content/ca/legal-cookies.md': 'de4463cfae0b350aa54bbada07c9f94a8c618298dcb55ff8ab554ab775fd484f',
+      'content/ca/legal-privacitat.md': '7dda035dc65203a1682a8fbee6e1c4f8fa6ef286f255e3d0ce373881a096a174',
+    },
+    frontmatter: {
+      'content/ca/legal-avis-legal.md': '70f913c52e41b6d903baa978336bb7e2b7a4326903d9b3a4b5ccaac9afb47853',
+      'content/ca/legal-cookies.md': '3b319798d769cde83afe186a4b8555c2ba60328ff557463b855ce4c329295ea4',
+      'content/ca/legal-privacitat.md': '267c9e7f66bb8df3939530b6c290d77bc3e84f50b8f1bf93f0aac595d510507c',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');
+/** Empremta del frontmatter sense els camps de la porta de publicació (ordre de claus estable). */
+const frontmatterHash = (keys) =>
+  bodyHash([...keys].filter(([key]) => !APPROVAL_KEYS.has(key)).sort(([a], [b]) => a.localeCompare(b)).map(([, line]) => line).join('\n'));
 
 const git = (args, input) => execFileSync('git', args, { encoding: 'utf8', input, maxBuffer: 64 * 1024 * 1024 });
 const list = (output) => output.split('\0').filter(Boolean);
@@ -130,9 +149,17 @@ for (const path of contentBase.keys()) {
     else if (revision) notes.push(`${path}: ${revision.label}`);
     else errors.push(`text modificat: ${path}`);
   }
+  // Camps de metadades (títol, descripció, data…): només canvien dins d'una revisió validada.
+  const fmHash = frontmatterHash(after.keys);
+  const fmRevision = VALIDATED_REVISIONS.find(({ frontmatter }) => frontmatter?.[path] === fmHash);
+  let fmPrinted = false;
   for (const key of new Set([...before.keys.keys(), ...after.keys.keys()])) {
     if (before.keys.get(key) === after.keys.get(key)) continue;
     if (APPROVAL_KEYS.has(key)) notes.push(`${path}: ${after.keys.get(key)?.replace(/\n\s*/g, ' ') ?? `${key} eliminat`}`);
+    else if (printHashes) {
+      if (!fmPrinted) console.log(`    frontmatter '${path}': '${fmHash}',`);
+      fmPrinted = true;
+    } else if (fmRevision) notes.push(`${path}: ${key} (${fmRevision.label})`);
     else errors.push(`frontmatter modificat (${key}): ${path}`);
   }
 }

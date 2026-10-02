@@ -24,6 +24,8 @@ const pages = defineCollection({
       noindex: z.boolean().optional(),
       publishReady: z.boolean().optional(),
       requiredSource: z.string().optional(),
+      // Data de la darrera revisió d'un text legal (es mostra a la pàgina si hi és).
+      updated: z.coerce.date().optional(),
       usage: z.string().optional(),
       reviewNeeded,
       // Al frontmatter és una llista separada per comes.

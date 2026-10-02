@@ -64,6 +64,18 @@ const ca = {
       ],
     },
   },
+  // Pàgines legals (Fase 8): etiquetes de la plantilla; el text legal és del client o l'assessor.
+  legal: {
+    crumb: 'Textos legals',
+    toc: 'En aquesta pàgina',
+    others: 'Altres textos legals',
+    updated: 'Darrera actualització',
+    empty: 'Text pendent: el redactarà o validarà el client o el seu assessor.',
+    draft: {
+      title: 'Esborrany no publicable',
+      text: 'Aquesta vista només existeix en desenvolupament per revisar la plantilla. La pàgina no es genera al build fins que el text estigui aprovat.',
+    },
+  },
   // Pàgina 404: nom de la navegació amb els camins per continuar (el text és de content/ca/404.md).
   notFound: { waysLabel: 'Camins per continuar' },
   // Plantilla P. Etiquetes i titulars de la maqueta fases/fase-4/FASE4-mockups/particulars/;

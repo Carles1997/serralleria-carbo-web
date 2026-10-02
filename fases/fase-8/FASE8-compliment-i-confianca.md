@@ -119,7 +119,7 @@ Proposo una **Fase 8 · Compliment legal, privacitat i accessibilitat** abans de
 |---|---|---|---|
 | 8.1 | Recollir les dades obligatòries: NIF, Registre Mercantil, responsable del tractament i delegat de protecció de dades si n'hi ha | Client | — |
 | 8.2 | Redactar o validar l'avís legal, la privacitat i les cookies | Client o assessor | 8.1 i allotjament triat |
-| 8.3 | Plantilla de pàgina legal i publicació de les tres pàgines (sense `noindex` en aprovar-les); enllaços del peu actius | Claude | 8.2 |
+| 8.3 | Plantilla de pàgina legal i publicació de les tres pàgines (sense `noindex` en aprovar-les); enllaços del peu actius | Claude | 8.2 · **Plantilla feta (02/10/2026):** `src/templates/LegalTemplate.astro` i `src/pages/legal/[page].astro`. El build només genera les pàgines aprovades; en desenvolupament es veuen els esborranys amb un avís. Camp opcional `updated` per mostrar la data de revisió. Provat en una còpia: en aprovar un text, la pàgina es genera, entra al sitemap i el peu l'enllaça. Falta: els textos (8.2). |
 | 8.4 | Informació de privacitat de primera capa al formulari i enllaç a la política (casella només si ho indica l'assessor) | Claude | 8.2 |
 | 8.5 | Formulari operatiu: servei triat, validació al servidor, antispam sense galetes, límit d'adjunt, correu del domini (SPF, DKIM i DMARC) i prova real | Claude i director | Allotjament |
 | 8.6 | Drets d'imatge: confirmació de propietat, consentiments de les persones identificables i substitució de les imatges conceptuals | Client i director | — |

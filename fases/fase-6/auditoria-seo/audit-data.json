@@ -1,0 +1,131 @@
+{
+  "summary": {
+    "health_score": 71,
+    "business_type": "Servei local amb taller (Vilafranca del Penedès) i dues branques: Particulars (B2C) i Industrial (B2B)",
+    "top_findings": [
+      "8 de 10 pàgines amb noindex perquè el contingut és esborrany; el sitemap només conté 2 URL",
+      "Redireccions del web actual no desplegades (falta public/_redirects)",
+      "Pàgines legals en 404 a Netlify tot i ser a main",
+      "Sense metadades Open Graph ni targeta social a cap pàgina",
+      "LocalBusiness sense horari, coordenades, logotip ni sameAs; telèfon principal diferent del Perfil d'Empresa"
+    ],
+    "quick_wins": [
+      "Afegir og:title, og:description, og:image i twitter:card al layout",
+      "Completar LocalBusiness amb l'horari verificat, geo, hasMap, image/logo i sameAs",
+      "Afegir BreadcrumbList a les pàgines amb molles de pa",
+      "Configurar memòria cau immutable per a /_astro/* i capçaleres de seguretat a _headers",
+      "Afegir «Serralleria Carbó» als títols d'Industrial (decisió del director)"
+    ]
+  },
+  "categories": [
+    {
+      "name": "SEO tècnic",
+      "score": 70,
+      "what_works": [
+        "HTTPS amb HSTS preload i compressió Brotli",
+        "robots.txt correcte i URL netes",
+        "La 404 respon 404 amb noindex",
+        "Canonical a totes les pàgines; variants amb paràmetres apunten a la URL neta"
+      ],
+      "findings": [
+        {"title": "noindex a 8 de 10 pàgines", "severity": "Critical", "description": "Home, Particulars, Estructures, Automatismes, Urgències, Industrial, Capacitats i Contacte tenen status: draft. Només /empresa/ i /particulars/projectes/ són indexables.", "recommendation": "Aprovar els continguts que han de sortir indexables abans del llançament i comprovar el sitemap.xml."},
+        {"title": "Redireccions no desplegades", "severity": "High", "description": "El mapa de la Fase 5 cobreix les 15 URL del sitemap de Yoast, però no existeix public/_redirects.", "recommendation": "Generar _redirects amb 301 i 410. Decidir /estructuras/ i /motores/."},
+        {"title": "Fitxers amb empremta sense memòria cau", "severity": "Medium", "description": "/_astro/* es serveix amb Cache-Control: public,max-age=0,must-revalidate.", "recommendation": "_headers: /_astro/* amb public, max-age=31536000, immutable."},
+        {"title": "Falten capçaleres de seguretat", "severity": "Medium", "description": "Només hi ha HSTS. Falten CSP, X-Content-Type-Options, Referrer-Policy i Permissions-Policy.", "recommendation": "Afegir-les a _headers."},
+        {"title": "Pàgines legals en 404 a Netlify", "severity": "Medium", "description": "/legal/avis-legal/, /legal/privacitat/ i /legal/cookies/ responen 404 tot i ser a main.", "recommendation": "Comprovar la branca i el desplegament de Netlify."},
+        {"title": "Sense castellà ni anglès", "severity": "Medium", "description": "Només hi ha content/ca/; no hi ha hreflang.", "recommendation": "Prioritzar la versió en castellà."}
+      ]
+    },
+    {
+      "name": "Qualitat del contingut",
+      "score": 65,
+      "what_works": [
+        "Dades reals: fundada el 1989, taller de 950 m², 12 persones, cinc projectes reals",
+        "Ancoratge local a cada pàgina",
+        "Dos camins clars (Particulars i Industrial)"
+      ],
+      "findings": [
+        {"title": "Pàgines curtes", "severity": "Medium", "description": "Paraules al main: urgències 176, automatismes 207, estructures 246, home 261, capacitats 262, projectes 269.", "recommendation": "Ampliar només amb dades validades pel client: tipus de portes i motors, zona de servei, procés i preguntes freqüents."},
+        {"title": "No hi ha veu de clients", "severity": "Medium", "description": "41 ressenyes de 4-5 estrelles al Perfil d'Empresa, cap al web.", "recommendation": "Citar ressenyes reals amb permís; no marcar valoracions pròpies amb schema."}
+      ]
+    },
+    {
+      "name": "SEO a la pàgina",
+      "score": 78,
+      "what_works": [
+        "Títols (43-62 caràcters) i descripcions (123-151) únics",
+        "Un sol H1, jerarquia sense salts, molles de pa"
+      ],
+      "findings": [
+        {"title": "Sense Open Graph ni targeta social", "severity": "High", "description": "Cap og:* a les 10 pàgines; els enllaços compartits per WhatsApp surten sense imatge.", "recommendation": "Afegir-los al layout amb seoTitle, seoDescription i una imatge per branca."},
+        {"title": "Marca absent als títols d'Industrial", "severity": "Low", "description": "«… | Industrial» en lloc de «… | Serralleria Carbó».", "recommendation": "Decisió del director."},
+        {"title": "/empresa/ poc enllaçada", "severity": "Low", "description": "Només 2 pàgines hi enllacen.", "recommendation": "Enllaçar-la des de la Home."}
+      ]
+    },
+    {
+      "name": "Dades estructurades",
+      "score": 55,
+      "what_works": ["LocalBusiness vàlid a Home, Empresa i Contacte, sense valoracions pròpies"],
+      "findings": [
+        {"title": "Sense horari", "severity": "High", "description": "L'horari del web coincideix amb el Perfil d'Empresa (verificat el 02/10/2026).", "recommendation": "openingHoursSpecification: dilluns a divendres 08:00-13:00 i 15:00-18:00."},
+        {"title": "Sense geo, hasMap, image/logo ni sameAs", "severity": "Medium", "description": "Coordenades de la fitxa: 41.3424819, 1.6916747.", "recommendation": "Completar-los."},
+        {"title": "Sense BreadcrumbList", "severity": "Medium", "description": "Les pàgines mostren molles de pa sense marcatge.", "recommendation": "Afegir BreadcrumbList."}
+      ]
+    },
+    {
+      "name": "Rendiment (CWV)",
+      "score": 92,
+      "what_works": ["LCP mòbil (4G lenta, CPU x4) de 0,93 a 1,77 s; CLS 0; Brotli actiu"],
+      "findings": [
+        {"title": "Arrencada en fred de la Home", "severity": "Info", "description": "Primera mesura amb TTFB de 3,1 s; les repeticions donen 0,13-0,46 s.", "recommendation": "Cap acció; vigilar-ho amb dades de camp."}
+      ]
+    },
+    {
+      "name": "Preparació per a cerca amb IA",
+      "score": 65,
+      "what_works": ["robots.txt no bloqueja rastrejadors d'IA", "Fets concrets i citables", "Entitat amb @id"],
+      "findings": [
+        {"title": "Entitat incoherent entre fonts", "severity": "Medium", "description": "Variants del nom (Carbó/Carbo/Serralleries/Serrallería), adreça (59 / 59-61 / sense número) i telèfon (mòbil al web, fix al Perfil d'Empresa).", "recommendation": "Unificar-ho al web, al perfil i als directoris."}
+      ]
+    },
+    {
+      "name": "Imatges",
+      "score": 75,
+      "what_works": ["AVIF amb WebP i JPG de reserva, srcset, mides declarades, càrrega diferida"],
+      "findings": [
+        {"title": "alt buit a la majoria d'imatges", "severity": "Low", "description": "Correcte per a imatges decoratives o conceptuals.", "recommendation": "Donar alt descriptiu a les fotografies definitives d'obra real."}
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {"name": "Fase 1: Abans de publicar", "timeframe": "· abans del llançament", "items": [
+        "Aprovar els continguts indexables i comprovar el sitemap",
+        "Crear _redirects (301/410) i decidir /estructuras/ i /motores/",
+        "Verificar Search Console del domini via DNS",
+        "Comprovar el desplegament de Netlify (pàgines legals)"
+      ]},
+      {"name": "Fase 2: Impacte alt", "timeframe": "· primera setmana", "items": [
+        "Open Graph i targeta social",
+        "Completar LocalBusiness (horari, geo, hasMap, logo, sameAs)",
+        "Unificar el telèfon principal",
+        "Perfil d'Empresa: web amb https i UTM, categories i descripció",
+        "Respondre les ressenyes"
+      ]},
+      {"name": "Fase 3: Contingut i autoritat", "timeframe": "· primer mes", "items": [
+        "_headers: memòria cau i seguretat",
+        "BreadcrumbList",
+        "Versió en castellà",
+        "Ampliar pàgines curtes amb dades reals",
+        "Pla de ressenyes i fotos reals",
+        "Unificar dades als directoris"
+      ]},
+      {"name": "Fase 4: Seguiment", "timeframe": "· continu", "items": [
+        "Clau d'API de Google per a PageSpeed i CrUX",
+        "Tall mensual de les mètriques del Perfil d'Empresa",
+        "Seguiment de la migració a Search Console"
+      ]}
+    ]
+  },
+  "artifacts": {"findings_dir": "netlify/raw/", "screenshots_dir": "netlify/screenshots/"}
+}

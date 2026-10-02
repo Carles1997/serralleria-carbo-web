@@ -1,0 +1,34 @@
+posicio,terme,cerques,tipus,intencio,idioma,nota
+1,ferreteria,198,generic,ferreteria,es/ca,Sense accent. Possible associació amb la categoria «Proveedor de metales»
+2,ferreteria vilafranca,62,generic local,ferreteria,es/ca,
+3,"serralleria carbó, carrer d'eugeni d'ors, vilafranca del penedès",61,marca,navegacional,ca,Suggeriment de Google amb l'adreça
+4,carbo,44,marca,navegacional,es/ca,
+5,ferretería,40,generic,ferreteria,es,Amb accent
+6,carbo stulk,<15,marca (variant),navegacional,?,Variant o error d'escriptura
+7,carbo vilafranca,<15,marca local,navegacional,ca/es,
+8,carbó,<15,marca,navegacional,ca,
+9,carrer general urbano 5 vilafranca,<15,adreça,navegacional,ca,Adreça d'un altre negoci (Metálicas Urbano?)
+10,diatribuidora vilafranca carbo,<15,marca + activitat,navegacional,es,Error d'escriptura de «distribuidora»
+11,duplicado de llaves vilafranca del penedes,<15,servei local,transaccional,es,Servei no validat al web
+12,empresas vilafranca del penedes,<15,generic local,informativa,es,
+13,ferreteria cerca de mi,<15,generic proximitat,ferreteria,es,
+14,ferreteria penedes,<15,generic comarca,ferreteria,es,
+15,ferretería cerca de vilafranca del penedès,<15,generic local,ferreteria,es,
+16,herrero vilafranca,<15,servei local,transaccional,es,Serralleria (castellà col·loquial)
+17,herreros en vilafranca del penedes,<15,servei local,transaccional,es,Serralleria (castellà col·loquial)
+18,jana ferrer carbo,<15,nom propi,navegacional,?,Probablement una persona; no s'ha d'usar
+19,llave dinamometrica vilafranca del penedes,<15,producte local,ferreteria,es,Producte de ferreteria
+20,serraller,<15,servei generic,transaccional,ca,
+21,serraller bundo,<15,nom propi + servei,navegacional,ca,Probablement un altre serraller
+22,serralleria,<15,servei generic,transaccional,ca,
+23,serralleria carbo,<15,marca,navegacional,ca,
+24,"serralleria carbo, carrer d'eugeni d'ors, vilafranca del penedès",<15,marca,navegacional,ca,
+25,serralleria carbó,<15,marca,navegacional,ca,
+26,serralleria carbó ressenyes,<15,marca + ressenyes,navegacional,ca,
+27,serralleria urbano vilafranca,<15,competidor,navegacional,ca,Metálicas Urbano
+28,serralleria vilafranca,<15,servei local,transaccional,ca,
+29,serralleries a vilafranca del penedès,<15,servei local,transaccional,ca,
+30,serrallers vilafranca del penedes,<15,servei local,transaccional,ca,
+31,una ferretería en vilafranca del penedés,<15,generic local,ferreteria,es,
+32,vigas acero vilafranca,<15,producte/estructura local,transaccional,es,Encaixa amb Estructures i Industrial
+33,vilafranca ferreteria,<15,generic local,ferreteria,es/ca,

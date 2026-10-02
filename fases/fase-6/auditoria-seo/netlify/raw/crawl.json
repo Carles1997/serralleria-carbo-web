@@ -1,0 +1,1440 @@
+{
+ "https://serralleriacarbo.netlify.app/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 30120,
+  "lang": "ca",
+  "title": "Serralleria a Vilafranca del Penedès | Serralleria Carbó",
+  "description": "Serralleria Carbó: des de 1989, treballs de serralleria per a particulars i fabricació metàl·lica per a empreses a Vilafranca del Penedès.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Serralleria Carbó , a Vilafranca del Penedès des de 1989"
+  ],
+  "h2": [
+   "Fets que ens defineixen",
+   "Del taller a cada projecte",
+   "Serveis i capacitats",
+   "Parlem del teu encàrrec"
+  ],
+  "jsonld_types": [
+   "LocalBusiness"
+  ],
+  "images": [
+   {
+    "src": "/_astro/home-particulars-acces-v2.CNxf3vVy_2gXXzt.jpg",
+    "alt": "",
+    "width": "1536",
+    "height": "1024",
+    "loading": "eager"
+   },
+   {
+    "src": "/_astro/home-industrial-acces-v2.aDp5koSU_Z1WBGaw.jpg",
+    "alt": "",
+    "width": "1536",
+    "height": "1024",
+    "loading": "eager"
+   },
+   {
+    "src": "/_astro/gavia-industrial-fabricacio-01.7UsFcmrF_Zi1XPm.jpg",
+    "alt": "",
+    "width": "1200",
+    "height": "1600",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/reparacio-persiana-comercial.BwAfpKqq_1WTH06.jpg",
+    "alt": "",
+    "width": "716",
+    "height": "441",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/passarella-interior-vista-frontal-01.BEqGLFT9_Z18iAXc.jpg",
+    "alt": "",
+    "width": "1500",
+    "height": "2000",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/particulars-carros-servei-v1.DOzgF6eb_fhPyC.jpg",
+    "alt": "",
+    "width": "1536",
+    "height": "1024",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/home-mobiliari-targeta-v2.B0uXCyrq_ZQcvls.jpg",
+    "alt": "",
+    "width": "1254",
+    "height": "1254",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/home-capacitats-industrials-targeta-v1.B-mBM6BD_ZAzlxz.jpg",
+    "alt": "",
+    "width": "1536",
+    "height": "1024",
+    "loading": "lazy"
+   }
+  ],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/empresa/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/empresa/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/empresa/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=carros",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta."
+  ],
+  "word_count": 261
+ },
+ "https://serralleriacarbo.netlify.app/particulars/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 29449,
+  "lang": "ca",
+  "title": "Serralleria per a particulars a Vilafranca | Serralleria Carbó",
+  "description": "Baranes, estructures, portes i automatismes a mida per a habitatges i comunitats. Treballs reals de Serralleria Carbó a Vilafranca i rodalia.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/particulars/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Serralleria per a particulars a Vilafranca i rodalia"
+  ],
+  "h2": [
+   "Tens una avaria?",
+   "Feines a mida Respostes clares",
+   "Fets, no només paraules",
+   "Explica'ns la feina"
+  ],
+  "jsonld_types": [],
+  "images": [
+   {
+    "src": "/_astro/particulars-barana-conceptual-v1.CLOIxHrY_16fvrV.jpg",
+    "alt": "",
+    "width": "1672",
+    "height": "941",
+    "loading": "eager"
+   },
+   {
+    "src": "/_astro/particulars-urgencies-hero-v1.D07oIGKW_1xPygW.jpg",
+    "alt": "",
+    "width": "1672",
+    "height": "941",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/particulars-estructures-hero-v1.CGpnWRyv_OOmkl.jpg",
+    "alt": "",
+    "width": "1672",
+    "height": "941",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/particulars-carros-servei-v1.DOzgF6eb_fhPyC.jpg",
+    "alt": "",
+    "width": "1536",
+    "height": "1024",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/particulars-mobiliari-hero-v1.CojOGqJg_Z18sAXk.jpg",
+    "alt": "",
+    "width": "1774",
+    "height": "887",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/baranes-interior-escala-02.BQOUil9g_1ANfmx.jpg",
+    "alt": "",
+    "width": "1200",
+    "height": "1600",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/estructura-ascensor-pati-03.D_e9TyvM_1FzbOL.jpg",
+    "alt": "",
+    "width": "1200",
+    "height": "1600",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/persianes-negoci-facana-02.K5-MnYBz_28LTVu.jpg",
+    "alt": "",
+    "width": "1600",
+    "height": "1200",
+    "loading": "lazy"
+   }
+  ],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=carros",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/particulars/"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta."
+  ],
+  "word_count": 431
+ },
+ "https://serralleriacarbo.netlify.app/industrial/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 34436,
+  "lang": "ca",
+  "title": "Fabricació metàl·lica per a tercers | Industrial",
+  "description": "Fabricació metàl·lica per a tercers a Vilafranca del Penedès: sèries curtes en acer al carboni i inox 304/316, soldadura MIG/MAG i TIG.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/industrial/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Sèries curtes Peces exigents Resposta industrial"
+  ],
+  "h2": [
+   "El taller en primer pla",
+   "La sèrie comença amb una peça",
+   "Experiència en cinc sectors",
+   "Un encàrrec real Deu gàbies",
+   "Parlem de la peça"
+  ],
+  "jsonld_types": [],
+  "images": [
+   {
+    "src": "/_astro/industrial-series-hero-v1.CijrEdYf_Z1zaXJ2.jpg",
+    "alt": "",
+    "width": "1672",
+    "height": "941",
+    "loading": "eager"
+   },
+   {
+    "src": "/_astro/industrial-materials-v1.Bvxg3z_1_Z6WHFs.jpg",
+    "alt": "",
+    "width": "1536",
+    "height": "1024",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/industrial-taller-maquinaria-v1.8SOZLz8K_ZEyysk.jpg",
+    "alt": "",
+    "width": "1536",
+    "height": "1024",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/industrial-soldadura-conceptual-v1.cXbiREG8_Z10HKuS.jpg",
+    "alt": "",
+    "width": "1916",
+    "height": "821",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/equip-furgoneta-intervencio.DAPmzdqk_Z2ksDQa.jpg",
+    "alt": "",
+    "width": "716",
+    "height": "441",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/industrial-series-metode-v2.DowKjyvB_Z3nMAL.jpg",
+    "alt": "",
+    "width": "1672",
+    "height": "941",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/sector-alimentacio-v1.Bl53pqjt_1SQE94.jpg",
+    "alt": "",
+    "width": "1536",
+    "height": "1024",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/sector-sanitari-v1.MDVBt4yW_Z2p8ypT.jpg",
+    "alt": "",
+    "width": "1672",
+    "height": "941",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/sector-packaging-v1.qSOxMTyO_Z7u1l5.jpg",
+    "alt": "",
+    "width": "1536",
+    "height": "1024",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/sector-cellers-v2.BemsWsyj_1utCHP.jpg",
+    "alt": "",
+    "width": "1672",
+    "height": "941",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/sector-tecnologies-duals-v2.HdsDd9Tr_1AvaJJ.jpg",
+    "alt": "",
+    "width": "1774",
+    "height": "887",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/gavia-industrial-taller-02.CvmDKpGS_JQa2I.jpg",
+    "alt": "Gàbia metàl·lica fabricada per a un client industrial al taller",
+    "width": "1200",
+    "height": "1600",
+    "loading": "lazy"
+   }
+  ],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=empresa",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=empresa",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=empresa",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=empresa",
+   "https://serralleriacarbo.netlify.app/industrial/"
+  ],
+  "external_links": [],
+  "word_count": 454
+ },
+ "https://serralleriacarbo.netlify.app/particulars/projectes/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 26265,
+  "lang": "ca",
+  "title": "Projectes de serralleria reals | Serralleria Carbó",
+  "description": "Baranes, passarel·la interior, estructura d'ascensor, porta de pàrquing i persianes motoritzades d'un negoci: cinc treballs reals de Serralleria Carbó.",
+  "robots": null,
+  "canonical": "https://www.serralleriacarbo.com/particulars/projectes/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Projectes de serralleria"
+  ],
+  "h2": [
+   "Cinc feines Cinc contextos",
+   "De la feina al teu projecte",
+   "Explica'ns la idea"
+  ],
+  "jsonld_types": [],
+  "images": [
+   {
+    "src": "/_astro/passarella-interior-vista-lateral-02.CSqX1RjX_1PCUyy.jpg",
+    "alt": "",
+    "width": "1500",
+    "height": "2000",
+    "loading": "eager"
+   },
+   {
+    "src": "/_astro/passarella-interior-vista-lateral-02.CSqX1RjX_1PCUyy.jpg",
+    "alt": "Passarel·la interior amb baranes de ferro",
+    "width": "1500",
+    "height": "2000",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/estructura-ascensor-pati-04.fMlOIWg9_ZLJP7n.jpg",
+    "alt": "Estructura metàl·lica per a un ascensor vista des del pati interior",
+    "width": "1200",
+    "height": "1600",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/porta-parquing-interior-03.CEVEeW5i_Z2dPqRT.jpg",
+    "alt": "Porta metàl·lica de pàrquing vista des de l’interior",
+    "width": "1600",
+    "height": "1204",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/persianes-negoci-facana-01.X9O4ijL4_Fjdgf.jpg",
+    "alt": "Persianes metàl·liques instal·lades a la façana d’un negoci",
+    "width": "1600",
+    "height": "1200",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/baranes-interior-escala-01.Bq6P22HR_Z1wiEGN.jpg",
+    "alt": "Barana metàl·lica d'una escala interior durant una reforma",
+    "width": "1200",
+    "height": "1600",
+    "loading": "lazy"
+   }
+  ],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta."
+  ],
+  "word_count": 269
+ },
+ "https://serralleriacarbo.netlify.app/empresa/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 23304,
+  "lang": "ca",
+  "title": "Empresa i taller de serralleria | Serralleria Carbó",
+  "description": "Serralleria Carbó, fundada el 1989: taller de 950 m² a Vilafranca del Penedès, equip de 12 persones i treballs per a particulars i empreses.",
+  "robots": null,
+  "canonical": "https://www.serralleriacarbo.com/empresa/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Empresa i taller de Serralleria Carbó"
+  ],
+  "h2": [
+   "El taller i l'equip",
+   "Arrelats a Vilafranca",
+   "Dues maneres de treballar el metall",
+   "Contacta amb l'equip"
+  ],
+  "jsonld_types": [
+   "LocalBusiness"
+  ],
+  "images": [
+   {
+    "src": "/_astro/gavia-industrial-fabricacio-01.7UsFcmrF_Zi1XPm.jpg",
+    "alt": "Operari treballant al taller amb una gàbia industrial",
+    "width": "1200",
+    "height": "1600",
+    "loading": "eager"
+   },
+   {
+    "src": "/_astro/gavia-industrial-transport-03.m6qT_0Zl_qY5vt.jpg",
+    "alt": "Gàbia industrial carregada al camió ploma de l’empresa",
+    "width": "1200",
+    "height": "1600",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/passarella-interior-vista-lateral-02.CSqX1RjX_1PCUyy.jpg",
+    "alt": "Passarel·la interior amb baranes de ferro",
+    "width": "1500",
+    "height": "2000",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/gavia-industrial-taller-02.CvmDKpGS_JQa2I.jpg",
+    "alt": "Gàbia metàl·lica fabricada al taller",
+    "width": "1200",
+    "height": "1600",
+    "loading": "lazy"
+   }
+  ],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/empresa/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/empresa/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/empresa/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/empresa/"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta."
+  ],
+  "word_count": 325
+ },
+ "https://serralleriacarbo.netlify.app/contacte/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 19633,
+  "lang": "ca",
+  "title": "Contacte i pressupostos | Serralleria Carbó",
+  "description": "Contacta amb Serralleria Carbó a Vilafranca del Penedès. Explica una feina particular o envia plànol i requisits a Industrial.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/contacte/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Contacta amb Serralleria Carbó"
+  ],
+  "h2": [
+   "Explica'ns el projecte",
+   "Si et va millor, parlem-ne ara",
+   "Consulta tècnica directa",
+   "Ens trobaràs a Vilafranca"
+  ],
+  "jsonld_types": [
+   "LocalBusiness"
+  ],
+  "images": [],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://www.google.com/maps/search/?api=1&query=Carrer%20d'Eugeni%20d'Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s"
+  ],
+  "word_count": 419
+ },
+ "https://serralleriacarbo.netlify.app/particulars/automatismes/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 20848,
+  "lang": "ca",
+  "title": "Automatismes i motors per a portes | Serralleria Carbó",
+  "description": "Instal·lació i motorització de portes a Vilafranca del Penedès. Coneix els automatismes de Serralleria Carbó i explica'ns el teu cas.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/particulars/automatismes/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Automatismes per a portes"
+  ],
+  "h2": [
+   "Automatismes per a cada accés",
+   "Comencem per conèixer la porta",
+   "Explica'ns el teu cas"
+  ],
+  "jsonld_types": [],
+  "images": [
+   {
+    "src": "/_astro/particulars-automatismes-hero-v1.Cuo8g1r6_2pEq9P.jpg",
+    "alt": "",
+    "width": "1774",
+    "height": "887",
+    "loading": "eager"
+   },
+   {
+    "src": "/_astro/porta-parquing-interior-03.CEVEeW5i_Z2dPqRT.jpg",
+    "alt": "",
+    "width": "1600",
+    "height": "1204",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/persianes-negoci-facana-01.X9O4ijL4_Fjdgf.jpg",
+    "alt": "",
+    "width": "1600",
+    "height": "1200",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/particulars-automatismes-altres-accessos-v1.n3MAMclz_ZbOfDK.jpg",
+    "alt": "",
+    "width": "1254",
+    "height": "1254",
+    "loading": "lazy"
+   }
+  ],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/?servei=automatismes",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=automatismes",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta."
+  ],
+  "word_count": 207
+ },
+ "https://serralleriacarbo.netlify.app/particulars/estructures/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 21055,
+  "lang": "ca",
+  "title": "Estructures metàl·liques a mida | Serralleria Carbó",
+  "description": "Baranes, escales i passarel·les metàl·liques per a habitatges i espais compartits. Descobreix treballs reals de Serralleria Carbó.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/particulars/estructures/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Estructures metàl·liques a mida"
+  ],
+  "h2": [
+   "Estructures per a cada espai",
+   "Comencem per entendre l'espai",
+   "Comencem pel teu espai"
+  ],
+  "jsonld_types": [],
+  "images": [
+   {
+    "src": "/_astro/particulars-estructures-hero-v1.CGpnWRyv_OOmkl.jpg",
+    "alt": "",
+    "width": "1672",
+    "height": "941",
+    "loading": "eager"
+   },
+   {
+    "src": "/_astro/baranes-interior-escala-01.Bq6P22HR_Z1wiEGN.jpg",
+    "alt": "",
+    "width": "1200",
+    "height": "1600",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/particulars-barana-conceptual-v1.CLOIxHrY_16fvrV.jpg",
+    "alt": "",
+    "width": "1672",
+    "height": "941",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/passarella-interior-vista-frontal-01.BEqGLFT9_Z18iAXc.jpg",
+    "alt": "",
+    "width": "1500",
+    "height": "2000",
+    "loading": "lazy"
+   }
+  ],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/?servei=estructures",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=estructures",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta."
+  ],
+  "word_count": 246
+ },
+ "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=carros": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 19633,
+  "lang": "ca",
+  "title": "Contacte i pressupostos | Serralleria Carbó",
+  "description": "Contacta amb Serralleria Carbó a Vilafranca del Penedès. Explica una feina particular o envia plànol i requisits a Industrial.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/contacte/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Contacta amb Serralleria Carbó"
+  ],
+  "h2": [
+   "Explica'ns el projecte",
+   "Si et va millor, parlem-ne ara",
+   "Consulta tècnica directa",
+   "Ens trobaràs a Vilafranca"
+  ],
+  "jsonld_types": [
+   "LocalBusiness"
+  ],
+  "images": [],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=carros",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=carros"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://www.google.com/maps/search/?api=1&query=Carrer%20d'Eugeni%20d'Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s"
+  ],
+  "word_count": 419
+ },
+ "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 19633,
+  "lang": "ca",
+  "title": "Contacte i pressupostos | Serralleria Carbó",
+  "description": "Contacta amb Serralleria Carbó a Vilafranca del Penedès. Explica una feina particular o envia plànol i requisits a Industrial.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/contacte/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Contacta amb Serralleria Carbó"
+  ],
+  "h2": [
+   "Explica'ns el projecte",
+   "Si et va millor, parlem-ne ara",
+   "Consulta tècnica directa",
+   "Ens trobaràs a Vilafranca"
+  ],
+  "jsonld_types": [
+   "LocalBusiness"
+  ],
+  "images": [],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://www.google.com/maps/search/?api=1&query=Carrer%20d'Eugeni%20d'Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s"
+  ],
+  "word_count": 419
+ },
+ "https://serralleriacarbo.netlify.app/industrial/capacitats/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 26186,
+  "lang": "ca",
+  "title": "Capacitats de soldadura i fabricació | Industrial",
+  "description": "Taller de 950 m² amb plegadora, cisalla i punxonadora; acer al carboni, inox 304/316, soldadura MIG/MAG i TIG a Industrial.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/industrial/capacitats/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Capacitats del taller"
+  ],
+  "h2": [
+   "Del material a la peça",
+   "Soldem Muntem",
+   "Quan el projecte demana suport tècnic",
+   "Parlem de la peça"
+  ],
+  "jsonld_types": [],
+  "images": [
+   {
+    "src": "/_astro/industrial-series-v2.Cr1RgR2Q_oHRSc.jpg",
+    "alt": "",
+    "width": "1448",
+    "height": "1086",
+    "loading": "eager"
+   },
+   {
+    "src": "/_astro/gavia-industrial-fabricacio-01.7UsFcmrF_Zi1XPm.jpg",
+    "alt": "",
+    "width": "1200",
+    "height": "1600",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/capacitats-acer-taller-v1.CCovlFzE_NphqD.jpg",
+    "alt": "",
+    "width": "1536",
+    "height": "1024",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/capacitats-inox-taller-v1.DyZdzcpd_Z1Dy3Sq.jpg",
+    "alt": "",
+    "width": "1536",
+    "height": "1024",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/capacitats-plegadora-taller-v1.ycc0X0Xs_ZHvgJD.jpg",
+    "alt": "",
+    "width": "1536",
+    "height": "1024",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/capacitats-cisalla-taller-v1.pgYUWl9A_1HtzwM.jpg",
+    "alt": "",
+    "width": "1536",
+    "height": "1024",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/capacitats-punxonadora-taller-v1.B-VhfIJ5_2mqb53.jpg",
+    "alt": "",
+    "width": "1536",
+    "height": "1024",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/capacitats-soldadura-taller-v2.BY1rSecw_Z1icU5P.jpg",
+    "alt": "",
+    "width": "1672",
+    "height": "941",
+    "loading": "lazy"
+   }
+  ],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=empresa",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=empresa",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=empresa",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=empresa",
+   "https://serralleriacarbo.netlify.app/industrial/capacitats/"
+  ],
+  "external_links": [],
+  "word_count": 262
+ },
+ "https://serralleriacarbo.netlify.app/particulars/urgencies/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 17117,
+  "lang": "ca",
+  "title": "Reparació de portes a Vilafranca | Serralleria Carbó",
+  "description": "Tens una incidència amb una porta o un automatisme? Contacta amb Serralleria Carbó a Vilafranca del Penedès i explica'ns què ha passat.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/particulars/urgencies/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Reparació de portes i automatismes a Vilafranca"
+  ],
+  "h2": [
+   "Explica'ns la incidència",
+   "També pots veure els automatismes",
+   "Explica'ns què ha passat"
+  ],
+  "jsonld_types": [],
+  "images": [
+   {
+    "src": "/_astro/particulars-urgencies-hero-v1.D07oIGKW_1xPygW.jpg",
+    "alt": "",
+    "width": "1672",
+    "height": "941",
+    "loading": "eager"
+   }
+  ],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=urgencies",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta."
+  ],
+  "word_count": 176
+ },
+ "https://serralleriacarbo.netlify.app/contacte/?tipus=particular": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 19633,
+  "lang": "ca",
+  "title": "Contacte i pressupostos | Serralleria Carbó",
+  "description": "Contacta amb Serralleria Carbó a Vilafranca del Penedès. Explica una feina particular o envia plànol i requisits a Industrial.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/contacte/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Contacta amb Serralleria Carbó"
+  ],
+  "h2": [
+   "Explica'ns el projecte",
+   "Si et va millor, parlem-ne ara",
+   "Consulta tècnica directa",
+   "Ens trobaràs a Vilafranca"
+  ],
+  "jsonld_types": [
+   "LocalBusiness"
+  ],
+  "images": [],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://www.google.com/maps/search/?api=1&query=Carrer%20d'Eugeni%20d'Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s"
+  ],
+  "word_count": 419
+ },
+ "https://serralleriacarbo.netlify.app/contacte/?tipus=empresa": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 19633,
+  "lang": "ca",
+  "title": "Contacte i pressupostos | Serralleria Carbó",
+  "description": "Contacta amb Serralleria Carbó a Vilafranca del Penedès. Explica una feina particular o envia plànol i requisits a Industrial.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/contacte/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Contacta amb Serralleria Carbó"
+  ],
+  "h2": [
+   "Explica'ns el projecte",
+   "Si et va millor, parlem-ne ara",
+   "Consulta tècnica directa",
+   "Ens trobaràs a Vilafranca"
+  ],
+  "jsonld_types": [
+   "LocalBusiness"
+  ],
+  "images": [],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=empresa",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=empresa"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://www.google.com/maps/search/?api=1&query=Carrer%20d'Eugeni%20d'Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s"
+  ],
+  "word_count": 419
+ },
+ "https://serralleriacarbo.netlify.app/particulars/projectes/?servei=automatismes": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 26265,
+  "lang": "ca",
+  "title": "Projectes de serralleria reals | Serralleria Carbó",
+  "description": "Baranes, passarel·la interior, estructura d'ascensor, porta de pàrquing i persianes motoritzades d'un negoci: cinc treballs reals de Serralleria Carbó.",
+  "robots": null,
+  "canonical": "https://www.serralleriacarbo.com/particulars/projectes/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Projectes de serralleria"
+  ],
+  "h2": [
+   "Cinc feines Cinc contextos",
+   "De la feina al teu projecte",
+   "Explica'ns la idea"
+  ],
+  "jsonld_types": [],
+  "images": [
+   {
+    "src": "/_astro/passarella-interior-vista-lateral-02.CSqX1RjX_1PCUyy.jpg",
+    "alt": "",
+    "width": "1500",
+    "height": "2000",
+    "loading": "eager"
+   },
+   {
+    "src": "/_astro/passarella-interior-vista-lateral-02.CSqX1RjX_1PCUyy.jpg",
+    "alt": "Passarel·la interior amb baranes de ferro",
+    "width": "1500",
+    "height": "2000",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/estructura-ascensor-pati-04.fMlOIWg9_ZLJP7n.jpg",
+    "alt": "Estructura metàl·lica per a un ascensor vista des del pati interior",
+    "width": "1200",
+    "height": "1600",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/porta-parquing-interior-03.CEVEeW5i_Z2dPqRT.jpg",
+    "alt": "Porta metàl·lica de pàrquing vista des de l’interior",
+    "width": "1600",
+    "height": "1204",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/persianes-negoci-facana-01.X9O4ijL4_Fjdgf.jpg",
+    "alt": "Persianes metàl·liques instal·lades a la façana d’un negoci",
+    "width": "1600",
+    "height": "1200",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/baranes-interior-escala-01.Bq6P22HR_Z1wiEGN.jpg",
+    "alt": "Barana metàl·lica d'una escala interior durant una reforma",
+    "width": "1200",
+    "height": "1600",
+    "loading": "lazy"
+   }
+  ],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/particulars/projectes/?servei=automatismes",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/?servei=automatismes",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/?servei=automatismes"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta."
+  ],
+  "word_count": 269
+ },
+ "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=automatismes": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 19633,
+  "lang": "ca",
+  "title": "Contacte i pressupostos | Serralleria Carbó",
+  "description": "Contacta amb Serralleria Carbó a Vilafranca del Penedès. Explica una feina particular o envia plànol i requisits a Industrial.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/contacte/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Contacta amb Serralleria Carbó"
+  ],
+  "h2": [
+   "Explica'ns el projecte",
+   "Si et va millor, parlem-ne ara",
+   "Consulta tècnica directa",
+   "Ens trobaràs a Vilafranca"
+  ],
+  "jsonld_types": [
+   "LocalBusiness"
+  ],
+  "images": [],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=automatismes",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=automatismes"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://www.google.com/maps/search/?api=1&query=Carrer%20d'Eugeni%20d'Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s"
+  ],
+  "word_count": 419
+ },
+ "https://serralleriacarbo.netlify.app/particulars/projectes/?servei=estructures": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 26265,
+  "lang": "ca",
+  "title": "Projectes de serralleria reals | Serralleria Carbó",
+  "description": "Baranes, passarel·la interior, estructura d'ascensor, porta de pàrquing i persianes motoritzades d'un negoci: cinc treballs reals de Serralleria Carbó.",
+  "robots": null,
+  "canonical": "https://www.serralleriacarbo.com/particulars/projectes/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Projectes de serralleria"
+  ],
+  "h2": [
+   "Cinc feines Cinc contextos",
+   "De la feina al teu projecte",
+   "Explica'ns la idea"
+  ],
+  "jsonld_types": [],
+  "images": [
+   {
+    "src": "/_astro/passarella-interior-vista-lateral-02.CSqX1RjX_1PCUyy.jpg",
+    "alt": "",
+    "width": "1500",
+    "height": "2000",
+    "loading": "eager"
+   },
+   {
+    "src": "/_astro/passarella-interior-vista-lateral-02.CSqX1RjX_1PCUyy.jpg",
+    "alt": "Passarel·la interior amb baranes de ferro",
+    "width": "1500",
+    "height": "2000",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/estructura-ascensor-pati-04.fMlOIWg9_ZLJP7n.jpg",
+    "alt": "Estructura metàl·lica per a un ascensor vista des del pati interior",
+    "width": "1200",
+    "height": "1600",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/porta-parquing-interior-03.CEVEeW5i_Z2dPqRT.jpg",
+    "alt": "Porta metàl·lica de pàrquing vista des de l’interior",
+    "width": "1600",
+    "height": "1204",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/persianes-negoci-facana-01.X9O4ijL4_Fjdgf.jpg",
+    "alt": "Persianes metàl·liques instal·lades a la façana d’un negoci",
+    "width": "1600",
+    "height": "1200",
+    "loading": "lazy"
+   },
+   {
+    "src": "/_astro/baranes-interior-escala-01.Bq6P22HR_Z1wiEGN.jpg",
+    "alt": "Barana metàl·lica d'una escala interior durant una reforma",
+    "width": "1200",
+    "height": "1600",
+    "loading": "lazy"
+   }
+  ],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/particulars/projectes/?servei=estructures",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/particulars/urgencies/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=mobiliari",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/?servei=estructures",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/estructures/",
+   "https://serralleriacarbo.netlify.app/particulars/automatismes/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/particulars/projectes/?servei=estructures"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta."
+  ],
+  "word_count": 269
+ },
+ "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=estructures": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 19633,
+  "lang": "ca",
+  "title": "Contacte i pressupostos | Serralleria Carbó",
+  "description": "Contacta amb Serralleria Carbó a Vilafranca del Penedès. Explica una feina particular o envia plànol i requisits a Industrial.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/contacte/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Contacta amb Serralleria Carbó"
+  ],
+  "h2": [
+   "Explica'ns el projecte",
+   "Si et va millor, parlem-ne ara",
+   "Consulta tècnica directa",
+   "Ens trobaràs a Vilafranca"
+  ],
+  "jsonld_types": [
+   "LocalBusiness"
+  ],
+  "images": [],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=estructures",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=estructures"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://www.google.com/maps/search/?api=1&query=Carrer%20d'Eugeni%20d'Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s"
+  ],
+  "word_count": 419
+ },
+ "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=urgencies": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 19633,
+  "lang": "ca",
+  "title": "Contacte i pressupostos | Serralleria Carbó",
+  "description": "Contacta amb Serralleria Carbó a Vilafranca del Penedès. Explica una feina particular o envia plànol i requisits a Industrial.",
+  "robots": "noindex",
+  "canonical": "https://www.serralleriacarbo.com/contacte/",
+  "hreflang": [],
+  "og": {},
+  "h1": [
+   "Contacta amb Serralleria Carbó"
+  ],
+  "h2": [
+   "Explica'ns el projecte",
+   "Si et va millor, parlem-ne ara",
+   "Consulta tècnica directa",
+   "Ens trobaràs a Vilafranca"
+  ],
+  "jsonld_types": [
+   "LocalBusiness"
+  ],
+  "images": [],
+  "internal_links": [
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=urgencies",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/",
+   "https://serralleriacarbo.netlify.app/particulars/",
+   "https://serralleriacarbo.netlify.app/industrial/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/",
+   "https://serralleriacarbo.netlify.app/contacte/?tipus=particular&servei=urgencies"
+  ],
+  "external_links": [
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.",
+   "https://www.google.com/maps/search/?api=1&query=Carrer%20d'Eugeni%20d'Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s"
+  ],
+  "word_count": 419
+ }
+}

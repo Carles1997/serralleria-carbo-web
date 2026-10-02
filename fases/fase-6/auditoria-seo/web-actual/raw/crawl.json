@@ -1,0 +1,469 @@
+{
+ "https://www.serralleriacarbo.com/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 127047,
+  "lang": "es",
+  "title": "HOME - Serralleria Carbó",
+  "description": null,
+  "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  "canonical": "https://www.serralleriacarbo.com/",
+  "hreflang": [],
+  "og": {
+   "og:locale": "es_ES",
+   "og:type": "website",
+   "og:title": "HOME - Serralleria Carbó",
+   "og:description": "Rapidesa i fiabilitat a qualsevol hora. Des de fa molts anys, a Serralleria Carbó S.L som especialistes en automatismes, fabricació d’estructures, reparacions i tot allò relacionat amb el món del ferro i l’alumini. Confiï en la nostra experiència i qualitat per a tots els seus projectes. Urgencies Estem disponibles per solucionar qualsevol imprevist o avaria […]",
+   "og:url": "https://www.serralleriacarbo.com/",
+   "og:site_name": "Serralleria Carbó",
+   "og:image": "https://www.serralleriacarbo.com/wp-content/uploads/2024/09/Vector.png"
+  },
+  "h1": [],
+  "h2": [
+   "Urgencies",
+   "Estructures",
+   "Automatismes",
+   "Mobiliari",
+   "Contacte"
+  ],
+  "jsonld_types": [
+   "WebPage",
+   "ImageObject",
+   "BreadcrumbList",
+   "WebSite",
+   "Organization"
+  ],
+  "images": [
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/2025/02/Logo-entero-svg-rojo.svg",
+    "alt": "Serralleria Carbó",
+    "width": "124",
+    "height": "45",
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/2024/09/Vector.png",
+    "alt": "",
+    "width": "716",
+    "height": "51",
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/2025/02/Logo-entero-svg-rojo.svg",
+    "alt": "default-logo",
+    "width": null,
+    "height": null,
+    "loading": null
+   }
+  ],
+  "internal_links": [
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/projectes/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/projectes/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/legal/"
+  ],
+  "external_links": [],
+  "word_count": 190
+ },
+ "https://www.serralleriacarbo.com/projectes/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 150169,
+  "lang": "es",
+  "title": "PROJECTES - Serralleria Carbó",
+  "description": null,
+  "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  "canonical": "https://www.serralleriacarbo.com/projectes/",
+  "hreflang": [],
+  "og": {
+   "og:locale": "es_ES",
+   "og:type": "article",
+   "og:title": "PROJECTES - Serralleria Carbó",
+   "og:description": "Convertim idees en realitats tangibles Des de fa molts anys, a Serralleria Carbó S.L som especialistes en automatismes, fabricació d’estructures, reparacions i tot allò relacionat amb el món del ferro i l’alumini. Confiï en la nostra experiència i qualitat per a tots els seus projectes. PROJECTE PASSAREL·LA INTERIOR Projecte d’Estructures 2024 Baranes de ferro negre […]",
+   "og:url": "https://www.serralleriacarbo.com/projectes/",
+   "og:site_name": "Serralleria Carbó",
+   "og:image": "https://www.serralleriacarbo.com/wp-content/uploads/2024/09/Vector.png"
+  },
+  "h1": [],
+  "h2": [
+   "Convertim idees en realitats tangibles",
+   "PROJECTE PASSAREL·LA INTERIOR",
+   "PROJECTE GÁBIA",
+   "PROJECTE ASCENSOR",
+   "P. PORTA PÀRQUING",
+   "P. PERSIANES DEL NEGOCI",
+   "P. BARANES PER A INTERIOR DE CASA"
+  ],
+  "jsonld_types": [
+   "WebPage",
+   "ImageObject",
+   "BreadcrumbList",
+   "WebSite",
+   "Organization"
+  ],
+  "images": [
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/2025/02/Logo-entero-svg-rojo.svg",
+    "alt": "Serralleria Carbó",
+    "width": "124",
+    "height": "45",
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/2024/09/Vector.png",
+    "alt": "",
+    "width": "716",
+    "height": "51",
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/IMG-20240805-WA0001-qu78hwzktlvoe609b2sigfybkgwfhryyynrrprcjti.jpg",
+    "alt": "IMG-20240805-WA0001",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/IMG-20240805-WA0002-qu78hyv979y91dxj03lrlfh8r8n5x66fmx2qob9rh2.jpg",
+    "alt": "IMG-20240805-WA0002",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.51.48_2cf85461-qu78nx6ghi3mkha88o8pdxec73auo5t8gdtg3eg02e.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.51.48_2cf85461",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.51.49_d5c584b5-qu78ny4aoc4ww38v36nbyf5ssh67vuwysigxkoelw6.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.51.49_d5c584b5",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.54.14_747c595d-qu78nz24v6677p7hxp1yiwx9dv1l3k0p4n4f1yd7py.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.54.14_747c595d",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.48.53_74b5bf5a-qu78q6yf037kmjzfz5l8wurfvm3s9ttvrmkouh2r12.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.48.53_74b5bf5a",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.48.53_c06d0238-qu78q7w96x8uy5y2tnzvhciwgzz5hixm3r86br1cuu.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.48.53_c06d0238",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.48.53_c40e4b26-qu78q8u3dra59rwpo6ei1uad2duip81cfvvnt0zyom.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.48.53_c40e4b26",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.48.53_c5921cd7-qu78qaprrfcpwztzd77r6tta95l94m8t456mrkx6c6.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.48.53_c5921cd7",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.51.51_4b9a858c-qu78sgqdiobiomonpmxsfs4jk4wpvhuj2vbxljphzq.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.51.51_4b9a858c",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.51.51_99231483-qu78sim1wce3bulxenr1krngqwngaw1zr4mwk3mpna.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.51.51_99231483",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.51.52_ef777e05-qu78sjjw36fdngkk965o59excaitil5q39ae1dlbh2.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.51.52_ef777e05",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.48.12_7d6b0eaa-qu78w67gh5e8h9as28mt9ufzwumu8ikex7yvqu7lg6.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.48.12_7d6b0eaa",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.48.12_407a5dd0-qu78w834utgt4h81r9g2etyx3mdknwrvlh9upe4t3q.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.48.12_407a5dd0",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.48.13_ab89c190-qu78w90z1ni3g36olruozbqdp08xvlvlxlxc6o3exi.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.48.13_ab89c190",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.55.04_fc524e95-qu78xh7dyv6klreifsy5qil1m476xdqzrol5qo9wt2.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.55.04_fc524e95",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/elementor/thumbs/Imatge-de-WhatsApp-2024-06-25-a-les-12.55.05_e774d23b-qu78xi585p7uxdd5abcsb0ci7i2k52uq3t8n7y8imu.jpg",
+    "alt": "Imatge de WhatsApp 2024-06-25 a les 12.55.05_e774d23b",
+    "width": null,
+    "height": null,
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/2025/02/Logo-entero-svg-rojo.svg",
+    "alt": "default-logo",
+    "width": null,
+    "height": null,
+    "loading": null
+   }
+  ],
+  "internal_links": [
+   "https://www.serralleriacarbo.com/projectes/",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/projectes/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/projectes/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/legal/"
+  ],
+  "external_links": [],
+  "word_count": 253
+ },
+ "https://www.serralleriacarbo.com/pressupost/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 113678,
+  "lang": "es",
+  "title": "PRESSUPOST - Serralleria Carbó",
+  "description": null,
+  "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  "canonical": "https://www.serralleriacarbo.com/pressupost/",
+  "hreflang": [],
+  "og": {
+   "og:locale": "es_ES",
+   "og:type": "article",
+   "og:title": "PRESSUPOST - Serralleria Carbó",
+   "og:description": "Com funciona? Omple el formulari que trobaràs amb les teves dades. Especifica el tipus de servei que necessites. Explica el teu projecte adjuntant si fós necessari informació addicional, mesures o documents, per tal de poder oferir-te un pressupost més precís. Envia’ns la teva sol·licitud i el nostre equip es posarà en contacte amb tu tan […]",
+   "og:url": "https://www.serralleriacarbo.com/pressupost/",
+   "og:site_name": "Serralleria Carbó"
+  },
+  "h1": [],
+  "h2": [],
+  "jsonld_types": [
+   "WebPage",
+   "BreadcrumbList",
+   "WebSite",
+   "Organization"
+  ],
+  "images": [
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/2025/02/Logo-entero-svg-rojo.svg",
+    "alt": "Serralleria Carbó",
+    "width": "124",
+    "height": "45",
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/2025/02/Logo-entero-svg-rojo.svg",
+    "alt": "default-logo",
+    "width": null,
+    "height": null,
+    "loading": null
+   }
+  ],
+  "internal_links": [
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/projectes/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/projectes/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/legal/"
+  ],
+  "external_links": [],
+  "word_count": 69
+ },
+ "https://www.serralleriacarbo.com/contacte/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 118235,
+  "lang": "es",
+  "title": "CONTACTE - Serralleria Carbó",
+  "description": null,
+  "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  "canonical": "https://www.serralleriacarbo.com/contacte/",
+  "hreflang": [],
+  "og": {
+   "og:locale": "es_ES",
+   "og:type": "article",
+   "og:title": "CONTACTE - Serralleria Carbó",
+   "og:description": "Informació de contacte 630661908 938902794 carbo@serralleriacarbo.com Carrer d’Eugeni d’Ors, 59, 08720 Vilafranca del Penedès, Barcelona Qui som A Serralleria Carbó S.L. ens enorgulleix ser una empresa amb una llarga trajectòria en el sector de la serralleria i els treballs en ferro i alumini. Des de la nostra fundació, hem estat compromesos a oferir solucions innovadores i […]",
+   "og:url": "https://www.serralleriacarbo.com/contacte/",
+   "og:site_name": "Serralleria Carbó"
+  },
+  "h1": [],
+  "h2": [
+   "Informació de contacte",
+   "Qui som"
+  ],
+  "jsonld_types": [
+   "WebPage",
+   "BreadcrumbList",
+   "WebSite",
+   "Organization"
+  ],
+  "images": [
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/2025/02/Logo-entero-svg-rojo.svg",
+    "alt": "Serralleria Carbó",
+    "width": "124",
+    "height": "45",
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/2025/02/Logo-entero-svg-rojo.svg",
+    "alt": "default-logo",
+    "width": null,
+    "height": null,
+    "loading": null
+   }
+  ],
+  "internal_links": [
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/projectes/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/projectes/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/legal/"
+  ],
+  "external_links": [],
+  "word_count": 181
+ },
+ "https://www.serralleriacarbo.com/legal/": {
+  "status": 200,
+  "x_robots": null,
+  "bytes": 112570,
+  "lang": "es",
+  "title": "Legal - Serralleria Carbó",
+  "description": null,
+  "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  "canonical": "https://www.serralleriacarbo.com/legal/",
+  "hreflang": [],
+  "og": {
+   "og:locale": "es_ES",
+   "og:type": "article",
+   "og:title": "Legal - Serralleria Carbó",
+   "og:description": "Política de Cookies Política de Cookies de Serralleria Carbó A Serralleria Carbó, utilitzem cookies per oferir una experiència de navegació òptima i personalitzada. Aquest document explica com utilitzem les cookies en el nostre lloc web, www.serralleriacarbo.com, i com pots gestionar-les mitjançant el nostre panell de configuració de cookies proporcionat per CookieYes. Què són les cookies? […]",
+   "og:url": "https://www.serralleriacarbo.com/legal/",
+   "og:site_name": "Serralleria Carbó"
+  },
+  "h1": [],
+  "h2": [
+   "Política de Cookies"
+  ],
+  "jsonld_types": [
+   "WebPage",
+   "BreadcrumbList",
+   "WebSite",
+   "Organization"
+  ],
+  "images": [
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/2025/02/Logo-entero-svg-rojo.svg",
+    "alt": "Serralleria Carbó",
+    "width": "124",
+    "height": "45",
+    "loading": null
+   },
+   {
+    "src": "https://www.serralleriacarbo.com/wp-content/uploads/2025/02/Logo-entero-svg-rojo.svg",
+    "alt": "default-logo",
+    "width": null,
+    "height": null,
+    "loading": null
+   }
+  ],
+  "internal_links": [
+   "https://www.serralleriacarbo.com/legal/",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/projectes/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/projectes/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "http://www.serralleriacarbo.com",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/",
+   "https://www.serralleriacarbo.com/pressupost/",
+   "https://www.serralleriacarbo.com/contacte/",
+   "https://www.serralleriacarbo.com/legal/"
+  ],
+  "external_links": [],
+  "word_count": 296
+ },
+ "http://www.serralleriacarbo.com": {
+  "status": 301,
+  "x_robots": null,
+  "redirect": "https://www.serralleriacarbo.com/"
+ }
+}

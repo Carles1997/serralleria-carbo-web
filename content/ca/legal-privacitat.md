@@ -10,7 +10,7 @@ seoDescription: "Com tracta Serralleria Carbó S.L. les dades personals de les c
 updated: 2026-10-02
 requiredSource: "Esborrany redactat per encàrrec del director de projecte (02/10/2026) per a la revisió del client i del seu advocat, a partir del funcionament real del lloc web. Només conté dades confirmades; la resta va marcada «[PENDENT: …]»."
 reviewNeeded:
-  - "Completar el NIF, si hi ha delegat de protecció de dades i els proveïdors (allotjament, servei del formulari i correu)."
+  - "Indicar si hi ha delegat de protecció de dades i confirmar les garanties de transferència dels proveïdors."
   - "Confirmar els terminis de conservació proposats."
   - "Revisió jurídica completa del text (RGPD i LOPDGDD) abans d'aprovar-lo."
 ---
@@ -20,7 +20,7 @@ reviewNeeded:
 ## 1. Responsable del tractament
 
 - **Responsable:** Serralleria Carbó S.L.
-- **NIF:** [PENDENT: NIF de l'empresa]
+- **NIF:** B59092619
 - **Domicili:** Carrer d'Eugeni d'Ors, 59, 08720 Vilafranca del Penedès (Barcelona)
 - **Correu electrònic:** [carbo@serralleriacarbo.com](mailto:carbo@serralleriacarbo.com)
 - **Telèfon:** 630 661 908
@@ -36,6 +36,8 @@ Només tractem les dades que ens facilites quan ens contactes:
 - **Correu electrònic, telèfon o WhatsApp:** les dades que hi facis constar (nom, número de telèfon o adreça de correu i el contingut de la consulta).
 
 No et demanem dades especialment protegides. Et demanem que no incloguis a la consulta, ni als fitxers adjunts, dades personals de terceres persones sense la seva autorització.
+
+Els camps marcats amb un asterisc (*) al formulari són necessaris per poder atendre la consulta: si no els facilites, no podrem respondre-la. La resta de dades són opcionals.
 
 ## 3. Finalitat del tractament
 
@@ -66,9 +68,9 @@ No cedim les teves dades a tercers, llevat d'obligació legal.
 
 Per prestar el servei, poden tenir-hi accés proveïdors que ens donen suport tècnic i que actuen com a encarregats del tractament, amb contracte i les garanties que exigeix el RGPD:
 
-- **Allotjament del lloc web:** [PENDENT: proveïdor d'allotjament]
-- **Recepció dels formularis:** [PENDENT: servei d'enviament del formulari]
-- **Correu electrònic:** [PENDENT: proveïdor de correu de serralleriacarbo.com]
+- **Allotjament del lloc web i recepció dels formularis:** Netlify, Inc. (servei Netlify Forms)
+- **Gestió del domini i dels DNS:** mayasystems.net
+- **Correu electrònic:** Microsoft 365 (Microsoft Ireland Operations Limited)
 
 Si ens contactes per WhatsApp, aquesta comunicació també la tracta WhatsApp Ireland Limited d'acord amb les seves pròpies condicions i política de privacitat.
 
@@ -76,11 +78,11 @@ Si decideixes carregar el mapa interactiu de la pàgina de contacte, el servei e
 
 ## 7. Transferències internacionals
 
-No fem transferències internacionals de dades. Alguns proveïdors tecnològics poden tractar dades fora de l'Espai Econòmic Europeu: en aquest cas, només ho fan amb garanties adequades, com una decisió d'adequació de la Comissió Europea o clàusules contractuals tipus. [PENDENT: confirmar-ho quan es triïn els proveïdors.]
+Netlify, Inc., que allotja el lloc web i gestiona els formularis, està establert als Estats Units, de manera que les dades que envies amb el formulari, i les dades tècniques de la connexió (com l'adreça IP), es tracten fora de l'Espai Econòmic Europeu. Microsoft també pot tractar dades fora d'aquest espai en determinats casos. Aquestes transferències només es fan amb les garanties adequades que preveu el RGPD, com el Marc de privacitat de dades UE-EUA o les clàusules contractuals tipus aprovades per la Comissió Europea. [PENDENT: confirmar el mecanisme concret als contractes d'encàrrec de tractament de Netlify i de Microsoft.]
 
 ## 8. Els teus drets
 
-Pots exercir en qualsevol moment els drets d'accés, rectificació, supressió, oposició, limitació del tractament i portabilitat de les teves dades, i retirar el consentiment que ens hagis donat.
+Pots exercir en qualsevol moment els drets d'accés, rectificació, supressió, oposició, limitació del tractament i portabilitat de les teves dades, així com el dret a no ser objecte de decisions basades únicament en un tractament automatitzat, i retirar el consentiment que ens hagis donat, sense que això afecti la licitud del tractament anterior.
 
 Per exercir-los, escriu a [carbo@serralleriacarbo.com](mailto:carbo@serralleriacarbo.com) o envia un escrit al nostre domicili, indicant el dret que vols exercir i una manera d'acreditar la teva identitat. Et respondrem en el termini d'un mes.
 

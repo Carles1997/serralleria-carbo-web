@@ -10,18 +10,18 @@ seoDescription: "Avís legal del lloc web de Serralleria Carbó S.L.: dades iden
 updated: 2026-10-02
 requiredSource: "Esborrany redactat per encàrrec del director de projecte (02/10/2026) per a la revisió del client i del seu advocat. Només conté dades confirmades; la resta va marcada «[PENDENT: …]»."
 reviewNeeded:
-  - "Completar el NIF i les dades d'inscripció al Registre Mercantil."
-  - "Revisió jurídica completa del text (LSSI-CE, RGPD/LOPDGDD i normativa de consum) abans d'aprovar-lo."
+  - "Completar les dades d'inscripció al Registre Mercantil."
+  - "Revisió jurídica completa del text (LSSI, RGPD/LOPDGDD i normativa de consum) abans d'aprovar-lo."
 ---
 
 # Avís legal
 
 ## 1. Dades identificatives
 
-En compliment de l'article 10 de la Llei 34/2002, d'11 de juliol, de serveis de la societat de la informació i de comerç electrònic (LSSI-CE), s'informa que el titular d'aquest lloc web és:
+En compliment de l'article 10 de la Llei 34/2002, d'11 de juliol, de serveis de la societat de la informació i de comerç electrònic (LSSI), s'informa que el titular d'aquest lloc web és:
 
 - **Titular:** Serralleria Carbó S.L.
-- **NIF:** [PENDENT: NIF de l'empresa]
+- **NIF:** B59092619
 - **Domicili:** Carrer d'Eugeni d'Ors, 59, 08720 Vilafranca del Penedès (Barcelona)
 - **Telèfons:** 630 661 908 · 93 890 27 94
 - **Correu electrònic:** [carbo@serralleriacarbo.com](mailto:carbo@serralleriacarbo.com)
@@ -43,7 +43,7 @@ L'accés al lloc web és gratuït i no requereix registre. La persona que hi acc
 
 ## 4. Propietat intel·lectual i industrial
 
-Els continguts del lloc web —textos, fotografies, il·lustracions, logotips, marques, disseny gràfic i codi— són titularitat de Serralleria Carbó S.L. o de tercers que n'han autoritzat l'ús, i estan protegits per la normativa de propietat intel·lectual i industrial.
+Els continguts del lloc web, com ara textos, fotografies, il·lustracions, logotips, marques, disseny gràfic i codi, són titularitat de Serralleria Carbó S.L. o de tercers que n'han autoritzat l'ús, i estan protegits per la normativa de propietat intel·lectual i industrial.
 
 Queda prohibida la reproducció, distribució, comunicació pública o transformació, total o parcial, d'aquests continguts sense l'autorització expressa i per escrit de Serralleria Carbó S.L., llevat dels usos permesos per la llei.
 

@@ -77,6 +77,14 @@
 .s-repair p { max-width: 56ch; margin: .55rem 0 0; color: #e1e5e3; font-size: clamp(1.15rem,1.6vw,1.6rem); font-weight: 600; letter-spacing: -.025em; line-height: 1.2; }
 .s-repair a { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 52px; padding: .7rem 1rem; border: 1px solid #d4d8d6; font-weight: 700; text-decoration: none; white-space: nowrap; }
 .s-repair a span { font-size: 1.2rem; }
+/* Pont cap a Industrial (03/10/2026): grafit i plata, els colors d'Industrial. */
+.s-series { border-block: 1px solid #3a3d41; background: #1e2225; color: #f3f4f2; }
+.s-series-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; min-height: 130px; padding-block: 1.5rem; }
+.s-series .index { color: #c5ceca; }
+.s-series p { max-width: 56ch; margin: .55rem 0 0; color: #e1e5e3; font-size: clamp(1.05rem,1.4vw,1.35rem); font-weight: 600; letter-spacing: -.02em; line-height: 1.25; }
+.s-series a { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 52px; padding: .7rem 1rem; border: 1px solid #c5ceca; color: #f3f4f2; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.s-series a:hover, .s-series a:focus-visible { background: #c5ceca; color: #1e2225; }
+.s-series a span { font-size: 1.2rem; }
 
 @media (max-width: 1000px) { .s-hero h1 { font-size: clamp(4rem,7.5vw,6.5rem); } .s-hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.5rem; } .s-scope-gallery { min-height: 500px; } .s-scope-panel h3 { font-size: clamp(2.1rem,3.4vw,3.8rem); } .s-process-result { grid-template-columns: .55fr 1fr; } }
 @media (max-width: 760px) {
@@ -101,6 +109,7 @@
   .s-process-step h3 { margin: .4rem 0 .35rem; font-size: clamp(2.5rem,6.5vw,4rem); }
   .s-process-result { grid-template-columns: 1fr; gap: 2rem; }
   .s-repair-inner { flex-direction: column; align-items: flex-start; gap: 1.3rem; }
+  .s-series-inner { flex-direction: column; align-items: flex-start; gap: 1.3rem; }
 }
 @media (max-width: 520px) {
   .s-breadcrumb { gap: .5rem; font-size: .76rem; }
@@ -117,6 +126,7 @@
   .s-process-step h3 { font-size: clamp(2rem,8vw,3rem); }
   .s-process-result { padding: 1.5rem; }
   .s-repair a { width: 100%; white-space: normal; }
+  .s-series a { width: 100%; white-space: normal; }
 }
 @media (max-width: 360px) { .s-hero { min-height: 830px; } .s-hero h1 { font-size: 9.6vw; } .s-scope-panel h3 { font-size: 8.7vw; } .s-process-heading h2 { font-size: 9vw; } .s-process-step h3 { font-size: 7.8vw; } }
 

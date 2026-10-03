@@ -15,9 +15,9 @@ Una passarel·la interior, baranes per a una reforma, una porta de pàrquing mot
 
 ### Portes i motors
 
-Fabriquem, motoritzem i reparem portes i accessos. Si tens una avaria, pots trucar-nos durant l’horari d’atenció.
+Fabriquem, instal·lem i motoritzem portes i accessos de garatge, pàrquing i negoci.
 
-[Veure automatismes](/particulars/automatismes/) · [Reparacions](/particulars/urgencies/)
+[Veure automatismes](/particulars/automatismes/)
 
 ### Estructures
 
@@ -25,17 +25,23 @@ Fabriquem i instal·lem baranes, escales, passarel·les i altres estructures met
 
 [Veure estructures](/particulars/estructures/)
 
-### Carros industrials
-
-Fabriquem carros adaptats a una necessitat concreta, tant si es tracta d’una unitat com d’una sèrie.
-
-[Explica’ns la feina](/contacte/?tipus=particular&servei=carros)
-
 ### Mobiliari
 
 Fabriquem mobiliari amb estructura metàl·lica, a mida de l'ús i de l'espai.
 
 [Descriu la peça al formulari](/contacte/?tipus=particular&servei=mobiliari)
+
+### Reparacions
+
+Si una porta, una persiana o un motor ha deixat de funcionar, truca'ns durant l’horari d’atenció i explica'ns què ha passat.
+
+[Veure reparacions](/particulars/urgencies/)
+
+## Diverses unitats o per a una obra?
+
+Tot el que fem a mida per a particulars també ho fabriquem en diverses unitats o en sèrie per a constructores, promotores i empreses: és la feina de la nostra línia Industrial. Si entres per aquí, també t'atendrem.
+
+[Producció en sèrie a Industrial](/industrial/#produccio)
 
 ## Fets, no només paraules
 

@@ -48,8 +48,8 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 ## Selecció del formulari
 
 - Tipus de consulta
-- Particular
-- Empresa
+- Una feina a mida · Una peça, una instal·lació o una reparació
+- Diverses unitats o en sèrie · Obres, sèries i peces a plànol
 
 ## Camps comuns
 
@@ -68,6 +68,7 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 
 ## Camps d'Empresa
 
+- Què cal fabricar?: Estructures, baranes i escales · Portes i tancaments, amb instal·lació · Mobiliari · Carros industrials · Peces i conjunts a mida
 - Sector
 - Material
 - Tipus de peça o conjunt

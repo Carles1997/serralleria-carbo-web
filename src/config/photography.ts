@@ -90,18 +90,20 @@ export const sitePhotography = {
     company: gavia01,
     structuresTile: passarella01,
     furnitureTile,
-    doorsTile: homeDoorRepair,
-    cartTile: cartPhoto,
+    // Portes i motors: porta de pàrquing real; Reparacions: reparació real d'una persiana (03/10/2026).
+    doorsTile: parquing03,
+    repairsTile: homeDoorRepair,
     industrialTile: homeIndustrialCapabilities,
   },
   particulars: {
     hero: particularsHero,
     portfolioHero: passarella02,
+    // Graella de serveis (03/10/2026): els carros passen a Industrial i entren les reparacions.
     serviceCards: {
-      urgent: repairsHero,
+      doors: automationsHero,
       structures: structuresHero,
-      cart: cartPhoto,
       furniture: furnitureHero,
+      repairs: repairsHero,
     },
   },
   services: {
@@ -112,6 +114,7 @@ export const sitePhotography = {
   },
   industrial: {
     hero: industrialHero,
+    cart: cartPhoto,
     materials: industrialMaterials,
     machines: workshopMachine,
     mounting: workshopMounting,

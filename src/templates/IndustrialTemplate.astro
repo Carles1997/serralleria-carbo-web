@@ -31,10 +31,12 @@ const locale = page.data.lang;
 const ui = useUi(locale);
 const t = ui.industrial;
 
-// Estructura d'industrial.md: H1, un paràgraf d'entrada i sis seccions H2 en aquest ordre.
+// Estructura d'industrial.md: H1, un paràgraf d'entrada i set seccions H2 en aquest ordre. La
+// primera, «Què fabriquem en sèrie», diu que Industrial fa en diverses unitats els productes de
+// Particulars i qualsevol peça a mida (reunió amb el client, 03/10/2026).
 const doc = parseMarkdown(page.body ?? '');
-if (doc.sections.length !== 6) throw new Error(`industrial.md ha de tenir 6 seccions H2; en té ${doc.sections.length}.`);
-const [workshop, quality, sectors, method, project, contact] = doc.sections;
+if (doc.sections.length !== 7) throw new Error(`industrial.md ha de tenir 7 seccions H2; en té ${doc.sections.length}.`);
+const [production, workshop, quality, sectors, method, project, contact] = doc.sections;
 
 if (`${t.hero.title.join('. ')}.` !== doc.title) {
   throw new Error(`El titular compost («${t.hero.title.join(' / ')}») no coincideix amb la H1 d'industrial.md.`);
@@ -44,6 +46,7 @@ const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada a industrial.md
 // Revisió editorial (30/09/2026): titulars, textos i enllaços visibles surten d'industrial.md; els
 // titulars es reparteixen en línies a i18n/ui.ts i el build comprova que diguin el mateix. Els
 // enllaços a les quatre interiors ajornades ja no són al contingut.
+sameText(t.production.heading, production.heading, 'industrial.md');
 sameText(t.workshop.heading, workshop.heading, 'industrial.md');
 sameText(t.workshop.progress.label, quality.heading, 'industrial.md');
 sameText(t.sectors.heading, sectors.heading, 'industrial.md');
@@ -76,6 +79,16 @@ const projectAction = one(links(project.blocks), `un enllaç a «${project.headi
 const contactText = one(paragraphs(contact.blocks), `un paràgraf a «${contact.heading}»`);
 const contactLink = one(links(contact.blocks), `un enllaç a «${contact.heading}»`);
 const contactForm = contactLink.href;
+
+// Productes en sèrie: cada element porta al formulari d'empresa amb el producte preseleccionat.
+const [productionLead, productionCross] = paragraphs(production.blocks);
+if (!productionLead || !productionCross) throw new Error(`«${production.heading}» necessita una entrada i la nota cap a Particulars.`);
+const productionCrossLink = one(links(production.blocks), `un enllaç a «${production.heading}»`);
+const products = listItems(production.blocks).map(labelledItem);
+if (products.length !== t.production.services.length) {
+  throw new Error(`«${production.heading}» ha de tenir ${t.production.services.length} productes; en té ${products.length}.`);
+}
+const productHref = (service: string) => `${contactForm}${contactForm.includes('?') ? '&' : '?'}servei=${service}`;
 
 const pad = (value: number) => String(value).padStart(2, '0');
 const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
@@ -128,6 +141,39 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
         <a href="#contacte" data-reveal style="--i:3">{t.proof.action} <span class="arrow" aria-hidden="true">↗</span></a>
       </div>
     </div>
+
+    <section class="i-production" id="produccio" aria-labelledby="i-production-title">
+      <div class="section-shell">
+        <div class="i-section-heading">
+          <h2 id="i-production-title" style={fit(...t.production.heading)} data-reveal>
+            {t.production.heading[0]}{' '}<br /><em>{t.production.heading[1]}</em>
+          </h2>
+          <p data-reveal style="--i:2"><Inlines inlines={productionLead} /></p>
+        </div>
+        <ul class="i-production-grid" aria-label={t.production.label}>
+          {
+            products.map((product, index) => (
+              <li data-reveal style={`--i:${index}`}>
+                <a class="i-product" href={productHref(t.production.services[index])}>
+                  <span class="i-product-number">
+                    {pad(index + 1)} / {pad(products.length)}
+                  </span>
+                  <strong>{product.value}</strong>
+                  <span class="i-product-text">{product.label}</span>
+                  <span class="i-product-action">
+                    {t.production.action} <span aria-hidden="true">↗</span>
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="i-production-cross" data-reveal>
+          <p><Inlines inlines={productionCross} /></p>
+          <a class="i-text-link" href={productionCrossLink.href}>{productionCrossLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
 
     <section class="i-capabilities" id="capacitats" aria-labelledby="i-cap-title">
       <div class="section-shell">

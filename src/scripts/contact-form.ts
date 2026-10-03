@@ -75,10 +75,13 @@ if (form) {
   const requested = params.get('tipus');
   const fromIndustrial = document.referrer.startsWith(`${window.location.origin}/industrial/`);
   setBranch(requested ?? (fromIndustrial ? 'empresa' : 'particular'));
-  // ?servei=… preselecciona el servei si existeix al desplegable (p. ex. carros des de la Home).
+  // ?servei=… preselecciona el servei al desplegable de la branca activa (p. ex. mobiliari des de la
+  // Home o carros des d'Industrial). Cada branca té el seu desplegable; només s'envia el de l'activa.
   const requestedService = params.get('servei');
-  if (service && requestedService && [...service.options].some((option) => option.value === requestedService)) {
-    service.value = requestedService;
+  const activeBranch = radios.find((radio) => radio.checked)?.value === 'empresa' ? 'empresa' : 'particular';
+  const branchService = activeBranch === 'empresa' ? form.querySelector<HTMLSelectElement>('#servei-empresa') : service;
+  if (branchService && requestedService && [...branchService.options].some((option) => option.value === requestedService)) {
+    branchService.value = requestedService;
   }
   // El canvi de branca es fon suaument (View Transition); sense suport, és immediat.
   radios.forEach((radio) => radio.addEventListener('change', () => withViewTransition(() => setBranch(radio.value))));

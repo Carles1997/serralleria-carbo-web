@@ -65,6 +65,18 @@ const VALIDATED_REVISIONS = [
       'content/ca/legal-privacitat.md': '267c9e7f66bb8df3939530b6c290d77bc3e84f50b8f1bf93f0aac595d510507c',
     },
   },
+  {
+    // Separació entre Particulars i Industrial per tipus d'encàrrec; carros a Industrial i
+    // reparacions a Particulars (alternativa A de fases/fase-7/FASE7-proposta-dos-camins.md).
+    label: 'reunió del director amb el client, alternativa A (03/10/2026)',
+    bodies: {
+      'content/ca/contacte.md': 'fc28e443714ebf8bb95e9fe08a5ca2e33bd12be61399a8974eb3035b7eb5dab4',
+      'content/ca/home.md': '145244865ba7f5ea0fe26379919c447266568b400938e9da8328007fa0b68d70',
+      'content/ca/industrial.md': '1db21a9bada1504e23d315f3777823bb65a5e6dcc280bfaa915d381fccc3c607',
+      'content/ca/particulars.md': '30eb39f11faa50c5adf75a423ba1a1e27e3157dbcfb6b6064228ccdcad091de1',
+      'content/ca/ui.md': '99128a1d6207ca2e79dab8362b876115b82af686976076a7128104bfaece1c6a',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

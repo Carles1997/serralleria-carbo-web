@@ -46,6 +46,8 @@ interface ServiceConfig {
     label: string;
   };
   repair?: false;
+  /** Pont cap a la producció en sèrie d'Industrial (estructures i automatismes). */
+  series?: true;
   contactHeading: string[];
 }
 
@@ -311,6 +313,22 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
                 </a>
               )}
             </div>
+          </div>
+        </aside>
+      )
+    }
+
+    {
+      config.series && (
+        <aside class="s-series" aria-label={shared.series.index} data-surface="dark">
+          <div class="section-shell s-series-inner" data-reveal>
+            <div>
+              <span class="index">{shared.series.index}</span>
+              <p>{shared.series.text}</p>
+            </div>
+            <a href={shared.series.link.href}>
+              {shared.series.link.label} <span class="arrow" aria-hidden="true">↗</span>
+            </a>
           </div>
         </aside>
       )

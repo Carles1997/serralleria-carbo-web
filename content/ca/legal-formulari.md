@@ -12,4 +12,4 @@ consent: false
 
 # Protecció de dades
 
-**Responsable:** Serralleria Carbó S.L. **Finalitat:** atendre la teva consulta i, si escau, preparar-te un pressupost. **Legitimació:** aplicació de mesures precontractuals a petició teva. **Destinataris:** no se cedeixen dades a tercers, llevat d'obligació legal. **Drets:** accés, rectificació, supressió i altres, com s'explica a la [política de privacitat](/legal/privacitat/).
+**Responsable:** Serralleria Carbó S.L. **Finalitat:** atendre la teva consulta i, si escau, preparar-te un pressupost. **Legitimació:** aplicació de mesures precontractuals a petició teva. **Destinataris:** no se cedeixen dades a tercers, llevat d'obligació legal; el lloc web i el formulari els allotja Netlify, Inc., que tracta les dades als Estats Units amb garanties adequades. **Drets:** accés, rectificació, supressió i altres, com s'explica a la [política de privacitat](/legal/privacitat/).

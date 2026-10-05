@@ -35,11 +35,12 @@ const ca = {
     paths: {
       label: 'Tria el teu àmbit',
       heading: 'Tria el teu camí',
+      // Criteri entre camins (reunió amb el client, 03/10/2026): tipus d'encàrrec, no producte.
       particulars: {
-        kicker: 'Per a casa, comunitats i negocis',
+        kicker: 'Una feina a mida · casa, comunitat o negoci',
       },
       // L'acció d'Industrial usa l'etiqueta de l'enllaç de home.md («Coneix Industrial»), que descriu el destí.
-      industrial: { kicker: 'Empreses · construcció · producció' },
+      industrial: { kicker: 'Diverses unitats o en sèrie · obres i empreses' },
     },
     numbers: {
       heading: ['Fets que', 'ens defineixen'],
@@ -52,15 +53,21 @@ const ca = {
       ],
     },
     services: {
-      particulars: { eyebrow: 'Serralleria Carbó', title: 'Particulars', overview: 'Explora els serveis per a particulars' },
-      industrial: { eyebrow: 'Industrial', title: 'Empreses', overview: 'Coneix Industrial' },
+      particulars: { eyebrow: 'Una feina a mida', title: 'Particulars', overview: 'Explora els serveis per a particulars' },
+      industrial: {
+        eyebrow: 'Diverses unitats o en sèrie',
+        title: 'Industrial',
+        overview: 'Coneix Industrial',
+        // Productes en sèrie confirmats pel client (03/10/2026); les portes inclouen la instal·lació.
+        products: ['Estructures i baranes', 'Portes amb instal·lació', 'Mobiliari', 'Carros industrials', 'Qualsevol peça a mida'],
+      },
       // Mateix ordre que els enllaços de la secció de serveis de home.md.
       tiles: [
-        { detail: 'Fabricació, motorització i reparació' },
+        { detail: 'Fabricació, instal·lació i motorització' },
         { detail: 'Escales i passarel·les' },
-        { detail: 'Fabricació unitària o en sèrie' },
         { detail: 'Ferro i inoxidable' },
-        { detail: 'Peces úniques, carros i sèries · Acer i inoxidable' },
+        { detail: 'Portes, persianes i motors' },
+        { detail: 'Els mateixos productes en diverses unitats · Acer i inoxidable' },
       ],
     },
   },
@@ -96,7 +103,8 @@ const ca = {
     ],
     mobileExtra: [{ label: 'Industrial ↗', href: '/industrial/' }],
     hero: {
-      otherBranch: { label: 'Industrial', href: '/industrial/' },
+      // Accés a l'altra branca amb el criteri (03/10/2026): diverses unitats → Industrial.
+      otherBranch: { label: 'Diverses unitats o en sèrie? Industrial', href: '/industrial/#produccio' },
       // Mateix text que la H1 de particulars.md, repartit per a la composició (es comprova al build).
       title: ['Serralleria per a', 'particulars', 'a Vilafranca i rodalia'],
     },
@@ -176,6 +184,15 @@ const ca = {
         { value: 12, unit: '', label: "persones a l'empresa" },
       ],
       action: "Explica'ns el teu projecte",
+    },
+    // Què fabriquem en sèrie (03/10/2026): productes de Particulars i qualsevol peça a mida, en
+    // diverses unitats. Text d'industrial.md; aquí, el titular en línies i el servei del formulari.
+    production: {
+      heading: ['Què fabriquem', 'en sèrie'],
+      label: 'Productes que fabriquem en sèrie',
+      // Mateix ordre que la llista d'industrial.md; «servei» és el valor del formulari d'empresa.
+      services: ['estructures', 'portes', 'mobiliari', 'carros', 'peces'],
+      action: 'Demana pressupost',
     },
     workshop: {
       heading: ['El taller', 'en primer pla'],
@@ -339,8 +356,9 @@ const ca = {
       intro: 'Els camps marcats amb * són necessaris. Si es tracta d’una incidència urgent, truca directament al',
       branch: {
         legend: 'Tipus de consulta',
-        particular: { label: 'Particular', detail: 'Habitatge, comunitat o negoci' },
-        empresa: { label: 'Empresa', detail: 'Fabricació i projectes industrials' },
+        // Per tipus d'encàrrec, no per públic (reunió amb el client, 03/10/2026).
+        particular: { label: 'Una feina a mida', detail: 'Una peça, una instal·lació o una reparació' },
+        empresa: { label: 'Diverses unitats o en sèrie', detail: 'Obres, sèries i peces a plànol' },
       },
       // Formulari compacte (indicació del director, 01/10/2026): dos grups, sense frases auxiliars.
       sections: { contact: 'Dades de contacte', work: 'La feina' },
@@ -356,7 +374,16 @@ const ca = {
           { value: 'estructures', label: 'Estructures' },
           { value: 'automatismes', label: 'Automatismes, portes i motors' },
           { value: 'mobiliari', label: 'Mobiliari a mida' },
+        ],
+        // Formulari d'Industrial: producte en sèrie (opcional; el preselecciona l'enllaç d'origen).
+        produccio: 'Què cal fabricar?',
+        produccioPlaceholder: 'Selecciona un producte',
+        productionServices: [
+          { value: 'estructures', label: 'Estructures, baranes i escales' },
+          { value: 'portes', label: 'Portes i tancaments, amb instal·lació' },
+          { value: 'mobiliari', label: 'Mobiliari' },
           { value: 'carros', label: 'Carros industrials' },
+          { value: 'peces', label: 'Peces i conjunts a mida' },
         ],
         sector: 'Sector',
         material: 'Material',
@@ -413,8 +440,15 @@ const ca = {
     // Fitxa de preparació de cada servei.
     brief: { action: 'Anar al formulari', optional: 'Opcional' },
     repair: { index: 'Necessites una reparació?', text: "Si tens una avaria en una porta o un automatisme, explica'ns què ha passat." },
+    // Pont cap a Industrial a les pàgines de producte (reunió amb el client, 03/10/2026).
+    series: {
+      index: 'Diverses unitats o per a una obra?',
+      text: 'Aquest servei també el fabriquem en sèrie per a constructores, promotores i empreses.',
+      link: { label: 'Producció en sèrie a Industrial', href: '/industrial/#produccio' },
+    },
     pages: {
       'particulars-estructures': {
+        series: true,
         // Rol de cada secció H2 de particulars-estructures.md, en ordre.
         sections: ['process', 'works', 'contact'],
         hero: {
@@ -441,6 +475,7 @@ const ca = {
       // Patró PS aplicat als altres serveis: titulars de la plantilla; passos, dades i casos
       // derivats del contingut de cada pàgina (README de la maqueta d'Estructures).
       'particulars-automatismes': {
+        series: true,
         sections: ['process', 'works', 'urgent'],
         hero: {
           title: ['Automatismes', 'per a', 'portes'],

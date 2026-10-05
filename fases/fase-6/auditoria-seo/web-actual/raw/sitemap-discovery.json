@@ -1,0 +1,48 @@
+{
+  "target": "https://www.serralleriacarbo.com",
+  "robots_url": "https://www.serralleriacarbo.com/robots.txt",
+  "declared": [],
+  "found": [],
+  "checked": [
+    {
+      "url": "https://www.serralleriacarbo.com/sitemap.xml",
+      "query_redacted": false,
+      "source": "common_path",
+      "status_code": null,
+      "kind": null,
+      "valid": false,
+      "error": "Request failed"
+    },
+    {
+      "url": "https://www.serralleriacarbo.com/sitemap_index.xml",
+      "query_redacted": false,
+      "source": "common_path",
+      "status_code": null,
+      "kind": null,
+      "valid": false,
+      "error": "Request failed"
+    },
+    {
+      "url": "https://www.serralleriacarbo.com/sitemap-index.xml",
+      "query_redacted": false,
+      "source": "common_path",
+      "status_code": null,
+      "kind": null,
+      "valid": false,
+      "error": "Request failed"
+    },
+    {
+      "url": "https://www.serralleriacarbo.com/wp-sitemap.xml",
+      "query_redacted": false,
+      "source": "common_path",
+      "status_code": null,
+      "kind": null,
+      "valid": false,
+      "error": "Request failed"
+    }
+  ],
+  "warnings": [
+    "robots.txt could not be fetched safely"
+  ],
+  "error": null
+}

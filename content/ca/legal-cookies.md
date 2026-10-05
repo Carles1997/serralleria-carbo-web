@@ -11,7 +11,7 @@ updated: 2026-10-02
 requiredSource: "Esborrany redactat per encàrrec del director de projecte (02/10/2026) per a la revisió del client i del seu advocat, a partir de l'inventari real del lloc web nou: cap cookie pròpia ni emmagatzematge al navegador; font tipogràfica local; Google Maps només a petició; cap analítica activa."
 reviewNeeded:
   - "Revisar aquesta política si s'activa l'analítica (Google Analytics, Tag Manager o Clarity) o qualsevol altre servei de tercers: caldrà un bàner de consentiment."
-  - "Revisió jurídica completa del text (art. 22.2 de la LSSI-CE i Guia sobre l'ús de les cookies de l'AEPD) abans d'aprovar-lo."
+  - "Revisió jurídica completa del text (art. 22.2 de la LSSI i Guia sobre l'ús de les cookies de l'AEPD) abans d'aprovar-lo."
 ---
 
 # Política de cookies
@@ -34,22 +34,22 @@ L'únic servei de tercers que pot instal·lar cookies és el mapa interactiu de 
 |---|---|---|---|---|
 | Google Maps (mapa interactiu) | Google Ireland Limited | Només quan prems «Mostra el mapa interactiu» a la pàgina de contacte | Mostrar el mapa amb la ubicació del taller. Google pot desar cookies pròpies de preferències, seguretat i mesura | [Política de privacitat de Google](https://policies.google.com/privacy) · [Com utilitza Google les cookies](https://policies.google.com/technologies/cookies) |
 
-Mentre no carreguis el mapa, la pàgina no estableix cap connexió amb Google: en el seu lloc es mostra una imatge estàtica amb l'adreça. Les cookies que Google pugui desar són de la seva titularitat i se'n regeixen per les seves polítiques.
+Mentre no carreguis el mapa, la pàgina no estableix cap connexió amb Google: en el seu lloc es mostra una imatge estàtica amb l'adreça. Les cookies que Google pugui desar són de la seva titularitat, i la seva durada i la informació que recullen es regeixen per les polítiques de Google. Google pot tractar aquestes dades fora de l'Espai Econòmic Europeu, amb les garanties que descriu la seva política de privacitat.
 
 Els enllaços a WhatsApp i a Google Maps (per exemple, «Obrir a Google Maps») t'obren el servei corresponent en una pàgina nova; a partir d'aquell moment s'apliquen les polítiques d'aquests serveis.
 
 ## 4. Base legal i consentiment
 
-Les cookies que no són tècniques només s'instal·len amb el teu consentiment, d'acord amb l'article 22.2 de la LSSI-CE. En aquest lloc web, el consentiment s'obté quan, després d'haver estat informat al costat del botó, decideixes carregar el mapa interactiu.
+Les cookies que no són tècniques només s'instal·len amb el teu consentiment, d'acord amb l'article 22.2 de la LSSI. En aquest lloc web, el consentiment s'obté quan, després d'haver estat informat al costat del botó, decideixes carregar el mapa interactiu.
 
 ## 5. Com pots gestionar o retirar el consentiment
 
 - **El mapa no es carrega per defecte:** cada vegada que visites la pàgina de contacte, el mapa torna a estar desactivat fins que el demanes.
 - **Eliminar les cookies ja desades:** pots esborrar-les i bloquejar-les des de la configuració del navegador:
   - [Google Chrome](https://support.google.com/chrome/answer/95647)
-  - [Mozilla Firefox](https://support.mozilla.org/ca/kb/neteja-les-galetes-i-les-dades-dels-llocs-web-firefox)
-  - [Safari](https://support.apple.com/ca-es/guide/safari/sfri11471/mac)
-  - [Microsoft Edge](https://support.microsoft.com/ca-es/microsoft-edge/suprimir-les-galetes-al-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09)
+  - [Mozilla Firefox](https://support.mozilla.org/kb/clear-cookies-and-site-data-firefox)
+  - [Safari](https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac)
+  - [Microsoft Edge](https://support.microsoft.com/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09)
 
 Si bloqueges les cookies de tercers, és possible que el mapa interactiu no funcioni; pots seguir consultant l'adreça a la pàgina o obrir-la directament a Google Maps.
 

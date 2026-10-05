@@ -7,6 +7,7 @@
 // la navegació local (01–04), que identifica les parts reals de la pàgina.
 import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbData from '../components/BreadcrumbData.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import Inlines from '../components/Inlines.astro';
@@ -100,6 +101,12 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
         <nav class="c-crumb enter" aria-label={ui.service.breadcrumb.label}>
           <a href={branch.home.href}>{ui.industrial.hero.overline[0]}</a><span aria-hidden="true">/</span><span aria-current="page">{t.hero.title[0]}</span>
         </nav>
+        <BreadcrumbData
+          items={[
+            { name: ui.industrial.hero.overline[0], href: branch.home.href },
+            { name: t.hero.title[0], href: page.data.route },
+          ]}
+        />
         <div class="c-hero-main">
           <h1 id="c-title" style={fit(...t.hero.title)}>
             <span class="enter" style="--i:2">{t.hero.title[0]}</span>{' '}<br /><em class="enter" style="--i:3">{t.hero.title[1]}</em>

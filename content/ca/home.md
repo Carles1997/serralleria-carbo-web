@@ -9,11 +9,11 @@ seoDescription: "Serralleria Carbó: des de 1989, treballs de serralleria per a 
 
 # Serralleria Carbó, a Vilafranca del Penedès des de 1989
 
-Fabriquem i instal·lem portes, baranes, estructures i automatismes per a habitatges, comunitats i negocis. El mateix taller fabrica peces i estructures per a empreses, constructores i promotores.
+Fabriquem i instal·lem portes, baranes, estructures, automatismes i mobiliari a mida per a habitatges, comunitats i negocis. Amb Industrial fabriquem aquests mateixos productes, i qualsevol peça a mida, en diverses unitats o en sèrie per a constructores, promotores i empreses.
 
 ## Particulars
 
-Baranes, escales, portes, automatismes i mobiliari a mida. També atenem reparacions.
+Una feina a mida per al teu espai: baranes, escales, portes, automatismes i mobiliari. També atenem reparacions.
 
 [Veure serveis](/particulars/)
 
@@ -21,7 +21,16 @@ Baranes, escales, portes, automatismes i mobiliari a mida. També atenem reparac
 
 Sèries curtes. Peces exigents. Resposta industrial.
 
+Els mateixos productes en diverses unitats o en sèrie: estructures, portes amb instal·lació, mobiliari, carros industrials i qualsevol peça a mida.
+
 [Coneix Industrial](/industrial/)
+
+## Com triar el camí
+
+- **Una feina a mida** · Una peça, una instal·lació o una reparació per a casa, la comunitat o el negoci.
+- **Diverses unitats o en sèrie** · El mateix element repetit, una obra o peces a plànol per a constructores, promotores i empreses.
+
+Els productes són els mateixos als dos camins. Si dubtes, escriu-nos igualment i t'orientarem.
 
 ## Fets que ens defineixen
 
@@ -40,9 +49,9 @@ La major part de la feina es fa a Vilafranca i la rodalia; també treballem en p
 
 ## Serveis i capacitats
 
-Consulta el servei concret si ja saps què necessites:
+Els productes són els mateixos: el camí depèn de si necessites una feina a mida o diverses unitats.
 
-[Portes i motors](/particulars/automatismes/) · [Baranes i estructures](/particulars/estructures/) · [Carros industrials](/contacte/?tipus=particular&servei=carros) · [Mobiliari a mida](/contacte/?tipus=particular&servei=mobiliari) · [Capacitats industrials](/industrial/capacitats/)
+[Portes i motors](/particulars/automatismes/) · [Baranes i estructures](/particulars/estructures/) · [Mobiliari a mida](/contacte/?tipus=particular&servei=mobiliari) · [Reparacions](/particulars/urgencies/) · [Producció en sèrie](/industrial/#produccio)
 
 ## Parlem del teu encàrrec
 

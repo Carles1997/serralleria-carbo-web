@@ -6,6 +6,7 @@
 // motion.css, interactions.css).
 import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbData from '../components/BreadcrumbData.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import ContactBlock from '../components/ContactBlock.astro';
@@ -79,6 +80,7 @@ const nav = ui.home.nav;
           <nav class="co-crumb enter" aria-label={ui.service.breadcrumb.label}>
             <a href="/">{ui.service.breadcrumb.home}</a><span aria-hidden="true">/</span><span aria-current="page">{t.crumb}</span>
           </nav>
+          <BreadcrumbData items={[{ name: ui.service.breadcrumb.home, href: '/' }, { name: t.crumb, href: page.data.route }]} />
           <h1 id="co-title" style={fit(...t.title)}>
             <span class="enter" style="--i:1">{t.title[0]}</span>{' '}<br /><span class="co-hero-soft enter" style="--i:2">{t.title[1]}</span>
           </h1>

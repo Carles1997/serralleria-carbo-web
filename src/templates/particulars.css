@@ -40,6 +40,15 @@
 .p-urgent p { margin: 0; color: #cfd3d3; }
 .p-urgent a { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 54px; padding: .7rem 1rem; border: 1px solid #b7bbbb; font-weight: 700; text-decoration: none; white-space: nowrap; }
 .p-urgent a span { font-size: 1.2rem; }
+/* Pont cap a Industrial (03/10/2026): els mateixos productes en diverses unitats o en sèrie.
+   Grafit i plata, els colors d'Industrial, per anunciar l'altra branca. */
+.p-series { border-block: 1px solid #3a3d41; background: #1e2225; }
+.p-series-inner { display: grid; grid-template-columns: 1fr auto; gap: clamp(1.5rem,3vw,4rem); align-items: center; min-height: 150px; padding-block: 2rem; }
+.p-series h2 { margin: 0 0 .5rem; color: #c5ceca; font-size: clamp(1.8rem,2.5vw,3rem); font-weight: 700; letter-spacing: -.04em; line-height: 1; }
+.p-series p { max-width: 70ch; margin: 0; color: #d8dcdb; line-height: 1.5; }
+.p-series a { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 54px; padding: .7rem 1rem; border: 1px solid #c5ceca; color: #f3f4f2; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.p-series a:hover, .p-series a:focus-visible { background: #c5ceca; color: #1e2225; }
+.p-series a span { font-size: 1.2rem; }
 
 .p-services { padding-block: clamp(5rem,8vw,9rem); }
 .p-service-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1px; border: 1px solid #54595b; background: #54595b; }
@@ -109,6 +118,8 @@
   .p-image-caption { top: 5.8rem; }
   .p-urgent-inner { grid-template-columns: auto 1fr; }
   .p-urgent a { grid-column: 2; justify-self: start; }
+  .p-series-inner { grid-template-columns: 1fr; gap: 1.25rem; }
+  .p-series a { justify-self: start; }
   .p-service-grid { grid-template-columns: 1fr; }
   .p-service { min-height: 400px; }
   .p-service h3 { font-size: clamp(2.7rem,7vw,4rem); }
@@ -130,6 +141,7 @@
   .p-image-caption { top: 5.3rem; max-width: 18ch; font-size: .63rem; }
   .p-urgent-inner { grid-template-columns: 1fr; gap: 1rem; }
   .p-urgent a { grid-column: 1; }
+  .p-series a { justify-self: stretch; white-space: normal; }
   .p-service { min-height: 350px; padding: 1.5rem; }
   .p-service h3 { font-size: clamp(2.3rem,9vw,3.3rem); }
   .p-story-outro-actions { align-items: stretch; flex-direction: column; }

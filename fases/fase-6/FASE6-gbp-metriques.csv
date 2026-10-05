@@ -1,0 +1,48 @@
+metrica,periode,valor,font,nota
+interaccions_perfil,2026-05,118,GBP Rendiment > Detalls,
+interaccions_perfil,2026-06,115,GBP Rendiment > Detalls,
+interaccions_perfil,2026-07,127,GBP Rendiment > Detalls,
+interaccions_perfil,2026-08,137,GBP Rendiment > Detalls,
+interaccions_perfil,2026-09,105,GBP Rendiment > Detalls,
+interaccions_perfil,2026-10,0,GBP Rendiment > Detalls,Mes en curs (dades fins al 2/10/2026)
+interaccions_perfil,2026-05..2026-10,602,GBP Rendiment > Detalls,Total del període
+persones_que_han_vist_el_perfil,2026-05..2026-10,2805,GBP Rendiment > Com t'han descobert,
+visualitzacions_google_maps_mobil,2026-05..2026-10,1259,GBP Rendiment > plataforma i dispositiu,45 %
+visualitzacions_cerca_google_mobil,2026-05..2026-10,1087,GBP Rendiment > plataforma i dispositiu,39 %
+visualitzacions_cerca_google_ordinador,2026-05..2026-10,303,GBP Rendiment > plataforma i dispositiu,11 %
+visualitzacions_google_maps_ordinador,2026-05..2026-10,156,GBP Rendiment > plataforma i dispositiu,6 %
+cerques_que_mostren_el_perfil,2026-05..2026-10,405,GBP Rendiment > Desglossament de cerques,Suma exacta dels 5 primers termes; els termes <15 no compten
+trucades,2026-05,52,GBP Rendiment > Trucades,
+trucades,2026-06,46,GBP Rendiment > Trucades,
+trucades,2026-07,65,GBP Rendiment > Trucades,
+trucades,2026-08,67,GBP Rendiment > Trucades,
+trucades,2026-09,48,GBP Rendiment > Trucades,
+trucades,2026-05..2026-10,278,GBP Rendiment > Trucades,46 % de les interaccions
+indicacions,2026-05,50,GBP Rendiment > Com arribar-hi,
+indicacions,2026-06,51,GBP Rendiment > Com arribar-hi,
+indicacions,2026-07,34,GBP Rendiment > Com arribar-hi,
+indicacions,2026-08,57,GBP Rendiment > Com arribar-hi,
+indicacions,2026-09,30,GBP Rendiment > Com arribar-hi,
+indicacions,2026-05..2026-10,222,GBP Rendiment > Com arribar-hi,37 % de les interaccions
+clics_al_lloc_web,2026-05,16,GBP Rendiment > Clics al lloc web,
+clics_al_lloc_web,2026-06,18,GBP Rendiment > Clics al lloc web,
+clics_al_lloc_web,2026-07,28,GBP Rendiment > Clics al lloc web,
+clics_al_lloc_web,2026-08,13,GBP Rendiment > Clics al lloc web,
+clics_al_lloc_web,2026-09,27,GBP Rendiment > Clics al lloc web,
+clics_al_lloc_web,2026-05..2026-10,102,GBP Rendiment > Clics al lloc web,17 % de les interaccions
+reserves,2026-05..2026-10,0,GBP Rendiment,Trucades + indicacions + clics = 602
+fotos_propietari,2026-10-02,8,GBP Fotos,Més el logotip; sense foto de portada
+fotos_visualitzacions,2026-10-02,40300,GBP Fotos,Suma aproximada de les 8 fotos (acumulat històric; Google arrodoneix a milers)
+ressenyes_ultims_12_mesos,2025-10..2026-10,3,GBP Ressenyes,Dues d'1 estrella i una de 5 (mitjana 2,3)
+ressenyes_amb_text,2026-10-02,35,GBP Ressenyes,23 només amb estrelles
+publicacions,2026-10-02,0,GBP Publicacions,
+serveis,2026-10-02,0,GBP Serveis,
+productes,2026-10-02,0,GBP Productes,
+ressenyes_total,2026-10-02,58,GBP Ressenyes,
+ressenyes_mitjana,2026-10-02,3.8,GBP Ressenyes,
+ressenyes_5_estrelles,2026-10-02,26,Google Maps,
+ressenyes_4_estrelles,2026-10-02,15,Google Maps,
+ressenyes_3_estrelles,2026-10-02,6,Google Maps,
+ressenyes_2_estrelles,2026-10-02,1,Google Maps,
+ressenyes_1_estrella,2026-10-02,10,Google Maps,
+ressenyes_respostes,2026-10-02,0,GBP Ressenyes > Respostes,0 % de resposta

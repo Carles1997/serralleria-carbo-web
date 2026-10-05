@@ -29,10 +29,12 @@ const locale = page.data.lang;
 const ui = useUi(locale);
 const t = ui.home;
 
-// Estructura de home.md: H1 + entrada i sis seccions H2, en aquest ordre.
+// Estructura de home.md: H1 + entrada i set seccions H2, en aquest ordre. «Com triar el camí»
+// explica el criteri entre les dues branques (indicació del director després de la reunió amb el
+// client, 03/10/2026: fases/fase-7/FASE7-proposta-dos-camins.md, alternativa A).
 const doc = parseMarkdown(page.body ?? '');
-if (doc.sections.length !== 6) throw new Error(`home.md ha de tenir 6 seccions H2; en té ${doc.sections.length}.`);
-const [particulars, industrial, numbers, company, services, contact] = doc.sections;
+if (doc.sections.length !== 7) throw new Error(`home.md ha de tenir 7 seccions H2; en té ${doc.sections.length}.`);
+const [particulars, industrial, guide, numbers, company, services, contact] = doc.sections;
 
 const [titleMain, ...titleRest] = doc.title.split(',');
 const titleWords = titleMain.trim().split(' ');
@@ -41,9 +43,18 @@ const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada");
 
 const particularsCopy = one(paragraphs(particulars.blocks), 'un paràgraf a la secció Particulars');
 const particularsLink = one(links(particulars.blocks), 'un enllaç a la secció Particulars');
-const industrialSlogan = paragraphs(industrial.blocks)[0];
-if (!industrialSlogan) throw new Error('La secció Industrial necessita el missatge de marca.');
+const [industrialSlogan, industrialScope] = paragraphs(industrial.blocks);
+if (!industrialSlogan || !industrialScope) throw new Error("La secció Industrial necessita el missatge de marca i l'abast de la producció.");
 const industrialLink = one(links(industrial.blocks), 'un enllaç a la secció Industrial');
+
+// Criteri entre camins: un element per branca (Particulars, Industrial) i una nota final.
+const guideItems = listItems(guide.blocks).map(labelledItem);
+if (guideItems.length !== 2) throw new Error(`«${guide.heading}» ha de tenir dos criteris; en té ${guideItems.length}.`);
+const guideNote = one(paragraphs(guide.blocks), `un paràgraf a «${guide.heading}»`);
+const guidePaths = [
+  { ...guideItems[0], href: particularsLink.href, branch: particulars.heading },
+  { ...guideItems[1], href: industrialLink.href, branch: industrial.heading },
+];
 
 // Xifres: dada i etiqueta de home.md; ui.ts només hi afegeix el valor numèric per al comptador.
 sameText(t.numbers.heading, numbers.heading, 'home.md');
@@ -64,7 +75,7 @@ if (serviceLinks.length !== t.services.tiles.length) {
   throw new Error(`La secció de serveis ha de tenir ${t.services.tiles.length} enllaços; en té ${serviceLinks.length}.`);
 }
 const tiles = serviceLinks.map((link, index) => ({ ...link, ...t.services.tiles[index] }));
-const [doorTile, structuresTile, cartTile, furnitureTile, industrialTile] = tiles;
+const [doorTile, structuresTile, furnitureTile, repairsTile, industrialTile] = tiles;
 
 const contactText = one(paragraphs(contact.blocks), 'un paràgraf a la secció de contacte');
 const contactLink = one(links(contact.blocks), 'un enllaç a la secció de contacte');
@@ -120,9 +131,34 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
           </span>
           <span class="path-kicker">{t.paths.industrial.kicker}</span>
           <strong class="path-title">{industrial.heading}</strong>
-          <span class="path-copy path-slogan"><Inlines inlines={industrialSlogan} /></span>
+          <span class="path-copy">
+            <span class="path-slogan"><Inlines inlines={industrialSlogan} /></span>
+            <span class="path-scope"><Inlines inlines={industrialScope} /></span>
+          </span>
           <span class="path-action">{industrialLink.label} <span class="arrow" aria-hidden="true">↗</span></span>
         </a>
+      </div>
+    </section>
+
+    <section class="path-guide" aria-labelledby="path-guide-title">
+      <div class="shell path-guide-inner">
+        <h2 id="path-guide-title" class="path-guide-title" data-reveal>{guide.heading}</h2>
+        <ul class="path-guide-list">
+          {
+            guidePaths.map((path, index) => (
+              <li data-reveal style={`--i:${index + 1}`}>
+                <a href={path.href}>
+                  <strong>{path.value}</strong>
+                  <span class="path-guide-label">{path.label}</span>
+                  <span class="path-guide-branch">
+                    {path.branch} <span class="arrow" aria-hidden="true">↗</span>
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="path-guide-note" data-reveal style="--i:3"><Inlines inlines={guideNote} /></p>
       </div>
     </section>
 
@@ -191,17 +227,17 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
                 <span class="tile-top"><span class="corner" aria-hidden="true"><span class="arrow">↗</span></span></span>
                 <span class="tile-bottom"><strong>{structuresTile.label}</strong><span>{structuresTile.detail}</span></span>
               </a>
-              <a class="tile tile-photo tile-cart" href={cartTile.href} data-reveal style="--i:3">
+              <a class="tile tile-photo tile-furniture" href={furnitureTile.href} data-reveal style="--i:3">
                 <span class="tile-top"><span class="corner" aria-hidden="true"><span class="arrow">↗</span></span></span>
-                <Picture src={sitePhotography.home.cartTile} alt="" widths={[400, 800]} sizes={tileSizes} formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
-                <span class="tile-shade" aria-hidden="true"></span>
-                <span class="tile-bottom"><strong>{cartTile.label}</strong><span>{cartTile.detail}</span></span>
-              </a>
-              <a class="tile tile-photo tile-furniture" href={furnitureTile.href} data-reveal style="--i:4">
                 <Picture src={sitePhotography.home.furnitureTile} alt="" widths={[400, 800]} sizes={tileSizes} formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
                 <span class="tile-shade" aria-hidden="true"></span>
-                <span class="tile-top"><span class="corner" aria-hidden="true"><span class="arrow">↗</span></span></span>
                 <span class="tile-bottom"><strong>{furnitureTile.label}</strong><span>{furnitureTile.detail}</span></span>
+              </a>
+              <a class="tile tile-photo tile-repairs" href={repairsTile.href} data-reveal style="--i:4">
+                <Picture src={sitePhotography.home.repairsTile} alt="" widths={[400, 800]} sizes={tileSizes} formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                <span class="tile-shade" aria-hidden="true"></span>
+                <span class="tile-top"><span class="corner" aria-hidden="true"><span class="arrow">↗</span></span></span>
+                <span class="tile-bottom"><strong>{repairsTile.label}</strong><span>{repairsTile.detail}</span></span>
               </a>
             </div>
             <a class="offer-overview" href={particularsLink.href}>
@@ -220,6 +256,9 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
               <span class="industrial-content">
                 <strong>{industrialTile.label}</strong>
                 <span class="industrial-detail">{industrialTile.detail}</span>
+                <span class="industrial-products">
+                  {t.services.industrial.products.map((product) => <span>{product}</span>)}
+                </span>
               </span>
             </a>
             <a class="offer-overview" href={industrialLink.href}>
@@ -447,8 +486,151 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   .path-slogan {
+    display: block;
     max-width: 28ch;
     font-weight: 600;
+  }
+
+  /* Abast d'Industrial: els mateixos productes en sèrie (reunió amb el client, 03/10/2026). */
+  .path-scope {
+    display: block;
+    max-width: 44ch;
+    margin-top: 0.7rem;
+    color: #d8dad9;
+    font-size: 0.86em;
+    line-height: 1.45;
+  }
+
+  /* Com triar el camí: criteri explícit entre les dues branques, just sota el doble accés. */
+  .path-guide {
+    border-bottom: 1px solid var(--f4-line);
+  }
+
+  .path-guide-inner {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.6fr) minmax(0, 2fr);
+    gap: 0 clamp(1.5rem, 4vw, 4rem);
+    padding-block: clamp(1.75rem, 3.5vw, 3rem);
+  }
+
+  .path-guide-title {
+    margin: 0;
+    color: var(--f4-muted);
+    font-size: var(--type-meta);
+    font-weight: 700;
+    letter-spacing: var(--tracking-meta);
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .path-guide-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    background: var(--f4-line);
+    list-style: none;
+  }
+
+  .path-guide-list a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    height: 100%;
+    padding: 0 clamp(1rem, 2.4vw, 2rem) 0.25rem 0;
+    background: var(--f4-black);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .path-guide-list li + li a {
+    padding-left: clamp(1rem, 2.4vw, 2rem);
+  }
+
+  .path-guide-list strong {
+    font-size: clamp(1.3rem, 2vw, 1.75rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    text-transform: uppercase;
+  }
+
+  .path-guide-label {
+    max-width: 46ch;
+    color: #d8dad9;
+    font-size: 0.98rem;
+    line-height: 1.45;
+  }
+
+  .path-guide-branch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: fit-content;
+    margin-top: auto;
+    padding-block: 0.6rem 0.3rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.55);
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .path-guide-list a:hover .path-guide-branch,
+  .path-guide-list a:focus-visible .path-guide-branch {
+    border-color: #fff;
+  }
+
+  .path-guide-note {
+    grid-column: 2;
+    margin: 1.4rem 0 0;
+    color: var(--f4-muted);
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 760px) {
+    .path-guide-inner {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .path-guide-list {
+      grid-template-columns: 1fr;
+      gap: 0;
+      background: none;
+    }
+
+    .path-guide-list a,
+    .path-guide-list li + li a {
+      padding: 0 0 1.1rem;
+    }
+
+    .path-guide-list li + li {
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--f4-line);
+    }
+
+    .path-guide-note {
+      grid-column: 1;
+      margin-top: 0.2rem;
+    }
+  }
+
+  /* Productes en sèrie dins la rajola d'Industrial. */
+  .industrial-products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 1.1rem;
+  }
+
+  .industrial-products > span {
+    padding: 0.35rem 0.65rem;
+    border: 1px solid rgb(255 255 255 / 0.42);
+    color: #eef0ef;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.2;
   }
 
   .path-action {

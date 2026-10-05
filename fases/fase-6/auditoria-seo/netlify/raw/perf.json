@@ -1,0 +1,246 @@
+{
+ "mobil": {
+  "/": {
+   "lcp_s": 4.34,
+   "cls": 0,
+   "ttfb_ms": 3125,
+   "transfer_kb": 230,
+   "requests": 9,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": "br"
+   }
+  },
+  "/particulars/": {
+   "lcp_s": 1.01,
+   "cls": 0,
+   "ttfb_ms": 227,
+   "transfer_kb": 174,
+   "requests": 10,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": "br"
+   }
+  },
+  "/particulars/estructures/": {
+   "lcp_s": 0.94,
+   "cls": 0,
+   "ttfb_ms": 242,
+   "transfer_kb": 286,
+   "requests": 10,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": "br"
+   }
+  },
+  "/particulars/automatismes/": {
+   "lcp_s": 1.14,
+   "cls": 0,
+   "ttfb_ms": 232,
+   "transfer_kb": 249,
+   "requests": 10,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": "br"
+   }
+  },
+  "/particulars/urgencies/": {
+   "lcp_s": 1.05,
+   "cls": 0,
+   "ttfb_ms": 124,
+   "transfer_kb": 117,
+   "requests": 7,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": "br"
+   }
+  },
+  "/particulars/projectes/": {
+   "lcp_s": 1.77,
+   "cls": 0,
+   "ttfb_ms": 348,
+   "transfer_kb": 294,
+   "requests": 10,
+   "encoding": {
+    "document": "br",
+    "script": null,
+    "stylesheet": "br"
+   }
+  },
+  "/industrial/": {
+   "lcp_s": 1.33,
+   "cls": 0,
+   "ttfb_ms": 318,
+   "transfer_kb": 201,
+   "requests": 10,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": "br"
+   }
+  },
+  "/industrial/capacitats/": {
+   "lcp_s": 0.93,
+   "cls": 0,
+   "ttfb_ms": 107,
+   "transfer_kb": 272,
+   "requests": 14,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": "br"
+   }
+  },
+  "/empresa/": {
+   "lcp_s": 1.32,
+   "cls": 0.001,
+   "ttfb_ms": 304,
+   "transfer_kb": 231,
+   "requests": 8,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": "br"
+   }
+  },
+  "/contacte/": {
+   "lcp_s": 1.15,
+   "cls": 0,
+   "ttfb_ms": 326,
+   "transfer_kb": 100,
+   "requests": 8,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": null
+   }
+  }
+ },
+ "escriptori": {
+  "/": {
+   "lcp_s": 1.37,
+   "cls": 0,
+   "ttfb_ms": 217,
+   "transfer_kb": 282,
+   "requests": 14,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": "br"
+   }
+  },
+  "/particulars/": {
+   "lcp_s": 0.52,
+   "cls": 0,
+   "ttfb_ms": 128,
+   "transfer_kb": 306,
+   "requests": 14,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": "br"
+   }
+  },
+  "/particulars/estructures/": {
+   "lcp_s": 0.8,
+   "cls": 0,
+   "ttfb_ms": 317,
+   "transfer_kb": 216,
+   "requests": 10,
+   "encoding": {
+    "document": "br",
+    "script": "br",
+    "stylesheet": "br"
+   }
+  },
+  "/particulars/automatismes/": {
+   "lcp_s": 0.86,
+   "cls": 0,
+   "ttfb_ms": 331,
+   "transfer_kb": 218,
+   "requests": 10,
+   "encoding": {
+    "document": "br",
+    "script": "br",
+    "stylesheet": "br"
+   }
+  },
+  "/particulars/urgencies/": {
+   "lcp_s": 0.82,
+   "cls": 0,
+   "ttfb_ms": 255,
+   "transfer_kb": 135,
+   "requests": 7,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": "br"
+   }
+  },
+  "/particulars/projectes/": {
+   "lcp_s": 0.88,
+   "cls": 0,
+   "ttfb_ms": 222,
+   "transfer_kb": 680,
+   "requests": 14,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": null
+   }
+  },
+  "/industrial/": {
+   "lcp_s": 0.71,
+   "cls": 0,
+   "ttfb_ms": 301,
+   "transfer_kb": 323,
+   "requests": 17,
+   "encoding": {
+    "document": "br",
+    "script": "br",
+    "stylesheet": "br"
+   }
+  },
+  "/industrial/capacitats/": {
+   "lcp_s": 0.79,
+   "cls": 0,
+   "ttfb_ms": 326,
+   "transfer_kb": 306,
+   "requests": 14,
+   "encoding": {
+    "document": "br",
+    "script": "br",
+    "stylesheet": "br"
+   }
+  },
+  "/empresa/": {
+   "lcp_s": 1.03,
+   "cls": 0.0,
+   "ttfb_ms": 210,
+   "transfer_kb": 296,
+   "requests": 10,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": "br"
+   }
+  },
+  "/contacte/": {
+   "lcp_s": 1.28,
+   "cls": 0,
+   "ttfb_ms": 325,
+   "transfer_kb": 100,
+   "requests": 8,
+   "encoding": {
+    "document": "br",
+    "stylesheet": "br",
+    "script": null
+   }
+  }
+ }
+}

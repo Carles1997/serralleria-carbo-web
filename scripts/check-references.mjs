@@ -55,14 +55,26 @@ const VALIDATED_REVISIONS = [
     // per a la revisió del client i del seu advocat (fases/fase-8/FASE8-compliment-i-confianca.md).
     label: 'textos legals en revisió jurídica (02/10/2026)',
     bodies: {
-      'content/ca/legal-avis-legal.md': '72581d1dda0e03520082dadd45ec7964ec4de8a41a8a6b892e35f80697bf4ea8',
-      'content/ca/legal-cookies.md': 'de4463cfae0b350aa54bbada07c9f94a8c618298dcb55ff8ab554ab775fd484f',
-      'content/ca/legal-privacitat.md': '7dda035dc65203a1682a8fbee6e1c4f8fa6ef286f255e3d0ce373881a096a174',
+      'content/ca/legal-avis-legal.md': 'a02d026f8d62e30af96ceddd908ece530665167884374e38fd18d34ac16e8d77',
+      'content/ca/legal-cookies.md': 'cdf3d084073ff4b4c84254fc70410218c590c2342751b66b05529430ea0ad871',
+      'content/ca/legal-privacitat.md': '1028ac427c424fe7568174d3b5e3e539a79b91f47eb57437a0ce6588fe4731d6',
     },
     frontmatter: {
       'content/ca/legal-avis-legal.md': '70f913c52e41b6d903baa978336bb7e2b7a4326903d9b3a4b5ccaac9afb47853',
       'content/ca/legal-cookies.md': '3b319798d769cde83afe186a4b8555c2ba60328ff557463b855ce4c329295ea4',
       'content/ca/legal-privacitat.md': '267c9e7f66bb8df3939530b6c290d77bc3e84f50b8f1bf93f0aac595d510507c',
+    },
+  },
+  {
+    // Separació entre Particulars i Industrial per tipus d'encàrrec; carros a Industrial i
+    // reparacions a Particulars (alternativa A de fases/fase-7/FASE7-proposta-dos-camins.md).
+    label: 'reunió del director amb el client, alternativa A (03/10/2026)',
+    bodies: {
+      'content/ca/contacte.md': 'fc28e443714ebf8bb95e9fe08a5ca2e33bd12be61399a8974eb3035b7eb5dab4',
+      'content/ca/home.md': '145244865ba7f5ea0fe26379919c447266568b400938e9da8328007fa0b68d70',
+      'content/ca/industrial.md': '1db21a9bada1504e23d315f3777823bb65a5e6dcc280bfaa915d381fccc3c607',
+      'content/ca/particulars.md': '30eb39f11faa50c5adf75a423ba1a1e27e3157dbcfb6b6064228ccdcad091de1',
+      'content/ca/ui.md': '99128a1d6207ca2e79dab8362b876115b82af686976076a7128104bfaece1c6a',
     },
   },
 ];

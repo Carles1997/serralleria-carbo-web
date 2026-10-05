@@ -32,11 +32,12 @@ const locale = page.data.lang;
 const ui = useUi(locale);
 const t = ui.particulars;
 
-// Estructura de particulars.md: H1, dos paràgrafs d'entrada i quatre seccions H2;
-// la primera conté els quatre serveis en H3.
+// Estructura de particulars.md: H1, dos paràgrafs d'entrada i cinc seccions H2;
+// la primera conté els quatre serveis en H3 i la segona és el pont cap a Industrial
+// (reunió amb el client, 03/10/2026: els mateixos productes, en diverses unitats o en sèrie).
 const doc = parseMarkdown(page.body ?? '');
-if (doc.sections.length !== 4) throw new Error(`particulars.md ha de tenir 4 seccions H2; en té ${doc.sections.length}.`);
-const [help, works, area, contact] = doc.sections;
+if (doc.sections.length !== 5) throw new Error(`particulars.md ha de tenir 5 seccions H2; en té ${doc.sections.length}.`);
+const [help, series, works, area, contact] = doc.sections;
 
 if (t.hero.title.join(' ') !== doc.title) {
   throw new Error(`El titular compost («${t.hero.title.join(' ')}») no coincideix amb la H1 de particulars.md.`);
@@ -48,7 +49,8 @@ sameText(t.services.heading, help.heading, 'particulars.md');
 sameText(t.projects.heading, works.heading, 'particulars.md');
 sameText(t.contactHeading, contact.heading, 'particulars.md');
 
-const artVariants = ['urgent', 'structures', 'cart', 'furniture'];
+// Carros industrials passen a Industrial i entren les reparacions (03/10/2026).
+const artVariants = ['doors', 'structures', 'furniture', 'repairs'];
 if (help.subsections.length !== artVariants.length) {
   throw new Error(`«${help.heading}» ha de tenir ${artVariants.length} serveis H3; en té ${help.subsections.length}.`);
 }
@@ -61,6 +63,8 @@ const services = help.subsections.map((service, index) => ({
 }));
 if (services.some((service) => !service.links.length)) throw new Error('Cada servei necessita almenys un enllaç.');
 
+const seriesText = one(paragraphs(series.blocks), `un paràgraf a «${series.heading}»`);
+const seriesLink = one(links(series.blocks), `un enllaç a «${series.heading}»`);
 const worksText = one(paragraphs(works.blocks), `un paràgraf a «${works.heading}»`);
 const worksLink = one(links(works.blocks), `un enllaç a «${works.heading}»`);
 const areaText = one(paragraphs(area.blocks), `un paràgraf a «${area.heading}»`);
@@ -153,6 +157,16 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
             ))
           }
         </div>
+      </div>
+    </section>
+
+    <section class="p-series" aria-labelledby="p-series-title" data-surface="dark">
+      <div class="section-shell p-series-inner">
+        <div data-reveal>
+          <h2 id="p-series-title">{series.heading}</h2>
+          <p><Inlines inlines={seriesText} /></p>
+        </div>
+        <a href={seriesLink.href} data-reveal style="--i:1">{seriesLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
       </div>
     </section>
 

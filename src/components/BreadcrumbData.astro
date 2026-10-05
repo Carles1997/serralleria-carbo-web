@@ -1,0 +1,23 @@
+---
+// Dades estructurades BreadcrumbList (Schema.org) amb els mateixos elements que les molles de pa
+// visibles de la plantilla. L'últim element és la pàgina actual (Fase 6, auditoria SEO).
+interface Props {
+  /** Sense `href`, l'element apunta a la pàgina actual. */
+  items: { name: string; href?: string }[];
+}
+
+const { items } = Astro.props;
+const site = Astro.site ?? new URL('https://www.serralleriacarbo.com');
+const data = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map(({ name, href }, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name,
+    item: new URL(href ?? Astro.url.pathname, site).href,
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

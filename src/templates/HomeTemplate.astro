@@ -34,7 +34,7 @@ const t = ui.home;
 // client, 03/10/2026: fases/fase-7/FASE7-proposta-dos-camins.md, alternativa A).
 const doc = parseMarkdown(page.body ?? '');
 if (doc.sections.length !== 7) throw new Error(`home.md ha de tenir 7 seccions H2; en té ${doc.sections.length}.`);
-const [particulars, industrial, guide, numbers, company, services, contact] = doc.sections;
+const [particulars, industrial, guide, numbers, proof, services, contact] = doc.sections;
 
 const [titleMain, ...titleRest] = doc.title.split(',');
 const titleWords = titleMain.trim().split(' ');
@@ -47,11 +47,11 @@ const [industrialSlogan, industrialScope] = paragraphs(industrial.blocks);
 if (!industrialSlogan || !industrialScope) throw new Error("La secció Industrial necessita el missatge de marca i l'abast de la producció.");
 const industrialLink = one(links(industrial.blocks), 'un enllaç a la secció Industrial');
 
-// Criteri entre camins: un element per branca (Particulars, Industrial) i una nota final.
+// Criteri entre camins: un element per branca (Particulars, Industrial) i l'ajuda cap a Contacte.
 const guideItems = listItems(guide.blocks).map(labelledItem);
 if (guideItems.length !== 2) throw new Error(`«${guide.heading}» ha de tenir dos criteris; en té ${guideItems.length}.`);
-const guideNote = one(paragraphs(guide.blocks), `un paràgraf a «${guide.heading}»`);
-// Banda de decisió compacta (brief de millores UX, Fase 7): pregunta curta i nom de la branca.
+const guideHelp = one(links(guide.blocks), `un enllaç d'ajuda a «${guide.heading}»`);
+// Banda de decisió d'una línia a escriptori (director, 06/10/2026): pregunta curta i nom de la branca.
 const guidePaths = [
   { question: guideItems[0].value, branch: guideItems[0].label, href: particularsLink.href, expected: particulars.heading },
   { question: guideItems[1].value, branch: guideItems[1].label, href: industrialLink.href, expected: industrial.heading },
@@ -69,8 +69,12 @@ const numberItems = t.numbers.items.map((item) => {
 });
 if (numberItems.length !== figures.length) throw new Error('Cada xifra de home.md necessita el seu valor a i18n/ui.ts.');
 
-const companyText = one(paragraphs(company.blocks), "un paràgraf a la secció d'empresa");
-const companyLink = one(links(company.blocks), "un enllaç a la secció d'empresa");
+// Prova real (director, 06/10/2026): la fotografia de les gàbies, una dada i una sola acció.
+// Els fets surten de content/ca/projects/gavia-industrial.md; no s'hi afegeixen terminis ni càrregues.
+const proofText = one(paragraphs(proof.blocks), 'un paràgraf a la prova');
+const proofLink = one(links(proof.blocks), "un enllaç a la prova");
+const proofStat = labelledItem(one(listItems(proof.blocks), 'una dada destacada a la prova'));
+const proofHeading = proof.heading.split(/(?<=\.)\s+/);
 
 const servicesLead = one(paragraphs(services.blocks), 'un paràgraf a la secció de serveis');
 const serviceLinks = links(services.blocks);
@@ -129,7 +133,9 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
             ))
           }
         </ul>
-        <p class="path-guide-note"><Inlines inlines={guideNote} /></p>
+        <p class="path-guide-help">
+          <a href={guideHelp.href}>{guideHelp.label} <span class="arrow" aria-hidden="true">↗</span></a>
+        </p>
       </div>
       <div class="paths-grid">
         <a class="path path-particulars" href={particularsLink.href} data-reveal="clip">
@@ -187,15 +193,23 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
       </div>
     </section>
 
-    <section class="company" id="empresa" aria-labelledby="company-title">
+    <section class="company proof" id="treball-documentat" aria-labelledby="company-title">
       <div class="company-image" data-reveal="clip">
         <Picture src={sitePhotography.home.company} alt="" widths={[480, 720, 960, 1200]} sizes="(max-width: 760px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
       </div>
       <div class="company-content">
-        <h2 id="company-title" data-reveal style={`${fit(company.heading)};--i:2`}>{company.heading}</h2>
-        <p data-reveal style="--i:3"><Inlines inlines={companyText} /></p>
-        <a class="underlined-link" href={companyLink.href} data-reveal style="--i:4">
-          {companyLink.label} <span class="arrow" aria-hidden="true">↗</span>
+        <p class="proof-eyebrow" data-reveal>{t.proof.eyebrow}</p>
+        <h2 id="company-title" data-reveal style={`${fit(proof.heading)};--i:1`}>
+          {proofHeading.map((line, index) => (index ? [' ', <br />, line] : line))}
+        </h2>
+        <div class="proof-body" data-reveal style="--i:2">
+          <p class="proof-stat">
+            <strong>{proofStat.value}</strong> <span>{proofStat.label}</span>
+          </p>
+          <p class="proof-text"><Inlines inlines={proofText} /></p>
+        </div>
+        <a class="underlined-link proof-action" href={proofLink.href} data-reveal style="--i:3">
+          {proofLink.label} <span class="arrow" aria-hidden="true">↗</span>
         </a>
       </div>
     </section>
@@ -483,10 +497,16 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     line-height: 1.4;
   }
 
+  /* Missatge de marca en una línia quan la targeta ho permet (director, 06/10/2026); en pantalles
+     estretes es parteix de manera natural. */
+  .path-industrial .path-copy {
+    max-width: none;
+  }
+
   .path-slogan {
     display: block;
-    max-width: 28ch;
     font-weight: 600;
+    text-wrap: balance;
   }
 
   /* Abast d'Industrial: els mateixos productes en sèrie (reunió amb el client, 03/10/2026). */
@@ -499,13 +519,14 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     line-height: 1.45;
   }
 
-  /* Com triar el camí (brief de millores UX, Fase 7): banda de decisió compacta, capçalera del
-     doble accés. A mòbil queda abans de les dues targetes; no amaga cap camí. */
+  /* Com triar el camí (director, 06/10/2026): una sola banda horitzontal a escriptori, amb títol,
+     dues opcions (pregunta i branca a la mateixa línia) i l'ajuda a l'extrem dret, amb menys pes.
+     Per sota de 1100 px les opcions s'apilen; a mòbil queda abans de les dues targetes. */
   .path-guide {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr) minmax(12rem, 0.8fr);
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 0.6rem clamp(1.25rem, 2.6vw, 2.75rem);
+    gap: 0.4rem clamp(1.5rem, 2.4vw, 2.75rem);
     padding-block: 0.9rem;
   }
 
@@ -533,9 +554,9 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
   .path-guide-list a {
     display: flex;
-    flex-wrap: wrap;
     align-items: baseline;
-    gap: 0.15rem 0.6rem;
+    gap: 0.6rem;
+    white-space: nowrap;
     min-height: 44px;
     padding-block: 0.35rem;
     color: var(--f4-text);
@@ -570,46 +591,67 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     outline-offset: 3px;
   }
 
-  .path-guide-note {
-    margin: 0;
+  .path-guide-help {
+    margin: 0 0 0 auto;
+  }
+
+  .path-guide-help a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 44px;
     color: var(--f4-muted);
     font-size: 0.86rem;
-    line-height: 1.4;
+    text-decoration: underline;
+    text-decoration-color: rgb(255 255 255 / 0.3);
+    text-underline-offset: 0.25em;
+    white-space: nowrap;
+  }
+
+  .path-guide-help a:hover,
+  .path-guide-help a:focus-visible {
+    color: #fff;
+    text-decoration-color: currentColor;
+  }
+
+  .path-guide-help a:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
   }
 
   @media (max-width: 1100px) {
     .path-guide {
-      grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr);
-    }
-
-    .path-guide-note {
-      grid-column: 2 / -1;
-    }
-  }
-
-  @media (max-width: 760px) {
-    .path-guide {
-      grid-template-columns: 1fr;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
       gap: 0.15rem;
       padding-block: 0.75rem 0.85rem;
     }
 
     .path-guide-list a {
       justify-content: space-between;
-      flex-wrap: nowrap;
       gap: 1rem;
       padding-block: 0.5rem;
       border-top: 1px solid var(--f4-line);
+      white-space: normal;
     }
 
+    .path-guide-help {
+      margin: 0;
+      border-top: 1px solid var(--f4-line);
+    }
+
+    .path-guide-help a {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  @media (max-width: 760px) {
     .path-guide-question {
       font-size: 0.92rem;
     }
 
-    .path-guide-note {
-      grid-column: 1;
-      padding-top: 0.45rem;
-      border-top: 1px solid var(--f4-line);
+    .path-guide-help a {
       font-size: 0.82rem;
     }
   }
@@ -823,6 +865,91 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     color: #d1d3d3;
     font-size: 1.15rem;
     line-height: 1.55;
+  }
+
+  /* Prova real: peça editorial (antetítol discret, titular, dada i una sola acció), no una llista. */
+  .company-content .proof-eyebrow {
+    margin: 0 0 1.1rem;
+    color: var(--f4-muted);
+    font-size: var(--type-meta);
+    font-weight: 700;
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+
+  .proof h2 {
+    max-width: none;
+    margin-bottom: clamp(1.75rem, 3vw, 2.75rem);
+  }
+
+  .proof-body {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 1.25rem clamp(1.5rem, 3vw, 3rem);
+    width: 100%;
+    max-width: 44rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--f4-line);
+  }
+
+  .company-content .proof-stat {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .proof-stat strong {
+    font-size: clamp(4rem, 6.5vw, 6.5rem);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    letter-spacing: -0.065em;
+    line-height: 0.85;
+  }
+
+  .proof-stat span {
+    margin-top: 0.55rem;
+    color: #d1d3d3;
+    font-size: var(--type-meta);
+    font-weight: 700;
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+
+  .company-content .proof-text {
+    max-width: 40ch;
+    margin: 0;
+  }
+
+  /* Una sola acció, amb la línia de càrrega compartida dels enllaços (interactions.css). */
+  .proof-action {
+    width: min(100%, 440px);
+    margin-top: clamp(1.75rem, 3vw, 2.5rem);
+    color: #fff;
+    font-size: 0.95rem;
+  }
+
+  .proof-action .arrow {
+    font-size: 1.25rem;
+  }
+
+  .proof-action:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 1100px) {
+    .proof-body {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .company-content .proof-stat {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
   }
 
   .underlined-link {
@@ -1515,6 +1642,14 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   .services-note,
   .company-image > span {
     font-size: var(--type-caption);
+  }
+
+  /* Públic de cada camí en una sola línia també a 320 px, sense cap «·» penjat. */
+  @media (max-width: 360px) {
+    .path-kicker {
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+    }
   }
 
   @media (min-width: 1201px) {

@@ -534,21 +534,24 @@
 }
 
 .i-sectors-grid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: clamp(.5rem,1vw,1rem); margin: 0; padding: 0; list-style: none; }
-.i-sector { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; aspect-ratio: 3 / 4; overflow: hidden; padding: clamp(1rem,1.6vw,1.5rem); background: #222729; }
-.i-sector picture { position: absolute; z-index: -2; inset: 0; display: block; }
-.i-sector img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.45) contrast(1.05) brightness(.82); }
-.i-sector::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg, rgb(9 11 12 / 0) 38%, rgb(9 11 12 / .55) 68%, rgb(9 11 12 / .9)); content: ""; }
-/* El nom reserva dues línies: la línia platejada queda a la mateixa alçada a les cinc peces. */
-.i-sector h3 { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: calc(2em + 1.1rem); margin: 0; padding-top: 1.1rem; color: #fff; font-size: var(--type-h4); font-weight: 700; letter-spacing: -.03em; line-height: 1; text-transform: uppercase; overflow-wrap: break-word; }
-.i-sector h3::before { position: absolute; top: 0; left: 0; width: 28px; height: 1px; background: var(--color-industrial-silver); content: ""; }
+/* Les fonts són horitzontals (3:2–2:1): el marc apaïsat conserva el subjecte i el títol ja no tapa la foto. */
+.i-sector { display: flex; flex-direction: column; min-width: 0; overflow: hidden; background: #202526; }
+.i-sector picture { position: relative; display: block; flex: none; width: 100%; aspect-ratio: 3 / 2; overflow: hidden; background: #343b3c; }
+.i-sector img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.86) contrast(1.04); }
+.i-sector:nth-child(1) img { object-position: 53% center; }
+.i-sector:nth-child(2) img { object-position: 60% center; }
+.i-sector:nth-child(3) img { object-position: 57% center; }
+.i-sector:nth-child(4) img { object-position: 56% center; }
+.i-sector:nth-child(5) img { object-position: 53% center; }
+.i-sector h3 { display: flex; align-items: center; flex: 1; min-height: 5.25rem; margin: 0; padding: 1rem; color: #fff; font-size: clamp(1.05rem,1.3vw,1.45rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.12; text-transform: uppercase; overflow-wrap: break-word; }
 @media (max-width: 1000px) {
   .i-sectors-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
 }
 @media (max-width: 760px) {
   .i-sectors-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-  .i-sector:last-child { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
-  .i-sector h3 { font-size: min(var(--type-h4), calc((50vw - var(--page-gutter) - 2.5rem) / 6.2)); }
-  .i-sector:last-child h3 { font-size: var(--type-h4); }
+  .i-sector:last-child { grid-column: 1 / -1; }
+  .i-sector:last-child picture { aspect-ratio: 2 / 1; }
+  .i-sector h3 { min-height: 5rem; font-size: clamp(1rem,3.9vw,1.25rem); }
 }
 
 

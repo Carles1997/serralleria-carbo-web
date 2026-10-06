@@ -28,7 +28,6 @@ const ca = {
       { label: 'Serveis', href: '/#serveis' },
       // El portafoli és de Particulars (brief de millores UX, Fase 7): l'etiqueta ho diu.
       { label: 'Projectes particulars', href: '/particulars/projectes/' },
-      { label: 'Empresa', href: '/empresa/' },
     ],
     mobileExtra: [{ label: 'Contacte', href: '/contacte/' }],
     // Doble accés i xifres: textos de la maqueta Home validada, per indicació del
@@ -172,7 +171,6 @@ const ca = {
     home: { label: 'Inici', href: '/industrial/' },
     hero: {
       overline: ['Industrial', 'Fabricació metàl·lica per a tercers'],
-      kicker: 'Una línia de Serralleria Carbó',
       // Missatge aprovat (H1 d'industrial.md) en tres línies sense punt final, com a la maqueta;
       // l'última porta el reflex metàl·lic.
       title: ['Sèries curtes', 'Peces exigents', 'Resposta industrial'],
@@ -246,35 +244,6 @@ const ca = {
       guide: ['Plànol o documentació', 'Material i aplicació', 'Unitats previstes', 'Termini que necessites'],
       methodLabel: 'Contacte directe',
     },
-  },
-  // Pàgina d'empresa: interior editorial derivat de la Home (traspàs de Fase 4). Cos de text,
-  // xifres i àmbits de content/ca/empresa.md (es comproven al build).
-  company: {
-    crumb: 'Empresa',
-    // H1 d'empresa.md en dues línies.
-    title: ['Empresa i taller', 'de Serralleria Carbó'],
-    heroAlt: 'Operari treballant al taller amb una gàbia industrial',
-    // «source»: text que ha de constar a empresa.md.
-    figures: [
-      { value: 1989, unit: '', label: 'Any de fundació', source: 'desembre de 1989' },
-      { value: 950, unit: 'm²', label: 'Taller de fabricació', source: '950 m²' },
-      { value: 12, unit: '', label: 'Persones a la plantilla', source: '12 persones' },
-      { value: 6, unit: '+1', label: 'Furgonetes i camió ploma', source: 'sis furgonetes i un camió ploma' },
-    ],
-    figuresLabel: "L'empresa en xifres",
-    logisticsAlt: 'Gàbia industrial carregada al camió ploma de l’empresa',
-    // Tres àmbits de treball del paràgraf «Arrelats a Vilafranca» (es comproven al build).
-    scopes: [
-      { place: 'Vilafranca del Penedès i la rodalia', note: 'La major part de la feina', source: 'Vilafranca del Penedès i la rodalia' },
-      { place: 'Fins a Barcelona', note: 'Encàrrecs', source: 'fins a Barcelona' },
-      { place: 'Arreu de Catalunya', note: 'Feines de sèries', source: "arreu de Catalunya" },
-    ],
-    scopesLabel: 'Àmbit de treball',
-    ways: {
-      particulars: { eyebrow: 'Particulars', alt: 'Passarel·la interior amb baranes de ferro' },
-      industrial: { eyebrow: 'Industrial', alt: 'Gàbia metàl·lica fabricada al taller' },
-    },
-    contactHeading: ['Contacta amb', "l'equip"],
   },
   // Plantilla II (Capacitats d'Industrial). Maqueta: fases/fase-4/FASE4-mockups/industrial/capacitats/.
   // Etiquetes i titulars de la maqueta; cos de text i dades de content/ca/industrial-capacitats.md.

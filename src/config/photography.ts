@@ -46,7 +46,6 @@ import persianes02 from '../../assets/fotografies-recuperades/projectes/persiane
 import parquing03 from '../../assets/fotografies-recuperades/projectes/porta-parquing/porta-parquing-interior-03.jpg';
 import gavia01 from '../../assets/fotografies-recuperades/projectes/gavia-industrial/gavia-industrial-fabricacio-01.jpg';
 import gavia02 from '../../assets/fotografies-recuperades/projectes/gavia-industrial/gavia-industrial-taller-02.jpg';
-import gavia03 from '../../assets/fotografies-recuperades/projectes/gavia-industrial/gavia-industrial-transport-03.jpg';
 
 export const projectPhotography = {
   'baranes-interior-casa': {
@@ -143,13 +142,6 @@ export const sitePhotography = {
     materials: { carbon: capSteel, inox: capStainless },
     machines: { plegadora: capPressBrake, cisalla: capShear, punxonadora: capPunch },
     production: capWelding,
-  },
-  // Empresa: fotografies originals del taller, la logística i les dues branques.
-  company: {
-    hero: gavia01,
-    logistics: gavia03,
-    particulars: passarella02,
-    industrial: gavia02,
   },
   shared: { metalDetail, ascensor01 },
 } as const;

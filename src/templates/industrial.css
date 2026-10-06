@@ -30,11 +30,8 @@
 .i-hero-overline { display:flex; justify-content:space-between; gap:2rem; padding-top:clamp(1.5rem,2.5vw,2.5rem); color:#e0e4e2; font-size:.73rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; }
 .i-hero-overline span:last-child { text-align:right; }
 .i-hero-copy { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; flex:1; padding-block:clamp(5rem,9vw,10rem) 4rem; }
-.i-kicker { display:flex; align-items:center; gap:1rem; color:var(--i-accent); font-size:.76rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
-.i-kicker-rule { width:44px; height:2px; background:var(--i-accent); }
 .i-hero h1 { max-width:13.5ch; margin:clamp(2.2rem,4.4vw,5rem) 0 2.2rem; font-size:clamp(4.6rem,6.7vw,8.3rem); font-weight:700; letter-spacing:-.073em; line-height:.86; text-transform:uppercase; }
 .i-hero h1 em { color:var(--i-accent); font-style:normal; }
-.i-hero-copy>p { max-width:40ch; margin:0; color:#f0f2ef; font-size:clamp(1.12rem,1.45vw,1.4rem); line-height:1.48; }
 .i-hero-actions { display:flex; align-items:center; flex-wrap:wrap; gap:1rem 2rem; margin-top:2.7rem; }
 .i-hero-bottom { display:flex; justify-content:space-between; gap:1rem; padding-block:1.2rem 1.5rem; border-top:1px solid rgba(255,255,255,.62); color:#e1e4e1; font-size:.7rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
 .i-hero-credit { position:absolute; right:var(--page-gutter); bottom:5.7rem; max-width:27ch; color:#e7e9e7; font-size:.65rem; font-weight:700; letter-spacing:.12em; line-height:1.35; text-align:right; text-transform:uppercase; }
@@ -216,10 +213,8 @@
   .i-hero { min-height:800px; }
   .i-hero-overline { font-size:.61rem; }
   .i-hero-overline span:last-child { display:none; }
-  .i-kicker { font-size:.69rem; }
   .i-hero-copy { padding-block:4rem 6rem; }
   .i-hero h1 { max-width:100%; margin:2.6rem 0 2rem; font-size:clamp(2.7rem,10.4vw,4.4rem); line-height:.89; }
-  .i-hero-copy>p { font-size:1.07rem; }
   .i-hero-actions { align-items:stretch; flex-direction:column; width:100%; }
   .i-hero-actions .i-button { width:100%; }
   .i-text-link { width:fit-content; }
@@ -315,9 +310,10 @@
 .i-contact-main:hover,.i-contact-main:focus-visible { background:#e5e9e6; }
 
 /* revisio-client.css (.industrial-page) */
-.industrial-page .i-hero{min-height:clamp(600px,82svh,820px)}
-.industrial-page .i-hero-copy{padding-block:3.5rem 2.5rem}
-.industrial-page .i-hero h1{margin-block:2rem 1.4rem;font-size:clamp(4rem,5.8vw,7rem)}
+/* Entrada més baixa (director, 06/10/2026): només el titular i les dues accions. */
+.industrial-page .i-hero{min-height:clamp(460px,60svh,600px)}
+.industrial-page .i-hero-copy{padding-block:1.75rem}
+.industrial-page .i-hero h1{margin-block:1.25rem 1.2rem;font-size:clamp(4rem,5.8vw,7rem)}
 .industrial-page .i-hero-actions{margin-top:1.7rem}
 .industrial-page .i-capabilities{padding-block:clamp(3.5rem,5vw,5.5rem);background:#303635;color:#f4f5f2}
 .industrial-page .i-cap-bottom p{color:#d1d9d4}
@@ -349,7 +345,7 @@
   .industrial-page .i-progress-note>div{grid-template-columns:1fr 1fr 1fr}
 }
 @media (max-width:760px){
-  .industrial-page .i-hero{min-height:690px}
+  .industrial-page .i-hero{min-height:540px}
   .industrial-page .i-capabilities,.industrial-page .i-sectors,.industrial-page .i-project,.industrial-page .i-contact{padding-block:3rem}
   .industrial-page .i-series-inner{padding-block:3rem}
   .industrial-page .i-sector-gallery li.i-sector-dual{grid-column:span 12}
@@ -368,8 +364,7 @@
 .i-sector-foot { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem 2rem; margin-top:1.1rem; }
 .i-sector-foot .i-sector-caption { margin:0; }
 /* Els paràgrafs d'industrial.md són més llargs que els de la maqueta: una mica més d'amplada
-   evita que l'entrada i el taller creixin en alçada. */
-.industrial-page .i-hero-copy>p { max-width:54ch; }
+   evita que el taller creixi en alçada. */
 .industrial-page .i-cap-bottom p { max-width:58ch; }
 .industrial-page .i-series-method-head .i-series-links { max-width:none; }
 
@@ -394,8 +389,6 @@
 .count { display:inline-block; min-width:calc(var(--digits) * (1ch - .065em)); }
 @media (prefers-reduced-motion:no-preference) {
   .industrial-page .i-hero-image img { animation:settle-image 1100ms var(--ease-out-strong) backwards; }
-  /* La regla del kicker es dibuixa d'esquerra a dreta en entrar. */
-  .industrial-page .i-kicker.enter .i-kicker-rule { transform-origin:left center; animation:rule-grow 700ms var(--ease-out-strong) 260ms backwards; }
 }
 @media (prefers-reduced-motion:reduce) {
   .i-proof a,.i-contact-main { transition:none; }
@@ -434,7 +427,7 @@
 .industrial-page :is(.i-series-head,.i-section-heading,.i-contact-heading,.i-project-copy)>p,
 .industrial-page .i-series-method-head p { font-size:var(--type-intro); }
 .industrial-page .i-series-step p { font-size:1rem; }
-.industrial-page :is(.i-cap-item-head,.i-hero-overline,.i-kicker,.i-hero-bottom,.i-contact-guide>span,.i-contact-method>span,.i-progress-note>span) { font-size:var(--type-meta); letter-spacing:var(--tracking-meta); }
+.industrial-page :is(.i-cap-item-head,.i-hero-overline,.i-hero-bottom,.i-contact-guide>span,.i-contact-method>span,.i-progress-note>span) { font-size:var(--type-meta); letter-spacing:var(--tracking-meta); }
 .industrial-page :is(.i-hero-credit,.i-cap-asset,.i-series-credit,.i-project-art-caption) { font-size:var(--type-caption); }
 .industrial-page .i-sector-caption { font-size:.82rem; }
 @media (min-width:521px) {
@@ -609,20 +602,6 @@
   .industrial-page .i-series-step:not(:last-child)::after { position:absolute; top:var(--dot-y); bottom:calc(-1 * var(--dot-y)); left:calc(var(--node) - 1px); width:2px; background:linear-gradient(#c5ceca calc(var(--fill, 1) * 100%), rgba(197,206,202,.33) 0); content:""; }
 }
 
-/* Entrada d'Industrial com la de la Home (indicació del director, 29/09/2026): a escriptori, el
-   paràgraf va a la dreta del titular, amb la mateixa proporció de columnes, mida de lletra,
-   amplada de línia i filet inferior que .hero-aside de la Home. */
-@media (min-width:901px) {
-  .industrial-page .i-hero-copy { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(290px,.7fr); grid-template-areas:"kicker kicker" "title intro" "actions actions"; align-items:end; column-gap:clamp(2rem,5vw,6rem); }
-  .industrial-page .i-hero-copy .i-kicker { grid-area:kicker; }
-  .industrial-page .i-hero h1 { grid-area:title; }
-  .industrial-page .i-hero-copy>p { grid-area:intro; max-width:43ch; margin:0 0 1.4rem; padding-bottom:1.6rem; border-bottom:1px solid var(--f4-line); color:#d8dad9; font-size:var(--type-intro); line-height:1.46; }
-  .industrial-page .i-hero-actions { grid-area:actions; }
-  /* El paràgraf queda sobre la fotografia: més ombra a la dreta i una ombra suau al text. */
-  .industrial-page .i-hero-shade { background:linear-gradient(90deg,rgba(10,11,12,.96) 0%,rgba(10,11,12,.89) 29%,rgba(10,11,12,.7) 55%,rgba(10,11,12,.42) 100%),linear-gradient(0deg,rgba(9,10,11,.78),transparent 31%,rgba(9,10,11,.25)); }
-  .industrial-page .i-hero-copy>p { text-shadow:0 1px 14px rgba(0,0,0,.75); }
-}
-
 /* Què fabriquem (brief de millores UX, Fase 7): matriu compacta de cinc productes. Tota la cel·la és
    l'enllaç a la consulta amb el producte preseleccionat; una sola acció compartida al peu. Cel·les
    de text: no hi ha fotografies de producció en sèrie. L'alçada permet veure l'inici d'«El taller
@@ -665,4 +644,32 @@
 @media (prefers-reduced-motion:reduce) {
   .i-product, .i-product::before, .i-product-arrow { transition:none; }
   .i-product:hover .i-product-arrow, .i-product:focus-visible .i-product-arrow { transform:none; }
+}
+
+/* El taller en primer pla (director, 06/10/2026): la secció sencera cap en una pantalla d'escriptori
+   (1440 × 900 i 1280 × 800). El resum i l'accés a la fitxa pugen al costat del titular, les quatre
+   fotografies formen una tira baixa i l'estat de qualitat queda a sota. A mòbil, peces més baixes. */
+.industrial-page .i-capabilities { padding-block:clamp(2.5rem,3.5vw,3.25rem); }
+.industrial-page .i-cap-intro { grid-template-columns:minmax(0,1fr) minmax(300px,.9fr); align-items:end; margin-bottom:clamp(1.5rem,2.2vw,2rem); }
+.industrial-page .i-cap-intro .i-cap-summary { grid-template-columns:1fr; justify-items:start; gap:1.1rem; padding:0; border:0; }
+.industrial-page .i-cap-intro .i-cap-summary p { max-width:52ch; font-size:1rem; }
+.industrial-page .i-capabilities .i-cap-showcase { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.industrial-page .i-capabilities .i-cap-showcase article { grid-column:auto; min-height:clamp(220px,19vw,280px); padding:clamp(1.1rem,1.5vw,1.5rem); }
+.industrial-page .i-capabilities .i-cap-showcase h3 { max-width:none; font-size:clamp(1.6rem,2.2vw,2.5rem); }
+.industrial-page .i-capabilities .i-cap-mounting h3 { margin:auto 0 .6rem; }
+.industrial-page .i-capabilities .i-cap-mounting p { font-size:.92rem; line-height:1.4; }
+.industrial-page .i-cap-close { margin-top:clamp(1.25rem,2vw,1.75rem); }
+.industrial-page .i-quality { padding-top:1.25rem; }
+@media (max-width:1100px) {
+  .industrial-page .i-capabilities .i-cap-showcase { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .industrial-page .i-capabilities .i-cap-showcase article { min-height:220px; }
+}
+@media (max-width:900px) {
+  .industrial-page .i-cap-intro { grid-template-columns:1fr; }
+}
+@media (max-width:760px) {
+  .industrial-page .i-capabilities .i-cap-showcase { grid-template-columns:1fr; }
+  .industrial-page .i-capabilities .i-cap-showcase article { min-height:150px; gap:1rem; }
+  .industrial-page .i-capabilities .i-cap-showcase h3 { font-size:clamp(1.7rem,7vw,2.2rem); }
+  .industrial-page .i-cap-intro .i-cap-summary .i-button { width:100%; }
 }

@@ -9,8 +9,6 @@ seoDescription: "Serralleria Carbó: des de 1989, treballs de serralleria per a 
 
 # Serralleria Carbó, a Vilafranca del Penedès des de 1989
 
-Fabriquem i instal·lem portes, baranes, estructures, automatismes i mobiliari a mida per a habitatges, comunitats i negocis. Amb Industrial fabriquem sèries, peces a plànol i carros industrials per a empreses, constructores i promotores.
-
 ## Particulars
 
 Instal·lacions, reparacions i peces a mida per al teu espai: baranes, escales, portes, automatismes i mobiliari.
@@ -47,8 +45,7 @@ Treballem el ferro i l'inoxidable al taller de Vilafranca. Segons l'encàrrec, f
 
 - **Al taller** · Tall, plegat i soldadura
 - **Sobre el terreny** · Instal·lació i muntatge quan la feina ho requereix
-
-[Coneix l'empresa i el taller](/empresa/)
+- **On treballem** · Vilafranca del Penedès i la rodalia, i fins a Barcelona. Les sèries, les valorem arreu de Catalunya.
 
 <!-- Presentació del taller i del muntatge aprovada pel director (06/10/2026). La fotografia aporta context visual; el bloc no presenta un cas de projecte. -->
 

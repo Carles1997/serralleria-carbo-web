@@ -39,7 +39,6 @@ const [particulars, industrial, guide, numbers, workshop, services, contact] = d
 const [titleMain, ...titleRest] = doc.title.split(',');
 const titleWords = titleMain.trim().split(' ');
 const titleSmall = titleRest.join(',').trim();
-const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada");
 
 const particularsCopy = one(paragraphs(particulars.blocks), 'un paràgraf a la secció Particulars');
 const particularsLink = one(links(particulars.blocks), 'un enllaç a la secció Particulars');
@@ -71,9 +70,10 @@ if (numberItems.length !== figures.length) throw new Error('Cada xifra de home.m
 
 // El taller com a punt comú dels dos camins (director, 06/10/2026).
 const workshopText = one(paragraphs(workshop.blocks), 'un paràgraf al taller');
-const workshopLink = one(links(workshop.blocks), 'un enllaç al taller');
+// Sense enllaç: la pàgina d'empresa s'ha retirat (director, 06/10/2026); les zones de treball hi
+// són la tercera línia.
 const workshopRows = listItems(workshop.blocks).map(labelledItem);
-if (workshopRows.length !== 2) throw new Error('El taller necessita dues línies: fabricació i muntatge.');
+if (workshopRows.length !== 3) throw new Error('El taller necessita tres línies: fabricació, muntatge i zones de treball.');
 const workshopHeading = workshop.heading.split(/(?<=\.)\s+/).map((line) => line.replace(/\.$/, ''));
 
 const servicesLead = one(paragraphs(services.blocks), 'un paràgraf a la secció de serveis');
@@ -109,10 +109,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
           }
           {titleSmall && <small class="enter" style={`--i:${titleWords.length}`}>{titleSmall}</small>}
         </h1>
-      </div>
-      <div class="hero-aside">
-        <p class="enter" style="--i:2"><Inlines inlines={intro} /></p>
-        <span class="hero-aside-rule" aria-hidden="true"></span>
       </div>
     </section>
 
@@ -205,9 +201,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
         <dl class="workshop-rows" data-reveal style="--i:2">
           {workshopRows.map((row) => <div><dt>{row.value}</dt><dd>{row.label}</dd></div>)}
         </dl>
-        <a class="underlined-link workshop-action" href={workshopLink.href} data-reveal style="--i:3">
-          {workshopLink.label} <span class="arrow" aria-hidden="true">↗</span>
-        </a>
       </div>
     </section>
 
@@ -302,12 +295,12 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   /* Entrada */
+  /* Entrada: només el titular (director, 06/10/2026); el paràgraf repetia el que expliquen els dos
+     camins. */
   .hero-intro {
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(290px, 0.7fr);
-    align-items: end;
-    gap: clamp(2rem, 5vw, 6rem);
-    min-height: 260px;
+    display: flex;
+    align-items: flex-end;
+    min-height: 220px;
     padding-block: 2.7rem 2.5rem;
   }
 
@@ -341,24 +334,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     letter-spacing: -0.02em;
     line-height: 1.1;
     text-transform: none;
-  }
-
-  .hero-aside {
-    padding-bottom: 0.3rem;
-  }
-
-  .hero-aside p {
-    max-width: 43ch;
-    margin: 0 0 1.6rem;
-    color: #d8dad9;
-    font-size: clamp(1.05rem, 1.25vw, 1.25rem);
-    line-height: 1.46;
-  }
-
-  .hero-aside-rule {
-    display: block;
-    height: 1px;
-    background: var(--f4-line);
   }
 
   /* Doble accés */
@@ -874,9 +849,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   .workshop-rows > div { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1rem; padding-block: .85rem; border-top: 1px solid var(--f4-line); }
   .workshop-rows dt { color: #fff; font-weight: 700; }
   .workshop-rows dd { margin: 0; color: #d1d3d3; line-height: 1.4; }
-  .workshop-action { width: min(100%, 440px); margin-top: 1.5rem; color: #fff; font-size: .95rem; }
-  .workshop-action .arrow { font-size: 1.25rem; }
-  .workshop-action:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
   @media (max-width: 760px) {
     .workshop { min-height: 0; }
     .workshop .company-image { min-height: 0; height: 260px; }
@@ -1200,11 +1172,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   /* Moviment de la plantilla (criteri emil-design-eng). Entrada inicial només amb CSS;
      la resta, amb data-reveal. Tot queda desactivat amb moviment reduït. */
   @media (prefers-reduced-motion: no-preference) {
-    .hero-aside-rule {
-      transform-origin: left center;
-      animation: rule-grow 700ms var(--ease-in-out-strong) 250ms backwards;
-    }
-
     .path.is-revealed :is(.path-top, .path-kicker, .path-title, .path-copy, .path-action) {
       animation: reveal-rise-soft 520ms var(--ease-out-strong) backwards;
       animation-delay: calc(var(--i, 0) * var(--stagger) + 120ms + var(--j, 0) * 45ms);
@@ -1274,10 +1241,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   @media (max-width: 1000px) {
-    .hero-intro {
-      grid-template-columns: 1fr 1fr;
-    }
-
     .number-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1297,21 +1260,8 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     }
   }
 
-  @media (min-width: 761px) and (max-width: 900px) {
-    .hero-intro {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .hero-aside p {
-      max-width: 60ch;
-    }
-  }
-
   @media (max-width: 760px) {
     .hero-intro {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
       min-height: 0;
       padding-block: 2.6rem;
     }
@@ -1321,12 +1271,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
      els dos camins de la guia apareguin abans; el text i la mida de lletra de lectura no canvien. */
   @media (max-width: 400px) {
     .hero-intro {
-      gap: 0.75rem;
       padding-block: 1.9rem 1.4rem;
-    }
-
-    .hero-aside p {
-      margin-block: 0.4rem 0.8rem;
     }
   }
 
@@ -1335,12 +1280,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     h1 small {
       margin-top: 1.25rem;
       font-size: 1.18rem;
-    }
-
-    .hero-aside p {
-      max-width: 55ch;
-      margin-block: 0.8rem 1rem;
-      font-size: 1rem;
     }
 
     .paths-grid {
@@ -1420,10 +1359,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   @media (max-width: 520px) {
-    .hero-aside p {
-      font-size: 0.96rem;
-    }
-
     .paths-heading {
       min-height: 40px;
       font-size: 0.7rem;
@@ -1551,7 +1486,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     font-size: var(--type-h2);
   }
 
-  .hero-aside p,
   .section-lead p,
   .company-content p {
     font-size: var(--type-intro);

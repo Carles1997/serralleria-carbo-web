@@ -124,6 +124,13 @@ const VALIDATED_REVISIONS = [
       'content/ca/home.md': '7ec28e78b375bdc4211217ce2945f075a4cf5963ec8668664288e41b4e63e67f',
     },
   },
+  {
+    label: "menys text i retirada de la pàgina d'empresa, indicació del director (06/10/2026)",
+    bodies: {
+      'content/ca/home.md': 'c04647b36a4f5953c5274f90f56f4bbbc3c28c26933e5138479bb04a3c94d762',
+      'content/ca/industrial.md': 'a04a6d6577769603c4fbd6a1e458459d689f678796ae369c06a034fb1daa3f9f',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

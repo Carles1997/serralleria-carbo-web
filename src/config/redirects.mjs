@@ -68,6 +68,13 @@ export const redirects = [
     to: { pageId: 'legal-cookies', lang: 'ca' },
     note: "La pàgina antiga només conté la política de cookies. /legal/ no existeix al sitemap nou (SEO-F3). La política de cookies de l'advocat queda aprovada el 06/10/2026.",
   },
+  // Pàgina d'empresa retirada pel director (06/10/2026): el seu contingut ja és a la Home i a Industrial.
+  {
+    from: '/empresa/',
+    status: 301,
+    to: { pageId: 'home', lang: 'ca' },
+    note: "Pàgina retirada pel director (06/10/2026): xifres, taller i zones de treball són a la Home.",
+  },
   // Adreces citades als textos legals de l'advocat del client (06/10/2026), que el lloc nou publica a /legal/.
   {
     from: '/politica-de-privacitat/',

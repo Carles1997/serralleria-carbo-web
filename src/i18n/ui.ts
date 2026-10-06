@@ -38,12 +38,16 @@ const ca = {
       heading: 'Tria el teu camí',
       // Criteri entre camins (brief de millores UX, Fase 7): per tipus d'encàrrec, no només per
       // nombre d'unitats; Industrial també rep encàrrecs unitaris, com un carro o una peça a plànol.
+      // Públic explícit a cada targeta (director, 06/10/2026); el tipus de feina del text de la
+      // targeta acaba de fer la diferència entre «negocis» i «empreses».
       particulars: {
-        kicker: 'Per a un espai concret o una reparació',
+        kicker: 'Habitatges · comunitats · negocis',
       },
       // L'acció d'Industrial usa l'etiqueta de l'enllaç de home.md («Coneix Industrial»), que descriu el destí.
-      industrial: { kicker: 'Sèries, peces a plànol i projectes' },
+      industrial: { kicker: 'Constructores · promotores · empreses' },
     },
+    // Prova real després de les xifres (director, 06/10/2026): el cas documentat de les gàbies.
+    proof: { eyebrow: 'Treball documentat' },
     numbers: {
       heading: ['Fets que', 'ens defineixen'],
       // «source»: xifra en negreta de home.md, d'on surt també l'etiqueta (es comprova al build).

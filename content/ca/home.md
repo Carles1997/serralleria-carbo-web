@@ -13,7 +13,7 @@ Fabriquem i instal·lem portes, baranes, estructures, automatismes i mobiliari a
 
 ## Particulars
 
-Baranes, escales, portes, automatismes i mobiliari a mida per a un espai concret. També atenem reparacions.
+Instal·lacions, reparacions i peces a mida per al teu espai: baranes, escales, portes, automatismes i mobiliari.
 
 [Veure serveis](/particulars/)
 
@@ -21,16 +21,16 @@ Baranes, escales, portes, automatismes i mobiliari a mida per a un espai concret
 
 Sèries curtes. Peces exigents. Resposta industrial.
 
-Sèries i diverses unitats, peces a plànol, carros industrials i elements per a projectes de construcció.
+Estructures per a obra, sèries, peces tècniques a plànol i carros industrials, també d'una sola unitat.
 
 [Coneix Industrial](/industrial/)
 
 ## Com triar el camí
 
-- **Per a un espai concret o una reparació?** · Particulars
-- **Per a una sèrie, una peça tècnica o un projecte constructiu?** · Industrial
+- **Espai concret o reparació?** · Particulars
+- **Constructora, promotora, sèrie o peça a plànol?** · Industrial
 
-Si no ho tens clar, explica'ns la feina i t'orientarem.
+[Tens dubtes? T'orientem](/contacte/)
 
 ## Fets que ens defineixen
 
@@ -41,11 +41,15 @@ Si no ho tens clar, explica'ns la feina i t'orientarem.
 
 <!-- Bloc de xifres de la Home: la dada en negreta és la xifra animada i el text després de «·», l'etiqueta visible (si no n'hi ha, es mostra la dada). -->
 
-## Del taller a cada projecte
+## Un taller real. Un encàrrec concret
 
-La major part de la feina es fa a Vilafranca i la rodalia; també treballem en projectes fins a Barcelona. Per a sèries industrials podem valorar encàrrecs d'arreu de Catalunya.
+- **10** · gàbies
 
-[Coneix l'empresa](/empresa/)
+Vam fabricar i subministrar deu gàbies per a un client industrial. L'ús previst i les exigències de pes van orientar la tria del material i la soldadura.
+
+[Veure el treball documentat](/industrial/#projectes)
+
+<!-- Prova real (director, 06/10/2026): fets de content/ca/projects/gavia-industrial.md, sense terminis, fases ni càrregues. L'àmbit geogràfic és a empresa.md («Arrelats a Vilafranca»). -->
 
 ## Serveis i capacitats
 

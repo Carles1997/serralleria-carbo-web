@@ -112,6 +112,12 @@ const VALIDATED_REVISIONS = [
       'content/ca/industrial-projectes.md': '12109a4db5f577d78357328033fa6c8734ffb9ecffe122a50027ebd6e2ef6d8a',
     },
   },
+  {
+    label: 'ajustos de la Home del director (06/10/2026)',
+    bodies: {
+      'content/ca/home.md': '7ec28e78b375bdc4211217ce2945f075a4cf5963ec8668664288e41b4e63e67f',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

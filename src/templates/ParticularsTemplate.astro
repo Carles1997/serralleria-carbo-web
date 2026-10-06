@@ -217,7 +217,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
     <ContactBlock ui={ui} heading={t.contactHeading} text={contactText} form={contactLink} note={{ label: area.heading, text: areaText }} />
   </main>
 
-  <SiteFooter ui={ui} locale={locale} contactHref={contactLink.href} tone="brand-grey" />
+  <SiteFooter ui={ui} locale={locale} contactHref={contactLink.href} />
 </BaseLayout>
 
 <script>

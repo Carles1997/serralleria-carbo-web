@@ -29,6 +29,7 @@ Fotografies, degradats de protecció del text, transparències de focus i ombres
 - Entrada de la Home (ajust posterior del director): fons grafit igual que Industrial, titular i ubicació blancs, coma i any bordeus; es conserva la composició, la mida del titular i la ubicació a la dreta sense requadre. La banda «Com triar el camí» també té fons grafit i text clar; els accessos comparteixen alineació vertical. El 1989 augmenta un 30% respecte de la mida anterior: passa de 1,35em a 1,755em.
 - Home, Particulars, serveis, projectes, Industrial, Capacitats, Contacte i pàgines legals: superfícies, tinta, separadors i controls ajustats als rols comuns.
 - Capçalera i barres de filtres: fons opacs de la paleta per evitar que el contingut de sota alteri el color i el contrast.
+- Ajust final del peu: mateix fons que la capçalera, blanc a les pàgines clares i grafit a Industrial i Capacitats; es conserven la vora d'accent, els logotips i els enllaços.
 - Textos, dades, rutes, imatges i continguts de referència protegits: sense modificacions editorials en aquesta tasca.
 
 ## Comprovacions executades

@@ -26,6 +26,12 @@ const APPROVAL_KEYS = new Set(['status', 'publishReady', 'noindex', 'reviewNeede
 /** Revisions validades: fitxer → empremta SHA-256 del cos (sense frontmatter, amb salts LF). */
 const VALIDATED_REVISIONS = [
   {
+    label: 'presentació de fabricació i muntatge a la Home, aprovada pel director (06/10/2026)',
+    bodies: {
+      'content/ca/home.md': '9a9db87e7790c6781122747e3a3683cf0cd2bcd16d6d0ad6851111c409571f61',
+    },
+  },
+  {
     // Alineació del text visible amb content/ca/ (fases/fase-5/FASE5-revisio-editorial.md).
     label: 'revisió editorial validada pel director el 30/09/2026',
     bodies: {

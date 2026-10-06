@@ -46,8 +46,6 @@ const ca = {
       // L'acció d'Industrial usa l'etiqueta de l'enllaç de home.md («Coneix Industrial»), que descriu el destí.
       industrial: { kicker: 'Constructores · promotores · empreses' },
     },
-    // Prova real després de les xifres (director, 06/10/2026): el cas documentat de les gàbies.
-    proof: { eyebrow: 'Treball documentat' },
     numbers: {
       heading: ['Fets que', 'ens defineixen'],
       // «source»: xifra en negreta de home.md, d'on surt també l'etiqueta (es comprova al build).

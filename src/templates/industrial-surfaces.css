@@ -1,0 +1,94 @@
+/* Industrial: ritme de grafit i plata aprovat pel director el 06/10/2026.
+   Compartit per portada i capacitats; les fotografies mantenen el seu text clar. */
+main.industrial-page {
+  --i-surface-silver: #d5d9d8;
+  --i-surface-mist: #e2e5e4;
+  --i-surface-graphite: #3b4243;
+  --i-light-ink: #202627;
+  --i-light-muted: #475151;
+  --i-light-line: #9ca6a4;
+  --i-metal-dark: linear-gradient(105deg, #25302e 0%, #56635f 18%, #222d2a 35%, #596761 53%, #25302d 72%, #52605b 87%, #27312e 100%);
+}
+
+/* El producte i el cas real respiren sobre grafit, sense perdre el contrast. */
+main.industrial-page .i-proof,
+main.industrial-page .i-production { background: var(--i-surface-graphite); }
+main.industrial-page .i-product { background: #485051; }
+main.industrial-page .i-product:hover,
+main.industrial-page .i-product:focus-visible { background: #545e5e; }
+main.industrial-page .i-production-grid { background: #7d8886; }
+main.industrial-page .i-product-text,
+main.industrial-page .i-production-head p,
+main.industrial-page .i-production-foot p { color: #edf0ee; }
+main.industrial-page .i-project { background: #353d3e; }
+main.industrial-page .i-project-copy p { color: #edf0ee; }
+
+/* Taller i sectors: plata clara amb text de tinta, conservant la identitat industrial. */
+main.industrial-page .i-capabilities,
+main.capacity-page .c-overview { background: var(--i-surface-silver); color: var(--i-light-ink); }
+main.industrial-page .i-sectors,
+main.capacity-page .c-requirements { background: var(--i-surface-mist); color: var(--i-light-ink); }
+main.industrial-page :is(.i-cap-intro, .i-section-heading, .i-contact-heading, .c-section-head, .c-contact) :is(h1,h2,h3) em {
+  color: var(--i-light-ink);
+  background-image: var(--i-metal-dark);
+}
+main.industrial-page .i-cap-summary p,
+main.industrial-page .i-quality-copy p,
+main.industrial-page .i-quality-list span:last-child,
+main.industrial-page .i-section-heading > p,
+main.capacity-page .c-overview .c-section-head p,
+main.capacity-page .c-overview .c-plan-note,
+main.capacity-page .c-overview .c-plan-note span,
+main.capacity-page .c-overview .c-photo-note,
+main.capacity-page .c-requirements .c-requirements-copy p,
+main.capacity-page .c-requirements .c-progress > p,
+main.capacity-page .c-requirements .c-progress small { color: var(--i-light-muted); }
+main.industrial-page .i-quality-copy h3,
+main.industrial-page .i-quality-list strong,
+main.capacity-page .c-overview .i-index,
+main.capacity-page .c-requirements .i-index,
+main.capacity-page .c-requirements .c-progress > span { color: var(--i-light-ink); }
+main.industrial-page .i-cap-summary,
+main.industrial-page .i-quality,
+main.industrial-page .i-quality-list li + li { border-color: var(--i-light-line); }
+main.industrial-page .i-quality-mark { border-color: #475151; background: radial-gradient(circle, #475151 0 2px, transparent 2.5px); }
+main.industrial-page .i-cap-summary .i-button-solid { background: #303a3b; color: #fff; }
+main.industrial-page .i-cap-summary .i-button-solid:hover { background: #485354; }
+main.industrial-page .i-capabilities :focus-visible { outline-color: #293534; }
+main.industrial-page .i-cap-showcase :focus-visible { outline-color: #e2e5e4; }
+main.industrial-page .i-sector { background: #cbd1cf; }
+main.industrial-page .i-sector h3 { color: var(--i-light-ink); }
+
+/* Tancament clar: una acció fosca, fàcil de trobar al final del recorregut. */
+main.industrial-page .i-contact,
+main.capacity-page .c-contact { background: var(--i-surface-silver); color: var(--i-light-ink); border-top: 1px solid var(--i-light-line); }
+main.industrial-page .i-contact-heading p,
+main.industrial-page .i-contact-guide > span,
+main.industrial-page .i-contact-method > span,
+main.industrial-page .i-contact-guide li::before,
+main.capacity-page .c-contact-copy > p,
+main.capacity-page .c-contact-return,
+main.capacity-page .c-contact-detail > h3,
+main.capacity-page .c-contact-person > h3,
+main.capacity-page .c-contact-person a { color: var(--i-light-muted); }
+main.industrial-page .i-contact-grid,
+main.industrial-page .i-contact-guide li,
+main.capacity-page .c-contact-fields li,
+main.capacity-page .c-contact-detail { border-color: var(--i-light-line); }
+main.industrial-page .i-contact-main,
+main.capacity-page .c-contact .i-button-solid { background: #303a3b; color: #fff; }
+main.industrial-page .i-contact-main:hover,
+main.industrial-page .i-contact-main:focus-visible,
+main.capacity-page .c-contact .i-button-solid:hover { background: #485354; color: #fff; }
+main.industrial-page .i-contact-method > a:not(.i-contact-main):hover,
+main.capacity-page .c-contact-return:hover,
+main.capacity-page .c-contact-person a:hover { color: #202627; }
+main.industrial-page :is(.i-contact, .c-contact) :focus-visible { outline-color: #293534; }
+
+@media (forced-colors: active) {
+  main.industrial-page :is(.i-cap-intro, .i-section-heading, .i-contact-heading, .c-section-head, .c-contact) :is(h1,h2,h3) em {
+    background: none;
+    color: CanvasText;
+    -webkit-text-fill-color: CanvasText;
+  }
+}

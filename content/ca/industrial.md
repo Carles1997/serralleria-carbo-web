@@ -9,19 +9,19 @@ seoDescription: "Fabricació metàl·lica per a tercers a Vilafranca del Penedè
 
 # Sèries curtes. Peces exigents. Resposta industrial.
 
-Industrial és la línia de fabricació per a tercers de Serralleria Carbó. Fabriquem en diverses unitats o en sèrie el mateix que fem a mida per a particulars, i qualsevol peça a mida: estructures, portes, mobiliari, carros i conjunts metàl·lics per a empreses, constructores, caps d’obra i promotores.
+Industrial és la línia de fabricació per a tercers de Serralleria Carbó: sèries curtes, peces a plànol, carros industrials i elements per a projectes de construcció, per a empreses, constructores, caps d’obra i promotores.
 
-## Què fabriquem en sèrie
+## Què fabriquem
 
-Hem obert la línia Industrial per fabricar en diverses unitats o en sèrie els mateixos productes que fem a mida per a particulars, i qualsevol peça a partir d'un plànol o d'una especificació.
+Els mateixos productes que fem a mida per a particulars, en diverses unitats o en sèrie; peces a partir d'un plànol o d'una especificació, i encàrrecs industrials d'una sola unitat, com un carro.
 
-- **Estructures, baranes i escales** · Per a obres de constructores i promotores.
-- **Portes i tancaments** · Fabricació i instal·lació en obra.
+- **Estructures, baranes i escales** · Per a projectes de constructores i promotores.
+- **Portes i tancaments** · Fabricació i instal·lació en projectes de construcció.
 - **Mobiliari** · Diverses unitats, a mida de l'ús.
 - **Carros industrials** · Adaptats a una necessitat concreta, d'una unitat o en sèrie.
 - **Peces i conjunts a mida** · A partir del plànol, en acer al carboni o inox 304/316.
 
-Només necessites una peça per a casa, la comunitat o el negoci? Ho fem des de Serralleria per a particulars.
+Una feina per a casa, la comunitat o el negoci?
 
 [Serralleria per a particulars](/particulars/)
 
@@ -54,7 +54,7 @@ Aquest procés ordena la conversa tècnica, la preparació i la fabricació d'un
 
 ## Un encàrrec real. Deu gàbies
 
-El primer projecte publicat de Industrial és la fabricació i el subministrament de deu gàbies per a un client industrial.
+El primer projecte publicat d'Industrial és la fabricació i el subministrament de deu gàbies per a un client industrial.
 
 [Parlem d'un projecte semblant](#contacte)
 

@@ -4,12 +4,12 @@ route: /industrial/proces/
 lang: ca
 status: draft
 seoTitle: "Procés de fabricació industrial | Industrial"
-seoDescription: "Definim, preparem, fabriquem i comprovem: coneix el procés de treball de Industrial per a projectes de fabricació metàl·lica."
+seoDescription: "Definim, preparem, fabriquem i comprovem: coneix el procés de treball d'Industrial per a projectes de fabricació metàl·lica."
 ---
 
 # Procés de fabricació: definim, preparem, fabriquem, comprovem
 
-El procés de Industrial s'organitza en quatre passos. Ens serveix per compartir els requisits abans de fabricar i mantenir una conversa tècnica al llarg de l'encàrrec.
+El procés d'Industrial s'organitza en quatre passos. Ens serveix per compartir els requisits abans de fabricar i mantenir una conversa tècnica al llarg de l'encàrrec.
 
 ## Definim
 

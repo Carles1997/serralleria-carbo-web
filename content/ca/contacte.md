@@ -9,15 +9,15 @@ seoDescription: "Contacta amb Serralleria Carbó a Vilafranca del Penedès. Expl
 
 # Contacta amb Serralleria Carbó
 
-Explica'ns què necessites i tria si és **una feina a mida** o si són **diverses unitats o en sèrie**. Així podem demanar-te la informació adequada des del primer moment.
+Explica'ns què necessites i tria si és **per a un espai concret o una reparació** o si és **una sèrie, una peça tècnica o un projecte constructiu**. Així podem demanar-te la informació adequada des del primer moment.
 
-## Si és una feina a mida
+## Si és per a un espai concret o una reparació
 
 Indica el tipus de servei —urgències i reparacions, estructures, portes i automatismes o mobiliari— i descriu la feina o la incidència. Si tens una fotografia, unes mides o un document, adjunta'l.
 
 Per a una incidència, pots trucar al **630 661 908**. Explica'ns què ha passat i on és la instal·lació.
 
-## Si són diverses unitats o en sèrie
+## Si és una sèrie, una peça tècnica o un projecte constructiu
 
 Indica què cal fabricar (estructures, portes amb instal·lació, mobiliari, carros o qualsevol peça a mida), el material, les unitats i el termini que necessites. Adjunta un plànol o la documentació tècnica disponible perquè puguem valorar la consulta.
 

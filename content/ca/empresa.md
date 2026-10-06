@@ -23,7 +23,7 @@ La major part de la feina es fa a Vilafranca del Penedès i la rodalia. També a
 
 ## Dues maneres de treballar el metall
 
-Per a particulars, fabriquem i instal·lem estructures, treballem amb portes i automatismes i atenem reparacions. Per a fabricants, enginyeries i integradors, Industrial presenta les capacitats del taller, el procés i la informació necessària per valorar una sèrie curta.
+Per a particulars, fabriquem i instal·lem estructures, treballem amb portes i automatismes i atenem reparacions. Per a empreses, fabricants, enginyeries, constructores i promotores, Industrial presenta les capacitats del taller, el procés i la informació necessària per valorar una sèrie curta, una peça a plànol o un projecte constructiu.
 
 [Serveis per a particulars](/particulars/) · [Capacitats industrials](/industrial/capacitats/)
 

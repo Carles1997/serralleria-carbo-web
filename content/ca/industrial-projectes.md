@@ -4,7 +4,7 @@ route: /industrial/projectes/
 lang: ca
 status: draft
 seoTitle: "Projectes de fabricació industrial | Industrial"
-seoDescription: "Coneix el primer cas real de Industrial: fabricació i subministrament de deu gàbies per a un client del sector industrial."
+seoDescription: "Coneix el primer cas real d'Industrial: fabricació i subministrament de deu gàbies per a un client del sector industrial."
 projectIds: "gavia-industrial"
 reviewNeeded:
   - "No publicar cap xifra de càrrega sense especificació confirmada."
@@ -12,7 +12,7 @@ reviewNeeded:
 
 # Projectes industrials
 
-Un cas de fabricació per a tercers que mostra una feina real de Industrial.
+Un cas de fabricació per a tercers que mostra una feina real d'Industrial.
 
 ## Un primer cas documentat
 

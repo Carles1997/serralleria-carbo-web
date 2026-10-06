@@ -48,15 +48,15 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 ## Selecció del formulari
 
 - Tipus de consulta
-- Una feina a mida · Una peça, una instal·lació o una reparació
-- Diverses unitats o en sèrie · Obres, sèries i peces a plànol
+- Espai concret o reparació · Habitatge, comunitat o negoci
+- Sèrie, peça tècnica o projecte · Empreses, constructores i promotores
 
 ## Camps comuns
 
 - Nom i cognoms
 - Correu electrònic
 - Telèfon
-- Explica'ns què necessites
+- Descripció (titular del formulari: «Explica'ns què necessites»)
 - Adjunta un arxiu
 - Enviar consulta
 

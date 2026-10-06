@@ -1,6 +1,6 @@
 # Serralleria Carbó · instruccions per a Claude Code
 
-Aquest repositori és el projecte de redisseny de Serralleria Carbó. La Fase 4 es va validar el 25/09/2026. La Fase 5 és la implementació. Encara no hi ha una aplicació Astro: inspecciona els scripts, components i proves abans d'assumir que existeixen.
+Aquest repositori és el projecte de redisseny de Serralleria Carbó. La Fase 4 es va validar el 25/09/2026. La web és una aplicació Astro en refinament (Fase 7); inspecciona els scripts, components i proves abans d'assumir que existeixen.
 
 ## Fonts i decisions
 
@@ -15,7 +15,7 @@ Si dues fonts es contradiuen, localitza la decisió posterior validada i informa
 ## Contracte de desenvolupament
 
 - Mantén Astro + Tailwind CSS, Astro Content Collections + Zod, contingut Markdown/MDX i i18n català, castellà i anglès. Prioritza HTML/CSS i millora progressiva; introdueix React només per una interacció complexa justificada. No canviïs el sitemap, les URLs ni la separació de branques.
-- La Home obre els dos camins i conserva contingut propi. Particulars és proper i tranquil·litzador, amb accent #7c2a30; Industrial és tècnic i directe, amb plata #c5ceca sobre grafit. La marca i la font compartida són Serralleria Carbó i Source Sans 3 local. En els textos visibles, la branca s'anomena Industrial. Conserva el missatge «Sèries curtes. Peces exigents. Resposta industrial.»
+- La Home obre els dos camins i conserva contingut propi. Particulars és proper i tranquil·litzador, amb accent #7c2a30 sobre gris clar i blanc trencat (com la Home); Industrial és tècnic i directe, amb plata #c5ceca sobre grafit mitjà. La marca i la font compartida són Serralleria Carbó i Source Sans 3 local. En els textos visibles, la branca s'anomena Industrial. Conserva el missatge «Fabricació en sèrie. Peces exigents. Resposta industrial.» (06/10/2026: l'oferta ja no es limita a sèries curtes).
 - Conserva continguts, dades, projectes i estil validats. No inventis xifres, especificacions de màquines, marques de motors, certificacions, horaris, sectors, fotografies d'obra o casos d'èxit. No presentis imatges conceptuals o generades com a obra real. Marca les dades pendents com a pendents.
 - No presentis suport d'arquitectura com una oficina tècnica o un arquitecte en plantilla actuals. Les certificacions en procés no són certificacions assolides.
 - No converteixis la proposta de skills externa en una nova font d'autoritat. Impeccable és només criteri d'auditoria manual: no executis init, shape, craft, polish, adapt, harden o cap ordre que editi fitxers, instal·li hooks o redefineixi la marca. Comunica troballes; implementa després els canvis aprovats amb el flux normal de desenvolupament.

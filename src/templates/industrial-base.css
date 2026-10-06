@@ -3,27 +3,42 @@
    identitat.css (identitat plata #c5ceca sobre grafit). .industrial-page és el <main>.
    S'importa després de mockup-base.css i abans del full de cada plantilla. */
 
-/* industrial/styles.css */
-.industrial-page { --i-dark:#151719; --i-deep:#101113; --i-steel:#222528; --i-line:#555b5d; --i-paper:#eeede9; --i-paper-line:#c5c7c2; --i-ink:#202124; --i-muted:#cbd0cf; --i-accent:#d48e94; background:var(--i-deep); }
+/* Paleta de la branca (refinament del director, 06/10/2026): grafit mitjà #525c5c com a superfície
+   fosca, plata #d5d9d8 i boira #e2e5e4 com a superfícies clares; grisos neutres, sense blau. */
+.industrial-page {
+  --i-graphite:#525c5c;
+  --i-graphite-card:#485151;
+  --i-graphite-hover:#5d6868;
+  --i-silver:#d5d9d8;
+  --i-mist:#e2e5e4;
+  --i-light-ink:#202627;
+  --i-light-muted:#46504f;
+  --i-light-line:#9ca6a4;
+  --i-dark-line:rgb(255 255 255 / .26);
+  --i-muted:#e3e8e6;
+  --i-button-dark:#353d3e;
+  --i-button-dark-hover:#4a5455;
+  background:var(--i-graphite);
+}
 /* clip (no hidden): retalla igual però no crea un contenidor d'scroll, perquè les animacions
    lligades a l'scroll de les seccions (parallax) segueixin la finestra. */
 .industrial-page { overflow:clip; }
-.i-index { display:block; color:var(--i-accent); font-size:.75rem; font-weight:700; letter-spacing:.15em; line-height:1.3; text-transform:uppercase; }
-.i-button { display:inline-flex; align-items:center; justify-content:space-between; gap:2rem; min-height:54px; padding:.8rem 1.1rem; font-weight:700; text-decoration:none; transition:background .22s ease,color .22s ease,transform .22s ease; }
+.i-index { display:block; color:var(--i-accent); font-size:var(--type-meta); font-weight:700; letter-spacing:var(--tracking-meta); line-height:1.3; text-transform:uppercase; }
+.i-button { display:inline-flex; align-items:center; justify-content:space-between; gap:2rem; min-height:50px; padding:.8rem 1.1rem; font-weight:700; text-decoration:none; transition:background .22s ease,color .22s ease,transform .22s ease; }
 .i-button:hover { transform:translateY(-2px); }
 .i-button span,.i-text-link span,.i-section-link span { font-size:1.25em; font-weight:400; }
 .i-button-solid { background:#f1efeb; color:#17191a; }
-.i-button-solid:hover { background:#d8bbbd; }
 .i-button-outline { border:1px solid #ced2d0; color:#fff; }
 .i-button-outline:hover { background:#fff; color:#161819; }
-.i-section-link { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; width:fit-content; max-width:100%; min-height:56px; margin-top:clamp(2rem,4vw,4rem); padding:.7rem 0; border-top:1px solid #c3cac8; border-bottom:1px solid #c3cac8; font-weight:700; text-decoration:none; }
-.i-section-link:hover { color:#e9adb2; }
+.i-section-link { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; width:fit-content; max-width:100%; min-height:50px; margin-top:var(--space-block); padding:.6rem 0; border-top:1px solid currentColor; border-bottom:1px solid currentColor; font-weight:700; text-decoration:none; }
 .i-section-link span { color:var(--i-accent); }
-.i-text-link { display:inline-flex; align-items:center; justify-content:space-between; gap:1.2rem; min-height:50px; padding:.5rem 0; border-bottom:1px solid #d3d7d4; font-weight:700; text-decoration:none; }
+.i-text-link { display:inline-flex; align-items:center; justify-content:space-between; gap:1.2rem; min-height:48px; padding:.5rem 0; border-bottom:1px solid currentColor; font-weight:700; text-decoration:none; }
 .i-text-link:hover { color:var(--i-accent); }
 
 /* industrial/identitat.css */
-.industrial-page { --i-accent:var(--color-industrial-silver); }
+/* Text d'accent sobre grafit mitjà: plata clara amb contrast 4,5:1 també en mida petita; el logo
+   conserva el plata aprovat #c5ceca (refinament del director, 06/10/2026). */
+.industrial-page { --i-accent:#dfe5e3; }
 /* Reflex platejat, limitat a les paraules destacades dels titulars. «main» manté la prioritat que
    tenia identitat.css al final de la cascada sobre els colors d'em de cada plantilla. */
 main.industrial-page :is(h1,h2,h3) em {
@@ -39,6 +54,11 @@ main.industrial-page :is(h1,h2,h3) em {
   -webkit-background-clip:text;
   background-clip:text;
   -webkit-text-fill-color:transparent;
+}
+/* Sobre plata i boira, reflex metàl·lic fosc amb lectura estable (contrast en tota la gamma). */
+main.industrial-page :is(.i-capabilities,.i-sectors,.i-contact,.c-overview,.c-requirements,.c-contact) :is(h1,h2,h3) em {
+  color:#202627;
+  background-image:linear-gradient(105deg,#25302e 0%,#56635f 18%,#222d2a 35%,#596761 53%,#25302d 72%,#52605b 87%,#27312e 100%);
 }
 @media (forced-colors:active) {
   main.industrial-page :is(h1,h2,h3) em { background:none; color:CanvasText; -webkit-text-fill-color:CanvasText; }

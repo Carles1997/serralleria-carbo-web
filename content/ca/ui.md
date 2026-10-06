@@ -31,7 +31,7 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 - Inici
 - Capacitats
 - Sectors
-- Sèries curtes
+- Fabricació en sèrie
 - Procés
 - Projectes
 - Contacte
@@ -48,16 +48,17 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 ## Selecció del formulari
 
 - Tipus de consulta
-- Espai concret o reparació · Habitatge, comunitat o negoci
-- Sèrie, peça tècnica o projecte · Empreses, constructores i promotores
+- Particulars · Espais i reparacions
+- Industrial · Sèries, peces a plànol i obra
 
 ## Camps comuns
 
 - Nom i cognoms
 - Correu electrònic
 - Telèfon
-- Descripció (titular del formulari: «Explica'ns què necessites»)
+- Descripció (sense titular propi sobre el formulari: la pàgina té un sol H1, «Contacte»)
 - Adjunta un arxiu
+- Afegir més dades (opcional): població i, a Industrial, dades tècniques
 - Enviar consulta
 
 ## Camps de Particular
@@ -69,9 +70,9 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 ## Camps d'Empresa
 
 - Què cal fabricar?: Estructures, baranes i escales · Portes i tancaments, amb instal·lació · Mobiliari · Carros industrials · Peces i conjunts a mida
+- Empresa (opcional)
 - Sector
 - Material
-- Tipus de peça o conjunt
 - Unitats previstes
 - Termini desitjat
 - Adjunta un plànol o la documentació tècnica disponible.

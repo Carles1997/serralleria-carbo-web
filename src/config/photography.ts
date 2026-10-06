@@ -14,7 +14,9 @@ import furnitureHero from '../../assets/imatges-conceptuals/particulars-mobiliar
 import furnitureTile from '../../assets/imatges-conceptuals/home-mobiliari-targeta-v2.png';
 import homeIndustrialCapabilities from '../../assets/imatges-conceptuals/home-capacitats-industrials-targeta-v1.png';
 import repairsHero from '../../assets/imatges-conceptuals/particulars-urgencies-hero-v1.png';
-import industrialHero from '../../assets/imatges-conceptuals/industrial-series-hero-v1.png';
+// Exportació derivada amb les ombres obertes (refinament del director, 06/10/2026); el màster
+// industrial-series-hero-v1.png es conserva sense canvis.
+import industrialHero from '../../assets/imatges-conceptuals/industrial-series-hero-v1-llum.jpg';
 import industrialMaterials from '../../assets/imatges-conceptuals/industrial-materials-v1.png';
 import industrialWelding from '../../assets/imatges-conceptuals/industrial-soldadura-conceptual-v1.png';
 import cartPhoto from '../../assets/imatges-conceptuals/particulars-carros-servei-v1.png';

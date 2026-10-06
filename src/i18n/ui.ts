@@ -52,17 +52,17 @@ const ca = {
         { source: '1989', value: 1989, unit: '' },
         { source: '950 m²', value: 950, unit: 'm²' },
         { source: '12 persones', value: 12, unit: '' },
-        { source: '6 furgonetes i 1 camió ploma', value: 6, unit: '+1' },
+        { source: '6 furgonetes · 1 camió ploma', value: 6, unit: '+1' },
       ],
     },
     services: {
-      particulars: { eyebrow: 'Per a un espai concret', title: 'Particulars', overview: 'Explora els serveis per a particulars' },
+      particulars: { eyebrow: 'Espais i reparacions', title: 'Particulars', overview: 'Explora els serveis per a particulars' },
       industrial: {
-        eyebrow: 'Sèries, peces a plànol i projectes',
+        eyebrow: 'Sèries, peces a plànol i obra',
         title: 'Industrial',
         overview: 'Coneix Industrial',
         // Productes en sèrie confirmats pel client (03/10/2026); les portes inclouen la instal·lació.
-        products: ['Estructures i baranes', 'Portes amb instal·lació', 'Mobiliari', 'Carros industrials', 'Qualsevol peça a mida'],
+        products: ['Estructures i baranes', 'Portes amb instal·lació', 'Mobiliari', 'Carros industrials', 'Peces i conjunts a mida'],
       },
       // Mateix ordre que els enllaços de la secció de serveis de home.md.
       tiles: [
@@ -70,7 +70,7 @@ const ca = {
         { detail: 'Escales i passarel·les' },
         { detail: 'Ferro i inoxidable' },
         { detail: 'Portes, persianes i motors' },
-        { detail: 'Sèries, peces a plànol i carros · Acer i inoxidable' },
+        { detail: 'Acer al carboni i inoxidable' },
       ],
     },
   },
@@ -108,7 +108,7 @@ const ca = {
     mobileExtra: [{ label: 'Industrial ↗', href: '/industrial/' }],
     hero: {
       // Accés a l'altra branca amb el criteri (03/10/2026): diverses unitats → Industrial.
-      otherBranch: { label: 'Sèries o peces tècniques? Industrial', href: '/industrial/#produccio' },
+      otherBranch: { label: 'Constructora, promotora, sèrie o peça a plànol? Industrial', href: '/industrial/#produccio' },
       // Mateix text que la H1 de particulars.md, repartit per a la composició (es comprova al build).
       title: ['Serralleria per a', 'particulars', 'a Vilafranca i rodalia'],
     },
@@ -125,7 +125,6 @@ const ca = {
       heading: ['Fets, no només', 'paraules'],
       // Casos destacats del paràgraf «Treballs reals» de particulars.md.
       featured: ['baranes-interior-casa', 'estructura-ascensor', 'persianes-negoci'],
-      outroTitle: 'Els cinc treballs, al portafoli',
       talk: 'Parlem del teu projecte',
     },
     contactHeading: ["Explica'ns", 'la feina'],
@@ -159,7 +158,9 @@ const ca = {
     nav: [
       { label: 'Capacitats', href: '/industrial/capacitats/' },
       // Rutes ajornades (config/routes.ts): porten a la secció de la portada.
-      { label: 'Sèries curtes', href: resolveRoute('/industrial/series-curtes/') },
+      // Nom comercial «Fabricació en sèrie» (refinament del director, 06/10/2026); la ruta ajornada
+      // /industrial/series-curtes/ conserva el seu destí resolt a la producció.
+      { label: 'Fabricació en sèrie', href: resolveRoute('/industrial/series-curtes/') },
       { label: 'Sectors', href: resolveRoute('/industrial/sectors/') },
       { label: 'Procés', href: resolveRoute('/industrial/proces/') },
       { label: 'Projectes', href: resolveRoute('/industrial/projectes/') },
@@ -173,7 +174,7 @@ const ca = {
       overline: ['Industrial', 'Fabricació metàl·lica per a tercers'],
       // Missatge aprovat (H1 d'industrial.md) en tres línies sense punt final, com a la maqueta;
       // l'última porta el reflex metàl·lic.
-      title: ['Sèries curtes', 'Peces exigents', 'Resposta industrial'],
+      title: ['Fabricació en sèrie', 'Peces exigents', 'Resposta industrial'],
       primary: 'Veure les capacitats del taller',
       secondary: 'Envia una consulta',
       bottom: 'Vilafranca del Penedès · Catalunya',
@@ -220,7 +221,7 @@ const ca = {
     },
     series: {
       heading: ['La sèrie comença', 'amb una', 'peça'],
-      method: { label: 'Del requisit a la peça', heading: ['Quatre passos', 'Una feina ben definida'] },
+      method: { label: 'Del requisit a la peça' },
       action: 'Consultar una sèrie',
     },
     sectors: {
@@ -264,7 +265,7 @@ const ca = {
     },
     overview: {
       heading: ['Del material', 'a la peça'],
-      materials: { label: ['Materials', 'Confirmats'] },
+      materials: { label: ['Materials'] },
       // Cada placa agrupa elements de la llista «Materials» (es comprova al build).
       plates: [
         { tag: 'Acer', name: 'Carboni', art: 'carbon', items: ['Acer al carboni'] },
@@ -313,8 +314,10 @@ const ca = {
       person: 'Contacte industrial',
     },
   },
-  // Plantilla C (contacte compartit). Maqueta: fases/fase-4/FASE4-mockups/contacte/; etiquetes del
-  // formulari de content/ca/ui.md. El formulari encara no envia: no hi ha cap estat d'èxit.
+  // Plantilla C (contacte compartit). Redisseny del director (06/10/2026,
+  // fases/fase-7/FASE7-brief-refinament-global-i-contacte.md): informació a l'esquerra i formulari a la
+  // dreta, sense introducció ni columna repetida. Etiquetes del formulari de content/ca/ui.md.
+  // El formulari encara no envia: no hi ha cap estat d'èxit.
   contactPage: {
     nav: [
       { label: 'Inici', href: '/' },
@@ -322,27 +325,26 @@ const ca = {
       { label: 'Industrial', href: '/industrial/' },
       { label: 'Contacte', href: '/contacte/' },
     ],
-    hero: {
-      index: 'Serralleria Carbó / Contacte',
-      // Mateix text que la H1 de contacte.md (es comprova al build).
-      title: ['Contacta amb', 'Serralleria Carbó'],
-      whatsapp: 'WhatsApp · 630 661 908',
-      call: "Truca'ns",
+    info: {
+      label: 'Dades de contacte',
+      phone: 'Telèfon',
+      whatsapp: 'WhatsApp',
+      email: 'Correu',
+      address: 'Adreça',
+      map: 'Veure el mapa',
+      landline: 'Telèfon fix',
     },
     form: {
-      // Titular transversal (brief de millores UX, Fase 7): serveix per a una avaria i per a una fabricació.
-      heading: "Explica'ns què necessites",
-      intro: 'Serveix tant per a una reparació com per a una fabricació. Els camps marcats amb * són necessaris. Si es tracta d’una incidència urgent, truca directament al',
+      label: 'Formulari de consulta',
       branch: {
         legend: 'Tipus de consulta',
-        // Per tipus d'encàrrec, no per públic (reunió amb el client, 03/10/2026).
-        particular: { label: 'Espai concret o reparació', detail: 'Habitatge, comunitat o negoci' },
-        empresa: { label: 'Sèrie, peça tècnica o projecte', detail: 'Empreses, constructores i promotores' },
+        // Per tipus d'encàrrec, no només per nombre d'unitats (reunió amb el client, 03/10/2026).
+        particular: { label: 'Particulars', detail: 'Espais i reparacions' },
+        empresa: { label: 'Industrial', detail: 'Sèries, peces a plànol i obra' },
       },
-      // Formulari compacte (indicació del director, 01/10/2026): dos grups, sense frases auxiliars.
-      sections: { contact: 'Dades de contacte', work: 'La feina' },
       fields: {
         nom: 'Nom i cognoms',
+        empresa: 'Empresa',
         correu: 'Correu electrònic',
         telefon: 'Telèfon',
         ubicacio: 'Població',
@@ -354,7 +356,7 @@ const ca = {
           { value: 'automatismes', label: 'Automatismes, portes i motors' },
           { value: 'mobiliari', label: 'Mobiliari a mida' },
         ],
-        // Formulari d'Industrial: producte en sèrie (opcional; el preselecciona l'enllaç d'origen).
+        // Formulari d'Industrial: producte (opcional; el preselecciona l'enllaç d'origen).
         produccio: 'Què cal fabricar?',
         produccioPlaceholder: 'Selecciona un producte',
         productionServices: [
@@ -366,7 +368,6 @@ const ca = {
         ],
         sector: 'Sector',
         material: 'Material',
-        peca: 'Tipus de peça o conjunt',
         unitats: 'Unitats previstes',
         termini: 'Termini desitjat',
         descripcio: 'Descripció',
@@ -375,14 +376,16 @@ const ca = {
           empresa: "Descriu la peça, l'aplicació i els requisits que ja coneixes.",
         },
       },
+      // Dades opcionals agrupades en un desplegable: ubicació i, a Industrial, dades tècniques.
+      extra: { particular: 'Afegir més dades (opcional)', empresa: 'Afegir dades tècniques (opcional)' },
       upload: {
-        particular: { label: 'Fotografia, esbós o document', help: 'Adjunta una fotografia o un document si en tens.' },
-        empresa: { label: 'Plànol o documentació tècnica', help: 'Adjunta la documentació tècnica disponible.' },
+        particular: { label: 'Fotografia, esbós o document', help: 'Opcional.' },
+        empresa: { label: 'Plànol o documentació tècnica', help: 'Opcional.' },
         choose: 'Tria un fitxer',
         none: 'Cap fitxer seleccionat',
       },
       submit: 'Enviar consulta',
-      pending: 'Formulari en preparació: encara no envia consultes.',
+      pending: 'Formulari en preparació: encara no envia consultes. Mentrestant, truca o escriu-nos per WhatsApp.',
       // S'afegeix a l'avís mentre content/ca/legal-formulari.md no estigui aprovat (Fase 8, tasca 8.4).
       pendingPrivacy: "El text de privacitat i el consentiment s'incorporaran abans d'activar-lo.",
       errors: {
@@ -395,18 +398,12 @@ const ca = {
       // Sense backend no hi ha enviament ni confirmació: s'ofereix el contacte directe.
       notSent: "La consulta no s'ha enviat: el formulari encara no està actiu. Escriu-nos per WhatsApp o truca al 630 661 908.",
     },
-    aside: {
-      index: 'Contacte directe',
-      particular: ['Si et va millor,', "parlem-ne ara"],
-      empresa: ['Consulta', 'tècnica directa'],
-      other: 'Altres dades',
-      landline: 'Fix',
-    },
     place: {
-      heading: ['Ens trobaràs', 'a Vilafranca'],
+      // Títol funcional petit (refinament del director, 06/10/2026). Mateix text que el H2 de contacte.md.
+      heading: 'On som',
       map: 'Obrir a Google Maps',
       // Mapa interactiu a petició (indicació del director, 01/10/2026): fins que no es carrega no
-      // es connecta amb Google. Revisar aquest avís amb la política de cookies quan s'aprovi.
+      // es connecta amb Google.
       mapLoad: 'Mostra el mapa interactiu',
       mapNote: 'El mapa és de Google Maps. En mostrar-lo, Google pot desar galetes al teu navegador.',
       mapTitle: 'Mapa amb la ubicació del taller de Serralleria Carbó a Vilafranca del Penedès',
@@ -437,12 +434,11 @@ const ca = {
         },
         scope: {
           heading: ['Estructures per', 'a cada espai'],
-          lead: "Baranes, escales, passarel·les i altres peces definides segons l'espai, l'ús i l'acabat.",
           label: "Tipus d'estructures",
           panels: [
-            { meta: 'Habitatges · comunitats · negocis', title: 'Baranes', diagram: 'barana' },
-            { meta: 'Ferro a mida', title: 'Escales', diagram: 'escala' },
-            { meta: 'Estructures metàl·liques', title: 'Passarel·les', diagram: 'passarella' },
+            { title: 'Baranes', diagram: 'barana' },
+            { title: 'Escales', diagram: 'escala' },
+            { title: 'Passarel·les', diagram: 'passarella' },
           ],
         },
         process: {
@@ -462,7 +458,6 @@ const ca = {
         },
         scope: {
           heading: ['Automatismes per', 'a cada accés'],
-          lead: "Motoritzem portes i revisem sistemes que ja estan instal·lats.",
           label: "Tipus d'accessos",
           panels: [
             { meta: 'Motorització i reparació', title: 'Portes de garatge', diagram: 'garatge' },
@@ -501,7 +496,7 @@ const ca = {
           label: 'Informació sobre la incidència',
         },
         repair: false,
-        contactHeading: ["Explica'ns", 'què ha passat'],
+        contactHeading: ["Truca'ns", 'o escriu-nos'],
       },
     },
   },

@@ -25,6 +25,9 @@ const { lang: locale, pageId, status, publishReady, requiredSource } = page.data
 const ui = useUi(locale);
 const t = ui.legal;
 const { Content, headings } = await render(page);
+// HTML del text legal sense la seva H1: el títol ja és l'H1 de l'entrada (valoració editorial,
+// 06/10/2026). Sense HTML renderitzat disponible, es fa servir el component com abans.
+const bodyHtml = page.rendered?.html?.replace(/<h1\b[^>]*>[\s\S]*?<\/h1>\s*/, '');
 
 // Títol: la H1 del contingut; si encara no n'hi ha (text pendent), l'etiqueta del peu.
 const title = headings.find((heading) => heading.depth === 1)?.text ?? ui.footer.legal[pageId as keyof typeof ui.footer.legal] ?? pageId;
@@ -43,11 +46,11 @@ const updated = page.data.updated
 const chars = Math.max(...title.split(/\s+/).map((word) => word.length));
 ---
 
-<BaseLayout page={page} surface="dark">
+<BaseLayout page={page}>
   <SiteHeader ui={ui} homeHref="/" nav={ui.home.nav} mobileExtra={ui.home.mobileExtra} />
 
   <main id="contingut" class="legal-page">
-    <section class="legal-hero" aria-labelledby="legal-title">
+    <section class="legal-hero" aria-labelledby="legal-title" data-surface="light">
       <div class="section-shell legal-hero-inner">
         <nav class="legal-crumb enter" aria-label={ui.service.breadcrumb.label}>
           <a href="/">{ui.service.breadcrumb.home}</a><span aria-hidden="true">/</span><span>{t.crumb}</span>
@@ -105,7 +108,7 @@ const chars = Math.max(...title.split(/\s+/).map((word) => word.length));
         )
       }
       <article class="legal-body">
-        {hasBody ? <Content /> : <p class="legal-empty">{t.empty}</p>}
+        {hasBody ? bodyHtml !== undefined ? <Fragment set:html={bodyHtml} /> : <Content /> : <p class="legal-empty">{t.empty}</p>}
       </article>
     </div>
   </main>
@@ -114,31 +117,32 @@ const chars = Math.max(...title.split(/\s+/).map((word) => word.length));
 </BaseLayout>
 
 <style>
+  /* Pàgines legals (refinament del director, 06/10/2026): entrada en gris clar i cos de lectura en
+     blanc trencat. Els textos aprovats de l'advocat no es modifiquen. */
   .legal-page {
-    background: var(--surface-read);
-    color: var(--color-ink, #202124);
+    background: var(--surface-paper);
+    color: var(--ink);
   }
 
-  /* Entrada fosca com a la resta d'interiors, més baixa: la pàgina és de lectura. */
   .legal-hero {
-    background: var(--surface-dark);
-    color: #fff;
+    border-bottom: 1px solid var(--line-on-light);
+    background: var(--surface-grey);
   }
 
   .legal-hero-inner {
-    padding-block: clamp(1.5rem, 3vw, 2.5rem) clamp(2.5rem, 5vw, 4rem);
+    padding-block: 0.5rem var(--space-section);
   }
 
   .legal-crumb {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.7rem;
     min-height: 44px;
-    margin-bottom: clamp(1.5rem, 4vw, 3rem);
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgb(255 255 255 / 0.28);
-    color: #e6e8e7;
-    font-size: 0.81rem;
+    margin-bottom: var(--space-lead);
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--line-on-light);
+    color: var(--ink-muted);
+    font-size: 0.82rem;
     font-weight: 600;
   }
 
@@ -150,22 +154,22 @@ const chars = Math.max(...title.split(/\s+/).map((word) => word.length));
   }
 
   .legal-crumb > span[aria-hidden] {
-    color: var(--f4-muted);
+    color: var(--line-strong-on-light);
   }
 
   h1 {
-    max-width: 18ch;
+    max-width: 22ch;
     margin: 0;
     font-size: var(--type-hero);
     font-weight: 700;
-    letter-spacing: -0.07em;
-    line-height: 0.9;
+    letter-spacing: -0.055em;
+    line-height: 0.92;
     text-transform: uppercase;
   }
 
   .legal-updated {
-    margin: 1.2rem 0 0;
-    color: #c9cecc;
+    margin: 0.8rem 0 0;
+    color: var(--ink-muted);
     font-size: var(--type-meta);
     letter-spacing: var(--tracking-meta);
     text-transform: uppercase;
@@ -204,12 +208,12 @@ const chars = Math.max(...title.split(/\s+/).map((word) => word.length));
     grid-template-columns: minmax(200px, 0.32fr) minmax(0, 1fr);
     align-items: start;
     gap: clamp(2rem, 5vw, 6rem);
-    padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(3.5rem, 6vw, 6rem);
+    padding-block: var(--space-section);
   }
 
   .legal-aside {
     position: sticky;
-    top: 100px;
+    top: calc(var(--header-h) + 1.5rem);
     display: grid;
     gap: 2rem;
   }
@@ -218,8 +222,8 @@ const chars = Math.max(...title.split(/\s+/).map((word) => word.length));
     display: block;
     margin-bottom: 0.6rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid #d3d9d5;
-    color: #7c2a30;
+    border-bottom: 1px solid var(--line-on-light);
+    color: var(--action);
     font-size: var(--type-meta);
     font-weight: 700;
     letter-spacing: var(--tracking-meta);
@@ -269,14 +273,15 @@ const chars = Math.max(...title.split(/\s+/).map((word) => word.length));
     grid-column: 1 / -1;
   }
 
-  /* La H1 del contingut ja és a l'entrada. */
+  /* La H1 del contingut ja és a l'entrada: el cos no la renderitza. Aquesta regla només cobreix el
+     cas de reserva sense HTML renderitzat (component <Content />). */
   .legal-body :global(h1) {
     display: none;
   }
 
   .legal-body :global(h2) {
-    margin: 2.6rem 0 0.8rem;
-    font-size: clamp(1.45rem, 2vw, 1.85rem);
+    margin: 2.2rem 0 0.7rem;
+    font-size: var(--type-h4);
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1.15;
@@ -385,7 +390,7 @@ const chars = Math.max(...title.split(/\s+/).map((word) => word.length));
     }
 
     h1 {
-      font-size: min(var(--type-hero), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * 0.53)));
+      font-size: min(var(--type-hero), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * 0.56)));
     }
   }
 </style>

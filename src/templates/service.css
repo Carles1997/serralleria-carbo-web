@@ -1,342 +1,141 @@
-/* Plantilla PS (serveis de Particulars). Només es carrega a les pàgines que usen
-   ServiceTemplate, després de mockup-base.css.
-   Origen, en aquest ordre de cascada: particulars/estructures/styles.css i les regles
-   .structures-page de revisio-client.css. La classe .structures-page identifica el
-   patró PS a totes les pàgines de servei. Es mantenen selectors, ordre i especificitat.
-   Canvis respecte a la maqueta:
-   - Accent únic #7c2a30: els tons rosa passen a bordeus (traços i nodes) o neutres.
-   - Capçalera, contacte i peu són components propis. */
+/* Plantilla PS (serveis de Particulars: Urgències, Estructures, Automatismes). Només es carrega a les
+   pàgines que usen ServiceTemplate, després de mockup-base.css. La classe .structures-page
+   identifica el patró PS a totes les pàgines de servei.
+   Origen: fases/fase-4/FASE4-mockups/particulars/estructures/ i els ajustos posteriors del director.
+   Refinament global del 06/10/2026 (fases/fase-7/FASE7-brief-refinament-global-i-contacte.md):
+   mateixa família clara que la Home i Particulars, titulars i espaiat dels rols compartits i accions
+   en bordeus. Les fotografies conserven text blanc amb una ombra local moderada. Les capes antigues
+   de maqueta, revisió del client i afinament s'han consolidat en aquest full. */
 
-.s-hero { position: relative; isolation: isolate; min-height: clamp(720px,88svh,960px); overflow: hidden; border-bottom: 1px solid #55595b; background: #282d2f; }
+.structures-page .arrow { display: inline-block; }
+
+/* Entrada fotogràfica */
+.s-hero { position: relative; isolation: isolate; min-height: clamp(400px, 56svh, 560px); overflow: hidden; background: #3c4245; color: #fff; }
 .s-hero-image { position: absolute; z-index: -1; inset: 0; }
 .s-hero-image picture { display: contents; }
-.s-hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 42%; filter: grayscale(1) contrast(1.12); }
-.s-hero-image::after { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(8,10,12,.96) 0%,rgba(8,10,12,.7) 45%,rgba(8,10,12,.25) 85%),linear-gradient(0deg,rgba(8,10,12,.8),transparent 50%,rgba(8,10,12,.38)); content: ""; }
-.s-hero-content { position: relative; display: flex; flex-direction: column; min-height: inherit; padding-top: clamp(1.5rem,2.7vw,2.8rem); padding-bottom: clamp(2rem,3vw,3rem); }
-.s-breadcrumb { display: flex; align-items: center; gap: .8rem; min-height: 44px; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,.43); color: #e6e8e7; font-size: .81rem; font-weight: 600; }
-.s-breadcrumb a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; text-decoration: none; }
-.s-breadcrumb>span[aria-hidden] { color: var(--f4-muted); }
-.s-hero-main { max-width: 1400px; margin-top: auto; padding-top: clamp(8rem,12vw,15rem); }
-.s-hero-label { color: #fff; font-size: .78rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
-.s-hero h1 { margin: 1.5rem 0 0; font-size: clamp(4.2rem,7.5vw,8.6rem); font-weight: 700; letter-spacing: -.065em; line-height: .85; text-transform: uppercase; text-wrap: balance; }
-.s-hero h1 em { color: #d2d6d5; font-style: normal; font-weight: 400; }
+.s-hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 42%; filter: saturate(.85) contrast(1.05); }
+.s-hero-image::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(8 10 12 / .8) 0%, rgb(8 10 12 / .5) 42%, rgb(8 10 12 / .08) 82%), linear-gradient(0deg, rgb(8 10 12 / .55), transparent 50%); content: ""; }
+.s-hero-content { position: relative; display: flex; flex-direction: column; min-height: inherit; padding-block: .5rem clamp(1.5rem, 1rem + 1.5vw, 2.5rem); }
+.s-breadcrumb { display: flex; align-items: center; gap: .6rem; min-height: 44px; padding-bottom: .4rem; border-bottom: 1px solid rgb(255 255 255 / .45); color: #eef0ef; font-size: .82rem; font-weight: 600; }
+.s-breadcrumb a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
+.s-breadcrumb > span[aria-hidden] { color: #c9cfcd; }
+.s-hero-main { max-width: 1400px; margin-top: auto; padding-top: 2.5rem; }
+.s-hero h1 { margin: 0; font-size: var(--type-hero); font-weight: 700; letter-spacing: -.055em; line-height: .92; text-transform: uppercase; text-wrap: balance; text-shadow: 0 2px 18px rgb(0 0 0 / .3); }
+.s-hero h1 em { color: #e3e7e5; font-style: normal; font-weight: 400; }
 .s-hero h1 > span, .s-hero h1 > em { display: inline-block; }
-.s-hero-bottom { display: flex; align-items: end; justify-content: space-between; gap: clamp(2rem,5vw,7rem); max-width: 1200px; margin-top: clamp(2.5rem,4.5vw,5rem); padding-top: 1.1rem; border-top: 1px solid rgba(255,255,255,.55); }
-.s-hero-bottom p { max-width: 67ch; margin: 0; color: #edf0ee; font-size: clamp(1rem,1.18vw,1.2rem); line-height: 1.5; }
-.s-hero-cta { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; flex: none; min-height: 48px; padding-bottom: .6rem; border-bottom: 1px solid #fff; font-weight: 700; text-decoration: none; }
-.s-hero-cta span { font-size: 1.25rem; }
-.s-hero-caption { display: block; align-self: flex-end; max-width: 34ch; margin-top: 2.1rem; color: #eef0ef; font-size: .73rem; font-weight: 700; letter-spacing: .1em; line-height: 1.35; text-align: right; text-transform: uppercase; text-shadow: 0 1px 8px #000; }
+.s-hero-bottom { display: flex; align-items: end; justify-content: space-between; gap: 1.25rem clamp(2rem, 5vw, 5rem); max-width: 1200px; margin-top: var(--space-lead); padding-top: .9rem; border-top: 1px solid rgb(255 255 255 / .5); }
+.s-hero-bottom p { max-width: 64ch; margin: 0; color: #f1f3f2; font-size: var(--type-intro); line-height: 1.5; text-shadow: 0 1px 12px rgb(0 0 0 / .35); }
+.s-hero-hours { margin-top: .5rem !important; color: #e3e7e5 !important; font-size: .9rem !important; }
+.s-hero-cta { display: flex; flex: none; align-items: center; justify-content: space-between; gap: 1.25rem; min-height: 48px; padding-bottom: .5rem; border-bottom: 1px solid #fff; font-weight: 700; }
+.s-hero-actions { display: flex; flex: none; flex-wrap: wrap; gap: .75rem; }
+.s-hero-action { display: inline-flex; align-items: center; justify-content: space-between; gap: 1.25rem; min-height: 50px; padding: .65rem 1.1rem; border: 1px solid rgb(255 255 255 / .8); font-weight: 700; transition: scale 160ms var(--motion-ease), background var(--motion-fast) ease, color var(--motion-fast) ease; }
+.s-hero-action-primary { border-color: var(--action); background: var(--action); color: #fff; }
+.s-hero-action:active, .s-hero-cta:active { scale: .97; }
+@media (hover: hover) and (pointer: fine) {
+  .s-hero-action:not(.s-hero-action-primary):hover { background: #fff; color: var(--ink); }
+  .s-hero-action-primary:hover { background: var(--action-hover); }
+}
 
-.s-scope { padding-block: clamp(5rem,8vw,9rem); }
-.s-section-heading { display: grid; grid-template-columns: minmax(0,1fr) minmax(240px,.4fr); gap: 1rem clamp(2rem,6vw,8rem); align-items: end; padding-bottom: clamp(3rem,5vw,5rem); }
-.s-section-heading .index { grid-column: 1/-1; }
-.s-section-heading h2 { margin: 0; font-size: clamp(3.7rem,6.4vw,7rem); font-weight: 700; letter-spacing: -.06em; line-height: .9; text-transform: uppercase; }
-.s-section-heading p { max-width: 31ch; margin: 0; color: #d0d5d3; font-size: clamp(1.05rem,1.35vw,1.3rem); line-height: 1.48; }
-.s-scope-gallery { display: grid; grid-template-columns: 1.13fr .87fr 1fr; gap: 1px; min-height: clamp(510px,42vw,720px); border: 1px solid #555d60; background: #555d60; }
-.s-scope-panel { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; overflow: hidden; padding: clamp(1.5rem,2.4vw,3rem); background: #252b2e; }
-.s-scope-panel::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg,rgba(10,12,14,.32),transparent 27%,rgba(10,12,14,.54) 72%,rgba(10,12,14,.91)); content: ""; }
-.s-panel-barana { background: linear-gradient(145deg,#343d3f,#202528 70%); }
-.s-panel-escala { background: linear-gradient(150deg,#20262a,#111518 72%); }
-.s-panel-passarella { background: linear-gradient(150deg,#31393a,#171b1e 72%); }
-/* Esquemes d'altres serveis: mateixos degradats que la galeria d'Estructures, per posició. */
-.s-panel-garatge { background: linear-gradient(145deg,#343d3f,#202528 70%); }
-.s-panel-persiana { background: linear-gradient(150deg,#20262a,#111518 72%); }
-.s-panel-acces { background: linear-gradient(150deg,#31393a,#171b1e 72%); }
-.s-panel-meta { position: relative; z-index: 2; max-width: 23ch; color: #fff; font-size: .73rem; font-weight: 700; letter-spacing: .12em; line-height: 1.3; text-transform: uppercase; }
-.s-scope-panel svg { position: absolute; z-index: -1; top: 12%; left: -13%; width: 130%; height: 67%; stroke: #a8b8ba; stroke-width: 3; opacity: .77; transition: transform 650ms var(--motion-ease),stroke 400ms ease; }
-.s-scope-panel svg * { vector-effect: non-scaling-stroke; }
-.s-panel-escala svg { top: 15%; left: -8%; }
-.s-panel-passarella svg { left: -9%; }
-/* Traç destacat en bordeus de marca (maqueta: #cf7c83); més gruixut perquè es llegeixi sobre fosc. */
-.s-scope-panel svg .s-diagram-accent { stroke: var(--color-particulars-accent); stroke-width: 6; }
-.s-scope-panel h3 { position: relative; z-index: 2; margin: 0; font-size: clamp(2.6rem,3.8vw,5rem); font-weight: 600; letter-spacing: -.055em; line-height: .9; text-transform: uppercase; overflow-wrap: anywhere; }
-.s-scope-outro { display: flex; align-items: start; justify-content: space-between; gap: 2rem; padding-top: 1.5rem; border-top: 1px solid #555d60; }
-.s-scope-outro p { max-width: 65ch; margin: 0; color: #c0c6c4; font-size: .9rem; line-height: 1.5; }
-.s-scope-outro p + p { margin-top: .4rem; font-size: .8rem; color: #a9b0ae; }
+/* Tipologies: blanc trencat i galeria fotogràfica. */
+.s-scope { padding-block: var(--space-section); background: var(--surface-paper); color: var(--ink); }
+.s-section-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, .45fr); align-items: end; gap: .75rem clamp(2rem, 5vw, 5rem); margin-bottom: var(--space-lead); }
+.s-section-heading h2 { margin: 0; font-size: var(--type-h2); font-weight: 700; letter-spacing: var(--display-tracking); line-height: var(--display-leading); text-transform: uppercase; }
+.s-section-heading p { max-width: 40ch; margin: 0; color: var(--ink-muted); font-size: var(--type-intro); line-height: 1.5; }
+.s-scope-gallery { display: grid; grid-template-columns: 1.13fr .87fr 1fr; gap: 1px; min-height: clamp(280px, 26vw, 360px); border: 1px solid var(--line-on-light); background: var(--line-on-light); }
+.s-scope-panel { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; overflow: hidden; padding: clamp(1rem, 1.8vw, 1.75rem); background: #3c4245; color: #fff; }
+.s-scope-panel::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg, rgb(10 12 14 / .3), transparent 30%, rgb(10 12 14 / .45) 65%, rgb(10 12 14 / .88)); content: ""; }
+.s-scope-panel picture { display: contents; }
+.s-scope-panel img { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.8) contrast(1.04); }
+.s-panel-escala img { object-position: 60% center; }
+.s-panel-meta { position: relative; z-index: 2; max-width: 26ch; font-size: var(--type-meta); font-weight: 700; letter-spacing: var(--tracking-meta); line-height: 1.3; text-shadow: 0 1px 8px rgb(0 0 0 / .45); text-transform: uppercase; }
+.s-scope-panel h3 { position: relative; z-index: 2; margin: 0; font-size: var(--type-h3); font-weight: 700; letter-spacing: -.035em; line-height: 1; text-transform: uppercase; overflow-wrap: break-word; }
+.s-scope-outro { display: flex; align-items: start; justify-content: space-between; gap: 1rem 2rem; padding-top: 1rem; }
+.s-scope-outro p { max-width: 65ch; margin: 0; color: var(--ink-muted); font-size: 1rem; line-height: 1.5; }
 .s-scope-outro .underlined-link { flex: none; }
 
-.s-approach { padding-block: clamp(5rem,8vw,9rem); border-block: 1px solid var(--f4-line); background: #1e2225; }
-.s-process-heading { display: grid; grid-template-columns: minmax(0,1fr) minmax(260px,.43fr); gap: 1rem clamp(2rem,5vw,7rem); align-items: end; }
-.s-process-heading .index { grid-column: 1/-1; }
-.s-process-heading h2 { margin: 0; font-size: clamp(3.8rem,6.2vw,7rem); font-weight: 700; letter-spacing: -.06em; line-height: .9; text-transform: uppercase; }
-.s-process-heading p { max-width: 40ch; margin: 0; color: #d2d8d6; font-size: clamp(1rem,1.25vw,1.2rem); line-height: 1.5; }
-.s-process-track { position: relative; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: clamp(1rem,3vw,3rem); margin-top: clamp(3rem,6vw,7rem); padding-bottom: clamp(3rem,5vw,5rem); }
-.s-process-step { position: relative; min-width: 0; }
-/* Nodes en bordeus ple amb text blanc: accent de marca amb contrast suficient. */
-.s-process-node { position: relative; z-index: 1; display: grid; place-items: center; width: 4.4rem; height: 4.4rem; border: 1px solid var(--color-particulars-accent); background: var(--color-particulars-accent); color: #fff; font-size: .9rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-.s-process-step h3 { margin: clamp(2.2rem,4vw,4rem) 0 .6rem; font-size: clamp(2.4rem,3.8vw,4.6rem); font-weight: 600; letter-spacing: -.055em; line-height: .95; text-transform: uppercase; }
-.s-process-step p { max-width: 28ch; margin: 0; color: #cfd5d3; font-size: clamp(1rem,1.1vw,1.12rem); line-height: 1.45; }
-.s-process-result { display: grid; grid-template-columns: minmax(220px,.6fr) minmax(0,1fr); gap: clamp(2rem,5vw,6rem); align-items: end; padding: clamp(2rem,3.5vw,4rem); border-top: 1px solid #888f91; background: #292e31; }
-.s-process-result>div { display: flex; align-items: start; gap: 1.1rem; }
-.s-process-result-mark { display: grid; place-items: center; width: 38px; height: 38px; flex: none; border: 1px solid var(--color-particulars-accent); background: var(--color-particulars-accent); color: #fff; font-size: 1.7rem; font-weight: 300; line-height: 1; }
-.s-process-result p { max-width: 32ch; margin: 0; color: #d5dad8; font-size: .94rem; line-height: 1.45; }
-.s-process-result strong { max-width: 37ch; font-size: clamp(1.5rem,2.45vw,2.8rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.12; }
+/* Fitxa de preparació: gris clar, titular i entrada a l'esquerra, llista a la dreta. */
+.s-approach { padding-block: var(--space-section); border-block: 1px solid var(--line-on-light); background: var(--surface-grey); color: var(--ink); }
+.s-brief-grid { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); grid-template-areas: "head body" "action body"; grid-template-rows: auto 1fr; gap: 0 clamp(2rem, 5vw, 6rem); align-items: start; }
+.s-brief-head { grid-area: head; }
+.s-brief-head h2 { margin: 0; font-size: var(--type-h2); font-weight: 700; letter-spacing: var(--display-tracking); line-height: var(--display-leading); text-transform: uppercase; }
+.s-brief-head p { max-width: 42ch; margin: var(--space-lead) 0 0; color: var(--ink-muted); font-size: var(--type-intro); line-height: 1.5; }
+.s-brief-body { grid-area: body; }
+.s-brief-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-strong-on-light); }
+.s-brief-list li { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: 1rem; align-items: start; padding-block: clamp(.8rem, .6rem + .6vw, 1.1rem); border-bottom: 1px solid var(--line-on-light); }
+.s-brief-number { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; background: var(--action); color: #fff; font-size: .76rem; font-weight: 700; letter-spacing: .06em; }
+.s-brief-list h3 { margin: .1rem 0 .25rem; font-size: var(--type-h4); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; text-transform: uppercase; }
+.s-brief-list p { margin: 0; color: var(--ink-muted); font-size: 1rem; line-height: 1.5; }
+.s-brief-optional { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem .8rem; margin: 1rem 0 0; color: var(--ink-muted); font-size: 1rem; line-height: 1.5; }
+.s-brief-optional > span { flex: none; padding: .1rem .5rem; border: 1px solid var(--line-strong-on-light); color: var(--ink); font-size: var(--type-meta); font-weight: 700; letter-spacing: var(--tracking-meta); line-height: 1.4; text-transform: uppercase; }
+.s-brief-action { grid-area: action; justify-self: start; display: inline-flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-width: 240px; min-height: 50px; margin-top: var(--space-block); padding: .7rem 1.1rem; background: var(--action); color: #fff; font-weight: 700; transition: background-color var(--motion-fast) ease, scale 160ms var(--motion-ease); }
+.s-brief-action:active { scale: .98; }
+@media (hover: hover) and (pointer: fine) { .s-brief-action:hover { background: var(--action-hover); } }
 
-.s-repair { border-block: 1px solid #555b5d; background: #292d30; }
-.s-repair-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; min-height: 145px; padding-block: 1.5rem; }
-.s-repair p { max-width: 56ch; margin: .55rem 0 0; color: #e1e5e3; font-size: clamp(1.15rem,1.6vw,1.6rem); font-weight: 600; letter-spacing: -.025em; line-height: 1.2; }
-.s-repair a { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 52px; padding: .7rem 1rem; border: 1px solid #d4d8d6; font-weight: 700; text-decoration: none; white-space: nowrap; }
-.s-repair a span { font-size: 1.2rem; }
-/* Pont cap a Industrial (03/10/2026): grafit i plata, els colors d'Industrial. */
-.s-series { border-block: 1px solid #3a3d41; background: #1e2225; color: #f3f4f2; }
-.s-series-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; min-height: 130px; padding-block: 1.5rem; }
-.s-series .index { color: #c5ceca; }
-.s-series p { max-width: 56ch; margin: .55rem 0 0; color: #e1e5e3; font-size: clamp(1.05rem,1.4vw,1.35rem); font-weight: 600; letter-spacing: -.02em; line-height: 1.25; }
-.s-series a { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 52px; padding: .7rem 1rem; border: 1px solid #c5ceca; color: #f3f4f2; font-weight: 700; text-decoration: none; white-space: nowrap; }
-.s-series a:hover, .s-series a:focus-visible { background: #c5ceca; color: #1e2225; }
-.s-series a span { font-size: 1.2rem; }
+/* Secció relacionada */
+.s-related { padding-block: var(--space-section); background: var(--surface-paper); color: var(--ink); }
+.s-related-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .55fr); align-items: end; gap: 1rem clamp(2rem, 5vw, 6rem); }
+.s-related h2 { margin: 0; font-size: var(--type-h2); font-weight: 700; letter-spacing: var(--display-tracking); line-height: var(--display-leading); text-transform: uppercase; }
+.s-related p { max-width: 48ch; margin: 0 0 .75rem; color: var(--ink-muted); font-size: var(--type-intro); line-height: 1.5; }
+.s-related .underlined-link { margin-right: 1.5rem; }
 
-@media (max-width: 1000px) { .s-hero h1 { font-size: clamp(4rem,7.5vw,6.5rem); } .s-hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.5rem; } .s-scope-gallery { min-height: 500px; } .s-scope-panel h3 { font-size: clamp(2.1rem,3.4vw,3.8rem); } .s-process-result { grid-template-columns: .55fr 1fr; } }
-@media (max-width: 760px) {
-  .s-hero { min-height: max(730px,calc(100svh - 68px)); }
-  .s-hero-image::after { background: linear-gradient(0deg,rgba(8,10,12,.98),rgba(8,10,12,.74) 50%,rgba(8,10,12,.32)); }
-  .s-hero-image img { object-position: 55% center; }
-  .s-hero-content { padding-block: 1.3rem 2rem; }
-  .s-hero-main { padding-top: 11rem; }
-  .s-hero h1 { font-size: clamp(3.1rem,8.8vw,5.2rem); }
-  .s-hero-bottom { margin-top: 2rem; }
-  .s-hero-caption { align-self: flex-start; text-align: left; }
-  .s-section-heading, .s-process-heading { grid-template-columns: 1fr; }
-  .s-section-heading h2, .s-process-heading h2 { font-size: clamp(3.5rem,8vw,5.3rem); }
-  .s-section-heading p, .s-process-heading p { max-width: 55ch; }
-  .s-scope-gallery { grid-template-columns: 1fr; min-height: 0; }
-  .s-scope-panel { min-height: 350px; }
-  .s-scope-panel svg { top: 7%; left: 18%; width: 80%; height: 80%; }
-  .s-scope-panel h3 { font-size: clamp(3rem,8vw,5rem); }
-  .s-scope-outro { flex-direction: column; align-items: flex-start; }
-  .s-process-track { grid-template-columns: 1fr; gap: 0; margin-top: 3.5rem; padding-bottom: 2rem; }
-  .s-process-step { display: grid; grid-template-columns: 4.4rem minmax(0,1fr); gap: 1.5rem; min-height: 140px; }
-  .s-process-step h3 { margin: .4rem 0 .35rem; font-size: clamp(2.5rem,6.5vw,4rem); }
-  .s-process-result { grid-template-columns: 1fr; gap: 2rem; }
-  .s-repair-inner { flex-direction: column; align-items: flex-start; gap: 1.3rem; }
-  .s-series-inner { flex-direction: column; align-items: flex-start; gap: 1.3rem; }
-}
-@media (max-width: 520px) {
-  .s-breadcrumb { gap: .5rem; font-size: .76rem; }
-  .s-hero { min-height: 800px; }
-  .s-hero h1 { font-size: clamp(2.8rem,10vw,3.9rem); }
-  .s-hero-label { font-size: .7rem; }
-  .s-hero-bottom p { font-size: .98rem; }
-  .s-hero-caption { font-size: .64rem; }
-  .s-section-heading h2, .s-process-heading h2 { font-size: clamp(2.9rem,10vw,3.8rem); }
-  .s-scope-panel { min-height: 290px; padding: 1.5rem; }
-  .s-scope-panel svg { left: 16%; width: 90%; }
-  .s-scope-panel h3 { font-size: clamp(2.6rem,9.2vw,3.8rem); }
-  .s-process-step { gap: 1rem; min-height: 125px; }
-  .s-process-step h3 { font-size: clamp(2rem,8vw,3rem); }
-  .s-process-result { padding: 1.5rem; }
-  .s-repair a { width: 100%; white-space: normal; }
-  .s-series a { width: 100%; white-space: normal; }
-}
-@media (max-width: 360px) { .s-hero { min-height: 830px; } .s-hero h1 { font-size: 9.6vw; } .s-scope-panel h3 { font-size: 8.7vw; } .s-process-heading h2 { font-size: 9vw; } .s-process-step h3 { font-size: 7.8vw; } }
-
-/* revisio-client.css (.structures-page) */
-.structures-page .s-hero{min-height:clamp(560px,78svh,760px)}
-.structures-page .s-hero-main{padding-top:5rem}
-.structures-page .s-hero h1{font-size:clamp(3.9rem,6.2vw,7rem)}
-.structures-page .s-scope,.structures-page .s-approach{padding-block:clamp(3.5rem,5vw,5.5rem)}
-.structures-page .s-scope-gallery{min-height:390px}
-.structures-page .s-scope-panel h3{font-size:clamp(2rem,3vw,3.9rem)}
-@media(max-width:760px){
- .structures-page .s-hero{min-height:680px}
- .structures-page .s-scope,.structures-page .s-approach{padding-block:3rem}
+/* Sortida d'avaries: franja clara amb l'acció de trucada en bordeus. */
+.s-repair { border-block: 1px solid var(--line-on-light); background: var(--surface-grey); color: var(--ink); }
+.s-repair-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; padding-block: clamp(1rem, .8rem + .8vw, 1.5rem); }
+.s-repair .index { color: var(--action); }
+.s-repair p { max-width: 60ch; margin: .35rem 0 0; font-size: var(--type-h4); font-weight: 600; letter-spacing: -.015em; line-height: 1.25; }
+.s-repair-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.s-repair a { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; min-height: 48px; padding: .55rem 1rem; border: 1px solid var(--action); color: var(--action); font-weight: 700; white-space: nowrap; transition: scale 160ms var(--motion-ease), background var(--motion-fast) ease, color var(--motion-fast) ease; }
+.s-repair a:first-child { background: var(--action); color: #fff; }
+.s-repair a:active { scale: .97; }
+@media (hover: hover) and (pointer: fine) {
+  .s-repair a:hover { background: var(--action); color: #fff; }
+  .s-repair a:first-child:hover { background: var(--action-hover); }
 }
 
-/* Ajustos del director de projecte (27/09/2026): fons alterns com a Particulars (clar /
-   fosc #1e2225), titulars de secció a l'escala comuna del web i procés compacte que es
-   llegeix sencer sense scroll. Selectors .structures-page perquè guanyin les regles de maqueta. */
-.structures-page .s-scope { background: var(--client-paper); color: var(--client-ink); }
-.structures-page .s-scope .index,
-.structures-page .s-section-heading p,
-.structures-page .s-scope-outro p { color: #4c5652; }
-.structures-page .s-scope-outro p + p { color: #5d6764; }
-.structures-page .s-scope-outro { border-top-color: #aeb6b2; }
-.structures-page .s-scope-gallery { border-color: #4b5052; background: #4b5052; }
-.structures-page .s-scope-panel { color: #fff; }
-.structures-page .s-section-heading h2,
-.structures-page .s-process-heading h2 { font-size: clamp(3.5rem,5.4vw,5.8rem); }
-/* En pantalles estretes, la paraula més llarga (--chars, calculat a la plantilla) ha de cabre
-   a l'amplada útil: ~0,53 em per caràcter en majúscula amb aquest tracking. */
-@media (max-width: 760px) {
-  .structures-page .s-hero h1 { font-size: min(clamp(3.9rem,6.2vw,7rem), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .53))); }
-  .structures-page .s-section-heading h2,
-  .structures-page .s-process-heading h2 { font-size: min(clamp(3.5rem,5.4vw,5.8rem), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .53))); }
-}
+/* Pont cap a Industrial: franja breu en grafit mitjà i plata. */
+.s-series { background: #525c5c; color: #fff; }
+.s-series-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; padding-block: clamp(1rem, .8rem + .8vw, 1.5rem); }
+.s-series .index { color: #dfe5e3; }
+.s-series p { max-width: 60ch; margin: .35rem 0 0; color: #f1f3f2; font-size: var(--type-h4); font-weight: 600; letter-spacing: -.015em; line-height: 1.25; }
+.s-series a { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; min-height: 48px; padding: .55rem 1rem; border: 1px solid #d5dbd9; font-weight: 700; white-space: nowrap; transition: background var(--motion-fast) ease, color var(--motion-fast) ease; }
+.s-series a:hover, .s-series a:focus-visible { background: #e4e9e7; color: #202627; }
 
-.structures-page .s-approach { padding-block: clamp(3rem,4.5vw,4.5rem); border-color: #33393c; background: #1e2225; }
-.structures-page .s-process-flow { margin-top: clamp(2rem,3.5vw,3.5rem); }
-.structures-page .s-process-track { --gap: clamp(1rem,3vw,3rem); gap: var(--gap); margin-top: 0; padding-bottom: clamp(2rem,3vw,3rem); }
-.structures-page .s-process-node { width: 3rem; height: 3rem; font-size: .78rem; }
-.structures-page .s-process-step h3 { margin: clamp(1.1rem,1.8vw,1.6rem) 0 .35rem; font-size: clamp(1.6rem,2.2vw,2.4rem); }
-.structures-page .s-process-step p { font-size: .95rem; }
-.structures-page .s-process-result { padding: clamp(1.4rem,2.4vw,2.4rem); }
-.structures-page .s-process-result strong { font-size: clamp(1.3rem,1.9vw,2.1rem); }
-/* Trams entre nodes consecutius: carril gris i progrés en bordeus (cap a la dreta; en mòbil, cap avall). */
-.s-process-step:not(:last-child)::before,
-.s-process-step:not(:last-child)::after { position: absolute; top: 1.5rem; left: 1.5rem; width: calc(100% + var(--gap)); height: 1px; background: #5b6568; content: ""; transform-origin: left center; }
-.s-process-step:not(:last-child)::after { height: 2px; margin-top: -.5px; background: var(--color-particulars-accent); }
+.underlined-link { transition: scale 160ms var(--motion-ease); }
+.underlined-link:active { scale: .97; }
 
-.structures-page .s-repair { border-color: #b8bfba; background: #e0e4df; color: var(--client-ink); }
-.structures-page .s-repair .index { color: #424d49; }
-.structures-page .s-repair p { color: var(--client-ink); }
-.structures-page .s-repair a { border-color: var(--client-ink); }
-
-@media (max-width: 760px) {
-  .structures-page .s-approach { padding-block: 2.5rem; }
-  .structures-page .s-process-heading { gap: .9rem; }
-  .structures-page .s-process-heading p { font-size: .95rem; }
-  .structures-page .s-process-flow { margin-top: 1.6rem; }
-  .structures-page .s-process-track { padding-bottom: 1.25rem; }
-  .structures-page .s-process-step { grid-template-columns: 3rem minmax(0,1fr); gap: 1rem; min-height: 0; padding-bottom: 1rem; }
-  .structures-page .s-process-step:last-child { padding-bottom: 0; }
-  .structures-page .s-process-step h3 { margin: .15rem 0 .1rem; font-size: clamp(1.45rem,5.5vw,2rem); }
-  .structures-page .s-process-step p { font-size: .9rem; }
-  .structures-page .s-process-result { padding: 1.25rem; }
-  .structures-page .s-process-result p { font-size: .88rem; }
-  .structures-page .s-process-result strong { font-size: 1.2rem; }
-  .s-process-step:not(:last-child)::before,
-  .s-process-step:not(:last-child)::after { width: 1px; height: 100%; transform-origin: center top; }
-  .s-process-step:not(:last-child)::after { width: 2px; margin: 0 0 0 -.5px; }
-  .structures-page .s-process-result { gap: 1rem; }
-}
-
-/* Moviment de la plantilla (criteri emil-design-eng; vegeu styles/motion.css). */
-.structures-page .arrow { display: inline-block; }
-.s-hero-cta,.s-repair a,.underlined-link { transition: scale 160ms var(--motion-ease), background var(--motion-fast) ease, color var(--motion-fast) ease; }
-.s-hero-cta:active,.s-repair a:active,.underlined-link:active { scale: .97; }
+/* Moviment (criteri emil-design-eng; vegeu styles/motion.css). */
 @media (hover: hover) and (pointer: fine) {
   .structures-page .arrow { transition: translate 220ms var(--motion-ease); }
   .structures-page a:hover .arrow { translate: 3px -3px; }
   .s-breadcrumb a:hover { text-decoration: underline; text-underline-offset: .3em; }
-  .structures-page .s-repair a:hover { background: var(--client-ink); color: #fff; }
 }
-
-/* Seqüència del procés: el carril apareix, el progrés avança tram a tram (ease-in-out: arrenca
-   i frena a cada node), cada node s'encén quan el traç hi arriba i el text del pas puja just
-   després. El resultat tanca la seqüència. Tot és d'un sol ús i l'estat final és el mateix
-   que sense animació. */
 @media (prefers-reduced-motion: no-preference) {
   .s-hero-image img { animation: settle-image 1100ms var(--ease-out-strong) backwards; }
-  .s-process-flow { --lead: 150ms; --beat: 420ms; }
-  .s-process-flow.is-revealed .s-process-node {
-    animation:
-      node-in 320ms var(--ease-out-strong) calc(var(--i, 0) * 60ms) backwards,
-      node-on 480ms var(--ease-out-strong) calc(var(--lead) + var(--i, 0) * var(--beat)) backwards;
-  }
-  .s-process-flow.is-revealed .s-process-step:not(:last-child)::after {
-    animation: segment-draw var(--beat) var(--ease-in-out-strong) calc(var(--lead) + var(--i, 0) * var(--beat)) backwards;
-  }
-  .s-process-flow.is-revealed .s-process-step > div {
-    animation: reveal-rise-soft 480ms var(--ease-out-strong) calc(var(--lead) + var(--i, 0) * var(--beat) + 80ms) backwards;
-  }
-  .s-process-flow.is-revealed .s-process-result {
-    animation: reveal-rise 480ms var(--ease-out-strong) calc(var(--lead) + (var(--steps) - 1) * var(--beat) + 220ms) backwards;
-  }
-}
-@media (prefers-reduced-motion: no-preference) and (max-width: 760px) {
-  .s-process-flow.is-revealed .s-process-step:not(:last-child)::after { animation-name: segment-draw-y; }
-}
-@keyframes node-in { from { opacity: 0; scale: .85; } }
-@keyframes node-on { from { border-color: #5b6568; background-color: #1e2225; color: #9aa3a5; } }
-@keyframes segment-draw { from { scale: 0 1; } }
-@keyframes segment-draw-y { from { scale: 1 0; } }
-
-/* Variants de la plantilla PS per als altres serveis (Fase 5). */
-/* Incidència: trucada i WhatsApp com a accions principals de l'entrada. */
-.s-hero-hours { margin-top: .6rem !important; color: #d2d6d5 !important; font-size: .9rem !important; }
-.s-hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; flex: none; }
-.s-hero-action { display: inline-flex; align-items: center; justify-content: space-between; gap: 1.25rem; min-height: 56px; padding: .8rem 1.1rem; border: 1px solid rgba(255,255,255,.75); font-weight: 700; text-decoration: none; transition: scale 160ms var(--motion-ease), background var(--motion-fast) ease, color var(--motion-fast) ease; }
-.s-hero-action-primary { border-color: #fff; background: #fff; color: var(--color-ink); }
-.s-hero-action:active { scale: .97; }
-@media (hover: hover) and (pointer: fine) {
-  .s-hero-action:not(.s-hero-action-primary):hover { background: #fff; color: var(--color-ink); }
-}
-@media (max-width: 520px) { .s-hero-actions { flex-direction: column; align-self: stretch; } }
-
-/* Resultat sense frase de valoració: una sola columna. */
-.structures-page .s-process-result-single { grid-template-columns: 1fr; }
-
-/* Secció relacionada: clara, text del contingut i enllaços a altres rutes. */
-.s-related { padding-block: clamp(3rem,4.5vw,4.5rem); border-top: 1px solid #bac1bc; background: var(--client-paper); color: var(--client-ink); }
-.s-related-inner { display: grid; grid-template-columns: minmax(0,1fr) minmax(260px,.55fr); gap: 1.5rem clamp(2rem,5vw,7rem); align-items: end; }
-.s-related h2 { margin: 0; font-size: clamp(3.5rem,5.4vw,5.8rem); font-weight: 700; letter-spacing: -.06em; line-height: .9; text-transform: uppercase; }
-.s-related p { max-width: 48ch; margin: 0 0 1.25rem; color: #4c5652; font-size: clamp(1rem,1.25vw,1.2rem); line-height: 1.5; }
-.s-related .underlined-link { margin-right: 1.5rem; }
-@media (max-width: 760px) {
-  .s-related-inner { grid-template-columns: 1fr; }
-  .s-related h2 { font-size: min(3.5rem, calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .53))); }
-}
-
-/* Sortida d'avaries: dos enllaços i to fosc quan segueix una secció clara. */
-.s-repair-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
-.structures-page .s-repair-dark { border-color: #33393c; background: #1e2225; color: #fff; }
-.structures-page .s-repair-dark .index { color: var(--f4-muted); }
-.structures-page .s-repair-dark p { color: #e1e5e3; }
-.structures-page .s-repair-dark a { border-color: #d4d8d6; }
-@media (hover: hover) and (pointer: fine) {
-  .structures-page .s-repair-dark a:hover { background: #fff; color: var(--f4-black); }
-}
-@media (max-width: 520px) { .s-repair-actions { align-self: stretch; flex-direction: column; } }
-
-/* Bloc 3 del pla d'afinament (27/09/2026): rols compartits de src/styles/roles.css, com al pilot
-   validat. Superfície de lectura en blanc; H3 per als panells, H4 per als passos del procés
-   (seqüència); text d'entrada, cos, etiquetes i avisos amb una sola mida; espaiat comú. */
-.s-hero h1 { margin-top: 0; }
-.structures-page .s-scope,
-.s-related { background: var(--surface-read); }
-.structures-page :is(.s-scope, .s-approach),
-.s-related { padding-block: var(--space-section); }
-.structures-page :is(.s-section-heading, .s-process-heading) { margin-bottom: var(--space-lead); }
-.structures-page .s-section-heading p,
-.structures-page .s-process-heading p,
-.s-hero-bottom p,
-.s-related p { font-size: var(--type-intro); }
-.structures-page .s-scope-panel h3 { font-size: var(--type-h3); }
-.structures-page .s-process-step h3 { font-size: var(--type-h4); }
-.structures-page .s-process-step p,
-.structures-page .s-scope-outro p { font-size: 1rem; }
-.structures-page .s-scope-outro p + p { font-size: .88rem; }
-.structures-page :is(.s-panel-meta, .s-repair .index) { font-size: var(--type-meta); letter-spacing: var(--tracking-meta); }
-.s-hero-caption { font-size: var(--type-caption); }
-.s-hero-image img { filter: saturate(.85) contrast(1.05); }
-@media (max-width: 760px) {
-  .structures-page .s-process-step h3 { font-size: var(--type-h4); }
-  .structures-page .s-process-step p { font-size: .95rem; }
-}
-
-
-/* Les tipologies combinen fotografies documentals i conceptuals, identificades a la targeta. */
-.s-scope-panel picture { display: contents; }
-.s-scope-panel img { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: grayscale(.5) contrast(1.05) brightness(.82); transition: filter 320ms ease, transform 550ms var(--motion-ease); }
-.s-panel-escala img { object-position: 60% center; }
-.s-panel-persiana img { object-position: center; }
-.s-panel-source { position: relative; z-index: 2; align-self: flex-start; margin-top: auto; margin-bottom: .85rem; padding: .4rem .55rem; border: 1px solid rgba(255,255,255,.6); background: rgba(11,13,14,.62); color: #f3f4f2; font-size: .68rem; font-weight: 700; letter-spacing: .09em; line-height: 1.2; text-transform: uppercase; }
-/* Bloc 4 (28/09/2026): els panells informatius no reaccionen al punter. */
-
-/* Redisseny del director (28/09/2026): la secció de procés passa a fitxa de preparació.
-   Les tres dades eren una llista de comprovació, no una seqüència: sense línia de connexió ni
-   bloc de resultat (repetia l'entrada). A l'esquerra, titular i entrada; a la dreta, la llista
-   amb filets i la nota opcional; el botó obre el formulari amb el servei triat. A mòbil, el
-   botó queda després de la llista. */
-.s-brief-grid { display: grid; grid-template-columns: minmax(0,.95fr) minmax(0,1.05fr); grid-template-areas: "head body" "action body"; grid-template-rows: auto 1fr; gap: 0 clamp(2rem,6vw,7rem); align-items: start; }
-.structures-page .s-brief .s-brief-head { display: block; grid-area: head; margin: 0; }
-.structures-page .s-brief .s-brief-head p { max-width: 40ch; margin: 1.5rem 0 0; color: #d1d6d4; font-size: var(--type-intro); line-height: 1.5; }
-.s-brief-body { grid-area: body; }
-.s-brief-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid rgb(255 255 255 / .18); }
-.s-brief-list li { display: grid; grid-template-columns: 2.5rem minmax(0,1fr); gap: 1.25rem; align-items: start; padding-block: clamp(1.1rem,1.8vw,1.5rem); border-bottom: 1px solid rgb(255 255 255 / .18); }
-.s-brief-number { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; background: var(--action); color: #fff; font-size: .76rem; font-weight: 700; letter-spacing: .08em; }
-.s-brief-list h3 { margin: .1rem 0 .3rem; color: #fff; font-size: var(--type-h4); font-weight: 700; letter-spacing: -.03em; line-height: 1.05; text-transform: uppercase; }
-.s-brief-list p { margin: 0; color: #cfd5d3; font-size: 1rem; line-height: 1.5; }
-.s-brief-optional { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem .9rem; margin: 1.25rem 0 0; color: #cfd5d3; font-size: 1rem; line-height: 1.5; }
-.s-brief-optional > span { flex: none; padding: .15rem .5rem; border: 1px solid rgb(255 255 255 / .38); color: #fff; font-size: var(--type-meta); font-weight: 700; letter-spacing: var(--tracking-meta); line-height: 1.4; text-transform: uppercase; }
-.s-brief-action { grid-area: action; justify-self: start; display: inline-flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-width: 240px; min-height: 54px; margin-top: 2rem; padding: .8rem 1.1rem; background: #fff; color: var(--client-ink); font-weight: 700; text-decoration: none; transition: background-color var(--motion-fast) ease, scale 160ms var(--motion-ease); }
-.s-brief-action:active { scale: .98; }
-@media (hover: hover) and (pointer: fine) { .s-brief-action:hover { background: #e6e9e7; } }
-@media (max-width: 900px) {
-  .s-brief-grid { grid-template-columns: 1fr; grid-template-areas: "head" "body" "action"; grid-template-rows: auto; }
-  .s-brief-body { margin-top: 2rem; }
-}
-@media (max-width: 520px) {
-  .s-brief-action { width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) { .s-brief-action { transition: none; } }
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .s-hero-bottom { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 900px) {
+  .s-brief-grid { grid-template-columns: 1fr; grid-template-areas: "head" "body" "action"; grid-template-rows: auto; }
+  .s-brief-body { margin-top: var(--space-lead); }
+}
+@media (max-width: 760px) {
+  .s-hero { min-height: 440px; }
+  .s-hero-image img { object-position: 55% center; }
+  .s-hero-image::after { background: linear-gradient(0deg, rgb(8 10 12 / .88), rgb(8 10 12 / .5) 50%, rgb(8 10 12 / .15)); }
+  .s-hero h1 { font-size: min(var(--type-hero), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .56))); }
+  .s-section-heading, .s-related-inner { grid-template-columns: 1fr; }
+  .s-section-heading h2, .s-brief-head h2, .s-related h2 { font-size: min(var(--type-h2), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .56))); }
+  .s-scope-gallery { grid-template-columns: 1fr; min-height: 0; }
+  .s-scope-panel { min-height: 220px; }
+  .s-scope-outro, .s-repair-inner, .s-series-inner { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 520px) {
+  .s-breadcrumb { gap: .4rem; font-size: .78rem; }
+  .s-hero-actions, .s-repair-actions { flex-direction: column; align-self: stretch; }
+  .s-repair a, .s-series a { width: 100%; white-space: normal; }
+  .s-brief-action { width: 100%; }
+}

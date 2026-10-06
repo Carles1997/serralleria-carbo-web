@@ -9,7 +9,7 @@ seoDescription: "Baranes, estructures, portes i automatismes a mida per a habita
 
 # Serralleria per a particulars a Vilafranca i rodalia
 
-Una passarel·la interior, baranes per a una reforma, una porta de pàrquing motoritzada: són treballs que hem fet i que pots veure a Projectes. Fabriquem i instal·lem peces a mida per a habitatges, comunitats i negocis des del nostre taller a Vilafranca del Penedès.
+Fabriquem i instal·lem peces a mida per a habitatges, comunitats i negocis des del nostre taller de Vilafranca del Penedès.
 
 ## Feines a mida. Respostes clares
 
@@ -33,19 +33,19 @@ Fabriquem mobiliari amb estructura metàl·lica, a mida de l'ús i de l'espai.
 
 ### Reparacions
 
-Si una porta, una persiana o un motor ha deixat de funcionar, truca'ns durant l’horari d’atenció i explica'ns què ha passat.
+Portes, persianes i motors que han deixat de funcionar.
 
 [Veure reparacions](/particulars/urgencies/)
 
 ## Una sèrie, una peça tècnica o un projecte constructiu?
 
-Les mateixes estructures, portes i mobiliari també els fabriquem en sèrie, i amb la línia Industrial fem peces a plànol i carros industrials per a empreses, constructores i promotores. Si entres per aquí, també t'atendrem.
+A Industrial fabriquem estructures, portes i mobiliari per a sèries i projectes d'obra, i peces a plànol i carros industrials per a empreses, constructores i promotores. També fem encàrrecs industrials d'una sola unitat.
 
 [Fabricació industrial](/industrial/#produccio)
 
 ## Fets, no només paraules
 
-A la portada destaquem tres treballs documentats: baranes interiors, una estructura per a ascensor i les persianes motoritzades d’un negoci. El portafoli recull els cinc casos recuperats, fets per a habitatges, comunitats i negocis.
+Tres treballs documentats en un habitatge, una comunitat i un negoci. El portafoli en recull cinc.
 
 [Veure els cinc treballs](/particulars/projectes/)
 
@@ -55,6 +55,6 @@ Treballem principalment a Vilafranca del Penedès i la rodalia i també fem enc�
 
 ## Explica'ns la feina
 
-Descriu la feina i, si en tens, adjunta una fotografia, les mides o un document. Així podem començar a valorar el projecte amb informació concreta.
+Descriu la feina i, si en tens, adjunta una fotografia, les mides o un document.
 
 [Formulari de contacte](/contacte/)

@@ -48,10 +48,11 @@ if (list && method && document.documentElement.classList.contains('motion-ready'
       return;
     }
     // En fila: els passos apareixen en entrar el mètode a la pantalla; la línia comença quan el
-    // mètode ja és a la meitat superior i acaba en arribar-ne la part alta a dalt de tot.
+    // mètode ja és dins la lectura (75 % de la pantalla) i acaba quan la seva part alta arriba al
+    // 30 %. Mètode compacte (refinament del 06/10/2026): tot el recorregut passa amb el bloc visible.
     const top = method.getBoundingClientRect().top;
-    const visibility = clamp((viewport * 0.8 - top) / (viewport * 0.7));
-    const progress = clamp((viewport * 0.55 - top) / (viewport * 0.45));
+    const visibility = clamp((viewport * 0.85 - top) / (viewport * 0.6));
+    const progress = clamp((viewport * 0.75 - top) / (viewport * 0.45));
     steps.forEach((step, index) => {
       step.classList.toggle('is-visible', visibility >= 0.12 + index * 0.24);
       step.classList.toggle('is-lit', progress > 0 && progress >= index / Math.max(1, steps.length - 1) - 0.001);

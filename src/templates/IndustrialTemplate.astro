@@ -21,7 +21,6 @@ import { projectPhotography, sitePhotography } from '../config/photography';
 import './mockup-base.css';
 import './industrial-base.css';
 import './industrial.css';
-import './industrial-surfaces.css';
 
 interface Props {
   page: Page;
@@ -67,13 +66,12 @@ const sectorsPlain = plainText(sectorsText).toLowerCase();
 const missingSector = t.sectors.items.find((sector) => !sectorsPlain.includes(sector.name.toLowerCase()));
 if (missingSector) throw new Error(`El sector «${missingSector.name}» no consta a «${sectors.heading}».`);
 
-// Sèries: entrada de la secció i, en un apartat H3, el mètode (entrada i quatre passos).
+// Sèries: una sola frase de context i els quatre passos del mètode, sense apartat H3 propi
+// (valoració editorial, 06/10/2026: un titular i un paràgraf equivalents competien amb l'H2).
 const seriesLead = one(paragraphs(method.blocks), `un paràgraf a «${method.heading}»`);
-const methodBox = one(method.subsections, `un apartat H3 (mètode) a «${method.heading}»`);
-sameText(t.series.method.heading, methodBox.heading, 'industrial.md');
-const methodLead = one(paragraphs(methodBox.blocks), `un paràgraf a «${methodBox.heading}»`);
-const steps = listItems(methodBox.blocks).map(labelledItem);
-if (steps.length !== 4) throw new Error(`«${methodBox.heading}» ha de tenir quatre passos; en té ${steps.length}.`);
+if (method.subsections.length) throw new Error(`«${method.heading}» ja no porta apartats H3: el mètode són els quatre passos.`);
+const steps = listItems(method.blocks).map(labelledItem);
+if (steps.length !== 4) throw new Error(`«${method.heading}» ha de tenir quatre passos; en té ${steps.length}.`);
 
 const projectText = one(paragraphs(project.blocks), `un paràgraf a «${project.heading}»`);
 const projectAction = one(links(project.blocks), `un enllaç a «${project.heading}»`);
@@ -156,7 +154,6 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
               <li>
                 <a class="i-product" href={productHref(t.production.services[index])}>
                   <span class="i-product-top">
-                    <span class="i-product-number">{pad(index + 1)}</span>
                     <span class="i-product-arrow" aria-hidden="true">↗</span>
                   </span>
                   <strong>{product.value}</strong>
@@ -243,9 +240,6 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
     </section>
 
     <section class="i-series" id="series" aria-labelledby="i-series-title">
-      <div class="i-media i-series-image" aria-hidden="true">
-        <Picture src={sitePhotography.industrial.series} alt="" widths={[640, 960, 1280, 1672]} sizes="100vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
-      </div>
       <div class="section-shell i-series-inner">
         <div class="i-series-head">
           <h2 id="i-series-title" style={fit(...t.series.heading)} data-reveal>
@@ -253,13 +247,10 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           </h2>
           <p data-reveal style="--i:2"><Inlines inlines={seriesLead} /></p>
         </div>
-        <div class="i-series-method" id="proces" aria-labelledby="i-process-title">
-          <div class="i-series-method-head" data-reveal>
-            <h3 id="i-process-title">{t.series.method.heading[0]}{' '}<br /><em>{t.series.method.heading[1]}</em></h3>
-            <div>
-              <p><Inlines inlines={methodLead} /></p>
-            </div>
-          </div>
+        <div class="i-media i-series-image" aria-hidden="true" data-reveal="clip">
+          <Picture src={sitePhotography.industrial.series} alt="" widths={[480, 720, 960, 1280]} sizes="(max-width: 900px) 100vw, 45vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+        </div>
+        <div class="i-series-method" id="proces">
           <ol class="i-series-steps" aria-label={t.series.method.label} data-series style={`--steps:${steps.length}`}>
             {
               steps.map((step, index) => (
@@ -267,7 +258,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
                   <span class="i-series-step-number">
                     {pad(index + 1)} / {pad(steps.length)}
                   </span>
-                  <h4>{step.value}</h4>
+                  <h3>{step.value}</h3>
                   <p>{step.label}</p>
                 </li>
               ))

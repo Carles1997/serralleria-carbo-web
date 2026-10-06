@@ -95,11 +95,11 @@ const pad = (value: number) => String(value).padStart(2, '0');
 const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
 ---
 
-<BaseLayout page={page} surface="dark">
+<BaseLayout page={page}>
   <SiteHeader ui={ui} homeHref="/" nav={t.nav} mobileExtra={t.mobileExtra} collapse="wide" />
 
   <main id="contingut" class="particulars-page">
-    <section class="p-hero" aria-labelledby="p-title">
+    <section class="p-hero" aria-labelledby="p-title" data-surface="dark">
       <div class="p-hero-image" aria-hidden="true">
         <Picture src={sitePhotography.particulars.hero} alt="" widths={[640, 960, 1280, 1672]} sizes="100vw" formats={['avif', 'webp']} fallbackFormat="jpg" priority />
       </div>
@@ -115,7 +115,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
       </div>
     </section>
 
-    <section class="p-urgent" id="urgencies" aria-labelledby="p-urgent-title" data-surface="accent">
+    <section class="p-urgent" id="urgencies" aria-labelledby="p-urgent-title" data-surface="light">
       <div class="section-shell p-urgent-inner">
         <div data-reveal>
           <h2 id="p-urgent-title">{t.urgent.heading}</h2>
@@ -136,9 +136,6 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           {
             services.map((service, index) => (
               <article class={`p-service p-service-${service.art}`} data-reveal style={`--i:${index}`}>
-                <span class="p-service-number">
-                  {pad(index + 1)} / {pad(services.length)}
-                </span>
                 <div class={`p-service-art p-service-art-${service.art}`} aria-hidden="true">
                   <Picture src={service.image} alt="" widths={[400, 640, 960]} sizes="(max-width: 560px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
                 </div>
@@ -170,7 +167,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
       </div>
     </section>
 
-    <section class="p-projects" id="projectes" aria-labelledby="p-projects-title">
+    <section class="p-projects" id="projectes" aria-labelledby="p-projects-title" data-surface="light">
       <div class="section-shell">
         <div class="section-lead">
           <h2 id="p-projects-title" data-reveal style={fit(...t.projects.heading)}>{t.projects.heading[0]}<br />{' '}{t.projects.heading[1]}</h2>
@@ -185,7 +182,6 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
             </span>
           ))}
           <div class="p-story-stage-shade"></div>
-          <span class="p-story-stage-number" data-story-number>01</span>
           <div class="p-story-progress"><span data-story-progress style={`scale:${1 / chapters.length} 1`}></span></div>
         </div>
         <div class="p-story-chapters">
@@ -211,10 +207,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
         </div>
       </div>
       <div class="section-shell p-story-outro">
-        <div class="p-story-outro-copy" data-reveal>
-          <strong>{t.projects.outroTitle}</strong>
-        </div>
-        <div class="p-story-outro-actions" data-reveal style="--i:1">
+        <div class="p-story-outro-actions" data-reveal>
           <a class="p-story-all" href={worksLink.href}>{worksLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
           <a class="underlined-link" href="#contacte">{t.projects.talk} <span class="arrow" aria-hidden="true">↗</span></a>
         </div>

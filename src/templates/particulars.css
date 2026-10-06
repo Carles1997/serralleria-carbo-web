@@ -382,3 +382,12 @@
   .particulars-page .p-story-chapter { min-height: clamp(300px, 46svh, 420px); justify-content: flex-start; }
 }
 
+
+/* Brief de millores UX (Fase 7): primera pantalla una mica més càlida i lluminosa que la d'Industrial,
+   amb la mateixa imatge. La zona del text (esquerra a escriptori, part baixa a mòbil) conserva la
+   foscor que garanteix el contrast; s'aclareix la resta i s'escalfa lleugerament la fotografia. */
+.particulars-page .p-hero-image img { filter: sepia(.14) saturate(1.02) brightness(1.12) contrast(1.03); }
+.particulars-page .p-hero-image::after { background: linear-gradient(90deg,rgba(14,11,11,.9) 0%,rgba(14,11,11,.64) 41%,rgba(40,24,22,.08) 80%),linear-gradient(0deg,rgba(14,11,11,.8),transparent 55%,rgba(14,11,11,.32)); }
+@media (max-width: 760px) {
+  .particulars-page .p-hero-image::after { background: linear-gradient(0deg,rgba(14,11,11,.95) 0%,rgba(14,11,11,.68) 43%,rgba(40,24,22,.1) 77%,rgba(14,11,11,.4)); }
+}

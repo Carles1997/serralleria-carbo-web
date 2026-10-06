@@ -26,7 +26,8 @@ const ca = {
       { label: 'Particulars', href: '/particulars/' },
       { label: 'Industrial', href: '/industrial/' },
       { label: 'Serveis', href: '/#serveis' },
-      { label: 'Projectes', href: '/particulars/projectes/' },
+      // El portafoli és de Particulars (brief de millores UX, Fase 7): l'etiqueta ho diu.
+      { label: 'Projectes particulars', href: '/particulars/projectes/' },
       { label: 'Empresa', href: '/empresa/' },
     ],
     mobileExtra: [{ label: 'Contacte', href: '/contacte/' }],
@@ -35,12 +36,13 @@ const ca = {
     paths: {
       label: 'Tria el teu àmbit',
       heading: 'Tria el teu camí',
-      // Criteri entre camins (reunió amb el client, 03/10/2026): tipus d'encàrrec, no producte.
+      // Criteri entre camins (brief de millores UX, Fase 7): per tipus d'encàrrec, no només per
+      // nombre d'unitats; Industrial també rep encàrrecs unitaris, com un carro o una peça a plànol.
       particulars: {
-        kicker: 'Una feina a mida · casa, comunitat o negoci',
+        kicker: 'Per a un espai concret o una reparació',
       },
       // L'acció d'Industrial usa l'etiqueta de l'enllaç de home.md («Coneix Industrial»), que descriu el destí.
-      industrial: { kicker: 'Diverses unitats o en sèrie · obres i empreses' },
+      industrial: { kicker: 'Sèries, peces a plànol i projectes' },
     },
     numbers: {
       heading: ['Fets que', 'ens defineixen'],
@@ -53,9 +55,9 @@ const ca = {
       ],
     },
     services: {
-      particulars: { eyebrow: 'Una feina a mida', title: 'Particulars', overview: 'Explora els serveis per a particulars' },
+      particulars: { eyebrow: 'Per a un espai concret', title: 'Particulars', overview: 'Explora els serveis per a particulars' },
       industrial: {
-        eyebrow: 'Diverses unitats o en sèrie',
+        eyebrow: 'Sèries, peces a plànol i projectes',
         title: 'Industrial',
         overview: 'Coneix Industrial',
         // Productes en sèrie confirmats pel client (03/10/2026); les portes inclouen la instal·lació.
@@ -67,7 +69,7 @@ const ca = {
         { detail: 'Escales i passarel·les' },
         { detail: 'Ferro i inoxidable' },
         { detail: 'Portes, persianes i motors' },
-        { detail: 'Els mateixos productes en diverses unitats · Acer i inoxidable' },
+        { detail: 'Sèries, peces a plànol i carros · Acer i inoxidable' },
       ],
     },
   },
@@ -97,14 +99,15 @@ const ca = {
       { label: 'Estructures', href: '/particulars/estructures/' },
       { label: 'Automatismes', href: '/particulars/automatismes/' },
       // Ruta ajornada (config/routes.ts): porta al formulari amb Mobiliari preseleccionat.
-      { label: 'Mobiliari', href: resolveRoute('/particulars/mobiliari/') },
+      // L'etiqueta diu l'acció real: la ruta de detall està ajornada i obre la consulta.
+      { label: 'Consulta mobiliari', href: resolveRoute('/particulars/mobiliari/') },
       { label: 'Projectes', href: '/particulars/projectes/' },
       { label: 'Contacte', href: '/contacte/?tipus=particular' },
     ],
     mobileExtra: [{ label: 'Industrial ↗', href: '/industrial/' }],
     hero: {
       // Accés a l'altra branca amb el criteri (03/10/2026): diverses unitats → Industrial.
-      otherBranch: { label: 'Diverses unitats o en sèrie? Industrial', href: '/industrial/#produccio' },
+      otherBranch: { label: 'Sèries o peces tècniques? Industrial', href: '/industrial/#produccio' },
       // Mateix text que la H1 de particulars.md, repartit per a la composició (es comprova al build).
       title: ['Serralleria per a', 'particulars', 'a Vilafranca i rodalia'],
     },
@@ -188,11 +191,15 @@ const ca = {
     // Què fabriquem en sèrie (03/10/2026): productes de Particulars i qualsevol peça a mida, en
     // diverses unitats. Text d'industrial.md; aquí, el titular en línies i el servei del formulari.
     production: {
-      heading: ['Què fabriquem', 'en sèrie'],
-      label: 'Productes que fabriquem en sèrie',
+      // «Què fabriquem» (brief de millores UX, Fase 7): no només en sèrie; també peces a plànol i
+      // encàrrecs unitaris. Cada cel·la és l'enllaç a la consulta amb el producte preseleccionat.
+      heading: ['Què', 'fabriquem'],
+      label: 'Productes que fabriquem',
       // Mateix ordre que la llista d'industrial.md; «servei» és el valor del formulari d'empresa.
       services: ['estructures', 'portes', 'mobiliari', 'carros', 'peces'],
-      action: 'Demana pressupost',
+      // Nom accessible de cada cel·la: producte + acció real.
+      productAction: 'obre una consulta tècnica',
+      action: 'Envia una consulta tècnica',
     },
     workshop: {
       heading: ['El taller', 'en primer pla'],
@@ -352,13 +359,14 @@ const ca = {
       call: "Truca'ns",
     },
     form: {
-      heading: "Explica'ns el projecte",
-      intro: 'Els camps marcats amb * són necessaris. Si es tracta d’una incidència urgent, truca directament al',
+      // Titular transversal (brief de millores UX, Fase 7): serveix per a una avaria i per a una fabricació.
+      heading: "Explica'ns què necessites",
+      intro: 'Serveix tant per a una reparació com per a una fabricació. Els camps marcats amb * són necessaris. Si es tracta d’una incidència urgent, truca directament al',
       branch: {
         legend: 'Tipus de consulta',
         // Per tipus d'encàrrec, no per públic (reunió amb el client, 03/10/2026).
-        particular: { label: 'Una feina a mida', detail: 'Una peça, una instal·lació o una reparació' },
-        empresa: { label: 'Diverses unitats o en sèrie', detail: 'Obres, sèries i peces a plànol' },
+        particular: { label: 'Espai concret o reparació', detail: 'Habitatge, comunitat o negoci' },
+        empresa: { label: 'Sèrie, peça tècnica o projecte', detail: 'Empreses, constructores i promotores' },
       },
       // Formulari compacte (indicació del director, 01/10/2026): dos grups, sense frases auxiliars.
       sections: { contact: 'Dades de contacte', work: 'La feina' },
@@ -390,7 +398,7 @@ const ca = {
         peca: 'Tipus de peça o conjunt',
         unitats: 'Unitats previstes',
         termini: 'Termini desitjat',
-        descripcio: "Explica'ns què necessites",
+        descripcio: 'Descripció',
         descripcioPlaceholder: {
           particular: 'Descriu la feina o la incidència amb les teves paraules.',
           empresa: "Descriu la peça, l'aplicació i els requisits que ja coneixes.",
@@ -442,9 +450,9 @@ const ca = {
     repair: { index: 'Necessites una reparació?', text: "Si tens una avaria en una porta o un automatisme, explica'ns què ha passat." },
     // Pont cap a Industrial a les pàgines de producte (reunió amb el client, 03/10/2026).
     series: {
-      index: 'Diverses unitats o per a una obra?',
-      text: 'Aquest servei també el fabriquem en sèrie per a constructores, promotores i empreses.',
-      link: { label: 'Producció en sèrie a Industrial', href: '/industrial/#produccio' },
+      index: 'Una sèrie o un projecte constructiu?',
+      text: 'Aquest servei també el fabriquem en sèrie per a empreses, constructores i promotores.',
+      link: { label: 'Fabricació industrial', href: '/industrial/#produccio' },
     },
     pages: {
       'particulars-estructures': {

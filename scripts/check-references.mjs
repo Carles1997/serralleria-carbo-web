@@ -92,6 +92,26 @@ const VALIDATED_REVISIONS = [
       'content/ca/legal-privacitat.md': 'd588b73dacea37b3c7c4fcb602cfa103830d342ee1d24be0a271ca3f26616d27',
     },
   },
+  {
+    // Criteri únic entre camins, «Què fabriquem», formulari transversal, Industrial a Empresa i
+    // «d'Industrial» (fases/fase-7/FASE7-brief-millores-ux-i-continguts.md).
+    label: 'brief de millores UX i continguts del director (06/10/2026)',
+    bodies: {
+      'content/ca/contacte.md': 'fe819dff452de8fb331e60d050919aa0cf709aecbe00bfac80ca168ba1cfde90',
+      'content/ca/empresa.md': 'da6c8d208dd73abf70e658c4eb434ce93e6caeb75c066cd8aadf84e3580b66b8',
+      'content/ca/home.md': '0653f75aa1a217d2eb35efede6ad710be0cf48ecf4beb1ed61b861238867cfb7',
+      'content/ca/industrial-capacitats.md': 'a5c08c12b75b75eac3edf46a5b0d17858fb7382c214446ff60abd40d3db05874',
+      'content/ca/industrial-proces.md': '6775c5c6075512a542331ebb22325ec871555aad9cfab8b2364d74ec97ab1760',
+      'content/ca/industrial-projectes.md': '815431bfe937f6b61aea1ad41fd39ea01f7a6deac33956947573382ca5fc7176',
+      'content/ca/industrial.md': '4e8b7cf5722b3db4e9329f21e9061ce442d7ed2ca5b82dcc3dff4c32ef691896',
+      'content/ca/particulars.md': 'd83de121b8e94d772cf60bf152fc1cedbe7886cc38579142a5d360da5493f14a',
+      'content/ca/ui.md': '2cea4eec2ab999f71e36961705a07bf61c4e806ab6dcec95429c1ce5daa5a09d',
+    },
+    frontmatter: {
+      'content/ca/industrial-proces.md': '5e0a2ad0aafcaef9f86f699804a5a99372791b81978923cd632a3a240ab0df19',
+      'content/ca/industrial-projectes.md': '12109a4db5f577d78357328033fa6c8734ffb9ecffe122a50027ebd6e2ef6d8a',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

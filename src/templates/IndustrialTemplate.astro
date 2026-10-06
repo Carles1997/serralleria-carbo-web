@@ -144,33 +144,35 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
 
     <section class="i-production" id="produccio" aria-labelledby="i-production-title">
       <div class="section-shell">
-        <div class="i-section-heading">
-          <h2 id="i-production-title" style={fit(...t.production.heading)} data-reveal>
-            {t.production.heading[0]}{' '}<br /><em>{t.production.heading[1]}</em>
+        <div class="i-production-head">
+          <h2 id="i-production-title" data-reveal>
+            {t.production.heading[0]} <em>{t.production.heading[1]}</em>
           </h2>
-          <p data-reveal style="--i:2"><Inlines inlines={productionLead} /></p>
+          <p data-reveal style="--i:1"><Inlines inlines={productionLead} /></p>
         </div>
         <ul class="i-production-grid" aria-label={t.production.label}>
           {
             products.map((product, index) => (
-              <li data-reveal style={`--i:${index}`}>
+              <li>
                 <a class="i-product" href={productHref(t.production.services[index])}>
-                  <span class="i-product-number">
-                    {pad(index + 1)} / {pad(products.length)}
+                  <span class="i-product-top">
+                    <span class="i-product-number">{pad(index + 1)}</span>
+                    <span class="i-product-arrow" aria-hidden="true">↗</span>
                   </span>
                   <strong>{product.value}</strong>
                   <span class="i-product-text">{product.label}</span>
-                  <span class="i-product-action">
-                    {t.production.action} <span aria-hidden="true">↗</span>
-                  </span>
+                  <span class="sr-only">, {t.production.productAction}</span>
                 </a>
               </li>
             ))
           }
         </ul>
-        <div class="i-production-cross" data-reveal>
-          <p><Inlines inlines={productionCross} /></p>
-          <a class="i-text-link" href={productionCrossLink.href}>{productionCrossLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
+        <div class="i-production-foot">
+          <a class="i-button i-button-solid" href={contactForm}>{t.production.action} <span class="arrow" aria-hidden="true">↗</span></a>
+          <p>
+            <Inlines inlines={productionCross} />{' '}
+            <a class="i-text-link" href={productionCrossLink.href}>{productionCrossLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
+          </p>
         </div>
       </div>
     </section>

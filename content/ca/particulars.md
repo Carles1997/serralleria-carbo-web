@@ -37,11 +37,11 @@ Si una porta, una persiana o un motor ha deixat de funcionar, truca'ns durant l�
 
 [Veure reparacions](/particulars/urgencies/)
 
-## Diverses unitats o per a una obra?
+## Una sèrie, una peça tècnica o un projecte constructiu?
 
-Tot el que fem a mida per a particulars també ho fabriquem en diverses unitats o en sèrie per a constructores, promotores i empreses: és la feina de la nostra línia Industrial. Si entres per aquí, també t'atendrem.
+Les mateixes estructures, portes i mobiliari també els fabriquem en sèrie, i amb la línia Industrial fem peces a plànol i carros industrials per a empreses, constructores i promotores. Si entres per aquí, també t'atendrem.
 
-[Producció en sèrie a Industrial](/industrial/#produccio)
+[Fabricació industrial](/industrial/#produccio)
 
 ## Fets, no només paraules
 

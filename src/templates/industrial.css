@@ -620,34 +620,46 @@
   .industrial-page .i-hero-copy>p { text-shadow:0 1px 14px rgba(0,0,0,.75); }
 }
 
-/* Què fabriquem en sèrie (03/10/2026): els productes de Particulars i qualsevol peça a mida, en
-   diverses unitats. Targetes de text (no hi ha fotografies de producció en sèrie). */
-.i-production { padding-block:clamp(4.75rem,7vw,7rem); border-top:1px solid #53595a; background:#1a1e20; }
-.i-production-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:1px; margin:0; padding:1px; background:#596260; list-style:none; }
+/* Què fabriquem (brief de millores UX, Fase 7): matriu compacta de cinc productes. Tota la cel·la és
+   l'enllaç a la consulta amb el producte preseleccionat; una sola acció compartida al peu. Cel·les
+   de text: no hi ha fotografies de producció en sèrie. L'alçada permet veure l'inici d'«El taller
+   en primer pla» en arribar a #produccio a 1440 × 900. */
+.i-production { padding-block:clamp(2.75rem,4.5vw,4rem) clamp(2.5rem,4vw,3.5rem); border-top:1px solid #53595a; background:#1a1e20; }
+.i-production-head { display:grid; grid-template-columns:minmax(0,1fr) minmax(280px,.75fr); gap:1rem clamp(2rem,5vw,6rem); align-items:end; margin-bottom:clamp(1.5rem,2.6vw,2.25rem); }
+.i-production-head h2 { margin:0; font-size:clamp(2.6rem,4.4vw,4.6rem); font-weight:700; letter-spacing:-.06em; line-height:.9; text-transform:uppercase; }
+.i-production-head h2 em { color:var(--i-accent); font-style:normal; }
+.i-production-head p { max-width:52ch; margin:0; color:var(--i-muted); font-size:clamp(1rem,1.15vw,1.12rem); line-height:1.5; }
+.i-production-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:1px; margin:0; padding:1px; background:#3f4649; list-style:none; }
 .i-production-grid li { min-width:0; }
-.i-product { position:relative; display:flex; flex-direction:column; gap:.9rem; height:100%; min-height:300px; padding:clamp(1.25rem,1.8vw,2rem); background:#222729; color:#fff; text-decoration:none; transition:background-color var(--motion-fast) ease; }
-.i-product::before { position:absolute; top:0; bottom:0; left:0; width:4px; background:var(--i-accent); content:""; transform:scaleY(0); transform-origin:top; transition:transform var(--motion-standard) var(--motion-ease); }
+.i-product { position:relative; display:flex; flex-direction:column; gap:.55rem; height:100%; min-height:178px; padding:1.1rem 1.15rem 1.25rem; background:#222729; color:#fff; text-decoration:none; transition:background-color var(--motion-fast) ease; }
+.i-product::before { position:absolute; inset:0 0 auto; height:2px; background:linear-gradient(90deg,transparent,var(--i-accent),transparent); content:""; opacity:0; transition:opacity var(--motion-fast) ease; }
+.i-product-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:.35rem; }
+.i-product-number { color:var(--i-muted); font-size:.72rem; font-weight:700; letter-spacing:.14em; }
+.i-product-arrow { color:var(--i-accent); font-size:1.15rem; line-height:1; transition:transform var(--motion-fast) var(--motion-ease); }
+.i-product strong { font-size:clamp(1.25rem,1.55vw,1.65rem); font-weight:700; letter-spacing:-.04em; line-height:1; text-transform:uppercase; }
+.i-product-text { color:#cfd5d3; font-size:.9rem; line-height:1.4; }
 .i-product:hover, .i-product:focus-visible { background:#2a3033; }
-.i-product:hover::before, .i-product:focus-visible::before { transform:scaleY(1); }
-.i-product:focus-visible { outline:3px solid var(--i-accent); outline-offset:-4px; }
-.i-product-number { color:var(--i-muted); font-size:.75rem; font-weight:700; letter-spacing:.14em; }
-.i-product strong { font-size:clamp(1.55rem,2vw,2.3rem); font-weight:700; letter-spacing:-.05em; line-height:.98; text-transform:uppercase; }
-.i-product-text { color:#d4d9d7; font-size:.95rem; line-height:1.45; }
-.i-product-action { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:auto; min-height:44px; padding-top:.7rem; border-top:1px solid #afb8b4; font-size:.88rem; font-weight:700; }
-.i-product-action span { color:var(--i-accent); font-size:1.2rem; font-weight:400; }
-.i-production-cross { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem 2rem; margin-top:clamp(1.75rem,3vw,2.75rem); padding-top:1.5rem; border-top:1px solid #3a3f42; }
-.i-production-cross p { max-width:60ch; margin:0; color:var(--i-muted); font-size:1.02rem; line-height:1.5; }
+.i-product:hover::before, .i-product:focus-visible::before { opacity:1; }
+.i-product:hover .i-product-arrow, .i-product:focus-visible .i-product-arrow { transform:translate(2px,-2px); }
+.i-product:focus-visible { outline:3px solid var(--i-accent); outline-offset:-3px; }
+.i-production-foot { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem 2rem; margin-top:1.25rem; }
+.i-production-foot p { margin:0; color:var(--i-muted); font-size:.98rem; line-height:1.5; }
+.i-production-foot .i-text-link { margin-left:.35rem; }
 @media (max-width:1100px) {
   .i-production-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
 }
 @media (max-width:760px) {
+  .i-production-head { grid-template-columns:1fr; }
   .i-production-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .i-product { min-height:240px; }
+  .i-product { min-height:0; padding:1rem; }
+  .i-production-foot { align-items:flex-start; flex-direction:column; }
 }
 @media (max-width:480px) {
   .i-production-grid { grid-template-columns:1fr; }
-  .i-product { min-height:0; }
+  .i-product { gap:.4rem; }
+  .i-product-top { margin-bottom:0; }
 }
 @media (prefers-reduced-motion:reduce) {
-  .i-product, .i-product::before { transition:none; }
+  .i-product, .i-product::before, .i-product-arrow { transition:none; }
+  .i-product:hover .i-product-arrow, .i-product:focus-visible .i-product-arrow { transform:none; }
 }

@@ -15,7 +15,7 @@ import Inlines from '../components/Inlines.astro';
 import type { Page } from '../i18n/pages';
 import { useUi } from '../i18n/ui';
 import { company, whatsappUrl } from '../config/site';
-import { one, paragraphs, parseMarkdown, sameText } from '../lib/markdown';
+import { one, paragraphs, parseInlines, parseMarkdown, sameText } from '../lib/markdown';
 import { getPage, isLegalVisible } from '../i18n/pages';
 import './mockup-base.css';
 import './contact.css';
@@ -57,7 +57,11 @@ if (privacyPage.data.status === 'approved' && (privacyPage.body ?? '').includes(
   throw new Error('legal-formulari.md està aprovat però encara té dades «[PENDENT: …]».');
 }
 const privacy = privacyReady ? parseMarkdown(privacyPage.body ?? '') : undefined;
-const consentLabel = privacyReady && privacyPage.data.consent ? privacyPage.data.consentLabel : undefined;
+// Caselles del text de l'advocat (06/10/2026): acceptació obligatòria de la política de privacitat i,
+// voluntària i desmarcada, la de comunicacions comercials amb la nota per revocar-la.
+const consentLabel = privacyReady && privacyPage.data.consent && privacyPage.data.consentLabel ? parseInlines(privacyPage.data.consentLabel) : undefined;
+const marketingLabel = privacyReady && privacyPage.data.marketingLabel ? parseInlines(privacyPage.data.marketingLabel) : undefined;
+const marketingNote = privacyReady && privacyPage.data.marketingNote ? parseInlines(privacyPage.data.marketingNote) : undefined;
 
 const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
 const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
@@ -208,6 +212,17 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
             {
               privacy && (
                 <div class="form-privacy" id="form-privacy">
+                  {consentLabel && (
+                    <div class="field field-consent">
+                      <label for="consentiment">
+                        <input id="consentiment" name="consentiment" type="checkbox" required />
+                        <span>
+                          <Inlines inlines={consentLabel} /> <span aria-hidden="true">*</span>
+                        </span>
+                      </label>
+                      <p class="field-error" id="consentiment-error" hidden></p>
+                    </div>
+                  )}
                   <p class="form-privacy-title">{privacy.title}</p>
                   {privacy.intro.map((block) =>
                     block.type === 'paragraph' ? (
@@ -224,13 +239,19 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
                       </ul>
                     ),
                   )}
-                  {consentLabel && (
-                    <div class="field field-consent">
-                      <label for="consentiment">
-                        <input id="consentiment" name="consentiment" type="checkbox" required />
-                        <span>{consentLabel}</span>
+                  {marketingLabel && (
+                    <div class="field field-consent field-marketing">
+                      <label for="comunicacions">
+                        <input id="comunicacions" name="comunicacions" type="checkbox" aria-describedby={marketingNote ? 'comunicacions-nota' : undefined} />
+                        <span>
+                          <Inlines inlines={marketingLabel} />
+                        </span>
                       </label>
-                      <p class="field-error" id="consentiment-error" hidden></p>
+                      {marketingNote && (
+                        <p class="form-privacy-note" id="comunicacions-nota">
+                          <Inlines inlines={marketingNote} />
+                        </p>
+                      )}
                     </div>
                   )}
                 </div>

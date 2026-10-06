@@ -77,6 +77,21 @@ const VALIDATED_REVISIONS = [
       'content/ca/ui.md': '99128a1d6207ca2e79dab8362b876115b82af686976076a7128104bfaece1c6a',
     },
   },
+  {
+    // Textos de l'advocat del client (versió de maig de 2025), adaptats al lloc web nou i aprovats
+    // pel director (fases/fase-8/FASE8-compliment-i-confianca.md, tasques 8.2 i 8.4).
+    label: "textos legals de l'advocat, adaptats i aprovats (06/10/2026)",
+    bodies: {
+      'content/ca/legal-avis-legal.md': '7c9dd1050d6f40784439c5902fa5263be914fd0813a6063520b1d0b80e1246f5',
+      'content/ca/legal-cookies.md': 'ddfb52346aa1ac374544d2a8f2d66bb83ac061f168cf55b6baaeca9e6d4907bf',
+      'content/ca/legal-privacitat.md': '1c2b34bb191615225d25d44e631d1b49891ad3c2fd227f3d107c19e91b9118c4',
+    },
+    frontmatter: {
+      'content/ca/legal-avis-legal.md': '827d29465dbc65d05f986f15e162155436b5d7c3fb66662f5e2d433c29c8bbe7',
+      'content/ca/legal-cookies.md': '699852d5d3c8ec22fd764d93fe04be74bc1ecd4c6595fc1d93232fb1ce62ed74',
+      'content/ca/legal-privacitat.md': 'd588b73dacea37b3c7c4fcb602cfa103830d342ee1d24be0a271ca3f26616d27',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

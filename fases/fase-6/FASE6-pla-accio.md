@@ -43,8 +43,8 @@ Tot passa `npm run verify` (0 errors) i `npm run check:redirects`.
 
 | # | Prio. | Acció | Com |
 |---|---|---|---|
-| B1 | P0 | Comprovar les redireccions al staging | Demanar cada URL antiga a `serralleriacarbo.netlify.app`: estat 301 o 410, capçalera `Location` i cap cadena. Si Netlify no serveix el 410 amb la reescriptura, documentar-ho i proposar una alternativa (Fase 5). |
-| B2 | P0 | Comprovar les capçaleres | `curl -I` a una pàgina i a un fitxer de `/_astro/`: memòria cau `immutable` i capçaleres de seguretat. |
+| B1 | P0 | ~~Comprovar les redireccions al staging~~ **Fet el 05/10/2026:** quatre 301 en un sol salt i cinc 410. Les regles en espera o per decidir responen 404, com estava previst | Demanar cada URL antiga a `serralleriacarbo.netlify.app`: estat 301 o 410, capçalera `Location` i cap cadena. Si Netlify no serveix el 410 amb la reescriptura, documentar-ho i proposar una alternativa (Fase 5). |
+| B2 | P0 | ~~Comprovar les capçaleres~~ **Fet el 05/10/2026:** `/_astro/*` amb memòria cau `immutable` d'un any i les quatre capçaleres de seguretat | `curl -I` a una pàgina i a un fitxer de `/_astro/`: memòria cau `immutable` i capçaleres de seguretat. |
 | B3 | P1 | Validar les dades estructurades i l'Open Graph | Prova de resultats enriquits de Google i depurador de previsualització de Facebook sobre el staging. Comprovar també una previsualització real a WhatsApp. |
 | B4 | P2 | Content-Security-Policy | Redactar una CSP amb hashes dels scripts inserits i amb l'origen del mapa de Google sota demanda. Provar-la primer en mode `Report-Only` al staging i activar-la quan no hi hagi bloquejos. |
 | B5 | P1 | Repetir l'auditoria SEO | Amb claude-seo, quan els continguts estiguin aprovats (C1), per confirmar la indexació, el sitemap i la puntuació. |
@@ -301,7 +301,7 @@ Publicaciones → Crear publicación. Ara no n'hi ha cap. **Proposta:**
 
 ### D5 · Netlify (P0)
 
-1. **Branca de producció.** Netlify → Site configuration → Build & deploy → Branches → **Production branch**. Ha de ser `main`. Ara les pàgines legals, que ja són a `main`, hi responen 404: o la branca és una altra o l'últim desplegament és antic. Fer **Trigger deploy** després de fusionar aquesta fase.
+1. **Branca de producció.** ~~Ha de ser `main`.~~ **Fet el 05/10/2026:** publicava des de `fase-5/base-astro`, una branca esborrada de GitHub després de la fusió. Ara és `main` i s'ha desplegat `main@d88c140`. Cada fusió a `main` es publica automàticament.
 2. **Ordre de build.** `npm run build`, directori de publicació `dist`. El fitxer `_redirects` el genera el build.
 3. **Domini, al llançament.**
    - Domain management → Add domain → `www.serralleriacarbo.com`, com a domini principal.

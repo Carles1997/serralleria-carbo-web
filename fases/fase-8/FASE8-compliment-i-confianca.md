@@ -118,9 +118,9 @@ Proposo una **Fase 8 · Compliment legal, privacitat i accessibilitat** abans de
 | # | Tasca | Qui | Depèn de |
 |---|---|---|---|
 | 8.1 | Recollir les dades obligatòries: NIF, Registre Mercantil, responsable del tractament i delegat de protecció de dades si n'hi ha | Client | — |
-| 8.2 | Redactar o validar l'avís legal, la privacitat i les cookies | Client o assessor | 8.1 i allotjament triat · **Esborranys redactats per Claude per encàrrec del director (02/10/2026)**, per a la revisió del client i del seu advocat: avís legal (LSSI-CE, art. 10), política de privacitat (RGPD, art. 13), política de cookies (inventari real: cap cookie pròpia; Google Maps només a petició) i informació de primera capa del formulari (sense casella; base precontractual). Només dades confirmades; les que falten, marcades «[PENDENT: …]» (NIF, Registre Mercantil, delegat de protecció de dades, proveïdors i transferències). Es publiquen amb l'avís «Text pendent de revisió jurídica» i `noindex`; el build no deixa aprovar un text que encara tingui «[PENDENT». **Discrepància amb `CLAUDE.md`** («no inventis textos legals»): s'aplica la indicació posterior del director; són esborranys sense valor de text definitiu fins que l'advocat els validi. |
+| 8.2 | Redactar o validar l'avís legal, la privacitat i les cookies | Client o assessor | **Fet (06/10/2026):** textos de l'advocat adaptats i aprovats (apartat 6). Historial: **Esborranys redactats per Claude per encàrrec del director (02/10/2026)**, per a la revisió del client i del seu advocat: avís legal (LSSI-CE, art. 10), política de privacitat (RGPD, art. 13), política de cookies (inventari real: cap cookie pròpia; Google Maps només a petició) i informació de primera capa del formulari (sense casella; base precontractual). Només dades confirmades; les que falten, marcades «[PENDENT: …]» (NIF, Registre Mercantil, delegat de protecció de dades, proveïdors i transferències). Es publiquen amb l'avís «Text pendent de revisió jurídica» i `noindex`; el build no deixa aprovar un text que encara tingui «[PENDENT». **Discrepància amb `CLAUDE.md`** («no inventis textos legals»): s'aplica la indicació posterior del director; són esborranys sense valor de text definitiu fins que l'advocat els validi. |
 | 8.3 | Plantilla de pàgina legal i publicació de les tres pàgines (sense `noindex` en aprovar-les); enllaços del peu actius | Claude | 8.2 · **Plantilla feta (02/10/2026):** `src/templates/LegalTemplate.astro` i `src/pages/legal/[page].astro`. El build només genera les pàgines aprovades; en desenvolupament es veuen els esborranys amb un avís. Camp opcional `updated` per mostrar la data de revisió. Provat en una còpia: en aprovar un text, la pàgina es genera, entra al sitemap i el peu l'enllaça. Falta: els textos (8.2). |
-| 8.4 | Informació de privacitat de primera capa al formulari i enllaç a la política (casella només si ho indica l'assessor) | Claude | 8.2 · **Lloc preparat (02/10/2026):** el text va a `content/ca/legal-formulari.md` (ara bloquejat, sense cap text legal). En aprovar-lo, el formulari mostra el bloc abans del botó d'enviar i l'avís deixa de dir que la privacitat és pendent. Si l'assessor demana casella, `consent: true` i el text a `consentLabel`: el formulari no deixa continuar fins que es marca. Provat en una còpia: bloc, casella, error i focus, 48 px de tacte, i `check:links` atura un enllaç a la política de privacitat mentre no estigui publicada. Falta: el text (8.2). |
+| 8.4 | Informació de privacitat de primera capa al formulari i enllaç a la política (casella només si ho indica l'assessor) | Claude | **Fet (06/10/2026):** caselles i informació bàsica del redactat de l'advocat (apartat 6). Historial: **Lloc preparat (02/10/2026):** el text va a `content/ca/legal-formulari.md` (ara bloquejat, sense cap text legal). En aprovar-lo, el formulari mostra el bloc abans del botó d'enviar i l'avís deixa de dir que la privacitat és pendent. Si l'assessor demana casella, `consent: true` i el text a `consentLabel`: el formulari no deixa continuar fins que es marca. Provat en una còpia: bloc, casella, error i focus, 48 px de tacte, i `check:links` atura un enllaç a la política de privacitat mentre no estigui publicada. Falta: el text (8.2). |
 | 8.5 | Formulari operatiu: servei triat, validació al servidor, antispam sense galetes, límit d'adjunt, correu del domini (SPF, DKIM i DMARC) i prova real | Claude i director | Allotjament |
 | 8.6 | Drets d'imatge: confirmació de propietat, consentiments de les persones identificables i substitució de les imatges conceptuals | Client i director | — |
 | 8.7 | Consentiment de cookies i analítica (només si s'activa la Fase 6): bloqueig previ, «Acceptar» i «Rebutjar» igual de visibles, opció de canviar | Claude | Fase 6 |
@@ -134,3 +134,49 @@ Proposo una **Fase 8 · Compliment legal, privacitat i accessibilitat** abans de
 - `npm run verify` i `npm run check:links` en verd;
 - cap enllaç legal marcat «(pendent)»;
 - l'assessor dona el vistiplau.
+
+## 6. Textos legals de l'advocat (06/10/2026)
+
+El client va lliurar els textos revisats pel seu advocat (versió de maig de 2025): nota legal, política de cookies, política de privacitat i redactat del formulari de contacte. Substitueixen els esborranys de la tasca 8.2. Queden publicats com a `approved`, indexables i sense l'avís de revisió jurídica. Amb això es tanquen la tasca 8.2 i la 8.4 (formulari), i la 8.3 queda activa amb els tres enllaços del peu.
+
+### Dades que aporten els textos
+
+| Dada | Valor |
+|---|---|
+| Registre Mercantil | Barcelona, tom 24959, foli 101, secció 8, full B 33238, inscripció 17 |
+| Domicili social | C/ Eugeni d'Ors, 59-61, 08720 Vilafranca del Penedès |
+| Delegat de protecció de dades | No n'hi ha. Hi ha una persona de contacte interna, a carbo@serralleriacarbo.com |
+| Base legal del formulari | Consentiment de l'interessat. Per això hi ha la casella obligatòria |
+
+### Adaptacions al lloc web nou (a confirmar per l'advocat)
+
+Els textos eren els del web antic (WordPress). S'ha conservat la redacció de l'advocat i només s'ha canviat el que no corresponia al web nou:
+
+| Text | Adaptació | Motiu |
+|---|---|---|
+| Tots | Enllaços a `/legal/privacitat/` i `/legal/cookies/` | Les adreces `/politica-de-privacitat/` i `/politica-de-cookies/` no existeixen al web nou. A més, s'hi han afegit redireccions 301 |
+| Tots | Correccions tipogràfiques i de format: majúscules, puntuació, «LSSI», un element de llista que en tenia dos d'enganxats, un paràgraf repetit a «Contingut i ús» | Llegibilitat |
+| Avís legal i privacitat | Apartat de cookies d'acord amb el funcionament real del web | El text deia que el web fa servir cookies per optimitzar la navegació. El web nou no n'instal·la cap de pròpia |
+| Cookies | La taula de cookies es substitueix per l'inventari real: cap cookie pròpia i Google Maps només a petició de l'usuari | La taula descrivia el web antic (Google Analytics, CookieYes, Clarity, reCAPTCHA, Google Ads, Microsoft), cap d'ells actiu al web nou. Publicar-la seria inexacte |
+| Cookies | Enllaços dels navegadors actualitzats (Chrome, Firefox, Safari, Safari per a iOS, Edge, Opera) | Internet Explorer ja no existeix i l'enllaç d'Opera era de la versió 11 |
+| Cookies | Sense panell de consentiment (capa 1) | El web no instal·la cookies que el requereixin. El mapa de Google només es carrega quan l'usuari ho demana, amb l'avís al costat del botó. Si s'activa l'analítica (Fase 6), cal el panell (tasca 8.7) i actualitzar la taula |
+| Privacitat | Llista de proveïdors que tracten dades per compte de l'empresa: Netlify (allotjament i formularis), Microsoft 365 (correu) i mayasystems.net (domini i DNS) | Informació obligatòria (art. 13 del RGPD) que el text no incloïa |
+| Privacitat | Garanties de transferència: Marc de privacitat de dades UE-EUA o clàusules contractuals tipus, en lloc del «Privacy Shield» | El Tribunal de Justícia de la UE va anul·lar el «Privacy Shield» el 2020 (sentència Schrems II). Netlify és als Estats Units |
+| Privacitat | Autoritat de control: Agència Espanyola de Protecció de Dades (www.aepd.es) | El text deia «l'autoritat de protecció de dades» sense concretar-la |
+| Formulari | «Altres mitjans de comunicació electrònics» en lloc d'«ofimàtics» | Terminologia de l'art. 21 de la LSSI |
+
+### Formulari
+
+Segueix l'opció B del redactat:
+1. Casella obligatòria «He llegit, entès i accepto la política de privacitat», amb enllaç a la política. El formulari no deixa continuar sense marcar-la.
+2. Informació bàsica de protecció de dades (responsable, finalitat, legitimació, destinataris i drets).
+3. Casella voluntària i desmarcada de comunicacions comercials, amb la nota per revocar-les («BAIXA»).
+
+Les caselles s'envien amb els noms `consentiment` i `comunicacions`. El formulari encara no envia: queda pendent de la tasca 8.5.
+
+### Punts per confirmar amb el client o l'advocat
+
+- **Empreses del grup:** la política diu que les dades «podran ser compartides amb altres empreses del grup». Si Serralleria Carbó no forma part de cap grup, convé treure aquesta frase.
+- **Finalitats genèriques:** la política inclou finalitats que el web nou no fa servir (pagaments, concursos i sortejos, valoracions automàtiques i perfils). No és incorrecte, però l'advocat pot decidir si les manté.
+- **Domicili:** el domicili social és el 59-61. El web i el Perfil d'Empresa mostren el 59 com a adreça de contacte. Cal confirmar si el contacte també ha de dir 59-61 (decisió C5 de la Fase 6).
+- **Comunicacions comercials:** si es marquen consentiments de màrqueting, l'empresa ha de conservar la prova del consentiment i atendre les baixes.

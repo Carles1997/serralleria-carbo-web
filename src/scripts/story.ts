@@ -1,13 +1,11 @@
 // Història de casos destacats (plantilla P): el capítol més proper al centre de la zona de
-// lectura marca la fotografia, el número i el progrés de l'escenari. A escriptori, l'escenari és al
+// lectura marca la fotografia i el progrés de l'escenari (sense número decoratiu sobre la foto des
+// del refinament del 06/10/2026). A escriptori, l'escenari és al
 // costat i la zona de lectura és la pantalla; a mòbil, l'escenari queda ancorat a dalt i la zona de
 // lectura és l'espai que deixa a sota. Sense JavaScript, els capítols es llegeixen seguits i
 // l'escenari mostra el primer cas.
-const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-
 document.querySelectorAll<HTMLElement>('[data-story]').forEach((story) => {
   const chapters = [...story.querySelectorAll<HTMLElement>('[data-story-chapter]')];
-  const number = story.querySelector<HTMLElement>('[data-story-number]');
   const progress = story.querySelector<HTMLElement>('[data-story-progress]');
   const images = [...story.querySelectorAll<HTMLElement>('[data-story-image]')];
   const stage = story.querySelector<HTMLElement>('.p-story-stage');
@@ -33,22 +31,10 @@ document.querySelectorAll<HTMLElement>('[data-story]').forEach((story) => {
     });
     if (closest === active) return;
 
-    const first = active === -1;
     active = closest;
     chapters.forEach((chapter, index) => chapter.classList.toggle('is-active', index === active));
     images.forEach((image, index) => image.classList.toggle('is-active', index === active));
     progress?.style.setProperty('scale', `${(active + 1) / chapters.length} 1`);
-    if (!number) return;
-    number.textContent = String(active + 1).padStart(2, '0');
-    if (!first && !reduced.matches) {
-      number.animate(
-        [
-          { opacity: 0, translate: '0 0.08em', filter: 'blur(10px)' },
-          { opacity: 1, translate: '0 0', filter: 'blur(0)' },
-        ],
-        { duration: 520, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' },
-      );
-    }
   };
 
   const schedule = () => {

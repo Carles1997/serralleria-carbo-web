@@ -131,6 +131,42 @@ const VALIDATED_REVISIONS = [
       'content/ca/industrial.md': 'a04a6d6577769603c4fbd6a1e458459d689f678796ae369c06a034fb1daa3f9f',
     },
   },
+  {
+    // Només els canvis concrets autoritzats pel brief (fases/fase-7/FASE7-brief-refinament-global-i-contacte.md
+    // §4.4 i §10): «Fabricació en sèrie», taller «al nostre taller / al teu projecte», mètode «segons els
+    // requisits acordats», descripció SEO d'Industrial i Contacte sense introducció ni explicacions de branca.
+    // Les reescriptures addicionals de FASE7-revisio-editorial-refinament.md no hi consten.
+    label: 'refinament global i Contacte del director (06/10/2026)',
+    bodies: {
+      'content/ca/contacte.md': '86e5cb93c87809d173439ff4e2e3ffd49f28b384f3bc0b5d2a5393c023e36f2a',
+      'content/ca/home.md': '4f55ebe38fa1a365162c37728653dd9bd5228d3b3b56b2d2e6d48307c1f10ae2',
+      'content/ca/industrial.md': '3146c09507120b2c4c69fbbb39a884d1d037394a4d7c70ce5d293a75acfc2cfe',
+      'content/ca/ui.md': 'ac16a26f3bd3178b8653cf4b413260745a50110713babbda45918e8dff2e5743',
+    },
+    frontmatter: {
+      'content/ca/industrial.md': '1496d3a2040d6fd3df29eaf019dde74491d462ddb5e86a4d641621e8338c9d80',
+    },
+  },
+  {
+    // Selecció del revisor aprovada pel director: fases/fase-7/FASE7-valoracio-propostes-editorials.md
+    // (§2, C-1, versions revisades del §3, ajustos del §4–5). Substitueix, per a aquests fitxers,
+    // l'empremta de la revisió anterior del mateix dia.
+    label: 'propostes editorials valorades i aprovades pel director (06/10/2026)',
+    bodies: {
+      'content/ca/contacte.md': '75ee2ea22176e198d1ce61aa4023e4bca28a69a9bb3335a22dfe4670ccf481b7',
+      'content/ca/home.md': '74fe4370d0821d4575673e2b4f5e837ac26571f2ad8bd019b1ec76f16254ef6f',
+      'content/ca/industrial-capacitats.md': '26890575db0df8a3e76b411ba92cadaa05bd6793619072aeccdf35801330d74a',
+      'content/ca/industrial.md': 'd352c37e73d42e797d7fb2ff66642eab52bcac5f2fcab9661031e50a2e57f9f4',
+      'content/ca/particulars-automatismes.md': '2e1262ca4592bacea451c254be3bcbd06503c79441592f49c0d22d9a663228f5',
+      'content/ca/particulars-estructures.md': '1b0e55e77e8fe172f2d098233511aa83fb8f259dcea2941b091f4ff19c508c68',
+      'content/ca/particulars-urgencies.md': '0032be54faf257672a88696ef879496ce2a64f35f3367d3defe7e33435e7e9cf',
+      'content/ca/particulars.md': '3e309383aa5e1264b463a88c8fa7ddf231d157947b3d57cd504da76bfe75073c',
+      'content/ca/ui.md': '98b41c80a4bf37c61788a8613a6a81d905f99898e7a6f606884d0e374809ea95',
+    },
+    frontmatter: {
+      'content/ca/industrial.md': '1496d3a2040d6fd3df29eaf019dde74491d462ddb5e86a4d641621e8338c9d80',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

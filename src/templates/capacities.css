@@ -1,311 +1,157 @@
-/* Plantilla II (Capacitats d'Industrial). Només es carrega a les pàgines que usen
-   CapacitiesTemplate.
-   Origen, en aquest ordre de cascada: mockup-base.css i industrial-base.css (importats abans a
-   la plantilla), industrial/capacitats/styles.css, les regles .c-* d'industrial/identitat.css i
-   les regles .capacity-page de revisio-client.css. Es mantenen els selectors, l'ordre i
-   l'especificitat perquè els ajustos del client guanyin igual que a la maqueta.
-   Canvis respecte a la maqueta:
-   - .industrial-page.capacity-page és el <main>: la capçalera i el peu són components propis
-     (el menú fins a 1320 px és la variant «industrial» de SiteHeader).
-   - Les etiquetes de bloc (Materials, Maquinària, Soldadura…) són h3, i les llistes de materials,
-     màquines i dades de consulta són <ul>: els selectors «>span» de la maqueta passen a «>h3» o «li».
-   - Imatges dins .i-media / <picture> (Picture d'Astro).
-   - Sense scroll-margin-top de la maqueta: el scroll-padding-top global (styles/global.css) ja
-     deixa les àncores sota la capçalera fixa; sumats, la secció quedava 170 px avall.
-   - Els ajustos del director (escala comuna de titulars, ajust a mòbil i moviment) van al final. */
+/* Plantilla II (Capacitats d'Industrial). Només es carrega a les pàgines que usen CapacitiesTemplate,
+   després de mockup-base.css i industrial-base.css (paleta i peces compartides de la branca).
+   Origen: fases/fase-4/FASE4-mockups/industrial/capacitats/ i els ajustos posteriors del director.
+   - .industrial-page.capacity-page és el <main>: la capçalera i el peu són components propis.
+   - Les etiquetes de bloc són h3 i les llistes de materials, màquines i dades de consulta són <ul>.
+   Refinament global del 06/10/2026 (fases/fase-7/FASE7-brief-refinament-global-i-contacte.md):
+   identitat metàl·lica més lluminosa (grafit mitjà, plata i boira), titulars i espaiat dels rols
+   compartits i menú local sense numeració decorativa. Capes antigues consolidades en aquest full. */
 
-/* Llistes de la plantilla (materials, màquines, dades de consulta): sense estil de llista. Va
-   abans de les regles de la maqueta perquè els seus marges guanyin. */
-.c-metal-plates,.c-machines,.c-contact-fields { margin:0; padding:0; list-style:none; }
+.c-metal-plates, .c-machines, .c-contact-fields { margin:0; padding:0; list-style:none; }
+.capacity-page h2 { margin:0; font-size:var(--type-h2); font-weight:700; letter-spacing:var(--display-tracking); line-height:var(--display-leading); text-transform:uppercase; }
 
-/* industrial/capacitats/styles.css */
-.c-hero { position:relative; isolation:isolate; min-height:clamp(430px,calc(62svh - 76px),550px); overflow:hidden; background:#181b1d; }
-.c-hero-image,.c-hero-shade { position:absolute; inset:0; width:100%; height:100%; }
+/* Entrada fotogràfica */
+.c-hero { position:relative; isolation:isolate; min-height:clamp(380px,50svh,500px); overflow:hidden; background:var(--i-graphite); color:#fff; }
+.c-hero-image, .c-hero-shade { position:absolute; inset:0; width:100%; height:100%; }
 .c-hero-image { z-index:-2; }
-.c-hero-image img { object-position:62% 51%; filter:saturate(.62) contrast(1.08); }
-.c-hero-shade { z-index:-1; background:linear-gradient(90deg,rgba(11,13,14,.93),rgba(11,13,14,.75) 45%,rgba(11,13,14,.19)),linear-gradient(0deg,rgba(10,12,13,.76),transparent 28%); }
+.c-hero-image img { object-position:62% 51%; filter:saturate(.75) contrast(1.04); }
+.c-hero-shade { z-index:-1; background:linear-gradient(90deg,rgb(20 24 25 / .82),rgb(20 24 25 / .55) 45%,rgb(20 24 25 / .1)),linear-gradient(0deg,rgb(20 24 25 / .5),transparent 32%); }
 .c-hero-inner { display:flex; flex-direction:column; min-height:inherit; }
-.c-crumb { display:flex; align-items:center; gap:.8rem; padding-top:1.1rem; color:#e4e7e4; font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
-.c-crumb a { display:inline-flex; align-items:center; min-height:44px; border-bottom:1px solid #b9c0bd; text-decoration:none; }
-.c-crumb a:hover { color:var(--i-accent); }
+.c-crumb { display:flex; align-items:center; gap:.7rem; padding-top:.6rem; font-size:var(--type-meta); font-weight:700; letter-spacing:var(--tracking-meta); text-transform:uppercase; }
+.c-crumb a { display:inline-flex; align-items:center; min-height:44px; border-bottom:1px solid rgb(255 255 255 / .6); }
 .c-crumb span[aria-hidden] { color:var(--i-accent); }
-.c-hero-main { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; flex:1; padding-block:3rem 3.5rem; }
-.c-hero h1 { max-width:12ch; margin:1.4rem 0 1.25rem; font-size:clamp(4.2rem,7vw,8rem); font-weight:700; letter-spacing:-.075em; line-height:.85; text-transform:uppercase; }
-.c-hero h1 em { color:var(--i-accent); font-style:normal; }
-.c-hero-main>p { max-width:45ch; margin:0; color:#eff1ee; font-size:clamp(1.08rem,1.4vw,1.27rem); line-height:1.46; }
-.c-hero-main .i-button { margin-top:1.8rem; }
-.c-image-credit { position:absolute; right:var(--page-gutter); bottom:1rem; max-width:30ch; color:#f2f3f0; font-size:.6rem; font-weight:700; letter-spacing:.1em; line-height:1.4; text-align:right; text-transform:uppercase; }
-.c-local-nav { background:#292d2e; border-bottom:1px solid #5e6562; }
-.c-local-inner { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; padding-block:0; }
-.c-local-inner a { display:flex; align-items:center; gap:.9rem; min-height:64px; padding:0 1rem; border-left:1px solid #535b58; color:#fff; font-size:.84rem; font-weight:700; text-decoration:none; }
-.c-local-inner a:last-child { border-right:1px solid #535b58; }
-.c-local-inner a>span:first-child { color:var(--i-accent); font-size:.7rem; letter-spacing:.1em; }
-.c-local-inner a:hover,.c-local-inner a:focus-visible { background:#3c4141; color:#fff; }
-.c-overview { padding-block:clamp(3.8rem,5vw,6rem); background:var(--i-paper); color:var(--i-ink); }
-.c-section-head { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(300px,.6fr); gap:1.5rem clamp(3rem,5vw,6rem); align-items:end; margin-bottom:clamp(2rem,3vw,3rem); }
-.c-section-head .i-index { color:#7c2a30; }
-.c-section-head h2 { margin:1.25rem 0 0; font-size:clamp(3.6rem,5.4vw,6.6rem); font-weight:700; letter-spacing:-.068em; line-height:.87; text-transform:uppercase; }
-.c-section-head h2 em { color:#7c2a30; font-style:normal; }
-.c-section-head p { max-width:43ch; margin:0 0 .2rem; color:#49504d; font-size:clamp(1.05rem,1.25vw,1.18rem); line-height:1.5; }
-.c-cap-grid { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); grid-template-rows:245px 295px; gap:2px; background:#b3b8b3; }
-.c-workshop-photo { position:relative; grid-row:span 2; min-height:0; margin:0; overflow:hidden; background:#292d2e; }
-.c-workshop-photo img { width:100%; height:100%; object-fit:cover; filter:saturate(.55) contrast(1.06); }
-.c-workshop-photo::after { position:absolute; inset:0; background:linear-gradient(0deg,rgba(12,13,14,.7),transparent 35%); content:""; }
-.c-workshop-photo figcaption { position:absolute; z-index:1; left:1.5rem; bottom:1.35rem; color:#fff; font-size:.65rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase; }
-.c-material-block { display:flex; flex-direction:column; min-width:0; padding:clamp(1.4rem,2.5vw,2.6rem); background:#272c2e; color:#fff; }
-.c-block-label { display:flex; justify-content:space-between; gap:1rem; color:#d6ddda; font-size:.7rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
-.c-block-label span:last-child { color:#d48e94; text-align:right; }
-.c-metal-plates { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; align-items:end; flex:1; padding-top:1.5rem; }
-.c-plate { position:relative; display:flex; flex-direction:column; justify-content:space-between; min-height:124px; overflow:hidden; padding:1rem; border:1px solid #a5aaa6; }
-.c-plate::after { position:absolute; right:-2rem; bottom:-3rem; width:10rem; height:10rem; border:1px solid rgba(255,255,255,.18); border-radius:50%; content:""; }
-.c-plate-carbon { background:#3a3e40; }
-.c-plate-inox { background:#4b3134; }
-.c-plate span { position:relative; z-index:1; color:#d7dcda; font-size:.65rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
-.c-plate strong { position:relative; z-index:1; font-size:clamp(1.55rem,2.15vw,2.8rem); font-weight:700; letter-spacing:-.055em; line-height:1; text-transform:uppercase; }
-.c-plate strong i { color:#db9ca1; font-style:normal; }
-.c-machine-block { display:flex; flex-direction:column; min-width:0; padding:clamp(1.4rem,2.5vw,2.6rem); background:#dce0db; }
-.c-machine-block .c-block-label { color:#343c39; }
-.c-machine-block .c-block-label span:last-child { color:#7c2a30; }
-.c-machines { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; align-items:stretch; flex:1; margin-top:1.25rem; background:#9aa39d; }
-.c-machine { display:flex; flex-direction:column; justify-content:space-between; gap:1rem; min-width:0; padding:1rem .8rem; background:#edf0eb; }
-.c-machine svg { display:block; width:100%; max-width:105px; height:65px; fill:none; stroke:#7c2a30; stroke-width:2; }
-.c-machine strong { font-size:clamp(.95rem,1.25vw,1.35rem); font-weight:700; letter-spacing:-.04em; line-height:1.05; text-transform:uppercase; overflow-wrap:anywhere; }
-.c-plan-note { display:flex; gap:1.5rem; align-items:baseline; margin:1.2rem 0 0; padding-top:1rem; border-top:1px solid #a8afa9; color:#4b5350; font-size:.96rem; line-height:1.45; }
-.c-plan-note span { flex:none; color:#7c2a30; font-size:.69rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase; }
-.c-production { position:relative; isolation:isolate; min-height:570px; overflow:hidden; background:#171b1d; }
-.c-production-image,.c-production-shade { position:absolute; inset:0; width:100%; height:100%; }
-.c-production-image { z-index:-2; }
-.c-production-image img { object-position:center 49%; filter:saturate(.58) contrast(1.1); }
-.c-production-shade { z-index:-1; background:linear-gradient(90deg,rgba(11,13,14,.94),rgba(11,13,14,.62) 45%,rgba(11,13,14,.82)),linear-gradient(0deg,rgba(11,13,14,.65),transparent 40%); }
-.c-production-inner { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(3rem,6vw,8rem); align-items:center; min-height:inherit; padding-block:4.5rem 5rem; }
-.c-production-lead h2 { margin:1.7rem 0 1.5rem; font-size:clamp(4.4rem,6.6vw,8rem); font-weight:700; letter-spacing:-.075em; line-height:.82; text-transform:uppercase; }
-.c-production-lead h2 em { color:var(--i-accent); font-style:normal; }
-.c-production-lead>p { max-width:36ch; margin:0; color:#e5eae7; font-size:clamp(1.07rem,1.35vw,1.2rem); line-height:1.5; }
-.c-production-data { padding:clamp(1.4rem,2.5vw,3rem); border:1px solid #959f9a; background:rgba(20,24,25,.82); backdrop-filter:blur(8px); }
-.c-weld-data,.c-logistics-data { display:flex; flex-direction:column; }
-.c-weld-data>h3,.c-logistics-data>h3 { color:#d6dddd; font-size:.72rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
-.c-weld-data strong { margin:1.2rem 0 1.4rem; font-size:clamp(2.4rem,4vw,5rem); font-weight:700; letter-spacing:-.068em; line-height:.95; white-space:nowrap; }
-.c-weld-data strong span { color:var(--i-accent); }
-.c-weld-data small { color:var(--i-accent); font-size:.6em; }
-.c-logistics-data { padding-top:1.5rem; border-top:1px solid #78817d; }
-.c-logistics-data>div { display:flex; gap:clamp(2rem,4vw,5rem); }
-.c-logistics-data p { display:flex; align-items:baseline; gap:.55rem; margin:1rem 0 0; color:#e9eeea; font-size:.9rem; line-height:1.2; }
-.c-logistics-data strong { font-size:clamp(2.8rem,4vw,4.5rem); font-weight:700; letter-spacing:-.07em; line-height:1; }
-.c-production-credit { position:absolute; right:var(--page-gutter); bottom:.9rem; color:#e3e7e4; font-size:.62rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
-.c-requirements { padding-block:clamp(2.8rem,3.7vw,4.5rem); background:#e2e4df; color:var(--i-ink); }
-.c-requirements-inner { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(2rem,5vw,6rem); align-items:start; }
-.c-requirements .i-index { color:#7c2a30; }
-.c-requirements h2 { max-width:22ch; margin:.8rem 0 .65rem; font-size:clamp(1.8rem,2.5vw,3rem); font-weight:700; letter-spacing:-.05em; line-height:1.05; text-transform:uppercase; }
-.c-requirements-copy p,.c-progress>p { max-width:54ch; margin:0; color:#4d5551; font-size:.97rem; line-height:1.5; }
-.c-progress { padding-top:.15rem; }
-.c-progress>span { display:block; color:#7c2a30; font-size:.69rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
-.c-progress>div { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1rem 0; border-block:1px solid #abb2ac; }
-.c-progress>div p { display:flex; flex-direction:column; gap:.2rem; margin:0; padding-block:.75rem; }
-.c-progress>div p+p { padding-left:1rem; border-left:1px solid #abb2ac; }
-.c-progress strong { font-size:1.35rem; letter-spacing:-.03em; }
-.c-progress small { color:#4f5853; font-size:.9rem; }
-.c-contact { padding-block:clamp(4.5rem,6vw,7rem); background:#111517; }
-.c-contact-inner { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.95fr); gap:clamp(3rem,7vw,8rem); align-items:start; }
-.c-contact h2 { margin:1.5rem 0 1.3rem; font-size:clamp(4rem,5.5vw,7rem); font-weight:700; letter-spacing:-.07em; line-height:.85; text-transform:uppercase; }
-.c-contact h2 em { color:var(--i-accent); font-style:normal; }
-.c-contact-copy>p { max-width:47ch; margin:0 0 2rem; color:#d1d8d4; font-size:clamp(1.05rem,1.25vw,1.17rem); line-height:1.5; }
-.c-contact-copy .i-button { width:min(100%,380px); }
-.c-contact-return { display:inline-flex; align-items:center; gap:.6rem; min-height:44px; margin-top:1.1rem; color:#e2e8e4; font-weight:700; text-decoration:none; border-bottom:1px solid #818b86; }
-.c-contact-return:hover { color:#fff; }
-.c-contact-detail { padding-top:1rem; border-top:1px solid #909a95; }
-.c-contact-detail>h3,.c-contact-person>h3 { color:var(--i-accent); font-size:.72rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase; }
-.c-contact-fields { display:grid; grid-template-columns:1fr 1fr; gap:0 1rem; margin:1rem 0 1.6rem; }
-.c-contact-fields li { display:flex; align-items:center; min-height:64px; border-bottom:1px solid #525d57; font-size:.96rem; font-weight:600; }
-.c-contact-person { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem; }
-.c-contact-person>h3 { margin-bottom:.4rem; }
-.c-contact-person a { display:inline-flex; align-items:center; min-height:44px; color:#fff; font-size:1rem; font-weight:700; text-decoration:none; overflow-wrap:anywhere; }
-.c-contact-person a:hover { color:var(--i-accent); }
-@media (max-width:960px) {
-  .c-section-head { grid-template-columns:1fr; gap:1rem; }
-  .c-section-head p { max-width:64ch; }
-  .c-cap-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-template-rows:250px 290px; }
-  .c-workshop-photo { grid-column:1; grid-row:span 2; }
-  .c-material-block,.c-machine-block { grid-column:2; }
-  .c-metal-plates { grid-template-columns:1fr 1fr; }
-  .c-plate { min-height:120px; }
-  .c-machine { padding:.7rem .5rem; }
-  .c-machine strong { font-size:.9rem; }
-  .c-production-inner { gap:2rem; }
-  .c-weld-data strong { font-size:clamp(2.3rem,4vw,3.4rem); }
-}
-@media (max-width:720px) {
-  .c-hero { min-height:480px; }
-  .c-hero h1 { font-size:clamp(3.7rem,9.2vw,5.3rem); }
-  .c-image-credit { bottom:.8rem; }
-  .c-local-inner { grid-template-columns:1fr 1fr; }
-  .c-local-inner a { min-height:53px; border-bottom:1px solid #535b58; }
-  .c-local-inner a:nth-child(2) { border-right:1px solid #535b58; }
-  .c-overview { padding-block:3.8rem; }
-  .c-cap-grid { grid-template-columns:1fr; grid-template-rows:auto; gap:2px; }
-  .c-workshop-photo { grid-column:1; grid-row:1; height:300px; }
-  .c-material-block,.c-machine-block { grid-column:1; }
-  .c-material-block { min-height:225px; }
-  .c-machine-block { min-height:215px; }
-  .c-metal-plates { padding-top:1rem; }
-  .c-machines { margin-top:1rem; }
-  .c-section-head h2 { font-size:clamp(3.4rem,8.6vw,5rem); }
-  .c-plan-note { display:block; }
-  .c-plan-note span { display:block; margin-bottom:.5rem; }
-  .c-production-inner { grid-template-columns:1fr; gap:2rem; padding-block:3.8rem 4.8rem; }
-  .c-production-lead h2 { font-size:clamp(4rem,9.2vw,6.5rem); }
-  .c-production-data { max-width:650px; }
-  .c-requirements-inner,.c-contact-inner { grid-template-columns:1fr; gap:2rem; }
-  .c-contact { padding-block:4.25rem; }
-}
-@media (max-width:480px) {
-  .c-hero { min-height:460px; }
-  .c-hero-image img { object-position:70% center; }
-  .c-hero-shade { background:linear-gradient(90deg,rgba(11,13,14,.92),rgba(11,13,14,.6)),linear-gradient(0deg,rgba(10,12,13,.83),transparent 36%); }
-  .c-crumb { padding-top:.8rem; font-size:.62rem; }
-  .c-hero-main { padding-block:2rem 2.5rem; }
-  .c-hero h1 { margin:1.1rem 0 1rem; font-size:clamp(3.1rem,10.6vw,4.4rem); line-height:.89; }
-  .c-hero-main>p { font-size:1.02rem; }
-  .c-hero-main .i-button { margin-top:1.4rem; }
-  .c-image-credit { bottom:.8rem; max-width:25ch; font-size:.56rem; }
-  .c-local-inner a { gap:.5rem; padding-inline:.7rem; font-size:.78rem; }
-  .c-overview { padding-block:3.3rem; }
-  .c-section-head h2 { font-size:clamp(3rem,10vw,4.3rem); }
-  .c-section-head p { font-size:1.02rem; }
-  .c-workshop-photo { height:230px; }
-  .c-workshop-photo figcaption { left:1rem; bottom:1rem; font-size:.56rem; }
-  .c-material-block,.c-machine-block { padding:1.2rem; }
-  .c-material-block { min-height:205px; }
-  .c-plate { min-height:100px; padding:.7rem; }
-  .c-plate strong { font-size:clamp(1.3rem,5vw,2rem); }
-  .c-machine-block { min-height:200px; }
-  .c-machine { padding:.55rem .4rem; }
-  .c-machine svg { height:53px; }
-  .c-machine strong { font-size:clamp(.72rem,2.8vw,.9rem); }
-  .c-production-inner { padding-block:3.4rem 4.4rem; }
-  .c-production-lead h2 { font-size:clamp(3.8rem,11vw,5.3rem); }
-  .c-production-data { padding:1.2rem; }
-  .c-weld-data strong { font-size:clamp(2rem,9vw,3.7rem); }
-  .c-logistics-data>div { gap:1.5rem; }
-  .c-logistics-data p { flex-direction:column; gap:0; font-size:.8rem; }
-  .c-logistics-data strong { font-size:2.9rem; }
-  .c-requirements { padding-block:2.6rem; }
-  .c-requirements h2 { font-size:1.75rem; }
-  .c-progress>div { gap:.5rem; }
-  .c-progress>div p+p { padding-left:.5rem; }
-  .c-contact h2 { font-size:clamp(3.5rem,10vw,5rem); }
-  .c-contact-fields li { font-size:.87rem; }
-}
-@media (max-width:350px) {
-  .c-hero h1 { font-size:10.1vw; }
-  .c-local-inner a { font-size:.72rem; }
-  .c-section-head h2 { font-size:9.7vw; }
-  .c-plate strong { font-size:1.25rem; }
-  .c-weld-data strong { font-size:8.7vw; }
-  .c-contact h2 { font-size:10vw; }
-}
+.c-hero-main { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; flex:1; gap:var(--space-lead); padding-block:1.5rem 2rem; }
+.c-hero h1 { max-width:14ch; margin:0; font-size:var(--type-hero); font-weight:700; letter-spacing:-.06em; line-height:.92; text-transform:uppercase; text-shadow:0 2px 18px rgb(0 0 0 / .3); }
+.c-hero-main > p { max-width:50ch; margin:0; color:#f1f3f2; font-size:var(--type-intro); line-height:1.5; text-shadow:0 1px 12px rgb(0 0 0 / .35); }
 
-/* industrial/identitat.css (regles .c-*) */
-.c-overview h2 em { color:#303936; background-image:linear-gradient(105deg,#26302b 0%,#69756e 19%,#27312d 39%,#737f76 60%,#27312d 81%,#606b64 100%); }
-.c-section-head .i-index,.c-machine-block .c-block-label span:last-child,
-.c-plan-note span,.c-requirements .i-index,.c-progress>span { color:#454b4a; }
-.c-material-block .c-block-label span:last-child { color:#c5ceca; }
-.c-plate-inox { background:#444c49; }
-.c-plate strong i { color:#d5ddd7; }
-.c-machine svg { stroke:#67726d; }
+/* Menú local */
+.c-local-nav { border-bottom:1px solid var(--i-dark-line); background:var(--i-graphite-card); color:#fff; }
+.c-local-inner { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; }
+.c-local-inner a { display:flex; align-items:center; gap:.7rem; min-height:52px; padding:0 1rem; border-left:1px solid var(--i-dark-line); font-size:.88rem; font-weight:700; transition:scale 160ms var(--motion-ease), background var(--motion-fast) ease; }
+.c-local-inner a:last-child { border-right:1px solid var(--i-dark-line); }
+.c-local-inner a:hover, .c-local-inner a:focus-visible { background:var(--i-graphite-hover); }
+.c-local-inner a:active { scale:.97; }
 
-/* revisio-client.css (.capacity-page) */
-.capacity-page .c-overview{padding-block:clamp(3rem,4vw,4.5rem);background:#343b39;color:#f5f7f4}
-.capacity-page .c-overview .c-section-head p,.capacity-page .c-overview .c-plan-note,.capacity-page .c-overview .c-plan-note span,.capacity-page .c-overview .i-index{color:#d7dfd9}
-.capacity-page .c-overview h2 em{background-image:linear-gradient(105deg,#f8faf7,#a2aca5 19%,#fbfdf9 37%,#7e8983 60%,#f8faf7 100%)}
-.capacity-page .c-production{min-height:440px}
-.capacity-page .c-requirements{padding-block:clamp(3rem,4vw,4.5rem);background:#2d3332;color:#f5f7f4}
-.capacity-page .c-requirements .i-index,.capacity-page .c-requirements .c-progress>span,.capacity-page .c-requirements .c-requirements-copy p,.capacity-page .c-requirements .c-progress>p{color:#d7dfd9}
-.capacity-page .c-contact{padding-block:clamp(3rem,4vw,4.5rem)}
-
-/* Fase 5: elements nous de la plantilla. */
-/* Etiquetes de bloc com a h3 i llistes sense estil de llista: mateix aspecte que la maqueta. */
-.capacity-page :is(.c-block-label,.c-weld-data,.c-logistics-data,.c-contact-detail,.c-contact-person)>h3 { margin:0; font-size:.72rem; font-weight:700; line-height:1.3; }
-.capacity-page .c-block-label>h3 { font-size:inherit; color:inherit; letter-spacing:inherit; }
-/* El text per a lectors de pantalla de cada placa no ocupa lloc al flex de la placa. */
-.c-plate .sr-only { position:absolute; }
+/* El taller: plata clara. */
+.c-overview { padding-block:var(--space-section); background:var(--i-silver); color:var(--i-light-ink); }
+.c-section-head { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(300px,.6fr); gap:.75rem clamp(2rem,5vw,5rem); align-items:end; margin-bottom:var(--space-lead); }
+.c-section-head p { max-width:48ch; margin:0; color:var(--i-light-muted); font-size:var(--type-intro); line-height:1.5; }
+.c-cap-grid { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); grid-template-rows:auto auto; gap:2px; background:var(--i-light-line); }
+.c-workshop-photo { position:relative; grid-row:span 2; min-height:clamp(320px,30vw,440px); margin:0; overflow:hidden; background:var(--i-graphite); }
 .c-workshop-photo picture { display:contents; }
-/* Accions de consulta: el retorn a la portada al costat del botó, com a la maqueta. */
+.c-workshop-photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(.75) contrast(1.04); }
+.c-material-block { display:flex; flex-direction:column; min-width:0; padding:clamp(1.1rem,2vw,1.75rem); background:var(--i-graphite); color:#fff; }
+.c-block-label { display:flex; justify-content:space-between; gap:1rem; font-size:var(--type-meta); font-weight:700; letter-spacing:var(--tracking-meta); text-transform:uppercase; }
+.c-block-label > h3 { margin:0; font-size:inherit; letter-spacing:inherit; line-height:1.3; }
+.c-material-block .c-block-label span:last-child { color:var(--i-accent); text-align:right; }
+.c-metal-plates { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; align-items:end; flex:1; padding-top:1rem; }
+.c-plate { position:relative; display:flex; flex-direction:column; justify-content:space-between; min-height:110px; overflow:hidden; padding:.9rem; border:1px solid rgb(255 255 255 / .4); background:var(--i-graphite-card); }
+.c-plate picture { position:absolute; z-index:0; inset:0; display:block; }
+.c-plate img { width:100%; height:100%; object-fit:cover; object-position:center; filter:saturate(.75) contrast(1.04); }
+.c-plate::after { position:absolute; z-index:0; inset:0; background:linear-gradient(180deg,rgb(8 10 11 / .55),rgb(8 10 11 / .1) 42%,rgb(8 10 11 / .7)); content:""; }
+.c-plate span, .c-plate strong { position:relative; z-index:1; color:#fff; text-shadow:0 1px 8px rgb(0 0 0 / .48); }
+.c-plate span { font-size:var(--type-meta); font-weight:700; letter-spacing:var(--tracking-meta); text-transform:uppercase; }
+.c-plate strong { font-size:var(--type-h4); font-weight:700; letter-spacing:-.03em; line-height:1; text-transform:uppercase; }
+.c-plate strong i { font-style:normal; }
+.c-plate .sr-only { position:absolute; }
+.c-machine-block { display:flex; flex-direction:column; min-width:0; padding:clamp(1.1rem,2vw,1.75rem); background:var(--i-mist); color:var(--i-light-ink); }
+.c-machine-block .c-block-label span:last-child { color:var(--i-light-muted); }
+.c-machines { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; align-items:stretch; flex:1; margin-top:1rem; background:var(--i-light-line); }
+.c-machine { position:relative; display:flex; flex-direction:column; justify-content:flex-end; min-width:0; min-height:150px; overflow:hidden; padding:0; background:#e9ece8; }
+.c-machine picture { position:absolute; top:0; right:0; bottom:42px; left:0; display:block; }
+.c-machine img { width:100%; height:100%; object-fit:cover; object-position:center; filter:saturate(.78) contrast(1.03); }
+.c-machine strong { position:relative; z-index:1; display:flex; align-items:center; width:100%; min-height:42px; padding:.5rem .65rem; background:#edf0eb; color:var(--i-light-ink); font-size:clamp(.85rem,.75rem + .3vw,1.05rem); font-weight:700; letter-spacing:-.02em; line-height:1.05; text-transform:uppercase; overflow-wrap:anywhere; }
+.c-plan-note { display:flex; gap:1.25rem; align-items:baseline; margin:1rem 0 0; padding-top:.8rem; border-top:1px solid var(--i-light-line); color:var(--i-light-muted); font-size:1rem; line-height:1.45; }
+.c-plan-note span { flex:none; color:var(--i-light-ink); font-size:var(--type-meta); font-weight:700; letter-spacing:var(--tracking-meta); text-transform:uppercase; }
+
+/* Producció: fotografia amb les dades en un panell llegible. */
+.c-production { position:relative; isolation:isolate; overflow:hidden; background:var(--i-graphite); color:#fff; }
+.c-production-image, .c-production-shade { position:absolute; inset:0; width:100%; height:100%; }
+.c-production-image { z-index:-2; }
+.c-production-image img { object-position:58% center; filter:saturate(.82) contrast(1.03) brightness(1.05); }
+.c-production-shade { z-index:-1; background:linear-gradient(90deg,rgb(20 24 25 / .78),rgb(20 24 25 / .35) 45%,rgb(20 24 25 / .35)),linear-gradient(0deg,rgb(20 24 25 / .4),transparent 48%); }
+.c-production-inner { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(2rem,5vw,5rem); align-items:center; padding-block:var(--space-section); }
+.c-production-lead { display:grid; gap:var(--space-lead); }
+.c-production-lead > p { max-width:40ch; margin:0; color:#f1f3f2; font-size:var(--type-intro); line-height:1.5; text-shadow:0 1px 12px rgb(0 0 0 / .4); }
+.c-production-data { padding:clamp(1.1rem,2vw,2rem); border:1px solid rgb(255 255 255 / .35); background:rgb(52 60 60 / .88); backdrop-filter:blur(8px); }
+.c-weld-data, .c-logistics-data { display:flex; flex-direction:column; }
+.c-weld-data > h3, .c-logistics-data > h3 { margin:0; color:var(--i-muted); font-size:var(--type-meta); font-weight:700; letter-spacing:var(--tracking-meta); line-height:1.3; text-transform:uppercase; }
+.c-weld-data strong { margin:.8rem 0 1rem; font-size:clamp(1.9rem,1.3rem + 1.9vw,2.75rem); font-weight:700; letter-spacing:-.05em; line-height:.95; white-space:nowrap; }
+.c-weld-data strong span, .c-weld-data small { color:var(--i-accent); }
+.c-weld-data small { font-size:.6em; }
+.c-logistics-data { padding-top:1rem; border-top:1px solid var(--i-dark-line); }
+.c-logistics-data > div { display:flex; gap:clamp(1.5rem,3vw,3rem); }
+.c-logistics-data p { display:flex; align-items:baseline; gap:.5rem; margin:.75rem 0 0; color:var(--i-muted); font-size:.95rem; line-height:1.2; }
+.c-logistics-data strong { color:#fff; font-size:clamp(1.9rem,1.3rem + 1.9vw,2.75rem); font-weight:700; letter-spacing:-.05em; line-height:1; }
+
+/* Requisits i qualitat: boira clara. */
+.c-requirements { padding-block:var(--space-section); background:var(--i-mist); color:var(--i-light-ink); }
+.c-requirements-inner { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:1.5rem clamp(2rem,5vw,5rem); align-items:start; }
+.capacity-page .c-requirements h2 { max-width:24ch; margin:0 0 .6rem; font-size:var(--type-h3); letter-spacing:-.03em; line-height:1.05; }
+.c-requirements-copy p, .c-progress > p { max-width:56ch; margin:0; color:var(--i-light-muted); font-size:1rem; line-height:1.5; }
+.c-progress > span { display:block; color:var(--i-light-ink); font-size:var(--type-meta); font-weight:700; letter-spacing:var(--tracking-meta); text-transform:uppercase; }
+.c-progress > div { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:.75rem 0; border-block:1px solid var(--i-light-line); }
+.c-progress > div p { display:flex; flex-direction:column; gap:.2rem; margin:0; padding-block:.65rem; }
+.c-progress > div p + p { padding-left:1rem; border-left:1px solid var(--i-light-line); }
+.c-progress strong { font-size:var(--type-h4); letter-spacing:-.02em; }
+.c-progress small { color:var(--i-light-muted); font-size:.92rem; }
+
+/* Consulta: plata, acció fosca. */
+.c-contact { padding-block:var(--space-section); border-top:1px solid var(--i-light-line); background:var(--i-silver); color:var(--i-light-ink); }
+.c-contact-inner { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.95fr); gap:1.5rem clamp(2rem,5vw,5rem); align-items:start; }
+.c-contact-copy { display:grid; justify-items:start; gap:var(--space-lead); }
+.c-contact-copy > p { max-width:50ch; margin:0; color:var(--i-light-muted); font-size:var(--type-intro); line-height:1.5; }
 .c-contact-actions { display:flex; flex-wrap:wrap; align-items:center; gap:1rem 2rem; }
-.c-contact-actions .c-contact-return { margin-top:0; }
-/* La revisió del client fa clar el text de tota la secció, però el bloc de maquinària continua
-   sent clar: els noms de les màquines quedaven sense contrast (també a la maqueta). */
-.capacity-page .c-machine-block { color:#202425; }
-/* La revisió del client fa fosca la franja de requisits però no aclareix l'estat de les ISO
-   (#4f5853 sobre #2d3332 no arriba al contrast mínim): es llegeix en plata. */
-.capacity-page .c-requirements .c-progress small { color:#cbd3ce; }
+.c-contact .i-button-solid { width:min(100%,360px); background:var(--i-button-dark); color:#fff; }
+.c-contact .i-button-solid:hover { background:var(--i-button-dark-hover); }
+.c-contact-return { display:inline-flex; align-items:center; gap:.6rem; min-height:44px; border-bottom:1px solid var(--i-light-line); color:var(--i-light-muted); font-weight:700; transition:scale 160ms var(--motion-ease), color var(--motion-fast) ease; }
+.c-contact-return:hover { color:var(--i-light-ink); }
+.c-contact-return:active { scale:.97; }
+.c-contact-detail { padding-top:.9rem; border-top:1px solid var(--i-light-line); }
+.c-contact-detail > h3, .c-contact-person > h3 { margin:0; color:var(--i-light-muted); font-size:var(--type-meta); font-weight:700; letter-spacing:var(--tracking-meta); line-height:1.3; text-transform:uppercase; }
+.c-contact-fields { display:grid; grid-template-columns:1fr 1fr; gap:0 1rem; margin:.6rem 0 1.25rem; }
+.c-contact-fields li { display:flex; align-items:center; min-height:48px; border-bottom:1px solid var(--i-light-line); font-size:1rem; font-weight:600; }
+.c-contact-person { display:flex; flex-direction:column; align-items:flex-start; gap:.1rem; }
+.c-contact-person > h3 { margin-bottom:.3rem; }
+.c-contact-person a { display:inline-flex; align-items:center; min-height:44px; font-size:1rem; font-weight:700; overflow-wrap:anywhere; }
+.c-contact-person a:hover { color:#000; }
+.capacity-page :is(.c-overview, .c-requirements, .c-contact) :focus-visible { outline-color:var(--i-light-ink); }
 
-/* Ajustos del director de projecte (27/09/2026): H1 d'interior i titulars de secció a l'escala
-   comuna del web i, en pantalles estretes, ajust de la paraula més llarga (--chars, calculat a la
-   plantilla) a l'amplada útil: ~0,53 em per caràcter en majúscula amb aquest tracking. La franja
-   de requisits manté el seu titular petit de la maqueta. */
-.capacity-page .c-hero h1 { font-size:clamp(3.9rem,6.2vw,7rem); }
-.capacity-page :is(.c-section-head,.c-production-lead,.c-contact-copy) h2 { font-size:clamp(3.5rem,5.4vw,5.8rem); }
-@media (max-width:760px) {
-  .capacity-page .c-hero h1 { font-size:min(clamp(3.1rem,10.6vw,4.4rem), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .53))); }
-  .capacity-page :is(.c-section-head,.c-production-lead,.c-contact-copy) h2 { font-size:min(3.5rem, calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .53))); }
-}
-
-/* Moviment de la plantilla (criteri emil-design-eng; vegeu styles/motion.css). */
+/* Moviment (criteri emil-design-eng; vegeu styles/motion.css). */
 .industrial-page a:hover .arrow-back { translate:-3px -3px; }
-.c-contact-return,.c-local-inner a,.c-crumb a { transition:scale 160ms var(--motion-ease), background var(--motion-fast) ease, color var(--motion-fast) ease, border-color var(--motion-fast) ease; }
-.c-contact-return:active,.c-local-inner a:active { scale:.97; }
 @media (prefers-reduced-motion:no-preference) {
   .capacity-page .c-hero-image img { animation:settle-image 1100ms var(--ease-out-strong) backwards; }
-  /* Les màquines entren una darrere l'altra i l'esquema es dibuixa d'esquerra a dreta. */
-  .c-machines.is-revealed .c-machine svg { animation:reveal-clip-right 700ms var(--ease-in-out-strong) calc(var(--i, 0) * 90ms + 120ms) backwards; }
+  /* Les màquines entren una darrere l'altra. */
+  .c-machines.is-revealed .c-machine img { animation:reveal-clip-right 700ms var(--ease-in-out-strong) calc(var(--i, 0) * 90ms + 120ms) backwards; }
 }
 @media (prefers-reduced-motion:reduce) {
-  .c-contact-return,.c-local-inner a,.c-crumb a { transition:none; }
-  .c-contact-return:active,.c-local-inner a:active { scale:1; }
+  .c-contact-return, .c-local-inner a { transition:none; }
 }
 
-/* Bloc 3 del pla d'afinament (27/09/2026): rols compartits de src/styles/roles.css, com al pilot
-   validat. Identitat plata sobre grafit (sense canvis de superfície). Els titulars que anaven sota
-   un rètol obren la secció; la franja de requisits usa H3 (franja breu); etiquetes de bloc, avisos
-   d'imatge i text de cos amb una sola mida; espaiat de secció comú. */
-.capacity-page .c-hero h1,
-.capacity-page .c-section-head h2,
-.capacity-page .c-production-lead h2,
-.capacity-page .c-contact h2 { margin-top: 0; }
-.capacity-page .c-requirements h2 { margin-top: 0; font-size: var(--type-h3); }
-.capacity-page :is(.c-overview, .c-requirements, .c-contact) { padding-block: var(--space-section); }
-.capacity-page .c-section-head { margin-bottom: var(--space-lead); }
-.capacity-page .c-section-head p,
-.capacity-page .c-production-lead > p,
-.capacity-page .c-contact-copy > p { font-size: var(--type-intro); }
-.capacity-page .c-requirements-copy p,
-.capacity-page .c-progress > p,
-.capacity-page .c-plan-note { font-size: 1rem; }
-.capacity-page :is(.c-block-label, .c-weld-data > h3, .c-logistics-data > h3, .c-contact-detail > h3, .c-contact-person > h3, .c-plan-note span, .c-progress > span, .c-plate span) { font-size: var(--type-meta); letter-spacing: var(--tracking-meta); }
-.capacity-page :is(.c-image-credit, .c-production-credit, .c-workshop-photo figcaption) { font-size: var(--type-caption); }
-.capacity-page .c-contact-fields li { font-size: 1rem; }
-.capacity-page :is(.c-hero-image, .c-production-image) img,
-.capacity-page .c-workshop-photo img { filter: saturate(.65) contrast(1.08); }
-
-
-/* Materials i màquines: fotografies conceptuals amb llum de taller i etiquetes estables. */
-.c-plate picture { position: absolute; z-index: 0; inset: 0; display: block; }
-.c-plate img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.75) contrast(1.04); }
-.c-plate::after { z-index: 0; right: 0; bottom: 0; width: auto; height: auto; border: 0; border-radius: 0; background: linear-gradient(180deg,rgba(8,10,11,.65),rgba(8,10,11,.13) 42%,rgba(8,10,11,.78)); }
-.c-plate span,.c-plate strong { z-index: 1; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.48); }
-.c-plate strong i { color: #fff; }
-
-.c-machine { position: relative; align-items: stretch; justify-content: flex-end; overflow: hidden; padding: 0; background: #e9ece8; }
-.c-machine picture { position: absolute; top: 0; right: 0; bottom: 42px; left: 0; display: block; }
-.c-machine img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.78) contrast(1.03); }
-.c-machine strong { position: relative; z-index: 1; display: flex; align-items: center; width: 100%; min-height: 42px; padding: .5rem .65rem; background: #edf0eb; color: #202425; }
-.c-photo-note { margin: .5rem 0 0; color: #d1d9d4; font-size: var(--type-caption); line-height: 1.4; }
-
-.capacity-page .c-production-image img { object-position: 58% center; filter: saturate(.82) contrast(1.03) brightness(1.05); }
-.capacity-page .c-production-shade { background: linear-gradient(90deg,rgba(11,13,14,.76),rgba(11,13,14,.3) 42%,rgba(11,13,14,.32)),linear-gradient(0deg,rgba(11,13,14,.42),transparent 48%); }
-@media (max-width: 760px) {
-  .c-machine picture { bottom: 37px; }
-  .c-machine strong { min-height: 37px; padding: .35rem .4rem; }
-  .capacity-page .c-production-image img { object-position: 61% center; }
-  .capacity-page .c-production-shade { background: linear-gradient(180deg,rgba(11,13,14,.68),rgba(11,13,14,.26) 40%,rgba(11,13,14,.6)); }
+/* Responsive */
+@media (max-width:960px) {
+  .c-section-head { grid-template-columns:1fr; }
+}
+@media (max-width:760px) {
+  .c-hero { min-height:420px; }
+  .c-hero-image img { object-position:70% center; }
+  .c-hero-shade { background:linear-gradient(0deg,rgb(20 24 25 / .82),rgb(20 24 25 / .45) 55%,rgb(20 24 25 / .2)); }
+  .c-hero h1 { font-size:min(var(--type-hero), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .56))); }
+  .capacity-page :is(.c-section-head, .c-production-lead, .c-contact-copy) h2 { font-size:min(var(--type-h2), calc((100vw - 2 * var(--page-gutter)) / (var(--chars, 12) * .56))); }
+  .c-local-inner { grid-template-columns:1fr 1fr; }
+  .c-local-inner a { border-bottom:1px solid var(--i-dark-line); }
+  .c-cap-grid { grid-template-columns:1fr; }
+  .c-workshop-photo { grid-row:auto; min-height:240px; }
+  .c-plan-note { display:block; }
+  .c-plan-note span { display:block; margin-bottom:.4rem; }
+  .c-production-inner, .c-requirements-inner, .c-contact-inner { grid-template-columns:1fr; }
+  .c-production-shade { background:linear-gradient(180deg,rgb(20 24 25 / .65),rgb(20 24 25 / .3) 40%,rgb(20 24 25 / .6)); }
+  .c-machine picture { bottom:37px; }
+  .c-machine strong { min-height:37px; padding:.35rem .4rem; }
+}
+@media (max-width:480px) {
+  .c-local-inner a { gap:.4rem; padding-inline:.7rem; font-size:.8rem; }
+  .c-machine { min-height:120px; }
+  .c-logistics-data p { flex-direction:column; gap:0; }
+  .c-contact-fields { grid-template-columns:1fr; }
 }

@@ -1,18 +1,16 @@
 /* Base compartida de les maquetes de branca: regles de fases/fase-4/FASE4-mockups/home/styles.css
-   que usen les plantilles P i PS. S'importa abans del full de cada plantilla. */
+   que usen les plantilles P i PS. S'importa abans del full de cada plantilla.
+   Refinament global (06/10/2026): escala i colors dels rols compartits (src/styles/roles.css),
+   amb superfícies clares per defecte. */
 .section-shell { width: min(100%, 1600px); margin-inline: auto; padding-inline: var(--page-gutter); }
-.index { display: block; color: var(--f4-muted); font-size: .78rem; font-weight: 700; letter-spacing: .14em; line-height: 1.25; text-transform: uppercase; }
-.section-lead { display: grid; grid-template-columns: minmax(0,1fr) minmax(250px,.55fr); gap: 1rem 5rem; align-items: end; padding-bottom: clamp(2.5rem,4vw,4.5rem); }
-.section-lead .index { grid-column: 1/-1; margin-bottom: 1rem; }
-.section-lead h2 { margin: 0; font-size: clamp(3.5rem,6.5vw,7rem); font-weight: 700; letter-spacing: -.065em; line-height: .9; text-transform: uppercase; }
-.section-lead p { max-width: 48ch; margin: 0; color: #d1d4d3; font-size: clamp(1rem,1.25vw,1.22rem); line-height: 1.5; }
-.underlined-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 2rem; min-height: 44px; padding-block: .5rem; border-bottom: 1px solid currentColor; font-weight: 700; text-decoration: none; }
-.underlined-link span { font-size: 1.15rem; font-weight: 400; }
+.index { display: block; color: var(--ink-muted); font-size: var(--type-meta); font-weight: 700; letter-spacing: var(--tracking-meta); line-height: 1.25; text-transform: uppercase; }
+.section-lead { display: grid; grid-template-columns: minmax(0,1fr) minmax(250px,.55fr); gap: .75rem clamp(2rem,5vw,5rem); align-items: end; padding-bottom: var(--space-lead); }
+.section-lead .index { grid-column: 1/-1; margin-bottom: .5rem; }
+.section-lead h2 { margin: 0; font-size: var(--type-h2); font-weight: 700; letter-spacing: var(--display-tracking); line-height: var(--display-leading); text-transform: uppercase; }
+.section-lead p { max-width: 48ch; margin: 0; color: var(--ink-muted); font-size: var(--type-intro); line-height: 1.5; }
+.underlined-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 2rem; min-height: 44px; padding-block: .5rem; border-bottom: 1px solid color-mix(in srgb, currentColor 38%, transparent); font-weight: 700; text-decoration: none; }
+.underlined-link span { font-size: 1.1rem; font-weight: 400; }
 @media (max-width: 760px) {
-  .section-lead { grid-template-columns: 1fr; gap: 1.2rem; }
-  .section-lead h2 { font-size: clamp(3.7rem,9vw,5.5rem); }
-  .section-lead .index { margin-bottom: .5rem; }
-}
-@media (max-width: 520px) {
-  .section-lead h2 { font-size: clamp(2.7rem, 10vw, 3.6rem); }
+  .section-lead { grid-template-columns: 1fr; }
+  .section-lead h2 { font-size: min(var(--type-h2), calc((100vw - 2 * var(--page-gutter)) / (var(--chars, 12) * .56))); }
 }

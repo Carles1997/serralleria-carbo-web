@@ -24,7 +24,7 @@ const legal = await Promise.all(
 );
 ---
 
-<footer class="site-footer" data-surface="dark">
+<footer class:list={['site-footer', `site-footer-${variant}`]} data-surface={variant === 'industrial' ? 'dark' : 'light'}>
   <div class="footer-inner">
     <div class="footer-brand">
       <BrandLogo variant={variant} place="footer" /><small>{ui.brand.tagline}</small>
@@ -43,21 +43,32 @@ const legal = await Promise.all(
 </footer>
 
 <style>
+  /* Peu compacte (refinament del director, 06/10/2026): la meitat de padding i sense alçada mínima.
+     Clar a Home, Particulars i Contacte; grafit mitjà a Industrial. */
   .site-footer {
-    background: #0d0e10;
-    color: var(--f4-text);
+    --footer-muted: var(--ink-muted);
+    /* Identitat: vora superior en el color de la branca (director, 06/10/2026). */
+    border-top: 3px solid var(--action);
+    background: var(--surface-grey);
+    color: var(--ink);
+  }
+
+  .site-footer-industrial {
+    --footer-muted: #c9d0ce;
+    border-top-color: var(--color-industrial-silver);
+    background: #3a4243;
+    color: #f3f4f2;
   }
 
   .footer-inner {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 0.5rem 2rem;
     width: min(100%, 1600px);
-    min-height: 190px;
     margin-inline: auto;
-    padding: 3.5rem var(--page-gutter);
+    padding: 1.1rem var(--page-gutter);
   }
 
   .footer-brand {
@@ -67,18 +78,19 @@ const legal = await Promise.all(
   }
 
   .footer-brand small {
-    margin-top: 1rem;
-    color: #bac0c0;
+    margin-top: 0.5rem;
+    color: var(--footer-muted);
     font-size: 0.83rem;
     line-height: 1.3;
     text-transform: none;
   }
 
+  /* Enllaços en fila (també a mòbil, on fan salt de línia): cada un conserva 44 px de zona tàctil. */
   .footer-links {
     display: flex;
-    flex-direction: column;
-    max-width: 35ch;
-    color: #b4b9ba;
+    flex-wrap: wrap;
+    column-gap: 1.25rem;
+    color: var(--footer-muted);
     font-size: 0.84rem;
   }
 
@@ -91,7 +103,7 @@ const legal = await Promise.all(
   }
 
   .footer-links a {
-    color: #fff;
+    color: inherit;
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 0.25em;
@@ -108,24 +120,10 @@ const legal = await Promise.all(
     text-underline-offset: 0.25em;
   }
 
-  @media (min-width: 761px) {
-    .footer-links {
-      flex-direction: row;
-      flex-wrap: wrap;
-      column-gap: 1.5rem;
-      max-width: 60ch;
-    }
-  }
-
-  @media (min-width: 1001px) {
-    .footer-links {
-      max-width: none;
-    }
-  }
-
   @media (max-width: 520px) {
     .footer-inner {
       flex-direction: column;
+      align-items: flex-start;
     }
   }
 </style>

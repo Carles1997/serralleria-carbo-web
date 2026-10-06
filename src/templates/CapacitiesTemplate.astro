@@ -19,7 +19,6 @@ import { sitePhotography } from '../config/photography';
 import './mockup-base.css';
 import './industrial-base.css';
 import './capacities.css';
-import './industrial-surfaces.css';
 
 interface Props {
   page: Page;
@@ -85,7 +84,6 @@ const contactText = one(paragraphs(contact.blocks), `un paràgraf a «${contact.
 const contactLink = one(links(contact.blocks), `un enllaç a «${contact.heading}»`);
 const contactForm = contactLink.href;
 
-const pad = (value: number) => String(value).padStart(2, '0');
 const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
 ---
 
@@ -123,7 +121,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
         {
           t.local.items.map((item, index) => (
             <a href={item.href}>
-              <span>{pad(index + 1)}</span> {item.label}
+              {item.label}
               {index === t.local.items.length - 1 && <span class="arrow" aria-hidden="true">↗</span>}
             </a>
           ))
@@ -146,7 +144,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
             <Picture src={sitePhotography.capacities.workshop} alt="" widths={[640, 960, 1280]} sizes="(max-width: 720px) 100vw, 52vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
           </figure>
           <div class="c-material-block" data-reveal style="--i:1">
-            <div class="c-block-label"><h3>{t.overview.materials.label[0]}</h3><span>{t.overview.materials.label[1]}</span></div>
+            <div class="c-block-label"><h3>{t.overview.materials.label[0]}</h3></div>
             <ul class="c-metal-plates">
               {
                 t.overview.plates.map((plate) => (

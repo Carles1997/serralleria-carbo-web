@@ -24,12 +24,12 @@ const { ui, index, heading, text, form, note } = Astro.props;
 const chars = Math.max(...[heading].flat().join(' ').split(/\s+/).map((word) => word.length));
 ---
 
-<section class="contact" id="contacte" aria-labelledby="contact-title" data-surface="accent">
+<section class="contact" id="contacte" aria-labelledby="contact-title" data-surface="light">
   <div class="contact-inner">
-    <div>
+    <div class="contact-copy">
       {index && <span class="contact-index" data-reveal>{index}</span>}
       <h2 id="contact-title" data-reveal style={`--i:1;--chars:${chars}`}>
-        {Array.isArray(heading) ? heading.map((line, index) => (index ? [' ', <br />, line] : line)) : heading}
+        {Array.isArray(heading) ? heading.join(' ') : heading}
       </h2>
       {text && <p data-reveal style="--i:2"><Inlines inlines={text} /></p>}
       {
@@ -55,33 +55,20 @@ const chars = Math.max(...[heading].flat().join(' ').split(/\s+/).map((word) => 
 </section>
 
 <style>
+  /* Tancament compacte (refinament del director, 06/10/2026): blanc trencat, titular mitjà, text
+     curt i accions clares. El bordeus queda per a l'acció principal, no com a fons gegant. */
   .contact {
-    position: relative;
-    overflow: hidden;
-    padding-block: clamp(3.5rem, 5vw, 5.5rem);
-    background: var(--color-accent);
-    color: #fff;
-  }
-
-  .contact::after {
-    position: absolute;
-    right: -0.14em;
-    bottom: -0.5em;
-    color: rgb(255 255 255 / 0.055);
-    content: 'C';
-    font-size: clamp(18rem, 33vw, 42rem);
-    font-weight: 700;
-    line-height: 1;
-    pointer-events: none;
+    padding-block: clamp(1.75rem, 1.2rem + 1.5vw, 2.5rem);
+    border-top: 1px solid var(--line-on-light);
+    background: var(--surface-paper);
+    color: var(--ink);
   }
 
   .contact-inner {
-    position: relative;
-    z-index: 1;
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-    align-items: end;
-    gap: clamp(2rem, 6vw, 8rem);
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 26rem);
+    align-items: center;
+    gap: 1.5rem clamp(2rem, 5vw, 6rem);
     width: min(100%, 1600px);
     margin-inline: auto;
     padding-inline: var(--page-gutter);
@@ -89,53 +76,52 @@ const chars = Math.max(...[heading].flat().join(' ').split(/\s+/).map((word) => 
 
   .contact-index {
     display: block;
-    font-size: 0.78rem;
+    margin-bottom: 0.5rem;
+    color: var(--ink-muted);
+    font-size: var(--type-meta);
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: var(--tracking-meta);
     line-height: 1.25;
     text-transform: uppercase;
   }
 
   h2 {
-    margin: 2rem 0 2.5rem;
-    font-size: var(--type-h2);
+    margin: 0;
+    font-size: clamp(1.5rem, 1rem + 1.8vw, 2.5rem);
     font-weight: 700;
-    letter-spacing: -0.07em;
-    line-height: 0.85;
+    letter-spacing: var(--display-tracking);
+    line-height: var(--display-leading);
     text-transform: uppercase;
     text-wrap: balance;
   }
 
+  p {
+    max-width: 60ch;
+    margin-top: 0.75rem;
+    color: var(--ink-muted);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
   .contact-note {
-    max-width: 55ch;
-    margin-top: 2rem;
-    padding-top: 1.1rem;
-    border-top: 1px solid rgb(255 255 255 / 0.38);
+    max-width: 60ch;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line-on-light);
   }
 
   .contact-note h3 {
-    margin-bottom: 0.5rem;
-    font-size: 0.78rem;
+    color: var(--ink);
+    font-size: var(--type-meta);
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: var(--tracking-meta);
     line-height: 1.3;
     text-transform: uppercase;
   }
 
   .contact-note p {
-    font-size: 1rem;
-  }
-
-  /* Sense rètol, el titular obre el bloc. */
-  h2:first-child {
-    margin-top: 0;
-  }
-
-  p {
-    max-width: 55ch;
-    color: #fff;
-    font-size: var(--type-intro);
-    line-height: 1.5;
+    margin-top: 0.35rem;
+    font-size: 0.95rem;
   }
 
   .contact-actions {
@@ -148,14 +134,11 @@ const chars = Math.max(...[heading].flat().join(' ').split(/\s+/).map((word) => 
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    min-height: 66px;
-    padding: 0.8rem 0;
-    border-bottom: 1px solid rgb(255 255 255 / 0.65);
+    min-height: 48px;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--line-on-light);
     font-weight: 700;
-  }
-
-  .contact-actions a {
-    transition: scale 160ms var(--ease-out-strong);
+    transition: scale 160ms var(--ease-out-strong), color var(--motion-fast) ease;
   }
 
   .contact-actions a:active {
@@ -164,17 +147,21 @@ const chars = Math.max(...[heading].flat().join(' ').split(/\s+/).map((word) => 
 
   .arrow {
     display: inline-block;
-    font-size: 1.2rem;
+    color: var(--action);
+    font-size: 1.1rem;
     font-weight: 400;
   }
 
   .contact-actions .contact-primary {
-    min-height: 70px;
-    margin-bottom: 0.7rem;
-    padding: 0.8rem 1.2rem;
+    margin-bottom: 0.35rem;
+    padding: 0.6rem 1rem;
     border: 0;
-    background: #fff;
-    color: var(--color-ink);
+    background: var(--action);
+    color: #fff;
+  }
+
+  .contact-actions .contact-primary .arrow {
+    color: #fff;
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -185,16 +172,23 @@ const chars = Math.max(...[heading].flat().join(' ').split(/\s+/).map((word) => 
     .contact-actions a:hover .arrow {
       translate: 3px -3px;
     }
+
+    .contact-actions a:not(.contact-primary):hover {
+      color: var(--action);
+    }
+
+    .contact-actions .contact-primary:hover {
+      background: var(--action-hover);
+    }
   }
 
-  @media (max-width: 760px) {
+  @media (max-width: 860px) {
     .contact-inner {
       grid-template-columns: 1fr;
-      gap: 2.5rem;
     }
 
     h2 {
-      font-size: min(var(--type-h2), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * 0.53)));
+      font-size: min(clamp(1.5rem, 1rem + 1.8vw, 2.5rem), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * 0.6)));
     }
   }
 

@@ -33,6 +33,6 @@ Hem fabricat, instal·lat i motoritzat una porta de pàrquing d'una comunitat de
 
 ## Si el problema és ara
 
-Si la porta o el motor falla, truca al **630 661 908** i explica'ns la incidència.
+Si la porta o el motor falla, truca'ns i explica'ns la incidència.
 
 [Veure urgències](/particulars/urgencies/) · [Enviar una consulta](/contacte/)

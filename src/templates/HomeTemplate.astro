@@ -8,7 +8,7 @@
 // Bloc 1 del pla d'afinament (fases/fase-5/FASE5-pla-millora-integral.md): sense rètols numerats
 // decoratius ni etiquetes que repeteixen el nom de la rajola; el mosaic de serveis no torna a
 // presentar les branques del doble accés.
-import { Picture } from 'astro:assets';
+import { Picture, getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -18,6 +18,7 @@ import Inlines from '../components/Inlines.astro';
 import type { Page } from '../i18n/pages';
 import { useUi } from '../i18n/ui';
 import { sitePhotography } from '../config/photography';
+import logo from '../assets/branding/carbo-logo.png';
 import { labelledItem, links, listItems, one, paragraphs, parseMarkdown, sameText } from '../lib/markdown';
 
 interface Props {
@@ -87,17 +88,20 @@ const [doorTile, structuresTile, furnitureTile, repairsTile, industrialTile] = t
 const contactText = one(paragraphs(contact.blocks), 'un paràgraf a la secció de contacte');
 const contactLink = one(links(contact.blocks), 'un enllaç a la secció de contacte');
 
+// Logotip en marca d'aigua a l'entrada (identitat, director 06/10/2026): mateixa màscara que BrandLogo.
+const heroMark = await getImage({ src: logo, width: 840, format: 'webp' });
 const pathSizes = '(max-width: 760px) 100vw, 50vw';
 const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
 const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 ---
 
-<BaseLayout page={page} surface="dark">
+<BaseLayout page={page}>
   <SiteHeader ui={ui} homeHref={page.data.route ?? '/'} nav={t.nav} mobileExtra={t.mobileExtra} />
 
   <main id="contingut" class="home">
-    <section class="hero-intro shell" aria-labelledby="home-title">
-      <div class="hero-main">
+    <section class="hero-intro" aria-labelledby="home-title" data-surface="light">
+      <span class="hero-mark" aria-hidden="true" style={`--brand-mask: url("${heroMark.src}")`}></span>
+      <div class="hero-main shell">
         <h1 id="home-title">
           {
             titleWords.map((word, index) => (
@@ -112,7 +116,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
       </div>
     </section>
 
-    <section class="paths" aria-label={t.paths.label}>
+    <section class="paths" aria-label={t.paths.label} data-surface="light">
       <div class="path-guide shell">
         <h2 id="path-guide-title" class="path-guide-title">{guide.heading}</h2>
         <ul class="path-guide-list">
@@ -173,7 +177,9 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
           {
             numberItems.map(({ value, unit, label }, index) => (
               <li class="number-item" data-reveal style={`--i:${index}`}>
-                <strong>
+                {/* Si l'etiqueta ja diu la dada sencera (6 furgonetes · 1 camió ploma), la xifra gran és
+                    visual i l'etiqueta en fa de nom accessible complet (valoració editorial, 06/10/2026). */}
+                <strong aria-hidden={label.includes(String(value)) ? 'true' : undefined}>
                   <span class="count" data-count={value} style={`--digits:${String(value).length}`} aria-hidden="true">
                     {value}
                   </span>
@@ -189,7 +195,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
       </div>
     </section>
 
-    <section class="company workshop" id="empresa" aria-labelledby="company-title">
+    <section class="company workshop" id="empresa" aria-labelledby="company-title" data-surface="light">
       <div class="company-image" data-reveal="clip">
         <Picture src={sitePhotography.home.company} alt="" widths={[480, 720, 960, 1200]} sizes="(max-width: 760px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
       </div>
@@ -279,8 +285,11 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 </BaseLayout>
 
 <style>
-  /* Valors de maqueta resolts amb la cascada de revisio-client.css (.home-page .x),
-     que preval sobre styles.css també dins les media queries. */
+  /* Home (plantilla H). Composició de fases/fase-4/FASE4-mockups/home/ amb revisio-client.css i els
+     ajustos del director. Refinament global del 06/10/2026 (fases/fase-7/FASE7-brief-refinament-
+     global-i-contacte.md): superfícies de gris clar i blanc trencat amb el bordeus del logo, titulars
+     i espaiat més petits. Les fotografies conserven text blanc amb una ombra local moderada. Un sol
+     bloc d'estils: les regles antigues de maqueta i d'afinament s'han consolidat aquí. */
   .shell {
     width: min(100%, 1600px);
     margin-inline: auto;
@@ -294,26 +303,43 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     inset: 0;
   }
 
-  /* Entrada */
-  /* Entrada: només el titular (director, 06/10/2026); el paràgraf repetia el que expliquen els dos
-     camins. */
+  .arrow {
+    display: inline-block;
+  }
+
+  /* Entrada: només el titular de marca, en gris clar. */
   .hero-intro {
-    display: flex;
-    align-items: flex-end;
-    min-height: 220px;
-    padding-block: 2.7rem 2.5rem;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: clamp(1.75rem, 1.1rem + 2vw, 3rem) clamp(1.5rem, 1rem + 1.4vw, 2.25rem);
+    background: var(--surface-grey);
+    color: var(--ink);
   }
 
-  .hero-main {
-    min-width: 0;
+  /* Identitat: el logotip, molt suau, ocupa l'espai buit de la dreta de l'entrada. Decoratiu. */
+  .hero-mark {
+    position: absolute;
+    z-index: -1;
+    right: max(var(--page-gutter), calc((100vw - 1600px) / 2 + var(--page-gutter)));
+    bottom: 50%;
+    width: clamp(260px, 34vw, 560px);
+    aspect-ratio: 1983 / 793;
+    background-color: var(--action);
+    opacity: 0.09;
+    translate: 0 50%;
+    -webkit-mask: var(--brand-mask) center / contain no-repeat;
+    mask: var(--brand-mask) center / contain no-repeat;
+    pointer-events: none;
   }
 
+  /* Titular de marca a la mida de la maqueta validada (director, 06/10/2026: és l'únic titular que
+     conserva l'escala anterior). */
   h1 {
     font-size: clamp(4.1rem, 7.1vw, 7.4rem);
     font-weight: 700;
     letter-spacing: -0.075em;
-    /* Interlineat amb aire per a l'accent de «CARBÓ», que tocava la línia de dalt (director,
-       06/10/2026). */
+    /* Interlineat amb aire per a l'accent de «CARBÓ» (director, 06/10/2026). */
     line-height: 0.9;
     text-transform: uppercase;
   }
@@ -321,6 +347,21 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   h1 > span {
     display: block;
     white-space: nowrap;
+  }
+
+  .hero-stop {
+    color: var(--action);
+  }
+
+  h1 small {
+    display: block;
+    margin-top: 1.75rem;
+    color: var(--ink-muted);
+    font-size: clamp(1.15rem, 1.7vw, 1.75rem);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    text-transform: none;
   }
 
   /* Entrada del titular: cada línia puja des de darrere d'una màscara a la seva pròpia base, una
@@ -335,190 +376,24 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     }
   }
 
-  .hero-stop {
-    color: var(--color-accent);
-  }
-
-  h1 small {
-    display: block;
-    margin-top: 1.75rem;
-    color: #c9cbcb;
-    font-size: clamp(1.15rem, 1.7vw, 1.75rem);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    text-transform: none;
-  }
-
-  /* Doble accés */
+  /* Com triar el camí: una sola banda a escriptori; per sota de 1100 px les opcions s'apilen. */
   .paths {
-    border-top: 1px solid var(--f4-line);
+    background: var(--surface-grey);
   }
 
-  .paths-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 50px;
-    color: var(--f4-muted);
-    font-size: 0.77rem;
-    font-weight: 700;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-  }
-
-  .paths-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1px;
-    border-block: 1px solid #505357;
-    background: #505357;
-  }
-
-  /* Files fixes: capçalera, espai, etiqueta, títol, text i acció. En dues columnes,
-     subgrid comparteix les files entre panells i els títols queden alineats. */
-  .path {
-    position: relative;
-    isolation: isolate;
-    display: grid;
-    grid-template-rows: auto 1fr auto auto auto auto;
-    justify-items: start;
-    min-width: 0;
-    min-height: clamp(430px, 39vw, 570px);
-    overflow: hidden;
-    padding: clamp(1.5rem, 3vw, 3.5rem);
-    background: var(--f4-steel);
-    color: #fff;
-  }
-
-  .path :global(img),
-  .tile-photo :global(img) {
-    position: absolute;
-    z-index: -3;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(1);
-  }
-
-  .path-particulars :global(img) {
-    object-position: 55% center;
-  }
-
-  .path-industrial :global(img) {
-    object-position: 47% center;
-  }
-
-  .path-shade {
-    position: absolute;
-    z-index: -2;
-    inset: 0;
-    background: linear-gradient(180deg, rgb(9 10 12 / 0.68), rgb(9 10 12 / 0.12) 30%, rgb(9 10 12 / 0.46) 58%, rgb(9 10 12 / 0.95));
-  }
-
-  .path-top,
-  .tile-top {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    color: #f1f2f0;
-    font-weight: 700;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-  }
-
-  .path-top {
-    font-size: 0.8rem;
-  }
-
-  .corner {
-    display: grid;
-    flex: none;
-    place-items: center;
-    border: 1px solid rgb(255 255 255 / 0.66);
-    font-weight: 400;
-    letter-spacing: 0;
-    line-height: 1;
-  }
-
-  .path .corner {
-    width: 44px;
-    height: 44px;
-    margin: -0.7rem -0.7rem 0 auto;
-    font-size: 1.4rem;
-  }
-
-  .path-top {
-    justify-self: stretch;
-  }
-
-  .path-kicker {
-    grid-row: 3;
-    margin-bottom: 1rem;
-    color: #fff;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-  }
-
-  .path-title {
-    grid-row: 4;
-    font-size: clamp(3.6rem, 6vw, 7rem);
-    font-weight: 700;
-    letter-spacing: -0.06em;
-    line-height: 0.84;
-    text-transform: uppercase;
-  }
-
-  .path-copy {
-    grid-row: 5;
-    max-width: 42ch;
-    margin-top: 1.5rem;
-    font-size: clamp(1.04rem, 1.28vw, 1.27rem);
-    line-height: 1.4;
-  }
-
-  /* Missatge de marca en una línia quan la targeta ho permet (director, 06/10/2026); en pantalles
-     estretes es parteix de manera natural. */
-  .path-industrial .path-copy {
-    max-width: none;
-  }
-
-  .path-slogan {
-    display: block;
-    font-weight: 600;
-    text-wrap: balance;
-  }
-
-  /* Abast d'Industrial: els mateixos productes en sèrie (reunió amb el client, 03/10/2026). */
-  .path-scope {
-    display: block;
-    max-width: 44ch;
-    margin-top: 0.7rem;
-    color: #d8dad9;
-    font-size: 0.86em;
-    line-height: 1.45;
-  }
-
-  /* Com triar el camí (director, 06/10/2026): una sola banda horitzontal a escriptori, amb títol,
-     dues opcions (pregunta i branca a la mateixa línia) i l'ajuda a l'extrem dret, amb menys pes.
-     Per sota de 1100 px les opcions s'apilen; a mòbil queda abans de les dues targetes. */
   .path-guide {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.4rem clamp(1.5rem, 2.4vw, 2.75rem);
-    padding-block: 0.9rem;
+    padding-block: 0.6rem;
+    border-top: 1px solid var(--line-on-light);
+    color: var(--ink);
   }
 
   .path-guide-title {
     margin: 0;
-    color: var(--f4-muted);
+    color: var(--ink-muted);
     font-size: var(--type-meta);
     font-weight: 700;
     letter-spacing: var(--tracking-meta);
@@ -542,15 +417,13 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     display: flex;
     align-items: baseline;
     gap: 0.6rem;
-    white-space: nowrap;
     min-height: 44px;
     padding-block: 0.35rem;
-    color: var(--f4-text);
-    text-decoration: none;
+    white-space: nowrap;
   }
 
   .path-guide-question {
-    color: #d8dad9;
+    color: var(--ink-muted);
     font-size: 0.95rem;
     line-height: 1.35;
   }
@@ -560,21 +433,20 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     align-items: center;
     gap: 0.35rem;
     padding-bottom: 0.1rem;
-    border-bottom: 1px solid rgb(255 255 255 / 0.55);
-    color: #fff;
+    border-bottom: 1px solid var(--action);
+    color: var(--ink);
     font-size: 0.95rem;
     font-weight: 700;
     white-space: nowrap;
   }
 
-  .path-guide-list a:hover .path-guide-branch,
-  .path-guide-list a:focus-visible .path-guide-branch {
-    border-color: #fff;
+  .path-guide-branch .arrow {
+    color: var(--action);
   }
 
-  .path-guide-list a:focus-visible {
-    outline: 2px solid #fff;
-    outline-offset: 3px;
+  .path-guide-list a:hover .path-guide-branch,
+  .path-guide-list a:focus-visible .path-guide-branch {
+    color: var(--action);
   }
 
   .path-guide-help {
@@ -586,77 +458,160 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     align-items: center;
     gap: 0.35rem;
     min-height: 44px;
-    color: var(--f4-muted);
-    font-size: 0.86rem;
+    color: var(--ink-muted);
+    font-size: 0.88rem;
     text-decoration: underline;
-    text-decoration-color: rgb(255 255 255 / 0.3);
+    text-decoration-color: var(--line-strong-on-light);
     text-underline-offset: 0.25em;
     white-space: nowrap;
   }
 
   .path-guide-help a:hover,
   .path-guide-help a:focus-visible {
-    color: #fff;
+    color: var(--ink);
     text-decoration-color: currentColor;
   }
 
-  .path-guide-help a:focus-visible {
-    outline: 2px solid #fff;
-    outline-offset: 3px;
+  /* Doble accés fotogràfic. Files fixes (capçalera, espai, etiqueta, títol, text i acció); en dues
+     columnes, subgrid comparteix les files i els títols queden alineats. */
+  .paths-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--line-on-light);
   }
 
-  @media (max-width: 1100px) {
-    .path-guide {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 0.15rem;
-      padding-block: 0.75rem 0.85rem;
-    }
-
-    .path-guide-list a {
-      justify-content: space-between;
-      gap: 1rem;
-      padding-block: 0.5rem;
-      border-top: 1px solid var(--f4-line);
-      white-space: normal;
-    }
-
-    .path-guide-help {
-      margin: 0;
-      border-top: 1px solid var(--f4-line);
-    }
-
-    .path-guide-help a {
-      display: flex;
-      justify-content: flex-end;
-    }
+  .path {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-rows: auto 1fr auto auto auto auto;
+    justify-items: start;
+    min-width: 0;
+    min-height: clamp(340px, 30vw, 440px);
+    overflow: hidden;
+    padding: clamp(1.25rem, 2.4vw, 2.5rem);
+    background: #3c4245;
+    color: #fff;
   }
 
-  @media (max-width: 760px) {
-    .path-guide-question {
-      font-size: 0.92rem;
-    }
-
-    .path-guide-help a {
-      font-size: 0.82rem;
-    }
+  .path :global(img),
+  .tile-photo :global(img) {
+    position: absolute;
+    z-index: -3;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  /* Productes en sèrie dins la rajola d'Industrial. */
-  .industrial-products {
+  .path :global(img) {
+    filter: grayscale(1);
+  }
+
+  .path-particulars :global(img) {
+    object-position: 55% center;
+  }
+
+  .path-industrial :global(img) {
+    object-position: 47% center;
+  }
+
+  /* Ombra concentrada darrere del text (baix) i molt suau a dalt, perquè la fotografia es reconegui. */
+  .path-shade {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(9 10 12 / 0.32), rgb(9 10 12 / 0.04) 28%, rgb(9 10 12 / 0.3) 52%, rgb(9 10 12 / 0.86));
+  }
+
+  .path-top {
+    position: relative;
+    z-index: 2;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-top: 1.1rem;
+    justify-self: stretch;
   }
 
-  .industrial-products > span {
-    padding: 0.35rem 0.65rem;
-    border: 1px solid rgb(255 255 255 / 0.42);
-    color: #eef0ef;
-    font-size: 0.82rem;
+  .corner {
+    display: grid;
+    flex: none;
+    place-items: center;
+    border: 1px solid rgb(255 255 255 / 0.7);
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .path .corner {
+    width: 44px;
+    height: 44px;
+    margin: -0.5rem -0.5rem 0 auto;
+    font-size: 1.3rem;
+  }
+
+  /* Identitat: filet de color abans del públic de cada camí (bordeus a Particulars, plata a Industrial). */
+  .path-kicker::before {
+    display: block;
+    width: 2.25rem;
+    height: 3px;
+    margin-bottom: 0.65rem;
+    background: var(--action);
+    content: "";
+  }
+
+  .path-industrial .path-kicker::before {
+    background: linear-gradient(90deg, #f8faf7 0%, #a2aca5 35%, #fbfdf9 60%, #7e8983 100%);
+  }
+
+  .path-particulars .path-kicker::before {
+    background: #a3474e;
+  }
+
+  .path-kicker {
+    grid-row: 3;
+    margin-bottom: 0.6rem;
+    font-size: var(--type-meta);
+    font-weight: 700;
+    letter-spacing: var(--tracking-meta);
+    text-shadow: 0 1px 10px rgb(0 0 0 / 0.45);
+    text-transform: uppercase;
+  }
+
+  .path-title {
+    grid-row: 4;
+    font-size: clamp(2.25rem, 1.4rem + 2.4vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.055em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+
+  .path-copy {
+    grid-row: 5;
+    max-width: 44ch;
+    margin-top: 0.9rem;
+    font-size: clamp(1rem, 0.9rem + 0.35vw, 1.15rem);
+    line-height: 1.4;
+    text-shadow: 0 1px 12px rgb(0 0 0 / 0.4);
+  }
+
+  /* Missatge de marca en una línia quan la targeta ho permet; en pantalles estretes es parteix. */
+  .path-industrial .path-copy {
+    max-width: none;
+  }
+
+  .path-slogan {
+    display: block;
     font-weight: 600;
-    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .path-scope {
+    display: block;
+    max-width: 46ch;
+    margin-top: 0.5rem;
+    color: #e4e7e6;
+    font-size: 0.9em;
+    line-height: 1.45;
   }
 
   .path-action {
@@ -665,25 +620,24 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    width: min(100%, 440px);
-    min-height: 54px;
-    margin-top: 1.75rem;
-    padding: 0.8rem 0;
-    border-top: 1px solid rgb(255 255 255 / 0.55);
+    width: min(100%, 420px);
+    min-height: 48px;
+    margin-top: 1.1rem;
+    padding: 0.6rem 0;
+    border-top: 1px solid rgb(255 255 255 / 0.6);
     font-size: 0.95rem;
     font-weight: 700;
   }
 
   .path-action .arrow {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
   }
 
   @media (min-width: 761px) {
-    /* L'alçada mínima passa a la graella: en subgrid, les files són compartides. */
     .paths-grid {
       grid-template-rows: auto 1fr auto auto auto auto;
       row-gap: 0;
-      min-height: calc(clamp(430px, 39vw, 570px) + 2px);
+      min-height: calc(clamp(340px, 30vw, 440px) + 2px);
     }
 
     .path {
@@ -693,60 +647,49 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     }
   }
 
-  .concept-note {
-    padding-block: 0.7rem;
-    color: #aeb3b6;
-    font-size: 0.82rem;
-  }
-
-  /* Xifres (revisió del client: bloc clar) */
+  /* Xifres i taller: un sol grup en blanc trencat («qui som»). */
   .numbers {
-    padding-block: clamp(3.5rem, 5vw, 5.5rem);
-    background: var(--client-paper);
-    color: var(--client-ink);
+    padding-block: var(--space-section);
+    background: var(--surface-paper);
+    color: var(--ink);
   }
 
   .section-lead {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(250px, 0.55fr);
     align-items: end;
-    gap: 1rem 5rem;
-    padding-bottom: clamp(2.5rem, 4vw, 4.5rem);
+    gap: 0.75rem clamp(2rem, 5vw, 5rem);
+    padding-bottom: var(--space-lead);
   }
 
   .section-lead h2 {
-    font-size: clamp(3.5rem, 6.5vw, 7rem);
+    font-size: var(--type-h2);
     font-weight: 700;
-    letter-spacing: -0.065em;
-    line-height: 0.9;
+    letter-spacing: var(--display-tracking);
+    line-height: var(--display-leading);
     text-transform: uppercase;
   }
 
   .section-lead p {
     max-width: 48ch;
-    font-size: clamp(1rem, 1.25vw, 1.22rem);
+    color: var(--ink-muted);
+    font-size: var(--type-intro);
     line-height: 1.5;
-  }
-
-  .numbers .section-lead p,
-  .number-item > span {
-    color: #4d5754;
   }
 
   .number-grid {
     display: grid;
     grid-template-columns: 1.3fr repeat(3, minmax(0, 1fr));
-    border-top: 1px solid #aeb6b2;
+    border-top: 1px solid var(--line-on-light);
   }
 
   .number-item {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 1rem;
-    min-height: 170px;
-    padding: 1.5rem 1.2rem 0;
-    border-left: 1px solid #aeb6b2;
+    gap: 0.6rem;
+    padding: 1.1rem 1.2rem 0;
+    border-left: 1px solid var(--line-on-light);
   }
 
   .number-item:first-child {
@@ -755,20 +698,17 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   .number-item strong {
-    color: var(--color-accent);
-    font-size: clamp(3.3rem, 5vw, 6.2rem);
+    color: var(--action);
+    font-size: clamp(2.2rem, 1.4rem + 2.4vw, 3.5rem);
     font-variant-numeric: tabular-nums;
     font-weight: 600;
-    letter-spacing: -0.065em;
+    letter-spacing: -0.06em;
     line-height: 0.95;
+    white-space: nowrap;
   }
 
   .number-item:first-child strong {
-    font-size: clamp(4.5rem, 7.3vw, 9rem);
-  }
-
-  .number-item strong {
-    white-space: nowrap;
+    font-size: clamp(2.6rem, 1.6rem + 3vw, 4.25rem);
   }
 
   .number-item small {
@@ -782,27 +722,30 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     min-width: calc(var(--digits) * (1ch - 0.065em));
   }
 
+  /* Salt equilibrat: cada dada queda amb la seva etiqueta (6 furgonetes · / 1 camió ploma). */
   .number-item > span {
     max-width: 24ch;
-    font-size: 0.98rem;
+    color: var(--ink-muted);
+    font-size: 0.95rem;
     line-height: 1.32;
+    text-wrap: balance;
   }
 
-  /* Empresa */
-  .company {
+  /* Taller: fotografia aprovada a l'esquerra i, a la dreta, fabricació, muntatge i àrea en un grup. */
+  .workshop {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 510px;
-    border-block: 1px solid var(--f4-line);
-    background: #1c1f22;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    background: var(--surface-paper);
+    color: var(--ink);
   }
 
   .company-image {
     position: relative;
     isolation: isolate;
-    min-height: 510px;
+    min-width: 0;
+    min-height: clamp(260px, 24vw, 360px);
     overflow: hidden;
-    background: #34383a;
+    background: #c9cecc;
   }
 
   .company-image :global(img) {
@@ -811,105 +754,73 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(1) contrast(1.08);
-  }
-
-  .company-image > span {
-    position: absolute;
-    right: 1.5rem;
-    bottom: 1.4rem;
-    left: 1.5rem;
-    color: #fff;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-shadow: 0 1px 8px #000;
-    text-transform: uppercase;
+    filter: saturate(0.85) contrast(1.04);
   }
 
   .company-content {
     display: flex;
+    min-width: 0;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    padding: clamp(2.5rem, 4.5vw, 5rem);
+    padding: clamp(1.5rem, 2.6vw, 2.5rem);
   }
 
+  /* Titular de dues frases: dins l'escala H2 (40–56 px), una mica més contingut perquè quedi en dues
+     línies a escriptori. */
   .company-content h2 {
-    max-width: 12ch;
-    margin: 0 0 1.3rem;
-    font-size: clamp(3rem, 4.8vw, 5.5rem);
+    margin: 0 0 var(--space-lead);
+    font-size: clamp(1.75rem, 1.1rem + 2vw, 2.9rem);
     font-weight: 700;
-    letter-spacing: -0.065em;
-    line-height: 0.9;
+    letter-spacing: var(--display-tracking);
+    line-height: var(--display-leading);
     text-transform: uppercase;
   }
 
-  .company-content p {
-    max-width: 48ch;
-    margin-bottom: 1.5rem;
-    color: #d1d3d3;
-    font-size: 1.15rem;
-    line-height: 1.55;
+  .company-content .workshop-text {
+    max-width: 52ch;
+    margin: 0 0 1rem;
+    color: var(--ink-muted);
+    font-size: var(--type-intro);
+    line-height: 1.5;
   }
 
-  /* Prova real: peça editorial (antetítol discret, titular, dada i una sola acció), no una llista. */
-  .workshop { min-height: 460px; }
-  .workshop .company-image { min-width: 0; min-height: 460px; }
-  .workshop .company-content { min-width: 0; padding: clamp(2rem, 3.5vw, 3.75rem); }
-  .workshop .company-content h2 { max-width: none; margin-bottom: 1.25rem; font-size: clamp(2.25rem, 3.8vw, 3.8rem); }
-  .company-content .workshop-text { max-width: 48ch; margin: 0 0 1.5rem; }
-  .workshop-rows { width: 100%; max-width: 44rem; margin: 0; }
-  .workshop-rows > div { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1rem; padding-block: .85rem; border-top: 1px solid var(--f4-line); }
-  .workshop-rows dt { color: #fff; font-weight: 700; }
-  .workshop-rows dd { margin: 0; color: #d1d3d3; line-height: 1.4; }
-  @media (max-width: 760px) {
-    .workshop { min-height: 0; }
-    .workshop .company-image { min-height: 0; height: 260px; }
-    .workshop-rows > div { grid-template-columns: minmax(0, 1fr); gap: .3rem; }
+  .workshop-rows {
+    width: 100%;
+    max-width: 44rem;
+    margin: 0;
   }
 
-  .underlined-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    min-height: var(--target-min);
+  .workshop-rows > div {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr);
+    gap: 1rem;
     padding-block: 0.5rem;
-    border-bottom: 1px solid color-mix(in srgb, currentColor 38%, transparent);
+    border-top: 1px solid var(--line-on-light);
+  }
+
+  .workshop-rows dt {
     font-weight: 700;
   }
 
-  .underlined-link span {
-    font-size: 1.15rem;
-    font-weight: 400;
+  .workshop-rows dd {
+    margin: 0;
+    color: var(--ink-muted);
+    line-height: 1.4;
   }
 
-  /* Serveis (revisió del client: bloc clar amb peces fosques) */
+  /* Serveis: gris clar amb peces fotogràfiques. */
   .services {
-    padding-block: clamp(3.5rem, 5vw, 6rem);
-    border-top: 1px solid #bac1bc;
-    background: var(--client-paper);
-    color: var(--client-ink);
-  }
-
-  .services-lead {
-    padding-bottom: 2.4rem;
-  }
-
-  .services .section-lead h2 {
-    font-size: clamp(3.5rem, 5.4vw, 6rem);
-  }
-
-  .services .section-lead p,
-  .services-note {
-    color: #4f5956;
+    padding-block: var(--space-section);
+    border-top: 1px solid var(--line-on-light);
+    background: var(--surface-grey);
+    color: var(--ink);
   }
 
   .offer-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(1.25rem, 2.5vw, 3rem);
+    gap: clamp(1.25rem, 2.5vw, 2.5rem);
   }
 
   .offer-branch {
@@ -920,43 +831,37 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
   .offer-branch-heading {
     display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 0.3rem 1rem;
-    min-height: 87px;
-    padding-bottom: 1rem;
-    border-top: 1px solid #aeb6b2;
+    gap: 0.25rem;
+    padding-block: 0.7rem 0.75rem;
+    border-top: 1px solid var(--line-strong-on-light);
   }
 
   .offer-branch-heading > span:first-child {
-    grid-column: 1 / -1;
-    align-self: start;
-    padding-top: 0.8rem;
-    color: var(--color-accent);
-    font-size: 0.76rem;
+    color: var(--action);
+    font-size: var(--type-meta);
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: var(--tracking-meta);
     text-transform: uppercase;
   }
 
   .offer-branch-heading h3 {
-    font-size: clamp(1.8rem, 2.5vw, 2.8rem);
-    font-weight: 600;
-    letter-spacing: -0.035em;
+    font-size: var(--type-h3);
+    font-weight: 700;
+    letter-spacing: -0.03em;
     line-height: 1;
     text-transform: uppercase;
   }
 
-  /* Les dues branques fan la mateixa alçada: la graella de l'esquerra creix fins a
-     igualar la peça industrial i les dues accions finals queden alineades. */
+  /* Les dues branques fan la mateixa alçada: la graella de l'esquerra creix fins a igualar la peça
+     industrial i les dues accions finals queden alineades. */
   .service-tiles {
     display: grid;
     flex: 1;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-rows: 1fr;
     gap: 1px;
-    border: 1px solid #4b5052;
-    background: #4b5052;
+    border: 1px solid var(--line-on-light);
+    background: var(--line-on-light);
   }
 
   .tile {
@@ -966,27 +871,24 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     flex-direction: column;
     justify-content: space-between;
     min-width: 0;
-    min-height: 260px;
+    min-height: clamp(190px, 16vw, 240px);
     overflow: hidden;
-    padding: clamp(1.15rem, 1.9vw, 2rem);
-    background: #202428;
+    padding: clamp(1rem, 1.5vw, 1.5rem);
+    background: #3c4245;
     color: #fff;
   }
 
   .tile-top {
-    gap: 0.5rem;
-    color: #f3f4f2;
-    font-size: 0.73rem;
-    line-height: 1.2;
+    position: relative;
+    z-index: 2;
+    display: flex;
   }
 
-  /* Sense etiqueta superior (Bloc 1), el cantó queda a la dreta amb el marge esquerre automàtic. */
   .tile .corner {
     width: 38px;
     height: 38px;
-    margin: -0.55rem -0.55rem 0 auto;
-    border-color: rgb(255 255 255 / 0.72);
-    font-size: 1.18rem;
+    margin: -0.45rem -0.45rem 0 auto;
+    font-size: 1.1rem;
   }
 
   .tile-bottom {
@@ -994,20 +896,26 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     z-index: 2;
     display: flex;
     flex-direction: column;
-    gap: 0.55rem;
+    gap: 0.4rem;
   }
 
+  /* El titular reserva dues línies i el detall dues més: en cada fila comencen a la mateixa altura. */
   .tile-bottom strong {
-    font-size: clamp(1.55rem, 2.5vw, 3.2rem);
-    font-weight: 600;
-    letter-spacing: -0.045em;
+    display: flex;
+    align-items: flex-end;
+    min-height: calc(2 * 0.96em);
+    font-size: var(--type-h4);
+    font-weight: 700;
+    letter-spacing: -0.03em;
     line-height: 0.96;
     text-transform: uppercase;
   }
 
   .tile-bottom > span {
-    color: #d2d6d5;
+    min-height: calc(2 * 1.28em);
+    color: #e2e5e4;
     font-size: 0.87rem;
+    line-height: 1.28;
   }
 
   .tile-structures :global(img) {
@@ -1022,48 +930,16 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     position: absolute;
     z-index: -2;
     inset: 0;
-    background: linear-gradient(180deg, rgb(8 10 11 / 0.68), rgb(8 10 11 / 0.12) 38%, rgb(8 10 11 / 0.92));
-  }
-
-  .tile-diagram {
-    background: linear-gradient(150deg, #252a2d, #171a1d);
-  }
-
-  .tile-diagram::before {
-    position: absolute;
-    z-index: -2;
-    inset: 0;
-    background: linear-gradient(90deg, transparent 49.9%, rgb(255 255 255 / 0.07) 50%, transparent 50.1%);
-    content: '';
-  }
-
-  .drawing {
-    position: absolute;
-    z-index: -1;
-    inset: 9% -10% auto auto;
-    width: 105%;
-    height: 80%;
-    opacity: 0.8;
-    stroke: #899599;
-    stroke-width: 1.4;
-  }
-
-  .drawing :global(*) {
-    vector-effect: non-scaling-stroke;
-  }
-
-  .tile-diagram .tile-bottom {
-    padding-top: 2rem;
-    background: linear-gradient(transparent, rgb(18 20 23 / 0.92) 28%, rgb(18 20 23 / 0.97));
+    background: linear-gradient(180deg, rgb(8 10 11 / 0.3), rgb(8 10 11 / 0.05) 36%, rgb(8 10 11 / 0.85));
   }
 
   .tile-industrial {
     flex: 1;
-    min-height: 521px;
+    min-height: 0;
   }
 
   .tile-industrial .tile-shade {
-    background: linear-gradient(180deg, rgb(8 10 11 / 0.72), rgb(8 10 11 / 0.08) 32%, rgb(8 10 11 / 0.86) 75%, rgb(8 10 11 / 0.97));
+    background: linear-gradient(180deg, rgb(8 10 11 / 0.35), rgb(8 10 11 / 0.04) 32%, rgb(8 10 11 / 0.7) 70%, rgb(8 10 11 / 0.92));
   }
 
   .industrial-content {
@@ -1075,19 +951,36 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   .industrial-content strong {
-    font-size: clamp(3.2rem, 5vw, 6rem);
+    font-size: var(--type-h3);
     font-weight: 700;
-    letter-spacing: -0.06em;
-    line-height: 0.86;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
     text-transform: uppercase;
   }
 
   .industrial-detail {
     max-width: 44ch;
-    margin-top: 0.9rem;
-    color: #d0d4d4;
+    margin-top: 0.6rem;
+    color: #e2e5e4;
     font-size: 0.93rem;
     line-height: 1.4;
+  }
+
+  /* Productes en sèrie dins la rajola d'Industrial. */
+  .industrial-products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.9rem;
+  }
+
+  .industrial-products > span {
+    padding: 0.3rem 0.6rem;
+    border: 1px solid rgb(255 255 255 / 0.55);
+    color: #f0f2f1;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.2;
   }
 
   .offer-overview {
@@ -1095,26 +988,31 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    min-height: 64px;
+    min-height: 52px;
     margin-top: auto;
-    border-bottom: 1px solid #aeb6b2;
-    color: var(--client-ink);
+    border-bottom: 1px solid var(--line-strong-on-light);
+    color: var(--ink);
     font-size: 0.94rem;
     font-weight: 700;
   }
 
-  .offer-overview span {
-    color: var(--color-accent);
-    font-size: 1.2rem;
+  .offer-overview .arrow {
+    color: var(--action);
+    font-size: 1.15rem;
   }
 
   .offer-overview:hover {
-    color: var(--color-accent);
+    color: var(--action);
   }
 
-  .services-note {
-    margin-top: 1.3rem;
-    font-size: 0.8rem;
+  /* Fotografia: el pas de blanc i negre a color queda al doble accés, on comunica una elecció.
+     Rajoles i taller: una correcció de llum coherent. */
+  .tile-photo :global(img) {
+    filter: saturate(0.85) contrast(1.04);
+  }
+
+  .tile-doors :global(img) {
+    filter: saturate(1.04) contrast(1.04) brightness(1.05);
   }
 
   /* Interacció: color només amb punter fi; en tacte, lleugerament desaturat. */
@@ -1126,16 +1024,18 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
         transform 800ms var(--motion-ease);
     }
 
-    .drawing {
-      transition:
-        transform 700ms var(--motion-ease),
-        stroke 300ms ease;
-    }
-
     .corner {
       transition:
         background var(--motion-standard),
         color var(--motion-standard);
+    }
+
+    .arrow {
+      transition: translate 220ms var(--ease-out-strong);
+    }
+
+    :is(.path, .tile, .offer-overview):hover .arrow {
+      translate: 3px -3px;
     }
   }
 
@@ -1147,7 +1047,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
   .tile-photo:hover :global(img),
   .tile-photo:focus-visible :global(img) {
-    filter: grayscale(0.05);
     transform: scale(1.035);
   }
 
@@ -1156,18 +1055,11 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   .tile:hover .corner,
   .tile:focus-visible .corner {
     background: #fff;
-    color: var(--f4-black);
-  }
-
-  .tile-diagram:hover .drawing,
-  .tile-diagram:focus-visible .drawing {
-    transform: translateX(-8px);
-    stroke: #fff;
+    color: var(--ink);
   }
 
   @media (hover: none) {
-    .path :global(img),
-    .tile-photo :global(img) {
+    .path :global(img) {
       filter: grayscale(0.25);
     }
   }
@@ -1176,15 +1068,12 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     .path:hover :global(img),
     .path:focus-visible :global(img),
     .tile-photo:hover :global(img),
-    .tile-photo:focus-visible :global(img),
-    .tile-diagram:hover .drawing,
-    .tile-diagram:focus-visible .drawing {
+    .tile-photo:focus-visible :global(img) {
       transform: none;
     }
   }
 
-  /* Moviment de la plantilla (criteri emil-design-eng). Entrada inicial només amb CSS;
-     la resta, amb data-reveal. Tot queda desactivat amb moviment reduït. */
+  /* Moviment de la plantilla (criteri emil-design-eng): els textos del doble accés entren escalonats. */
   @media (prefers-reduced-motion: no-preference) {
     .path.is-revealed :is(.path-top, .path-kicker, .path-title, .path-copy, .path-action) {
       animation: reveal-rise-soft 520ms var(--ease-out-strong) backwards;
@@ -1206,19 +1095,16 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     .path-action {
       --j: 4;
     }
-
   }
 
-  /* Resposta al prémer (també en tacte) i fletxes que acompanyen el cursor. */
+  /* Resposta al prémer (també en tacte). */
   .path,
   .tile,
-  .offer-overview,
-  .underlined-link {
+  .offer-overview {
     transition: scale 160ms var(--ease-out-strong);
   }
 
-  .offer-overview:active,
-  .underlined-link:active {
+  .offer-overview:active {
     scale: 0.97;
   }
 
@@ -1227,30 +1113,31 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     scale: 0.99;
   }
 
-  .arrow {
-    display: inline-block;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .arrow {
-      transition: translate 220ms var(--ease-out-strong);
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .path-guide {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+      padding-block: 0.5rem 0.6rem;
     }
 
-    :is(.path, .tile, .offer-overview, .underlined-link):hover .arrow {
-      translate: 3px -3px;
+    .path-guide-list a {
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 0.45rem;
+      border-top: 1px solid var(--line-on-light);
+      white-space: normal;
     }
-  }
 
-  /* Responsive (maqueta + revisió del client) */
-  @media (max-width: 1200px) {
-    .path-title {
-      font-size: clamp(3.4rem, 5.7vw, 6rem);
+    .path-guide-help {
+      margin: 0;
+      border-top: 1px solid var(--line-on-light);
     }
-  }
 
-  @media (min-width: 1001px) and (max-width: 1200px) {
-    .tile-bottom strong {
-      font-size: clamp(1.6rem, 2.15vw, 2.5rem);
+    .path-guide-help a {
+      display: flex;
+      justify-content: flex-end;
     }
   }
 
@@ -1260,7 +1147,8 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     }
 
     .number-item {
-      border-bottom: 1px solid #aeb6b2;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--line-on-light);
     }
 
     .number-item:nth-child(odd) {
@@ -1270,30 +1158,22 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
     .offer-grid {
       grid-template-columns: 1fr;
-      gap: 3.5rem;
+      gap: var(--space-block);
+    }
+
+    .tile-industrial {
+      min-height: 300px;
     }
   }
 
   @media (max-width: 760px) {
-    .hero-intro {
-      min-height: 0;
-      padding-block: 2.6rem;
-    }
-  }
-
-  /* Pantalles estretes (brief de millores UX, Fase 7): una mica menys d'aire a la introducció perquè
-     els dos camins de la guia apareguin abans; el text i la mida de lletra de lectura no canvien. */
-  @media (max-width: 400px) {
-    .hero-intro {
-      padding-block: 1.9rem 1.4rem;
-    }
-  }
-
-  @media (max-width: 760px) {
-
     h1 small {
       margin-top: 1.25rem;
       font-size: 1.18rem;
+    }
+
+    .hero-mark {
+      display: none;
     }
 
     .paths-grid {
@@ -1301,111 +1181,57 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     }
 
     .path {
-      min-height: 410px;
-    }
-
-    .path-title {
-      font-size: clamp(3.8rem, 9.5vw, 5.2rem);
-    }
-
-    .path-copy {
-      margin-top: 0.9rem;
-    }
-
-    .path-action {
-      margin-top: 1rem;
+      min-height: 320px;
     }
 
     .section-lead {
       grid-template-columns: 1fr;
-      gap: 1.2rem;
     }
 
-    .section-lead h2 {
-      font-size: clamp(3.7rem, 9vw, 5.5rem);
+    .section-lead h2,
+    .company-content h2 {
+      font-size: min(var(--type-h2), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * 0.56)));
     }
 
-    .numbers {
-      padding-block: 3rem;
-    }
-
-    .number-item {
-      min-height: 135px;
-    }
-
-    .company {
+    .workshop {
       grid-template-columns: 1fr;
-      min-height: 0;
     }
 
     .company-image {
       min-height: 0;
-      height: 320px;
+      height: 240px;
     }
 
-    .services {
-      padding-block: 3.2rem;
+    .company-content {
+      padding: var(--space-section) var(--page-gutter);
     }
 
+    .workshop-rows > div {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.2rem;
+    }
+
+    .path-guide-question {
+      font-size: 0.92rem;
+    }
+  }
+
+  @media (max-width: 560px) {
     .tile {
-      min-height: 230px;
-    }
-
-    .tile-industrial {
-      min-height: 350px;
+      min-height: 200px;
+      padding: 0.9rem;
     }
 
     .tile-bottom strong {
-      font-size: clamp(1.2rem, 3vw, 1.65rem);
+      font-size: clamp(1.05rem, 4.4vw, 1.3rem);
     }
 
     .tile-bottom > span {
-      font-size: 0.75rem;
-      line-height: 1.28;
-    }
-
-  }
-
-  @media (max-width: 600px) {
-    .industrial-content strong {
-      font-size: clamp(2.75rem, 10vw, 4.5rem);
-    }
-  }
-
-  @media (max-width: 520px) {
-    .paths-heading {
-      min-height: 40px;
-      font-size: 0.7rem;
-    }
-
-    .path {
-      padding: 1.25rem;
-    }
-
-    .path-top,
-    .path-kicker {
-      font-size: 0.7rem;
-    }
-
-    .path-title {
-      font-size: clamp(3.1rem, 12vw, 4.3rem);
-    }
-
-    .path-copy {
-      font-size: 0.96rem;
-    }
-
-    .path .corner {
-      width: 38px;
-      height: 38px;
-    }
-
-    .concept-note {
-      font-size: 0.76rem;
+      font-size: 0.82rem;
     }
 
     .number-item {
-      padding: 1.2rem 0.6rem 1rem;
+      padding-inline: 0.75rem 0.5rem;
     }
 
     .number-item:nth-child(odd) {
@@ -1414,170 +1240,28 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
     .number-item strong,
     .number-item:first-child strong {
-      font-size: clamp(3.1rem, 11.5vw, 4.5rem);
+      font-size: clamp(2.3rem, 10vw, 3rem);
     }
 
     .number-item > span {
-      font-size: 0.86rem;
-    }
-
-    .section-lead h2 {
-      font-size: clamp(2.7rem, 10vw, 3.6rem);
-    }
-
-    .tile {
-      min-height: 220px;
-      padding: 1rem;
-    }
-
-    .tile-top {
-      font-size: 0.62rem;
-    }
-
-    .tile-bottom strong {
-      font-size: clamp(1.08rem, 4.5vw, 1.55rem);
-    }
-
-    .tile-bottom > span {
-      font-size: 0.69rem;
-    }
-
-    .drawing {
-      width: 100%;
+      font-size: 0.88rem;
     }
   }
 
+  /* Públic de cada camí en una sola línia també a 320 px, sense cap «·» penjat. Titular de marca a la
+     mida de la maqueta per a mòbils petits. */
   @media (max-width: 360px) {
     h1 {
       font-size: 3.42rem;
     }
 
-    .path-title {
-      font-size: 11.4vw;
-    }
-
-    .number-item strong,
-    .number-item:first-child strong {
-      font-size: 12vw;
-    }
-
-    .tile {
-      min-height: 205px;
-      padding: 0.75rem;
-    }
-
-    .tile-bottom strong {
-      font-size: 1.04rem;
-    }
-
-    .tile-bottom > span {
-      font-size: 0.64rem;
-    }
-
-    .industrial-content strong {
-      font-size: 10vw;
-    }
-  }
-
-  /* Bloc 2 del pla d'afinament (27/09/2026): rols compartits de src/styles/roles.css.
-     Superfície de lectura en blanc (variant #eeefeb comparada a les captures), H2 i H3 a l'escala
-     comuna, text d'entrada i etiquetes amb una sola mida, espaiat de secció comú. Excepcions: el
-     títol dels dos camins és un moment d'elecció (mida d'entrada) i les rajoles petites de serveis
-     mantenen la seva escala per sota de 1200 px. */
-  .numbers,
-  .services {
-    padding-block: var(--space-section);
-    background: var(--surface-read);
-  }
-
-  .section-lead {
-    padding-bottom: var(--space-lead);
-  }
-
-  .section-lead h2,
-  .services .section-lead h2,
-  .company-content h2 {
-    font-size: var(--type-h2);
-  }
-
-  .section-lead p,
-  .company-content p {
-    font-size: var(--type-intro);
-  }
-
-  .offer-branch-heading h3,
-  .industrial-content strong {
-    font-size: var(--type-h3);
-  }
-
-  .paths-heading,
-  .path-kicker,
-  .offer-branch-heading > span:first-child {
-    font-size: var(--type-meta);
-    letter-spacing: var(--tracking-meta);
-  }
-
-  .concept-note,
-  .services-note,
-  .company-image > span {
-    font-size: var(--type-caption);
-  }
-
-  /* Públic de cada camí en una sola línia també a 320 px, sense cap «·» penjat. */
-  @media (max-width: 360px) {
     .path-kicker {
       font-size: 0.7rem;
       letter-spacing: 0.06em;
     }
-  }
 
-  @media (min-width: 1201px) {
-    .tile-bottom strong {
-      font-size: var(--type-h3);
+    .tile {
+      padding: 0.75rem;
     }
-  }
-
-  @media (max-width: 760px) {
-    .section-lead h2,
-    .services .section-lead h2,
-    .company-content h2 {
-      font-size: min(var(--type-h2), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * 0.53)));
-    }
-  }
-
-  /* Fotografia: el pas de blanc i negre a color queda només al doble accés, on comunica una
-     elecció. Rajoles i empresa: una correcció de llum coherent, sense canvi de filtre en passar-hi. */
-  .company-image :global(img),
-  .tile-photo :global(img),
-  .tile-photo:hover :global(img),
-  .tile-photo:focus-visible :global(img) {
-    filter: saturate(0.8) contrast(1.05);
-  }
-
-  @media (hover: none) {
-    .tile-photo :global(img) {
-      filter: saturate(0.8) contrast(1.05);
-    }
-  }
-
-
-  /* Rajoles de serveis alineades (indicació del director, 29/09/2026): el text de totes queda a
-     baix. El titular reserva dues línies i s'hi assenta per sota; el detall en reserva dues per
-     dalt. Així, en cada fila, titulars i detalls comencen a la mateixa altura. */
-  .service-tiles .tile-bottom strong {
-    display: flex;
-    align-items: flex-end;
-    min-height: calc(2 * 0.96em);
-  }
-
-  .service-tiles .tile-bottom > span {
-    min-height: calc(2 * 1.28em);
-    line-height: 1.28;
-  }
-
-  .tile-doors :global(img),
-  .tile-doors:hover :global(img),
-  .tile-doors:focus-visible :global(img) {
-    filter: saturate(1.04) contrast(1.04) brightness(1.05);
   }
 </style>

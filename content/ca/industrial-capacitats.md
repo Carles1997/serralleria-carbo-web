@@ -9,7 +9,7 @@ seoDescription: "Taller de 950 m² amb plegadora, cisalla i punxonadora; acer al
 
 # Capacitats del taller
 
-Materials, processos i maquinària del taller d'Industrial. Els gruixos, les mides i les toleràncies de cada peça es revisen amb el plànol.
+Materials, processos i maquinària del taller d'Industrial.
 
 ## Del material a la peça
 

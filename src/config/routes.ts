@@ -5,7 +5,8 @@
 // - Mobiliari (indicació del director, 01/10/2026: encara no hi ha exemples): el formulari amb el
 //   servei preseleccionat, com Carros industrials.
 export const deferredRoutes: Record<string, string> = {
-  // Sèries curtes → «Què fabriquem en sèrie» (03/10/2026): és on es llisten els productes en sèrie.
+  // «Fabricació en sèrie» (abans «Sèries curtes») → «Què fabriquem» (03/10/2026): és on es llisten
+  // els productes. La URL es conserva fins a una revisió deliberada del mapa de redireccions.
   '/industrial/series-curtes/': '/industrial/#produccio',
   '/industrial/sectors/': '/industrial/#sectors',
   '/industrial/proces/': '/industrial/#proces',

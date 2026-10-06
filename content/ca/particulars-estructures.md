@@ -9,11 +9,11 @@ seoDescription: "Baranes, escales i passarel·les metàl·liques per a habitatge
 
 # Estructures metàl·liques a mida
 
-Fabriquem i instal·lem baranes, escales, passarel·les i altres estructures metàl·liques per a habitatges, comunitats i negocis. Cada peça es defineix segons l'espai, l'ús i l'acabat que demana el projecte.
+Amb equip propi de soldadura i muntatge, fabriquem i instal·lem baranes, escales, passarel·les i altres estructures metàl·liques per a habitatges, comunitats i negocis. Cada peça es defineix segons l'espai, l'ús i l'acabat que demana el projecte.
 
 ## Comencem per entendre l'espai
 
-Per valorar la teva estructura, ens ajuda tenir tres dades sobre la feina. El taller disposa d'equip propi de soldadura i muntatge.
+Per valorar la teva estructura, ens ajuden tres dades.
 
 - **Mides** · De la peça o de l'espai.
 - **Ubicació** · On s'haurà d'instal·lar.

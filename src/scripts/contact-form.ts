@@ -1,6 +1,8 @@
 // Formulari de contacte (plantilla C). Millora progressiva: activa el botó, canvia els camps
 // segons la branca, preselecciona des de la URL i valida al navegador. NO envia res: sense
-// backend, validació al servidor i textos legals no hi ha enviament ni cap estat d'èxit.
+// backend ni validació al servidor no hi ha enviament ni cap estat d'èxit.
+// Redisseny del 06/10/2026: sense columna lateral per branca; les dades opcionals (població i, a
+// Industrial, dades tècniques) són en un desplegable <details> que funciona sense JavaScript.
 import { withViewTransition } from './view-transition';
 
 const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
@@ -9,7 +11,6 @@ if (form) {
   const errors = JSON.parse(form.dataset.errors ?? '{}') as Record<'required' | 'email' | 'phone' | 'summary' | 'consent', string>;
   const radios = [...form.querySelectorAll<HTMLInputElement>('input[name="tipus"]')];
   const fieldsets = [...form.querySelectorAll<HTMLFieldSetElement>('[data-branch]')];
-  const asides = [...document.querySelectorAll<HTMLElement>('[data-aside]')];
   const upload = form.querySelector<HTMLElement>('[data-upload]');
   const uploadLabel = upload?.querySelector<HTMLLabelElement>('label:not(.upload-button)');
   const uploadHelp = upload?.querySelector<HTMLElement>('#upload-help');
@@ -17,6 +18,7 @@ if (form) {
   const fileName = form.querySelector<HTMLElement>('#file-name');
   const description = form.querySelector<HTMLTextAreaElement>('#descripcio');
   const service = form.querySelector<HTMLSelectElement>('#servei');
+  const extraSummary = form.querySelector<HTMLElement>('[data-extra-summary]');
   const status = form.querySelector<HTMLElement>('#form-status');
   const submit = form.querySelector<HTMLButtonElement>('[data-submit]');
   const noFile = fileName?.textContent ?? '';
@@ -62,7 +64,7 @@ if (form) {
       fieldset.disabled = !active;
       if (!active) fieldsOf(fieldset).forEach(clearError);
     });
-    asides.forEach((aside) => (aside.hidden = aside.dataset.aside !== selected));
+    if (extraSummary) extraSummary.textContent = extraSummary.dataset[selected === 'empresa' ? 'labelEmpresa' : 'labelParticular'] ?? '';
     upload?.classList.toggle('is-industrial', selected === 'empresa');
     if (uploadLabel) uploadLabel.textContent = uploadLabel.dataset[selected === 'empresa' ? 'labelEmpresa' : 'labelParticular'] ?? '';
     if (uploadHelp) uploadHelp.textContent = uploadHelp.dataset[selected === 'empresa' ? 'helpEmpresa' : 'helpParticular'] ?? '';

@@ -67,8 +67,9 @@
     scroll-padding-top: 5.5rem;
   }
 
+  /* Superfície fosca: només Industrial (refinament del director, 06/10/2026), en grafit mitjà. */
   html:has(> body.surface-dark) {
-    background: var(--f4-black);
+    background: #3a4243;
   }
 
   body {
@@ -77,7 +78,7 @@
   }
 
   .surface-dark {
-    background: var(--f4-black);
+    background: #3a4243;
     color: var(--f4-text);
     color-scheme: dark;
   }

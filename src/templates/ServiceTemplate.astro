@@ -37,9 +37,11 @@ interface ServiceConfig {
   hero: { title: string[]; cta?: string; hours?: string };
   scope?: {
     heading: string[];
-    lead: string;
+    /** Entrada opcional: només si no repeteix la de la pàgina (valoració editorial, 06/10/2026). */
+    lead?: string;
     label: string;
-    panels: { meta: string; title: string; diagram: string }[];
+    /** Etiqueta opcional sobre la fotografia, quan aporta informació diferent del títol. */
+    panels: { meta?: string; title: string; diagram: string }[];
   };
   process: {
     heading: string[];
@@ -99,9 +101,12 @@ if (worksSection) {
 }
 
 const relatedSection = byRole.get('related');
+// El text és opcional: si el titular i l'enllaç ja expliquen el destí, la secció en prescindeix.
+const relatedText = relatedSection && paragraphs(relatedSection.blocks);
+if (relatedText && relatedText.length > 1) throw new Error(`«${relatedSection?.heading}» admet com a màxim un paràgraf.`);
 const related = relatedSection && {
   heading: relatedSection.heading,
-  text: one(paragraphs(relatedSection.blocks), `un paràgraf a «${relatedSection.heading}»`),
+  text: relatedText?.[0],
   links: links(relatedSection.blocks).filter((link) => !link.href.startsWith('/contacte/')),
 };
 
@@ -116,8 +121,6 @@ const repair = urgentSection
   : config.repair === false
     ? undefined
     : { index: shared.repair.index, text: shared.repair.text, link: undefined };
-// Alternança de fons: després d'una secció clara, la sortida d'avaries va en fosc.
-const repairTone = related ? 'dark' : 'light';
 
 const directLinks = direct ? links(direct.blocks) : [];
 const call = directLinks.find((link) => link.href.startsWith('tel:'));
@@ -137,11 +140,11 @@ const [titleStart, titleAccent, titleEnd] = config.hero.title;
 const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
 ---
 
-<BaseLayout page={page} surface="dark">
+<BaseLayout page={page}>
   <SiteHeader ui={ui} homeHref="/" nav={nav} mobileExtra={ui.particulars.mobileExtra} collapse="wide" current={route} />
 
   <main id="contingut" class="structures-page">
-    <section class="s-hero" aria-labelledby="s-title">
+    <section class="s-hero" aria-labelledby="s-title" data-surface="dark">
       <div class="s-hero-image" aria-hidden="true">
         <Picture src={sitePhotography.services[pageId as keyof typeof sitePhotography.services]} alt="" widths={[640, 960, 1280, 1536]} sizes="100vw" formats={['avif', 'webp']} fallbackFormat="jpg" priority />
       </div>
@@ -207,14 +210,16 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
                 {config.scope.heading[0]}
                 <br /> {config.scope.heading[1]}
               </h2>
-              <p data-reveal style="--i:2">
-                {config.scope.lead}
-              </p>
+              {config.scope.lead && (
+                <p data-reveal style="--i:2">
+                  {config.scope.lead}
+                </p>
+              )}
             </div>
             <div class="s-scope-gallery" role="group" aria-label={config.scope.label}>
               {config.scope.panels.map((panel, index) => (
                 <article class={`s-scope-panel s-panel-${panel.diagram}`} data-reveal style={`--i:${index}`}>
-                  <span class="s-panel-meta">{panel.meta}</span>
+                  {panel.meta && <span class="s-panel-meta">{panel.meta}</span>}
                   <Picture src={sitePhotography.serviceScope[panel.diagram as keyof typeof sitePhotography.serviceScope]} alt="" widths={[400, 640, 960]} sizes="(max-width: 760px) 100vw, 33vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
                   <h3>{panel.title}</h3>
                 </article>
@@ -239,7 +244,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
       )
     }
 
-    <section class="s-approach s-brief" aria-labelledby="approach-title">
+    <section class="s-approach s-brief" aria-labelledby="approach-title" data-surface="light">
       <div class="section-shell s-brief-grid">
         <div class="s-process-heading s-brief-head">
           <h2 id="approach-title" data-reveal style={fit(...config.process.heading)}>
@@ -281,9 +286,11 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
               {related.heading}
             </h2>
             <div data-reveal style="--i:1">
-              <p>
-                <Inlines inlines={related.text} />
-              </p>
+              {related.text && (
+                <p>
+                  <Inlines inlines={related.text} />
+                </p>
+              )}
               {related.links.map((link) => (
                 <a class="underlined-link" href={link.href}>
                   {link.label} <span class="arrow" aria-hidden="true">↗</span>
@@ -297,7 +304,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
 
     {
       repair && (
-        <aside class:list={['s-repair', `s-repair-${repairTone}`]} aria-label={repair.index} data-surface={repairTone}>
+        <aside class="s-repair" aria-label={repair.index} data-surface="light">
           <div class="section-shell s-repair-inner" data-reveal>
             <div>
               <span class="index">{repair.index}</span>

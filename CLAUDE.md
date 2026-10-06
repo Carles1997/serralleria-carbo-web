@@ -24,6 +24,7 @@ Si dues fonts es contradiuen, localitza la decisió posterior validada i informa
 - Les dues imatges d'accés de la Home (Particulars i Industrial) són en blanc i negre en repòs i mostren color amb hover o focus visible. Les fletxes sobre quadrats blancs han de continuar en grafit, independentment del color heretat de la secció. Conserva el focus visible i la variant de moviment reduït.
 - Ajust final del director (06/10/2026): el peu té el mateix fons opac que la capçalera de cada branca: blanc a Home, Particulars i la resta de pàgines clares; grafit a Industrial i Capacitats. Es conserven la vora d'accent, els logotips i els enllaços.
 - Correcció mòbil posterior (06/10/2026): `src/styles/mobile-lines.css` elimina fins a 760 px els separadors horitzontals decoratius repetits, inclosa la vora del peu. Mantén les vores dels controls, el focus, les taules tècniques, la línia del mètode i els subratllats curts que identifiquen enllaços. En escriptori es conserva el disseny anterior.
+- Previsualització del client: l'enllaç reutilitzable és `https://revisio-client--serralleriacarbo.netlify.app/`. Quan el director autoritzi actualitzar-la, desplega amb l'àlies `revisio-client` (CLI `--alias=revisio-client`, sense `--prod`; API `branch: revisio-client` com a desplegament no productiu). Els enllaços anteriors amb un ID de desplegament són captures immutables i no es poden actualitzar. No canviïs el domini ni la publicació de producció per actualitzar aquesta previsualització.
 
 ## Flux de cada tasca
 

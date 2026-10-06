@@ -53,4 +53,4 @@ La verificació mòbil s'ha fet amb viewports de navegador, sense prova física 
 
 El formulari continua en demostració fins a implementar i provar l'enviament real. Les traduccions i decisions de redirecció pendents no es resolen amb aquest canvi visual.
 
-Els canvis estan disponibles a la previsualització local. Aquest document no acredita un nou desplegament públic a Netlify.
+La correcció mòbil està desplegada i comprovada a `https://revisio-client--serralleriacarbo.netlify.app/` (06/10/2026). Aquest àlies és l'enllaç fix de revisió del client i es pot actualitzar amb nous desplegaments. Els enllaços anteriors amb un ID de desplegament conserven la seva versió original. La publicació principal i el domini corporatiu no s'han modificat.

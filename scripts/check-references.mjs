@@ -26,6 +26,12 @@ const APPROVAL_KEYS = new Set(['status', 'publishReady', 'noindex', 'reviewNeede
 /** Revisions validades: fitxer → empremta SHA-256 del cos (sense frontmatter, amb salts LF). */
 const VALIDATED_REVISIONS = [
   {
+    label: 'presentació de fabricació i muntatge a la Home, aprovada pel director (06/10/2026)',
+    bodies: {
+      'content/ca/home.md': '9a9db87e7790c6781122747e3a3683cf0cd2bcd16d6d0ad6851111c409571f61',
+    },
+  },
+  {
     // Alineació del text visible amb content/ca/ (fases/fase-5/FASE5-revisio-editorial.md).
     label: 'revisió editorial validada pel director el 30/09/2026',
     bodies: {
@@ -116,6 +122,13 @@ const VALIDATED_REVISIONS = [
     label: 'ajustos de la Home del director (06/10/2026)',
     bodies: {
       'content/ca/home.md': '7ec28e78b375bdc4211217ce2945f075a4cf5963ec8668664288e41b4e63e67f',
+    },
+  },
+  {
+    label: "menys text i retirada de la pàgina d'empresa, indicació del director (06/10/2026)",
+    bodies: {
+      'content/ca/home.md': 'c04647b36a4f5953c5274f90f56f4bbbc3c28c26933e5138479bb04a3c94d762',
+      'content/ca/industrial.md': 'a04a6d6577769603c4fbd6a1e458459d689f678796ae369c06a034fb1daa3f9f',
     },
   },
 ];

@@ -21,6 +21,7 @@ import { projectPhotography, sitePhotography } from '../config/photography';
 import './mockup-base.css';
 import './industrial-base.css';
 import './industrial.css';
+import './industrial-surfaces.css';
 
 interface Props {
   page: Page;
@@ -41,7 +42,8 @@ const [production, workshop, quality, sectors, method, project, contact] = doc.s
 if (`${t.hero.title.join('. ')}.` !== doc.title) {
   throw new Error(`El titular compost («${t.hero.title.join(' / ')}») no coincideix amb la H1 d'industrial.md.`);
 }
-const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada a industrial.md");
+// Entrada sense paràgraf ni antetítol (director, 06/10/2026): el titular i les dues accions.
+if (paragraphs(doc.intro).length) throw new Error("L'entrada d'industrial.md només porta el titular.");
 
 // Revisió editorial (30/09/2026): titulars, textos i enllaços visibles surten d'industrial.md; els
 // titulars es reparteixen en línies a i18n/ui.ts i el build comprova que diguin el mateix. Els
@@ -106,11 +108,9 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
       <div class="section-shell i-hero-layout">
         <div class="i-hero-overline enter"><span>{t.hero.overline[0]}</span><span>{t.hero.overline[1]}</span></div>
         <div class="i-hero-copy">
-          <div class="i-kicker enter" style="--i:1"><span class="i-kicker-rule" aria-hidden="true"></span>{t.hero.kicker}</div>
           <h1 id="i-title" style={fit(...t.hero.title)}>
             <span class="enter" style="--i:2">{t.hero.title[0]}</span>{' '}<br /><span class="enter" style="--i:3">{t.hero.title[1]}</span>{' '}<br /><em class="enter" style="--i:4">{t.hero.title[2]}</em>
           </h1>
-          <p class="enter" style="--i:5"><Inlines inlines={intro} /></p>
           <div class="i-hero-actions enter" style="--i:6">
             <a class="i-button i-button-solid" href={workshopLink.href}>{t.hero.primary} <span class="arrow" aria-hidden="true">↗</span></a>
             <a class="i-text-link" href="#contacte">{t.hero.secondary} <span class="arrow" aria-hidden="true">↗</span></a>
@@ -183,6 +183,10 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           <h2 id="i-cap-title" style={fit(...t.workshop.heading)} data-reveal>
             {t.workshop.heading[0]}{' '}<br /><em>{t.workshop.heading[1]}</em>
           </h2>
+          <div class="i-cap-summary" data-reveal style="--i:1">
+            <p><Inlines inlines={workshopText} /></p>
+            <a class="i-button i-button-solid" href={workshopLink.href}>{workshopLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
         </div>
         <div class="i-cap-showcase">
           <article class="i-cap-materials" data-reveal="clip">
@@ -217,10 +221,6 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           </article>
         </div>
         <div class="i-cap-close">
-          <div class="i-cap-summary" data-reveal>
-            <p><Inlines inlines={workshopText} /></p>
-            <a class="i-button i-button-solid" href={workshopLink.href}>{workshopLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
-          </div>
           <div class="i-quality" data-reveal style="--i:1">
             <div class="i-quality-copy">
               <h3>{t.workshop.progress.label}</h3>

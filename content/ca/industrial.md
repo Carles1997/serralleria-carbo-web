@@ -9,11 +9,9 @@ seoDescription: "Fabricació metàl·lica per a tercers a Vilafranca del Penedè
 
 # Sèries curtes. Peces exigents. Resposta industrial.
 
-Industrial és la línia de fabricació per a tercers de Serralleria Carbó: sèries curtes, peces a plànol, carros industrials i elements per a projectes de construcció, per a empreses, constructores, caps d’obra i promotores.
-
 ## Què fabriquem
 
-Els mateixos productes que fem a mida per a particulars, en diverses unitats o en sèrie; peces a partir d'un plànol o d'una especificació, i encàrrecs industrials d'una sola unitat, com un carro.
+Els mateixos productes que fem a mida per a particulars, en diverses unitats o en sèrie; peces a partir d'un plànol o d'una especificació, i encàrrecs industrials d'una sola unitat.
 
 - **Estructures, baranes i escales** · Per a projectes de constructores i promotores.
 - **Portes i tancaments** · Fabricació i instal·lació en projectes de construcció.

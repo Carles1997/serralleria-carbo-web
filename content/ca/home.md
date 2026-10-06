@@ -9,8 +9,6 @@ seoDescription: "Serralleria Carbó: des de 1989, treballs de serralleria per a 
 
 # Serralleria Carbó, a Vilafranca del Penedès des de 1989
 
-Fabriquem i instal·lem portes, baranes, estructures, automatismes i mobiliari a mida per a habitatges, comunitats i negocis. Amb Industrial fabriquem sèries, peces a plànol i carros industrials per a empreses, constructores i promotores.
-
 ## Particulars
 
 Instal·lacions, reparacions i peces a mida per al teu espai: baranes, escales, portes, automatismes i mobiliari.
@@ -41,15 +39,15 @@ Estructures per a obra, sèries, peces tècniques a plànol i carros industrials
 
 <!-- Bloc de xifres de la Home: la dada en negreta és la xifra animada i el text després de «·», l'etiqueta visible (si no n'hi ha, es mostra la dada). -->
 
-## Un taller real. Un encàrrec concret
+## Fabriquem al taller. Muntem quan cal
 
-- **10** · gàbies
+Treballem el ferro i l'inoxidable al taller de Vilafranca. Segons l'encàrrec, fabriquem peces i sèries per subministrar-les o ens desplacem per fer-ne el muntatge.
 
-Vam fabricar i subministrar deu gàbies per a un client industrial. L'ús previst i les exigències de pes van orientar la tria del material i la soldadura.
+- **Al taller** · Tall, plegat i soldadura
+- **Sobre el terreny** · Instal·lació i muntatge quan la feina ho requereix
+- **On treballem** · Vilafranca del Penedès i la rodalia, i fins a Barcelona. Les sèries, les valorem arreu de Catalunya.
 
-[Veure el treball documentat](/industrial/#projectes)
-
-<!-- Prova real (director, 06/10/2026): fets de content/ca/projects/gavia-industrial.md, sense terminis, fases ni càrregues. L'àmbit geogràfic és a empresa.md («Arrelats a Vilafranca»). -->
+<!-- Presentació del taller i del muntatge aprovada pel director (06/10/2026). La fotografia aporta context visual; el bloc no presenta un cas de projecte. -->
 
 ## Serveis i capacitats
 

@@ -98,13 +98,14 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   <SiteHeader ui={ui} homeHref={page.data.route ?? '/'} nav={t.nav} mobileExtra={t.mobileExtra} />
 
   <main id="contingut" class="home">
-    <section class="hero-intro surface-brand-grey" aria-labelledby="home-title" data-surface="dark">
+    <section class="hero-intro" aria-labelledby="home-title" data-surface="dark">
       <div class="hero-main shell">
         <h1 id="home-title">
           {
             titleWords.map((word, index) => (
               <span class="hero-line" style={`--i:${index}`}>
                 {word}
+                {index === titleWords.length - 1 && <span class="hero-stop">,</span>}
                 {' '}
               </span>
             ))
@@ -310,22 +311,22 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     display: inline-block;
   }
 
-  /* Entrada: marca a l'esquerra i origen a la dreta, sobre el gris aprovat. */
+  /* Entrada de la referència: marca blanca, coma bordeus i origen discret a la dreta. */
   .hero-intro {
     position: relative;
     isolation: isolate;
     overflow: hidden;
     padding-block: clamp(1.75rem, 1.1rem + 2vw, 3rem) clamp(1.5rem, 1rem + 1.4vw, 2.25rem);
-    background: var(--surface-grey);
-    color: var(--ink);
+    background: #101112;
+    color: #f3f4f3;
   }
 
   /* Titular de marca a la mida de la maqueta validada (director, 06/10/2026: és l'únic titular que
      conserva l'escala anterior). */
   h1 {
-    font-size: clamp(4.1rem, 7.1vw, 7.4rem);
+    font-size: clamp(4.1rem, 7.1vw, 9rem);
     font-weight: 700;
-    letter-spacing: -0.075em;
+    letter-spacing: -0.06em;
     /* Interlineat amb aire per a l'accent de «CARBÓ» (director, 06/10/2026). */
     line-height: 0.9;
     text-transform: uppercase;
@@ -339,34 +340,29 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   .hero-main {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
+    align-items: end;
     gap: clamp(1.5rem, 4vw, 4rem);
   }
 
-  /* El paper permet contrastar el bordeus exacte de l'any sobre el gris de la Home. */
+  .hero-stop { color: var(--action); }
+
+  /* Ubicació i any en una sola línia, sense requadre ni una segona escala de titular. */
   .hero-origin {
-    display: flex;
-    flex-direction: column;
-    gap: .75rem;
-    width: clamp(220px, 27vw, 360px);
     margin: 0;
-    padding: clamp(1.25rem, 2.4vw, 2.25rem);
-    background: var(--surface-paper);
-    color: #202627;
-    font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+    padding: 0 0 .25rem;
+    color: #ced1d0;
+    font-size: clamp(1rem, 1.45vw, 1.5rem);
     font-weight: 500;
     letter-spacing: -.015em;
     line-height: 1.3;
+    text-align: right;
+    white-space: nowrap;
   }
-
-  .hero-origin > span { max-width: 18ch; text-wrap: balance; }
 
   .hero-origin strong {
     color: var(--action);
-    font-size: clamp(4.5rem, 9vw, 8rem);
-    font-weight: 700;
-    letter-spacing: -.055em;
-    line-height: .9;
+    font-size: 1.35em;
+    font-weight: 600;
   }
 
   /* Cada línia entra primer; el bloc d'origen arriba després. Sense moviment reduït. */
@@ -1165,11 +1161,13 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     }
   }
 
-  @media (max-width: 760px) {
+  @media (max-width: 1000px) {
     .hero-main { grid-template-columns: 1fr; gap: 1.5rem; }
-    .hero-origin { flex-direction: row; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; padding: 1rem; font-size: 1rem; }
-    .hero-origin > span { max-width: 18ch; }
-    .hero-origin strong { font-size: clamp(3.4rem, 12vw, 5rem); }
+    .hero-origin { font-size: clamp(.8rem, 2.8vw, 1.1rem); }
+  }
+
+  @media (max-width: 760px) {
+    h1 { font-size: min(16vw, calc((100vw - 2 * var(--page-gutter)) / 6)); }
 
     .paths-grid {
       grid-template-columns: 1fr;
@@ -1247,7 +1245,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
      mida de la maqueta per a mòbils petits. */
   @media (max-width: 360px) {
     h1 {
-      font-size: 3.42rem;
+      font-size: calc((100vw - 2 * var(--page-gutter)) / 6);
     }
 
     .path-kicker {

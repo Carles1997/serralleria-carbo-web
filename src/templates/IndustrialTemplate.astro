@@ -292,7 +292,18 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           {
             t.sectors.items.map((sector, index) => (
               <li class="i-sector" style={`--i:${index}`}>
-                <Picture src={sitePhotography.sectors[sector.art as keyof typeof sitePhotography.sectors]} alt="" widths={[320, 480, 720, 960]} sizes="(max-width: 760px) 50vw, 20vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                <Picture
+                  src={sitePhotography.sectors[sector.art as keyof typeof sitePhotography.sectors]}
+                  alt=""
+                  widths={[320, 480, 720, 960]}
+                  sizes={index === t.sectors.items.length - 1
+                    ? '(max-width: 760px) 100vw, (max-width: 1000px) 33vw, 20vw'
+                    : '(max-width: 760px) 50vw, (max-width: 1000px) 33vw, 20vw'}
+                  formats={['avif', 'webp']}
+                  fallbackFormat="jpg"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <h3>{sector.name}</h3>
               </li>
             ))

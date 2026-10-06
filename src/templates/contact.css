@@ -325,3 +325,11 @@
 .contact-page .field-consent label span{color:inherit}
 .contact-page .field-consent input{display:block;flex:none;width:20px;height:20px;min-height:0;margin:0;padding:0;border:0;box-shadow:none;accent-color:#7c2a30}
 .contact-page .field-consent input:focus-visible{outline:3px solid #7c2a30;outline-offset:2px}
+/* Caselles del text de l'advocat (06/10/2026): l'obligatòria obre el bloc; la comercial, voluntària,
+   el tanca amb un pes de lletra normal per no confondre-la amb l'obligatòria. */
+.contact-page .form-privacy .field-consent:first-child{margin:0 0 .7rem;padding-bottom:.7rem;border-bottom:1px solid #d5d9d6}
+.contact-page .form-privacy .field-consent:first-child label{padding-top:0}
+.contact-page .field-consent label a{display:inline;padding:0;margin:0}
+.contact-page .field-marketing{margin-top:.8rem;padding-top:.7rem;border-top:1px solid #d5d9d6}
+.contact-page .field-marketing label{font-weight:400}
+.form-privacy-note{margin:.35rem 0 0 calc(20px + .6rem);color:#56605c;font-size:.8rem}

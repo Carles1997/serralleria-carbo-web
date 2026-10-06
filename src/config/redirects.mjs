@@ -66,8 +66,20 @@ export const redirects = [
     from: '/legal/',
     status: 301,
     to: { pageId: 'legal-cookies', lang: 'ca' },
-    note: "La pàgina antiga només conté la política de cookies. /legal/ no existeix al sitemap nou (SEO-F3).",
-    requires: ['La política de cookies ha de quedar aprovada després de la revisió jurídica (FASE5-redireccions.md: «En espera»).'],
+    note: "La pàgina antiga només conté la política de cookies. /legal/ no existeix al sitemap nou (SEO-F3). La política de cookies de l'advocat queda aprovada el 06/10/2026.",
+  },
+  // Adreces citades als textos legals de l'advocat del client (06/10/2026), que el lloc nou publica a /legal/.
+  {
+    from: '/politica-de-privacitat/',
+    status: 301,
+    to: { pageId: 'legal-privacitat', lang: 'ca' },
+    note: "Adreça de la política de privacitat que citen els textos de l'advocat.",
+  },
+  {
+    from: '/politica-de-cookies/',
+    status: 301,
+    to: { pageId: 'legal-cookies', lang: 'ca' },
+    note: "Adreça de la política de cookies que citen els textos de l'advocat.",
   },
 
   // Plantilles de WordPress i Elementor sense contingut real.

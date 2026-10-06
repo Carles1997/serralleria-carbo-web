@@ -23,7 +23,9 @@ Els destins s'indiquen per pàgina de contingut (`pageId` + idioma), no per URL.
 | `/cat/motores/` | 301 | `/particulars/automatismes/` | Llesta (el destí encara és esborrany) |
 | `/estructuras/` | 301 | Versió ES d'Estructures (proposta: `/es/particulares/estructuras/`) | En espera: traducció i comprovació de campanyes |
 | `/motores/` | 301 | Versió ES d'Automatismes (proposta: `/es/particulares/automatismos/`) | En espera: traducció i comprovació de campanyes |
-| `/legal/` | 301 | `/legal/cookies/` | En espera: política de cookies aprovada i publicada |
+| `/legal/` | 301 | `/legal/cookies/` | Llesta (política de cookies de l'advocat aprovada el 06/10/2026) |
+| `/politica-de-privacitat/` | 301 | `/legal/privacitat/` | Llesta (adreça citada als textos de l'advocat, 06/10/2026) |
+| `/politica-de-cookies/` | 301 | `/legal/cookies/` | Llesta (adreça citada als textos de l'advocat, 06/10/2026) |
 | `/author/iraibal_gy8unz9r/` | 410 | — | Llesta |
 | `/elementor-hf/header/`, `/elementor-hf/footer-landing/`, `/elementor-hf/594/`, `/elementor-hf/147/` | 410 | — | Llestes |
 | `/sample-page/`, `/hello-world/`, `/category/uncategorized/` | 410 (proposta) | — | Per decidir |
@@ -50,7 +52,7 @@ Els destins s'indiquen per pàgina de contingut (`pageId` + idioma), no per URL.
 **Actualització (02/10/2026):** el director ha triat Netlify. El build genera `dist/_redirects` amb `src/integrations/netlify-files.mjs`, només amb les regles llestes i amb la mateixa avaluació que `npm run check:redirects` (`scripts/lib/redirect-plan.mjs`). El validador comprova que el fitxer generat coincideix amb el mapa. Els 410 serveixen `/404.html` amb l'estat 410. La regla de `/legal/` porta el requisit de la política de cookies aprovada, perquè la pàgina ja es genera com a esborrany en revisió jurídica i, si no, sortiria com a llesta.
 
 - Generar el fitxer del proveïdor a partir de `src/config/redirects.mjs`, només amb les regles llestes. No s'ha d'escriure cap regla a mà. **Fet.**
-- Comprovar que el proveïdor admet el 410. Si no l'admet, triar una alternativa i documentar-la abans de publicar. **Pendent:** comprovar-ho en el primer desplegament de Netlify que inclogui el fitxer.
+- Comprovar que el proveïdor admet el 410. Si no l'admet, triar una alternativa i documentar-la abans de publicar. **Comprovat el 05/10/2026** al desplegament `main@d88c140`: Netlify serveix el 410, i els quatre 301 llestos fan un sol salt fins al destí.
 - Normalització de l'amfitrió: HTTPS, domini `www.serralleriacarbo.com` (el `site` d'Astro) i barra final (`trailingSlash: 'always'`), sense encadenar-la amb les regles del mapa.
 - Després del desplegament, demanar cada URL antiga i comprovar l'estat, la capçalera `Location` i que no hi hagi cadenes. Revisar-ho també a Search Console.
 

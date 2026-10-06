@@ -27,9 +27,12 @@ const pages = defineCollection({
       // Data de la darrera revisió d'un text legal (es mostra a la pàgina si hi és).
       updated: z.coerce.date().optional(),
       // Informació de privacitat del formulari (legal-formulari.md): casella de consentiment, només
-      // si l'assessor la demana, i el seu text.
+      // si l'assessor la demana, i el seu text (admet enllaços en format Markdown). Casella voluntària
+      // de comunicacions comercials i la nota per revocar-les (text de l'advocat, 06/10/2026).
       consent: z.boolean().optional(),
       consentLabel: z.string().optional(),
+      marketingLabel: z.string().optional(),
+      marketingNote: z.string().optional(),
       usage: z.string().optional(),
       reviewNeeded,
       // Al frontmatter és una llista separada per comes.
@@ -53,6 +56,9 @@ const pages = defineCollection({
     )
     .refine((page) => !page.consent || Boolean(page.consentLabel?.trim()), {
       message: 'Una casella de consentiment (consent: true) necessita el seu text a consentLabel.',
+    })
+    .refine((page) => !page.marketingLabel || Boolean(page.marketingNote?.trim()), {
+      message: 'La casella de comunicacions comercials necessita la nota per revocar el consentiment (marketingNote).',
     })
     // approved = publicable; la indexació depèn a més de noindex (fases/fase-5/FASE5-indexacio.md).
     .refine((page) => page.status !== 'approved' || (page.publishReady !== false && !page.reviewNeeded?.length), {

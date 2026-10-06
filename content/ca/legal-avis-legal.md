@@ -2,71 +2,93 @@
 pageId: legal-avis-legal
 route: /legal/avis-legal/
 lang: ca
-status: draft-review
-publishReady: true
-noindex: true
+status: approved
 seoTitle: "Avís legal | Serralleria Carbó"
 seoDescription: "Avís legal del lloc web de Serralleria Carbó S.L.: dades identificatives de l'empresa, condicions d'ús, propietat intel·lectual i responsabilitat."
-updated: 2026-10-02
-requiredSource: "Esborrany redactat per encàrrec del director de projecte (02/10/2026) per a la revisió del client i del seu advocat. Només conté dades confirmades; la resta va marcada «[PENDENT: …]»."
-reviewNeeded:
-  - "Completar les dades d'inscripció al Registre Mercantil."
-  - "Revisió jurídica completa del text (LSSI, RGPD/LOPDGDD i normativa de consum) abans d'aprovar-lo."
+updated: 2026-10-06
+requiredSource: "Nota legal de l'advocat del client (versió de maig de 2025), lliurada pel director el 06/10/2026. Adaptacions al lloc web nou: enllaços a /legal/privacitat/ i /legal/cookies/, apartat de cookies d'acord amb el funcionament real del lloc (sense cookies pròpies; Google Maps només a petició) i correccions tipogràfiques. Detall: fases/fase-8/FASE8-compliment-i-confianca.md."
 ---
 
 # Avís legal
 
-## 1. Dades identificatives
+En compliment del deure d'informació recollit a l'article 10 de la Llei 34/2002, d'11 de juliol, de serveis de la societat de la informació i de comerç electrònic, l'informem que el lloc web https://www.serralleriacarbo.com/ (en endavant, el «Web») és titularitat de **SERRALLERIA CARBÓ, S.L.** (en endavant, SERRALLERIA CARBÓ), amb domicili social al C/ Eugeni d'Ors, 59-61, 08720 Vilafranca del Penedès (Barcelona), i CIF B59092619.
 
-En compliment de l'article 10 de la Llei 34/2002, d'11 de juliol, de serveis de la societat de la informació i de comerç electrònic (LSSI), s'informa que el titular d'aquest lloc web és:
+Inscrita al Registre Mercantil de Barcelona: tom 24959, foli 101, secció 8, full B 33238, inscripció 17.
 
-- **Titular:** Serralleria Carbó S.L.
-- **NIF:** B59092619
-- **Domicili:** Carrer d'Eugeni d'Ors, 59, 08720 Vilafranca del Penedès (Barcelona)
-- **Telèfons:** 630 661 908 · 93 890 27 94
+## Comunicacions
+
+- **Telèfon:** [+34 93 890 27 94](tel:+34938902794)
 - **Correu electrònic:** [carbo@serralleriacarbo.com](mailto:carbo@serralleriacarbo.com)
-- **Dades registrals:** [PENDENT: inscrita al Registre Mercantil de Barcelona, tom, foli, full i inscripció]
 
-## 2. Objecte
+El present avís legal regula les condicions d'ús del citat portal d'Internet.
 
-Aquest avís legal regula l'accés i l'ús del lloc web www.serralleriacarbo.com (el «lloc web»), mitjançant el qual Serralleria Carbó S.L. informa sobre la seva activitat de serralleria i fabricació metàl·lica per a particulars i empreses i posa a disposició dels visitants mitjans de contacte per fer consultes.
+## Llei aplicable i jurisdicció
 
-El lloc web té una finalitat informativa. No s'hi fan contractacions ni pagaments en línia: qualsevol encàrrec es concreta directament amb l'empresa.
+Amb caràcter general, les relacions entre SERRALLERIA CARBÓ i els usuaris dels serveis telemàtics presents al Web es troben sotmeses a la legislació i jurisdicció espanyoles.
 
-## 3. Condicions d'ús
+Les parts renuncien expressament al fur que els pugui correspondre i se sotmeten expressament als jutjats i tribunals de Vilafranca del Penedès (Barcelona) per resoldre qualsevol controvèrsia que pugui sorgir en la interpretació o execució de les presents condicions contractuals.
 
-L'accés al lloc web és gratuït i no requereix registre. La persona que hi accedeix (l'«usuari») es compromet a fer-ne un ús adequat, d'acord amb la llei, la bona fe, l'ordre públic i aquest avís legal, i en particular a:
+## Acceptació de l'usuari
 
-- No utilitzar el lloc web amb finalitats il·lícites o que puguin perjudicar els drets i interessos de Serralleria Carbó S.L. o de tercers.
-- No introduir ni difondre programes, virus o qualsevol altre element que pugui danyar o alterar els sistemes del lloc web o de tercers.
-- Facilitar informació veraç en els formularis de contacte i no incloure-hi dades de tercers sense el seu consentiment.
+Aquest avís legal regula l'accés i la utilització del lloc web que SERRALLERIA CARBÓ posa a la disposició dels usuaris d'Internet. Es considera usuari la persona que accedeixi, navegui, utilitzi o participi en els serveis i activitats del lloc web.
 
-## 4. Propietat intel·lectual i industrial
+L'usuari queda informat, i accepta, que l'accés al present lloc web no suposa, de cap manera, l'inici d'una relació comercial amb SERRALLERIA CARBÓ.
 
-Els continguts del lloc web, com ara textos, fotografies, il·lustracions, logotips, marques, disseny gràfic i codi, són titularitat de Serralleria Carbó S.L. o de tercers que n'han autoritzat l'ús, i estan protegits per la normativa de propietat intel·lectual i industrial.
+L'accés i la navegació pel lloc web per part de l'usuari suposa l'acceptació de la totalitat de les presents condicions d'ús. En cas de desacord amb les condicions, ha d'abstenir-se d'usar el lloc web.
 
-Queda prohibida la reproducció, distribució, comunicació pública o transformació, total o parcial, d'aquests continguts sense l'autorització expressa i per escrit de Serralleria Carbó S.L., llevat dels usos permesos per la llei.
+## Accés al lloc web
 
-La tipografia del lloc web es distribueix sota la llicència SIL Open Font License 1.1.
+L'accés al lloc web per part dels usuaris és de caràcter lliure i gratuït. Alguns serveis poden trobar-se subjectes a contractació prèvia del servei.
 
-## 5. Responsabilitat
+En cas que l'usuari hagi d'aportar dades personals per accedir a algun dels serveis, la recollida i el tractament de les dades es realitzarà de conformitat amb la normativa vigent, en concret amb el RGPD. Per a més informació, consulti la nostra [política de privacitat](/legal/privacitat/).
 
-Serralleria Carbó S.L. vetlla perquè la informació del lloc web sigui correcta i estigui actualitzada, però no pot garantir l'absència d'errors o omissions. La informació sobre serveis i capacitats és orientativa: les condicions de cada encàrrec es concreten en el pressupost corresponent.
+## Contingut i ús
 
-Serralleria Carbó S.L. no es fa responsable dels danys derivats de l'ús indegut del lloc web, ni de les interrupcions o errors tècnics que en puguin impedir l'accés de manera temporal, tot i que hi aplicarà les mesures raonables per evitar-los i resoldre'ls.
+La visita al lloc web per part de l'usuari s'haurà de fer de forma responsable i de conformitat amb la legalitat vigent, la bona fe, el present avís legal i respectant els drets de propietat intel·lectual i industrial de titularitat de SERRALLERIA CARBÓ o de qualsevol altres persones físiques o jurídiques.
 
-## 6. Enllaços a tercers
+L'ús de qualsevol dels continguts del lloc web amb finalitats que siguin o poguessin ser il·lícites queda totalment prohibit, així com la realització de qualsevol acció que causi o pugui causar danys o alteracions de qualsevol mena no consentides per SERRALLERIA CARBÓ, al lloc web o als seus continguts.
 
-El lloc web pot incloure enllaços o serveis de tercers, com ara WhatsApp o Google Maps. Serralleria Carbó S.L. no controla aquests serveis ni es fa responsable dels seus continguts ni de les seves polítiques de privacitat, que l'usuari pot consultar directament als seus llocs web.
+El titular del lloc web no s'identifica amb les opinions abocades en el mateix pels seus col·laboradors. L'empresa es reserva el dret a efectuar sense previ avís les modificacions que consideri oportunes en el seu Web, podent canviar, suprimir o afegir tant els continguts i serveis que es presten a través del mateix com la forma en la qual aquests apareguin presentats o localitzats en els seus servidors.
 
-## 7. Protecció de dades i cookies
+## Propietat intel·lectual i industrial
 
-El tractament de les dades personals que l'usuari faciliti a través del lloc web es regeix per la [Política de privacitat](/legal/privacitat/). L'ús de cookies i tecnologies similars s'explica a la [Política de cookies](/legal/cookies/).
+Els drets de propietat intel·lectual del contingut de les pàgines del lloc web, el seu disseny gràfic i codis són titularitat de SERRALLERIA CARBÓ i, per tant, queda prohibida la seva reproducció, distribució, comunicació pública, transformació o qualsevol altra activitat que es realitzi amb els continguts del lloc web, encara que se'n citin les fonts, excepte que es compti amb el consentiment previ, exprés i per escrit de SERRALLERIA CARBÓ. Tots els noms comercials, marques o signes distintius de qualsevol classe continguts en les pàgines web de l'empresa són propietat dels seus propietaris i estan protegits per llei.
 
-## 8. Modificacions
+SERRALLERIA CARBÓ no concedeix cap llicència o autorització d'ús de cap classe sobre els seus drets de propietat intel·lectual i industrial o sobre qualsevol altra propietat o dret relacionat amb el lloc web, i en cap cas s'entendrà que l'accés i la navegació dels usuaris impliquen una renúncia, transmissió, llicència o cessió total ni parcial d'aquests drets per part de SERRALLERIA CARBÓ.
 
-Serralleria Carbó S.L. pot modificar aquest avís legal per adaptar-lo a canvis legislatius o del lloc web. La versió vigent és la publicada en aquesta pàgina, amb la data de la darrera actualització.
+Qualsevol ús d'aquests continguts no autoritzat prèviament per SERRALLERIA CARBÓ serà considerat un incompliment greu dels drets de propietat intel·lectual o industrial i donarà lloc a les responsabilitats legalment establertes. SERRALLERIA CARBÓ es reserva el dret d'exercir enfront de l'usuari les accions judicials i extrajudicials que corresponguin.
 
-## 9. Legislació aplicable i jurisdicció
+## Responsabilitat i garanties
 
-Aquest avís legal es regeix per la legislació espanyola. Per a qualsevol controvèrsia derivada de l'ús del lloc web, les parts se sotmeten als jutjats i tribunals que corresponguin d'acord amb la normativa aplicable. Quan l'usuari tingui la condició de consumidor, seran competents els del seu domicili.
+SERRALLERIA CARBÓ declara que ha adoptat les mesures necessàries que, dins de les seves possibilitats i l'estat de la tecnologia, permeten el correcte funcionament del seu lloc web així com l'absència de virus i components nocius. No obstant això, SERRALLERIA CARBÓ no es pot fer responsable de les situacions següents, que s'enumeren a títol enunciatiu però no limitatiu:
+
+- La continuïtat i disponibilitat dels continguts.
+- L'absència d'errors en els continguts ni la correcció de qualsevol defecte que pogués ocórrer.
+- L'absència de virus i/o altres components nocius.
+- Els danys o perjudicis que causi qualsevol persona que vulneri els sistemes de seguretat de SERRALLERIA CARBÓ.
+- L'ús que els usuaris puguin fer dels continguts inclosos en el web. En conseqüència, SERRALLERIA CARBÓ no garanteix que l'ús que els usuaris puguin fer dels continguts que, si escau, s'incloguin al lloc web s'ajustin al present avís legal ni que l'ús del lloc web es realitzi de forma diligent.
+- L'ús per menors d'edat del lloc web o de l'enviament de les seves dades personals sense el permís dels seus tutors, sent els tutors responsables de l'ús que facin d'Internet.
+- Els continguts als quals l'usuari pugui accedir a través d'enllaços no autoritzats o introduïts per usuaris mitjançant comentaris o eines similars.
+- La introducció de dades errònies per part de l'usuari o d'un tercer.
+
+SERRALLERIA CARBÓ podrà suspendre temporalment i sense previ avís l'accessibilitat al lloc web amb motiu d'operacions de manteniment, reparació, actualització o millora. No obstant això, sempre que les circumstàncies ho permetin, SERRALLERIA CARBÓ comunicarà a l'usuari, amb antelació suficient, la data prevista per a la suspensió dels continguts.
+
+Igualment, de conformitat amb els articles 11 i 16 de la Llei 34/2002, d'11 de juliol, de serveis de la societat de la informació i de comerç electrònic, SERRALLERIA CARBÓ es compromet a l'eliminació o, si escau, el bloqueig dels continguts que poguessin afectar o ser contraris a la legislació vigent, als drets de tercers o a la moral i l'ordre públic.
+
+## Cookies
+
+Aquest lloc web no instal·la cookies pròpies ni utilitza eines d'analítica o de publicitat. L'únic servei de tercers que pot instal·lar cookies és el mapa interactiu de Google Maps de la pàgina de contacte, i només si l'usuari decideix carregar-lo.
+
+Si l'usuari no desitja que s'instal·lin cookies en el seu dispositiu, té la possibilitat de configurar el navegador de tal manera que n'impedeixi la instal·lació. Per obtenir més informació, consulti la nostra [política de cookies](/legal/cookies/).
+
+## Enllaços
+
+La presència d'enllaços al lloc web de SERRALLERIA CARBÓ cap a altres llocs d'Internet té una finalitat merament informativa i en cap cas suposa suggeriment, invitació o recomanació sobre aquests. SERRALLERIA CARBÓ no assumirà responsabilitat pels continguts d'un enllaç pertanyent a un lloc web aliè, ni en garantirà la fiabilitat, exactitud, amplitud, veracitat, validesa i disponibilitat tècnica.
+
+En el cas que en altres llocs web s'estableixin enllaços al lloc web de SERRALLERIA CARBÓ, no s'entendrà que SERRALLERIA CARBÓ ha autoritzat l'enllaç o el contingut del lloc web en el qual es conté l'enllaç; tampoc es podran incloure al lloc de l'enllaç continguts inapropiats, difamatoris, il·legals, obscens o il·lícits, ni altres continguts que siguin contraris a la legalitat vigent.
+
+SERRALLERIA CARBÓ es reserva la possibilitat de contactar amb el propietari del lloc web en el qual s'estableixi l'enllaç si considera que s'incompleix la normativa, així com d'exercir les corresponents accions judicials i extrajudicials.
+
+## Modificació de les condicions
+
+SERRALLERIA CARBÓ es reserva expressament el dret a modificar unilateralment, total o parcialment, sense necessitat de previ avís, el present avís legal. L'usuari reconeix i accepta que és responsabilitat seva revisar-lo periòdicament.

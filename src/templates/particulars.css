@@ -41,14 +41,14 @@
 }
 
 /* Serveis: blanc trencat, quatre peces fotogràfiques. */
-.p-services { padding-block: var(--space-section); background: var(--surface-paper); color: var(--ink); }
+.p-services { padding-block: var(--space-section); background: var(--surface-white); color: var(--ink); }
 .p-service-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--line-on-light); background: var(--line-on-light); }
 .p-service { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; min-height: clamp(260px, 22vw, 330px); overflow: hidden; padding: clamp(1.1rem, 2vw, 2rem); background: #3c4245; color: #fff; contain: paint; transition: scale 160ms var(--motion-ease); }
 .p-service::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg, rgb(9 11 13 / .12), transparent 30%, rgb(9 11 13 / .5) 58%, rgb(9 11 13 / .88)); content: ""; }
 .p-service:has(.p-service-actions a:active) { scale: .99; }
 .p-service-art { position: absolute; z-index: -2; inset: 0; overflow: hidden; background: #3c4245; }
 .p-service-art picture { display: contents; }
-.p-service-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.8) contrast(1.04); transition: filter 320ms ease, transform 520ms var(--motion-ease); }
+.p-service-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.98) contrast(1.02) brightness(1.04); transition: filter 320ms ease, transform 520ms var(--motion-ease); }
 .p-service-repairs .p-service-art img { object-position: 60% center; }
 .p-service-copy { z-index: 2; max-width: 50ch; }
 .p-service h3 { margin: 0 0 .5rem; font-size: var(--type-h3); font-weight: 700; letter-spacing: -.035em; line-height: 1; text-transform: uppercase; overflow-wrap: break-word; }
@@ -84,7 +84,7 @@
 /* Indicador funcional discret: progrés del recorregut pels casos, a la base de la fotografia. */
 .p-story-progress { position: absolute; right: 1.25rem; bottom: 1.25rem; left: 1.25rem; height: 2px; background: rgb(255 255 255 / .4); }
 .p-story-progress span { display: block; width: 100%; height: 100%; background: #fff; transform-origin: left center; transition: scale 450ms var(--motion-ease); }
-.p-story-chapters { min-width: 0; background: var(--surface-paper); }
+.p-story-chapters { min-width: 0; background: var(--surface-white); }
 .p-story-chapter { position: relative; display: flex; flex-direction: column; justify-content: center; gap: 1.25rem; min-height: clamp(300px, 40svh, 400px); padding: clamp(1.5rem, 3vw, 3rem); border-bottom: 1px solid var(--line-on-light); }
 .p-story-chapter:last-child { border-bottom: 0; }
 .p-story-chapter::after { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--action); content: ""; transform: scaleY(0); transform-origin: top; transition: transform 600ms var(--motion-ease); }
@@ -136,12 +136,25 @@
   .p-story-outro-actions { flex-wrap: wrap; }
 }
 @media (max-width: 560px) {
-  .p-service-grid { grid-template-columns: 1fr; }
-  .p-service { min-height: 250px; padding: 1rem; }
+  /* Fotografia i lectura tenen una superfície pròpia en pantalles estretes. */
+  .p-service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; border: 0; background: transparent; }
+  .p-service { justify-content: flex-start; min-height: 0; padding: 0; background: var(--surface-paper); color: var(--ink); }
+  .p-service::after { display: none; }
+  .p-service-art { position: relative; z-index: auto; inset: auto; flex: none; height: 145px; }
+  .p-service-copy { display: flex; flex: 1; flex-direction: column; padding: .8rem; }
+  .p-service h3 { font-size: 1.1rem; line-height: 1.08; letter-spacing: -.025em; }
+  .p-service p { color: var(--ink-muted); font-size: .94rem; line-height: 1.4; text-shadow: none; }
+  .p-service-actions { margin-top: auto !important; padding-top: .45rem; }
+  .p-service-actions a { color: var(--action); font-size: .85rem; text-decoration-color: var(--action); }
   .p-urgent-inner { grid-template-columns: 1fr; gap: .6rem; }
   .p-urgent a { justify-self: stretch; }
   .p-series a { justify-self: stretch; white-space: normal; }
   .p-story-outro-actions { align-items: stretch; flex-direction: column; }
   .p-story-all { width: 100%; min-width: 0; }
   .p-hero-top a { font-size: .78rem; white-space: normal; text-align: right; }
+}
+@media (max-width: 350px) {
+  .p-service-grid { grid-template-columns: 1fr; }
+  .p-service-art { height: 180px; }
+  .p-service h3 { font-size: var(--type-h3); }
 }

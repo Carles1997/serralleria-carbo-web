@@ -36,3 +36,9 @@ Hem fabricat, instal·lat i motoritzat una porta de pàrquing d'una comunitat de
 Si la porta o el motor falla, truca'ns i explica'ns la incidència.
 
 [Veure urgències](/particulars/urgencies/) · [Enviar una consulta](/contacte/)
+
+## Per a empreses i obra
+
+Per a constructores i promotores, també fabriquem i instal·lem portes i tancaments per a obra.
+
+[Fabricació industrial](/industrial/#produccio)

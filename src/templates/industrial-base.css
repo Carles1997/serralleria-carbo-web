@@ -50,29 +50,18 @@ main.industrial-page :is(h1,h2,h3) em {
   line-height:1.06;
   color:#dfe5df;
   font-style:normal;
-  background-image:linear-gradient(105deg,#f8faf7 0%,#a2aca5 17%,#fbfdf9 32%,#7e8983 51%,#f7faf6 68%,#9ba69f 85%,#f8faf7 100%);
+  background-image:linear-gradient(105deg,#f8faf7 0%,#adb7b1 17%,#fbfdf9 32%,#adb7b1 51%,#f7faf6 68%,#b7c0ba 85%,#f8faf7 100%);
   -webkit-background-clip:text;
   background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 /* Sobre plata i boira, reflex metàl·lic fosc amb lectura estable (contrast en tota la gamma). */
-main.industrial-page :is(.i-capabilities,.i-sectors,.i-contact,.c-overview,.c-requirements,.c-contact) :is(h1,h2,h3) em {
+main.industrial-page :is(.i-capabilities,.i-sectors,.i-contact,.c-overview,.c-requirements,.c-contact) h2 em {
   color:#202627;
   background-image:linear-gradient(105deg,#25302e 0%,#56635f 18%,#222d2a 35%,#596761 53%,#25302d 72%,#52605b 87%,#27312e 100%);
 }
-/* Marca de secció d'Industrial (director, 06/10/2026): filet curt amb reflex metàl·lic sobre els
-   titulars de secció; fosc sobre les superfícies clares. */
-.industrial-page :where(.i-section-heading,.i-production-head,.i-cap-intro,.i-series-head,.i-project-copy,.i-contact-heading,.c-section-head,.c-production-lead,.c-contact-copy) h2::before {
-  display:block;
-  width:2.75rem;
-  height:3px;
-  margin-bottom:.85rem;
-  background:linear-gradient(90deg,#f8faf7 0%,#a2aca5 35%,#fbfdf9 60%,#7e8983 100%);
-  content:"";
-}
-.industrial-page :where(.i-capabilities,.i-sectors,.i-contact,.c-overview,.c-contact) h2::before {
-  background:linear-gradient(90deg,#25302e 0%,#56635f 35%,#222d2a 60%,#596761 100%);
-}
+/* La variant fosca és només per a H2 sobre plata/boira: els H3 dels cartells
+   fotogràfics conserven el reflex clar, independentment del fons de la secció. */
 @media (forced-colors:active) {
   main.industrial-page :is(h1,h2,h3) em { background:none; color:CanvasText; -webkit-text-fill-color:CanvasText; }
 }

@@ -65,14 +65,5 @@
   }
 }
 
-/* Identitat (director, 06/10/2026: «més presència, sense alterar l'estructura»). Marca de secció: un
-   filet curt en el bordeus del logo sobre els titulars de secció de Home, Particulars i Contacte.
-   A Industrial, el mateix filet amb reflex metàl·lic (templates/industrial-base.css). */
-:where(.section-lead, .company-content, .s-section-heading, .s-brief-head, .s-related-inner, .folio-work-top, .folio-more-inner, .contact-copy) h2::before {
-  display: block;
-  width: 2.75rem;
-  height: 3px;
-  margin-bottom: 0.85rem;
-  background: var(--action);
-  content: "";
-}
+/* Els titulars no porten filets decoratius (director, 06/10/2026).
+   La jerarquia depèn de l'escala, la composició i la superfície de lectura. */

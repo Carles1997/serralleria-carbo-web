@@ -29,6 +29,12 @@ Entre els treballs documentats hi ha una passarel·la interior amb baranes de fe
 
 [Veure projectes d'estructures](/particulars/projectes/?servei=estructures)
 
+## Per a empreses i obra
+
+També fabriquem estructures per a sèries i projectes de constructores i promotores.
+
+[Fabricació industrial](/industrial/#produccio)
+
 ## Comencem pel teu espai
 
 Descriu l'espai i la peça que necessites. Si disposes de mesures o imatges, adjunta-les al formulari.

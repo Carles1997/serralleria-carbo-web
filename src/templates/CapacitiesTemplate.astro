@@ -167,14 +167,24 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
                 t.overview.machines.map((machine, index) => (
                   <li class="c-machine" style={`--i:${index}`}>
                     <Picture src={sitePhotography.capacities.machines[machine.art as keyof typeof sitePhotography.capacities.machines]} alt="" widths={[240, 360, 480, 640]} sizes="(max-width: 720px) 33vw, 16vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
-                    <strong>{machine.name}</strong>
+                    <strong>{machine.name}<small>{machine.operation}</small></strong>
                   </li>
                 ))
               }
             </ul>
           </div>
         </div>
-        <p class="c-plan-note" data-reveal><span>{t.overview.note.label}</span> {t.overview.note.text}</p>
+        <div class="c-plan-note" data-reveal>
+          <div>
+            <h3>{t.overview.note.label}</h3>
+            <p>{t.overview.note.text}</p>
+          </div>
+          <div>
+            <h3>{t.contact.fieldsLabel}</h3>
+            <ul class="c-contact-fields">{t.contact.fields.map((field) => <li>{field}</li>)}</ul>
+            <a class="i-text-link" href={contactForm}>{contactLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -250,8 +260,6 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           </div>
         </div>
         <div class="c-contact-detail" data-reveal style="--i:1">
-          <h3>{t.contact.fieldsLabel}</h3>
-          <ul class="c-contact-fields">{t.contact.fields.map((field) => <li>{field}</li>)}</ul>
           <div class="c-contact-person">
             <h3>{t.contact.person}</h3>
             <a href={company.phone.href}>{company.phone.display}</a>

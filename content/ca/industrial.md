@@ -25,7 +25,7 @@ Una feina per a casa, la comunitat o el negoci?
 
 ## El taller en primer pla
 
-Taller de 950 m² amb plegadora, cisalla i punxonadora. Acer al carboni i inox 304/316. Soldadura MIG/MAG i TIG, i muntatge amb equip propi.
+Del material al muntatge, treballem amb equip propi. Consulta els materials, els processos i els mitjans disponibles a la fitxa de capacitats.
 
 [Consulta la fitxa de capacitats](/industrial/capacitats/)
 

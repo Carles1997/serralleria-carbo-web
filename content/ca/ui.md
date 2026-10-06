@@ -79,6 +79,8 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 
 ## Estats del formulari
 
+- Formulari de demostració (només mentre l'enviament no estigui actiu).
+
 - Falta informació en aquest camp.
 - Revisa el format del correu electrònic.
 - Revisa el format del telèfon.
@@ -86,3 +88,9 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 - Hem rebut la teva consulta. La revisarem i et respondrem per telèfon o correu electrònic.
 
 <!-- El text de consentiment i els enllaços legals s'afegiran quan el client o l'assessor faciliti l'avís legal i la política de privacitat. No publicar el formulari sense aquest text. -->
+
+## Fitxa de capacitats
+
+- Plegadora · Plegat
+- Cisalla · Tall
+- Punxonadora · Punxonat

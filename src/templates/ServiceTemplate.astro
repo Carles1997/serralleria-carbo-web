@@ -9,6 +9,7 @@
 //   urgent   sortida per avaries amb text del contingut
 //   direct   trucada i WhatsApp com a accions principals (variant d'incidència)
 //   contact  text i enllaç del bloc final de contacte
+//   series   pont editorial propi cap a fabricació per a empreses i obra
 // Seccions: entrada → [galeria, clar] → procés (fosc) → [relacionat, clar] → [avaries] → contacte.
 import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -31,7 +32,7 @@ import './service.css';
 // Bloc 3 del pla d'afinament: sense etiquetes sobre la H1 i els H2 (repetien el titular o el títol
 // del contingut) ni rètol al bloc de contacte; rols tipogràfics i superfícies de styles/roles.css.
 
-type Role = 'process' | 'works' | 'related' | 'urgent' | 'direct' | 'contact';
+type Role = 'process' | 'works' | 'related' | 'urgent' | 'direct' | 'contact' | 'series';
 interface ServiceConfig {
   sections: Role[];
   hero: { title: string[]; cta?: string; hours?: string };
@@ -108,6 +109,15 @@ const related = relatedSection && {
   heading: relatedSection.heading,
   text: relatedText?.[0],
   links: links(relatedSection.blocks).filter((link) => !link.href.startsWith('/contacte/')),
+};
+
+// El pont industrial és editorial i específic de cada servei: no fabrica «serveis» ni motors.
+const seriesSection = byRole.get('series');
+if (config.series && !seriesSection) throw new Error(`${pageId}.md necessita el pont industrial validat.`);
+const series = seriesSection && {
+  heading: seriesSection.heading,
+  text: one(paragraphs(seriesSection.blocks), `un paràgraf a «${seriesSection.heading}»`),
+  link: one(links(seriesSection.blocks), `un enllaç a «${seriesSection.heading}»`),
 };
 
 // Sortida per avaries: amb text propi si el contingut en té (urgent); si no, la compartida.
@@ -280,7 +290,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
 
     {
       related && (
-        <section class="s-related" aria-labelledby="related-title" data-surface="light">
+        <section class:list={['s-related', { 'is-compact': !related.text }]} aria-labelledby="related-title" data-surface="light">
           <div class="section-shell s-related-inner">
             <h2 id="related-title" data-reveal style={fit(related.heading)}>
               {related.heading}
@@ -326,15 +336,15 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
     }
 
     {
-      config.series && (
-        <aside class="s-series" aria-label={shared.series.index} data-surface="dark">
+      series && (
+        <aside class="s-series" aria-label={series.heading} data-surface="dark">
           <div class="section-shell s-series-inner" data-reveal>
             <div>
-              <span class="index">{shared.series.index}</span>
-              <p>{shared.series.text}</p>
+              <span class="index">{series.heading}</span>
+              <p><Inlines inlines={series.text} /></p>
             </div>
-            <a href={shared.series.link.href}>
-              {shared.series.link.label} <span class="arrow" aria-hidden="true">↗</span>
+            <a href={series.link.href}>
+              {series.link.label} <span class="arrow" aria-hidden="true">↗</span>
             </a>
           </div>
         </aside>

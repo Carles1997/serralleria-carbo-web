@@ -77,12 +77,15 @@
 .s-related h2 { margin: 0; font-size: var(--type-h2); font-weight: 700; letter-spacing: var(--display-tracking); line-height: var(--display-leading); text-transform: uppercase; }
 .s-related p { max-width: 48ch; margin: 0 0 .75rem; color: var(--ink-muted); font-size: var(--type-intro); line-height: 1.5; }
 .s-related .underlined-link { margin-right: 1.5rem; }
+.s-related.is-compact { padding-block:1rem; }
+.s-related.is-compact .s-related-inner { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+.s-related.is-compact h2 { font-size:var(--type-h4); line-height:1.15; }
 
 /* Sortida d'avaries: franja clara amb l'acció de trucada en bordeus. */
 .s-repair { border-block: 1px solid var(--line-on-light); background: var(--surface-grey); color: var(--ink); }
 .s-repair-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; padding-block: clamp(1rem, .8rem + .8vw, 1.5rem); }
 .s-repair .index { color: var(--action); }
-.s-repair p { max-width: 60ch; margin: .35rem 0 0; font-size: var(--type-h4); font-weight: 600; letter-spacing: -.015em; line-height: 1.25; }
+.s-repair p { max-width: 60ch; margin: .35rem 0 0; font-size: 1rem; font-weight: 400; line-height: 1.45; }
 .s-repair-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 .s-repair a { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; min-height: 48px; padding: .55rem 1rem; border: 1px solid var(--action); color: var(--action); font-weight: 700; white-space: nowrap; transition: scale 160ms var(--motion-ease), background var(--motion-fast) ease, color var(--motion-fast) ease; }
 .s-repair a:first-child { background: var(--action); color: #fff; }

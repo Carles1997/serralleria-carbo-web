@@ -197,7 +197,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
     <section class="company workshop" id="empresa" aria-labelledby="company-title" data-surface="light">
       <div class="company-image" data-reveal="clip">
-        <Picture src={sitePhotography.home.company} alt="" widths={[480, 720, 960, 1200]} sizes="(max-width: 760px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+        <Picture src={sitePhotography.home.company} alt="" widths={[480, 720, 960, 1200]} sizes="(max-width: 760px) 100vw, 58vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
       </div>
       <div class="company-content">
         <h2 id="company-title" data-reveal style={fit(workshop.heading)}>
@@ -511,6 +511,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
   .path-particulars :global(img) {
     object-position: 55% center;
+    filter: saturate(.9) contrast(1.02);
   }
 
   .path-industrial :global(img) {
@@ -546,24 +547,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     height: 44px;
     margin: -0.5rem -0.5rem 0 auto;
     font-size: 1.3rem;
-  }
-
-  /* Identitat: filet de color abans del públic de cada camí (bordeus a Particulars, plata a Industrial). */
-  .path-kicker::before {
-    display: block;
-    width: 2.25rem;
-    height: 3px;
-    margin-bottom: 0.65rem;
-    background: var(--action);
-    content: "";
-  }
-
-  .path-industrial .path-kicker::before {
-    background: linear-gradient(90deg, #f8faf7 0%, #a2aca5 35%, #fbfdf9 60%, #7e8983 100%);
-  }
-
-  .path-particulars .path-kicker::before {
-    background: #a3474e;
   }
 
   .path-kicker {
@@ -649,10 +632,21 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
   /* Xifres i taller: un sol grup en blanc trencat («qui som»). */
   .numbers {
-    padding-block: var(--space-section);
+    padding-block: clamp(1.5rem, 2.5vw, 2.25rem);
     background: var(--surface-paper);
     color: var(--ink);
   }
+
+  /* La confiança és una franja de dades; no repeteix la composició de les seccions d'oferta. */
+  .numbers > .shell {
+    display: grid;
+    grid-template-columns: minmax(150px, .65fr) minmax(0, 3fr);
+    align-items: center;
+    gap: 1.5rem clamp(2rem, 4vw, 4rem);
+  }
+
+  .numbers .section-lead { display: block; padding: 0; }
+  .numbers .section-lead h2 { font-size: var(--type-h4); line-height: 1.1; letter-spacing: -.02em; }
 
   .section-lead {
     display: grid;
@@ -680,7 +674,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   .number-grid {
     display: grid;
     grid-template-columns: 1.3fr repeat(3, minmax(0, 1fr));
-    border-top: 1px solid var(--line-on-light);
   }
 
   .number-item {
@@ -688,7 +681,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     flex-direction: column;
     justify-content: space-between;
     gap: 0.6rem;
-    padding: 1.1rem 1.2rem 0;
+    padding: 0 1.2rem;
     border-left: 1px solid var(--line-on-light);
   }
 
@@ -734,8 +727,8 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   /* Taller: fotografia aprovada a l'esquerra i, a la dreta, fabricació, muntatge i àrea en un grup. */
   .workshop {
     display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    background: var(--surface-paper);
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    background: var(--surface-white);
     color: var(--ink);
   }
 
@@ -754,7 +747,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: saturate(0.85) contrast(1.04);
+    filter: saturate(0.98) contrast(1.02);
   }
 
   .company-content {
@@ -770,7 +763,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
      línies a escriptori. */
   .company-content h2 {
     margin: 0 0 var(--space-lead);
-    font-size: clamp(1.75rem, 1.1rem + 2vw, 2.9rem);
+    font-size: clamp(1.75rem, 1.1rem + 1.5vw, 2.25rem);
     font-weight: 700;
     letter-spacing: var(--display-tracking);
     line-height: var(--display-leading);
@@ -1059,7 +1052,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   @media (hover: none) {
-    .path :global(img) {
+    .path-industrial :global(img) {
       filter: grayscale(0.25);
     }
   }
@@ -1263,5 +1256,11 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     .tile {
       padding: 0.75rem;
     }
+  }
+
+  @media (max-width: 900px) {
+    .numbers > .shell { grid-template-columns: 1fr; gap: 1rem; }
+    .numbers .section-lead h2 { font-size: var(--type-h4); }
+    .numbers h2 br { display: none; }
   }
 </style>

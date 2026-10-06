@@ -274,9 +274,9 @@ const ca = {
       machinery: { label: ['Maquinària', 'Equip del taller'] },
       // Han de constar a la secció «Maquinària» (es comprova al build).
       machines: [
-        { name: 'Plegadora', art: 'plegadora' },
-        { name: 'Cisalla', art: 'cisalla' },
-        { name: 'Punxonadora', art: 'punxonadora' },
+        { name: 'Plegadora', operation: 'Plegat', art: 'plegadora' },
+        { name: 'Cisalla', operation: 'Tall', art: 'cisalla' },
+        { name: 'Punxonadora', operation: 'Punxonat', art: 'punxonadora' },
       ],
       note: {
         label: 'Valoració segons el plànol',
@@ -336,6 +336,7 @@ const ca = {
     },
     form: {
       label: 'Formulari de consulta',
+      demo: 'Formulari de demostració',
       branch: {
         legend: 'Tipus de consulta',
         // Per tipus d'encàrrec, no només per nombre d'unitats (reunió amb el client, 03/10/2026).
@@ -417,16 +418,11 @@ const ca = {
     brief: { action: 'Anar al formulari', optional: 'Opcional' },
     repair: { index: 'Necessites una reparació?', text: "Si tens una avaria en una porta o un automatisme, explica'ns què ha passat." },
     // Pont cap a Industrial a les pàgines de producte (reunió amb el client, 03/10/2026).
-    series: {
-      index: 'Una sèrie o un projecte constructiu?',
-      text: 'Aquest servei també el fabriquem en sèrie per a empreses, constructores i promotores.',
-      link: { label: 'Fabricació industrial', href: '/industrial/#produccio' },
-    },
     pages: {
       'particulars-estructures': {
         series: true,
         // Rol de cada secció H2 de particulars-estructures.md, en ordre.
-        sections: ['process', 'works', 'contact'],
+        sections: ['process', 'works', 'series', 'contact'],
         hero: {
           // Mateix text que la H1 del contingut; la paraula central va destacada (es comprova al build).
           title: ['Estructures', 'metàl·liques', 'a mida'],
@@ -451,7 +447,7 @@ const ca = {
       // derivats del contingut de cada pàgina (README de la maqueta d'Estructures).
       'particulars-automatismes': {
         series: true,
-        sections: ['process', 'works', 'urgent'],
+        sections: ['process', 'works', 'urgent', 'series'],
         hero: {
           title: ['Automatismes', 'per a', 'portes'],
           cta: "Explica'ns quina porta tens",

@@ -167,6 +167,17 @@ const VALIDATED_REVISIONS = [
       'content/ca/industrial.md': '1496d3a2040d6fd3df29eaf019dde74491d462ddb5e86a4d641621e8338c9d80',
     },
   },
+  {
+    // Implementació de l'auditoria integral demanada pel director (06/10/2026).
+    // Resum comercial del taller, ponts industrials específics i etiquetes de demostració.
+    label: 'auditoria integral: refinament autoritzat pel director (06/10/2026)',
+    bodies: {
+      'content/ca/industrial.md': 'f6434acc85013bcd3dd60bef1a25292fd1f5855b76a65597bb61b66cb2c67273',
+      'content/ca/particulars-estructures.md': '0153e6c970cda15ab7db9f3be59896683d3e31a51b96552f1146c292d6f9e391',
+      'content/ca/particulars-automatismes.md': 'caa5fe329b97f70ee2dbe70118ab96511f56d78f4d2e81c320248bf2cef1cf9b',
+      'content/ca/ui.md': 'f90385d900291dadc5aa922ab649d1a7476fba7330fd67bbf4f8e314819f5f8a',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

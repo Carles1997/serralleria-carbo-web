@@ -71,7 +71,10 @@ const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
         <dl class="contact-info contact-info-direct enter" style="--i:1" aria-label={t.info.label}>
           <div>
             <dt>{t.info.phone}</dt>
-            <dd><a class="contact-phone" href={company.phone.href}>{company.phone.display}</a></dd>
+            <dd>
+              <a class="contact-phone" href={company.phone.href}>{company.phone.display}</a>
+              <p class="contact-phone-hours">{hoursRows[0].value}: {hoursRows[0].label}</p>
+            </dd>
           </div>
           <div>
             <dt>{t.info.whatsapp}</dt>
@@ -107,6 +110,10 @@ const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
 
         <div class="contact-form-panel enter" style="--i:2">
           <form id="contact-form" novalidate aria-label={f.label} data-contact-form data-errors={JSON.stringify(f.errors)} data-not-sent={f.notSent}>
+            <div class="form-demo" role="note" id="form-pending">
+              <strong>{f.demo}</strong>
+              <p>{f.pending}{!privacy && ` ${f.pendingPrivacy}`}</p>
+            </div>
             <fieldset class="branch-picker">
               <legend>{f.branch.legend} <span aria-hidden="true">*</span></legend>
               <div class="branch-options">
@@ -256,7 +263,6 @@ const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
 
             <div class="form-finish">
               <button type="submit" disabled data-submit aria-describedby="form-pending">{f.submit} <span class="arrow" aria-hidden="true">↗</span></button>
-              <p id="form-pending">{f.pending}{!privacy && ` ${f.pendingPrivacy}`}</p>
             </div>
             <p id="form-status" class="form-status" role="status" tabindex="-1" hidden></p>
           </form>

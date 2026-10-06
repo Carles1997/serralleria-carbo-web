@@ -218,23 +218,25 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           </article>
         </div>
         <div class="i-cap-close">
-          <div class="i-quality" data-reveal style="--i:1">
-            <div class="i-quality-copy">
-              <h3>{t.workshop.progress.label}</h3>
-              <p><Inlines inlines={qualityText} /></p>
+          <details class="i-quality" data-reveal style="--i:1">
+            <summary>{t.workshop.progress.label}</summary>
+            <div class="i-quality-body">
+              <div class="i-quality-copy">
+                <p><Inlines inlines={qualityText} /></p>
+              </div>
+              <ul class="i-quality-list">
+                {
+                  t.workshop.progress.items.map((item) => (
+                    <li>
+                      <span class="i-quality-mark" aria-hidden="true"></span>
+                      <strong>{item.title}</strong>
+                      <span>{item.state}</span>
+                    </li>
+                  ))
+                }
+              </ul>
             </div>
-            <ul class="i-quality-list">
-              {
-                t.workshop.progress.items.map((item) => (
-                  <li>
-                    <span class="i-quality-mark" aria-hidden="true"></span>
-                    <strong>{item.title}</strong>
-                    <span>{item.state}</span>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
+          </details>
         </div>
       </div>
     </section>

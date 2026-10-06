@@ -6,6 +6,7 @@
 @import "./roles.css";
 @import "./motion.css";
 @import "./interactions.css";
+@import "./mobile-lines.css";
 
 /* inline + reference: les utilitats apunten a les variables de tokens.css i
    Tailwind no les torna a emetre (evita autoreferències com --x: var(--x)). */

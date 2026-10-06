@@ -30,6 +30,7 @@ Fotografies, degradats de protecció del text, transparències de focus i ombres
 - Home, Particulars, serveis, projectes, Industrial, Capacitats, Contacte i pàgines legals: superfícies, tinta, separadors i controls ajustats als rols comuns.
 - Capçalera i barres de filtres: fons opacs de la paleta per evitar que el contingut de sota alteri el color i el contrast.
 - Ajust final del peu: mateix fons que la capçalera, blanc a les pàgines clares i grafit a Industrial i Capacitats; es conserven la vora d'accent, els logotips i els enllaços.
+- Correcció mòbil posterior: fins a 760 px, s'eliminen els filets horitzontals decoratius de seccions, dades, llistes i accions, inclosa la vora del peu. Es conserven les vores dels controls i targetes, el focus, els subratllats curts d'enllaços, la separació de la capçalera fixa, les taules tècniques i la línia del mètode. La capa explícita `src/styles/mobile-lines.css` no modifica la composició d'escriptori.
 - Textos, dades, rutes, imatges i continguts de referència protegits: sense modificacions editorials en aquesta tasca.
 
 ## Comprovacions executades
@@ -44,6 +45,7 @@ Fotografies, degradats de protecció del text, transparències de focus i ombres
 - Menú: activació amb teclat, tancament amb Escape i retorn del focus. Filtres de projectes: Automatismes, Estructures i tots els projectes.
 - Formulari: validació de camps obligatoris i resposta de demostració. No envia correus ni simula una consulta enviada.
 - Mètode industrial: quatre passos accessibles amb moviment normal, moviment reduït i JavaScript desactivat.
+- Correcció mòbil: comparació dels estils i la geometria de 13 pàgines a 1440 px abans/després, sense canvis; 26 combinacions a 390 i 320 px, sense desbordaments i amb les vores dels camps del formulari conservades. Revisió visual de Home, Particulars, Industrial i Contacte.
 
 ## Límits i estat de lliurament
 

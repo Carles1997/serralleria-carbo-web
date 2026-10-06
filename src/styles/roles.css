@@ -8,8 +8,10 @@
 :root {
   /* Superfícies clares (Home, Particulars, Contacte): el gris clar i el blanc trencat marquen
      agrupacions; el blanc pur queda per a formularis i peces puntuals. */
-  --surface-grey: #dce0df;
-  --surface-paper: var(--client-paper); /* #eeefeb */
+  /* To neutre i més marcat (director, 06/10/2026, amb #808080 com a referència): sense el matís
+     verdós anterior i amb contrast AA per al text fosc, el secundari i el bordeus. */
+  --surface-grey: #c6c8c7;
+  --surface-paper: #dfe0df;
   --surface-white: #ffffff;
   --surface-read: var(--surface-paper);
   --surface-read-alt: var(--surface-grey);
@@ -19,9 +21,9 @@
 
   /* Tinta i línies segons el fons. */
   --ink: #202627;
-  --ink-muted: #4c5652;
-  --line-on-light: #bcc4c1;
-  --line-strong-on-light: #8f9996;
+  --ink-muted: #434a47;
+  --line-on-light: #a6aaa8;
+  --line-strong-on-light: #7f8482;
   --line-on-dark: rgb(255 255 255 / 0.22);
 
   /* Acció i marca: bordeus únic, el mateix valor que el logo (#7c2a30). A Industrial, plata sobre
@@ -61,4 +63,16 @@
   :root {
     --header-h: 61px;
   }
+}
+
+/* Identitat (director, 06/10/2026: «més presència, sense alterar l'estructura»). Marca de secció: un
+   filet curt en el bordeus del logo sobre els titulars de secció de Home, Particulars i Contacte.
+   A Industrial, el mateix filet amb reflex metàl·lic (templates/industrial-base.css). */
+:where(.section-lead, .company-content, .s-section-heading, .s-brief-head, .s-related-inner, .folio-work-top, .folio-more-inner, .contact-copy) h2::before {
+  display: block;
+  width: 2.75rem;
+  height: 3px;
+  margin-bottom: 0.85rem;
+  background: var(--action);
+  content: "";
 }

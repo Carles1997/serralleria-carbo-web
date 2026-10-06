@@ -8,7 +8,7 @@
 // Bloc 1 del pla d'afinament (fases/fase-5/FASE5-pla-millora-integral.md): sense rètols numerats
 // decoratius ni etiquetes que repeteixen el nom de la rajola; el mosaic de serveis no torna a
 // presentar les branques del doble accés.
-import { Picture } from 'astro:assets';
+import { Picture, getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -18,6 +18,7 @@ import Inlines from '../components/Inlines.astro';
 import type { Page } from '../i18n/pages';
 import { useUi } from '../i18n/ui';
 import { sitePhotography } from '../config/photography';
+import logo from '../assets/branding/carbo-logo.png';
 import { labelledItem, links, listItems, one, paragraphs, parseMarkdown, sameText } from '../lib/markdown';
 
 interface Props {
@@ -87,6 +88,8 @@ const [doorTile, structuresTile, furnitureTile, repairsTile, industrialTile] = t
 const contactText = one(paragraphs(contact.blocks), 'un paràgraf a la secció de contacte');
 const contactLink = one(links(contact.blocks), 'un enllaç a la secció de contacte');
 
+// Logotip en marca d'aigua a l'entrada (identitat, director 06/10/2026): mateixa màscara que BrandLogo.
+const heroMark = await getImage({ src: logo, width: 840, format: 'webp' });
 const pathSizes = '(max-width: 760px) 100vw, 50vw';
 const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
 const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
@@ -97,6 +100,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
   <main id="contingut" class="home">
     <section class="hero-intro" aria-labelledby="home-title" data-surface="light">
+      <span class="hero-mark" aria-hidden="true" style={`--brand-mask: url("${heroMark.src}")`}></span>
       <div class="hero-main shell">
         <h1 id="home-title">
           {
@@ -305,15 +309,36 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
   /* Entrada: només el titular de marca, en gris clar. */
   .hero-intro {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     padding-block: clamp(1.75rem, 1.1rem + 2vw, 3rem) clamp(1.5rem, 1rem + 1.4vw, 2.25rem);
     background: var(--surface-grey);
     color: var(--ink);
   }
 
+  /* Identitat: el logotip, molt suau, ocupa l'espai buit de la dreta de l'entrada. Decoratiu. */
+  .hero-mark {
+    position: absolute;
+    z-index: -1;
+    right: max(var(--page-gutter), calc((100vw - 1600px) / 2 + var(--page-gutter)));
+    bottom: 50%;
+    width: clamp(260px, 34vw, 560px);
+    aspect-ratio: 1983 / 793;
+    background-color: var(--action);
+    opacity: 0.09;
+    translate: 0 50%;
+    -webkit-mask: var(--brand-mask) center / contain no-repeat;
+    mask: var(--brand-mask) center / contain no-repeat;
+    pointer-events: none;
+  }
+
+  /* Titular de marca a la mida de la maqueta validada (director, 06/10/2026: és l'únic titular que
+     conserva l'escala anterior). */
   h1 {
-    font-size: clamp(2.5rem, 1.3rem + 4vw, 4.5rem);
+    font-size: clamp(4.1rem, 7.1vw, 7.4rem);
     font-weight: 700;
-    letter-spacing: -0.065em;
+    letter-spacing: -0.075em;
     /* Interlineat amb aire per a l'accent de «CARBÓ» (director, 06/10/2026). */
     line-height: 0.9;
     text-transform: uppercase;
@@ -330,9 +355,9 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
   h1 small {
     display: block;
-    margin-top: 0.9rem;
+    margin-top: 1.75rem;
     color: var(--ink-muted);
-    font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.4rem);
+    font-size: clamp(1.15rem, 1.7vw, 1.75rem);
     font-weight: 500;
     letter-spacing: -0.015em;
     line-height: 1.15;
@@ -523,6 +548,24 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     font-size: 1.3rem;
   }
 
+  /* Identitat: filet de color abans del públic de cada camí (bordeus a Particulars, plata a Industrial). */
+  .path-kicker::before {
+    display: block;
+    width: 2.25rem;
+    height: 3px;
+    margin-bottom: 0.65rem;
+    background: var(--action);
+    content: "";
+  }
+
+  .path-industrial .path-kicker::before {
+    background: linear-gradient(90deg, #f8faf7 0%, #a2aca5 35%, #fbfdf9 60%, #7e8983 100%);
+  }
+
+  .path-particulars .path-kicker::before {
+    background: #a3474e;
+  }
+
   .path-kicker {
     grid-row: 3;
     margin-bottom: 0.6rem;
@@ -692,7 +735,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   .workshop {
     display: grid;
     grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    border-top: 1px solid var(--line-on-light);
     background: var(--surface-paper);
     color: var(--ink);
   }
@@ -1125,6 +1167,15 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   @media (max-width: 760px) {
+    h1 small {
+      margin-top: 1.25rem;
+      font-size: 1.18rem;
+    }
+
+    .hero-mark {
+      display: none;
+    }
+
     .paths-grid {
       grid-template-columns: 1fr;
     }
@@ -1197,8 +1248,13 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     }
   }
 
-  /* Públic de cada camí en una sola línia també a 320 px, sense cap «·» penjat. */
+  /* Públic de cada camí en una sola línia també a 320 px, sense cap «·» penjat. Titular de marca a la
+     mida de la maqueta per a mòbils petits. */
   @media (max-width: 360px) {
+    h1 {
+      font-size: 3.42rem;
+    }
+
     .path-kicker {
       font-size: 0.7rem;
       letter-spacing: 0.06em;

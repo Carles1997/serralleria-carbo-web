@@ -29,7 +29,7 @@
 .folio-work { background: var(--surface-paper); color: var(--ink); }
 .folio-work-top { padding-block: var(--space-section) var(--space-lead); }
 .folio-work-top h2 { margin: 0; font-size: var(--type-h2); font-weight: 700; letter-spacing: var(--display-tracking); line-height: var(--display-leading); text-transform: uppercase; }
-.folio-filters { position: sticky; z-index: 30; top: var(--header-h); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 64px; border-block: 1px solid var(--line-on-light); background: rgb(238 239 235 / .97); backdrop-filter: blur(12px); }
+.folio-filters { position: sticky; z-index: 30; top: var(--header-h); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 64px; border-block: 1px solid var(--line-on-light); background: rgb(223 224 223 / .97); backdrop-filter: blur(12px); }
 .folio-filters[hidden] { display: none; }
 .folio-filters > span { color: var(--ink-muted); font-size: var(--type-meta); font-weight: 700; letter-spacing: var(--tracking-meta); text-transform: uppercase; white-space: nowrap; }
 .folio-filters > div { position: relative; display: flex; align-items: stretch; gap: 1px; min-height: 48px; background: var(--line-on-light); }

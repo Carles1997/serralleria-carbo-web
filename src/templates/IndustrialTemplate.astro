@@ -247,8 +247,8 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           </h2>
           <p data-reveal style="--i:2"><Inlines inlines={seriesLead} /></p>
         </div>
-        <div class="i-media i-series-image" aria-hidden="true" data-reveal="clip">
-          <Picture src={sitePhotography.industrial.series} alt="" widths={[480, 720, 960, 1280]} sizes="(max-width: 900px) 100vw, 45vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+        <div class="i-media i-series-image" aria-hidden="true">
+          <Picture src={sitePhotography.industrial.series} alt="" widths={[640, 960, 1280, 1672]} sizes="100vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
         </div>
         <div class="i-series-method" id="proces">
           <ol class="i-series-steps" aria-label={t.series.method.label} data-series style={`--steps:${steps.length}`}>

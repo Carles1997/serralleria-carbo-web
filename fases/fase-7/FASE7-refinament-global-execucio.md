@@ -95,3 +95,17 @@ Contractes comprovats: `?tipus=empresa`, `?tipus=particular&servei=…`, presele
 4. ~~Segon H1 ocult de les pàgines legals~~: corregit el 06/10/2026 (un sol H1, ancoratges intactes).
 5. Backend del formulari (Fase 8, tasca 8.5).
 6. Publicar quan el director ho indiqui. Els crèdits de producció de Netlify estaven esgotats el 06/10/2026.
+
+
+## 6. Ajustos del director després de la previsualització (06/10/2026)
+
+- **Titular de marca de la Home:** recupera la mida de la maqueta validada (`clamp(4.1rem, 7.1vw, 7.4rem)`, subtítol inclòs). És l'únic titular que no segueix la nova escala.
+- **To de la Home i Particulars:** el director demana pujar el to «com el #808080». Aquest gris com a fons no arriba al contrast mínim (text fosc 3,9:1, blanc 3,95:1, bordeus 2,8:1). Per això es fa servir un gris neutre més marcat, sense el matís verdós anterior: superfície `#c6c8c7`, blanc trencat `#dfe0df`, text secundari `#434a47` i línies `#a6aaa8` / `#7f8482`. axe-core: 0 infraccions.
+- **Xifres i taller (Home):** formen un sol bloc del mateix to, sense el filet de separació.
+- **«La sèrie comença amb una peça»:** la mateixa estètica que «Soldem / Muntem» de Capacitats. Fotografia a tot el fons, titular, frase i acció a l'esquerra, i el mètode en un panell translúcid a la dreta. Fa 460 px a 1440 (la de Capacitats, 338) i conserva la mateixa animació, amb els quatre passos encesos amb el bloc a la pantalla.
+- **Identitat, sense canviar l'estructura:**
+  - un filet curt sobre els titulars de secció (bordeus a Serralleria, reflex metàl·lic a Industrial);
+  - el logotip en marca d'aigua a l'espai lliure de l'entrada de la Home, ocult a mòbil;
+  - un filet a l'etiqueta de cada camí del doble accés (bordeus i plata);
+  - una vora superior de 3 px al peu, en el color de la branca;
+  - una vora superior bordeus al formulari de Contacte, com a la referència del client.

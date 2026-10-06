@@ -101,7 +101,7 @@ main :is(.underlined-link, .s-hero-cta, .folio-hero-bottom a, .place-info > a) {
    JavaScript). Sense suport, les peces queden fixes com abans. */
 @supports (backdrop-filter: blur(1px)) {
   main.portfolio-page .folio-filters {
-    background: rgb(238 239 235 / 0.82);
+    background: rgb(223 224 223 / 0.85);
     backdrop-filter: blur(14px) saturate(1.3);
   }
 

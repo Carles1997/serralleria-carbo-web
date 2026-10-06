@@ -113,14 +113,18 @@
 /* La sèrie comença amb una peça: una sola composició compacta en grafit. A dalt, titular, frase de
    context i acció al costat de la fotografia; a sota, la línia metàl·lica amb quatre nodes que avança
    amb el desplaçament (src/scripts/series.ts). */
-.i-series { padding-block:var(--space-section); border-top:1px solid var(--i-dark-line); background:var(--i-graphite); color:#fff; }
-.i-series-inner { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.9fr); grid-template-areas:"head image" "method method" "foot foot"; gap:var(--space-lead) clamp(2rem,5vw,5rem); align-items:center; }
-.i-series-head { grid-area:head; display:grid; gap:var(--space-lead); }
-.i-series-head p { color:var(--i-muted); }
-.i-series-image { grid-area:image; position:relative; inset:auto; height:clamp(200px,18vw,260px); overflow:hidden; background:var(--i-graphite-card); }
-.i-series-image img { object-position:66% 48%; filter:saturate(.8) contrast(1.04) brightness(1.08); }
+/* Mateixa estètica que «Soldem / Muntem» de Capacitats (director, 06/10/2026): fotografia a tot el
+   fons amb ombra a l'esquerra, titular i acció a l'esquerra i el mètode en un panell translúcid a
+   la dreta, en una alçada semblant. */
+.i-series { position:relative; isolation:isolate; overflow:hidden; background:var(--i-graphite); color:#fff; }
+.i-series-image { position:absolute; z-index:-2; inset:0; }
 .i-series-image picture { position:absolute; inset:0; display:block; }
-.i-series-method { grid-area:method; padding-top:clamp(1.5rem,1rem + 1.5vw,2.25rem); border-top:1px solid var(--i-dark-line); }
+.i-series-image img { object-position:66% 48%; filter:saturate(.8) contrast(1.04) brightness(1.05); }
+.i-series-image::after { position:absolute; inset:0; background:linear-gradient(90deg,rgb(20 24 25 / .84),rgb(20 24 25 / .45) 42%,rgb(20 24 25 / .3)),linear-gradient(0deg,rgb(20 24 25 / .4),transparent 50%); content:""; }
+.i-series-inner { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); grid-template-areas:"head method" "foot method"; grid-template-rows:auto 1fr; gap:var(--space-lead) clamp(2rem,5vw,5rem); align-items:center; min-height:clamp(380px,32vw,460px); padding-block:var(--space-section); }
+.i-series-head { grid-area:head; display:grid; gap:var(--space-lead); align-self:end; }
+.i-series-head p { max-width:40ch; color:#f1f3f2; text-shadow:0 1px 12px rgb(0 0 0 / .4); }
+.i-series-method { grid-area:method; padding:clamp(1.1rem,2vw,2rem); border:1px solid rgb(255 255 255 / .35); background:rgb(52 60 60 / .78); backdrop-filter:blur(8px); }
 .i-series-steps { --series-progress:1; position:relative; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin:0; padding:0; list-style:none; }
 .i-series-steps::before, .i-series-steps::after { position:absolute; top:0; right:12.5%; left:12.5%; height:2px; content:""; }
 .i-series-steps::before { background:rgb(213 219 217 / .32); }
@@ -132,10 +136,10 @@
 .has-series-motion .i-series-step.is-lit::before { background:#e4e9e7; box-shadow:0 0 0 5px rgb(228 233 231 / .16),0 0 16px rgb(228 233 231 / .6); }
 .i-series-step-number { color:var(--i-muted); font-size:var(--type-meta); font-weight:700; letter-spacing:var(--tracking-meta); }
 .i-series-step h3 { margin:.6rem 0 .4rem; font-size:var(--type-h4); font-weight:700; letter-spacing:-.03em; line-height:1; text-transform:uppercase; }
-.i-series-step p { max-width:26ch; margin:0 auto; color:var(--i-muted); font-size:.98rem; line-height:1.45; }
+.i-series-step p { max-width:24ch; margin:0 auto; color:var(--i-muted); font-size:.92rem; line-height:1.42; }
 .has-series-motion .i-series-step { opacity:0; transform:translateY(12px); transition:opacity 420ms cubic-bezier(.23,1,.32,1),transform 420ms cubic-bezier(.23,1,.32,1); }
 .has-series-motion .i-series-step.is-visible { opacity:1; transform:translateY(0); }
-.i-series-foot { grid-area:foot; display:flex; }
+.i-series-foot { grid-area:foot; display:flex; align-self:start; }
 
 /* Experiència en cinc sectors: boira clara, cinc fotografies apaïsades amb el nom a sota. */
 .i-sectors { padding-block:var(--space-section); background:var(--i-mist); color:var(--i-light-ink); }
@@ -208,7 +212,8 @@
 }
 @media (max-width:900px) {
   .i-cap-intro, .i-series-inner { grid-template-columns:1fr; }
-  .i-series-inner { grid-template-areas:"head" "image" "method" "foot"; }
+  .i-series-inner { grid-template-areas:"head" "method" "foot"; grid-template-rows:auto; min-height:0; }
+  .i-series-head { align-self:auto; }
 }
 @media (max-width:760px) {
   .i-section-heading, .i-production-head, .i-contact-heading { grid-template-columns:1fr; }
@@ -228,7 +233,7 @@
   .i-quality-list { grid-template-columns:1fr; }
   .i-quality-list li { padding:.75rem 0; }
   .i-quality-list li + li { padding-left:0; border-top:1px solid var(--i-light-line); border-left:0; }
-  .i-series-image { height:200px; }
+  .i-series-image::after { background:linear-gradient(180deg,rgb(20 24 25 / .7),rgb(20 24 25 / .45) 40%,rgb(20 24 25 / .65)); }
   /* Mètode en columna: la línia es dibuixa per trams entre nodes amb el mateix centre horitzontal
      (--node) i vertical (--dot-y); cada tram s'omple amb --fill. Sense JavaScript, trams plens. */
   .i-series-steps { --node:1rem; --dot-y:1.55rem; display:flex; flex-direction:column; padding-left:0; }

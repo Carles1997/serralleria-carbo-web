@@ -8,7 +8,7 @@
 // Bloc 1 del pla d'afinament (fases/fase-5/FASE5-pla-millora-integral.md): sense rètols numerats
 // decoratius ni etiquetes que repeteixen el nom de la rajola; el mosaic de serveis no torna a
 // presentar les branques del doble accés.
-import { Picture, getImage } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -18,7 +18,6 @@ import Inlines from '../components/Inlines.astro';
 import type { Page } from '../i18n/pages';
 import { useUi } from '../i18n/ui';
 import { sitePhotography } from '../config/photography';
-import logo from '../assets/branding/carbo-logo.png';
 import { labelledItem, links, listItems, one, paragraphs, parseMarkdown, sameText } from '../lib/markdown';
 
 interface Props {
@@ -88,8 +87,6 @@ const [doorTile, structuresTile, furnitureTile, repairsTile, industrialTile] = t
 const contactText = one(paragraphs(contact.blocks), 'un paràgraf a la secció de contacte');
 const contactLink = one(links(contact.blocks), 'un enllaç a la secció de contacte');
 
-// Logotip en marca d'aigua a l'entrada (identitat, director 06/10/2026): mateixa màscara que BrandLogo.
-const heroMark = await getImage({ src: logo, width: 840, format: 'webp' });
 const pathSizes = '(max-width: 760px) 100vw, 50vw';
 const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
 const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
@@ -99,8 +96,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   <SiteHeader ui={ui} homeHref={page.data.route ?? '/'} nav={t.nav} mobileExtra={t.mobileExtra} />
 
   <main id="contingut" class="home">
-    <section class="hero-intro" aria-labelledby="home-title" data-surface="light">
-      <span class="hero-mark" aria-hidden="true" style={`--brand-mask: url("${heroMark.src}")`}></span>
+    <section class="hero-intro surface-brand-grey" aria-labelledby="home-title" data-surface="dark">
       <div class="hero-main shell">
         <h1 id="home-title">
           {
@@ -116,7 +112,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
       </div>
     </section>
 
-    <section class="paths" aria-label={t.paths.label} data-surface="light">
+    <section class="paths surface-brand-grey" aria-label={t.paths.label} data-surface="dark">
       <div class="path-guide shell">
         <h2 id="path-guide-title" class="path-guide-title">{guide.heading}</h2>
         <ul class="path-guide-list">
@@ -210,7 +206,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
       </div>
     </section>
 
-    <section class="services" id="serveis" aria-labelledby="services-title" data-surface="light">
+    <section class="services surface-brand-grey" id="serveis" aria-labelledby="services-title" data-surface="dark">
       <div class="shell">
         <div class="section-lead services-lead">
           <h2 id="services-title" data-reveal style={fit(services.heading)}>{services.heading}</h2>
@@ -281,7 +277,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   </main>
 
   <StructuredData />
-  <SiteFooter ui={ui} locale={locale} contactHref={contactLink.href} />
+  <SiteFooter ui={ui} locale={locale} contactHref={contactLink.href} tone="brand-grey" />
 </BaseLayout>
 
 <style>
@@ -317,22 +313,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     color: var(--ink);
   }
 
-  /* Identitat: el logotip, molt suau, ocupa l'espai buit de la dreta de l'entrada. Decoratiu. */
-  .hero-mark {
-    position: absolute;
-    z-index: -1;
-    right: max(var(--page-gutter), calc((100vw - 1600px) / 2 + var(--page-gutter)));
-    bottom: 50%;
-    width: clamp(260px, 34vw, 560px);
-    aspect-ratio: 1983 / 793;
-    background-color: var(--action);
-    opacity: 0.09;
-    translate: 0 50%;
-    -webkit-mask: var(--brand-mask) center / contain no-repeat;
-    mask: var(--brand-mask) center / contain no-repeat;
-    pointer-events: none;
-  }
-
   /* Titular de marca a la mida de la maqueta validada (director, 06/10/2026: és l'únic titular que
      conserva l'escala anterior). */
   h1 {
@@ -350,7 +330,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   .hero-stop {
-    color: var(--action);
+    color: currentColor;
   }
 
   h1 small {
@@ -433,7 +413,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     align-items: center;
     gap: 0.35rem;
     padding-bottom: 0.1rem;
-    border-bottom: 1px solid var(--action);
+    border-bottom: 1px solid var(--line-strong-on-light);
     color: var(--ink);
     font-size: 0.95rem;
     font-weight: 700;
@@ -441,12 +421,13 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   .path-guide-branch .arrow {
-    color: var(--action);
+    color: var(--ink);
   }
 
   .path-guide-list a:hover .path-guide-branch,
   .path-guide-list a:focus-visible .path-guide-branch {
-    color: var(--action);
+    color: var(--ink);
+    border-bottom-color: currentColor;
   }
 
   .path-guide-help {
@@ -830,7 +811,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   .offer-branch-heading > span:first-child {
-    color: var(--action);
+    color: var(--ink-muted);
     font-size: var(--type-meta);
     font-weight: 700;
     letter-spacing: var(--tracking-meta);
@@ -990,12 +971,13 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   .offer-overview .arrow {
-    color: var(--action);
+    color: var(--ink);
     font-size: 1.15rem;
   }
 
   .offer-overview:hover {
-    color: var(--action);
+    color: var(--ink);
+    border-bottom-color: currentColor;
   }
 
   /* Fotografia: el pas de blanc i negre a color queda al doble accés, on comunica una elecció.
@@ -1163,10 +1145,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     h1 small {
       margin-top: 1.25rem;
       font-size: 1.18rem;
-    }
-
-    .hero-mark {
-      display: none;
     }
 
     .paths-grid {

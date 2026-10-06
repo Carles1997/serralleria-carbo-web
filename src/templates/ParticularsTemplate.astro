@@ -115,7 +115,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
       </div>
     </section>
 
-    <section class="p-urgent" id="urgencies" aria-labelledby="p-urgent-title" data-surface="light">
+    <section class="p-urgent surface-brand-grey" id="urgencies" aria-labelledby="p-urgent-title" data-surface="dark">
       <div class="section-shell p-urgent-inner">
         <div data-reveal>
           <h2 id="p-urgent-title">{t.urgent.heading}</h2>
@@ -167,7 +167,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
       </div>
     </section>
 
-    <section class="p-projects" id="projectes" aria-labelledby="p-projects-title" data-surface="light">
+    <section class="p-projects surface-brand-grey" id="projectes" aria-labelledby="p-projects-title" data-surface="dark">
       <div class="section-shell">
         <div class="section-lead">
           <h2 id="p-projects-title" data-reveal style={fit(...t.projects.heading)}>{t.projects.heading[0]}<br />{' '}{t.projects.heading[1]}</h2>
@@ -184,7 +184,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           <div class="p-story-stage-shade"></div>
           <div class="p-story-progress"><span data-story-progress style={`scale:${1 / chapters.length} 1`}></span></div>
         </div>
-        <div class="p-story-chapters">
+        <div class="p-story-chapters" data-surface="light">
           {
             chapters.map((chapter) => (
               <article class="p-story-chapter" data-story-chapter={chapter.number}>
@@ -217,7 +217,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
     <ContactBlock ui={ui} heading={t.contactHeading} text={contactText} form={contactLink} note={{ label: area.heading, text: areaText }} />
   </main>
 
-  <SiteFooter ui={ui} locale={locale} contactHref={contactLink.href} />
+  <SiteFooter ui={ui} locale={locale} contactHref={contactLink.href} tone="brand-grey" />
 </BaseLayout>
 
 <script>

@@ -12,9 +12,10 @@ interface Props {
   locale: Locale;
   contactHref: string;
   variant?: 'serralleria' | 'industrial';
+  tone?: 'light' | 'brand-grey';
 }
 
-const { ui, locale, contactHref, variant = 'serralleria' } = Astro.props;
+const { ui, locale, contactHref, variant = 'serralleria', tone = 'light' } = Astro.props;
 
 const legal = await Promise.all(
   (Object.entries(ui.footer.legal) as [string, string][]).map(async ([pageId, label]) => {
@@ -24,7 +25,7 @@ const legal = await Promise.all(
 );
 ---
 
-<footer class:list={['site-footer', `site-footer-${variant}`]} data-surface={variant === 'industrial' ? 'dark' : 'light'}>
+<footer class:list={['site-footer', `site-footer-${variant}`, { 'surface-brand-grey': tone === 'brand-grey' }]} data-surface={variant === 'industrial' || tone === 'brand-grey' ? 'dark' : 'light'}>
   <div class="footer-inner">
     <div class="footer-brand">
       <BrandLogo variant={variant} place="footer" /><small>{ui.brand.tagline}</small>

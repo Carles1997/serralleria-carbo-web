@@ -11,6 +11,7 @@
   /* To neutre i més marcat (director, 06/10/2026, amb #808080 com a referència): sense el matís
      verdós anterior i amb contrast AA per al text fosc, el secundari i el bordeus. */
   --surface-grey: #c6c8c7;
+  --surface-brand-grey: #4b4e53;
   --surface-paper: #dfe0df;
   --surface-white: #ffffff;
   --surface-read: var(--surface-paper);
@@ -52,6 +53,18 @@
   --space-section: clamp(1.75rem, 1rem + 2.6vw, 3.25rem);
   --space-lead: clamp(1rem, 0.75rem + 0.8vw, 1.5rem);
   --space-block: clamp(1.25rem, 0.9rem + 1.1vw, 2rem);
+}
+
+/* Gris aprovat per a Home i Particulars (director, 06/10/2026).
+   Tinta clara només dins aquests blocs; els panells blancs mantenen la tinta fosca. */
+.surface-brand-grey {
+  --surface-grey: var(--surface-brand-grey);
+  --ink: #ffffff;
+  --ink-muted: #eeefef;
+  --line-on-light: rgb(255 255 255 / 0.28);
+  --line-strong-on-light: rgb(255 255 255 / 0.55);
+  background: var(--surface-brand-grey);
+  color: var(--ink);
 }
 
 /* Alçada de la capçalera fixa (contingut + filet), per a peces enganxoses sota la capçalera. */

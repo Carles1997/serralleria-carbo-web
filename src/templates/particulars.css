@@ -30,9 +30,9 @@
 /* Franja d'avaries: compacta, clara, amb l'acció principal en bordeus. */
 .p-urgent { border-bottom: 1px solid var(--line-on-light); background: var(--surface-grey); color: var(--ink); }
 .p-urgent-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: .75rem clamp(.75rem, 1.5vw, 1.25rem); padding-block: clamp(.9rem, .7rem + .6vw, 1.25rem); }
-.p-urgent h2 { margin: 0 0 .15rem; color: var(--action); font-size: var(--type-h4); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
+.p-urgent h2 { margin: 0 0 .15rem; color: var(--ink); font-size: var(--type-h4); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
 .p-urgent p { margin: 0; color: var(--ink-muted); font-size: .95rem; line-height: 1.45; }
-.p-urgent a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 44px; padding: .45rem .9rem; border: 1px solid var(--action); color: var(--action); font-weight: 700; white-space: nowrap; transition: scale 160ms var(--motion-ease), background var(--motion-fast) ease, color var(--motion-fast) ease; }
+.p-urgent a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 44px; padding: .45rem .9rem; border: 1px solid var(--line-strong-on-light); color: var(--ink); font-weight: 700; white-space: nowrap; transition: scale 160ms var(--motion-ease), background var(--motion-fast) ease, color var(--motion-fast) ease; }
 .p-urgent a:last-child { background: var(--action); color: #fff; }
 .p-urgent a:active { scale: .97; }
 @media (hover: hover) and (pointer: fine) {
@@ -84,7 +84,7 @@
 /* Indicador funcional discret: progrés del recorregut pels casos, a la base de la fotografia. */
 .p-story-progress { position: absolute; right: 1.25rem; bottom: 1.25rem; left: 1.25rem; height: 2px; background: rgb(255 255 255 / .4); }
 .p-story-progress span { display: block; width: 100%; height: 100%; background: #fff; transform-origin: left center; transition: scale 450ms var(--motion-ease); }
-.p-story-chapters { min-width: 0; background: var(--surface-white); }
+.p-story-chapters { --ink: #202627; --ink-muted: #434a47; --line-on-light: #a6aaa8; --line-strong-on-light: #7f8482; min-width: 0; background: var(--surface-white); color: var(--ink); }
 .p-story-chapter { position: relative; display: flex; flex-direction: column; justify-content: center; gap: 1.25rem; min-height: clamp(300px, 40svh, 400px); padding: clamp(1.5rem, 3vw, 3rem); border-bottom: 1px solid var(--line-on-light); }
 .p-story-chapter:last-child { border-bottom: 0; }
 .p-story-chapter::after { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--action); content: ""; transform: scaleY(0); transform-origin: top; transition: transform 600ms var(--motion-ease); }

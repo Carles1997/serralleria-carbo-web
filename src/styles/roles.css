@@ -3,34 +3,58 @@
    acció, escala tipogràfica i espaiat. Parteix de design/tokens.css, src/styles/fase4.css i la
    revisió de Fase 4, sense reescriure'n els valors congelats: les plantilles apunten a aquests rols.
    Refinament global del director (06/10/2026, fases/fase-7/FASE7-brief-refinament-global-i-contacte.md):
-   Home, Particulars i Contacte passen a gris clar + blanc trencat amb el bordeus del logo, i
+   Home, Particulars i Contacte passen a gris clar + blanc amb el bordeus del logo, i
    l'escala de titulars i d'espaiat es redueix. Excepcions documentades a cada plantilla. */
 :root {
-  /* Superfícies clares (Home, Particulars, Contacte): el gris clar i el blanc trencat marquen
-     agrupacions; el blanc pur queda per a formularis i peces puntuals. */
-  /* To neutre i més marcat (director, 06/10/2026, amb #808080 com a referència): sense el matís
-     verdós anterior i amb contrast AA per al text fosc, el secundari i el bordeus. */
-  --surface-grey: #c6c8c7;
-  --surface-brand-grey: #4b4e53;
-  --surface-paper: #dfe0df;
-  --surface-white: #ffffff;
+  /* Salt and pepper · referència del director, 06/10/2026. Única paleta activa. */
+  --palette-white: #ffffff;
+  --palette-light: #d4d4d4;
+  --palette-mid: #b3b3b3;
+  --palette-dark: #2b2b2b;
+  --palette-accent: #7c2a30;
+  /* Compatibilitat amb els tokens històrics congelats: la UI activa usa aquesta paleta. */
+  --color-paper: var(--palette-white);
+  --color-surface: var(--palette-white);
+  --color-surface-muted: var(--palette-light);
+  --color-charcoal: var(--palette-dark);
+  --color-ink: var(--palette-dark);
+  --color-text-muted: var(--palette-dark);
+  --color-text-on-dark: var(--palette-white);
+  --color-text-muted-on-dark: var(--palette-light);
+  --color-steel: var(--palette-mid);
+  --color-line: var(--palette-mid);
+  --color-accent: var(--palette-accent);
+  --color-accent-on-dark: var(--palette-white);
+  --color-particulars-accent: var(--palette-accent);
+  --color-particulars-charcoal: var(--palette-dark);
+  --color-industrial-silver: var(--palette-light);
+  --color-industrial-graphite: var(--palette-dark);
+  --color-industrial-ink: var(--palette-dark);
+  --color-focus-light: var(--palette-accent);
+  --color-focus-dark: var(--palette-white);
+  /* Superfícies clares (Home, Particulars, Contacte): blanc per a lectura i gris clar per
+     separar agrupacions, sense matisos verdosos ni blavosos. */
+  --surface-grey: var(--palette-light);
+  --surface-brand-grey: var(--palette-light);
+  --surface-paper: var(--palette-white);
+  --surface-white: var(--palette-white);
   --surface-read: var(--surface-paper);
   --surface-read-alt: var(--surface-grey);
   /* Superfícies fosques: només fotografia i Industrial. */
-  --surface-dark: #1e2225;
-  --surface-deep: #111315;
+  --surface-dark: var(--palette-dark);
+  --surface-deep: var(--palette-dark);
 
   /* Tinta i línies segons el fons. */
-  --ink: #202627;
-  --ink-muted: #434a47;
-  --line-on-light: #a6aaa8;
-  --line-strong-on-light: #7f8482;
+  --ink: var(--palette-dark);
+  --ink-muted: var(--palette-dark);
+  --line-on-light: var(--palette-mid);
+  --line-strong-on-light: var(--palette-dark);
   --line-on-dark: rgb(255 255 255 / 0.22);
 
-  /* Acció i marca: bordeus únic, el mateix valor que el logo (#7c2a30). A Industrial, plata sobre
+  /* Acció i marca: bordeus únic, el mateix valor que el logo. A Industrial, plata sobre
      grafit, també a la línia de progrés del mètode (decisió del director, 27/09/2026). */
   --action: var(--color-particulars-accent);
-  --action-hover: #66222a;
+  --action-hover: var(--palette-accent);
   --industrial-accent: var(--color-industrial-silver);
 
   /* Escala tipogràfica: una funció, una mida (Source Sans 3). Valors del refinament (06/10/2026):
@@ -55,14 +79,13 @@
   --space-block: clamp(1.25rem, 0.9rem + 1.1vw, 2rem);
 }
 
-/* Gris aprovat per a Home i Particulars (director, 06/10/2026).
-   Tinta clara només dins aquests blocs; els panells blancs mantenen la tinta fosca. */
+/* Nom conservat per compatibilitat: les superfícies de Home i Particulars ara són clares. */
 .surface-brand-grey {
   --surface-grey: var(--surface-brand-grey);
-  --ink: #ffffff;
-  --ink-muted: #eeefef;
-  --line-on-light: rgb(255 255 255 / 0.28);
-  --line-strong-on-light: rgb(255 255 255 / 0.55);
+  --ink: var(--palette-dark);
+  --ink-muted: var(--palette-dark);
+  --line-on-light: var(--palette-mid);
+  --line-strong-on-light: var(--palette-dark);
   background: var(--surface-brand-grey);
   color: var(--ink);
 }

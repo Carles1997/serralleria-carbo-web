@@ -3,14 +3,14 @@
    fases/fase-4/FASE4-mockups/revisio-client.css (revisió del client, 25/09/2026).
    Pendent de decidir si passen a tokens.css; mentrestant no s'hi afegeixen valors nous. */
 :root {
-  --f4-black: #101113;
-  --f4-coal: #17191c;
-  --f4-steel: #22252a;
-  --f4-line: #3a3d41;
-  --f4-text: #f3f4f2;
-  --f4-muted: #b9bdc0;
+  --f4-black: var(--palette-dark);
+  --f4-coal: var(--palette-dark);
+  --f4-steel: var(--palette-dark);
+  --f4-line: var(--palette-dark);
+  --f4-text: var(--palette-white);
+  --f4-muted: var(--palette-mid);
 
-  --client-paper: #eeefeb;
-  --client-ink: #1b2020;
-  --client-slate: #2a3030;
+  --client-paper: var(--palette-white);
+  --client-ink: var(--palette-dark);
+  --client-slate: var(--palette-dark);
 }

@@ -25,7 +25,7 @@ const legal = await Promise.all(
 );
 ---
 
-<footer class:list={['site-footer', `site-footer-${variant}`, { 'surface-brand-grey': tone === 'brand-grey' }]} data-surface={variant === 'industrial' || tone === 'brand-grey' ? 'dark' : 'light'}>
+<footer class:list={['site-footer', `site-footer-${variant}`, { 'surface-brand-grey': tone === 'brand-grey' }]} data-surface={variant === 'industrial' ? 'dark' : 'light'}>
   <div class="footer-inner">
     <div class="footer-brand">
       <BrandLogo variant={variant} place="footer" /><small>{ui.brand.tagline}</small>
@@ -55,10 +55,10 @@ const legal = await Promise.all(
   }
 
   .site-footer-industrial {
-    --footer-muted: #c9d0ce;
+    --footer-muted: var(--palette-light);
     border-top-color: var(--color-industrial-silver);
-    background: #3a4243;
-    color: #f3f4f2;
+    background: var(--palette-dark);
+    color: var(--palette-white);
   }
 
   .footer-inner {

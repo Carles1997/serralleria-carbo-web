@@ -1,23 +1,23 @@
 /* Base compartida de la branca Industrial: portada (plantilla I) i pàgines interiors
    (plantilla II). Regles comunes de fases/fase-4/FASE4-mockups/industrial/styles.css i
-   identitat.css (identitat plata #c5ceca sobre grafit). .industrial-page és el <main>.
+   identitat.css (identitat plata var(--palette-light) sobre grafit). .industrial-page és el <main>.
    S'importa després de mockup-base.css i abans del full de cada plantilla. */
 
-/* Paleta de la branca (refinament del director, 06/10/2026): grafit mitjà #525c5c com a superfície
-   fosca, plata #d5d9d8 i boira #e2e5e4 com a superfícies clares; grisos neutres, sense blau. */
+/* Paleta de la branca (refinament del director, 06/10/2026): grafit mitjà var(--palette-dark) com a superfície
+   fosca, plata var(--palette-light) i boira var(--palette-light) com a superfícies clares; grisos neutres, sense blau. */
 .industrial-page {
-  --i-graphite:#525c5c;
-  --i-graphite-card:#485151;
-  --i-graphite-hover:#5d6868;
-  --i-silver:#d5d9d8;
-  --i-mist:#e2e5e4;
-  --i-light-ink:#202627;
-  --i-light-muted:#46504f;
-  --i-light-line:#9ca6a4;
+  --i-graphite:var(--palette-dark);
+  --i-graphite-card:var(--palette-dark);
+  --i-graphite-hover:var(--palette-dark);
+  --i-silver:var(--palette-light);
+  --i-mist:var(--palette-light);
+  --i-light-ink:var(--palette-dark);
+  --i-light-muted:var(--palette-dark);
+  --i-light-line:var(--palette-mid);
   --i-dark-line:rgb(255 255 255 / .26);
-  --i-muted:#e3e8e6;
-  --i-button-dark:#353d3e;
-  --i-button-dark-hover:#4a5455;
+  --i-muted:var(--palette-light);
+  --i-button-dark:var(--palette-dark);
+  --i-button-dark-hover:var(--palette-dark);
   background:var(--i-graphite);
 }
 /* clip (no hidden): retalla igual però no crea un contenidor d'scroll, perquè les animacions
@@ -27,9 +27,9 @@
 .i-button { display:inline-flex; align-items:center; justify-content:space-between; gap:2rem; min-height:50px; padding:.8rem 1.1rem; font-weight:700; text-decoration:none; transition:background .22s ease,color .22s ease,transform .22s ease; }
 .i-button:hover { transform:translateY(-2px); }
 .i-button span,.i-text-link span,.i-section-link span { font-size:1.25em; font-weight:400; }
-.i-button-solid { background:#f1efeb; color:#17191a; }
-.i-button-outline { border:1px solid #ced2d0; color:#fff; }
-.i-button-outline:hover { background:#fff; color:#161819; }
+.i-button-solid { background:var(--palette-white); color:var(--palette-dark); }
+.i-button-outline { border:1px solid var(--palette-light); color:var(--palette-white); }
+.i-button-outline:hover { background:var(--palette-white); color:var(--palette-dark); }
 .i-section-link { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; width:fit-content; max-width:100%; min-height:50px; margin-top:var(--space-block); padding:.6rem 0; border-top:1px solid currentColor; border-bottom:1px solid currentColor; font-weight:700; text-decoration:none; }
 .i-section-link span { color:var(--i-accent); }
 .i-text-link { display:inline-flex; align-items:center; justify-content:space-between; gap:1.2rem; min-height:48px; padding:.5rem 0; border-bottom:1px solid currentColor; font-weight:700; text-decoration:none; }
@@ -37,8 +37,8 @@
 
 /* industrial/identitat.css */
 /* Text d'accent sobre grafit mitjà: plata clara amb contrast 4,5:1 també en mida petita; el logo
-   conserva el plata aprovat #c5ceca (refinament del director, 06/10/2026). */
-.industrial-page { --i-accent:#dfe5e3; }
+   conserva el plata aprovat var(--palette-light) (refinament del director, 06/10/2026). */
+.industrial-page { --i-accent:var(--palette-light); }
 /* Reflex platejat, limitat a les paraules destacades dels titulars. «main» manté la prioritat que
    tenia identitat.css al final de la cascada sobre els colors d'em de cada plantilla. */
 main.industrial-page :is(h1,h2,h3) em {
@@ -48,25 +48,25 @@ main.industrial-page :is(h1,h2,h3) em {
   padding-inline-end:.16em;
   margin-inline-end:-.16em;
   line-height:1.06;
-  color:#dfe5df;
+  color:var(--palette-light);
   font-style:normal;
-  background-image:linear-gradient(105deg,#f8faf7 0%,#adb7b1 17%,#fbfdf9 32%,#adb7b1 51%,#f7faf6 68%,#b7c0ba 85%,#f8faf7 100%);
+  background-image:linear-gradient(105deg,var(--palette-white) 0%,var(--palette-mid) 17%,var(--palette-white) 32%,var(--palette-mid) 51%,var(--palette-white) 68%,var(--palette-mid) 85%,var(--palette-white) 100%);
   -webkit-background-clip:text;
   background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 /* Sobre plata i boira, reflex metàl·lic fosc amb lectura estable (contrast en tota la gamma). */
 main.industrial-page :is(.i-capabilities,.i-sectors,.i-contact,.c-overview,.c-requirements,.c-contact) h2 em {
-  color:#202627;
-  background-image:linear-gradient(105deg,#25302e 0%,#56635f 18%,#222d2a 35%,#596761 53%,#25302d 72%,#52605b 87%,#27312e 100%);
+  color:var(--palette-dark);
+  background-image:linear-gradient(105deg,var(--palette-dark) 0%,var(--palette-dark) 18%,var(--palette-dark) 35%,var(--palette-dark) 53%,var(--palette-dark) 72%,var(--palette-dark) 87%,var(--palette-dark) 100%);
 }
 /* La variant fosca és només per a H2 sobre plata/boira: els H3 dels cartells
    fotogràfics conserven el reflex clar, independentment del fons de la secció. */
 @media (forced-colors:active) {
   main.industrial-page :is(h1,h2,h3) em { background:none; color:CanvasText; -webkit-text-fill-color:CanvasText; }
 }
-.i-section-link:hover,.i-text-link:hover { color:#e5e9e6; }
-.i-button-solid:hover { background:#e0e4e1; }
+.i-section-link:hover,.i-text-link:hover { color:var(--palette-white); }
+.i-button-solid:hover { background:var(--palette-light); }
 
 /* Fase 5 */
 /* Imatges de Picture: omplen el contenidor posicionat. */

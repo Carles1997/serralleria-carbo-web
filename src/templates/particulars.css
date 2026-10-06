@@ -3,7 +3,7 @@
    Origen: fases/fase-4/FASE4-mockups/particulars/ (styles.css, identitat.css i les regles
    .particulars-page de revisio-client.css) i els ajustos posteriors del director.
    Refinament global del 06/10/2026 (fases/fase-7/FASE7-brief-refinament-global-i-contacte.md):
-   - Mateixa família clara que la Home: gris clar, blanc trencat i el bordeus del logo (#7c2a30).
+   - Mateixa família clara que la Home: gris clar, blanc trencat i el bordeus del logo (var(--palette-accent)).
    - Titulars i espaiat a l'escala dels rols compartits (src/styles/roles.css).
    - Sense números decoratius: ni sobre les fotografies dels treballs ni a les targetes de servei.
    - Les fotografies conserven text blanc amb una ombra local moderada.
@@ -12,20 +12,20 @@
 .particulars-page .arrow { display: inline-block; }
 
 /* Entrada fotogràfica: més baixa, amb l'ombra concentrada darrere del text. */
-.p-hero { position: relative; isolation: isolate; min-height: clamp(380px, 52svh, 540px); overflow: hidden; background: #3c4245; color: #fff; }
+.p-hero { position: relative; isolation: isolate; min-height: clamp(380px, 52svh, 540px); overflow: hidden; background: var(--palette-dark); color: var(--palette-white); }
 .p-hero-image { position: absolute; z-index: -1; inset: 0; }
 .p-hero-image picture { display: contents; }
 .p-hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 48%; filter: sepia(.12) saturate(1.02) brightness(1.1) contrast(1.03); }
-.p-hero-image::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(14 11 11 / .78) 0%, rgb(14 11 11 / .5) 38%, rgb(14 11 11 / .05) 75%), linear-gradient(0deg, rgb(14 11 11 / .6), transparent 50%); content: ""; }
+.p-hero-image::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(43 43 43 / .78) 0%, rgb(43 43 43 / .5) 38%, rgb(43 43 43 / .05) 75%), linear-gradient(0deg, rgb(43 43 43 / .6), transparent 50%); content: ""; }
 .p-hero-copy { position: relative; display: flex; flex-direction: column; min-height: inherit; padding-block: 1rem clamp(1.5rem, 1rem + 1.5vw, 2.5rem); }
 .p-hero-top { display: flex; justify-content: flex-end; padding-bottom: .5rem; border-bottom: 1px solid rgb(255 255 255 / .45); }
 .p-hero-top a { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; font-size: .85rem; font-weight: 700; white-space: nowrap; }
 .p-hero-main { margin-top: auto; padding-top: 3rem; }
-.p-hero h1 { max-width: 15ch; margin: 0; font-size: var(--type-hero); font-weight: 700; letter-spacing: -.055em; line-height: .92; text-transform: uppercase; text-wrap: balance; text-shadow: 0 2px 18px rgb(0 0 0 / .3); }
+.p-hero h1 { max-width: 15ch; margin: 0; font-size: var(--type-hero); font-weight: 700; letter-spacing: -.055em; line-height: .92; text-transform: uppercase; text-wrap: balance; text-shadow: 0 2px 18px rgb(43 43 43 / .3); }
 .p-hero h1 > span, .p-hero h1 em, .p-hero h1 small { display: block; }
 .p-hero h1 > span { font-size: .5em; letter-spacing: -.035em; line-height: 1; }
 .p-hero h1 em { font-style: normal; }
-.p-hero h1 small { margin-top: .75rem; color: #eef0ef; font-size: clamp(1.1rem, .9rem + .7vw, 1.5rem); font-weight: 500; letter-spacing: -.015em; line-height: 1.1; text-transform: none; }
+.p-hero h1 small { margin-top: .75rem; color: var(--palette-white); font-size: clamp(1.1rem, .9rem + .7vw, 1.5rem); font-weight: 500; letter-spacing: -.015em; line-height: 1.1; text-transform: none; }
 
 /* Franja d'avaries: compacta, clara, amb l'acció principal en bordeus. */
 .p-urgent { border-bottom: 1px solid var(--line-on-light); background: var(--surface-grey); color: var(--ink); }
@@ -33,26 +33,26 @@
 .p-urgent h2 { margin: 0 0 .15rem; color: var(--ink); font-size: var(--type-h4); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
 .p-urgent p { margin: 0; color: var(--ink-muted); font-size: .95rem; line-height: 1.45; }
 .p-urgent a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 44px; padding: .45rem .9rem; border: 1px solid var(--line-strong-on-light); color: var(--ink); font-weight: 700; white-space: nowrap; transition: scale 160ms var(--motion-ease), background var(--motion-fast) ease, color var(--motion-fast) ease; }
-.p-urgent a:last-child { background: var(--action); color: #fff; }
+.p-urgent a:last-child { background: var(--action); color: var(--palette-white); }
 .p-urgent a:active { scale: .97; }
 @media (hover: hover) and (pointer: fine) {
-  .p-urgent a:hover { background: var(--action); color: #fff; }
+  .p-urgent a:hover { background: var(--action); color: var(--palette-white); }
   .p-urgent a:last-child:hover { background: var(--action-hover); }
 }
 
 /* Serveis: blanc trencat, quatre peces fotogràfiques. */
 .p-services { padding-block: var(--space-section); background: var(--surface-white); color: var(--ink); }
 .p-service-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--line-on-light); background: var(--line-on-light); }
-.p-service { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; min-height: clamp(260px, 22vw, 330px); overflow: hidden; padding: clamp(1.1rem, 2vw, 2rem); background: #3c4245; color: #fff; contain: paint; transition: scale 160ms var(--motion-ease); }
-.p-service::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg, rgb(9 11 13 / .12), transparent 30%, rgb(9 11 13 / .5) 58%, rgb(9 11 13 / .88)); content: ""; }
+.p-service { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; min-height: clamp(260px, 22vw, 330px); overflow: hidden; padding: clamp(1.1rem, 2vw, 2rem); background: var(--palette-dark); color: var(--palette-white); contain: paint; transition: scale 160ms var(--motion-ease); }
+.p-service::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg, rgb(43 43 43 / .12), transparent 30%, rgb(43 43 43 / .5) 58%, rgb(43 43 43 / .88)); content: ""; }
 .p-service:has(.p-service-actions a:active) { scale: .99; }
-.p-service-art { position: absolute; z-index: -2; inset: 0; overflow: hidden; background: #3c4245; }
+.p-service-art { position: absolute; z-index: -2; inset: 0; overflow: hidden; background: var(--palette-dark); }
 .p-service-art picture { display: contents; }
 .p-service-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.98) contrast(1.02) brightness(1.04); transition: filter 320ms ease, transform 520ms var(--motion-ease); }
 .p-service-repairs .p-service-art img { object-position: 60% center; }
 .p-service-copy { z-index: 2; max-width: 50ch; }
 .p-service h3 { margin: 0 0 .5rem; font-size: var(--type-h3); font-weight: 700; letter-spacing: -.035em; line-height: 1; text-transform: uppercase; overflow-wrap: break-word; }
-.p-service p { max-width: 48ch; margin: 0; color: #eceeed; font-size: 1rem; line-height: 1.45; text-shadow: 0 1px 10px rgb(0 0 0 / .4); }
+.p-service p { max-width: 48ch; margin: 0; color: var(--palette-white); font-size: 1rem; line-height: 1.45; text-shadow: 0 1px 10px rgb(43 43 43 / .4); }
 /* Enllaç estès a tota la peça; el segon enllaç, si n'hi ha, queda per sobre. */
 .p-service-actions { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; margin-top: .6rem !important; text-shadow: none !important; }
 .p-service-actions a { position: relative; display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; font-size: .9rem; font-weight: 700; text-decoration: underline; text-decoration-color: rgb(255 255 255 / .5); text-underline-offset: .3em; }
@@ -64,27 +64,27 @@
 }
 
 /* Pont cap a Industrial: franja breu en grafit mitjà i plata, els colors de l'altra branca. */
-.p-series { background: #525c5c; color: #fff; }
+.p-series { background: var(--palette-dark); color: var(--palette-white); }
 .p-series-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1rem clamp(1.5rem, 3vw, 3rem); padding-block: clamp(1.1rem, .8rem + 1vw, 1.75rem); }
-.p-series h2 { margin: 0 0 .3rem; color: #e4e9e7; font-size: var(--type-h4); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
-.p-series p { max-width: 75ch; margin: 0; color: #eef1f0; font-size: .97rem; line-height: 1.5; }
-.p-series a { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; min-height: 48px; padding: .5rem 1rem; border: 1px solid #d5dbd9; font-weight: 700; white-space: nowrap; transition: background var(--motion-fast) ease, color var(--motion-fast) ease; }
-.p-series a:hover, .p-series a:focus-visible { background: #e4e9e7; color: #202627; }
+.p-series h2 { margin: 0 0 .3rem; color: var(--palette-white); font-size: var(--type-h4); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
+.p-series p { max-width: 75ch; margin: 0; color: var(--palette-white); font-size: .97rem; line-height: 1.5; }
+.p-series a { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; min-height: 48px; padding: .5rem 1rem; border: 1px solid var(--palette-light); font-weight: 700; white-space: nowrap; transition: background var(--motion-fast) ease, color var(--motion-fast) ease; }
+.p-series a:hover, .p-series a:focus-visible { background: var(--palette-white); color: var(--palette-dark); }
 
 /* Treballs reals: gris clar, escenari fotogràfic enganxós i capítols de lectura en blanc trencat. */
 .p-projects { padding-top: var(--space-section); border-top: 1px solid var(--line-on-light); background: var(--surface-grey); color: var(--ink); }
 .p-project-story { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); border-block: 1px solid var(--line-on-light); }
-.p-story-stage { position: sticky; top: var(--header-h); align-self: start; isolation: isolate; height: min(calc(100svh - var(--header-h)), 620px); overflow: hidden; background: #3c4245; }
+.p-story-stage { position: sticky; top: var(--header-h); align-self: start; isolation: isolate; height: min(calc(100svh - var(--header-h)), 620px); overflow: hidden; background: var(--palette-dark); }
 .p-story-stage picture { display: contents; }
 .p-story-stage img { position: absolute; z-index: -3; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.85) contrast(1.05); }
 .p-story-frame { position: absolute; z-index: -3; inset: 0; opacity: 0; transition: opacity 560ms ease; }
 .p-story-frame.is-active { opacity: 1; }
 .p-story-stage .p-story-frame img { z-index: auto; }
-.p-story-stage-shade { position: absolute; z-index: -2; inset: 0; background: linear-gradient(180deg, transparent 70%, rgb(8 10 12 / .5)); }
+.p-story-stage-shade { position: absolute; z-index: -2; inset: 0; background: linear-gradient(180deg, transparent 70%, rgb(43 43 43 / .5)); }
 /* Indicador funcional discret: progrés del recorregut pels casos, a la base de la fotografia. */
 .p-story-progress { position: absolute; right: 1.25rem; bottom: 1.25rem; left: 1.25rem; height: 2px; background: rgb(255 255 255 / .4); }
-.p-story-progress span { display: block; width: 100%; height: 100%; background: #fff; transform-origin: left center; transition: scale 450ms var(--motion-ease); }
-.p-story-chapters { --ink: #202627; --ink-muted: #434a47; --line-on-light: #a6aaa8; --line-strong-on-light: #7f8482; min-width: 0; background: var(--surface-white); color: var(--ink); }
+.p-story-progress span { display: block; width: 100%; height: 100%; background: var(--palette-white); transform-origin: left center; transition: scale 450ms var(--motion-ease); }
+.p-story-chapters { --ink: var(--palette-dark); --ink-muted: var(--palette-dark); --line-on-light: var(--palette-mid); --line-strong-on-light: var(--palette-dark); min-width: 0; background: var(--surface-white); color: var(--ink); }
 .p-story-chapter { position: relative; display: flex; flex-direction: column; justify-content: center; gap: 1.25rem; min-height: clamp(300px, 40svh, 400px); padding: clamp(1.5rem, 3vw, 3rem); border-bottom: 1px solid var(--line-on-light); }
 .p-story-chapter:last-child { border-bottom: 0; }
 .p-story-chapter::after { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--action); content: ""; transform: scaleY(0); transform-origin: top; transition: transform 600ms var(--motion-ease); }
@@ -97,7 +97,7 @@
 /* Accés al portafoli: el botó obre la franja, sense frase que el repeteixi (valoració editorial, 06/10/2026). */
 .p-story-outro { display: flex; padding-block: clamp(1.25rem, 1rem + 1vw, 2rem); }
 .p-story-outro-actions { display: flex; align-items: center; gap: 1.5rem; }
-.p-story-all { display: inline-flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-width: 260px; min-height: 52px; padding: .7rem 1.1rem; background: var(--action); color: #fff; font-weight: 700; transition: background var(--motion-fast) ease, scale 160ms var(--motion-ease); }
+.p-story-all { display: inline-flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-width: 260px; min-height: 52px; padding: .7rem 1.1rem; background: var(--action); color: var(--palette-white); font-weight: 700; transition: background var(--motion-fast) ease, scale 160ms var(--motion-ease); }
 .p-story-all:active, .underlined-link:active { scale: .97; }
 .underlined-link { transition: scale 160ms var(--motion-ease); }
 
@@ -123,7 +123,7 @@
 @media (max-width: 760px) {
   .p-hero { min-height: 420px; }
   .p-hero-image img { object-position: 58% center; }
-  .p-hero-image::after { background: linear-gradient(0deg, rgb(14 11 11 / .85) 0%, rgb(14 11 11 / .45) 45%, rgb(14 11 11 / .1) 80%); }
+  .p-hero-image::after { background: linear-gradient(0deg, rgb(43 43 43 / .85) 0%, rgb(43 43 43 / .45) 45%, rgb(43 43 43 / .1) 80%); }
   .p-hero h1 { font-size: min(var(--type-hero), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .56))); }
   .p-series-inner { grid-template-columns: 1fr; }
   .p-series a { justify-self: start; }

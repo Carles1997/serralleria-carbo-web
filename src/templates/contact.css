@@ -44,7 +44,7 @@
 .form-demo p { margin:0; }
 
 /* Formulari: superfície blanca, contorn fi i radi discret. */
-.contact-form-panel { grid-area: form; min-width: 0; padding: clamp(1.25rem, 2.4vw, 2.25rem); border: 1px solid var(--line-on-light); border-top: 3px solid var(--action); border-radius: 6px; background: var(--surface-white); box-shadow: 0 1px 2px rgb(32 38 39 / .04), 0 12px 32px -18px rgb(32 38 39 / .18); }
+.contact-form-panel { grid-area: form; min-width: 0; padding: clamp(1.25rem, 2.4vw, 2.25rem); border: 1px solid var(--line-on-light); border-top: 3px solid var(--action); border-radius: 6px; background: var(--surface-white); box-shadow: 0 1px 2px rgb(43 43 43 / .04), 0 12px 32px -18px rgb(43 43 43 / .18); }
 .contact-form-panel form { display: grid; gap: 1rem; }
 .branch-picker, .branch-fields { min-width: 0; margin: 0; padding: 0; border: 0; }
 .branch-fields[hidden] { display: none !important; }
@@ -58,7 +58,7 @@
 .branch-option > span { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 .35rem; min-height: 48px; padding: .7rem .9rem .7rem 2.6rem; border: 1px solid var(--line-on-light); border-radius: 4px; background: var(--surface-paper); line-height: 1.3; transition: border-color .18s ease, background-color .18s ease, scale 160ms var(--motion-ease); }
 .branch-option strong { font-size: 1rem; }
 .branch-option small { color: var(--ink-muted); font-size: .88rem; }
-.branch-option input:checked + span { border-color: var(--action); background: #fff; box-shadow: inset 0 0 0 1px var(--action); }
+.branch-option input:checked + span { border-color: var(--action); background: var(--palette-white); box-shadow: inset 0 0 0 1px var(--action); }
 .branch-option input:focus-visible + span { outline: 3px solid var(--action); outline-offset: 2px; }
 .branch-option:hover > span { border-color: var(--action); }
 .branch-option:active > span { scale: .985; }
@@ -70,22 +70,22 @@
 /* Amb Particulars (sense camp d'empresa), el nom ocupa tota la fila. */
 .field-grid:has(> .field-company[hidden]) .field-name { grid-column: 1 / -1; }
 .field label { margin-bottom: .3rem; font-size: .86rem; font-weight: 700; line-height: 1.3; }
-.field input, .field select, .field textarea { display: block; width: 100%; min-height: 46px; padding: .55rem .8rem; border: 1px solid #aeb6b2; border-radius: 4px; background: #fff; color: var(--ink); font: 400 1rem/1.4 var(--font-sans); color-scheme: light; outline: none; }
+.field input, .field select, .field textarea { display: block; width: 100%; min-height: 46px; padding: .55rem .8rem; border: 1px solid var(--palette-mid); border-radius: 4px; background: var(--palette-white); color: var(--ink); font: 400 1rem/1.4 var(--font-sans); color-scheme: light; outline: none; }
 .field textarea { min-height: 112px; resize: vertical; }
-.field input::placeholder, .field textarea::placeholder { color: #5f6a66; opacity: 1; }
+.field input::placeholder, .field textarea::placeholder { color: var(--palette-dark); opacity: 1; }
 .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--action); box-shadow: inset 0 0 0 1px var(--action); }
-.field input[aria-invalid="true"], .field select[aria-invalid="true"], .field textarea[aria-invalid="true"] { border-color: #a6222c; }
-.field-error { margin: .3rem 0 0; color: #8f1e27; font-size: .84rem; font-weight: 700; line-height: 1.3; }
+.field input[aria-invalid="true"], .field select[aria-invalid="true"], .field textarea[aria-invalid="true"] { border-color: var(--palette-accent); }
+.field-error { margin: .3rem 0 0; color: var(--palette-accent); font-size: .84rem; font-weight: 700; line-height: 1.3; }
 
 /* Adjunt compacte: selector propi en català; el control natiu queda accessible però invisible. */
-.upload-area { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; padding: .6rem .8rem; border: 1px dashed #9aa4a0; border-radius: 4px; background: var(--surface-paper); }
+.upload-area { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; padding: .6rem .8rem; border: 1px dashed var(--palette-mid); border-radius: 4px; background: var(--surface-paper); }
 .upload-area.is-industrial { border-style: solid; }
 .upload-text { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 .5rem; min-width: 0; }
 .upload-area .upload-text label { margin: 0; font-size: .92rem; }
 .upload-text > span { color: var(--ink-muted); font-size: .86rem; }
 .upload-control { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .9rem; min-width: 0; }
 .upload-control input { position: absolute; width: 1px; height: 1px; opacity: 0; }
-.upload-button { display: inline-flex; align-items: center; min-height: 44px; margin: 0 !important; padding: .5rem .85rem; border: 1px solid var(--action); border-radius: 4px; background: #fff; color: var(--action); font-size: .88rem; font-weight: 700; cursor: pointer; transition: background-color 160ms ease, color 160ms ease, scale 160ms var(--motion-ease); }
+.upload-button { display: inline-flex; align-items: center; min-height: 44px; margin: 0 !important; padding: .5rem .85rem; border: 1px solid var(--action); border-radius: 4px; background: var(--palette-white); color: var(--action); font-size: .88rem; font-weight: 700; cursor: pointer; transition: background-color 160ms ease, color 160ms ease, scale 160ms var(--motion-ease); }
 .upload-control input:focus-visible + .upload-button { outline: 3px solid var(--action); outline-offset: 3px; }
 .upload-button:active { scale: .97; }
 .file-name { min-width: 0; color: var(--ink-muted); font-size: .84rem; overflow-wrap: anywhere; }
@@ -101,7 +101,7 @@
 .field-subgrid { display: contents; }
 
 /* Privacitat: casella obligatòria, informació bàsica de l'advocat i casella comercial voluntària. */
-.form-privacy { padding: .8rem 0; border-top: 1px solid var(--line-on-light); color: #3f4845; font-size: .86rem; line-height: 1.45; }
+.form-privacy { padding: .8rem 0; border-top: 1px solid var(--line-on-light); color: var(--palette-dark); font-size: .86rem; line-height: 1.45; }
 .form-privacy-info { margin-block: .6rem; }
 .form-privacy-title { margin: 0 0 .3rem; color: var(--ink); font-size: .84rem; font-weight: 700; }
 .form-privacy-info p { margin: 0 0 .3rem; }
@@ -112,16 +112,16 @@
 .field-consent:last-child label { font-weight: 400; }
 .field-consent input { flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--action); }
 .field-consent input:focus-visible { outline: 3px solid var(--action); outline-offset: 2px; }
-.form-privacy-note { margin: .2rem 0 0 calc(20px + .6rem); color: #56605c; font-size: .8rem; }
+.form-privacy-note { margin: .2rem 0 0 calc(20px + .6rem); color: var(--palette-dark); font-size: .8rem; }
 
 /* Enviament: un únic botó; inactiu fins que el JavaScript valida i mai no envia (contact-form.ts). */
 .form-finish { display: flex; align-items: center; }
-.form-finish button { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-width: 220px; min-height: 50px; padding: .75rem 1.1rem; border: 0; border-radius: 4px; background: var(--action); color: #fff; font: 700 1rem var(--font-sans); cursor: pointer; transition: background-color .18s ease, scale 160ms var(--motion-ease); }
+.form-finish button { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-width: 220px; min-height: 50px; padding: .75rem 1.1rem; border: 0; border-radius: 4px; background: var(--action); color: var(--palette-white); font: 700 1rem var(--font-sans); cursor: pointer; transition: background-color .18s ease, scale 160ms var(--motion-ease); }
 .form-finish button:hover:not(:disabled) { background: var(--action-hover); }
 .form-finish button:not(:disabled):active { scale: .97; }
-.form-finish button:disabled { background: #8f8285; cursor: not-allowed; }
+.form-finish button:disabled { background: var(--palette-dark); cursor: not-allowed; }
 .form-status { margin: 0; padding: .8rem 1rem; border-left: 4px solid var(--action); background: var(--surface-paper); font-size: .95rem; line-height: 1.45; }
-.form-status[data-state="error"] { border-left-color: #a6222c; background: #f7eeee; }
+.form-status[data-state="error"] { border-left-color: var(--palette-accent); background: var(--palette-white); }
 
 /* On som: títol funcional petit i mapa compacte que només es carrega a petició. */
 .contact-place { padding-block: var(--space-section); border-top: 1px solid var(--line-on-light); background: var(--surface-paper); }
@@ -132,23 +132,23 @@
 .place-info p { margin: 0; color: var(--ink-muted); font-size: .95rem; line-height: 1.5; }
 .place-info > a { display: inline-flex; align-items: center; gap: .6rem; min-height: 44px; border-bottom: 1px solid var(--action); color: var(--action); font-weight: 700; transition: scale 160ms var(--motion-ease); }
 .place-info > a:active { scale: .97; }
-.place-map { position: relative; height: clamp(220px, 20vw, 280px); overflow: hidden; border: 1px solid var(--line-on-light); border-radius: 6px; background: #e4e8e3; }
+.place-map { position: relative; height: clamp(220px, 20vw, 280px); overflow: hidden; border: 1px solid var(--line-on-light); border-radius: 6px; background: var(--palette-light); }
 .place-map-facade { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem; padding: 1.25rem; text-align: center; background:
   linear-gradient(118deg, transparent 47.6%, rgb(255 255 255 / .95) 47.6% 50.4%, transparent 50.4%),
   linear-gradient(24deg, transparent 61.5%, rgb(255 255 255 / .9) 61.5% 63%, transparent 63%),
   linear-gradient(162deg, transparent 30%, rgb(255 255 255 / .75) 30% 31.2%, transparent 31.2%),
-  repeating-linear-gradient(0deg, transparent 0 47px, rgb(32 36 35 / .055) 47px 48px),
-  repeating-linear-gradient(90deg, transparent 0 47px, rgb(32 36 35 / .055) 47px 48px),
-  #e4e8e3; }
-.place-map-pin { position: relative; width: 24px; height: 24px; border-radius: 50% 50% 50% 0; background: var(--action); box-shadow: 0 6px 14px rgb(0 0 0 / .22); rotate: -45deg; }
-.place-map-pin::after { position: absolute; inset: 7px; border-radius: 50%; background: #fff; content: ""; }
+  repeating-linear-gradient(0deg, transparent 0 47px, rgb(43 43 43 / .055) 47px 48px),
+  repeating-linear-gradient(90deg, transparent 0 47px, rgb(43 43 43 / .055) 47px 48px),
+  var(--palette-light); }
+.place-map-pin { position: relative; width: 24px; height: 24px; border-radius: 50% 50% 50% 0; background: var(--action); box-shadow: 0 6px 14px rgb(43 43 43 / .22); rotate: -45deg; }
+.place-map-pin::after { position: absolute; inset: 7px; border-radius: 50%; background: var(--palette-white); content: ""; }
 .place-map-enhanced { display: flex; flex-direction: column; align-items: center; gap: .5rem; }
 .place-map-enhanced[hidden] { display: none; }
-.place-map-load { display: inline-flex; align-items: center; gap: 1rem; min-height: 46px; padding: .6rem 1rem; border: 0; border-radius: 4px; background: var(--action); color: #fff; font: 700 .95rem var(--font-sans); cursor: pointer; transition: background-color .18s ease, scale 160ms var(--motion-ease); }
+.place-map-load { display: inline-flex; align-items: center; gap: 1rem; min-height: 46px; padding: .6rem 1rem; border: 0; border-radius: 4px; background: var(--action); color: var(--palette-white); font: 700 .95rem var(--font-sans); cursor: pointer; transition: background-color .18s ease, scale 160ms var(--motion-ease); }
 .place-map-load:hover { background: var(--action-hover); }
 .place-map-load:active { scale: .97; }
 .place-map-load:focus-visible { outline: 3px solid var(--action); outline-offset: 3px; }
-.place-map-note { max-width: 40ch; margin: 0; padding: .3rem .6rem; background: rgb(255 255 255 / .85); color: #3f4845; font-size: .8rem; line-height: 1.4; }
+.place-map-note { max-width: 40ch; margin: 0; padding: .3rem .6rem; background: rgb(255 255 255 / .85); color: var(--palette-dark); font-size: .8rem; line-height: 1.4; }
 .place-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; opacity: 0; transition: opacity 320ms ease; }
 .place-map.is-loaded iframe { opacity: 1; }
 .place-map.is-loading .place-map-enhanced { opacity: .55; pointer-events: none; }
@@ -157,7 +157,7 @@
 @media (hover: hover) and (pointer: fine) {
   .contact-page .arrow { transition: translate 220ms var(--motion-ease); }
   .contact-page a:hover .arrow, .form-finish button:not(:disabled):hover .arrow { translate: 3px -3px; }
-  .upload-button:hover { background: var(--action); color: #fff; }
+  .upload-button:hover { background: var(--action); color: var(--palette-white); }
 }
 @media (prefers-reduced-motion: no-preference) {
   /* En canviar de branca, els camps nous entren amb un fos breu. */

@@ -45,6 +45,20 @@
   }
 }
 
+/* Titular de la Home: la línia puja el 100 % de la seva alçada mentre la màscara, fixa a la base
+   final, la va descobrint. Els marges negatius deixen lloc als accents i a la coma. */
+@keyframes title-rise {
+  from {
+    translate: 0 100%;
+    clip-path: inset(-0.4em -0.1em 100% -0.1em);
+  }
+
+  to {
+    translate: 0 0;
+    clip-path: inset(-0.4em -0.1em -0.35em -0.1em);
+  }
+}
+
 @keyframes settle-image {
   from {
     scale: 1.04;

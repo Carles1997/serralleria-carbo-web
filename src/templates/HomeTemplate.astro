@@ -101,7 +101,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
         <h1 id="home-title">
           {
             titleWords.map((word, index) => (
-              <span class="enter" style={`--i:${index}`}>
+              <span class="hero-line" style={`--i:${index}`}>
                 {word}
                 {index === titleWords.length - 1 && titleSmall && <span class="hero-stop">,</span>}{' '}
               </span>
@@ -312,13 +312,27 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     font-size: clamp(4.1rem, 7.1vw, 7.4rem);
     font-weight: 700;
     letter-spacing: -0.075em;
-    line-height: 0.76;
+    /* Interlineat amb aire per a l'accent de «CARBÓ», que tocava la línia de dalt (director,
+       06/10/2026). */
+    line-height: 0.9;
     text-transform: uppercase;
   }
 
   h1 > span {
     display: block;
     white-space: nowrap;
+  }
+
+  /* Entrada del titular: cada línia puja des de darrere d'una màscara a la seva pròpia base, una
+     després de l'altra; el subtítol arriba quan acaben. Només amb CSS i sense moviment reduït. */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-line {
+      animation: title-rise 900ms var(--ease-out-strong) calc(var(--i, 0) * 120ms + 60ms) backwards;
+    }
+
+    h1 small.enter {
+      animation-delay: 360ms;
+    }
   }
 
   .hero-stop {

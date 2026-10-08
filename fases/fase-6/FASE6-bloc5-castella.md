@@ -224,3 +224,25 @@ Codex va verificar les correccions 7.1 i 7.2: `verify`, `check:i18n`, `check:lin
 | Decisió sobre les 12 fotografies antigues amb equivalent clar ([bloc 4](FASE6-bloc4-redireccions.md#2-fitxers-antics-de-wp-contentuploads)) | Director |
 | Formulari operatiu (Fase 8, tasca 8.5) | Claude i director |
 | Anglès | Ajornat |
+
+## 9. Desplegament a la previsualització (09/10/2026)
+
+- **Commit:** `a29d067` (blocs 4 i 5 i les seves correccions).
+- **Desplegament:** `6ac81d8fe0c9024a8068e5c2`, publicat a l'àlies `revisio-client`, sense `--prod`. No s'han tocat la producció ni el DNS.
+- **Enllaç reutilitzable:** https://revisio-client--serralleriacarbo.netlify.app/
+
+| Comprovació | Resultat |
+|---|---|
+| `npm run check:redirects:live` | Correcte: 21 regles × 2 variants. Inclou `/estructuras/` → `/es/particulares/estructuras/` i `/motores/` → `/es/particulares/automatismos/` en un sol 301, `/sample-page/` → `/contacte/`, `/cat/` → `/`, i feeds i plantilles en 410. `/`, `/contacte/` i `/es/` responen 200 |
+| Rutes castellanes (12) i catalanes de mostra (6) | 200, amb `lang` correcte i el selector cap a la pàgina equivalent de l'altre idioma |
+| 404 | `/es/no-existe/` respon 404 amb la pàgina castellana; `/no-existeix/`, 404 amb la catalana. Totes dues porten el selector a la portada de l'altre idioma |
+| `noindex` | `X-Robots-Tag: noindex` a totes les respostes de tots dos idiomes. A més, `meta robots noindex` a totes les pàgines castellanes i a les catalanes en esborrany. Projectes i les legals catalanes, aprovades, només depenen de la capçalera de la previsualització, com estava previst |
+| `scripts/qa/check-language-switcher.py` contra la previsualització | 12 de 12 correctes, sense cap avís de transició |
+
+**Pendents:**
+- aprovació editorial de les traduccions;
+- validació jurídica dels textos legals castellans;
+- decisió sobre les dotze fotografies antigues;
+- comprovació de campanyes abans del llançament;
+- formulari operatiu (tasca 8.5);
+- comprovacions de producció i del domini definitiu.

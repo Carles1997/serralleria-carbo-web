@@ -1,6 +1,6 @@
 # Fase 6 · Bloc 4 · Tancament de les redireccions de migració
 
-**Data:** 08/10/2026 · **Estat:** decisions del director del 08/10/2026 implementades al mapa; diff pendent de revisió (Codex), commit i desplegament.
+**Data:** 08/10/2026 · **Estat:** decisions del director del 08/10/2026 implementades, revisades per Codex i publicades a `revisio-client` el 09/10/2026. La decisió sobre les dotze fotografies antigues queda pendent.
 
 **Decisió de base (director, 08/10/2026):** el web es publica **en català i castellà des del primer dia**; l'anglès queda ajornat. Aquesta decisió substitueix les propostes anteriors de llançament només en català i de redireccions provisionals (302).
 
@@ -56,6 +56,6 @@ L'absència de dades de Search Console no demostra que aquests fitxers no tingui
 
 ## 3. Comprovacions pendents
 
-- `npm run check:redirects:live` a `revisio-client` després del pròxim desplegament autoritzat. Inclou els 301 de `/estructuras/` i `/motores/` cap a les pàgines castellanes i la 404 de `/es/…`.
+- ~~`npm run check:redirects:live` a `revisio-client`~~ **Fet el 09/10/2026** (desplegament `6ac81d8fe0c9024a8068e5c2`, commit `a29d067`): totes les regles correctes, inclosos els 301 de `/estructuras/` i `/motores/` cap a les pàgines castellanes. La 404 de `/es/…` respon 404 en castellà.
 - Al domini, el dia del llançament, l'endemà i al cap d'una setmana ([pla executable, 5.3](FASE6-pla-executable.md#53-verificacions)).
 - Campanyes actives a `/estructuras/` i `/motores/` (client), abans del llançament.

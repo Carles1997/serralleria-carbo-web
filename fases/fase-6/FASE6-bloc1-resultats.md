@@ -107,7 +107,7 @@ Aquestes etiquetes **no** es copien al web nou: qualsevol mesura depèn de la ta
 
 **Accessos que demanem:**
 - **Search Console:** usuari amb permís complet o restringit per al director. Cal per exportar, abans del canvi de DNS:
-  - consultes i pàgines de 16 mesos;
+  - consultes i pàgines del període disponible (com a màxim, uns 16 mesos; no està garantit que n'hi hagi tants);
   - l'informe de pàgines;
   - els enllaços externs.
 - **GA4 (opcional):** només lectura, per a la línia base històrica. No implica activar cap analítica al web nou.
@@ -233,7 +233,7 @@ Mediana de 3 passades:
 | Pendent | Qui | Quan |
 |---|---|---|
 | Recuperar els crèdits de Netlify i publicar `main` amb aquest bloc. Comprovar el `noindex` de `serralleriacarbo.netlify.app` | Client o director, i Claude | Com més aviat millor |
-| Respostes i accessos de Search Console (apartat 2) | Client | Abans del canvi de DNS |
+| Respostes i accessos de Search Console (apartat 2). **08/10/2026:** encara sense accés; la verificació del domini queda pendent | Client | Abans del canvi de DNS |
 | Decisions de les quatre URL descobertes i de la C2 | Director | Abans de publicar |
 | PageSpeed Insights amb clau o des d'un navegador normal | Director o Claude amb la clau (D7) | Abans de publicar |
 | Investigar el retard de pintat al mòbil (proposta de bloc tècnic) | Director (aprovació) | Abans de publicar |

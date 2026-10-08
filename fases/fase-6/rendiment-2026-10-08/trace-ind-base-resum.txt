@@ -1,0 +1,34 @@
+Fil principal (32420, 14084), fins a 6000 ms des de la navegació
+Temps propi per esdeveniment (ms):
+    2535.0  Layout
+    1013.5  UpdateLayoutTree
+     509.4  RunTask
+     324.1  Paint
+     139.8  PrePaint
+     134.7  FunctionCall
+      89.0  ParseHTML
+      82.9  DocumentLoader::CreateParserPostCommit
+      81.6  Layerize
+      60.0  ParseAuthorStyleSheet
+      52.2  Commit
+      39.0  v8.evaluateModule
+      24.4  FireAnimationFrame
+      23.6  DecodedDataDocumentParser::AppendBytes
+      23.3  PaintImage
+      23.0  IntersectionObserverController::computeIntersections
+      17.2  EvaluateScript
+      16.3  v8.compileModule
+Tasques de més de 50 ms (inici ms, durada ms, fills principals):
+      504     170  DocumentLoader::CommitNavigation 140, DocumentLoader::StartLoadingResponse 122, DocumentLoader::CreateParserPostCommit 122, NavigationBodyLoader::StartLoadingBody 36
+      686      68  ParseHTML 62, EvaluateScript 22, v8.compile 5, HTMLDocumentParser::DocumentElementAvailable 0
+      936      69  ParseAuthorStyleSheet 59
+     1161    2479  v8.evaluateModule 2471, Layout 1592, UpdateLayoutTree 845, RunMicrotasks 1
+     3671     283  Paint 191, PrePaint 35, FunctionCall 32, EventDispatch 24
+     3967     784  Layout 728, UpdateLayoutTree 51, EventDispatch 1
+     5040      88  Layout 22, PrePaint 14, UpdateLayoutTree 14, Paint 10
+     5129      50  Layerize 9, Commit 8, Layout 7, UpdateLayoutTree 6
+     5264     105  UpdateLayoutTree 20, Layout 16, FireAnimationFrame 15, Layerize 15
+     5372     113  Paint 80, Layout 25, Layerize 11, UpdateLayoutTree 9
+     5496      94  Paint 36, UpdateLayoutTree 17, Layout 14, Layerize 12
+     5596      56  Layout 14, FireAnimationFrame 9, FunctionCall 8, Paint 5
+     5746      51  FireAnimationFrame 13, FunctionCall 11, Layout 5, Paint 5

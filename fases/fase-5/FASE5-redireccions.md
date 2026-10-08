@@ -52,6 +52,7 @@ Els destins s'indiquen per pàgina de contingut (`pageId` + idioma), no per URL.
   - `/cat/` i `/es/`: prefixos de TranslatePress, que WordPress redirigeix a `/`. `/es/` és el prefix previst de la futura versió en castellà.
 
   Són a `undecided` de `src/config/redirects.mjs`, sense regla ni destí, fins que el director en decideixi el tractament. El web nou hi respon 404. No s'han de redirigir a la Home per defecte.
+- **Propostes per a totes les URL obertes (08/10/2026), segons el contingut antic i l'equivalent actual:** [FASE6-bloc2-rendiment.md](../fase-6/FASE6-bloc2-rendiment.md#7-propostes-per-a-les-redireccions-obertes-no-decidides). Cal tenir en compte que `/sample-page/` és la pàgina de manteniment «Disculpeu les molèsties», amb dades de contacte, no una plantilla buida.
 
 ## Requisits quan es triï l'allotjament
 

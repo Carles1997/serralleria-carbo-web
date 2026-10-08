@@ -142,7 +142,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
         </p>
       </div>
       <div class="paths-grid">
-        <a class="path path-particulars" href={particularsLink.href} data-reveal="clip" data-surface="dark">
+        <a class="path path-particulars" href={particularsLink.href} data-surface="dark">
           <Picture src={sitePhotography.home.particulars} alt="" widths={[640, 960, 1280, 1672]} sizes={pathSizes} formats={['avif', 'webp']} fallbackFormat="jpg" priority />
           <span class="path-shade" aria-hidden="true"></span>
           <span class="path-top">
@@ -1078,6 +1078,24 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     .path.is-revealed :is(.path-top, .path-kicker, .path-title, .path-copy, .path-action) {
       animation: reveal-rise-soft 520ms var(--ease-out-strong) backwards;
       animation-delay: calc(var(--i, 0) * var(--stagger) + 120ms + var(--j, 0) * 45ms);
+    }
+
+    /* L'accés de Particulars és l'element LCP en mòbil i escriptori i sempre és a la primera pantalla.
+       Entra amb CSS des del primer pintat, amb la mateixa animació que [data-reveal='clip'] (fos breu,
+       fotografia que s'assenta i textos escalonats), sense esperar el JavaScript de revelació: amb
+       l'ocultació fins a la revelació, l'LCP mòbil arribava uns 2 s després del primer pintat
+       (fases/fase-6/FASE6-bloc2-rendiment.md). L'accés d'Industrial conserva la revelació. */
+    .path-particulars {
+      animation: reveal-fade 520ms var(--ease-out-strong) backwards;
+    }
+
+    .path-particulars :global(img) {
+      animation: settle-image 900ms var(--ease-out-strong) backwards;
+    }
+
+    .path-particulars :is(.path-top, .path-kicker, .path-title, .path-copy, .path-action) {
+      animation: reveal-rise-soft 520ms var(--ease-out-strong) backwards;
+      animation-delay: calc(120ms + var(--j, 0) * 45ms);
     }
 
     .path-kicker {

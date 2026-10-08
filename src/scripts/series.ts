@@ -15,12 +15,10 @@ if (list && method && document.documentElement.classList.contains('motion-ready'
   const clamp = (value: number) => Math.max(0, Math.min(1, value));
   let frame = 0;
 
-  /** Posició vertical del centre del node d'un pas (en columna, --dot-y dins del pas). */
-  const nodeY = (step: HTMLElement) => {
-    const offset = parseFloat(getComputedStyle(step, '::before').top) || 0;
-    return step.getBoundingClientRect().top + offset;
-  };
-
+  // Rendiment (Fase 6, bloc 2, 08/10/2026): les lectures de geometria es fan totes abans de cap
+  // escriptura, perquè alternar-les forçava un recàlcul complet del layout a cada pas; i el mètode
+  // no es prepara fins que s'acosta a la pantalla. Abans, la crida inicial bloquejava el primer
+  // pintat d'Industrial en mòbil (fases/fase-6/FASE6-bloc2-rendiment.md).
   const update = () => {
     frame = 0;
     if (reducedMotion.matches) {
@@ -38,9 +36,11 @@ if (list && method && document.documentElement.classList.contains('motion-ready'
       // En columna: cada tram s'omple entre dos nodes quan la línia de lectura (60 % de la
       // pantalla) els travessa; el text de cada pas apareix abans, en entrar a la pantalla.
       const readLine = viewport * 0.6;
-      const nodes = steps.map(nodeY);
+      const tops = steps.map((step) => step.getBoundingClientRect().top);
+      // Centre del node de cada pas (en columna, --dot-y dins del pas).
+      const nodes = steps.map((step, index) => tops[index] + (parseFloat(getComputedStyle(step, '::before').top) || 0));
       steps.forEach((step, index) => {
-        step.classList.toggle('is-visible', step.getBoundingClientRect().top <= viewport * 0.88);
+        step.classList.toggle('is-visible', tops[index] <= viewport * 0.88);
         step.classList.toggle('is-lit', nodes[index] <= readLine);
         const next = nodes[index + 1];
         if (next !== undefined) step.style.setProperty('--fill', clamp((readLine - nodes[index]) / Math.max(1, next - nodes[index])).toFixed(3));
@@ -64,11 +64,25 @@ if (list && method && document.documentElement.classList.contains('motion-ready'
     if (!frame) frame = requestAnimationFrame(update);
   };
 
-  window.addEventListener('scroll', queue, { passive: true });
-  window.addEventListener('resize', queue);
-  smallScreen.addEventListener('change', queue);
-  reducedMotion.addEventListener('change', queue);
-  update();
+  const start = () => {
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue);
+    smallScreen.addEventListener('change', queue);
+    reducedMotion.addEventListener('change', queue);
+    update();
+  };
+
+  // Fins que el mètode és a menys d'una pantalla de distància, es veu complet (estat sense
+  // JavaScript); en acostar-s'hi, pren l'estat inicial de l'animació abans que sigui visible.
+  const near = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      near.disconnect();
+      start();
+    },
+    { rootMargin: '100% 0px 100% 0px' },
+  );
+  near.observe(method);
 }
 
 export {};

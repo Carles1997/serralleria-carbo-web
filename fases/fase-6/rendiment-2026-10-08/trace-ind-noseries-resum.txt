@@ -1,0 +1,27 @@
+Fil principal (10464, 27776), fins a 6000 ms des de la navegació
+Temps propi per esdeveniment (ms):
+    2181.8  Layout
+     485.0  Paint
+     448.7  RunTask
+     391.1  UpdateLayoutTree
+     185.0  PrePaint
+     121.4  FunctionCall
+      83.8  Layerize
+      60.4  Commit
+      38.6  FireAnimationFrame
+      26.4  RunMicrotasks
+      22.2  IntersectionObserverController::computeIntersections
+      18.8  PaintImage
+      17.7  UpdateLayer
+      13.3  ParseHTML
+      12.4  DocumentLoader::CreateParserPostCommit
+      11.4  v8.evaluateModule
+       5.5  ParseAuthorStyleSheet
+       5.4  HTMLDocumentParser::MaybeFetchQueuedPreloads
+Tasques de més de 50 ms (inici ms, durada ms, fills principals):
+      658     263  UpdateLayoutTree 260, v8.evaluateModule 0, EventDispatch 0, RunMicrotasks 0
+      934    1215  Layout 910, Paint 223, PrePaint 43, Layerize 14
+     2184    1054  Layout 1015, UpdateLayoutTree 14, EventDispatch 0, RemoteFontLoaded 0
+     3240     231  Paint 135, PrePaint 46, UpdateLayoutTree 14, PaintImage 12
+     3850      54  UpdateLayoutTree 8, FireAnimationFrame 7, Layout 7, RunMicrotasks 6
+     3982      64  Paint 27, FireAnimationFrame 13, Layout 11, RunMicrotasks 8

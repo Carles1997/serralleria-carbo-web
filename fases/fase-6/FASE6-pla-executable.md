@@ -1,6 +1,6 @@
 # Fase 6 · Pla executable SEO
 
-**Data:** 08/10/2026 · **Estat:** bloc 1 aprovat i executat el 08/10/2026 ([resultats](FASE6-bloc1-resultats.md)). La resta continua com a proposta: no s'ha canviat contingut públic ni cap estat d'indexació.
+**Data:** 08/10/2026 · **Estat:** blocs 1 ([resultats](FASE6-bloc1-resultats.md)) i 2 ([rendiment mòbil](FASE6-bloc2-rendiment.md)) aprovats i executats el 08/10/2026. Bloc 3 (editorial): en preparació. La resta continua com a proposta: no s'ha canviat contingut públic ni cap estat d'indexació.
 
 **Eines acordades:** claude-seo i els scripts del projecte, sense instal·lar skills noves. La selecció i les fonts consultades són a [FASE6-skills-seo-proposta.md](FASE6-skills-seo-proposta.md) (08/10/2026).
 
@@ -60,7 +60,7 @@ Contrast de cada punt de [FASE6-pla-accio.md](FASE6-pla-accio.md) amb el codi i 
 | B2 Capçaleres | Resolt | Comprovat de nou avui. Netlify ja comprimeix amb Brotli (`Content-Encoding: br`): això tanca la proposta de compressió de la Fase 7. |
 | B3 Dades estructurades i OG | Parcial (bloc 1) | Rich Results Test a la previsualització: `LocalBusiness` i `BreadcrumbList` vàlids. Només un avís opcional, `priceRange`, que no s'afegeix perquè no hi ha cap dada validada. Pendents: Open Graph i repetició al domini definitiu. |
 | B4 CSP | Implementar (P0 per publicar) | És la tasca 8.9. Primer en `Report-Only` a la previsualització. No bloqueja el SEO, però sí la publicació. |
-| B5 Nova auditoria | Parcial (bloc 1) | Auditoria tècnica i rendiment de laboratori sobre la previsualització. **Troballa:** LCP mòbil limitat de 6,5 s a la Home i 4,2 s a Industrial. Repetició al domini entre 2 i 4 setmanes després del llançament. |
+| B5 Nova auditoria | Parcial (bloc 1) | Auditoria tècnica i rendiment de laboratori sobre la previsualització. **Troballa de laboratori:** LCP mòbil limitat de 6,5 s a la Home i 4,2 s a Industrial, amb variabilitat alta. Causes corregides al [bloc 2](FASE6-bloc2-rendiment.md); els temps en mòbils reals queden pendents de dades de camp. Repetició al domini entre 2 i 4 setmanes després del llançament. |
 | B6 Tall mensual del GBP | Decisió / accés | Cal accés al Perfil d'Empresa. |
 
 ### Bloc C · Decisions
@@ -329,17 +329,26 @@ Les intencions principals venen de [SEO-F3](../fase-3/SEO-F3.md). Les cerques re
 
 ### 5.2 Search Console abans de migrar
 
+**Estat (08/10/2026):** no hi ha accés a Search Console, i la verificació del domini queda pendent. No bloqueja el treball tècnic ni el de rendiment.
+
+Mentre no hi hagi accés:
+- no es coneixen consultes, pàgines d'entrada, clics ni enllaços externs del web antic;
+- la migració es basa en la [línia base de WordPress](linia-base-wordpress-2026-10-08/README.md) i en l'inventari de Yoast, amb el risc de perdre URL amb valor que només Search Console mostraria.
+
+Que no hi hagi accés no demostra que no hi hagi dades: la web WordPress porta indicis de Search Console. Canviar el DNS o l'allotjament no esborra l'historial, que és de la propietat i es conserva mentre continuï verificada. El risc és perdre la verificació si depèn del WordPress, i que les dades més antigues surtin de la finestra de Search Console (com a màxim, uns 16 mesos). Recomanació: exportar les dades disponibles com més aviat millor i abans del canvi de DNS, i assegurar una verificació que sobrevisqui a la migració (registre TXT de domini). Detall a [FASE6-bloc2-rendiment.md](FASE6-bloc2-rendiment.md#6-search-console-i-dades-reals).
+
 1. **Esbrinar el compte.** Preguntar al client (o a qui va fer la web WordPress) amb quin compte de Google es va configurar Site Kit.
 2. **Demanar accés:**
    - usuari a la propietat de Search Console;
    - per a la línia base, lectura a la propietat de GA4 associada a `GT-T9H3C3ZW`.
    - Si no hi ha cap propietat, fer la D4: propietat de domini amb un registre TXT a mayasystems.net.
-3. **Exportar abans del canvi de DNS:**
-   - consultes i pàgines dels darrers 16 mesos: clics, impressions, CTR i posició, també per tipus de cerca d'imatges;
+3. **Exportar les dades disponibles abans del canvi de DNS** (no es pot assegurar que hi hagi 16 mesos complets; depèn de quan es va crear la propietat):
+   - consultes i pàgines del període disponible: clics, impressions, CTR i posició, també per tipus de cerca d'imatges;
    - informe de pàgines indexades;
    - enllaços externs principals.
    - Es desa a `fases/fase-6/` com a línia base.
-4. **Contrastar l'export amb l'inventari:**
+4. **Preservar la verificació:** comprovar-ne el mètode abans del llançament i, si depèn del WordPress (etiqueta, fitxer o Site Kit), afegir-ne un de domini (TXT a mayasystems.net) perquè l'accés a l'historial continuï després de la migració.
+5. **Contrastar l'export amb l'inventari:**
    - tota URL amb clics o enllaços externs ha de tenir una regla o continuar existint;
    - si n'apareix una de nova, s'afegeix al mapa com a decisió.
 

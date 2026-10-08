@@ -9,17 +9,20 @@
 // frontmatter de content/{idioma}/, així el mapa no fixa slugs de traducció encara per validar.
 // - requires: comprovacions humanes pendents abans d'activar la regla.
 // - decision: tria pendent del director; la regla no s'activa fins que es resolgui.
+// - launchChecks: comprovacions que s'han de fer abans del llançament però que no impedeixen
+//   activar la regla (es llisten a npm run check:redirects).
+//
+// Decisions del director del 08/10/2026 (fases/fase-6/FASE6-bloc4-redireccions.md): el web es publica
+// en català i castellà des del primer dia (l'anglès queda ajornat). R1–R6 tancades.
 
 /**
  * @typedef {{ pageId: string, lang: 'ca' | 'es' | 'en' }} Target
- * @typedef {{ from: string, status: 301, to: Target, note: string, requires?: string[], decision?: string }} MovedRule
- * @typedef {{ from: string, status: 410, note: string, requires?: string[], decision?: string }} GoneRule
+ * @typedef {{ from: string, status: 301, to: Target, note: string, requires?: string[], decision?: string, launchChecks?: string[] }} MovedRule
+ * @typedef {{ from: string, status: 410, note: string, requires?: string[], decision?: string, launchChecks?: string[] }} GoneRule
  * @typedef {MovedRule | GoneRule} RedirectRule
  */
 
 const CAMPAIGNS = "Comprovar amb el client si hi ha campanyes de Google Ads o Meta actives que hi apuntin i actualitzar-ne la URL de destinació abans del tall.";
-const TEMPLATE_DECISION =
-  "El full de càlcul proposa 301 a la Home; SEO-F3 (posterior) demana no enviar les URL de plantilla automàticament a la Home. Proposta: 410. Confirmar.";
 
 /** @type {RedirectRule[]} */
 export const redirects = [
@@ -40,15 +43,15 @@ export const redirects = [
     from: '/estructuras/',
     status: 301,
     to: { pageId: 'particulars-estructures', lang: 'es' },
-    note: "Landing antiga en castellà (probable campanya d'Ads). Destí: versió ES d'Estructures (SEO-F3).",
-    requires: [CAMPAIGNS],
+    note: "Landing antiga en castellà (probable campanya d'Ads). Destí: versió ES d'Estructures (SEO-F3; R6, 08/10/2026).",
+    launchChecks: [CAMPAIGNS],
   },
   {
     from: '/motores/',
     status: 301,
     to: { pageId: 'particulars-automatismes', lang: 'es' },
-    note: "Landing antiga en castellà (probable campanya d'Ads). Destí: versió ES d'Automatismes (SEO-F3).",
-    requires: [CAMPAIGNS],
+    note: "Landing antiga en castellà (probable campanya d'Ads). Destí: versió ES d'Automatismes (SEO-F3; R6, 08/10/2026).",
+    launchChecks: [CAMPAIGNS],
   },
   {
     from: '/cat/estructuras/',
@@ -89,15 +92,23 @@ export const redirects = [
     note: "Adreça de la política de cookies que citen els textos de l'advocat.",
   },
 
-  // Plantilles de WordPress i Elementor sense contingut real.
-  { from: '/sample-page/', status: 410, note: "Pàgina d'exemple de WordPress.", decision: TEMPLATE_DECISION },
-  { from: '/hello-world/', status: 410, note: "Entrada d'exemple de WordPress (2016).", decision: TEMPLATE_DECISION },
+  // R1 (08/10/2026): no és una plantilla buida, sinó la pàgina de manteniment «Disculpeu les molèsties»
+  // amb les dades de contacte, que surt com a enllaç de lloc a la cerca de marca.
   {
-    from: '/category/uncategorized/',
-    status: 410,
-    note: 'Categoria per defecte, sense articles. El full ja admetia 410.',
-    decision: TEMPLATE_DECISION,
+    from: '/sample-page/',
+    status: 301,
+    to: { pageId: 'contacte', lang: 'ca' },
+    note: 'Pàgina de manteniment amb dades de contacte (línia base del 08/10/2026).',
   },
+  // R4 (08/10/2026): prefix català de TranslatePress; el català del web nou no porta prefix.
+  { from: '/cat/', status: 301, to: { pageId: 'home', lang: 'ca' }, note: 'Portada catalana (WordPress ja hi feia un 301 a /).' },
+
+  // Plantilles de WordPress i Elementor sense contingut real (R2, 08/10/2026: 410 confirmat).
+  { from: '/hello-world/', status: 410, note: "Entrada d'exemple de WordPress (2016)." },
+  { from: '/category/uncategorized/', status: 410, note: 'Categoria per defecte, només amb l\'entrada d\'exemple.' },
+  // R3 (08/10/2026): feeds de WordPress; el web nou no en té.
+  { from: '/feed/', status: 410, note: "Feed RSS amb l'entrada d'exemple." },
+  { from: '/comments/feed/', status: 410, note: 'Feed de comentaris buit.' },
   { from: '/author/iraibal_gy8unz9r/', status: 410, note: "Pàgina d'autor de WordPress." },
   { from: '/elementor-hf/header/', status: 410, note: "Plantilla de capçalera d'Elementor." },
   { from: '/elementor-hf/footer-landing/', status: 410, note: "Plantilla de peu d'Elementor." },
@@ -105,21 +116,15 @@ export const redirects = [
   { from: '/elementor-hf/147/', status: 410, note: "Plantilla d'Elementor sense slug descriptiu." },
 ];
 
-/** URL antigues que es mantenen iguals: no porten regla. */
-export const unchanged = ['/', '/contacte/'];
+/**
+ * URL antigues que es mantenen: no porten regla. /es/ (R5, 08/10/2026) passa a ser la portada real en
+ * castellà, amb resposta 200; a WordPress era un prefix de TranslatePress que redirigia a /.
+ */
+export const unchanged = ['/', '/contacte/', '/es/'];
 
 /**
- * URL antigues detectades a la línia base del 08/10/2026 (fases/fase-6/linia-base-wordpress-2026-10-08/)
- * sense tractament decidit. No porten cap regla ni destí fins que el director ho decideixi: el web nou
- * hi respon 404. npm run check:redirects:live les llista com a informació.
+ * URL antigues detectades a la línia base del 08/10/2026 sense tractament decidit. Les quatre
+ * d'aquell dia (/feed/, /comments/feed/, /cat/ i /es/) es van decidir el mateix 08/10/2026 (R3–R5).
  * @type {{ from: string, note: string }[]}
  */
-export const undecided = [
-  { from: '/feed/', note: 'Feed RSS de WordPress: respon 200 amb una sola entrada («Hello world!»).' },
-  { from: '/comments/feed/', note: 'Feed de comentaris de WordPress: respon 200 sense cap entrada.' },
-  { from: '/cat/', note: 'Prefix català de TranslatePress: WordPress hi fa un 301 cap a /.' },
-  {
-    from: '/es/',
-    note: 'Prefix castellà de TranslatePress: WordPress hi fa un 301 cap a /. És el prefix previst de la futura versió ES.',
-  },
-];
+export const undecided = [];

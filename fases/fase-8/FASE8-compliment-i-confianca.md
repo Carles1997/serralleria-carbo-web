@@ -174,6 +174,10 @@ Segueix l'opció B del redactat:
 
 Les caselles s'envien amb els noms `consentiment` i `comunicacions`. El formulari encara no envia: queda pendent de la tasca 8.5.
 
+### Versions en castellà (08/10/2026)
+
+El web es publica també en castellà. No hi ha cap versió castellana aprovada dels textos de l'advocat. S'han preparat traduccions fidels de l'avís legal, la privacitat, les cookies i el text del formulari (`content/es/legal-*.md`). Es mostren amb l'avís «Traducción pendiente de revisión jurídica» i `noindex` fins que el client i el seu advocat les validin. Cal fer-ho abans del llançament. Detall: [FASE6-bloc5-castella](../fase-6/FASE6-bloc5-castella.md#4-textos-legals).
+
 ### Punts per confirmar amb el client o l'advocat
 
 - **Empreses del grup:** la política diu que les dades «podran ser compartides amb altres empreses del grup». Si Serralleria Carbó no forma part de cap grup, convé treure aquesta frase.

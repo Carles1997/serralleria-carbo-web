@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import { getAlternates, isIndexable, type Page } from '../i18n/pages';
 import { defaultLocale } from '../i18n/config';
+import { getCollection } from 'astro:content';
+import { useUi } from '../i18n/ui';
 // Font web reduïda (Fase 7): vegeu src/styles/global.css i scripts/subset-font.py.
 import fontUrl from '../assets/fonts/CarboText-VF.woff2?url';
 
@@ -13,6 +15,15 @@ interface Props {
 
 const { page, surface = 'light' } = Astro.props;
 const { lang, route, seoTitle, seoDescription, noindex } = page.data;
+
+// Les rutes que les plantilles enllacen directament (ui.routes) han d'existir al contingut de
+// l'idioma (castellà afegit el 08/10/2026): un error de slug para el build.
+const contentRoutes = new Set((await getCollection('pages', ({ data }) => data.lang === lang)).map(({ data }) => data.route));
+const uiRoutes = useUi(lang).routes;
+const missingRoutes = [uiRoutes.home, uiRoutes.particulars, uiRoutes.industrial, uiRoutes.capacities, uiRoutes.projects, uiRoutes.contact, ...Object.values(uiRoutes.services)].filter(
+  (expected) => !contentRoutes.has(expected),
+);
+if (missingRoutes.length) throw new Error(`Rutes d'i18n/ui.ts (${lang}) sense pàgina a content/${lang}/: ${missingRoutes.join(', ')}`);
 const indexable = isIndexable(page);
 
 // Els esborranys porten noindex però conserven canonical per revisar-lo; les pàgines

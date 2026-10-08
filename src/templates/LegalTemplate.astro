@@ -47,13 +47,13 @@ const chars = Math.max(...title.split(/\s+/).map((word) => word.length));
 ---
 
 <BaseLayout page={page}>
-  <SiteHeader ui={ui} homeHref="/" nav={ui.home.nav} mobileExtra={ui.home.mobileExtra} />
+  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} nav={ui.home.nav} mobileExtra={ui.home.mobileExtra} />
 
   <main id="contingut" class="legal-page">
     <section class="legal-hero" aria-labelledby="legal-title" data-surface="light">
       <div class="section-shell legal-hero-inner">
         <nav class="legal-crumb enter" aria-label={ui.service.breadcrumb.label}>
-          <a href="/">{ui.service.breadcrumb.home}</a><span aria-hidden="true">/</span><span>{t.crumb}</span>
+          <a href={ui.routes.home}>{ui.service.breadcrumb.home}</a><span aria-hidden="true">/</span><span>{t.crumb}</span>
         </nav>
         <h1 id="legal-title" class="enter" style={`--i:1;--chars:${chars}`}>{title}</h1>
         {updated && <p class="legal-updated enter" style="--i:2">{t.updated}: {updated}</p>}
@@ -113,7 +113,7 @@ const chars = Math.max(...title.split(/\s+/).map((word) => word.length));
     </div>
   </main>
 
-  <SiteFooter ui={ui} locale={locale} contactHref="/contacte/" />
+  <SiteFooter ui={ui} locale={locale} contactHref={ui.routes.contact} />
 </BaseLayout>
 
 <style>

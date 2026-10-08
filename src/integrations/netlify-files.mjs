@@ -8,7 +8,7 @@
 // Les capçaleres de memòria cau i seguretat són estàtiques: public/_headers.
 import { appendFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { evaluateRedirects, netlifyRedirects } from '../../scripts/lib/redirect-plan.mjs';
+import { evaluateRedirects, localeNotFoundRules, netlifyRedirects } from '../../scripts/lib/redirect-plan.mjs';
 import { domainRedirects, indexingMode, noindexHeaders } from '../../scripts/lib/indexing-policy.mjs';
 
 /** @returns {import('astro').AstroIntegration} */
@@ -29,7 +29,7 @@ export default function netlifyFiles() {
 
         const mode = indexingMode(site);
         const domainRules = domainRedirects(mode);
-        writeFileSync(new URL('_redirects', dir), netlifyRedirects(rows, domainRules));
+        writeFileSync(new URL('_redirects', dir), netlifyRedirects(rows, domainRules, localeNotFoundRules(dist)));
         logger.info(`_redirects: ${rows.filter((row) => row.state === 'llesta').length} regles llestes${domainRules.length ? ` i ${domainRules.length} de domini` : ''}`);
 
         if (mode.definitive) {

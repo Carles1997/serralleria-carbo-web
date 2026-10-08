@@ -61,7 +61,7 @@ const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
 ---
 
 <BaseLayout page={page}>
-  <SiteHeader ui={ui} homeHref="/" nav={t.nav} current={route} />
+  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} nav={t.nav} current={route} />
 
   <main id="contingut" class="contact-page">
     <section class="contact-main" aria-labelledby="contact-title" data-surface="light">
@@ -109,7 +109,7 @@ const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
         </dl>
 
         <div class="contact-form-panel enter" style="--i:2">
-          <form id="contact-form" novalidate aria-label={f.label} data-contact-form data-errors={JSON.stringify(f.errors)} data-not-sent={f.notSent}>
+          <form id="contact-form" novalidate aria-label={f.label} data-contact-form data-errors={JSON.stringify(f.errors)} data-not-sent={f.notSent} data-industrial-path={ui.routes.industrial}>
             <div class="form-demo" role="note" id="form-pending">
               <strong>{f.demo}</strong>
               <p>{f.pending}{!privacy && ` ${f.pendingPrivacy}`}</p>
@@ -292,7 +292,7 @@ const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
   </main>
 
   <StructuredData />
-  <SiteFooter ui={ui} locale={locale} contactHref={route ?? '/contacte/'} />
+  <SiteFooter ui={ui} locale={locale} contactHref={route ?? ui.routes.contact} />
 </BaseLayout>
 
 <script>

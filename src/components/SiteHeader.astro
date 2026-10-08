@@ -3,7 +3,10 @@
 // queda desplegat com a llista d'enllaços; amb JavaScript es converteix en botó.
 import { company } from '../config/site';
 import BrandLogo from './BrandLogo.astro';
-import type { UiStrings } from '../i18n/ui';
+import { getCollection, render } from 'astro:content';
+import { useUi, type UiStrings } from '../i18n/ui';
+import { isLegalVisible, type Page } from '../i18n/pages';
+import { isBuiltRoute } from '../config/routes';
 
 interface NavItem {
   label: string;
@@ -25,11 +28,49 @@ interface Props {
   /** To de la capçalera: clar a Home, Particulars i Contacte; grafit a Industrial (refinament del
    *  director, 06/10/2026). Per defecte, el de la branca. */
   tone?: 'light' | 'dark';
+  /** Pàgina actual: el selector d'idioma hi busca la versió equivalent en els altres idiomes. */
+  page?: Page;
 }
 
 const { ui, homeHref, nav, mobileExtra = [], collapse = 'standard', current, phoneLabel = ui.headerPhoneLabel } = Astro.props;
 const tone = Astro.props.tone ?? (collapse === 'industrial' ? 'dark' : 'light');
 const currentAttr = (href: string) => (href === current ? 'page' : undefined);
+
+// Selector d'idioma (08/10/2026): enllaç a la mateixa pàgina en cada altre idioma, si es genera en
+// aquest build. La 404 porta a l'inici de l'altre idioma. Els textos són els de l'idioma de destí.
+// Àncores (09/10/2026): les de les plantilles són iguals en tots els idiomes (npm run check:i18n ho
+// comprova); les pàgines legals tenen àncores derivades dels títols del contingut, i l'equivalència
+// es resol per la posició de cada apartat H2 (les traduccions conserven l'estructura).
+const page = Astro.props.page;
+const ownSections = page?.data.pageId.startsWith('legal-') ? (await render(page)).headings.filter((heading) => heading.depth === 2) : undefined;
+const languages = page
+  ? (
+      await Promise.all(
+        (
+          await getCollection(
+            'pages',
+            ({ data }) => data.pageId === page.data.pageId && data.lang !== page.data.lang && Boolean(data.route),
+          )
+        ).map(async (version) => {
+          const target = useUi(version.data.lang);
+          const route = version.data.pageId === '404' ? target.routes.home : (version.data.route as string);
+          const generated = version.data.pageId.startsWith('legal-') ? isLegalVisible(version) : isBuiltRoute(route);
+          if (!generated) return undefined;
+          let anchorMap: string | undefined;
+          if (ownSections) {
+            const targetSections = (await render(version)).headings.filter((heading) => heading.depth === 2);
+            // Sense la mateixa estructura no hi ha equivalència fiable: el selector no copia cap àncora.
+            anchorMap = JSON.stringify(
+              targetSections.length === ownSections.length
+                ? Object.fromEntries(ownSections.map((heading, index) => [heading.slug, targetSections[index].slug]))
+                : {},
+            );
+          }
+          return { href: route, lang: version.data.lang, anchorMap, ...target.language };
+        }),
+      )
+    ).filter((item) => item !== undefined)
+  : [];
 ---
 
 <a class="skip-link" href="#contingut">{ui.skipLink}</a>
@@ -42,6 +83,14 @@ const currentAttr = (href: string) => (href === current ? 'page' : undefined);
       {nav.map((item) => <a href={item.href} aria-current={currentAttr(item.href)}>{item.label}</a>)}
     </nav>
     <div class="header-actions">
+      {
+        languages.map((language) => (
+          <a class="header-lang" href={language.href} hreflang={language.lang} lang={language.lang} data-lang-switch data-anchor-map={language.anchorMap}>
+            {language.code}{' '}
+            <span class="sr-only">{language.switchLabel}</span>
+          </a>
+        ))
+      }
       <a class="header-phone" href={company.phone.href}>
         <span class="header-phone-label">{phoneLabel}</span><span>{company.phone.display}</span>
       </a>
@@ -64,6 +113,46 @@ const currentAttr = (href: string) => (href === current ? 'page' : undefined);
 </header>
 
 <script>
+  // Selector d'idioma: l'href sempre és la pàgina equivalent (vàlid sense JavaScript). Amb JavaScript,
+  // just abans de fer-lo servir (clic, clic del mig, menú contextual, teclat) s'hi afegeix l'estat
+  // actual: els paràmetres funcionals (branca i servei del formulari, filtre del portafoli, que
+  // portfolio.ts canvia amb replaceState) i l'àncora, si la pàgina de destí la té. La navegació
+  // continua sent nativa, inclosa l'obertura en una altra pestanya.
+  const kept = ['tipus', 'servei'];
+  // Una àncora mal codificada (p. ex. #100%) fa fallar decodeURIComponent: s'omet del destí i la
+  // capçalera continua inicialitzant-se (menú mòbil inclòs).
+  const decodeHash = (hash: string) => {
+    try {
+      return decodeURIComponent(hash.slice(1));
+    } catch {
+      return '';
+    }
+  };
+  const syncLanguageLink = (link: HTMLAnchorElement) => {
+    const target = new URL(link.dataset.base ?? link.href, window.location.href);
+    const current = new URLSearchParams(window.location.search);
+    kept.forEach((key) => {
+      const value = current.get(key);
+      if (value) target.searchParams.set(key, value);
+      else target.searchParams.delete(key);
+    });
+    const id = decodeHash(window.location.hash);
+    const map = link.dataset.anchorMap ? (JSON.parse(link.dataset.anchorMap) as Record<string, string>) : undefined;
+    // Sense mapa, les àncores són de la plantilla i iguals als dos idiomes: només es copia si existeix aquí.
+    const anchor = id ? (map ? map[id] : document.getElementById(id) ? id : '') : '';
+    target.hash = anchor ? `#${anchor}` : '';
+    link.href = target.toString();
+  };
+  const languageLinks = [...document.querySelectorAll<HTMLAnchorElement>('a[data-lang-switch]')];
+  languageLinks.forEach((link) => {
+    link.dataset.base = link.getAttribute('href') ?? '';
+    syncLanguageLink(link);
+    ['pointerenter', 'pointerdown', 'focus', 'click', 'auxclick', 'contextmenu'].forEach((type) =>
+      link.addEventListener(type, () => syncLanguageLink(link)),
+    );
+  });
+  window.addEventListener('hashchange', () => languageLinks.forEach(syncLanguageLink));
+
   const button = document.querySelector<HTMLButtonElement>('.menu-toggle');
   const nav = document.getElementById('mobile-nav');
 
@@ -196,6 +285,25 @@ const currentAttr = (href: string) => (href === current ? 'page' : undefined);
     display: flex;
     align-items: center;
     gap: 0.8rem;
+  }
+
+  /* Selector d'idioma: codi visible i nom complet per a lectors de pantalla. */
+  .header-lang {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--target-min);
+    min-height: var(--target-min);
+    padding-inline: 0.5rem;
+    color: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .header-lang:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
   }
 
   .header-phone {
@@ -344,6 +452,19 @@ const currentAttr = (href: string) => (href === current ? 'page' : undefined);
   @media (max-width: 360px) {
     .header-phone > span:last-child {
       font-size: 0.77rem;
+    }
+  }
+
+  /* Amb el selector d'idioma, a 320 px la capçalera no hi cabia (08/10/2026): menys separació entre
+     accions i selector més estret, amb un objectiu tàctil de 32 × 44 px (mínim WCAG 2.2: 24 px). */
+  @media (max-width: 400px) {
+    .header-actions {
+      gap: 0.35rem;
+    }
+
+    .header-lang {
+      min-width: 2rem;
+      padding-inline: 0.25rem;
     }
   }
 

@@ -1,0 +1,9 @@
+---
+// Versió en castellà (08/10/2026): mateixa plantilla que la ruta catalana, amb content/es/.
+import PortfolioTemplate from '../../../../templates/PortfolioTemplate.astro';
+import { getPage } from '../../../../i18n/pages';
+
+const page = await getPage('particulars-projectes', 'es');
+---
+
+<PortfolioTemplate page={page} />

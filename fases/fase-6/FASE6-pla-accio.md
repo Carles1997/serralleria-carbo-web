@@ -80,7 +80,10 @@ La pàgina Empresa ja no forma part de la llista: el director la va retirar el 0
 
 **Després:** Claude canvia `status` i registra la revisió validada a `check-references`, i el sitemap les inclou automàticament.
 
-### C2 · P0 · Redireccions pendents (director i client)
+### C2 · P0 · Redireccions pendents (director i client) · Decidit (08/10/2026)
+
+Decisions R1–R6 del director implementades al mapa ([bloc 4](FASE6-bloc4-redireccions.md)): `/sample-page/` → 301 a `/contacte/`; plantilles i feeds → 410; `/cat/` → 301 a `/`; `/es/` és la portada castellana; `/estructuras/` i `/motores/` → 301 directe a les pàgines castellanes. Queda la comprovació de campanyes abans del llançament. Text original:
+
 
 1. **Plantilles de WordPress** (`/sample-page/`, `/hello-world/`, `/category/uncategorized/`).
    - **Proposta:** 410, perquè no tenen contingut i SEO-F3 demana no enviar-les a la Home.
@@ -169,7 +172,10 @@ Ara hi ha una imatge per defecte amb el logotip. **Proposta:** una per branca, f
 
 El director va retirar la pàgina Empresa i `/empresa/` redirigeix a `/` amb un 301. No s'hi han d'afegir enllaços. Les dades de la pàgina (1989, 950 m², 12 persones) són a la Home i a Capacitats.
 
-### C11 · P2 · Versió en castellà (director)
+### C11 · P2 · Versió en castellà (director) · Decidit (08/10/2026)
+
+**Decisió del director:** el web es publica en català i castellà des del primer dia; l'anglès queda ajornat. Substitueix les propostes de llançament només en català i de redireccions provisionals. Implementació: [bloc 5](FASE6-bloc5-castella.md). Les traduccions queden pendents d'aprovació, i els textos legals castellans, de validació jurídica. Text original:
+
 
 Està prevista al contracte i18n i resoldria `/estructuras/` i `/motores/` (C2). Al perfil hi ha cerques en castellà («herrero vilafranca», «herreros en vilafranca del penedes», «vigas acero vilafranca», «duplicado de llaves vilafranca del penedes»).
 

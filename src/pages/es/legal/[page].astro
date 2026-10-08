@@ -1,0 +1,12 @@
+---
+// Pàgines legals en castellà (/es/legal/aviso-legal/, /es/legal/privacidad/, /es/legal/cookies/).
+// Traduccions pendents de validació jurídica (08/10/2026). Rutes i visibilitat: src/i18n/legal.ts.
+import LegalTemplate from '../../../templates/LegalTemplate.astro';
+import { legalPaths } from '../../../i18n/legal';
+
+export const getStaticPaths = () => legalPaths('es');
+
+const { page, siblings } = Astro.props;
+---
+
+<LegalTemplate page={page} siblings={siblings} />

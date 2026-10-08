@@ -77,7 +77,7 @@ const chapters = await Promise.all(
   t.projects.featured.map(async (id, index) => {
     const project = await getEntry('projects', `${locale}/projects/${id}`);
     if (!project || project.data.branch !== 'particulars') throw new Error(`El cas «${id}» no existeix a Particulars.`);
-    const serviceHref = `/particulars/${project.data.category}/`;
+    const serviceHref = ui.routes.services[project.data.category];
     const service = t.nav.find((item) => item.href === serviceHref);
     if (!service) throw new Error(`No hi ha ruta de servei per a la categoria «${project.data.category}».`);
     return {
@@ -96,7 +96,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
 ---
 
 <BaseLayout page={page}>
-  <SiteHeader ui={ui} homeHref="/" nav={t.nav} mobileExtra={t.mobileExtra} collapse="wide" />
+  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} nav={t.nav} mobileExtra={t.mobileExtra} collapse="wide" />
 
   <main id="contingut" class="particulars-page">
     <section class="p-hero" aria-labelledby="p-title" data-surface="dark">

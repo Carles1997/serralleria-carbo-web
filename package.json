@@ -16,7 +16,8 @@
     "astro": "astro",
     "check:links": "node scripts/check-links.mjs",
     "check:redirects": "node scripts/check-redirects.mjs",
-    "check:redirects:live": "node scripts/check-live-redirects.mjs"
+    "check:redirects:live": "node scripts/check-live-redirects.mjs",
+    "check:i18n": "node scripts/check-i18n.mjs"
   },
   "allowScripts": {
     "esbuild": true

@@ -78,7 +78,7 @@ const briefService = pageId.replace('particulars-', '');
 if (!ui.contactPage.form.fields.services.some((service) => service.value === briefService)) {
   throw new Error(`El servei «${briefService}» no existeix al desplegable del formulari de contacte.`);
 }
-const briefHref = `/contacte/?tipus=particular&servei=${briefService}`;
+const briefHref = `${ui.routes.contact}?tipus=particular&servei=${briefService}`;
 const byRole = new Map<Role, Section>(config.sections.map((role, index) => [role, doc.sections[index]]));
 const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada");
 const allLinks = doc.sections.flatMap((section) => links(section.blocks));
@@ -108,7 +108,7 @@ if (relatedText && relatedText.length > 1) throw new Error(`«${relatedSection?.
 const related = relatedSection && {
   heading: relatedSection.heading,
   text: relatedText?.[0],
-  links: links(relatedSection.blocks).filter((link) => !link.href.startsWith('/contacte/')),
+  links: links(relatedSection.blocks).filter((link) => !link.href.startsWith(ui.routes.contact)),
 };
 
 // El pont industrial és editorial i específic de cada servei: no fabrica «serveis» ni motors.
@@ -126,7 +126,7 @@ const repair = urgentSection
   ? {
       index: urgentSection.heading,
       text: one(paragraphs(urgentSection.blocks), `un paràgraf a «${urgentSection.heading}»`),
-      link: links(urgentSection.blocks).find((link) => !link.href.startsWith('/contacte/')),
+      link: links(urgentSection.blocks).find((link) => !link.href.startsWith(ui.routes.contact)),
     }
   : config.repair === false
     ? undefined
@@ -139,8 +139,8 @@ const whatsapp = directLinks.find((link) => link.href.startsWith('https://wa.me/
 const contactSection = byRole.get('contact');
 const contactText = contactSection ? one(paragraphs(contactSection.blocks), 'un paràgraf a la secció de contacte') : undefined;
 if (contactSection) sameText(config.contactHeading, contactSection.heading, `${pageId}.md`);
-const contactLink = allLinks.find((link) => link.href.startsWith('/contacte/'));
-if (!contactLink) throw new Error(`${pageId}.md necessita un enllaç a /contacte/.`);
+const contactLink = allLinks.find((link) => link.href.startsWith(ui.routes.contact));
+if (!contactLink) throw new Error(`${pageId}.md necessita un enllaç a ${ui.routes.contact}.`);
 
 const nav = ui.particulars.nav;
 const current = nav.find((item) => item.href === route);
@@ -151,7 +151,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
 ---
 
 <BaseLayout page={page}>
-  <SiteHeader ui={ui} homeHref="/" nav={nav} mobileExtra={ui.particulars.mobileExtra} collapse="wide" current={route} />
+  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} nav={nav} mobileExtra={ui.particulars.mobileExtra} collapse="wide" current={route} />
 
   <main id="contingut" class="structures-page">
     <section class="s-hero" aria-labelledby="s-title" data-surface="dark">
@@ -160,13 +160,13 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
       </div>
       <div class="section-shell s-hero-content">
         <nav class="s-breadcrumb enter" aria-label={shared.breadcrumb.label}>
-          <a href="/">{shared.breadcrumb.home}</a><span aria-hidden="true">/</span>
+          <a href={ui.routes.home}>{shared.breadcrumb.home}</a><span aria-hidden="true">/</span>
           <a href={shared.breadcrumb.branch.href}>{shared.breadcrumb.branch.label}</a><span aria-hidden="true">/</span>
           <span aria-current="page">{current?.label ?? doc.title}</span>
         </nav>
         <BreadcrumbData
           items={[
-            { name: shared.breadcrumb.home, href: '/' },
+            { name: shared.breadcrumb.home, href: ui.routes.home },
             { name: shared.breadcrumb.branch.label, href: shared.breadcrumb.branch.href },
             { name: current?.label ?? doc.title, href: route },
           ]}

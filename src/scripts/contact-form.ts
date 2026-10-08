@@ -75,7 +75,8 @@ if (form) {
   // Preselecció: ?tipus=empresa|particular; sense paràmetre, arribar des d'Industrial obre Empresa.
   const params = new URLSearchParams(window.location.search);
   const requested = params.get('tipus');
-  const fromIndustrial = document.referrer.startsWith(`${window.location.origin}/industrial/`);
+  // La ruta d'Industrial de l'idioma de la pàgina (/industrial/, /es/industrial/) la dona el formulari.
+  const fromIndustrial = document.referrer.startsWith(`${window.location.origin}${form.dataset.industrialPath ?? '/industrial/'}`);
   setBranch(requested ?? (fromIndustrial ? 'empresa' : 'particular'));
   // ?servei=… preselecciona el servei al desplegable de la branca activa (p. ex. mobiliari des de la
   // Home o carros des d'Industrial). Cada branca té el seu desplegable; només s'envia el de l'activa.

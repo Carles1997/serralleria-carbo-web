@@ -76,7 +76,22 @@ export function evaluateRedirects({ dist, contentDir = 'content' }) {
  * Fitxer `_redirects` de Netlify amb només les regles llestes. Els 410 serveixen la pàgina 404 del
  * build amb l'estat 410 (reescriptura amb estat propi, admesa per Netlify).
  */
-export function netlifyRedirects(rows, domainRules = []) {
+/**
+ * 404 de cada idioma amb prefix (08/10/2026): Netlify serveix la del seu idioma a les adreces
+ * inexistents de /es/…; la resta fa servir la 404.html arrel. Regles al final del fitxer, sense
+ * forçar, perquè només s'apliquin quan no hi ha cap fitxer.
+ * @param {string} dist
+ * @returns {string[]}
+ */
+export function localeNotFoundRules(dist) {
+  if (!existsSync(dist)) return [];
+  return readdirSync(dist, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && /^[a-z]{2}$/.test(entry.name) && existsSync(join(dist, entry.name, '404', 'index.html')))
+    .map((entry) => `/${entry.name}/*  /${entry.name}/404/index.html  404`)
+    .sort();
+}
+
+export function netlifyRedirects(rows, domainRules = [], notFoundRules = []) {
   const ready = rows.filter((row) => row.state === 'llesta');
   const lines = [
     '# Generat per src/integrations/netlify-files.mjs a partir de src/config/redirects.mjs.',
@@ -88,6 +103,10 @@ export function netlifyRedirects(rows, domainRules = []) {
   }
   for (const { rule, target } of ready) {
     lines.push(rule.status === 301 ? `${rule.from}  ${target}  301` : `${rule.from}  /404.html  410`);
+  }
+  if (notFoundRules.length) {
+    lines.push('# 404 per idioma: només quan no hi ha cap fitxer a l\'adreça demanada.');
+    lines.push(...notFoundRules);
   }
   return `${lines.join('\n')}\n`;
 }

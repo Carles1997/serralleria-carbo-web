@@ -5,8 +5,10 @@
   - bloc 1, protecció d'indexació, redireccions i línia base ([resultats](FASE6-bloc1-resultats.md));
   - bloc 2, rendiment mòbil ([resultats](FASE6-bloc2-rendiment.md));
   - bloc 3, SEO editorial d'Industrial i Capacitats ([resultats](FASE6-bloc3-proposta-editorial.md)). Està implementat i revisat per Codex, amb resultat favorable.
+- **Implementats en local el 08/10/2026, pendents de revisió de Codex, commit i desplegament:**
+  - bloc 4, tancament de les redireccions ([document](FASE6-bloc4-redireccions.md));
+  - bloc 5, versió en castellà ([document](FASE6-bloc5-castella.md)). El web es publica en català i castellà des del primer dia (decisió del director, 08/10/2026); l'anglès queda ajornat.
 - **Contingut públic:** s'han modificat només les metadades aprovades (títol i descripció d'Industrial i de Capacitats) i l'enllaç secundari aprovat de Capacitats. Els estats d'indexació continuen igual: cap pàgina no s'ha aprovat ni s'ha fet indexable.
-- **Següent bloc:** tancament de les redireccions de migració, a partir de les propostes ja documentades.
 - **La resta del pla** continua com a proposta.
 
 **Eines acordades:** claude-seo i els scripts del projecte, sense instal·lar skills noves. La selecció i les fonts consultades són a [FASE6-skills-seo-proposta.md](FASE6-skills-seo-proposta.md) (08/10/2026).

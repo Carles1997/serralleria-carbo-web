@@ -1,6 +1,6 @@
 # Fase 5 · URL per idioma
 
-**Actualitzat:** 28/09/2026 · **Estat:** convenció decidida; slugs proposats, pendents de validació.
+**Actualitzat:** 08/10/2026 · **Estat:** convenció decidida. **Castellà: slugs adoptats per al llançament** (decisió del director del 08/10/2026: català i castellà des del primer dia; implementació a [FASE6-bloc5-castella](../fase-6/FASE6-bloc5-castella.md)). **Anglès: ajornat**; els seus slugs continuen com a proposta.
 
 ## Decisió del director (28/09/2026)
 

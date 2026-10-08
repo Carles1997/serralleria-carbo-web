@@ -1,6 +1,13 @@
 # Fase 6 · Pla executable SEO
 
-**Data:** 08/10/2026 · **Estat:** blocs 1 ([resultats](FASE6-bloc1-resultats.md)) i 2 ([rendiment mòbil](FASE6-bloc2-rendiment.md)) aprovats i executats el 08/10/2026. Bloc 3 (editorial): en preparació. La resta continua com a proposta: no s'ha canviat contingut públic ni cap estat d'indexació.
+**Data:** 08/10/2026 · **Estat:**
+- **Blocs executats el 08/10/2026:**
+  - bloc 1, protecció d'indexació, redireccions i línia base ([resultats](FASE6-bloc1-resultats.md));
+  - bloc 2, rendiment mòbil ([resultats](FASE6-bloc2-rendiment.md));
+  - bloc 3, SEO editorial d'Industrial i Capacitats ([resultats](FASE6-bloc3-proposta-editorial.md)). Està implementat i revisat per Codex, amb resultat favorable.
+- **Contingut públic:** s'han modificat només les metadades aprovades (títol i descripció d'Industrial i de Capacitats) i l'enllaç secundari aprovat de Capacitats. Els estats d'indexació continuen igual: cap pàgina no s'ha aprovat ni s'ha fet indexable.
+- **Següent bloc:** tancament de les redireccions de migració, a partir de les propostes ja documentades.
+- **La resta del pla** continua com a proposta.
 
 **Eines acordades:** claude-seo i els scripts del projecte, sense instal·lar skills noves. La selecció i les fonts consultades són a [FASE6-skills-seo-proposta.md](FASE6-skills-seo-proposta.md) (08/10/2026).
 
@@ -24,7 +31,7 @@
 2. **Hi havia un risc d'indexació actiu.** `serralleriacarbo.netlify.app` i la previsualització `revisio-client` no enviaven cap `X-Robots-Tag`, i Projectes i les tres pàgines legals hi eren indexables. **Bloc 1 (08/10/2026):** resolt a la previsualització. El subdomini principal queda pendent dels crèdits de Netlify.
 3. **Indici de Search Console i Analytics.** La web WordPress porta **Site Kit by Google** (1.189.0), una etiqueta de Google `GT-T9H3C3ZW` i un contenidor de Tag Manager `GTM-TXQ24TCC`. **És un indici, no una confirmació** d'accés ni de dades: cal preguntar al client qui controla aquests comptes i demanar-hi accés **abans** de la migració ([preguntes](FASE6-bloc1-resultats.md#2-search-console-què-hem-de-demanar)). Les etiquetes no es copien al web nou.
 4. **De les 15 URL de la web antiga, 13 tenen una regla llesta** i comprovada avui a la previsualització. Queden obertes les cinc de la decisió C2 i quatre adreces noves detectades avui (feeds i `/cat/`).
-5. **Les propostes de contingut són poques i concretes:** dos títols d'Industrial (C8, ja proposats), la descripció d'Industrial, que avui repeteix les dades tècniques de Capacitats, i, com a opció, el títol d'Estructures. Totes necessiten la validació del director.
+5. **Les propostes de contingut són poques i concretes:** els títols d'Industrial i Capacitats (C8), la descripció d'Industrial, perquè resumeixi l'oferta i deixi les dades tècniques a Capacitats, i, com a opció, el títol d'Estructures. **Actualització (08/10/2026):** E1–E5 aprovats i implementats, E6 ajornat ([bloc 3](FASE6-bloc3-proposta-editorial.md)).
 6. **La publicació depèn de condicions que no són SEO:** el formulari (8.5), les imatges conceptuals (8.6), la seguretat (8.9), la revisió de l'assessor (8.10), les dades NAP (C3, C5), els crèdits de Netlify i el canvi de DNS.
 
 ---
@@ -219,9 +226,10 @@ Les intencions principals venen de [SEO-F3](../fase-3/SEO-F3.md). Les cerques re
 - **Proposta (P1, abans de C1):**
   - **title (C8):** «Fabricació metàl·lica per a tercers | Serralleria Carbó» (55). «Industrial» sol no identifica l'empresa als resultats, i la cerca de marca és la més clara del perfil (61 + 44).
   - **description:** «Fabricació metàl·lica per a tercers a Vilafranca del Penedès: estructures, portes, mobiliari, peces a plànol i carros industrials, en sèrie o a mida.» (149). Tot el text ve d'`industrial.md`.
-  - **Motiu:** la descripció actual repeteix les dades tècniques de Capacitats (inox 304/316, MIG/MAG, TIG), i el director va decidir que Industrial resumeix l'oferta i Capacitats concentra les dades tècniques (06/10/2026).
+  - **Motiu:** representar de manera fidel i diferenciada el que respon la pàgina. El director va decidir que Industrial resumeix l'oferta i Capacitats concentra les dades tècniques (06/10/2026). Que les dues descripcions s'assemblin no prova cap canibalització: només es podria observar amb Search Console.
+  - **Implementat (08/10/2026):** [bloc 3](FASE6-bloc3-proposta-editorial.md).
 - **Enllaços interns:** correctes (Capacitats, Particulars, Contacte amb el servei triat).
-- **Solapaments:** amb Capacitats, que la proposta de descripció resol.
+- **Solapaments:** amb Capacitats, possible i no demostrat. Les metadades noves diferencien oferta i taller, sense garantir quina pàgina mostrarà Google per a cada consulta.
 
 ### `/industrial/capacitats/`
 
@@ -232,6 +240,7 @@ Les intencions principals venen de [SEO-F3](../fase-3/SEO-F3.md). Les cerques re
   - description (123);
   - H1: «Capacitats del taller».
 - **Proposta (P1):** title (C8): «Capacitats de soldadura i fabricació | Serralleria Carbó» (56). La descripció i l'H1 no canvien.
+- **Implementat (08/10/2026), segons la decisió del director:** title «Soldadura i fabricació metàl·lica | Serralleria Carbó» i descripció amb la ubicació ([bloc 3](FASE6-bloc3-proposta-editorial.md)). L'H1 no canvia.
 - **Enllaços interns:** correctes (Industrial, Contacte d'empresa).
 - **Solapaments:** Industrial (vegeu més amunt).
 
@@ -266,7 +275,7 @@ Les intencions principals venen de [SEO-F3](../fase-3/SEO-F3.md). Les cerques re
 |---|---|---|
 | Home ↔ Particulars | Mitjà: «serralleria Vilafranca» | Propietats diferents (genèric i marca / particulars). Seguiment a Search Console. |
 | Automatismes ↔ Urgències | Mitjà: reparació | Separació instal·lar / reparar. Seguiment a Search Console. |
-| Industrial ↔ Capacitats | Alt avui: mateixes dades tècniques a la descripció | Nova descripció d'Industrial (P1). |
+| Industrial ↔ Capacitats | Possible, no demostrat: les descripcions anteriors compartien les dades tècniques | Metadades diferenciades (bloc 3, 08/10/2026). Seguiment amb Search Console |
 | Estructures ↔ Industrial | Baix: separació per públic | Cap canvi. |
 | Projectes ↔ galeries de servei | Baix | Cap canvi. |
 

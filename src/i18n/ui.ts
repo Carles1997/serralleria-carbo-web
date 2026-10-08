@@ -308,7 +308,9 @@ const ca = {
     },
     contact: {
       heading: ['Parlem', 'de la peça'],
-      back: 'Torna a Industrial',
+      // Enllaç secundari del bloc: l'encàrrec real d'Industrial (Fase 6, bloc 3, E5; validat pel director
+      // el 08/10/2026). Substitueix «Torna a Industrial»; el retorn es manté a les molles de pa.
+      caseLink: { label: 'Veure un encàrrec real: deu gàbies', anchor: '#projectes' },
       fieldsLabel: 'Què ens ajuda a començar',
       fields: ['Plànol o documentació', 'Material i tipus de peça', 'Unitats previstes', 'Termini necessari'],
       person: 'Contacte industrial',

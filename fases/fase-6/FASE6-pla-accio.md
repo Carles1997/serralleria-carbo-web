@@ -143,7 +143,9 @@ Hi ha 58 ressenyes, cap de respondre i només 3 en 12 mesos. Les respostes les h
 
 **Cal validar:** el to de les respostes i qui les signa (per exemple, «L'equip de Serralleria Carbó»).
 
-### C8 · P2 · Títols d'Industrial (director)
+### C8 · P2 · Títols d'Industrial (director) · Resolt (08/10/2026)
+
+El director va aprovar el títol d'Industrial proposat i, per a Capacitats, «Soldadura i fabricació metàl·lica | Serralleria Carbó». Implementat al [bloc 3](FASE6-bloc3-proposta-editorial.md). Proposta original:
 
 | Pàgina | Títol actual | Proposta | Caràcters |
 |---|---|---|---|

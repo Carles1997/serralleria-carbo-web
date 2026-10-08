@@ -256,7 +256,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           <p data-reveal style="--i:2"><Inlines inlines={contactText} /></p>
           <div class="c-contact-actions" data-reveal style="--i:3">
             <a class="i-button i-button-solid" href={contactForm}>{contactLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
-            <a class="c-contact-return" href={branch.home.href}>{t.contact.back} <span class="arrow arrow-back" aria-hidden="true">↖</span></a>
+            <a class="c-contact-return" href={`${branch.home.href}${t.contact.caseLink.anchor}`}>{t.contact.caseLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
           </div>
         </div>
         <div class="c-contact-detail" data-reveal style="--i:1">

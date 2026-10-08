@@ -178,6 +178,17 @@ const VALIDATED_REVISIONS = [
       'content/ca/ui.md': 'f90385d900291dadc5aa922ab649d1a7476fba7330fd67bbf4f8e314819f5f8a',
     },
   },
+  {
+    // Fase 6, bloc 3 (fases/fase-6/FASE6-bloc3-proposta-editorial.md): E1–E4 validats pel director el
+    // 08/10/2026. Abast exacte: només seoTitle i seoDescription d'aquests dos fitxers (el cos i la resta
+    // del frontmatter no canvien; els estats continuen sota APPROVAL_KEYS). E6 queda ajornat.
+    label: 'metadades SEO d\'Industrial i Capacitats, validades pel director (08/10/2026)',
+    bodies: {},
+    frontmatter: {
+      'content/ca/industrial.md': '0ec758702a2b4aeb5e75e6a560f8f76da7c0e9f21ac0fbf3c4019173a992628e',
+      'content/ca/industrial-capacitats.md': '4d5a9e40953fb130508a47e1807fe5e156ca460d6e2be1be1b6614fc4eb2ad1b',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

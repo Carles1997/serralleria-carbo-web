@@ -3,8 +3,8 @@ pageId: industrial
 route: /industrial/
 lang: ca
 status: draft
-seoTitle: "Fabricació metàl·lica per a tercers | Industrial"
-seoDescription: "Fabricació metàl·lica per a tercers a Vilafranca del Penedès: fabricació en sèrie en acer al carboni i inox 304/316, soldadura MIG/MAG i TIG."
+seoTitle: "Fabricació metàl·lica per a tercers | Serralleria Carbó"
+seoDescription: "Fabricació metàl·lica per a tercers a Vilafranca del Penedès: estructures, portes, mobiliari, peces a plànol i carros industrials, en sèrie o a mida."
 ---
 
 # Fabricació en sèrie. Peces exigents. Resposta industrial.

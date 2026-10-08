@@ -107,3 +107,19 @@ export const redirects = [
 
 /** URL antigues que es mantenen iguals: no porten regla. */
 export const unchanged = ['/', '/contacte/'];
+
+/**
+ * URL antigues detectades a la línia base del 08/10/2026 (fases/fase-6/linia-base-wordpress-2026-10-08/)
+ * sense tractament decidit. No porten cap regla ni destí fins que el director ho decideixi: el web nou
+ * hi respon 404. npm run check:redirects:live les llista com a informació.
+ * @type {{ from: string, note: string }[]}
+ */
+export const undecided = [
+  { from: '/feed/', note: 'Feed RSS de WordPress: respon 200 amb una sola entrada («Hello world!»).' },
+  { from: '/comments/feed/', note: 'Feed de comentaris de WordPress: respon 200 sense cap entrada.' },
+  { from: '/cat/', note: 'Prefix català de TranslatePress: WordPress hi fa un 301 cap a /.' },
+  {
+    from: '/es/',
+    note: 'Prefix castellà de TranslatePress: WordPress hi fa un 301 cap a /. És el prefix previst de la futura versió ES.',
+  },
+];

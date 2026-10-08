@@ -76,12 +76,16 @@ export function evaluateRedirects({ dist, contentDir = 'content' }) {
  * Fitxer `_redirects` de Netlify amb només les regles llestes. Els 410 serveixen la pàgina 404 del
  * build amb l'estat 410 (reescriptura amb estat propi, admesa per Netlify).
  */
-export function netlifyRedirects(rows) {
+export function netlifyRedirects(rows, domainRules = []) {
   const ready = rows.filter((row) => row.state === 'llesta');
   const lines = [
     '# Generat per src/integrations/netlify-files.mjs a partir de src/config/redirects.mjs.',
     '# Només hi entren les regles «llestes» (npm run check:redirects). No editar a mà.',
   ];
+  if (domainRules.length) {
+    lines.push('# Regles de domini (scripts/lib/indexing-policy.mjs): només al build definitiu, abans de les de camí.');
+    lines.push(...domainRules);
+  }
   for (const { rule, target } of ready) {
     lines.push(rule.status === 301 ? `${rule.from}  ${target}  301` : `${rule.from}  /404.html  410`);
   }

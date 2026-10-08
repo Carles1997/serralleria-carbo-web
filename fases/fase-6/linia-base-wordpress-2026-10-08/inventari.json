@@ -1,0 +1,2263 @@
+{
+  "captured_utc": "2026-10-08T16:20:33+00:00",
+  "base": "https://www.serralleriacarbo.com",
+  "urls": [
+    {
+      "label": "/",
+      "url": "https://www.serralleriacarbo.com/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/",
+      "final_status": 200,
+      "redirects": 0,
+      "page": {
+        "lang": "es",
+        "title": "HOME - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/",
+        "hreflang": [],
+        "og_title": "HOME - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Urgencies",
+          "Estructures",
+          "Automatismes",
+          "Mobiliari",
+          "Contacte"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 218,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/sample-page/",
+      "url": "https://www.serralleriacarbo.com/sample-page/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/sample-page/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/sample-page/",
+      "final_status": 200,
+      "redirects": 0,
+      "page": {
+        "lang": "es",
+        "title": "Serrallería Carbó S.L. - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/sample-page/",
+        "hreflang": [],
+        "og_title": "Serrallería Carbó S.L. - Serralleria Carbó",
+        "h1": [
+          "Serrallería Carbó S.L."
+        ],
+        "h2": [],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 95,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/legal/",
+      "url": "https://www.serralleriacarbo.com/legal/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/legal/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/legal/",
+      "final_status": 200,
+      "redirects": 0,
+      "page": {
+        "lang": "es",
+        "title": "Legal - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/legal/",
+        "hreflang": [],
+        "og_title": "Legal - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Política de Cookies"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 326,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/projectes/",
+      "url": "https://www.serralleriacarbo.com/projectes/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/projectes/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/projectes/",
+      "final_status": 200,
+      "redirects": 0,
+      "page": {
+        "lang": "es",
+        "title": "PROJECTES - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/projectes/",
+        "hreflang": [],
+        "og_title": "PROJECTES - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Convertim idees en realitats tangibles",
+          "PROJECTE PASSAREL·LA INTERIOR",
+          "PROJECTE GÁBIA",
+          "PROJECTE ASCENSOR",
+          "P. PORTA PÀRQUING",
+          "P. PERSIANES DEL NEGOCI",
+          "P. BARANES PER A INTERIOR DE CASA"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 272,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/estructuras/",
+      "url": "https://www.serralleriacarbo.com/estructuras/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/estructuras/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/estructuras/",
+      "final_status": 200,
+      "redirects": 0,
+      "page": {
+        "lang": "es-ES",
+        "title": "ESTRUCTURAS LANDING - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/estructuras/",
+        "hreflang": [
+          "es-ES",
+          "ca",
+          "es"
+        ],
+        "og_title": "ESTRUCTURAS LANDING - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "FABRICAMOS ESTRUCTURAS METÁLICAS A MEDIDA",
+          "SOLICITUD PRESUPUESTO GRATUITO",
+          "¿De que somos capaces?",
+          "diseñar y fabricar estructuras.",
+          "Instalación de las estructuras previamente fabricadas.",
+          "Y aparte, también trabajamos con:",
+          "PROYECTO PASARELA INTERIOR",
+          "PROYECTO JAULA",
+          "PROYECTO ASCENSOR",
+          "P. PUERTA PARKING",
+          "P. PERSIANAS DE NEGOCIO",
+          "P. BARANDILLAS PARA INTERIOR DE CASA"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 343,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/motores/",
+      "url": "https://www.serralleriacarbo.com/motores/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/motores/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/motores/",
+      "final_status": 200,
+      "redirects": 0,
+      "page": {
+        "lang": "es-ES",
+        "title": "MOTORES LANDING - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/motores/",
+        "hreflang": [
+          "es-ES",
+          "ca",
+          "es"
+        ],
+        "og_title": "MOTORES LANDING - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "PROVEEMOS E INSTALAMOS MOTORES PARA TODO TIPO DE PUERTAS",
+          "SOLICITUD PRESUPUESTO GRATUITO",
+          "INSTALAMOS TODO TIPO DE MOTORES",
+          "Puertas Enrollables",
+          "Puertas Batientes",
+          "Puertas de Guillotina",
+          "Puertas Basculantes",
+          "Puertas Corredizas"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 83,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/pressupost/",
+      "url": "https://www.serralleriacarbo.com/pressupost/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/pressupost/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/pressupost/",
+      "final_status": 200,
+      "redirects": 0,
+      "page": {
+        "lang": "es",
+        "title": "PRESSUPOST - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/pressupost/",
+        "hreflang": [],
+        "og_title": "PRESSUPOST - Serralleria Carbó",
+        "h1": [],
+        "h2": [],
+        "jsonld_types": [
+          "WebPage",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 107,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/contacte/",
+      "url": "https://www.serralleriacarbo.com/contacte/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/contacte/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/contacte/",
+      "final_status": 200,
+      "redirects": 0,
+      "page": {
+        "lang": "es",
+        "title": "CONTACTE - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/contacte/",
+        "hreflang": [],
+        "og_title": "CONTACTE - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Informació de contacte",
+          "Qui som"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 211,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/elementor-hf/header/",
+      "url": "https://www.serralleriacarbo.com/elementor-hf/header/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/elementor-hf/header/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "HOME - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/",
+        "hreflang": [],
+        "og_title": "HOME - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Urgencies",
+          "Estructures",
+          "Automatismes",
+          "Mobiliari",
+          "Contacte"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 218,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/elementor-hf/footer-landing/",
+      "url": "https://www.serralleriacarbo.com/elementor-hf/footer-landing/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/elementor-hf/footer-landing/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "HOME - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/",
+        "hreflang": [],
+        "og_title": "HOME - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Urgencies",
+          "Estructures",
+          "Automatismes",
+          "Mobiliari",
+          "Contacte"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 218,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/elementor-hf/594/",
+      "url": "https://www.serralleriacarbo.com/elementor-hf/594/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/elementor-hf/594/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "HOME - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/",
+        "hreflang": [],
+        "og_title": "HOME - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Urgencies",
+          "Estructures",
+          "Automatismes",
+          "Mobiliari",
+          "Contacte"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 218,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/elementor-hf/147/",
+      "url": "https://www.serralleriacarbo.com/elementor-hf/147/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/elementor-hf/147/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "HOME - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/",
+        "hreflang": [],
+        "og_title": "HOME - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Urgencies",
+          "Estructures",
+          "Automatismes",
+          "Mobiliari",
+          "Contacte"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 218,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/category/uncategorized/",
+      "url": "https://www.serralleriacarbo.com/category/uncategorized/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/category/uncategorized/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/category/uncategorized/",
+      "final_status": 200,
+      "redirects": 0,
+      "page": {
+        "lang": "es",
+        "title": "Uncategorized archivos - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/category/uncategorized/",
+        "hreflang": [],
+        "og_title": "Uncategorized archivos - Serralleria Carbó",
+        "h1": [
+          "Categoría: Uncategorized"
+        ],
+        "h2": [
+          "Hello world!"
+        ],
+        "jsonld_types": [
+          "CollectionPage",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 61,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/author/iraibal_gy8unz9r/",
+      "url": "https://www.serralleriacarbo.com/author/iraibal_gy8unz9r/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/author/iraibal_gy8unz9r/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/author/iraibal_gy8unz9r/",
+      "final_status": 200,
+      "redirects": 0,
+      "page": {
+        "lang": "es",
+        "title": "admin, autor en Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/author/iraibal_gy8unz9r/",
+        "hreflang": [],
+        "og_title": "admin, autor en Serralleria Carbó",
+        "h1": [
+          "Autor: admin"
+        ],
+        "h2": [
+          "Hello world!"
+        ],
+        "jsonld_types": [
+          "ProfilePage",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization",
+          "Person"
+        ],
+        "word_count": 61,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/hello-world/",
+      "url": "https://www.serralleriacarbo.com/hello-world/",
+      "in_sitemap": true,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/hello-world/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/hello-world/",
+      "final_status": 200,
+      "redirects": 0,
+      "page": {
+        "lang": "es",
+        "title": "Hello world! - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/hello-world/",
+        "hreflang": [],
+        "og_title": "Hello world! - Serralleria Carbó",
+        "h1": [
+          "Hello world!"
+        ],
+        "h2": [
+          "Deja una respuesta Cancelar la respuesta"
+        ],
+        "jsonld_types": [
+          "Article",
+          "WebPage",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization",
+          "Person"
+        ],
+        "word_count": 104,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/feed/",
+      "url": "https://www.serralleriacarbo.com/feed/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/feed/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "application/rss+xml; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/feed/",
+      "final_status": 200,
+      "redirects": 0
+    },
+    {
+      "label": "/comments/feed/",
+      "url": "https://www.serralleriacarbo.com/comments/feed/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/comments/feed/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": "noindex, follow",
+          "content_type": "application/rss+xml; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/comments/feed/",
+      "final_status": 200,
+      "redirects": 0
+    },
+    {
+      "label": "/cat/",
+      "url": "https://www.serralleriacarbo.com/cat/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "HOME - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/",
+        "hreflang": [],
+        "og_title": "HOME - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Urgencies",
+          "Estructures",
+          "Automatismes",
+          "Mobiliari",
+          "Contacte"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 218,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/es/",
+      "url": "https://www.serralleriacarbo.com/es/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/es/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "HOME - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/",
+        "hreflang": [],
+        "og_title": "HOME - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Urgencies",
+          "Estructures",
+          "Automatismes",
+          "Mobiliari",
+          "Contacte"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 218,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/en/",
+      "url": "https://www.serralleriacarbo.com/en/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/en/",
+          "status": 404,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/en/",
+      "final_status": 404,
+      "redirects": 0
+    },
+    {
+      "label": "/empresa/",
+      "url": "https://www.serralleriacarbo.com/empresa/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/empresa/",
+          "status": 404,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/empresa/",
+      "final_status": 404,
+      "redirects": 0
+    },
+    {
+      "label": "/projectes",
+      "url": "https://www.serralleriacarbo.com/projectes",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/projectes",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/projectes/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/projectes/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/projectes/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "PROJECTES - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/projectes/",
+        "hreflang": [],
+        "og_title": "PROJECTES - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Convertim idees en realitats tangibles",
+          "PROJECTE PASSAREL·LA INTERIOR",
+          "PROJECTE GÁBIA",
+          "PROJECTE ASCENSOR",
+          "P. PORTA PÀRQUING",
+          "P. PERSIANES DEL NEGOCI",
+          "P. BARANES PER A INTERIOR DE CASA"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 272,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/estructuras",
+      "url": "https://www.serralleriacarbo.com/estructuras",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/estructuras",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/estructuras/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/estructuras/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/estructuras/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es-ES",
+        "title": "ESTRUCTURAS LANDING - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/estructuras/",
+        "hreflang": [
+          "es-ES",
+          "ca",
+          "es"
+        ],
+        "og_title": "ESTRUCTURAS LANDING - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "FABRICAMOS ESTRUCTURAS METÁLICAS A MEDIDA",
+          "SOLICITUD PRESUPUESTO GRATUITO",
+          "¿De que somos capaces?",
+          "diseñar y fabricar estructuras.",
+          "Instalación de las estructuras previamente fabricadas.",
+          "Y aparte, también trabajamos con:",
+          "PROYECTO PASARELA INTERIOR",
+          "PROYECTO JAULA",
+          "PROYECTO ASCENSOR",
+          "P. PUERTA PARKING",
+          "P. PERSIANAS DE NEGOCIO",
+          "P. BARANDILLAS PARA INTERIOR DE CASA"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 343,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/motores",
+      "url": "https://www.serralleriacarbo.com/motores",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/motores",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/motores/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/motores/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/motores/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es-ES",
+        "title": "MOTORES LANDING - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/motores/",
+        "hreflang": [
+          "es-ES",
+          "ca",
+          "es"
+        ],
+        "og_title": "MOTORES LANDING - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "PROVEEMOS E INSTALAMOS MOTORES PARA TODO TIPO DE PUERTAS",
+          "SOLICITUD PRESUPUESTO GRATUITO",
+          "INSTALAMOS TODO TIPO DE MOTORES",
+          "Puertas Enrollables",
+          "Puertas Batientes",
+          "Puertas de Guillotina",
+          "Puertas Basculantes",
+          "Puertas Corredizas"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 83,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/cat/sample-page/",
+      "url": "https://www.serralleriacarbo.com/cat/sample-page/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/sample-page/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/sample-page/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/sample-page/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/sample-page/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "Serrallería Carbó S.L. - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/sample-page/",
+        "hreflang": [],
+        "og_title": "Serrallería Carbó S.L. - Serralleria Carbó",
+        "h1": [
+          "Serrallería Carbó S.L."
+        ],
+        "h2": [],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 95,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/cat/legal/",
+      "url": "https://www.serralleriacarbo.com/cat/legal/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/legal/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/legal/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/legal/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/legal/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "Legal - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/legal/",
+        "hreflang": [],
+        "og_title": "Legal - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Política de Cookies"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 326,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/cat/projectes/",
+      "url": "https://www.serralleriacarbo.com/cat/projectes/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/projectes/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/projectes/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/projectes/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/projectes/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "PROJECTES - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/projectes/",
+        "hreflang": [],
+        "og_title": "PROJECTES - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Convertim idees en realitats tangibles",
+          "PROJECTE PASSAREL·LA INTERIOR",
+          "PROJECTE GÁBIA",
+          "PROJECTE ASCENSOR",
+          "P. PORTA PÀRQUING",
+          "P. PERSIANES DEL NEGOCI",
+          "P. BARANES PER A INTERIOR DE CASA"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 272,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/cat/estructuras/",
+      "url": "https://www.serralleriacarbo.com/cat/estructuras/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/estructuras/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/cat/estructuras/",
+      "final_status": 200,
+      "redirects": 0,
+      "page": {
+        "lang": "ca",
+        "title": "ESTRUCTURAS LANDING - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/cat/estructuras/",
+        "hreflang": [
+          "es-ES",
+          "ca",
+          "es"
+        ],
+        "og_title": "ESTRUCTURAS LANDING - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "FABRIQUEM ESTRUCTURES METÀL·LIQUES A MIDA",
+          "SOL·LICITUD PRESSUPOST GRATUÏT",
+          "De què som capaços?",
+          "dissenyar i fabricar estructures.",
+          "Instal·lació de les estructures prèviament fabricades.",
+          "I a banda, també treballem amb:",
+          "PROJECTE PASSAREL·LA INTERIOR",
+          "PROJECTE GABIA",
+          "PROJECTE ASCENSOR",
+          "P. PORTA PARKING",
+          "P. PERSIANES DE NEGOCI",
+          "P. BARANES PER INTERIOR DE CASA"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 345,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/cat/motores/",
+      "url": "https://www.serralleriacarbo.com/cat/motores/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/motores/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/cat/motores/",
+      "final_status": 200,
+      "redirects": 0,
+      "page": {
+        "lang": "ca",
+        "title": "MOTORES LANDING - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/cat/motores/",
+        "hreflang": [
+          "es-ES",
+          "ca",
+          "es"
+        ],
+        "og_title": "MOTORES LANDING - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "PROVEÏM I INSTAL·LEM MOTORS PER A TOT TIPUS DE PORTES",
+          "SOL·LICITUD PRESSUPOST GRATUÏT",
+          "INSTAL·LEM TOT TIPUS DE MOTORS",
+          "Portes Enrotllables",
+          "Portes Batents",
+          "Portes de Guillotina",
+          "Portes Basculants",
+          "Portes Corredisses"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 85,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/cat/pressupost/",
+      "url": "https://www.serralleriacarbo.com/cat/pressupost/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/pressupost/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/pressupost/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/pressupost/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/pressupost/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "PRESSUPOST - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/pressupost/",
+        "hreflang": [],
+        "og_title": "PRESSUPOST - Serralleria Carbó",
+        "h1": [],
+        "h2": [],
+        "jsonld_types": [
+          "WebPage",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 107,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/cat/contacte/",
+      "url": "https://www.serralleriacarbo.com/cat/contacte/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/contacte/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/contacte/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/contacte/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/contacte/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "CONTACTE - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/contacte/",
+        "hreflang": [],
+        "og_title": "CONTACTE - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Informació de contacte",
+          "Qui som"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 211,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/cat/elementor-hf/header/",
+      "url": "https://www.serralleriacarbo.com/cat/elementor-hf/header/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/elementor-hf/header/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/elementor-hf/header/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/elementor-hf/header/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com",
+      "final_status": 200,
+      "redirects": 2,
+      "page": {
+        "lang": "es",
+        "title": "HOME - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/",
+        "hreflang": [],
+        "og_title": "HOME - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Urgencies",
+          "Estructures",
+          "Automatismes",
+          "Mobiliari",
+          "Contacte"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 218,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/cat/elementor-hf/footer-landing/",
+      "url": "https://www.serralleriacarbo.com/cat/elementor-hf/footer-landing/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/elementor-hf/footer-landing/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/elementor-hf/footer-landing/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/elementor-hf/footer-landing/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com",
+      "final_status": 200,
+      "redirects": 2,
+      "page": {
+        "lang": "es",
+        "title": "HOME - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/",
+        "hreflang": [],
+        "og_title": "HOME - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Urgencies",
+          "Estructures",
+          "Automatismes",
+          "Mobiliari",
+          "Contacte"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 218,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/cat/elementor-hf/594/",
+      "url": "https://www.serralleriacarbo.com/cat/elementor-hf/594/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/elementor-hf/594/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/elementor-hf/594/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/elementor-hf/594/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com",
+      "final_status": 200,
+      "redirects": 2,
+      "page": {
+        "lang": "es",
+        "title": "HOME - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/",
+        "hreflang": [],
+        "og_title": "HOME - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Urgencies",
+          "Estructures",
+          "Automatismes",
+          "Mobiliari",
+          "Contacte"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 218,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/cat/elementor-hf/147/",
+      "url": "https://www.serralleriacarbo.com/cat/elementor-hf/147/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/elementor-hf/147/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/elementor-hf/147/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/elementor-hf/147/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com",
+      "final_status": 200,
+      "redirects": 2,
+      "page": {
+        "lang": "es",
+        "title": "HOME - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/",
+        "hreflang": [],
+        "og_title": "HOME - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Urgencies",
+          "Estructures",
+          "Automatismes",
+          "Mobiliari",
+          "Contacte"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 218,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/cat/category/uncategorized/",
+      "url": "https://www.serralleriacarbo.com/cat/category/uncategorized/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/category/uncategorized/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/category/uncategorized/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/category/uncategorized/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/category/uncategorized/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "Uncategorized archivos - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/category/uncategorized/",
+        "hreflang": [],
+        "og_title": "Uncategorized archivos - Serralleria Carbó",
+        "h1": [
+          "Categoría: Uncategorized"
+        ],
+        "h2": [
+          "Hello world!"
+        ],
+        "jsonld_types": [
+          "CollectionPage",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 61,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/cat/author/iraibal_gy8unz9r/",
+      "url": "https://www.serralleriacarbo.com/cat/author/iraibal_gy8unz9r/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/author/iraibal_gy8unz9r/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/author/iraibal_gy8unz9r/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/author/iraibal_gy8unz9r/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/author/iraibal_gy8unz9r/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "admin, autor en Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/author/iraibal_gy8unz9r/",
+        "hreflang": [],
+        "og_title": "admin, autor en Serralleria Carbó",
+        "h1": [
+          "Autor: admin"
+        ],
+        "h2": [
+          "Hello world!"
+        ],
+        "jsonld_types": [
+          "ProfilePage",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization",
+          "Person"
+        ],
+        "word_count": 61,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/cat/hello-world/",
+      "url": "https://www.serralleriacarbo.com/cat/hello-world/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/cat/hello-world/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/hello-world/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/hello-world/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/hello-world/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "Hello world! - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/hello-world/",
+        "hreflang": [],
+        "og_title": "Hello world! - Serralleria Carbó",
+        "h1": [
+          "Hello world!"
+        ],
+        "h2": [
+          "Deja una respuesta Cancelar la respuesta"
+        ],
+        "jsonld_types": [
+          "Article",
+          "WebPage",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization",
+          "Person"
+        ],
+        "word_count": 104,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/es/projectes/",
+      "url": "https://www.serralleriacarbo.com/es/projectes/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/es/projectes/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/projectes/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/projectes/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/projectes/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "PROJECTES - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/projectes/",
+        "hreflang": [],
+        "og_title": "PROJECTES - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Convertim idees en realitats tangibles",
+          "PROJECTE PASSAREL·LA INTERIOR",
+          "PROJECTE GÁBIA",
+          "PROJECTE ASCENSOR",
+          "P. PORTA PÀRQUING",
+          "P. PERSIANES DEL NEGOCI",
+          "P. BARANES PER A INTERIOR DE CASA"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 272,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/es/estructuras/",
+      "url": "https://www.serralleriacarbo.com/es/estructuras/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/es/estructuras/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/estructuras/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/estructuras/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/estructuras/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es-ES",
+        "title": "ESTRUCTURAS LANDING - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/estructuras/",
+        "hreflang": [
+          "es-ES",
+          "ca",
+          "es"
+        ],
+        "og_title": "ESTRUCTURAS LANDING - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "FABRICAMOS ESTRUCTURAS METÁLICAS A MEDIDA",
+          "SOLICITUD PRESUPUESTO GRATUITO",
+          "¿De que somos capaces?",
+          "diseñar y fabricar estructuras.",
+          "Instalación de las estructuras previamente fabricadas.",
+          "Y aparte, también trabajamos con:",
+          "PROYECTO PASARELA INTERIOR",
+          "PROYECTO JAULA",
+          "PROYECTO ASCENSOR",
+          "P. PUERTA PARKING",
+          "P. PERSIANAS DE NEGOCIO",
+          "P. BARANDILLAS PARA INTERIOR DE CASA"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 343,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/es/motores/",
+      "url": "https://www.serralleriacarbo.com/es/motores/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/es/motores/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/motores/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/motores/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/motores/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es-ES",
+        "title": "MOTORES LANDING - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/motores/",
+        "hreflang": [
+          "es-ES",
+          "ca",
+          "es"
+        ],
+        "og_title": "MOTORES LANDING - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "PROVEEMOS E INSTALAMOS MOTORES PARA TODO TIPO DE PUERTAS",
+          "SOLICITUD PRESUPUESTO GRATUITO",
+          "INSTALAMOS TODO TIPO DE MOTORES",
+          "Puertas Enrollables",
+          "Puertas Batientes",
+          "Puertas de Guillotina",
+          "Puertas Basculantes",
+          "Puertas Corredizas"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 83,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "/es/contacte/",
+      "url": "https://www.serralleriacarbo.com/es/contacte/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://www.serralleriacarbo.com/es/contacte/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/contacte/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/contacte/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/contacte/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "CONTACTE - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/contacte/",
+        "hreflang": [],
+        "og_title": "CONTACTE - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Informació de contacte",
+          "Qui som"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 211,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "http://www.serralleriacarbo.com/",
+      "url": "http://www.serralleriacarbo.com/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "http://www.serralleriacarbo.com/",
+          "status": 301,
+          "location": "https://serralleriacarbo.com/",
+          "x_robots_tag": null,
+          "content_type": "text/html"
+        },
+        {
+          "url": "https://serralleriacarbo.com/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/",
+      "final_status": 200,
+      "redirects": 2,
+      "page": {
+        "lang": "es",
+        "title": "HOME - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/",
+        "hreflang": [],
+        "og_title": "HOME - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Urgencies",
+          "Estructures",
+          "Automatismes",
+          "Mobiliari",
+          "Contacte"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 218,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "https://serralleriacarbo.com/",
+      "url": "https://serralleriacarbo.com/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "https://serralleriacarbo.com/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/",
+      "final_status": 200,
+      "redirects": 1,
+      "page": {
+        "lang": "es",
+        "title": "HOME - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/",
+        "hreflang": [],
+        "og_title": "HOME - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Urgencies",
+          "Estructures",
+          "Automatismes",
+          "Mobiliari",
+          "Contacte"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 218,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    },
+    {
+      "label": "http://serralleriacarbo.com/",
+      "url": "http://serralleriacarbo.com/",
+      "in_sitemap": false,
+      "hops": [
+        {
+          "url": "http://serralleriacarbo.com/",
+          "status": 301,
+          "location": "https://serralleriacarbo.com/",
+          "x_robots_tag": null,
+          "content_type": "text/html"
+        },
+        {
+          "url": "https://serralleriacarbo.com/",
+          "status": 301,
+          "location": "https://www.serralleriacarbo.com/",
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.serralleriacarbo.com/",
+          "status": 200,
+          "location": null,
+          "x_robots_tag": null,
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "final_url": "https://www.serralleriacarbo.com/",
+      "final_status": 200,
+      "redirects": 2,
+      "page": {
+        "lang": "es",
+        "title": "HOME - Serralleria Carbó",
+        "description": null,
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "canonical": "https://www.serralleriacarbo.com/",
+        "hreflang": [],
+        "og_title": "HOME - Serralleria Carbó",
+        "h1": [],
+        "h2": [
+          "Urgencies",
+          "Estructures",
+          "Automatismes",
+          "Mobiliari",
+          "Contacte"
+        ],
+        "jsonld_types": [
+          "WebPage",
+          "ImageObject",
+          "BreadcrumbList",
+          "WebSite",
+          "Organization"
+        ],
+        "word_count": 218,
+        "measurement_signals": [
+          "GT-T9H3C3ZW",
+          "GTM-TXQ24TCC",
+          "Site Kit by Google 1.189.0"
+        ]
+      }
+    }
+  ]
+}

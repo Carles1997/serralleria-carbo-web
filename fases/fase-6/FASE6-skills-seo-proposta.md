@@ -100,7 +100,7 @@ La raó: qualsevol altra opció duplica claude-seo, afegeix dependències o cost
 
 ## 6. Punts desfasats del pla d'acció
 
-Cal corregir aquests punts de [FASE6-pla-accio.md](FASE6-pla-accio.md) abans d'usar-lo:
+**Corregits el 08/10/2026** a [FASE6-pla-accio.md](FASE6-pla-accio.md) (també D1.5, que citava la pàgina Empresa com a font). Eren aquests:
 - C1 compta Empresa com a pàgina aprovada, i C10 hi proposa enllaços. La pàgina s'ha retirat i ara redirigeix a `/`.
 - D1.1 i D1.9 descriuen el perfil de GBP amb «sèries curtes». El missatge vigent és «Fabricació en sèrie. Peces exigents. Resposta industrial.»
 - A6 encara esmenta plantilles de la pàgina d'Empresa.

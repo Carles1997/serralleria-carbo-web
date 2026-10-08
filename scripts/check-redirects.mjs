@@ -10,8 +10,10 @@
 // Ús: npm run build && npm run check:redirects
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { redirects, unchanged } from '../src/config/redirects.mjs';
+import { redirects, undecided, unchanged } from '../src/config/redirects.mjs';
 import { evaluateRedirects, netlifyRedirects } from './lib/redirect-plan.mjs';
+import { domainRedirects, indexingMode } from './lib/indexing-policy.mjs';
+import { siteUrl } from '../src/config/site-url.mjs';
 
 const DIST = 'dist';
 if (!existsSync(join(DIST, 'index.html'))) {
@@ -31,10 +33,15 @@ for (const { rule, state, target, draft, pending } of rows) {
 }
 const tally = (state) => rows.filter((row) => row.state === state).length;
 console.log(`Llestes: ${tally('llesta')} · En espera: ${tally('espera')} · Per decidir: ${tally('decidir')}.`);
+console.log(`Sense tractament decidit (sense regla): ${undecided.map((item) => item.from).join(', ')}.`);
+for (const { from } of undecided) {
+  if (redirects.some((rule) => rule.from === from) || unchanged.includes(from)) errors.push(`${from}: és sense decidir i alhora té regla o es manté`);
+}
 
 const generated = join(DIST, '_redirects');
 if (!existsSync(generated)) errors.push('dist/_redirects no existeix: el build no ha generat el fitxer de Netlify');
-else if (readFileSync(generated, 'utf8') !== netlifyRedirects(rows)) errors.push('dist/_redirects no coincideix amb les regles llestes: torna a fer el build');
+// Les regles de domini depenen de l'entorn del build (CONTEXT, URL, SITE_NAME): cal validar amb el mateix.
+else if (readFileSync(generated, 'utf8') !== netlifyRedirects(rows, domainRedirects(indexingMode(siteUrl)))) errors.push('dist/_redirects no coincideix amb les regles llestes d\'aquest entorn (CONTEXT, URL, SITE_NAME): torna a fer el build amb el mateix entorn');
 else console.log(`dist/_redirects: ${tally('llesta')} regles llestes (Netlify).`);
 
 if (errors.length) {

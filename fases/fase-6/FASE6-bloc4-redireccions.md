@@ -54,6 +54,8 @@ L'absència de dades de Search Console no demostra que aquests fitxers no tingui
 
 **Cal decidir:** si les 12 fotografies amb equivalent clar es redirigeixen imatge a imatge (amb una còpia estable), cap a la pàgina del cas, o no es redirigeixen.
 
+**Nota (09/10/2026):** el director ha decidit que les fotografies visibles actuals són definitives (FASE8 8.6). Aquesta decisió no resol el destí de les URL antigues de WordPress, que continua pendent.
+
 ## 3. Comprovacions pendents
 
 - ~~`npm run check:redirects:live` a `revisio-client`~~ **Fet el 09/10/2026** (desplegament `6ac81d8fe0c9024a8068e5c2`, commit `a29d067`): totes les regles correctes, inclosos els 301 de `/estructuras/` i `/motores/` cap a les pàgines castellanes. La 404 de `/es/…` respon 404 en castellà.

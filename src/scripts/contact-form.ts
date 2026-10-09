@@ -1,24 +1,29 @@
-// Formulari de contacte (plantilla C). Millora progressiva: activa el botó, canvia els camps
-// segons la branca, preselecciona des de la URL i valida al navegador. NO envia res: sense
-// backend ni validació al servidor no hi ha enviament ni cap estat d'èxit.
+// Formulari de contacte (plantilla C). Millora progressiva: canvia els camps segons la branca,
+// preselecciona des de la URL, valida al navegador i envia a /api/contacte amb fetch. Sense
+// JavaScript, el formulari s'envia igual i la funció respon amb una pàgina (Fase 8, 8.5).
+// La funció torna a validar-ho tot: aquesta validació només avança els errors.
 // Redisseny del 06/10/2026: sense columna lateral per branca; les dades opcionals (població i, a
 // Industrial, dades tècniques) són en un desplegable <details> que funciona sense JavaScript.
 import { withViewTransition } from './view-transition';
+import { REF_ALPHABET } from '../lib/contact/schema';
 
 const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
 
 if (form) {
+  // Amb JavaScript, l'ajuda de la descripció és el placeholder real (contact.css amaga la superposició).
+  form.dataset.enhanced = '';
   const errors = JSON.parse(form.dataset.errors ?? '{}') as Record<'required' | 'email' | 'phone' | 'summary' | 'consent', string>;
+  const messages = JSON.parse(form.dataset.messages ?? '{}') as Record<'sending' | 'failed' | 'rateLimited' | 'inProgress' | 'fileSize' | 'fileType', string>;
+  const maxBytes = Number(form.dataset.maxBytes ?? '0');
+  const refInput = form.querySelector<HTMLInputElement>('[data-ref]');
+  const elapsedInput = form.querySelector<HTMLInputElement>('[data-elapsed]');
+  const loadedAt = Date.now();
   const radios = [...form.querySelectorAll<HTMLInputElement>('input[name="tipus"]')];
   const fieldsets = [...form.querySelectorAll<HTMLFieldSetElement>('[data-branch]')];
-  const upload = form.querySelector<HTMLElement>('[data-upload]');
-  const uploadLabel = upload?.querySelector<HTMLLabelElement>('label:not(.upload-button)');
-  const uploadHelp = upload?.querySelector<HTMLElement>('#upload-help');
   const fileInput = form.querySelector<HTMLInputElement>('#adjunt');
   const fileName = form.querySelector<HTMLElement>('#file-name');
   const description = form.querySelector<HTMLTextAreaElement>('#descripcio');
   const service = form.querySelector<HTMLSelectElement>('#servei');
-  const extraSummary = form.querySelector<HTMLElement>('[data-extra-summary]');
   const status = form.querySelector<HTMLElement>('#form-status');
   const submit = form.querySelector<HTMLButtonElement>('[data-submit]');
   const noFile = fileName?.textContent ?? '';
@@ -50,8 +55,21 @@ if (form) {
 
   const fieldsOf = (root: ParentNode) =>
     [...root.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input, select, textarea')].filter(
-      (input) => input.type !== 'radio' && input.type !== 'file',
+      (input) => input.type !== 'radio' && input.type !== 'file' && input.type !== 'hidden' && !input.closest('.form-trap'),
     );
+
+  // Referència de la consulta (§4.6 del pla): es manté mentre no es canviï res, de manera que un
+  // segon clic o un reenviament després d'un error no dupliquen el correu.
+  const newReference = () => {
+    const bytes = crypto.getRandomValues(new Uint8Array(10));
+    if (refInput) refInput.value = [...bytes].map((byte) => REF_ALPHABET[byte % REF_ALPHABET.length]).join('');
+  };
+  newReference();
+  let acceptedRef = '';
+  const changed = () => {
+    if (acceptedRef && refInput?.value === acceptedRef) newReference();
+    acceptedRef = '';
+  };
 
   // Canviar de branca amaga i desactiva els camps de l'altra i n'esborra els errors, però
   // conserva el que s'hi hagi escrit per si l'usuari hi torna (traspàs de Fase 4).
@@ -64,10 +82,7 @@ if (form) {
       fieldset.disabled = !active;
       if (!active) fieldsOf(fieldset).forEach(clearError);
     });
-    if (extraSummary) extraSummary.textContent = extraSummary.dataset[selected === 'empresa' ? 'labelEmpresa' : 'labelParticular'] ?? '';
-    upload?.classList.toggle('is-industrial', selected === 'empresa');
-    if (uploadLabel) uploadLabel.textContent = uploadLabel.dataset[selected === 'empresa' ? 'labelEmpresa' : 'labelParticular'] ?? '';
-    if (uploadHelp) uploadHelp.textContent = uploadHelp.dataset[selected === 'empresa' ? 'helpEmpresa' : 'helpParticular'] ?? '';
+    // Les etiquetes i ajudes de cada branca les canvia el CSS (contact.css); aquí només el placeholder.
     if (description) description.placeholder = description.dataset[selected === 'empresa' ? 'placeholderEmpresa' : 'placeholderParticular'] ?? '';
     if (status) status.hidden = true;
   };
@@ -91,12 +106,76 @@ if (form) {
 
   fileInput?.addEventListener('change', () => {
     if (fileName) fileName.textContent = fileInput.files?.[0]?.name ?? noFile;
+    clearError(fileInput);
+    changed();
   });
 
   fieldsOf(form).forEach((input) => {
-    input.addEventListener('input', () => clearError(input));
+    input.addEventListener('input', () => {
+      clearError(input);
+      changed();
+    });
     input.addEventListener('change', () => clearError(input));
   });
+  radios.forEach((radio) => radio.addEventListener('change', changed));
+
+  const showStatus = (message: string, state: string, focus = true) => {
+    if (!status) return;
+    status.textContent = message;
+    status.dataset.state = state;
+    status.hidden = false;
+    if (focus) status.focus();
+  };
+
+  // El camp de cada error que torna la funció (`servei` a Particulars, `producte` a Industrial).
+  const inputFor = (field: string) => {
+    if (field === 'tipus') return undefined;
+    return form.querySelector<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(`[name="${field}"]`) ?? undefined;
+  };
+
+  let sending = false;
+  const send = async () => {
+    if (!submit || sending) return;
+    sending = true;
+    submit.disabled = true;
+    submit.setAttribute('aria-busy', 'true');
+    showStatus(messages.sending, 'sending', false);
+    if (elapsedInput) elapsedInput.value = String(Date.now() - loadedAt);
+    const sentRef = refInput?.value ?? '';
+    try {
+      const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { accept: 'application/json' } });
+      const result = (await response.json().catch(() => undefined)) as { state?: string; message?: string; errors?: Record<string, string> } | undefined;
+      if (!result?.message) {
+        // Resposta que no és de la funció (per exemple, el límit de Netlify o un error de la xarxa).
+        showStatus(response.status === 429 ? messages.rateLimited : response.status === 413 ? messages.fileSize : messages.failed, 'error');
+        return;
+      }
+      if (result.errors && Object.keys(result.errors).length) {
+        let first: HTMLElement | undefined;
+        for (const [field, message] of Object.entries(result.errors)) {
+          const input = inputFor(field);
+          if (!input) continue;
+          showError(input, message);
+          first ??= input;
+        }
+        showStatus(result.message, 'error', !first);
+        first?.focus();
+        return;
+      }
+      if (response.ok) {
+        acceptedRef = sentRef;
+        showStatus(result.message, result.state === 'sent' ? 'sent' : 'not-sent');
+        return;
+      }
+      showStatus(result.message, 'error');
+    } catch {
+      showStatus(messages.failed, 'error');
+    } finally {
+      sending = false;
+      submit.disabled = false;
+      submit.removeAttribute('aria-busy');
+    }
+  };
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -111,10 +190,20 @@ if (form) {
       if (input.type === 'checkbox') message = input.required && !(input as HTMLInputElement).checked ? errors.consent : '';
       else if (input.required && !value) message = errors.required;
       else if (input.type === 'email' && value && !(input as HTMLInputElement).validity.valid) message = errors.email;
-      else if (input.type === 'tel' && value && !/^[+()\d\s.-]{7,}$/.test(value)) message = errors.phone;
+      else if (input.type === 'tel' && value && !/^[+()\d\s.-]{7,25}$/.test(value)) message = errors.phone;
       if (message) {
         showError(input, message);
         firstInvalid ??= input;
+      }
+    }
+    const file = fileInput?.files?.[0];
+    if (fileInput && file) {
+      clearError(fileInput);
+      const accepted = (fileInput.accept || '').split(',').some((type) => (type.startsWith('.') ? file.name.toLowerCase().endsWith(type) : false));
+      const message = file.size > maxBytes ? messages.fileSize : accepted ? '' : messages.fileType;
+      if (message) {
+        showError(fileInput, message);
+        firstInvalid ??= fileInput;
       }
     }
     if (firstInvalid) {
@@ -124,14 +213,8 @@ if (form) {
       firstInvalid.focus();
       return;
     }
-    // Dades correctes, però no hi ha enviament: ho diem clarament i oferim el contacte directe.
-    status.textContent = form.dataset.notSent ?? '';
-    status.dataset.state = 'not-sent';
-    status.hidden = false;
-    status.focus();
+    void send();
   });
-
-  if (submit) submit.disabled = false;
 }
 
 export {};

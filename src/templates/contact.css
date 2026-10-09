@@ -48,10 +48,23 @@
 .contact-form-panel form { display: grid; gap: 1rem; }
 .branch-picker, .branch-fields { min-width: 0; margin: 0; padding: 0; border: 0; }
 .branch-fields[hidden] { display: none !important; }
+/* Sense JavaScript (Fase 8, 8.5): la branca marcada decideix quins camps es veuen. */
+#contact-form:has(input[name="tipus"][value="particular"]:checked) .branch-fields[data-branch="empresa"],
+#contact-form:has(input[name="tipus"][value="empresa"]:checked) .branch-fields[data-branch="particular"] { display: none; }
+/* Textos de cada branca (variants aprovades de ui.ts). Sense :has() es veu la de Particulars. */
+[data-branch-text="empresa"] { display: none; }
+#contact-form:has(input[name="tipus"][value="empresa"]:checked) [data-branch-text="empresa"] { display: inline; }
+#contact-form:has(input[name="tipus"][value="empresa"]:checked) [data-branch-text="particular"] { display: none; }
+/* Ajuda de la descripció sense JavaScript: superposició amb l'aspecte del placeholder. Amb
+   JavaScript (data-enhanced) es fa servir el placeholder real. */
+.description-box { position: relative; }
+.description-hint { position: absolute; inset: calc(.55rem + 1px) calc(.8rem + 1px) auto; display: none; color: var(--palette-dark); font: 400 1rem/1.4 var(--font-sans); pointer-events: none; }
+.description-box:has(textarea:placeholder-shown) .description-hint { display: block; }
+#contact-form[data-enhanced] .description-hint { display: none; }
 
 /* Tipus de consulta: dues opcions baixes, amb marca de ràdio. */
 .branch-picker legend { margin-bottom: .4rem; padding: 0; font-size: .86rem; font-weight: 700; }
-.branch-picker legend span, .field label span { color: var(--action); }
+.branch-picker legend span, .field label span[aria-hidden="true"] { color: var(--action); }
 .branch-options { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
 .branch-option { position: relative; display: block; min-width: 0; cursor: pointer; }
 .branch-option input { position: absolute; z-index: 1; top: 50%; left: .9rem; width: 18px; height: 18px; margin: 0; translate: 0 -50%; accent-color: var(--action); }
@@ -68,7 +81,8 @@
 .field { display: flex; flex-direction: column; min-width: 0; }
 .field-full { grid-column: 1 / -1; }
 /* Amb Particulars (sense camp d'empresa), el nom ocupa tota la fila. */
-.field-grid:has(> .field-company[hidden]) .field-name { grid-column: 1 / -1; }
+.field-grid:has(> .field-company[hidden]) .field-name,
+#contact-form:has(input[name="tipus"][value="particular"]:checked) .field-name { grid-column: 1 / -1; }
 .field label { margin-bottom: .3rem; font-size: .86rem; font-weight: 700; line-height: 1.3; }
 .field input, .field select, .field textarea { display: block; width: 100%; min-height: 46px; padding: .55rem .8rem; border: 1px solid var(--palette-mid); border-radius: 4px; background: var(--palette-white); color: var(--ink); font: 400 1rem/1.4 var(--font-sans); color-scheme: light; outline: none; }
 .field textarea { min-height: 112px; resize: vertical; }
@@ -79,7 +93,10 @@
 
 /* Adjunt compacte: selector propi en català; el control natiu queda accessible però invisible. */
 .upload-area { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; padding: .6rem .8rem; border: 1px dashed var(--palette-mid); border-radius: 4px; background: var(--surface-paper); }
-.upload-area.is-industrial { border-style: solid; }
+#contact-form:has(input[name="tipus"][value="empresa"]:checked) .upload-area { border-style: solid; }
+.upload-area .field-error { flex-basis: 100%; }
+/* Camp parany de l'antispam (Fase 8, 8.5): fora de la vista, del tabulador i de l'arbre d'accessibilitat. */
+.form-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .upload-text { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 .5rem; min-width: 0; }
 .upload-area .upload-text label { margin: 0; font-size: .92rem; }
 .upload-text > span { color: var(--ink-muted); font-size: .86rem; }

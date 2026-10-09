@@ -323,7 +323,7 @@ Publicaciones → Crear publicación. Ara no n'hi ha cap. **Proposta:**
    - Domain management → Add domain → `www.serralleriacarbo.com`, com a domini principal.
    - A **mayasystems.net**, els registres DNS que indiqui Netlify (normalment un CNAME de `www` cap al lloc de Netlify i el domini arrel cap a Netlify).
    - Comprovar que el certificat HTTPS s'emet i que `serralleriacarbo.com` redirigeix a `https://www.`.
-4. **Formularis.** Netlify Forms (límit de 8 MB). Prova d'enviament real abans del llançament (pendent de la Fase 5).
+4. **Formularis.** ~~Netlify Forms (límit de 8 MB).~~ **09/10/2026:** Microsoft 365 amb una funció de Netlify (adjunt de 3.000.000 bytes com a màxim), vegeu [FASE8-formulari-real-pla.md](../fase-8/FASE8-formulari-real-pla.md). Prova d'enviament real abans del llançament.
 
 ### D6 · Directoris (P2)
 

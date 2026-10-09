@@ -7,8 +7,14 @@
 // després, horari i adreça.
 // Text: content/{idioma}/contacte.md (H1, horari i «On som»); telèfons, correu i adreça de
 // src/config/site.ts; etiquetes del formulari: i18n/ui.ts (content/ca/ui.md).
-// El formulari NO envia: sense backend ni validació al servidor no s'activa l'enviament (traspàs de
-// Fase 4). Sense JavaScript el botó queda desactivat i les vies directes continuen disponibles.
+// Formulari real (Fase 8, 8.5; fases/fase-8/FASE8-formulari-real-pla.md): envia a la funció
+// /api/contacte, que valida al servidor. Funciona amb JavaScript (fetch) i sense (enviament nadiu i
+// resposta HTML). Mentre la funció estigui en mode de demostració no envia res i l'avís es manté.
+// Branques sense JavaScript: els camps de les dues branques surten actius a l'HTML i el CSS
+// (contact.css, :has) mostra només els de la branca marcada; la funció només llegeix els de la
+// branca triada. Amb JavaScript, a més, la branca inactiva es desactiva i no s'envia.
+// Els textos que depenen de la branca (etiqueta i ajuda de l'adjunt, desplegable de dades i ajuda de
+// la descripció) surten en les dues variants aprovades de ui.ts i el CSS mostra la de la branca.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import StructuredData from '../components/StructuredData.astro';
 import SiteHeader from '../components/SiteHeader.astro';
@@ -19,6 +25,8 @@ import { useUi } from '../i18n/ui';
 import { company, whatsappUrl } from '../config/site';
 import { labelledItem, listItems, one, paragraphs, parseInlines, parseMarkdown } from '../lib/markdown';
 import { getPage, isLegalVisible } from '../i18n/pages';
+import { ACCEPT_ATTRIBUTE, HONEYPOT_FIELD, INDUSTRIAL_PRODUCTS, MAX_ATTACHMENT_BYTES, PARTICULAR_SERVICES } from '../lib/contact/config';
+import { clientMessages, contactMessages } from '../lib/contact/messages';
 import './mockup-base.css';
 import './contact.css';
 
@@ -58,6 +66,21 @@ const marketingLabel = privacyReady && privacyPage.data.marketingLabel ? parseIn
 const marketingNote = privacyReady && privacyPage.data.marketingNote ? parseInlines(privacyPage.data.marketingNote) : undefined;
 
 const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
+
+// La funció valida amb src/lib/contact/: els desplegables, les etiquetes i la ruta han de coincidir.
+const formLocale = locale === 'es' ? 'es' : 'ca';
+const server = contactMessages[formLocale];
+const sameList = (options: readonly { value: string; label: string }[], allowed: Record<string, string>, name: string) => {
+  if (options.map((option) => option.value).join() !== Object.keys(allowed).join()) throw new Error(`Els valors de ${name} (ui.ts) no coincideixen amb src/lib/contact/config.ts.`);
+  if (formLocale === 'ca' && options.some((option) => option.label !== allowed[option.value])) throw new Error(`Les etiquetes de ${name} (ui.ts) no coincideixen amb les del correu (src/lib/contact/config.ts).`);
+};
+sameList(f.fields.services, PARTICULAR_SERVICES, 'services');
+sameList(f.fields.productionServices, INDUSTRIAL_PRODUCTS, 'productionServices');
+for (const field of ['nom', 'empresa', 'correu', 'telefon', 'ubicacio', 'descripcio', 'unitats', 'material', 'termini', 'sector'] as const) {
+  if (server.fieldLabels[field] !== f.fields[field]) throw new Error(`L'etiqueta «${f.fields[field]}» (ui.ts) no coincideix amb src/lib/contact/messages.ts.`);
+}
+if (server.contactPath !== ui.routes.contact) throw new Error(`La ruta de contacte de messages.ts (${server.contactPath}) no és ${ui.routes.contact}.`);
+const fileHint = (help: string) => `${help} ${server.fileHint}`;
 ---
 
 <BaseLayout page={page}>
@@ -109,7 +132,27 @@ const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
         </dl>
 
         <div class="contact-form-panel enter" style="--i:2">
-          <form id="contact-form" novalidate aria-label={f.label} data-contact-form data-errors={JSON.stringify(f.errors)} data-not-sent={f.notSent} data-industrial-path={ui.routes.industrial}>
+          <form
+            id="contact-form"
+            method="post"
+            action={`/api/contacte?idioma=${formLocale}`}
+            enctype="multipart/form-data"
+            novalidate
+            aria-label={f.label}
+            data-contact-form
+            data-errors={JSON.stringify(f.errors)}
+            data-messages={JSON.stringify(clientMessages(formLocale))}
+            data-max-bytes={MAX_ATTACHMENT_BYTES}
+            data-industrial-path={ui.routes.industrial}
+          >
+            <input type="hidden" name="idioma" value={formLocale} />
+            <input type="hidden" name="origen" value={route ?? ui.routes.contact} />
+            <input type="hidden" name="ref" value="" data-ref />
+            <input type="hidden" name="temps" value="" data-elapsed />
+            <div class="form-trap" aria-hidden="true">
+              <label for={HONEYPOT_FIELD}>{server.honeypot}</label>
+              <input id={HONEYPOT_FIELD} name={HONEYPOT_FIELD} type="text" tabindex="-1" autocomplete="off" />
+            </div>
             <div class="form-demo" role="note" id="form-pending">
               <strong>{f.demo}</strong>
               <p>{f.pending}{!privacy && ` ${f.pendingPrivacy}`}</p>
@@ -136,7 +179,7 @@ const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
                 <input id="nom" name="nom" autocomplete="name" required />
                 <p class="field-error" id="nom-error" hidden></p>
               </div>
-              <fieldset class="branch-fields field field-company" data-branch="empresa" hidden disabled>
+              <fieldset class="branch-fields field field-company" data-branch="empresa">
                 <label for="empresa">{f.fields.empresa}</label>
                 <input id="empresa" name="empresa" autocomplete="organization" />
               </fieldset>
@@ -159,48 +202,59 @@ const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
                 </select>
                 <p class="field-error" id="servei-error" hidden></p>
               </fieldset>
-              <fieldset class="branch-fields field field-full" data-branch="empresa" hidden disabled>
+              <fieldset class="branch-fields field field-full" data-branch="empresa">
                 <label for="servei-empresa">{f.fields.produccio}</label>
-                <select id="servei-empresa" name="servei">
+                <select id="servei-empresa" name="producte">
                   <option value="">{f.fields.produccioPlaceholder}</option>
                   {f.fields.productionServices.map((service) => <option value={service.value}>{service.label}</option>)}
                 </select>
+                <p class="field-error" id="servei-empresa-error" hidden></p>
               </fieldset>
 
               <div class="field field-full">
                 <label for="descripcio">{f.fields.descripcio} <span aria-hidden="true">*</span></label>
-                <textarea
-                  id="descripcio"
-                  name="descripcio"
-                  rows="4"
-                  required
-                  placeholder={f.fields.descripcioPlaceholder.particular}
-                  data-placeholder-particular={f.fields.descripcioPlaceholder.particular}
-                  data-placeholder-empresa={f.fields.descripcioPlaceholder.empresa}
-                ></textarea>
+                <div class="description-box">
+                  <!-- Amb JavaScript, el text d'ajuda és el placeholder de la branca (contact-form.ts). Sense
+                       JavaScript, el CSS mostra aquesta superposició, amb la variant de la branca marcada. -->
+                  <textarea
+                    id="descripcio"
+                    name="descripcio"
+                    rows="4"
+                    required
+                    placeholder=" "
+                    data-placeholder-particular={f.fields.descripcioPlaceholder.particular}
+                    data-placeholder-empresa={f.fields.descripcioPlaceholder.empresa}
+                  ></textarea>
+                  <span class="description-hint" aria-hidden="true"
+                    ><span data-branch-text="particular">{f.fields.descripcioPlaceholder.particular}</span><span data-branch-text="empresa"
+                      >{f.fields.descripcioPlaceholder.empresa}</span
+                    ></span
+                  >
+                </div>
                 <p class="field-error" id="descripcio-error" hidden></p>
               </div>
 
               <div class="field field-full upload-area" data-upload>
                 <span class="upload-text">
-                  <label for="adjunt" data-label-particular={f.upload.particular.label} data-label-empresa={f.upload.empresa.label}>{f.upload.particular.label}</label>
-                  <span id="upload-help" data-help-particular={f.upload.particular.help} data-help-empresa={f.upload.empresa.help}>{f.upload.particular.help}</span>
+                  <label for="adjunt"><span data-branch-text="particular">{f.upload.particular.label}</span><span data-branch-text="empresa">{f.upload.empresa.label}</span></label>
+                  <span id="upload-help"><span data-branch-text="particular">{fileHint(f.upload.particular.help)}</span><span data-branch-text="empresa">{fileHint(f.upload.empresa.help)}</span></span>
                 </span>
                 <span class="upload-control">
-                  <input id="adjunt" name="adjunt" type="file" aria-describedby="upload-help file-name" />
+                  <input id="adjunt" name="adjunt" type="file" accept={ACCEPT_ATTRIBUTE} aria-describedby="upload-help file-name" />
                   <label for="adjunt" class="upload-button" aria-hidden="true">{f.upload.choose}</label>
                   <span class="file-name" id="file-name" aria-live="polite">{f.upload.none}</span>
                 </span>
+                <p class="field-error" id="adjunt-error" hidden></p>
               </div>
 
               <details class="field-full form-extra">
-                <summary data-extra-summary data-label-particular={f.extra.particular} data-label-empresa={f.extra.empresa}>{f.extra.particular}</summary>
+                <summary><span data-branch-text="particular">{f.extra.particular}</span><span data-branch-text="empresa">{f.extra.empresa}</span></summary>
                 <div class="field-grid form-extra-grid">
                   <div class="field">
                     <label for="ubicacio">{f.fields.ubicacio}</label>
                     <input id="ubicacio" name="ubicacio" autocomplete="address-level2" />
                   </div>
-                  <fieldset class="branch-fields field-subgrid" data-branch="empresa" hidden disabled>
+                  <fieldset class="branch-fields field-subgrid" data-branch="empresa">
                     <div class="field"><label for="unitats">{f.fields.unitats}</label><input id="unitats" name="unitats" inputmode="numeric" /></div>
                     <div class="field"><label for="material">{f.fields.material}</label><input id="material" name="material" /></div>
                     <div class="field"><label for="termini">{f.fields.termini}</label><input id="termini" name="termini" /></div>
@@ -262,7 +316,7 @@ const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
             }
 
             <div class="form-finish">
-              <button type="submit" disabled data-submit aria-describedby="form-pending">{f.submit} <span class="arrow" aria-hidden="true">↗</span></button>
+              <button type="submit" data-submit aria-describedby="form-pending">{f.submit} <span class="arrow" aria-hidden="true">↗</span></button>
             </div>
             <p id="form-status" class="form-status" role="status" tabindex="-1" hidden></p>
           </form>

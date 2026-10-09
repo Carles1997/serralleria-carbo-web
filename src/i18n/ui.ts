@@ -1,5 +1,6 @@
 import type { Locale } from './config';
 import { resolveRoute } from '../config/routes';
+import { contactMessages } from '../lib/contact/messages';
 
 // Textos d'interfície. Origen: content/ca/ui.md i les etiquetes de les maquetes
 // validades de Fase 4 (fases/fase-4/FASE4-mockups/). El contingut de pàgina no
@@ -337,7 +338,7 @@ const ca = {
   // Plantilla C (contacte compartit). Redisseny del director (06/10/2026,
   // fases/fase-7/FASE7-brief-refinament-global-i-contacte.md): informació a l'esquerra i formulari a la
   // dreta, sense introducció ni columna repetida. Etiquetes del formulari de content/ca/ui.md.
-  // El formulari encara no envia: no hi ha cap estat d'èxit.
+  // El formulari envia a la funció /api/contacte (Fase 8, 8.5); en mode de demostració no envia res.
   contactPage: {
     nav: [
       { label: 'Inici', href: '/' },
@@ -409,15 +410,10 @@ const ca = {
       pending: 'Formulari en preparació: encara no envia consultes. Mentrestant, truca o escriu-nos per WhatsApp.',
       // S'afegeix a l'avís mentre content/ca/legal-formulari.md no estigui aprovat (Fase 8, tasca 8.4).
       pendingPrivacy: "El text de privacitat i el consentiment s'incorporaran abans d'activar-lo.",
-      errors: {
-        required: 'Falta informació en aquest camp.',
-        email: 'Revisa el format del correu electrònic.',
-        phone: 'Revisa el format del telèfon.',
-        summary: 'Revisa els camps marcats per continuar.',
-        consent: 'Marca aquesta casella per continuar.',
-      },
-      // Sense backend no hi ha enviament ni confirmació: s'ofereix el contacte directe.
-      notSent: "La consulta no s'ha enviat: el formulari encara no està actiu. Escriu-nos per WhatsApp o truca al 630 661 908.",
+      // Missatges compartits amb la funció del formulari (src/lib/contact/messages.ts, Fase 8, 8.5).
+      errors: contactMessages.ca.errors,
+      // Mode de demostració (dry-run): les dades són correctes, però no s'envia res.
+      notSent: contactMessages.ca.notSent,
     },
     place: {
       // Títol funcional petit (refinament del director, 06/10/2026). Mateix text que el H2 de contacte.md.
@@ -869,14 +865,8 @@ const es: UiStrings = {
       submit: 'Enviar consulta',
       pending: 'Formulario en preparación: todavía no envía consultas. Mientras tanto, llámanos o escríbenos por WhatsApp.',
       pendingPrivacy: 'El texto de privacidad y el consentimiento se incorporarán antes de activarlo.',
-      errors: {
-        required: 'Falta información en este campo.',
-        email: 'Revisa el formato del correo electrónico.',
-        phone: 'Revisa el formato del teléfono.',
-        summary: 'Revisa los campos marcados para continuar.',
-        consent: 'Marca esta casilla para continuar.',
-      },
-      notSent: 'La consulta no se ha enviado: el formulario todavía no está activo. Escríbenos por WhatsApp o llama al 630 661 908.',
+      errors: contactMessages.es.errors,
+      notSent: contactMessages.es.notSent,
     },
     place: {
       heading: 'Dónde estamos',

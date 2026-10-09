@@ -34,7 +34,7 @@
 3. **Indici de Search Console i Analytics.** La web WordPress porta **Site Kit by Google** (1.189.0), una etiqueta de Google `GT-T9H3C3ZW` i un contenidor de Tag Manager `GTM-TXQ24TCC`. **És un indici, no una confirmació** d'accés ni de dades: cal preguntar al client qui controla aquests comptes i demanar-hi accés **abans** de la migració ([preguntes](FASE6-bloc1-resultats.md#2-search-console-què-hem-de-demanar)). Les etiquetes no es copien al web nou.
 4. **De les 15 URL de la web antiga, 13 tenen una regla llesta** i comprovada avui a la previsualització. Queden obertes les cinc de la decisió C2 i quatre adreces noves detectades avui (feeds i `/cat/`).
 5. **Les propostes de contingut són poques i concretes:** els títols d'Industrial i Capacitats (C8), la descripció d'Industrial, perquè resumeixi l'oferta i deixi les dades tècniques a Capacitats, i, com a opció, el títol d'Estructures. **Actualització (08/10/2026):** E1–E5 aprovats i implementats, E6 ajornat ([bloc 3](FASE6-bloc3-proposta-editorial.md)).
-6. **La publicació depèn de condicions que no són SEO:** el formulari (8.5), les imatges conceptuals (8.6), la seguretat (8.9), la revisió de l'assessor (8.10), les dades NAP (C3, C5), els crèdits de Netlify i el canvi de DNS.
+6. **La publicació depèn de condicions que no són SEO:** el formulari (8.5), els drets d'imatge (8.6; les fotografies visibles actuals són definitives per decisió del director del 09/10/2026), la seguretat (8.9), la revisió de l'assessor (8.10), les dades NAP (C3, C5), els crèdits de Netlify i el canvi de DNS.
 
 ---
 
@@ -84,12 +84,12 @@ Contrast de cada punt de [FASE6-pla-accio.md](FASE6-pla-accio.md) amb el codi i 
 | C6 Categories del GBP | Decisió (client i director) | El canvi de categoria principal s'ha de fer amb el web nou ja publicat. |
 | C7 Ressenyes | Decisió (client) | Sense canvis. |
 | C8 Títols d'Industrial | Decisió (director) | Recomanada: apartat 3. |
-| C9 Imatges per compartir | Decisió (director) | Depèn de les fotos reals autoritzades (8.6). |
+| C9 Imatges per compartir | Decisió (director) | Les fotografies visibles actuals són definitives (09/10/2026): es pot triar entre elles. Una imatge conceptual no pot representar una obra real. Els drets, a 8.6. |
 | C10 Enllaços a `/empresa/` | Obsolet | Pàgina retirada el 06/10/2026. |
 | C11 Versió en castellà | Decisió (director) | Cal decidir si el llançament és només en català. Si ho és, `/estructuras/` i `/motores/` necessiten la solució provisional de la C2. |
 | C12 Ampliar pàgines curtes | Obsolet en el seu objectiu | El director ha reduït el text de tota la web (06/10/2026, [FASE7-menys-text](../fase-7/FASE7-menys-text.md)) i aquest encàrrec demana no allargar textos. Dues preguntes del client continuen sent útils com a dades, no per ampliar pàgines: municipis habituals (C12.3) i si fan duplicats de claus o venen comandaments (C12.8). |
 | C13 Ressenyes al web | Decisió (client) | P3. |
-| C14 `alt` d'obra real | Decisió (director) | Depèn de 8.6. Avui totes les imatges tenen `alt`. |
+| C14 `alt` d'obra real | Decisió (director) | Fotografies definitives des del 09/10/2026. Avui totes les imatges tenen `alt`. Les conceptuals no poden descriure's com a obra de l'empresa. |
 | C15 Facebook | Decisió (client) | P3. |
 
 ### Bloc D · Accions amb accés del client
@@ -295,7 +295,7 @@ Les intencions principals venen de [SEO-F3](../fase-3/SEO-F3.md). Les cerques re
 | T6 | Dades estructurades | `LocalBusiness` (Home i Contacte, mateix `@id`) amb horari, coordenades i `sameAs` del GBP. `BreadcrumbList` a 5 rutes. `logo` i `image` apunten a un fitxer amb empremta a `/_astro/`: és estable mentre no canviï el logotip. | B3: validar a la previsualització. Telèfon i adreça segons C3 i C5. Opcional (P3): servir el logotip des d'una URL fixa. | Ara i al domini | Rich Results Test sense errors i validador de Schema.org sense errors. NAP idèntic al GBP. |
 | T7 | Redireccions | 13 llestes; a `revisio-client`, un sol salt, amb i sense barra, i conserven els paràmetres. Pendents: C2 i adreces noves (apartat 5). | Bloc 1: script de comprovació en viu, reutilitzable. | Ara, dia del llançament, +1 dia, +7 dies | Cada URL antiga: estat esperat, `Location` exacta i destí 200. |
 | T8 | Metadades | Títols i descripcions únics, de 30 a 62 i de 90 a 151 caràcters. Un H1 per pàgina. Sense `hreflang` (només català: és correcte). | Propostes de l'apartat 3. | Abans de C1 | Revisió a `dist/`. |
-| T9 | Imatges | AVIF i WebP amb reserva JPG, mides declarades, càrrega diferida i `alt` a totes. Hi ha imatges conceptuals (`src/config/photography.ts`). | 8.6: substituir-les o no presentar-les com a obra real. Imatge OG per branca (C9). | Abans de publicar | Inventari d'imatges conceptuals sense cap ús que documenti un cas. |
+| T9 | Imatges | AVIF i WebP amb reserva JPG, mides declarades, càrrega diferida i `alt` a totes. Hi ha imatges conceptuals (`src/config/photography.ts`). | 8.6: no presentar-les com a obra real (ja no se substitueixen; decisió del 09/10/2026). Imatge OG per branca (C9). | Abans de publicar | Inventari d'imatges conceptuals sense cap ús que documenti un cas. |
 | T10 | Rendiment | Laboratori (Fase 7): LCP mòbil de 0,9 a 2,1 s i CLS ≤ 0,03. Netlify ja serveix Brotli. JS < 10 KB. | PageSpeed des del web sobre la previsualització (sense clau). CrUX quan hi hagi trànsit. | Ara i +28 dies | LCP ≤ 2,5 s, INP ≤ 200 ms, CLS ≤ 0,1 al percentil 75 quan hi hagi dades de camp. |
 | T11 | HTTPS i HSTS | `netlify.app` envia HSTS. El domini encara serveix WordPress. | Comprovar HSTS, `http`→`https` i domini sense `www` → `www` al domini. | Dia del llançament | Un sol salt cap a `https://www.`. |
 | T12 | 404 i 410 | 404 real amb `404.html`. Les 410 serveixen la mateixa pàgina amb estat 410. | Cap. | Repetir al domini | — |
@@ -421,7 +421,7 @@ Poden avançar en paral·lel al SEO, però tots s'han de complir abans del canvi
 |---|---|---|
 | Continguts aprovats per indexar | C1 | Director |
 | Formulari operatiu i provat (condició per indexar Contacte) | 8.5 | Claude i director |
-| Imatges conceptuals resoltes i drets d'imatge | 8.6 | Client i director |
+| Drets d'imatge (les fotografies visibles actuals són definitives des del 09/10/2026) | 8.6 | Client i director |
 | Seguretat: CSP i HSTS al domini | B4 / 8.9 | Claude |
 | Revisió final de l'assessor | 8.10 | Assessor |
 | Telèfon i adreça definitius (NAP) | C3, C5 | Client |
@@ -442,7 +442,7 @@ Poden avançar en paral·lel al SEO, però tots s'han de complir abans del canvi
 | **Errors** | Search Console: 404, errors de servidor, redireccions; script de redireccions | +1, +7, +28 dies; després mensual | Cap URL antiga amb valor en 404. Cap error 5xx. |
 | **Cerques rellevants** | Search Console, consultes per pàgina | Mensual | Agrupades en marca, serralleria local, portes i automatismes, estructures i baranes, i Industrial. Cada grup ha d'arribar a la seva pàgina propietària (apartat 3). |
 | **Clics** | Search Console; clics al web del GBP | Mensual | Comparar amb la línia base: 102 clics del GBP en sis mesos (uns 17 al mes) i l'export de Search Console. |
-| **Contactes reals** | Enviaments del formulari (Netlify Forms, quan s'activi la 8.5); trucades i indicacions del GBP (B6); registre del client | Mensual | Tendència de consultes per branca. Les trucades des del web no es poden atribuir sense analítica: es proposa que el client anoti com l'han conegut. |
+| **Contactes reals** | Consultes del formulari (correus a `carbo@` amb referència, quan s'activi la 8.5; Microsoft 365 substitueix Netlify Forms des del 09/10/2026); trucades i indicacions del GBP (B6); registre del client | Mensual | Tendència de consultes per branca. Les trucades des del web no es poden atribuir sense analítica: es proposa que el client anoti com l'han conegut. |
 | Puntuació d'auditoria | claude-seo | Trimestral | Indicador secundari. No guia prioritats. |
 
 **Opció per decidir (P2, sense galetes):** que el formulari enviï, en un camp ocult, la pàgina des d'on s'envia, per saber quines rutes generen consultes. Es valoraria amb la 8.5 i la revisió de l'assessor.

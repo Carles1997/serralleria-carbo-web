@@ -10,9 +10,12 @@
 5. **No es bloquegen globalment els enviaments externs de `carbo@`.** La bústia ha de continuar funcionant amb normalitat.
 
 **Estat:**
-- **Implementat en local en mode de demostració (`dry-run`)** i provat amb proves unitàries i de navegador (§6).
-- **No s'ha desplegat.** No s'ha enviat cap correu real, no s'ha fet cap petició a Microsoft 365 i no s'han modificat el DNS, la producció ni la indexació.
-- **L'avís «Formulari de demostració» es manté.**
+- **Implementat i desplegat a `revisio-client` en mode de demostració (`dry-run`)**:
+  - commit `8ba62b0`;
+  - desplegament `6ac86ffaa8239704b9ab5d2d`, 09/10/2026, 06:40 (hora de Barcelona);
+  - resultats al §6.1.
+- **Cap correu real.** No s'ha fet cap petició a Microsoft 365 i no s'han modificat el DNS, la producció, la indexació ni les variables d'entorn de Netlify.
+- **L'avís «Formulari de demostració» i el `noindex` es mantenen.**
 
 **Canvis respecte a la segona versió:**
 - S'han eliminat la bústia `web@` i la regla que bloquejava els enviaments externs de la bústia remitent.
@@ -229,8 +232,8 @@ No hi ha cap avís automàtic.
 | **Còpia a Enviats** | Cap | — | `saveToSentItems: false` |
 
 **Límit de la neteja programada:** Netlify només executa les funcions programades al desplegament publicat. A `revisio-client`:
-- la funció de contacte també neteja de manera oportunista, com a molt cada 10 minuts per instància, però només quan rep peticions;
-- després de cada sessió de proves cal executar `neteja-temporals` amb «Run now».
+- la funció de contacte també neteja de manera oportunista, com a molt cada 10 minuts per instància, però només quan rep peticions. **Comprovat a Netlify el 09/10/2026** (§6.1);
+- després de cada sessió de proves cal executar `neteja-temporals` amb «Run now» o esborrar les entrades amb `netlify blobs:delete`. El 09/10/2026 es van esborrar amb la CLI (14 entrades).
 
 **Regió per defecte:** les funcions s'executen a `cmh` (Ohio, EUA) i Blobs, a `us-east-2`. L'advocat ho ha de confirmar.
 
@@ -295,7 +298,7 @@ Font única: `src/lib/contact/messages.ts`, en català i castellà. `ui.ts` la r
 | Error d'enviament | Missatge amb el correu i el WhatsApp |
 | Petició il·legible | Missatge d'error de lectura |
 
-## 5. Implementació (local, sense desplegar)
+## 5. Implementació (commit `8ba62b0`, desplegada a `revisio-client` en `dry-run`)
 
 | Fitxer | Contingut |
 |---|---|
@@ -337,11 +340,43 @@ Font única: `src/lib/contact/messages.ts`, en català i castellà. `ui.ts` la r
 | Selector d'idioma (`check-language-switcher.py`) | 12/12 |
 | Empaquetat de les dues funcions amb esbuild | Correcte |
 
+### 6.1 Resultats a `revisio-client` (Netlify, `dry-run`, 09/10/2026)
+
+**Mètode:**
+- **Prova:** `scripts/qa/check-contact-form-remote.py` (Chromium i peticions HTTP directes), executada contra https://revisio-client--serralleriacarbo.netlify.app.
+- **Magatzem:** consultat amb `netlify blobs:list` i `netlify blobs:get` (store `formulari-contacte`).
+- **Sense correus:** la funció és en `dry-run`.
+- **Context de Netlify:** el desplegament amb àlies és `branch-deploy`. Les claus queden a l'àmbit `dry-run/branch-deploy`.
+
+| Comprovació | Resultat |
+|---|---|
+| **Pàgines** `/contacte/` i `/es/contacto/` | `200`, `X-Robots-Tag: noindex`, `meta robots noindex`, avís de demostració visible, `action` correcte, botó actiu |
+| **Funció** `/api/contacte` (GET) | `405` amb `Allow: POST`, `Cache-Control: no-store` i `X-Robots-Tag: noindex` |
+| **Validació al servidor** (JavaScript, català) | `400`; «Descriu la consulta amb paraules.» sota el camp |
+| **Adjunt d'exactament 3.000.000 bytes** (JavaScript, català) | `200`, `state=dry-run` |
+| **Adjunt de 3.000.001 bytes** | Aturat al navegador. Petició directa: `413` JSON de la funció (`too-large`) |
+| **Adjunt de 2.999.999 bytes** (sense JavaScript, castellà) | `200`; pàgina en castellà amb `noindex` |
+| **Petició de 7 MB** | Netlify la rebutja abans de la funció: `413` amb cos buit (`text/plain`). En una execució, mentre la regla de Netlify bloquejava la connexió, la connexió es va tallar. Amb JavaScript, el navegador ho atura abans d'enviar |
+| **Industrial sense JavaScript** | Empresa, producte i dades tècniques visibles i actius; servei de Particulars amagat. `200` sense triar cap servei de Particulars |
+| **Duplicats** | Reenviament sense canvis: `duplicate=true`, mateixa referència. 3 peticions simultànies amb la mateixa referència: una acceptació nova i dues `duplicate=true` |
+| **Errors de JavaScript** | Cap |
+| **Límit horari (capa 2)** | **Mateixa instància:** la sisena consulta vàlida de l'hora rep `429` JSON (`rate-limited`). El comptador era exactament `{"count":5}`.<br>**Diverses instàncies:** en una altra execució, la sisena consulta va arribar a una altra instància i es va acceptar. Al magatzem hi havia dos comptadors per a la mateixa IP en la mateixa hora (`5` i `1`). És el comportament esperat en `dry-run` sense `RL_SECRET`, perquè cada instància té un secret provisional, i confirma que `RL_SECRET` és imprescindible en `test` i `live`. La prova ho marca com a avís |
+| **Regla de Netlify (capa 1)** | En dues ràfegues de 10 peticions (una cada 1,5 s), les 6–7 primeres reben `405` i les següents, `429` amb cos buit. És aproximada, com diu la documentació |
+| **Regla de Netlify amb un POST** | Mentre la regla bloqueja, un POST amb cos pot rebre una **connexió tallada** en lloc d'un `429`. Amb JavaScript, el formulari mostra el missatge d'error amb el telèfon i el correu. Sense JavaScript, el navegador mostraria el seu error de connexió. Només afecta qui fa més de ~5 peticions per minut des de la mateixa IP. Va passar dues vegades en aquestes proves, perquè el ritme de la prova era massa ajustat: ara la prova espera 20 s entre peticions |
+| **Neteja horària oportunista** | Abans de la primera petició es van plantar dues entrades velles: un comptador d'una hora anterior i una referència de més d'1 h. Totes dues van desaparèixer amb la primera petició a la instància nova. Després del canvi d'hora UTC, el comptador de les 04 (`rl/2026100904/…`) es va esborrar amb la primera petició de les 05 |
+| **Neteja final** | Les 14 entrades de les proves (comptadors i referències) es van esborrar amb `netlify blobs:delete`. El magatzem va quedar buit a les 07:11 (hora de Barcelona) |
+
+**No comprovat a Netlify:**
+- **Pujada en xarxa lenta:** el temps mesurat inclou les pauses de la prova i no és fiable.
+- **«Run now» de la funció programada:** cal fer-ho des del panell; s'ha substituït per la neteja oportunista i la CLI.
+- **Comptador compartit entre instàncies amb `RL_SECRET`:** requereix configurar la variable a Netlify, i aquest canvi no està autoritzat.
+
 **Pendents (requereixen autorització):**
 
 | Fase | Prova | Criteri |
 |---|---|---|
-| **5.2 `dry-run` a `revisio-client`** | Repetir les proves de navegador contra Netlify; adjunt d'exactament 3.000.000 bytes i de 3.000.001; petició de més de 6 MB sense JavaScript; `429` de la capa 1; pujada en xarxa lenta; adaptador de Blobs; «Run now» de la neteja i comprovació que el magatzem queda buit | Mateixos resultats que en local. Documentar què mostra Netlify amb més de 6 MB i amb el `429` de la capa 1 |
+| **5.2 bis** (opcional) | Configurar `RL_SECRET` (abast «Branch deploys») i repetir el límit horari amb diverses instàncies; pujada en xarxa lenta; «Run now» de `neteja-temporals` | Un sol comptador per IP i hora; la sisena consulta, `429` |
+| ~~**5.2 `dry-run` a `revisio-client`**~~ **Fet el 09/10/2026 (§6.1)**, excepte els punts de 5.2 bis | Repetir les proves de navegador contra Netlify; adjunt d'exactament 3.000.000 bytes i de 3.000.001; petició de més de 6 MB sense JavaScript; `429` de la capa 1; pujada en xarxa lenta; adaptador de Blobs; «Run now» de la neteja i comprovació que el magatzem queda buit | Mateixos resultats que en local. Documentar què mostra Netlify amb més de 6 MB i amb el `429` de la capa 1 |
 | **Comprovació de l'administrador** | `Test-ServicePrincipalAuthorization` amb `carbo@` i amb una altra bústia | `True` i `False` |
 | **5.3 `test` a `revisio-client`** (correus «[PROVA]» a `carbo@`, amb autorització del director i del client) | 4 enviaments: Particulars i Industrial, en català i castellà. Un porta un adjunt d'**exactament 3.000.000 bytes** | A la safata d'entrada de `carbo@`, no a la brossa ni a la quarantena; traça del missatge per referència; Reply-To, accents, adjunt íntegre, consentiment, data i referència correctes; cap còpia a Enviats. Si Graph rebutja els 3.000.000 bytes, es baixa el límit i es repeteixen el màxim exacte, un byte per sota i un per sobre |
 | **5.4 Resposta** | Respondre una consulta de prova amb «Respon» | La resposta va al correu del visitant de prova |
@@ -367,7 +402,9 @@ Font única: `src/lib/contact/messages.ts`, en català i castellà. `ui.ts` la r
   - **Navegadors sense `:has()`:** es veuen els camps de les dues branques. La funció només llegeix els de la branca triada.
 - **Proves sense JavaScript:** Playwright no pot comprovar l'estabilitat dels elements (en aquest context no avancen els fotogrames d'animació), així que els enviaments es fan amb el teclat. No afecta els usuaris.
 - **El màxim de 3.000.000 bytes no està validat amb Graph** fins a la prova 5.3.
-- **Capa 1 de freqüència, adaptador de Blobs i neteja programada:** no es poden provar fora de Netlify.
+- **Neteja programada:** Netlify no l'executa en desplegaments no publicats. Funcionen la neteja oportunista i la del panell o la CLI (§6.1).
+- **Regla de Netlify amb un POST:** pot tallar la connexió en lloc de respondre `429` (§6.1).
+- **En `dry-run` sense `RL_SECRET`,** el límit horari és per instància (§6.1).
 - **Credencial de `carbo@`:** permet enviar com la bústia principal (§4.5).
 - **Correu brossa:** sense Akismet en pot arribar més. Es revisarà el primer mes.
 - **Duplicats:** són possibles en errors ambigus i en reenviaments nadius, i es poden identificar per la referència.
@@ -388,36 +425,57 @@ Cap resposta no ha d'incloure secrets ni contrasenyes.
 6. Es pot aplicar una retenció a les consultes web de `carbo@` (termini pendent de l'advocat), o es farà manualment?
 7. Pot activar el DKIM de Microsoft 365 quan el client autoritzi el canvi de DNS?
 
-## 10. Missatge per a l'administrador de Microsoft 365
+## 10. Missatge definitiu per a l'administrador de Microsoft 365
 
-> **Assumpte:** Formulari web de Serralleria Carbó · permís d'enviament per a carbo@
+Versió definitiva del 09/10/2026, per enviar-la tal com és.
+
+> **Assumpte:** Serralleria Carbó · Autorització d'enviament del formulari web des de carbo@serralleriacarbo.com
 >
 > Bon dia,
 >
-> El nou web de Serralleria Carbó enviarà les consultes del formulari de contacte com a correu, des de `carbo@serralleriacarbo.com` i cap a la mateixa bústia, amb Microsoft Graph. El Reply-To serà el correu del visitant. Abans d'activar-ho necessitem la configuració següent:
+> El nou web de Serralleria Carbó té un formulari de contacte que enviarà cada consulta per correu amb Microsoft Graph. El remitent i el destinatari seran sempre `carbo@serralleriacarbo.com`, i el Reply-To serà el correu del visitant. El destinatari està fixat al codi del servidor: el formulari no el pot canviar.
 >
-> 1. **Aplicació a Microsoft Entra** (per exemple, «Formulari web Serralleria Carbó»), **sense** cap permís d'aplicació de Microsoft Graph consentit a Entra. Si es concedís `Mail.Send` a Entra, l'aplicació podria enviar des de qualsevol bústia.
-> 2. **Credencial:** preferiblement un certificat (es carrega la part pública a l'aplicació). Si no és possible, un secret de 12 mesos.
-> 3. **Permís limitat a carbo@ amb RBAC per a aplicacions** (Exchange Online PowerShell):
->    - `New-ServicePrincipal` amb l'identificador de l'aplicació i el de l'objecte que apareixen a *Enterprise applications*;
->    - `New-ManagementScope -Name "Formulari web carbo" -RecipientRestrictionFilter "PrimarySmtpAddress -eq 'carbo@serralleriacarbo.com'"`;
->    - `New-ManagementRoleAssignment -App <ObjectId> -Role "Application Mail.Send" -CustomResourceScope "Formulari web carbo"`.
-> 4. **Comprovació:** `Test-ServicePrincipalAuthorization` ha de donar `InScope = True` per a carbo@ i `False` per a una altra bústia. N'hi ha prou que ens envieu aquest resultat. Els canvis poden trigar fins a 2 hores a aplicar-se.
-> 5. **Variables a Netlify:** quan acordem el moment, introduïu-les **directament** a les variables d'entorn del projecte de Netlify (abast «Functions»):
->    - `M365_TENANT_ID`;
->    - `M365_CLIENT_ID`;
->    - amb certificat: `M365_CERT_THUMBPRINT` i `M365_PRIVATE_KEY_PEM` (clau privada en format PKCS#8);
->    - amb secret: `M365_CLIENT_SECRET`.
+> Us demanem que autoritzeu aquest enviament amb un permís **limitat exclusivament a la bústia carbo@**:
 >
->    No ens envieu cap secret, contrasenya ni clau per correu ni per xat.
+> **1. Aplicació a Microsoft Entra**
+> - Registreu una aplicació, per exemple «Formulari web Serralleria Carbó», d'un sol inquilí.
+> - **No hi concediu cap permís d'aplicació de Microsoft Graph amb consentiment de l'administrador** (ni `Mail.Send` ni cap altre). Els permisos d'Entra s'afegirien a l'àmbit d'Exchange i donarien accés a totes les bústies.
+> - **Credencial:** preferiblement un certificat (a l'aplicació només s'hi carrega la part pública). Si no és possible, un secret de 12 mesos com a màxim.
 >
-> No cal bloquejar els enviaments externs de carbo@: la bústia ha de continuar funcionant amb normalitat. El destinatari del formulari està fixat al codi del servidor.
+> **2. Permís limitat a carbo@ (RBAC per a aplicacions d'Exchange Online, PowerShell)**
+> ```powershell
+> New-ServicePrincipal -AppId <Application (client) ID> -ObjectId <Object ID de l'aplicació a Enterprise applications> -DisplayName "Formulari web Serralleria Carbó"
+> New-ManagementScope -Name "Formulari web - carbo" -RecipientRestrictionFilter "PrimarySmtpAddress -eq 'carbo@serralleriacarbo.com'"
+> New-ManagementRoleAssignment -App <Object ID> -Role "Application Mail.Send" -CustomResourceScope "Formulari web - carbo"
+> ```
+> Fan falta el rol *Exchange Administrator* a Entra i la pertinença a *Organization Management* a Exchange Online. Els canvis poden trigar fins a 2 hores a aplicar-se.
 >
-> També us volem demanar:
-> - si carbo@ té alguna regla, quarantena o límit de mida que afecti un missatge que s'envia a si mateixa amb un adjunt de fins a 3 MB;
-> - qui renovarà la credencial abans que caduqui i qui la revocaria si calgués;
-> - si podeu comprovar la traça dels missatges de prova.
+> **3. Comprovació**
+> ```powershell
+> Test-ServicePrincipalAuthorization -Identity <Object ID> -Resource carbo@serralleriacarbo.com
+> Test-ServicePrincipalAuthorization -Identity <Object ID> -Resource <una altra bústia>
+> ```
+> El primer ha de donar `InScope = True` i el segon, `False`. Envieu-nos només aquest resultat.
 >
-> No s'enviarà cap correu real fins que el director ho autoritzi. Les primeres proves portaran «[PROVA]» a l'assumpte.
+> **4. Credencials, directament a Netlify**
+> Quan acordem el moment, introduïu-les **vosaltres mateixos** a les variables d'entorn del projecte de Netlify `serralleriacarbo`, marcades com a secretes i amb l'abast «Functions»:
+> - `M365_TENANT_ID` i `M365_CLIENT_ID`;
+> - amb certificat: `M365_CERT_THUMBPRINT` (empremta SHA-1 que mostra Entra) i `M365_PRIVATE_KEY_PEM` (clau privada en format PKCS#8, «BEGIN PRIVATE KEY»);
+> - amb secret: `M365_CLIENT_SECRET`.
 >
-> Gràcies.
+> **No ens envieu cap secret, contrasenya, clau privada ni certificat per correu, per xat ni per cap altre canal.** Si cal accés a Netlify, el propietari de l'equip us el facilitarà.
+>
+> **5. El que no cal fer**
+> - No cal crear cap bústia nova.
+> - No cal bloquejar els enviaments externs de carbo@: la bústia ha de continuar funcionant amb normalitat.
+>
+> **6. Ens podeu confirmar, si us plau:**
+> 1. si carbo@ té alguna regla de flux de correu, quarantena, filtre o límit de mida que afecti un missatge que la bústia s'envia a si mateixa amb un adjunt de fins a 3 MB;
+> 2. la data de caducitat de la credencial i qui la renovarà; i qui la revocaria en cas d'incidència (eliminant-la a Entra);
+> 3. si podreu revisar els inicis de sessió de l'aplicació i la traça dels missatges de prova;
+> 4. si es pot aplicar una retenció a les consultes web de carbo@ (el termini el fixarà l'assessor) o si es gestionarà manualment;
+> 5. si podreu activar el DKIM de Microsoft 365 quan el client autoritzi el canvi de DNS.
+>
+> El formulari és ara en mode de demostració i **no envia cap correu**. Només s'activarà amb l'autorització del director. Les primeres proves arribaran a carbo@ amb «[PROVA]» a l'assumpte.
+>
+> Moltes gràcies.

@@ -9,12 +9,14 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 
 ## Navegació general
 
-- Inici
-- Empresa
+Indicació del director (12/10/2026): la barra de dalt mostra els mateixos enllaços a totes les pàgines. Les navegacions de branca següents es mantenen com a referència de les pàgines de cada branca (molles de pa i enllaços interns), no a la capçalera.
+
 - Particulars
 - Industrial
-- Contacte
-- Idioma
+- Serveis
+- Projectes
+- Contacte (menú mòbil)
+- Idioma: desplegable amb Català, Castellano i English
 
 ## Navegació Particulars
 

@@ -1,6 +1,6 @@
 # Fase 5 · URL per idioma
 
-**Actualitzat:** 08/10/2026 · **Estat:** convenció decidida. **Castellà: slugs adoptats per al llançament** (decisió del director del 08/10/2026: català i castellà des del primer dia; implementació a [FASE6-bloc5-castella](../fase-6/FASE6-bloc5-castella.md)). **Anglès: ajornat**; els seus slugs continuen com a proposta.
+**Actualitzat:** 08/10/2026 · **Estat:** convenció decidida. **Castellà: slugs adoptats per al llançament** (decisió del director del 08/10/2026: català i castellà des del primer dia; implementació a [FASE6-bloc5-castella](../fase-6/FASE6-bloc5-castella.md)). **Anglès: implementat el 12/10/2026** per indicació del director, amb els slugs de la proposta (`/en/residential/…`, `/en/industrial/…`, `/en/contact/`, `/en/legal/…`; Urgències → `/en/residential/repairs/`). Continguts a `content/en/` en esborrany, pendents d'aprovació; textos legals traduïts pendents de validació jurídica (avís i noindex).
 
 ## Decisió del director (28/09/2026)
 

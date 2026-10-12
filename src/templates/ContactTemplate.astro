@@ -68,7 +68,7 @@ const marketingNote = privacyReady && privacyPage.data.marketingNote ? parseInli
 const whatsapp = whatsappUrl(ui.contact.whatsappMessage);
 
 // La funció valida amb src/lib/contact/: els desplegables, les etiquetes i la ruta han de coincidir.
-const formLocale = locale === 'es' ? 'es' : 'ca';
+const formLocale = locale;
 const server = contactMessages[formLocale];
 const sameList = (options: readonly { value: string; label: string }[], allowed: Record<string, string>, name: string) => {
   if (options.map((option) => option.value).join() !== Object.keys(allowed).join()) throw new Error(`Els valors de ${name} (ui.ts) no coincideixen amb src/lib/contact/config.ts.`);
@@ -84,7 +84,7 @@ const fileHint = (help: string) => `${help} ${server.fileHint}`;
 ---
 
 <BaseLayout page={page}>
-  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} nav={t.nav} current={route} />
+  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} />
 
   <main id="contingut" class="contact-page">
     <section class="contact-main" aria-labelledby="contact-title" data-surface="light">

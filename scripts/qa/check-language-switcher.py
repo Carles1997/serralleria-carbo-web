@@ -1,5 +1,6 @@
-"""Proves de navegador del selector d'idioma (09/10/2026): l'enllaç reflecteix l'estat actual
-(filtre del portafoli, paràmetres del formulari, àncora) quan es fa servir, amb navegació nativa.
+"""Proves de navegador del selector d'idioma (09/10/2026; desplegable amb tres idiomes des del
+12/10/2026): cada enllaç reflecteix l'estat actual (filtre del portafoli, paràmetres del formulari,
+àncora) quan es fa servir, amb navegació nativa.
 
 Ús (amb un Python que tingui Playwright i una previsualització en marxa):
   python -I scripts/qa/check-language-switcher.py http://localhost:4322
@@ -20,13 +21,20 @@ with sync_playwright() as pw:
     b = pw.chromium.launch()
     c = b.new_context(viewport={'width': 1280, 'height': 900})
     p = c.new_page()
-    switch = 'a[data-lang-switch]'
+    switch = 'a[data-lang-switch][hreflang=es]'
+    to_ca = 'a[data-lang-switch][hreflang=ca]'
+
+    def open_menu(page):
+        # El selector és un desplegable (<details>): cal obrir-lo per fer servir els enllaços.
+        if not page.evaluate('() => document.querySelector("[data-lang-menu]").open'):
+            page.click('.header-lang summary')
 
     # 1. Entrar a Projectes, canviar de filtre i després d'idioma (clic real).
     p.goto(B + '/particulars/projectes/', wait_until='load')
     p.click('.folio-filters button[data-filter="automatismes"]')
     p.wait_for_timeout(300)
     before = p.get_attribute(switch, 'href')
+    open_menu(p)
     with p.expect_navigation():
         p.click(switch)
     after = p.evaluate('() => [location.pathname + location.search, document.querySelector(".folio-filters button[aria-pressed=\\"true\\"]")?.dataset.filter]')
@@ -36,8 +44,9 @@ with sync_playwright() as pw:
     p.goto(B + '/es/particulares/proyectos/?servei=estructures', wait_until='load')
     p.click('.folio-filters button[data-filter="tots"]')
     p.wait_for_timeout(300)
+    open_menu(p)
     with p.expect_navigation():
-        p.click(switch)
+        p.click(to_ca)
     landed = p.evaluate('() => location.pathname + location.search')
     check('2. amb filtre, «Tots» i idioma', landed == '/particulars/projectes/', {'destí': landed})
 
@@ -45,6 +54,7 @@ with sync_playwright() as pw:
     p.goto(B + '/industrial/', wait_until='load')
     p.click('a[href="#contacte"] >> nth=0')
     p.wait_for_timeout(300)
+    open_menu(p)
     with p.expect_navigation():
         p.click(switch)
     landed = p.evaluate('() => [location.pathname + location.hash, !!document.getElementById(location.hash.slice(1))]')
@@ -54,6 +64,7 @@ with sync_playwright() as pw:
     p.goto(B + '/legal/avis-legal/', wait_until='load')
     p.click('a[href="#comunicacions"] >> nth=0')
     p.wait_for_timeout(300)
+    open_menu(p)
     with p.expect_navigation():
         p.click(switch)
     landed = p.evaluate('() => [location.pathname + decodeURIComponent(location.hash), !!document.getElementById(decodeURIComponent(location.hash.slice(1)))]')
@@ -71,6 +82,7 @@ with sync_playwright() as pw:
 
     # 4. Paràmetres funcionals del formulari.
     p.goto(B + '/contacte/?tipus=empresa&servei=peces', wait_until='load')
+    open_menu(p)
     with p.expect_navigation():
         p.click(switch)
     landed = p.evaluate('() => [location.pathname + location.search, document.querySelector("input[name=tipus]:checked")?.value]')
@@ -80,8 +92,9 @@ with sync_playwright() as pw:
     p.goto(B + '/es/particulares/proyectos/', wait_until='load')
     p.click('.folio-filters button[data-filter="estructures"]')
     p.wait_for_timeout(300)
+    open_menu(p)
     with c.expect_page() as new_page:
-        p.click(switch, modifiers=['Control'])
+        p.click(to_ca, modifiers=['Control'])
     tab = new_page.value
     tab.wait_for_load_state('load')
     check('5. Ctrl+clic: nova pestanya amb l\'estat actual', tab.url.endswith('/particulars/projectes/?servei=estructures'), {'pestanya': tab.url, 'original': p.url})
@@ -91,6 +104,7 @@ with sync_playwright() as pw:
     p.goto(B + '/particulars/projectes/', wait_until='load')
     p.click('.folio-filters button[data-filter="estructures"]')
     p.wait_for_timeout(300)
+    open_menu(p)
     p.click(switch, button='right')
     href = p.get_attribute(switch, 'href')
     check('6. menú contextual', href.endswith('/es/particulares/proyectos/?servei=estructures'), {'href': href})
@@ -115,8 +129,9 @@ with sync_playwright() as pw:
     closed = [toggle.get_attribute('aria-expanded'), mp.evaluate('() => document.getElementById("mobile-nav").classList.contains("is-open")')]
     href = mp.evaluate('() => { const a = document.querySelector("a[data-lang-switch]"); a.dispatchEvent(new Event("focus")); return a.getAttribute("href"); }')
     phase[0] = 'navegació'
+    mp.locator('.header-lang summary').tap()
     with mp.expect_navigation():
-        mp.locator('a[data-lang-switch]').tap()
+        mp.locator(switch).tap()
     landed = mp.evaluate('() => location.pathname + location.hash')
     entry_errors = [message for stage, message in errors if stage == 'entrada']
     transition = [message for stage, message in errors if stage == 'navegació' and message.startswith('Transition was aborted')]
@@ -128,10 +143,33 @@ with sync_playwright() as pw:
 
     # 9. Àncora vàlida amb accents (codificada a la URL): es manté l'equivalència.
     p.goto(B + '/legal/avis-legal/#llei-aplicable-i-jurisdicci%C3%B3', wait_until='load')
+    open_menu(p)
     with p.expect_navigation():
         p.click(switch)
     landed = p.evaluate('() => [location.pathname + decodeURIComponent(location.hash), !!document.getElementById(decodeURIComponent(location.hash.slice(1)))]')
     check('9. àncora amb accents', landed == ['/es/legal/aviso-legal/#ley-aplicable-y-jurisdicción', True], {'destí': landed})
+
+    # 10. Desplegable (12/10/2026): tres idiomes en ordre fix, l'actual marcat; Escape el tanca i torna el focus.
+    p.goto(B + '/particulars/reparacions/', wait_until='load')
+    p.click('.header-lang summary')
+    menu = p.evaluate('() => { const d = document.querySelector("[data-lang-menu]"); return [d.open, [...d.querySelectorAll("li")].map((li) => li.textContent.trim()), d.querySelector("summary").getAttribute("aria-label")]; }')
+    p.keyboard.press('Escape')
+    closed = p.evaluate('() => [document.querySelector("[data-lang-menu]").open, document.activeElement.tagName]')
+    check('10. desplegable: tres idiomes, actual marcat, Escape tanca', menu[0] and menu[1] == ['Català', 'Castellano', 'English'] and menu[2] == 'Idioma: Català' and closed == [False, 'SUMMARY'], {'menú': menu, 'després d\'Escape': closed})
+
+    # 11. Anglès: de Reparacions a Repairs, amb els paràmetres del formulari conservats a Contact.
+    p.goto(B + '/contacte/?tipus=empresa&servei=manteniment', wait_until='load')
+    open_menu(p)
+    with p.expect_navigation():
+        p.click('a[data-lang-switch][hreflang=en]')
+    landed = p.evaluate('() => [location.pathname + location.search, document.documentElement.lang, document.querySelector("input[name=tipus]:checked")?.value, document.getElementById("servei-empresa").value]')
+    check('11. català → anglès amb el manteniment preseleccionat', landed == ['/en/contact/?tipus=empresa&servei=manteniment', 'en', 'empresa', 'manteniment'], {'destí': landed})
+
+    # 12. Clic a fora tanca el desplegable.
+    p.goto(B + '/en/residential/repairs/', wait_until='load')
+    p.click('.header-lang summary')
+    p.mouse.click(20, 400)
+    check('12. clic a fora tanca el desplegable', p.evaluate('() => !document.querySelector("[data-lang-menu]").open'), {})
 
     # 7. Sense JavaScript: href vàlid cap a la pàgina equivalent.
     c2 = b.new_context(java_script_enabled=False)

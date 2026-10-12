@@ -12,7 +12,7 @@ export interface Signal {
   detail: string;
 }
 
-const LOCALE_NAMES = { ca: 'català', es: 'castellà' } as const;
+const LOCALE_NAMES = { ca: 'català', es: 'castellà', en: 'anglès' } as const;
 
 const madridTime = (now: number) =>
   new Intl.DateTimeFormat('ca-ES', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Madrid' }).format(new Date(now));

@@ -9,9 +9,19 @@ seoDescription: "Fabricación metálica para terceros en Vilafranca del Penedès
 
 # Fabricación en serie. Piezas exigentes. Respuesta industrial.
 
+## Mantenimiento industrial
+
+Nos encargamos del mantenimiento en el ámbito industrial: revisiones y reparaciones en las instalaciones de tu empresa.
+
+- **Nos lo explicas** · Qué hay que revisar o reparar y dónde está la instalación. Si tienes, envíanos fotografías.
+- **Lo valoramos** · Estudiamos la intervención con la información que nos hagas llegar.
+- **Nos desplazamos** · Hacemos el trabajo con equipo y vehículos propios.
+
+[Consulta un mantenimiento](/es/contacto/?tipus=empresa&servei=manteniment)
+
 ## Qué fabricamos
 
-Fabricación para empresas y obra: estructuras, puertas y mobiliario, en serie o a medida; piezas a partir de un plano o de una especificación, y encargos industriales de una sola unidad. También ofrecemos mantenimiento industrial.
+Fabricación para empresas y obra: estructuras, puertas y mobiliario, en serie o a medida; piezas a partir de un plano o de una especificación, y encargos industriales de una sola unidad.
 
 - **Estructuras, barandillas y escaleras** · Para proyectos de constructoras y promotoras.
 - **Puertas y cerramientos** · Fabricación e instalación en proyectos de construcción.
@@ -22,12 +32,6 @@ Fabricación para empresas y obra: estructuras, puertas y mobiliario, en serie o
 ¿Un trabajo para casa, la comunidad o el negocio?
 
 [Cerrajería para particulares](/es/particulares/)
-
-## Mantenimiento industrial
-
-También nos encargamos del mantenimiento en el ámbito industrial. Cuéntanos qué hay que revisar o reparar y dónde debe realizarse la intervención.
-
-[Consulta un mantenimiento](/es/contacto/?tipus=empresa&servei=manteniment)
 
 ## El taller en primer plano
 

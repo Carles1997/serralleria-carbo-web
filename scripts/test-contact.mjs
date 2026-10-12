@@ -109,6 +109,20 @@ describe('validació al servidor', () => {
     assert.ok(ko.body.includes(`${contactMessages.ca.fieldLabels.descripcio}:`));
   });
 
+  test('anglès (12/10/2026): missatges, pàgina sense JavaScript i idioma al correu', async () => {
+    const { body } = await harness().call(valid({ idioma: 'en' }), { locale: 'en' });
+    assert.equal(body.message, contactMessages.en.notSent);
+    const invalid = await harness().call(valid({ idioma: 'en', nom: '' }), { locale: 'en' });
+    assert.equal(invalid.body.errors.nom, contactMessages.en.errors.required);
+    const html = await harness().call(valid({ idioma: 'en' }), { json: false, locale: 'en' });
+    assert.match(html.body, /<html lang="en">/);
+    assert.ok(html.body.includes('href="/en/contact/"'));
+    const h = harness({ mode: 'test' });
+    await h.call(valid({ idioma: 'en', tipus: 'empresa', producte: 'manteniment' }), { locale: 'en' });
+    assert.ok(h.sent[0].message.body.content.includes('Idioma de la consulta: anglès'));
+    assert.ok(h.sent[0].message.body.content.includes('traducció anglesa del 12/10/2026'));
+  });
+
   test('camps obligatoris i consentiment', async () => {
     const form = valid({ nom: '', correu: '', servei: '', descripcio: '', consentiment: undefined });
     const { status, body } = await harness().call(form);

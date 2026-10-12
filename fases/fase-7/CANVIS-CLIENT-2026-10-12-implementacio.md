@@ -97,3 +97,32 @@ El banner «Tens una avaria? / ¿Tienes una avería?» es conserva sense canvis.
 - **Validació:** el director ha de validar les propostes del §2 i el to de la franja de manteniment.
 - **Catàleg d'intervencions de manteniment:** el client encara l'ha de concretar. Fins aleshores, la secció només porta el text general.
 - **Castellà:** continua pendent l'aprovació editorial de les traduccions castellanes.
+
+## 7. Ajustos del director posteriors (12/10/2026)
+
+Fets després del desplegament de `bf6af34`, **sense commit ni desplegament**:
+
+| Indicació | Implementació |
+|---|---|
+| **Manteniment amb més protagonisme** | Primera secció d'Industrial, just després de les dades, abans de «Què fabriquem». Fons plata (`#d4d4d4`) entre dues franges grafit, titular més gran, frase, acció principal i trucada, i tres passos «Com funciona» en targetes blanques |
+| **Text més clar** | Frase: «Ens encarreguem del manteniment en l'àmbit industrial: revisions i reparacions a les instal·lacions de la teva empresa.» Passos: «Ens ho expliques», «Ho valorem» i «Ens hi desplacem» («amb equip i vehicles propis», dada confirmada). Sense catàleg d'intervencions ni promeses de termini. **Proposta per validar** |
+| **Retirar «També oferim manteniment industrial.»** | Retirada de «Què fabriquem» (CA i ES) |
+| **Menys enllaços al formulari** | Retirats «Envia una consulta» (entrada), «Explica'ns el teu projecte» (franja de dades) i «Consultar una sèrie» (mètode), en els tres idiomes. A Industrial en queden 10: menú mòbil, manteniment, cinc cel·les de producte, «Envia una consulta tècnica», crida final i peu. Si es volen treure més, «Envia una consulta tècnica» és el més redundant amb les cel·les |
+| **Barra de dalt idèntica a totes les pàgines** | `SiteHeader` fa servir sempre `ui.home.nav`: Particulars, Industrial, Serveis i Projectes («Projectes particulars» → «Projectes»), i Contacte al menú mòbil. La branca de la pàgina queda marcada (`aria-current`). Es retiren les navegacions de branca de la capçalera i els seus punts de plegat (tot es plega a 1000 px). Les navegacions de Particulars es conserven per a les molles de pa i les etiquetes dels casos |
+| **Anglès** | Versió completa a `/en/`: 13 pàgines, sis casos, textos legals (en revisió jurídica, amb avís i noindex) i formulari (missatges, pàgina sense JavaScript i idioma al correu). Slugs de [FASE5-idiomes](../fase-5/FASE5-idiomes.md). Particulars es diu «Residential» |
+| **Desplegable d'idioma** | `<details>` accessible (funciona sense JavaScript). Codi de l'idioma actual i fletxa; llista fixa Català, Castellano, English amb l'actual marcat. Es tanca amb Escape (el focus torna al botó) o amb un clic a fora. Conserva els paràmetres i les àncores en canviar d'idioma |
+
+**Comprovacions (locals):**
+- **Verificació:** `astro check` sense errors; build correcte; referències intactes, amb la revisió nova registrada (`industrial.md` i `ui.md`).
+- **Idiomes:** `check:i18n` correcte amb 38 pàgines (ca 12 · es 13 · en 13), selectors recíprocs i textos alternatius traduïts.
+- **Enllaços i redireccions:** `check:links` correcte (39 pàgines i 1.086 enllaços). `check:redirects` correcte, amb la 404 anglesa per a `/en/*`.
+- **Formulari:** 58 proves unitàries (inclou l'anglès) i 37 de navegador.
+- **Selector d'idioma:** 15/15. Inclou el desplegable, l'ordre fix, Escape, el clic a fora i el pas de català a anglès conservant el manteniment preseleccionat.
+- **Barra de dalt:** una sola variant per idioma a totes les pàgines.
+- **Desbordament:** cap a 1440, 1024, 390 i 320 px. A 320 px, el desplegable queda dins de la pantalla.
+
+**Pendents:**
+- aprovació editorial de les traduccions angleses;
+- validació jurídica dels textos legals anglesos, inclosa la paraula clau UNSUBSCRIBE per revocar les comunicacions;
+- validació del text nou del manteniment;
+- decisió sobre la resta d'enllaços al formulari.

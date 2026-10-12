@@ -1,0 +1,10 @@
+---
+// 404 en anglès (12/10/2026). Netlify la serveix per a les adreces /en/… inexistents
+// (regla de dist/_redirects generada per src/integrations/netlify-files.mjs).
+import NotFoundTemplate from '../../templates/NotFoundTemplate.astro';
+import { getPage } from '../../i18n/pages';
+
+const page = await getPage('404', 'en');
+---
+
+<NotFoundTemplate page={page} />

@@ -1,27 +1,23 @@
 ---
 // Capçalera compartida (maqueta Home de Fase 4). Sense JavaScript, el menú mòbil
 // queda desplegat com a llista d'enllaços; amb JavaScript es converteix en botó.
+// Indicació del director (12/10/2026): la barra de dalt mostra sempre els mateixos enllaços
+// (Particulars, Industrial, Serveis i Projectes, de ui.home.nav) a totes les pàgines, i el selector
+// d'idioma és un desplegable amb els tres idiomes.
 import { company } from '../config/site';
 import BrandLogo from './BrandLogo.astro';
 import { getCollection, render } from 'astro:content';
 import { useUi, type UiStrings } from '../i18n/ui';
 import { isLegalVisible, type Page } from '../i18n/pages';
 import { isBuiltRoute } from '../config/routes';
-
-interface NavItem {
-  label: string;
-  href: string;
-}
+import { locales } from '../i18n/config';
 
 interface Props {
   ui: UiStrings;
   homeHref: string;
-  nav: NavItem[];
-  mobileExtra?: NavItem[];
-  /** «wide»: navegació llarga de branca (maqueta de Particulars), menú fins a 1270 px.
-   *  «industrial»: navegació d'Industrial (maqueta d'Industrial), menú fins a 1320 px. */
-  collapse?: 'standard' | 'wide' | 'industrial';
-  /** Ruta de la pàgina actual: l'enllaç corresponent porta aria-current="page". */
+  /** «industrial»: capçalera de grafit amb el logotip d'Industrial. La navegació és la mateixa a tot arreu. */
+  collapse?: 'standard' | 'industrial';
+  /** Ruta de la pàgina actual (per defecte, la de `page`): marca l'enllaç de la pàgina o de la seva branca. */
   current?: string;
   /** Etiqueta sobre el telèfon (per defecte, la general). */
   phoneLabel?: string;
@@ -32,9 +28,19 @@ interface Props {
   page?: Page;
 }
 
-const { ui, homeHref, nav, mobileExtra = [], collapse = 'standard', current, phoneLabel = ui.headerPhoneLabel } = Astro.props;
+const { ui, homeHref, collapse = 'standard', phoneLabel = ui.headerPhoneLabel } = Astro.props;
 const tone = Astro.props.tone ?? (collapse === 'industrial' ? 'dark' : 'light');
-const currentAttr = (href: string) => (href === current ? 'page' : undefined);
+const nav = ui.home.nav;
+const mobileExtra = ui.home.mobileExtra;
+// Pàgina actual: «page» si és l'enllaç exacte; «true» per a la branca (l'enllaç més llarg que la conté),
+// p. ex. Industrial a Capacitats o Particulars a Reparacions. Els enllaços a una àncora no compten.
+const current = Astro.props.current ?? Astro.props.page?.data.route;
+const section = current
+  ? nav
+      .filter((item) => !item.href.includes('#') && item.href !== homeHref && current.startsWith(item.href))
+      .sort((a, b) => b.href.length - a.href.length)[0]?.href
+  : undefined;
+const currentAttr = (href: string) => (href === current ? 'page' : href === section ? 'true' : undefined);
 
 // Selector d'idioma (08/10/2026): enllaç a la mateixa pàgina en cada altre idioma, si es genera en
 // aquest build. La 404 porta a l'inici de l'altre idioma. Els textos són els de l'idioma de destí.
@@ -69,27 +75,53 @@ const languages = page
           return { href: route, lang: version.data.lang, anchorMap, ...target.language };
         }),
       )
-    ).filter((item) => item !== undefined)
+    )
+      .filter((item) => item !== undefined)
   : [];
+// Desplegable: els tres idiomes sempre en el mateix ordre (català, castellà, anglès), amb l'actual marcat.
+const currentLang = page?.data.lang;
+type MenuLanguage = { lang: string; name: string; current: boolean; href?: string; anchorMap?: string };
+const menuLanguages: MenuLanguage[] = locales.flatMap((lang): MenuLanguage[] => {
+  if (lang === currentLang) return [{ lang, name: ui.language.name, current: true }];
+  const target = languages.find((language) => language.lang === lang);
+  return target ? [{ lang: target.lang, name: target.name, href: target.href, anchorMap: target.anchorMap, current: false }] : [];
+});
 ---
 
 <a class="skip-link" href="#contingut">{ui.skipLink}</a>
-<header class="site-header" id="inici" data-surface={tone} data-tone={tone} data-collapse={collapse}>
+<header class="site-header" id="inici" data-surface={tone} data-tone={tone}>
   <div class="header-inner">
     <a class="wordmark" href={homeHref} aria-label={ui.brandHome}>
-      <BrandLogo variant={collapse === "industrial" ? "industrial" : "serralleria"} place="header" />
+      <BrandLogo variant={collapse === 'industrial' ? 'industrial' : 'serralleria'} place="header" />
     </a>
     <nav class="desktop-nav" aria-label={ui.menu.main}>
       {nav.map((item) => <a href={item.href} aria-current={currentAttr(item.href)}>{item.label}</a>)}
     </nav>
     <div class="header-actions">
       {
-        languages.map((language) => (
-          <a class="header-lang" href={language.href} hreflang={language.lang} lang={language.lang} data-lang-switch data-anchor-map={language.anchorMap}>
-            {language.code}{' '}
-            <span class="sr-only">{language.switchLabel}</span>
-          </a>
-        ))
+        languages.length > 0 && (
+          <details class="header-lang" data-lang-menu>
+            <summary aria-label={`${ui.language.selector}: ${ui.language.name}`}>
+              <span aria-hidden="true">{ui.language.code}</span>
+              <span class="header-lang-caret" aria-hidden="true"></span>
+            </summary>
+            <ul class="header-lang-list">
+              {menuLanguages.map((language) =>
+                language.current ? (
+                  <li>
+                    <span class="header-lang-current" aria-current="true">{language.name}</span>
+                  </li>
+                ) : (
+                  <li>
+                    <a href={language.href} hreflang={language.lang} lang={language.lang} data-lang-switch data-anchor-map={language.anchorMap}>
+                      {language.name}
+                    </a>
+                  </li>
+                ),
+              )}
+            </ul>
+          </details>
+        )
       }
       <a class="header-phone" href={company.phone.href}>
         <span class="header-phone-label">{phoneLabel}</span><span>{company.phone.display}</span>
@@ -153,6 +185,21 @@ const languages = page
   });
   window.addEventListener('hashchange', () => languageLinks.forEach(syncLanguageLink));
 
+  // Desplegable d'idioma (<details>): funciona sense JavaScript; amb JavaScript es tanca en fer clic
+  // a fora o amb Escape (el focus torna al botó).
+  const languageMenu = document.querySelector<HTMLDetailsElement>('[data-lang-menu]');
+  if (languageMenu) {
+    document.addEventListener('click', (event) => {
+      if (languageMenu.open && !languageMenu.contains(event.target as Node)) languageMenu.open = false;
+    });
+    languageMenu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && languageMenu.open) {
+        languageMenu.open = false;
+        languageMenu.querySelector('summary')?.focus();
+      }
+    });
+  }
+
   const button = document.querySelector<HTMLButtonElement>('.menu-toggle');
   const nav = document.getElementById('mobile-nav');
 
@@ -172,10 +219,7 @@ const languages = page
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && nav.classList.contains('is-open')) setOpen(false, true);
     });
-    const header = button.closest<HTMLElement>('.site-header');
-    const breakpoints: Record<string, string> = { wide: '(min-width: 1271px)', industrial: '(min-width: 1321px)' };
-    const desktop = breakpoints[header?.dataset.collapse ?? ''] ?? '(min-width: 1001px)';
-    window.matchMedia(desktop).addEventListener('change', (event) => {
+    window.matchMedia('(min-width: 1001px)').addEventListener('change', (event) => {
       if (event.matches) setOpen(false);
     });
   }
@@ -271,12 +315,12 @@ const languages = page
     transition: border-color 200ms ease;
   }
 
-  /* Pàgina actual: línia sencera. En passar-hi, la línia es carrega (styles/interactions.css). */
-  .desktop-nav a[aria-current='page'] {
+  /* Pàgina o branca actual: línia sencera. En passar-hi, la línia es carrega (styles/interactions.css). */
+  .desktop-nav a[aria-current] {
     border-color: currentColor;
   }
 
-  .mobile-nav a[aria-current='page'] {
+  .mobile-nav a[aria-current] {
     text-decoration: underline;
     text-underline-offset: 0.3em;
   }
@@ -287,11 +331,17 @@ const languages = page
     gap: 0.8rem;
   }
 
-  /* Selector d'idioma: codi visible i nom complet per a lectors de pantalla. */
+  /* Selector d'idioma (12/10/2026): desplegable amb el codi de l'idioma actual i els noms dels tres
+     idiomes, cadascun en la seva llengua. */
   .header-lang {
+    position: relative;
+  }
+
+  .header-lang summary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 0.4rem;
     min-width: var(--target-min);
     min-height: var(--target-min);
     padding-inline: 0.5rem;
@@ -299,11 +349,91 @@ const languages = page
     font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.1em;
+    list-style: none;
+    cursor: pointer;
   }
 
-  .header-lang:hover {
+  .header-lang summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .header-lang summary:hover > span:first-child {
     text-decoration: underline;
     text-underline-offset: 0.3em;
+  }
+
+  .header-lang-caret {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    translate: 0 -0.12rem;
+    rotate: 45deg;
+    transition: rotate var(--motion-fast) var(--motion-ease);
+  }
+
+  .header-lang[open] .header-lang-caret {
+    rotate: 225deg;
+    translate: 0 0.1rem;
+  }
+
+  .header-lang-list {
+    position: absolute;
+    z-index: 60;
+    top: calc(100% + 0.35rem);
+    right: 0;
+    display: grid;
+    min-width: 11rem;
+    margin: 0;
+    padding: 0.35rem 0;
+    border: 1px solid var(--header-line);
+    background: var(--header-panel);
+    box-shadow: 0 12px 28px -16px rgb(43 43 43 / 0.45);
+    list-style: none;
+  }
+
+  .site-header[data-tone='dark'] .header-lang-list {
+    border-color: rgb(255 255 255 / 0.24);
+  }
+
+  .header-lang-list a,
+  .header-lang-current {
+    display: flex;
+    align-items: center;
+    min-height: var(--target-min);
+    padding: 0.35rem 1rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .header-lang-current {
+    color: var(--header-muted);
+  }
+
+  .header-lang-current::after {
+    margin-left: auto;
+    padding-left: 1rem;
+    content: '✓';
+  }
+
+  .header-lang-list a:hover,
+  .header-lang-list a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .header-lang[open] .header-lang-list {
+      transition:
+        opacity 160ms var(--motion-ease),
+        translate 160ms var(--motion-ease);
+
+      @starting-style {
+        opacity: 0;
+        translate: 0 -0.25rem;
+      }
+    }
   }
 
   .header-phone {
@@ -462,73 +592,11 @@ const languages = page
       gap: 0.35rem;
     }
 
-    .header-lang {
+    .header-lang summary {
       min-width: 2rem;
+      gap: 0.3rem;
       padding-inline: 0.25rem;
     }
   }
 
-  /* Variants «wide» i «industrial»: mateixa lògica que a 1000 px, aplicada fins a 1270 i
-     1320 px respectivament. */
-  :is([data-collapse='wide'], [data-collapse='industrial']) .header-inner {
-    gap: clamp(1rem, 1.8vw, 2rem);
-  }
-
-  [data-collapse='wide'] .desktop-nav {
-    gap: clamp(0.75rem, 1.25vw, 1.35rem);
-  }
-
-  [data-collapse='industrial'] .desktop-nav {
-    gap: clamp(0.7rem, 1.2vw, 1.25rem);
-  }
-
-  :is([data-collapse='wide'], [data-collapse='industrial']) .desktop-nav a {
-    font-size: 0.82rem;
-  }
-
-  @media (max-width: 1320px) {
-    [data-collapse='industrial'] .desktop-nav {
-      display: none;
-    }
-
-    [data-collapse='industrial'] .header-actions {
-      margin-left: auto;
-    }
-
-    :global(html:not(.js)) [data-collapse='industrial'].site-header {
-      position: static;
-    }
-
-    :global(html:not(.js)) [data-collapse='industrial'] .mobile-nav,
-    [data-collapse='industrial'] .mobile-nav.is-open {
-      display: grid;
-    }
-
-    :global(html.js) [data-collapse='industrial'] .menu-toggle {
-      display: flex;
-    }
-  }
-
-  @media (max-width: 1270px) {
-    [data-collapse='wide'] .desktop-nav {
-      display: none;
-    }
-
-    [data-collapse='wide'] .header-actions {
-      margin-left: auto;
-    }
-
-    :global(html:not(.js)) [data-collapse='wide'].site-header {
-      position: static;
-    }
-
-    :global(html:not(.js)) [data-collapse='wide'] .mobile-nav,
-    [data-collapse='wide'] .mobile-nav.is-open {
-      display: grid;
-    }
-
-    :global(html.js) [data-collapse='wide'] .menu-toggle {
-      display: flex;
-    }
-  }
 </style>

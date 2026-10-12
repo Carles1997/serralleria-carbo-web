@@ -1,10 +1,10 @@
-// Missatges del formulari real en català i castellà (pla 8.5, §4.8; propostes per validar).
+// Missatges del formulari real en català, castellà i anglès (pla 8.5, §4.8; propostes per validar).
 // Font única per al navegador (src/i18n/ui.ts els reutilitza) i per a la funció de Netlify.
 import { company } from '../../config/site.ts';
 import { MAX_ATTACHMENT_BYTES, type FormLocale } from './config.ts';
 
 const phone = company.phone.display;
-const mb = (locale: FormLocale) => (MAX_ATTACHMENT_BYTES / 1_000_000).toLocaleString(locale === 'es' ? 'es-ES' : 'ca-ES');
+const mb = (locale: FormLocale) => (MAX_ATTACHMENT_BYTES / 1_000_000).toLocaleString({ ca: 'ca-ES', es: 'es-ES', en: 'en-GB' }[locale]);
 
 export type FieldError = 'required' | 'email' | 'phone' | 'length' | 'choice' | 'consent' | 'letters' | 'fileSize' | 'fileType';
 
@@ -106,7 +106,56 @@ const es: typeof ca = {
   },
 };
 
-export const contactMessages = { ca, es } as const;
+// Anglès (director, 12/10/2026): traducció dels missatges catalans, pendent d'aprovació.
+const en: typeof ca = {
+  contactPath: '/en/contact/',
+  fieldLabels: {
+    tipus: 'Type of enquiry',
+    nom: 'Full name',
+    empresa: 'Company',
+    correu: 'Email',
+    telefon: 'Phone',
+    servei: 'Service',
+    producte: 'Type of job',
+    descripcio: 'Description',
+    adjunt: 'Attachment',
+    ubicacio: 'Town',
+    unitats: 'Expected units',
+    material: 'Material',
+    termini: 'Desired lead time',
+    sector: 'Sector',
+    consentiment: 'Privacy policy',
+  },
+  errors: {
+    required: 'This field is missing information.',
+    email: 'Check the email address format.',
+    phone: 'Check the phone number format.',
+    summary: 'Check the highlighted fields to continue.',
+    consent: 'Tick this box to continue.',
+    length: 'The text is too short or too long.',
+    choice: 'Choose one of the options in the list.',
+    letters: 'Describe your enquiry in words.',
+    fileSize: `The file is larger than ${mb('en')} MB. Attach a smaller one or send it to ${company.email}.`,
+    fileType: 'This file type is not accepted. Attach an image (JPG, PNG or HEIC) or a PDF.',
+  },
+  fileHint: `JPG, PNG, HEIC or PDF, up to ${mb('en')} MB.`,
+  honeypot: 'Leave this field empty',
+  sending: 'Sending your enquiry…',
+  notSent: `Your enquiry has not been sent: the form is not active yet. Message us on WhatsApp or call ${phone}.`,
+  sent: (ref: string) => `Your enquiry has been sent (ref. ${ref}). We will reply to the email address you gave us. If you do not hear from us, call ${phone} and quote the reference.`,
+  inProgress: 'Your enquiry is being sent. Please wait a few seconds.',
+  rateLimited: `We have received several enquiries in a row from this connection. Try again in a while or call ${phone}.`,
+  failed: `We could not send your enquiry. Try again or email us at ${company.email} or message us on WhatsApp at ${phone}.`,
+  badRequest: `We could not read your enquiry. Try again from the form or email us at ${company.email}.`,
+  page: {
+    title: 'Enquiry',
+    errorsTitle: 'Please check these fields:',
+    backHint: 'Go back with your browser to correct them; your data is usually kept.',
+    back: 'Back to the contact form',
+  },
+};
+
+export const contactMessages = { ca, es, en } as const;
 export type ContactMessages = typeof ca;
 
 /** Missatges que el navegador necessita sense passar pel servidor (data-messages del formulari). */

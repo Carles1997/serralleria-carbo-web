@@ -1,6 +1,6 @@
-// Comprovació de les versions d'idioma sobre l'HTML generat (castellà afegit el 08/10/2026).
+// Comprovació de les versions d'idioma sobre l'HTML generat (castellà afegit el 08/10/2026; anglès, el 12/10/2026).
 // Per a cada pàgina de dist/:
-// - `lang` del document igual a l'idioma de la ruta (/es/… → es; la resta → ca);
+// - `lang` del document igual a l'idioma de la ruta (/es/… → es; /en/… → en; la resta → ca);
 // - canonical propi (absolut i igual a la ruta), si la pàgina en declara;
 // - títol i meta description presents i únics dins de cada idioma;
 // - selector d'idioma: cada enllaç [data-lang-switch] apunta a una pàgina generada d'un altre idioma,
@@ -37,7 +37,8 @@ const walk = (dir) => {
 walk(DIST);
 
 const routeOf = (file) => `/${relative(DIST, file).split(sep).slice(0, -1).join('/')}${file === join(DIST, 'index.html') ? '' : '/'}`.replace('//', '/');
-const langOfRoute = (route) => (route.startsWith('/es/') ? 'es' : 'ca');
+const LANGS = ['ca', 'es', 'en'];
+const langOfRoute = (route) => LANGS.find((lang) => lang !== 'ca' && route.startsWith(`/${lang}/`)) ?? 'ca';
 const is404 = (route) => /^\/([a-z]{2}\/)?404\/$/.test(route);
 
 const pages = new Map();
@@ -129,7 +130,7 @@ for (const page of pages.values()) {
   }
 }
 
-for (const lang of ['ca', 'es']) {
+for (const lang of LANGS) {
   for (const key of ['title', 'description']) {
     const seen = new Map();
     for (const page of [...pages.values()].filter((item) => item.lang === lang)) {
@@ -141,7 +142,7 @@ for (const lang of ['ca', 'es']) {
 }
 
 const byLang = (lang) => [...pages.values()].filter((page) => page.lang === lang).length;
-console.log(`Pàgines: ${pages.size} (ca ${byLang('ca')} · es ${byLang('es')}). Amb hreflang al <head>: ${[...pages.values()].filter((page) => page.hreflang.length).length}.`);
+console.log(`Pàgines: ${pages.size} (${LANGS.map((lang) => `${lang} ${byLang(lang)}`).join(' · ')}). Amb hreflang al <head>: ${[...pages.values()].filter((page) => page.hreflang.length).length}.`);
 if (errors.length) {
   console.error(`${errors.length} errors:`);
   for (const error of errors) console.error(`  ${error}`);

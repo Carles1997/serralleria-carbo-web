@@ -47,8 +47,8 @@ const ca = {
       { label: 'Particulars', href: '/particulars/' },
       { label: 'Industrial', href: '/industrial/' },
       { label: 'Serveis', href: '/#serveis' },
-      // El portafoli és de Particulars (brief de millores UX, Fase 7): l'etiqueta ho diu.
-      { label: 'Projectes particulars', href: '/particulars/projectes/' },
+      // «Projectes» (director, 12/10/2026): la barra de dalt és la mateixa a totes les pàgines.
+      { label: 'Projectes', href: '/particulars/projectes/' },
     ],
     mobileExtra: [{ label: 'Contacte', href: '/contacte/' }],
     // Doble accés i xifres: textos de la maqueta Home validada, per indicació del
@@ -127,7 +127,6 @@ const ca = {
       { label: 'Projectes', href: '/particulars/projectes/' },
       { label: 'Contacte', href: '/contacte/?tipus=particular' },
     ],
-    mobileExtra: [{ label: 'Industrial ↗', href: '/industrial/' }],
     hero: {
       // Accés a l'altra branca amb el criteri (03/10/2026): diverses unitats → Industrial.
       otherBranch: { label: 'Constructora, promotora, sèrie o peça a plànol? Industrial', href: '/industrial/#produccio' },
@@ -177,20 +176,6 @@ const ca = {
   // Plantilla I (portada d'Industrial). Maqueta: fases/fase-4/FASE4-mockups/industrial/ amb identitat.css.
   // Etiquetes i titulars de la maqueta; cos de text de content/ca/industrial.md.
   industrial: {
-    nav: [
-      { label: 'Capacitats', href: '/industrial/capacitats/' },
-      // Rutes ajornades (config/routes.ts): porten a la secció de la portada.
-      // Nom comercial «Fabricació en sèrie» (refinament del director, 06/10/2026); la ruta ajornada
-      // /industrial/series-curtes/ conserva el seu destí resolt a la producció.
-      { label: 'Fabricació en sèrie', href: resolveRoute('/industrial/series-curtes/') },
-      // Servei transversal per a empreses (client, 12/10/2026): secció pròpia de la portada.
-      { label: 'Manteniment', href: '/industrial/#manteniment' },
-      { label: 'Sectors', href: resolveRoute('/industrial/sectors/') },
-      { label: 'Procés', href: resolveRoute('/industrial/proces/') },
-      { label: 'Projectes', href: resolveRoute('/industrial/projectes/') },
-      { label: 'Contacte', href: '/contacte/?tipus=empresa' },
-    ],
-    mobileExtra: [{ label: 'Serralleria per a particulars ↗', href: '/particulars/' }],
     phoneLabel: 'Consulta industrial',
     // Pàgines interiors (plantilla II): la maqueta afegeix «Inici» (portada d'Industrial) davant del menú.
     home: { label: 'Inici', href: '/industrial/' },
@@ -200,7 +185,6 @@ const ca = {
       // l'última porta el reflex metàl·lic.
       title: ['Fabricació en sèrie', 'Peces exigents', 'Resposta industrial'],
       primary: 'Veure les capacitats del taller',
-      secondary: 'Envia una consulta',
       bottom: 'Vilafranca del Penedès · Catalunya',
     },
     proof: {
@@ -211,7 +195,6 @@ const ca = {
         { value: 950, unit: 'm²', label: 'de taller' },
         { value: 12, unit: '', label: "persones a l'empresa" },
       ],
-      action: "Explica'ns el teu projecte",
     },
     // Què fabriquem en sèrie (03/10/2026): productes de Particulars i qualsevol peça a mida, en
     // diverses unitats. Text d'industrial.md; aquí, el titular en línies i el servei del formulari.
@@ -226,11 +209,12 @@ const ca = {
       productAction: 'obre una consulta tècnica',
       action: 'Envia una consulta tècnica',
     },
-    // Manteniment industrial (client, 12/10/2026): franja pròpia entre «Què fabriquem» i el taller.
-    // Text i acció principal d'industrial.md; aquí l'etiqueta i el titular en línies.
+    // Manteniment industrial (client, 12/10/2026): primera secció de la portada (director, 12/10/2026).
+    // Frase, passos i acció principal d'industrial.md; aquí l'etiqueta, el titular en línies i el títol dels passos.
     maintenance: {
       label: 'Servei per a empreses',
       heading: ['Manteniment', 'industrial'],
+      stepsLabel: 'Com funciona',
     },
     workshop: {
       heading: ['El taller', 'en primer pla'],
@@ -252,7 +236,6 @@ const ca = {
     series: {
       heading: ['La sèrie comença', 'amb una', 'peça'],
       method: { label: 'Del requisit a la peça' },
-      action: 'Consultar una sèrie',
     },
     sectors: {
       heading: ['Experiència', 'en quatre sectors'],
@@ -352,12 +335,6 @@ const ca = {
   // dreta, sense introducció ni columna repetida. Etiquetes del formulari de content/ca/ui.md.
   // El formulari envia a la funció /api/contacte (Fase 8, 8.5); en mode de demostració no envia res.
   contactPage: {
-    nav: [
-      { label: 'Inici', href: '/' },
-      { label: 'Particulars', href: '/particulars/' },
-      { label: 'Industrial', href: '/industrial/' },
-      { label: 'Contacte', href: '/contacte/' },
-    ],
     info: {
       label: 'Dades de contacte',
       phone: 'Telèfon',
@@ -571,7 +548,7 @@ const es: UiStrings = {
       { label: 'Particulares', href: '/es/particulares/' },
       { label: 'Industrial', href: '/es/industrial/' },
       { label: 'Servicios', href: '/es/#serveis' },
-      { label: 'Proyectos particulares', href: '/es/particulares/proyectos/' },
+      { label: 'Proyectos', href: '/es/particulares/proyectos/' },
     ],
     mobileExtra: [{ label: 'Contacto', href: '/es/contacto/' }],
     paths: {
@@ -634,7 +611,6 @@ const es: UiStrings = {
       { label: 'Proyectos', href: '/es/particulares/proyectos/' },
       { label: 'Contacto', href: '/es/contacto/?tipus=particular' },
     ],
-    mobileExtra: [{ label: 'Industrial ↗', href: '/es/industrial/' }],
     hero: {
       otherBranch: { label: '¿Constructora, promotora, serie o pieza según plano? Industrial', href: '/es/industrial/#produccio' },
       title: ['Cerrajería para', 'particulares', 'en Vilafranca y alrededores'],
@@ -675,24 +651,12 @@ const es: UiStrings = {
     contactHeading: ['Cuéntanos', 'la idea'],
   },
   industrial: {
-    nav: [
-      { label: 'Capacidades', href: '/es/industrial/capacidades/' },
-      // Rutes ajornades: porten a la secció de la portada, com en català.
-      { label: 'Fabricación en serie', href: '/es/industrial/#produccio' },
-      { label: 'Mantenimiento', href: '/es/industrial/#manteniment' },
-      { label: 'Sectores', href: '/es/industrial/#sectors' },
-      { label: 'Proceso', href: '/es/industrial/#proces' },
-      { label: 'Proyectos', href: '/es/industrial/#projectes' },
-      { label: 'Contacto', href: '/es/contacto/?tipus=empresa' },
-    ],
-    mobileExtra: [{ label: 'Cerrajería para particulares ↗', href: '/es/particulares/' }],
     phoneLabel: 'Consulta industrial',
     home: { label: 'Inicio', href: '/es/industrial/' },
     hero: {
       overline: ['Industrial', 'Fabricación metálica para terceros'],
       title: ['Fabricación en serie', 'Piezas exigentes', 'Respuesta industrial'],
       primary: 'Ver las capacidades del taller',
-      secondary: 'Envía una consulta',
       bottom: 'Vilafranca del Penedès · Cataluña',
     },
     proof: {
@@ -702,7 +666,6 @@ const es: UiStrings = {
         { value: 950, unit: 'm²', label: 'de taller' },
         { value: 12, unit: '', label: 'personas en la empresa' },
       ],
-      action: 'Cuéntanos tu proyecto',
     },
     production: {
       heading: ['Qué', 'fabricamos'],
@@ -714,6 +677,7 @@ const es: UiStrings = {
     maintenance: {
       label: 'Servicio para empresas',
       heading: ['Mantenimiento', 'industrial'],
+      stepsLabel: 'Cómo funciona',
     },
     workshop: {
       heading: ['El taller', 'en primer plano'],
@@ -733,7 +697,6 @@ const es: UiStrings = {
     series: {
       heading: ['La serie empieza', 'con una', 'pieza'],
       method: { label: 'Del requisito a la pieza' },
-      action: 'Consultar una serie',
     },
     sectors: {
       heading: ['Experiencia', 'en cuatro sectores'],
@@ -818,12 +781,6 @@ const es: UiStrings = {
     },
   },
   contactPage: {
-    nav: [
-      { label: 'Inicio', href: '/es/' },
-      { label: 'Particulares', href: '/es/particulares/' },
-      { label: 'Industrial', href: '/es/industrial/' },
-      { label: 'Contacto', href: '/es/contacto/' },
-    ],
     info: {
       label: 'Datos de contacto',
       phone: 'Teléfono',
@@ -975,7 +932,430 @@ const es: UiStrings = {
   },
 };
 
-const strings: Partial<Record<Locale, UiStrings>> = { ca, es };
+// Anglès (director, 12/10/2026). Traducció dels textos catalans aprovats, amb el mateix significat i
+// les mateixes dades, pendent d'aprovació; els titulars han de coincidir amb content/en/ (es comprova al
+// build). Rutes: fases/fase-5/FASE5-idiomes.md. Particulars es diu «Residential» (slug residential).
+const en: UiStrings = {
+  skipLink: 'Skip to content',
+  brandHome: 'Serralleria Carbó, back to home',
+  brand: { small: 'Serralleria', main: 'Carbó', tagline: 'Vilafranca del Penedès · Since 1989' },
+  language: { code: 'EN', name: 'English', switchLabel: 'View this page in English', selector: 'Language' },
+  routes: {
+    home: '/en/',
+    particulars: '/en/residential/',
+    industrial: '/en/industrial/',
+    capacities: '/en/industrial/capabilities/',
+    projects: '/en/residential/projects/',
+    contact: '/en/contact/',
+    services: {
+      estructures: '/en/residential/structures/',
+      automatismes: '/en/residential/door-automation/',
+      urgencies: '/en/residential/repairs/',
+    },
+  },
+  menu: { main: 'Main navigation', mobile: 'Mobile navigation', open: 'Open the menu', close: 'Close the menu' },
+  headerPhoneLabel: 'Shall we talk?',
+  contact: {
+    whatsappMessage: 'Hello, I am writing from the Serralleria Carbó website. I would like to make an enquiry.',
+    whatsapp: 'Message us on WhatsApp',
+    call: (phone: string) => `Call ${phone}`,
+  },
+  footer: {
+    contact: 'Contact',
+    legal: { 'legal-avis-legal': 'Legal notice', 'legal-privacitat': 'Privacy', 'legal-cookies': 'Cookies' },
+    pending: 'pending',
+    backTop: 'Back to top',
+  },
+  home: {
+    nav: [
+      { label: 'Residential', href: '/en/residential/' },
+      { label: 'Industrial', href: '/en/industrial/' },
+      { label: 'Services', href: '/en/#serveis' },
+      { label: 'Projects', href: '/en/residential/projects/' },
+    ],
+    mobileExtra: [{ label: 'Contact', href: '/en/contact/' }],
+    paths: {
+      label: 'Choose your area',
+      heading: 'Choose your path',
+      particulars: { kicker: 'Homes · communities · businesses' },
+      industrial: { kicker: 'Builders · developers · companies' },
+    },
+    numbers: {
+      heading: ['Facts that', 'define us'],
+      items: [
+        { source: '1989', value: 1989, unit: '' },
+        { source: '950 m²', value: 950, unit: 'm²' },
+        { source: '12 people', value: 12, unit: '' },
+        { source: '6 vans · 1 crane truck', value: 6, unit: '+1' },
+      ],
+    },
+    services: {
+      particulars: { eyebrow: 'Spaces and repairs', title: 'Residential', overview: 'Explore our residential services' },
+      industrial: {
+        eyebrow: 'Series, parts to drawing and construction',
+        title: 'Industrial',
+        overview: 'Discover Industrial',
+        products: ['Structures and railings', 'Doors with installation', 'Furniture', 'Industrial trolleys', 'Made-to-measure parts and assemblies'],
+      },
+      tiles: [
+        { detail: 'Fabrication, installation and motorisation' },
+        { detail: 'Staircases and walkways' },
+        { detail: 'For private clients and decorators' },
+        { detail: 'Doors, roller shutters and motors' },
+        { detail: 'Carbon and stainless steel' },
+      ],
+    },
+  },
+  legal: {
+    crumb: 'Legal texts',
+    toc: 'On this page',
+    others: 'Other legal texts',
+    updated: 'Last updated',
+    empty: 'Text pending: it will be written or validated by the client or their adviser.',
+    // Les traduccions angleses dels textos de l'advocat estan pendents de validació jurídica
+    // (12/10/2026): es mostren amb aquest avís i noindex fins que s'aprovin.
+    review: {
+      title: 'Translation pending legal review',
+      text: 'This English version is a translation of the legal text approved in Catalan and is pending validation by the client and their legal adviser.',
+    },
+    draft: {
+      title: 'Unpublishable draft',
+      text: 'This view only exists in development to review the template. The page is not generated in the build until the text is approved.',
+    },
+  },
+  notFound: { waysLabel: 'Ways to continue' },
+  particulars: {
+    nav: [
+      { label: 'Repairs', href: '/en/residential/repairs/' },
+      { label: 'Structures', href: '/en/residential/structures/' },
+      { label: 'Automation', href: '/en/residential/door-automation/' },
+      // Mobiliari és una ruta ajornada: porta al formulari amb el servei preseleccionat, com en català.
+      { label: 'Ask about furniture', href: '/en/contact/?tipus=particular&servei=mobiliari' },
+      { label: 'Projects', href: '/en/residential/projects/' },
+      { label: 'Contact', href: '/en/contact/?tipus=particular' },
+    ],
+    hero: {
+      otherBranch: { label: 'Builder, developer, series or part to drawing? Industrial', href: '/en/industrial/#produccio' },
+      title: ['Residential', 'metalwork', 'in Vilafranca and the surrounding area'],
+    },
+    urgent: {
+      heading: 'Got a breakdown?',
+      text: 'If a door or an automation system fails, call us and tell us what has happened. Open Monday to Friday, 8 am to 1 pm and 3 pm to 6 pm.',
+      form: { label: 'Contact form', href: '/en/contact/?tipus=particular' },
+    },
+    services: {
+      heading: ['Made-to-measure work', 'Clear answers'],
+    },
+    projects: {
+      heading: ['Facts, not just', 'words'],
+      featured: ['baranes-interior-casa', 'estructura-ascensor', 'persianes-negoci'],
+      talk: "Let's talk about your project",
+    },
+    contactHeading: ['Tell us', 'about the job'],
+  },
+  projectContexts: {
+    'passarella-interior': 'Home',
+    'estructura-ascensor': 'Community',
+    'porta-parquing': 'Community',
+    'persianes-negoci': 'Business',
+    'baranes-interior-casa': 'Home',
+  },
+  portfolio: {
+    hero: {
+      title: ['Metalwork', 'projects'],
+      cta: 'Explore the projects',
+    },
+    work: {
+      heading: ['Five jobs', 'Five settings'],
+    },
+    filters: { label: 'Filter the projects by service', title: 'Filter by service', all: 'All', status: '{n} projects shown' },
+    caseLink: { estructures: 'See the structures service', automatismes: 'See automation' },
+    more: { heading: ['From our work', 'to your project'] },
+    contactHeading: ['Tell us', 'your idea'],
+  },
+  industrial: {
+    phoneLabel: 'Industrial enquiries',
+    home: { label: 'Home', href: '/en/industrial/' },
+    hero: {
+      overline: ['Industrial', 'Contract metal fabrication'],
+      title: ['Series fabrication', 'Demanding parts', 'Industrial response'],
+      primary: 'See the workshop capabilities',
+      bottom: 'Vilafranca del Penedès · Catalonia',
+    },
+    proof: {
+      label: 'Confirmed company data',
+      lead: 'A workshop to go from drawing to part.',
+      items: [
+        { value: 950, unit: 'm²', label: 'workshop' },
+        { value: 12, unit: '', label: 'people in the company' },
+      ],
+    },
+    production: {
+      heading: ['What', 'we fabricate'],
+      label: 'Products we fabricate',
+      services: ['estructures', 'portes', 'mobiliari', 'carros', 'peces'],
+      productAction: 'opens a technical enquiry',
+      action: 'Send a technical enquiry',
+    },
+    maintenance: {
+      label: 'Service for companies',
+      heading: ['Industrial', 'maintenance'],
+      stepsLabel: 'How it works',
+    },
+    workshop: {
+      heading: ['The workshop', 'up close'],
+      materials: { head: ['Materials'], title: ['Steel and', 'stainless steel'] },
+      machines: { head: ['Machinery', 'Workshop equipment'], title: ['Metal', 'forming'], foot: 'Press brake' },
+      welding: { head: ['Welding', 'Available processes'], title: ['Welding', 'processes'] },
+      mounting: { head: ['Installation', 'Our own team'], title: ['From the workshop', 'to installation'], text: 'Our own team for travel and installation.' },
+      progress: {
+        label: 'In progress, not current certifications',
+        items: [
+          { title: 'ISO 9001', state: 'Being implemented' },
+          { title: 'ISO 3834', state: 'Under study' },
+          { title: 'Automation', state: 'And process robotisation, in progress' },
+        ],
+      },
+    },
+    series: {
+      heading: ['A series starts', 'with one', 'part'],
+      method: { label: 'From requirement to part' },
+    },
+    sectors: {
+      heading: ['Experience', 'in four sectors'],
+      label: 'Sectors with experience',
+      items: [
+        { name: 'Food', art: 'alimentacio' },
+        { name: 'Healthcare', art: 'sanitari' },
+        { name: 'Packaging', art: 'packaging' },
+        { name: 'Wineries', art: 'cellers' },
+      ],
+    },
+    project: {
+      heading: ['A real job', 'Ten cages'],
+    },
+    contact: {
+      heading: ["Let's talk about", 'your job'],
+      guideLabel: 'To assess your enquiry',
+      guide: ['What you need', 'Location of the job, if applicable', 'Documentation or photos, if you have them', 'Material, units and lead time, if applicable'],
+      methodLabel: 'Direct contact',
+    },
+  },
+  industrialCapacities: {
+    hero: {
+      title: ['Workshop', 'capabilities'],
+      action: 'See materials and machinery',
+    },
+    local: {
+      label: 'On this page',
+      items: [
+        { label: 'Materials and machinery', href: '#taller' },
+        { label: 'Welding and installation', href: '#produccio' },
+        { label: 'Technical requirements', href: '#requisits' },
+        { label: 'Enquiry', href: '#consulta' },
+      ],
+    },
+    overview: {
+      heading: ['From material', 'to part'],
+      materials: { label: ['Materials'] },
+      plates: [
+        { tag: 'Steel', name: 'Carbon', art: 'carbon', items: ['Carbon steel'] },
+        { tag: 'Stainless', name: '304 / 316', art: 'inox', items: ['304 stainless steel', '316 stainless steel'] },
+      ],
+      machinery: { label: ['Machinery', 'Workshop equipment'] },
+      machines: [
+        { name: 'Press brake', operation: 'Bending', art: 'plegadora' },
+        { name: 'Shear', operation: 'Cutting', art: 'cisalla' },
+        { name: 'Punching machine', operation: 'Punching', art: 'punxonadora' },
+      ],
+      note: {
+        label: 'Assessment based on the drawing',
+        text: 'The dimensions, thicknesses and tolerances of each part are reviewed with the technical documentation.',
+      },
+    },
+    production: {
+      heading: ['We weld', 'We install'],
+      lead: 'Processes and resources are defined according to the part and the agreed scope.',
+      welding: { label: 'Welding', processes: ['MIG/MAG', 'TIG'] },
+      logistics: {
+        label: 'Travel and installation',
+        items: [
+          { value: 6, word: 'six', label: 'vans' },
+          { value: 1, word: 'a', label: 'crane truck' },
+        ],
+      },
+    },
+    requirements: {
+      heading: 'When the project requires technical support',
+      progress: {
+        label: 'Improvements in progress · not current certifications',
+        items: [
+          { title: 'ISO 9001', state: 'Being implemented' },
+          { title: 'ISO 3834', state: 'Under study' },
+        ],
+      },
+    },
+    contact: {
+      heading: ["Let's talk", 'about the part'],
+      caseLink: { label: 'See a real job: ten cages', anchor: '#projectes' },
+      fieldsLabel: 'What helps us get started',
+      fields: ['Drawing or documentation', 'Material and type of part', 'Expected units', 'Required lead time'],
+      person: 'Industrial contact',
+    },
+  },
+  contactPage: {
+    info: {
+      label: 'Contact details',
+      phone: 'Phone',
+      whatsapp: 'WhatsApp',
+      email: 'Email',
+      address: 'Address',
+      map: 'See the map',
+      landline: 'Landline',
+    },
+    form: {
+      label: 'Enquiry form',
+      demo: 'Demonstration form',
+      branch: {
+        legend: 'Type of enquiry',
+        particular: { label: 'Residential', detail: 'Spaces and repairs' },
+        empresa: { label: 'Industrial', detail: 'Series, parts to drawing and construction' },
+      },
+      fields: {
+        nom: 'Full name',
+        empresa: 'Company',
+        correu: 'Email',
+        telefon: 'Phone',
+        ubicacio: 'Town',
+        servei: 'Which service do you need?',
+        serveiPlaceholder: 'Select a service',
+        services: [
+          { value: 'urgencies', label: 'Repairs' },
+          { value: 'estructures', label: 'Structures' },
+          { value: 'automatismes', label: 'Automation, doors and motors' },
+          { value: 'mobiliari', label: 'Made-to-measure furniture' },
+        ],
+        produccio: 'Type of job',
+        produccioPlaceholder: 'Select an option',
+        productionServices: [
+          { value: 'estructures', label: 'Structures, railings and staircases' },
+          { value: 'portes', label: 'Doors and enclosures, with installation' },
+          { value: 'mobiliari', label: 'Furniture' },
+          { value: 'carros', label: 'Industrial trolleys' },
+          { value: 'peces', label: 'Made-to-measure parts and assemblies' },
+          { value: 'manteniment', label: 'Industrial maintenance' },
+        ],
+        sector: 'Sector',
+        material: 'Material',
+        unitats: 'Expected units',
+        termini: 'Desired lead time',
+        descripcio: 'Description',
+        descripcioPlaceholder: {
+          particular: 'Describe the job or the fault in your own words.',
+          empresa: 'Describe the part or the maintenance you need and the requirements you already know.',
+        },
+      },
+      extra: { particular: 'Add more details (optional)', empresa: 'Add technical details (optional)' },
+      upload: {
+        particular: { label: 'Photo, sketch or document', help: 'Optional.' },
+        empresa: { label: 'Drawing, documentation or photos', help: 'Optional.' },
+        choose: 'Choose a file',
+        none: 'No file selected',
+      },
+      submit: 'Send enquiry',
+      pending: 'Form in preparation: it does not send enquiries yet. In the meantime, call us or message us on WhatsApp.',
+      pendingPrivacy: 'The privacy text and consent will be added before it is activated.',
+      errors: contactMessages.en.errors,
+      notSent: contactMessages.en.notSent,
+    },
+    place: {
+      heading: 'Where we are',
+      map: 'Open in Google Maps',
+      mapLoad: 'Show the interactive map',
+      mapNote: 'The map is from Google Maps. When you show it, Google may store cookies in your browser.',
+      mapTitle: 'Map showing the location of the Serralleria Carbó workshop in Vilafranca del Penedès',
+    },
+  },
+  service: {
+    breadcrumb: { label: 'Breadcrumb', home: 'Home', branch: { label: 'Residential', href: '/en/residential/' } },
+    brief: { action: 'Go to the form', optional: 'Optional' },
+    repair: { index: 'Need a repair?', text: 'If a door or an automation system has broken down, tell us what has happened.' },
+    pages: {
+      'particulars-estructures': {
+        series: true,
+        sections: ['process', 'works', 'series', 'contact'],
+        hero: {
+          title: ['Made-to-measure', 'metal', 'structures'],
+          cta: 'Tell us about your project',
+        },
+        scope: {
+          heading: ['Structures for', 'every space'],
+          label: 'Types of structures',
+          panels: [
+            { title: 'Railings', diagram: 'barana' },
+            { title: 'Staircases', diagram: 'escala' },
+            { title: 'Walkways', diagram: 'passarella' },
+          ],
+        },
+        process: {
+          heading: ["Let's start by", 'understanding the space'],
+          label: 'Information to start the assessment',
+        },
+        contactHeading: ["Let's start", 'with your space'],
+      },
+      'particulars-automatismes': {
+        series: true,
+        sections: ['process', 'works', 'urgent', 'series'],
+        hero: {
+          title: ['Automation', 'for', 'doors'],
+          cta: 'Tell us which door you have',
+        },
+        scope: {
+          heading: ['Automation for', 'every entrance'],
+          label: 'Types of entrances',
+          panels: [
+            { meta: 'Motorisation and repair', title: 'Garage doors', diagram: 'garatge' },
+            { meta: 'Roll-up', title: 'Roller shutters', diagram: 'persiana' },
+            { meta: 'Servicing of installed systems', title: 'Other entrances', diagram: 'acces' },
+          ],
+        },
+        process: {
+          heading: ["Let's start by", 'getting to know the door'],
+          label: 'Information to assess the job',
+        },
+        contactHeading: ['Tell us', 'about your case'],
+      },
+      // Ruta ajornada també en anglès: no es genera. Es manté l'estructura del diccionari.
+      'particulars-mobiliari': {
+        sections: ['process', 'related'],
+        hero: {
+          title: ['Made-to-measure', 'metal', 'furniture'],
+          cta: 'Tell us about your project',
+        },
+        process: {
+          heading: ["Let's start with", 'how the piece will be used'],
+          label: 'Information to start the assessment',
+        },
+        contactHeading: ['Tell us', 'about the project'],
+      },
+      'particulars-urgencies': {
+        sections: ['direct', 'related'],
+        hero: {
+          title: ['Door and automation', 'repairs', 'in Vilafranca'],
+          hours: 'Open Monday to Friday, 8 am to 1 pm and 3 pm to 6 pm.',
+        },
+        process: {
+          heading: ['Tell us', 'about the fault'],
+          label: 'Information about the fault',
+        },
+        repair: false,
+        contactHeading: ['Call us', 'or write to us'],
+      },
+    },
+  },
+};
+
+const strings: Partial<Record<Locale, UiStrings>> = { ca, es, en };
 
 export function useUi(locale: Locale): UiStrings {
   const dictionary = strings[locale];

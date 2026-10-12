@@ -26,7 +26,7 @@ const chars = Math.max(...doc.title.split(/\s+/).map((word) => word.length));
 ---
 
 <BaseLayout page={page}>
-  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} nav={ui.home.nav} mobileExtra={ui.home.mobileExtra} />
+  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} />
 
   <main id="contingut" class="nf-page">
     <section class="nf-hero" aria-labelledby="nf-title" data-surface="light">

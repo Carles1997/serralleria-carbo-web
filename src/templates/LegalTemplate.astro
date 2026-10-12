@@ -47,7 +47,7 @@ const chars = Math.max(...title.split(/\s+/).map((word) => word.length));
 ---
 
 <BaseLayout page={page}>
-  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} nav={ui.home.nav} mobileExtra={ui.home.mobileExtra} />
+  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} />
 
   <main id="contingut" class="legal-page">
     <section class="legal-hero" aria-labelledby="legal-title" data-surface="light">

@@ -212,6 +212,16 @@ const VALIDATED_REVISIONS = [
       'content/ca/particulars-urgencies.md': 'ec5a8d1bf2fe78d53b2fb3e4e91ef2027f25166ac9538b301378e0c30132bdf4',
     },
   },
+  {
+    // Indicació del director (12/10/2026): el manteniment industrial passa a ser la primera secció
+    // d'Industrial, explicat en tres passos, i es retira «També oferim manteniment industrial.» de
+    // «Què fabriquem»; navegació general idèntica a totes les pàgines amb selector d'idioma desplegable.
+    label: 'manteniment destacat i navegació general, indicació del director (12/10/2026)',
+    bodies: {
+      'content/ca/industrial.md': '58233e5ed46710a326441c097115164a77235032febd1bbcd088f7bbfee84077',
+      'content/ca/ui.md': '010c7abe202971ed179107d240fcb64fda1dcfaf13951b7ae9874f38e57784e2',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

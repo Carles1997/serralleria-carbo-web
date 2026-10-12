@@ -62,7 +62,8 @@ export const ACCEPT_ATTRIBUTE = Object.values(ACCEPTED_FILES)
 export const CONSENT_VERSION = {
   ca: 'text del formulari en català aprovat el 06/10/2026',
   es: 'traducció castellana del 08/10/2026, pendent de validació jurídica',
+  en: 'traducció anglesa del 12/10/2026, pendent de validació jurídica',
 } as const;
 
-export const LOCALES = ['ca', 'es'] as const;
+export const LOCALES = ['ca', 'es', 'en'] as const;
 export type FormLocale = (typeof LOCALES)[number];

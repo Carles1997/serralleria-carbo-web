@@ -88,7 +88,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
 ---
 
 <BaseLayout page={page} surface="dark">
-  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} nav={[branch.home, ...branch.nav]} mobileExtra={branch.mobileExtra} collapse="industrial" phoneLabel={branch.phoneLabel} current={page.data.route} />
+  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} collapse="industrial" phoneLabel={branch.phoneLabel} />
 
   <main id="contingut" class="industrial-page capacity-page">
     <section class="c-hero" aria-labelledby="c-title">

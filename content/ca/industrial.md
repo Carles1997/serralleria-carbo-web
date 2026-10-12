@@ -9,9 +9,19 @@ seoDescription: "Fabricació metàl·lica per a tercers a Vilafranca del Penedè
 
 # Fabricació en sèrie. Peces exigents. Resposta industrial.
 
+## Manteniment industrial
+
+Ens encarreguem del manteniment en l'àmbit industrial: revisions i reparacions a les instal·lacions de la teva empresa.
+
+- **Ens ho expliques** · Què cal revisar o reparar i on és la instal·lació. Si en tens, envia'ns fotografies.
+- **Ho valorem** · Estudiem la intervenció amb la informació que ens facis arribar.
+- **Ens hi desplacem** · Fem la feina amb equip i vehicles propis.
+
+[Consulta un manteniment](/contacte/?tipus=empresa&servei=manteniment)
+
 ## Què fabriquem
 
-Fabricació per a empreses i obra: estructures, portes i mobiliari, en sèrie o a mida; peces a partir d'un plànol o d'una especificació, i encàrrecs industrials d'una sola unitat. També oferim manteniment industrial.
+Fabricació per a empreses i obra: estructures, portes i mobiliari, en sèrie o a mida; peces a partir d'un plànol o d'una especificació, i encàrrecs industrials d'una sola unitat.
 
 - **Estructures, baranes i escales** · Per a projectes de constructores i promotores.
 - **Portes i tancaments** · Fabricació i instal·lació en projectes de construcció.
@@ -22,12 +32,6 @@ Fabricació per a empreses i obra: estructures, portes i mobiliari, en sèrie o 
 Una feina per a casa, la comunitat o el negoci?
 
 [Serralleria per a particulars](/particulars/)
-
-## Manteniment industrial
-
-També ens encarreguem del manteniment en l'àmbit industrial. Explica'ns què cal revisar o reparar i on s'ha de fer la intervenció.
-
-[Consulta un manteniment](/contacte/?tipus=empresa&servei=manteniment)
 
 ## El taller en primer pla
 

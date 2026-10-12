@@ -51,7 +51,7 @@ Piezas y series de hierro e inoxidable, con suministro o montaje según el encar
 
 Algunos ejemplos de lo que puedes encargar en cada camino.
 
-[Puertas y motores](/es/particulares/automatismos/) · [Barandillas y estructuras](/es/particulares/estructuras/) · [Mobiliario a medida](/es/contacto/?tipus=particular&servei=mobiliari) · [Reparaciones](/es/particulares/urgencias/) · [Fabricación industrial](/es/industrial/#produccio)
+[Puertas y motores](/es/particulares/automatismos/) · [Barandillas y estructuras](/es/particulares/estructuras/) · [Mobiliario a medida](/es/contacto/?tipus=particular&servei=mobiliari) · [Reparaciones](/es/particulares/reparaciones/) · [Fabricación industrial](/es/industrial/#produccio)
 
 ## Hablemos de tu encargo
 

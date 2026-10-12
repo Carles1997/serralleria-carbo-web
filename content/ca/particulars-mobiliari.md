@@ -4,14 +4,14 @@ route: /particulars/mobiliari/
 lang: ca
 status: draft
 seoTitle: "Mobiliari metàl·lic a mida | Serralleria Carbó"
-seoDescription: "Mobiliari i peces metàl·liques a mida per a espais particulars. Explica l'ús, les mides i l'espai a Serralleria Carbó."
+seoDescription: "Mobiliari i peces metàl·liques a mida per a particulars i decoradors. Explica l'ús, les mides i l'espai a Serralleria Carbó."
 reviewNeeded:
   - "Demanar al client exemples i fotografies de mobiliari per a particulars abans de publicar una galeria específica."
 ---
 
 # Mobiliari metàl·lic a mida
 
-Fabriquem mobiliari amb estructura metàl·lica a mida. L'ús, l'espai i les dimensions de cada encàrrec són el punt de partida per definir la peça i el seu acabat.
+Fabriquem mobiliari amb estructura metàl·lica a mida. Treballem tant per a particulars com per a decoradors que busquen peces metàl·liques per als seus projectes. L'ús, l'espai i les dimensions de cada encàrrec són el punt de partida per definir la peça i el seu acabat.
 
 ## Comencem per l'ús de la peça
 

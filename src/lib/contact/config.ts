@@ -30,17 +30,20 @@ export type Branch = (typeof BRANCHES)[number];
 // Valors dels desplegables (src/i18n/ui.ts). ContactTemplate comprova al build que coincideixen.
 // Les etiquetes en català són les del correu que rep el taller.
 export const PARTICULAR_SERVICES = {
-  urgencies: 'Urgències i reparacions',
+  // Valor intern antic conservat (enllaços amb servei=urgencies); etiqueta pública des del 12/10/2026.
+  urgencies: 'Reparacions',
   estructures: 'Estructures',
   automatismes: 'Automatismes, portes i motors',
   mobiliari: 'Mobiliari a mida',
 } as const;
+/** Tipus d'encàrrec d'Industrial (camp «producte»): els cinc productes i el manteniment (client, 12/10/2026). */
 export const INDUSTRIAL_PRODUCTS = {
   estructures: 'Estructures, baranes i escales',
   portes: 'Portes i tancaments, amb instal·lació',
   mobiliari: 'Mobiliari',
   carros: 'Carros industrials',
   peces: 'Peces i conjunts a mida',
+  manteniment: 'Manteniment industrial',
 } as const;
 
 /** Tipus admesos: extensions i tipus MIME. El contingut es comprova pels primers bytes. DWG i DXF, pendents del client. */

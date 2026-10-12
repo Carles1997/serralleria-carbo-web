@@ -27,15 +27,15 @@ Fabricamos e instalamos barandillas, escaleras, pasarelas y otras estructuras me
 
 ### Mobiliario
 
-Fabricamos mobiliario con estructura metálica, a medida del uso y del espacio.
+Fabricamos mobiliario con estructura de hierro o acero inoxidable a medida del uso y del espacio. Trabajamos tanto para particulares como para decoradores que buscan piezas metálicas para sus proyectos.
 
-[Describe la pieza en el formulario](/es/contacto/?tipus=particular&servei=mobiliari)
+[Consulta tu mobiliario a medida](/es/contacto/?tipus=particular&servei=mobiliari)
 
 ### Reparaciones
 
 Puertas, persianas y motores que han dejado de funcionar.
 
-[Ver reparaciones](/es/particulares/urgencias/)
+[Ver reparaciones](/es/particulares/reparaciones/)
 
 ## ¿Una serie, una pieza técnica o un proyecto constructivo?
 

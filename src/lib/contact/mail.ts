@@ -32,7 +32,7 @@ export function mailBody(data: Submission, ref: string, now: number, signals: Si
     ['Empresa', data.empresa],
     ['Correu electrònic', data.correu],
     ['Telèfon', data.telefon],
-    [data.tipus === 'empresa' ? 'Què cal fabricar' : 'Servei', data.serveiLabel],
+    [data.tipus === 'empresa' ? "Tipus d'encàrrec" : 'Servei', data.serveiLabel],
     ['Població', data.ubicacio],
     ['Unitats previstes', data.unitats],
     ['Material', data.material],

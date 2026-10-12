@@ -69,6 +69,20 @@
 .i-production-foot p { margin:0; font-size:.98rem; line-height:1.5; }
 .i-production-foot .i-text-link { margin-left:.35rem; }
 
+/* Manteniment industrial (client, 12/10/2026): franja editorial clara entre «Què fabriquem» (grafit) i
+   el taller (plata). Com que el taller ja és var(--palette-light), la franja fa servir el gris mitjà de
+   la paleta, var(--palette-mid), amb text grafit (contrast 6,7:1). Dues columnes 55/45 a escriptori i una
+   en mòbil; sense fotografia, marc ni ratlla sobre el titular. */
+.i-maintenance { padding-block:clamp(2rem,1.2rem + 2.8vw,4.25rem); background:var(--palette-mid); color:var(--i-light-ink); }
+.i-maintenance-layout { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:1.25rem clamp(2rem,5vw,5rem); align-items:start; }
+.i-maintenance-label { margin:0 0 .75rem; font-size:var(--type-meta); font-weight:700; letter-spacing:var(--tracking-meta); line-height:1.3; text-transform:uppercase; }
+.i-maintenance h2 { margin:0; font-size:var(--type-h2); font-weight:700; letter-spacing:var(--display-tracking); line-height:var(--display-leading); text-transform:uppercase; }
+.i-maintenance-copy p { max-width:46ch; margin:0; font-size:var(--type-intro); line-height:1.5; }
+.i-maintenance-actions { display:flex; flex-wrap:wrap; align-items:center; gap:1rem 2rem; margin-top:var(--space-block); }
+.i-maintenance .i-button-solid { background:var(--i-button-dark); color:var(--palette-white); }
+.i-maintenance .i-button-solid:hover { background:var(--i-button-dark-hover); }
+.i-maintenance .i-text-link:hover { color:var(--i-light-ink); }
+
 /* El taller en primer pla: plata clara. La secció sencera cap en una pantalla d'escriptori: resum i
    accés a la fitxa al costat del titular, quatre fotografies en una tira i l'estat de qualitat. */
 .i-capabilities { padding-block:var(--space-section); background:var(--i-silver); color:var(--i-light-ink); }
@@ -142,10 +156,11 @@
 .has-series-motion .i-series-step.is-visible { opacity:1; transform:translateY(0); }
 .i-series-foot { grid-area:foot; display:flex; align-self:start; }
 
-/* Experiència en cinc sectors: boira clara, cinc fotografies apaïsades amb el nom a sota. */
+/* Experiència en quatre sectors (client, 12/10/2026): boira clara, quatre fotografies apaïsades amb el nom
+   a sota; quatre columnes a escriptori, dues des de 1000 px i una sota 350 px. */
 .i-sectors { padding-block:var(--space-section); background:var(--i-mist); color:var(--i-light-ink); }
 .i-sectors .i-section-heading p { color:var(--i-light-muted); }
-.i-sectors-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:clamp(.5rem,1vw,1rem); margin:0; padding:0; list-style:none; }
+.i-sectors-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(.5rem,1vw,1rem); margin:0; padding:0; list-style:none; }
 .i-sector { display:flex; flex-direction:column; min-width:0; overflow:hidden; background:var(--palette-light); }
 .i-sector picture { position:relative; display:block; flex:none; width:100%; aspect-ratio:3 / 2; overflow:hidden; background:var(--palette-mid); }
 .i-sector img { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; filter:saturate(.86) contrast(1.04); }
@@ -153,7 +168,6 @@
 .i-sector:nth-child(2) img { object-position:60% center; }
 .i-sector:nth-child(3) img { object-position:57% center; }
 .i-sector:nth-child(4) img { object-position:56% center; }
-.i-sector:nth-child(5) img { object-position:53% center; }
 .i-sector h3 { display:flex; align-items:center; flex:1; min-height:3.75rem; margin:0; padding:.75rem 1rem; color:var(--i-light-ink); font-size:clamp(1rem,.85rem + .4vw,1.2rem); font-weight:700; letter-spacing:-.01em; line-height:1.12; text-transform:uppercase; overflow-wrap:break-word; }
 
 /* Cas documentat: grafit, fotografia original i text. */
@@ -182,7 +196,7 @@
 .i-contact-main:active { scale:.97; }
 .i-contact-method > a:not(.i-contact-main) { display:block; min-height:44px; padding-block:.5rem; font-size:1.02rem; font-weight:600; overflow-wrap:anywhere; }
 .i-contact-method > a:not(.i-contact-main):hover { color:var(--palette-dark); }
-.i-contact :focus-visible, .i-capabilities :focus-visible, .i-sectors :focus-visible { outline-color:var(--i-light-ink); }
+.i-contact :focus-visible, .i-capabilities :focus-visible, .i-sectors :focus-visible, .i-maintenance :focus-visible { outline-color:var(--i-light-ink); }
 
 /* Moviment (criteri emil-design-eng; vegeu styles/motion.css). */
 @media (hover:hover) and (pointer:fine) {
@@ -209,7 +223,7 @@
 }
 @media (max-width:1000px) {
   .i-quality-body { grid-template-columns:1fr; }
-  .i-sectors-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .i-sectors-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
 @media (max-width:900px) {
   .i-cap-intro, .i-series-inner { grid-template-columns:1fr; }
@@ -251,12 +265,13 @@
   .i-series-step:not(:last-child)::after { position:absolute; top:var(--dot-y); bottom:calc(-1 * var(--dot-y)); left:calc(var(--node) - 1px); width:2px; background:linear-gradient(var(--palette-white) calc(var(--fill, 1) * 100%), rgb(212 212 212 / .32) 0); content:""; }
   .i-series-step h3 { margin:.35rem 0 .3rem; }
   .i-series-step p { max-width:46ch; margin:0; }
-  .i-sectors-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .i-sector:last-child { grid-column:1 / -1; display:grid; grid-template-columns:1fr 1fr; align-items:stretch; }
-  .i-sector:last-child picture { aspect-ratio:3 / 2; }
+  .i-maintenance-layout { grid-template-columns:1fr; }
   .i-project-layout, .i-contact-grid { grid-template-columns:1fr; }
 }
 @media (max-width:480px) {
+  .i-maintenance-actions { align-items:stretch; flex-direction:column; gap:1.25rem; }
+  .i-maintenance-actions .i-button { width:100%; }
+  .i-maintenance-actions .i-text-link { width:fit-content; }
   .i-hero-overline span:last-child { display:none; }
   .i-hero-actions { align-items:stretch; flex-direction:column; width:100%; }
   .i-hero-actions .i-button { width:100%; }
@@ -269,7 +284,7 @@
   .i-contact-guide ol { grid-template-columns:1fr; }
 }
 @media (max-width:350px) {
-  .i-cap-showcase, .i-production-grid { grid-template-columns:1fr; }
+  .i-cap-showcase, .i-production-grid, .i-sectors-grid { grid-template-columns:1fr; }
   .i-cap-showcase article { min-height:175px; }
   .i-cap-showcase h3 { font-size:1.4rem; }
   .i-quality-list { grid-template-columns:1fr; }

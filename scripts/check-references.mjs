@@ -189,6 +189,29 @@ const VALIDATED_REVISIONS = [
       'content/ca/industrial-capacitats.md': '4d5a9e40953fb130508a47e1807fe5e156ca460d6e2be1be1b6614fc4eb2ad1b',
     },
   },
+  {
+    // Canvis del client (fases/fase-7/CANVIS-CLIENT-2026-10-12.md), per ordre del director (12/10/2026).
+    // Abast exacte: Reparacions en lloc d'Urgències (ruta, introducció, dades per contactar i enllaços),
+    // Tecnologies duals retirat (quatre sectors), mobiliari també per a decoradors i manteniment
+    // industrial a Industrial (secció, frase al resum d'oferta i crida final «Parlem del teu encàrrec»).
+    // Frontmatter: la ruta de Reparacions i les descripcions dels documents ajornats de mobiliari i sectors.
+    label: 'canvis del client: reparacions, sectors, decoradors i manteniment (12/10/2026)',
+    bodies: {
+      'content/ca/home.md': 'c5e0763d8ce16bb513c648df854f2b7f2369d6c753514a4da701858708eb3faa',
+      'content/ca/industrial-sectors.md': '38ad19c5d92ce1f50af25b6efc712c8101365b18355aa5754ffc7a31301adcdf',
+      'content/ca/industrial.md': '0a40588238705716aa2912487bc3ce058e1a82c86730a711b9844ac97b358f32',
+      'content/ca/particulars-automatismes.md': 'fadc6ee25ea059d3047c9e627f1021ca20a409c2dc4b901973ecc26fca1245f5',
+      'content/ca/particulars-mobiliari.md': '177589ada25deeacaf7fae3516ac3ab9685f4449ab829d81d69befe7d32ad010',
+      'content/ca/particulars-urgencies.md': '94e43b70c08a9ac1104697a1b6d38b0b4f4c3d535feb52663a548c8774c0b078',
+      'content/ca/particulars.md': '64ae77ef762edf628ad044a7b6b02c89164a37271e6d3d3c3749de8808ebe0e1',
+      'content/ca/ui.md': 'd2d3b1270f75367ec454dcb3912dd5b117251588e35540b730ab1cd8789fe254',
+    },
+    frontmatter: {
+      'content/ca/industrial-sectors.md': '6c29e1006e5d89c1c0087ffa4b9c936288b91abf6332ccf0b1061fe0c59609c6',
+      'content/ca/particulars-mobiliari.md': '63ab033b34192b822255f3b32621ab352a9195bc2942460cd4864091bba3bed4',
+      'content/ca/particulars-urgencies.md': 'ec5a8d1bf2fe78d53b2fb3e4e91ef2027f25166ac9538b301378e0c30132bdf4',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

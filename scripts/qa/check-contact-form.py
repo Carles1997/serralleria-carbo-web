@@ -28,11 +28,11 @@ results = []
 BRANCH_TEXTS = {
     'ca': {
         'particular': {'label': 'Fotografia, esbós o document', 'summary': 'Afegir més dades (opcional)', 'hint': 'Descriu la feina o la incidència amb les teves paraules.'},
-        'empresa': {'label': 'Plànol o documentació tècnica', 'summary': 'Afegir dades tècniques (opcional)', 'hint': "Descriu la peça, l'aplicació i els requisits que ja coneixes."},
+        'empresa': {'label': 'Plànol, documentació o fotografies', 'summary': 'Afegir dades tècniques (opcional)', 'hint': 'Descriu la peça o el manteniment que necessites i els requisits que ja coneixes.'},
     },
     'es': {
         'particular': {'label': 'Fotografía, boceto o documento', 'summary': 'Añadir más datos (opcional)', 'hint': 'Describe el trabajo o la incidencia con tus propias palabras.'},
-        'empresa': {'label': 'Plano o documentación técnica', 'summary': 'Añadir datos técnicos (opcional)', 'hint': 'Describe la pieza, la aplicación y los requisitos que ya conoces.'},
+        'empresa': {'label': 'Plano, documentación o fotografías', 'summary': 'Añadir datos técnicos (opcional)', 'hint': 'Describe la pieza o el mantenimiento que necesitas y los requisitos que ya conoces.'},
     },
 }
 TEXTS_JS = '''() => {
@@ -196,6 +196,22 @@ with sync_playwright() as pw:
     check('JS es: Industrial amb producte', state_js == 'sent' and 'Industrial · Carros industrials' in last.get('subject', '') and page.is_disabled('#servei'),
           {'estat': state_js, 'assumpte': last.get('subject'), 'servei de Particulars desactivat': page.is_disabled('#servei')})
 
+    # Manteniment industrial (12/10/2026): l'enllaç de la secció preselecciona Industrial i el manteniment.
+    for locale, path, label in (('ca', '/contacte/?tipus=empresa&servei=manteniment', 'Manteniment industrial'), ('es', '/es/contacto/?tipus=empresa&servei=manteniment', 'Mantenimiento industrial')):
+        reset(FAKE)
+        page.goto(FAKE + path, wait_until='load')
+        preselected = page.evaluate('() => [document.querySelector("input[name=tipus]:checked")?.value, document.getElementById("servei-empresa").value, document.getElementById("servei-empresa").selectedOptions[0]?.textContent, document.querySelector("label[for=servei-empresa]").textContent]')
+        page.fill('#nom', 'Prova QA')
+        page.fill('#correu', 'qa@example.com')
+        page.fill('#descripcio', 'Cal revisar una porta seccional de la nau.' if locale == 'ca' else 'Hay que revisar una puerta seccional de la nave.')
+        page.check('#consentiment')
+        page.click('[data-submit]')
+        state_m, _, _ = status_text(page)
+        last = qa(FAKE, '/__qa/state')['last'] or {}
+        check(f'JS {locale}: manteniment preseleccionat i enviat (correu fals)',
+              preselected[:3] == ['empresa', 'manteniment', label] and state_m == 'sent' and 'Industrial · Manteniment industrial' in last.get('subject', '') and "Tipus d'encàrrec: Manteniment industrial" in last.get('body', ''),
+              {'preselecció': preselected, 'estat': state_m, 'assumpte': last.get('subject')})
+
     # Doble clic: el botó es desactiva mentre s'envia.
     reset(FAKE)
     page.goto(FAKE + PAGES['es'], wait_until='load')
@@ -253,8 +269,9 @@ with sync_playwright() as pw:
     nctx = browser.new_context(java_script_enabled=False)
     npage = nctx.new_page()
 
-    def native_submit(base, locale, filler=None, file=None, branch=None):
-        npage.goto(base + PAGES[locale], wait_until='load')
+    def native_submit(base, locale, filler=None, file=None, branch=None, reload=True):
+        if reload:
+            npage.goto(base + PAGES[locale], wait_until='load')
         if branch:
             npage.check(f'input[name=tipus][value={branch}]')
         if filler:
@@ -329,7 +346,7 @@ with sync_playwright() as pw:
     state = qa(FAKE, '/__qa/state')
     body = (state['last'] or {}).get('body', '')
     subject = (state['last'] or {}).get('subject', '')
-    expected_lines = ['Empresa: Tallers Vidal SL', 'Què cal fabricar: Peces i conjunts a mida', 'Unitats previstes: 250', 'Material: Inox 304', 'Termini desitjat: 6 setmanes', 'Sector: Alimentació']
+    expected_lines = ['Empresa: Tallers Vidal SL', "Tipus d'encàrrec: Peces i conjunts a mida", 'Unitats previstes: 250', 'Material: Inox 304', 'Termini desitjat: 6 setmanes', 'Sector: Alimentació']
     check('Sense JS: Industrial amb empresa, producte i dades tècniques',
           nav.value.status == 200 and state['sent'] == 1 and all(line in body for line in expected_lines) and 'Industrial · Peces i conjunts a mida' in subject
           and before['empresa'] == [False, True] and before['servei'] == [True, True]
@@ -348,6 +365,17 @@ with sync_playwright() as pw:
             and all(after[key] == expected['empresa'][key] for key in ('label', 'summary', 'hint')) \
             and typed['hint'] is None and before['placeholder'] == ' ' and ('3 MB' in after['help'])
         check(f'Sense JS {locale}: textos d\'Industrial (adjunt, desplegable i ajuda de la descripció)', ok, {'Particulars': before, 'Industrial': after, 'amb text': typed['hint']})
+
+    # Sense JavaScript no hi ha preselecció per paràmetre: el manteniment es tria a mà al selector d'Industrial.
+    reset(FAKE)
+    npage.goto(FAKE + '/contacte/?tipus=empresa&servei=manteniment', wait_until='load')
+    press_check(npage, 'input[name=tipus][value=empresa]')
+    options = npage.evaluate('() => [...document.querySelectorAll("#servei-empresa option")].map((o) => o.value)')
+    npage.select_option('#servei-empresa', 'manteniment')
+    status, (_, _, message, _, _), _ = native_submit(FAKE, 'ca', lambda p: (p.fill('#nom', 'Prova QA'), p.fill('#correu', 'qa@example.com'), p.fill('#descripcio', 'Cal revisar una porta de la nau.'), press_check(p, '#consentiment')), reload=False)
+    last = qa(FAKE, '/__qa/state')['last'] or {}
+    check('Sense JS: manteniment seleccionat a mà', 'manteniment' in options and status == 200 and 'Industrial · Manteniment industrial' in last.get('subject', ''),
+          {'opcions': options, 'estat': status, 'assumpte': last.get('subject')})
 
     # Tornar a Particulars sense JavaScript: torna a demanar el servei; els camps d'Industrial no compten.
     reset(FAKE)

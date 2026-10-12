@@ -11,7 +11,7 @@ seoDescription: "Fabricación metálica para terceros en Vilafranca del Penedès
 
 ## Qué fabricamos
 
-Fabricación para empresas y obra: estructuras, puertas y mobiliario, en serie o a medida; piezas a partir de un plano o de una especificación, y encargos industriales de una sola unidad.
+Fabricación para empresas y obra: estructuras, puertas y mobiliario, en serie o a medida; piezas a partir de un plano o de una especificación, y encargos industriales de una sola unidad. También ofrecemos mantenimiento industrial.
 
 - **Estructuras, barandillas y escaleras** · Para proyectos de constructoras y promotoras.
 - **Puertas y cerramientos** · Fabricación e instalación en proyectos de construcción.
@@ -23,6 +23,12 @@ Fabricación para empresas y obra: estructuras, puertas y mobiliario, en serie o
 
 [Cerrajería para particulares](/es/particulares/)
 
+## Mantenimiento industrial
+
+También nos encargamos del mantenimiento en el ámbito industrial. Cuéntanos qué hay que revisar o reparar y dónde debe realizarse la intervención.
+
+[Consulta un mantenimiento](/es/contacto/?tipus=empresa&servei=manteniment)
+
 ## El taller en primer plano
 
 Del material al montaje, trabajamos con equipo propio. Consulta los materiales, los procesos y los medios disponibles en la ficha de capacidades.
@@ -33,9 +39,9 @@ Del material al montaje, trabajamos con equipo propio. Consulta los materiales, 
 
 Podemos valorar proyectos que requieran apoyo de arquitectura técnica. Estamos implantando la ISO 9001 y estudiamos la ISO 3834.
 
-## Experiencia en cinco sectores
+## Experiencia en cuatro sectores
 
-La experiencia de la empresa incluye alimentación, sanitario, packaging, bodegas y tecnologías duales. Para la construcción a gran escala también podemos valorar escaleras, barandillas, estructuras para ascensores y otros elementos metálicos.
+La experiencia de la empresa incluye alimentación, sanitario, packaging y bodegas. Para la construcción a gran escala también podemos valorar escaleras, barandillas, estructuras para ascensores y otros elementos metálicos.
 
 ## La serie empieza con una pieza
 
@@ -52,7 +58,7 @@ Fabricación y suministro de diez jaulas para un cliente industrial.
 
 [Hablemos de un proyecto similar](#contacte)
 
-## Hablemos de la pieza
+## Hablemos de tu encargo
 
 Si los tienes, adjunta un plano o documentación. Para fabricación en serie, podemos valorar encargos de toda Cataluña.
 

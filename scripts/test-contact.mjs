@@ -145,7 +145,7 @@ describe('validació al servidor', () => {
     // Sense JavaScript arriben els dos desplegables: només compta «producte».
     assert.equal((await h.call(valid({ tipus: 'empresa', servei: 'urgencies', producte: 'peces' }))).status, 200);
     assert.ok(h.sent[1].message.subject.includes('Industrial · Peces i conjunts a mida'));
-    assert.ok(!h.sent[1].message.body.content.includes('Urgències'));
+    assert.ok(!h.sent[1].message.body.content.includes('Reparacions'));
     // Un valor de Particulars al producte no és vàlid.
     const wrong = await h.call(valid({ tipus: 'empresa', producte: 'urgencies' }));
     assert.equal(wrong.status, 400);
@@ -154,6 +154,31 @@ describe('validació al servidor', () => {
     await h.call(valid({ empresa: 'No hauria de sortir', unitats: '9', producte: 'carros' }));
     assert.ok(!h.sent[2].message.body.content.includes('No hauria de sortir'));
     assert.ok(!h.sent[2].message.subject.includes('Carros'));
+  });
+
+  test('manteniment industrial (12/10/2026): només a Industrial, sense dades de fabricació obligatòries', async () => {
+    const h = harness({ mode: 'test' });
+    const ok = await h.call(valid({ tipus: 'empresa', servei: '', producte: 'manteniment', descripcio: 'Cal revisar una porta seccional de la nau.' }));
+    assert.equal(ok.status, 200);
+    const { subject, body } = h.sent[0].message;
+    assert.ok(subject.includes('Industrial · Manteniment industrial'), subject);
+    assert.ok(body.content.includes("Tipus d'encàrrec: Manteniment industrial"), body.content);
+    for (const absent of ['Unitats previstes', 'Material:', 'Termini desitjat']) assert.ok(!body.content.includes(absent), absent);
+    const es = await h.call(valid({ tipus: 'empresa', producte: 'manteniment', idioma: 'es' }), { locale: 'es' });
+    assert.equal(es.status, 200);
+    // A Particulars, «manteniment» no és un servei permès.
+    const particular = await harness().call(valid({ servei: 'manteniment' }));
+    assert.equal(particular.status, 400);
+    assert.equal(particular.body.errors.servei, contactMessages.ca.errors.choice);
+  });
+
+  test('reparacions (12/10/2026): el valor antic «urgencies» continua vàlid amb l’etiqueta Reparacions', async () => {
+    const h = harness({ mode: 'test' });
+    assert.equal((await h.call(valid({ servei: 'urgencies' }))).status, 200);
+    const { subject, body } = h.sent[0].message;
+    assert.ok(subject.includes('Particulars · Reparacions · Ref.'), subject);
+    assert.ok(body.content.includes('Servei: Reparacions'), body.content);
+    assert.ok(!/urg[eè]nci/i.test(JSON.stringify(h.sent[0])), 'cap «urgències» al correu');
   });
 
   test('serveis: només claus pròpies de les llistes (toString, constructor, __proto__…)', async () => {

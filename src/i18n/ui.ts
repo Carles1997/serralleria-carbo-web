@@ -24,7 +24,9 @@ const ca = {
     services: {
       estructures: '/particulars/estructures/',
       automatismes: '/particulars/automatismes/',
-      urgencies: '/particulars/urgencies/',
+      // Clau interna «urgencies» (categoria i paràmetre antic del formulari); ruta pública des del
+      // 12/10/2026: Reparacions (fases/fase-7/CANVIS-CLIENT-2026-10-12.md).
+      urgencies: '/particulars/reparacions/',
     } as Record<string, string>,
   },
   menu: { main: 'Navegació principal', mobile: 'Navegació mòbil', open: 'Obre el menú', close: 'Tanca el menú' },
@@ -87,7 +89,8 @@ const ca = {
       tiles: [
         { detail: 'Fabricació, instal·lació i motorització' },
         { detail: 'Escales i passarel·les' },
-        { detail: 'Ferro i inoxidable' },
+        // Públic del mobiliari (client, 12/10/2026): particulars i decoradors. Els materials són al text de Particulars.
+        { detail: 'Per a particulars i decoradors' },
         { detail: 'Portes, persianes i motors' },
         { detail: 'Acer al carboni i inoxidable' },
       ],
@@ -115,7 +118,7 @@ const ca = {
   // el cos de text surt de content/ca/particulars.md.
   particulars: {
     nav: [
-      { label: 'Urgències', href: '/particulars/urgencies/' },
+      { label: 'Reparacions', href: '/particulars/reparacions/' },
       { label: 'Estructures', href: '/particulars/estructures/' },
       { label: 'Automatismes', href: '/particulars/automatismes/' },
       // Ruta ajornada (config/routes.ts): porta al formulari amb Mobiliari preseleccionat.
@@ -180,6 +183,8 @@ const ca = {
       // Nom comercial «Fabricació en sèrie» (refinament del director, 06/10/2026); la ruta ajornada
       // /industrial/series-curtes/ conserva el seu destí resolt a la producció.
       { label: 'Fabricació en sèrie', href: resolveRoute('/industrial/series-curtes/') },
+      // Servei transversal per a empreses (client, 12/10/2026): secció pròpia de la portada.
+      { label: 'Manteniment', href: '/industrial/#manteniment' },
       { label: 'Sectors', href: resolveRoute('/industrial/sectors/') },
       { label: 'Procés', href: resolveRoute('/industrial/proces/') },
       { label: 'Projectes', href: resolveRoute('/industrial/projectes/') },
@@ -221,6 +226,12 @@ const ca = {
       productAction: 'obre una consulta tècnica',
       action: 'Envia una consulta tècnica',
     },
+    // Manteniment industrial (client, 12/10/2026): franja pròpia entre «Què fabriquem» i el taller.
+    // Text i acció principal d'industrial.md; aquí l'etiqueta i el titular en línies.
+    maintenance: {
+      label: 'Servei per a empreses',
+      heading: ['Manteniment', 'industrial'],
+    },
     workshop: {
       heading: ['El taller', 'en primer pla'],
       materials: { head: ['Materials'], title: ['Acer i', 'inoxidable'] },
@@ -244,7 +255,7 @@ const ca = {
       action: 'Consultar una sèrie',
     },
     sectors: {
-      heading: ['Experiència', 'en cinc sectors'],
+      heading: ['Experiència', 'en quatre sectors'],
       label: 'Sectors amb experiència',
       // Han de constar al paràgraf de sectors d'industrial.md (es comprova al build).
       items: [
@@ -252,16 +263,17 @@ const ca = {
         { name: 'Sanitari', art: 'sanitari' },
         { name: 'Packaging', art: 'packaging' },
         { name: 'Cellers', art: 'cellers' },
-        { name: 'Tecnologies duals', art: 'duals' },
+        // Tecnologies duals retirat de l'oferta (client, 12/10/2026).
       ],
     },
     project: {
       heading: ['Un encàrrec real', 'Deu gàbies'],
     },
     contact: {
-      heading: ['Parlem de', 'la peça'],
+      // Inclou el manteniment (client, 12/10/2026): cap dada de fabricació no és obligatòria.
+      heading: ['Parlem del', 'teu encàrrec'],
       guideLabel: 'Per valorar la consulta',
-      guide: ['Plànol o documentació', 'Material i aplicació', 'Unitats previstes', 'Termini que necessites'],
+      guide: ['Què necessites', 'Ubicació de la intervenció, si escau', 'Documentació o fotografies, si en tens', 'Material, unitats i termini, si escau'],
       methodLabel: 'Contacte directe',
     },
   },
@@ -373,20 +385,23 @@ const ca = {
         servei: 'Quin servei necessites?',
         serveiPlaceholder: 'Selecciona un servei',
         services: [
-          { value: 'urgencies', label: 'Urgències i reparacions' },
+          // Valor intern «urgencies» conservat pels enllaços antics; etiqueta pública: Reparacions.
+          { value: 'urgencies', label: 'Reparacions' },
           { value: 'estructures', label: 'Estructures' },
           { value: 'automatismes', label: 'Automatismes, portes i motors' },
           { value: 'mobiliari', label: 'Mobiliari a mida' },
         ],
-        // Formulari d'Industrial: producte (opcional; el preselecciona l'enllaç d'origen).
-        produccio: 'Què cal fabricar?',
-        produccioPlaceholder: 'Selecciona un producte',
+        // Formulari d'Industrial: tipus d'encàrrec (opcional; el preselecciona l'enllaç d'origen). Inclou
+        // el manteniment (12/10/2026); el camp enviat és «producte».
+        produccio: "Tipus d'encàrrec",
+        produccioPlaceholder: 'Selecciona una opció',
         productionServices: [
           { value: 'estructures', label: 'Estructures, baranes i escales' },
           { value: 'portes', label: 'Portes i tancaments, amb instal·lació' },
           { value: 'mobiliari', label: 'Mobiliari' },
           { value: 'carros', label: 'Carros industrials' },
           { value: 'peces', label: 'Peces i conjunts a mida' },
+          { value: 'manteniment', label: 'Manteniment industrial' },
         ],
         sector: 'Sector',
         material: 'Material',
@@ -395,14 +410,14 @@ const ca = {
         descripcio: 'Descripció',
         descripcioPlaceholder: {
           particular: 'Descriu la feina o la incidència amb les teves paraules.',
-          empresa: "Descriu la peça, l'aplicació i els requisits que ja coneixes.",
+          empresa: 'Descriu la peça o el manteniment que necessites i els requisits que ja coneixes.',
         },
       },
       // Dades opcionals agrupades en un desplegable: ubicació i, a Industrial, dades tècniques.
       extra: { particular: 'Afegir més dades (opcional)', empresa: 'Afegir dades tècniques (opcional)' },
       upload: {
         particular: { label: 'Fotografia, esbós o document', help: 'Opcional.' },
-        empresa: { label: 'Plànol o documentació tècnica', help: 'Opcional.' },
+        empresa: { label: 'Plànol, documentació o fotografies', help: 'Opcional.' },
         choose: 'Tria un fitxer',
         none: 'Cap fitxer seleccionat',
       },
@@ -535,7 +550,7 @@ const es: UiStrings = {
     services: {
       estructures: '/es/particulares/estructuras/',
       automatismes: '/es/particulares/automatismos/',
-      urgencies: '/es/particulares/urgencias/',
+      urgencies: '/es/particulares/reparaciones/',
     },
   },
   menu: { main: 'Navegación principal', mobile: 'Navegación móvil', open: 'Abrir el menú', close: 'Cerrar el menú' },
@@ -585,7 +600,7 @@ const es: UiStrings = {
       tiles: [
         { detail: 'Fabricación, instalación y motorización' },
         { detail: 'Escaleras y pasarelas' },
-        { detail: 'Hierro e inoxidable' },
+        { detail: 'Para particulares y decoradores' },
         { detail: 'Puertas, persianas y motores' },
         { detail: 'Acero al carbono e inoxidable' },
       ],
@@ -611,7 +626,7 @@ const es: UiStrings = {
   notFound: { waysLabel: 'Caminos para continuar' },
   particulars: {
     nav: [
-      { label: 'Urgencias', href: '/es/particulares/urgencias/' },
+      { label: 'Reparaciones', href: '/es/particulares/reparaciones/' },
       { label: 'Estructuras', href: '/es/particulares/estructuras/' },
       { label: 'Automatismos', href: '/es/particulares/automatismos/' },
       // Mobiliari és una ruta ajornada: porta al formulari amb el servei preseleccionat, com en català.
@@ -664,6 +679,7 @@ const es: UiStrings = {
       { label: 'Capacidades', href: '/es/industrial/capacidades/' },
       // Rutes ajornades: porten a la secció de la portada, com en català.
       { label: 'Fabricación en serie', href: '/es/industrial/#produccio' },
+      { label: 'Mantenimiento', href: '/es/industrial/#manteniment' },
       { label: 'Sectores', href: '/es/industrial/#sectors' },
       { label: 'Proceso', href: '/es/industrial/#proces' },
       { label: 'Proyectos', href: '/es/industrial/#projectes' },
@@ -695,6 +711,10 @@ const es: UiStrings = {
       productAction: 'abre una consulta técnica',
       action: 'Envía una consulta técnica',
     },
+    maintenance: {
+      label: 'Servicio para empresas',
+      heading: ['Mantenimiento', 'industrial'],
+    },
     workshop: {
       heading: ['El taller', 'en primer plano'],
       materials: { head: ['Materiales'], title: ['Acero e', 'inoxidable'] },
@@ -716,23 +736,22 @@ const es: UiStrings = {
       action: 'Consultar una serie',
     },
     sectors: {
-      heading: ['Experiencia', 'en cinco sectores'],
+      heading: ['Experiencia', 'en cuatro sectores'],
       label: 'Sectores con experiencia',
       items: [
         { name: 'Alimentación', art: 'alimentacio' },
         { name: 'Sanitario', art: 'sanitari' },
         { name: 'Packaging', art: 'packaging' },
         { name: 'Bodegas', art: 'cellers' },
-        { name: 'Tecnologías duales', art: 'duals' },
       ],
     },
     project: {
       heading: ['Un encargo real', 'Diez jaulas'],
     },
     contact: {
-      heading: ['Hablemos de', 'la pieza'],
+      heading: ['Hablemos de', 'tu encargo'],
       guideLabel: 'Para valorar la consulta',
-      guide: ['Plano o documentación', 'Material y aplicación', 'Unidades previstas', 'Plazo que necesitas'],
+      guide: ['Qué necesitas', 'Ubicación de la intervención, si procede', 'Documentación o fotografías, si las tienes', 'Material, unidades y plazo, si procede'],
       methodLabel: 'Contacto directo',
     },
   },
@@ -831,19 +850,20 @@ const es: UiStrings = {
         servei: '¿Qué servicio necesitas?',
         serveiPlaceholder: 'Selecciona un servicio',
         services: [
-          { value: 'urgencies', label: 'Urgencias y reparaciones' },
+          { value: 'urgencies', label: 'Reparaciones' },
           { value: 'estructures', label: 'Estructuras' },
           { value: 'automatismes', label: 'Automatismos, puertas y motores' },
           { value: 'mobiliari', label: 'Mobiliario a medida' },
         ],
-        produccio: '¿Qué hay que fabricar?',
-        produccioPlaceholder: 'Selecciona un producto',
+        produccio: 'Tipo de encargo',
+        produccioPlaceholder: 'Selecciona una opción',
         productionServices: [
           { value: 'estructures', label: 'Estructuras, barandillas y escaleras' },
           { value: 'portes', label: 'Puertas y cerramientos, con instalación' },
           { value: 'mobiliari', label: 'Mobiliario' },
           { value: 'carros', label: 'Carros industriales' },
           { value: 'peces', label: 'Piezas y conjuntos a medida' },
+          { value: 'manteniment', label: 'Mantenimiento industrial' },
         ],
         sector: 'Sector',
         material: 'Material',
@@ -852,13 +872,13 @@ const es: UiStrings = {
         descripcio: 'Descripción',
         descripcioPlaceholder: {
           particular: 'Describe el trabajo o la incidencia con tus propias palabras.',
-          empresa: 'Describe la pieza, la aplicación y los requisitos que ya conoces.',
+          empresa: 'Describe la pieza o el mantenimiento que necesitas y los requisitos que ya conoces.',
         },
       },
       extra: { particular: 'Añadir más datos (opcional)', empresa: 'Añadir datos técnicos (opcional)' },
       upload: {
         particular: { label: 'Fotografía, boceto o documento', help: 'Opcional.' },
-        empresa: { label: 'Plano o documentación técnica', help: 'Opcional.' },
+        empresa: { label: 'Plano, documentación o fotografías', help: 'Opcional.' },
         choose: 'Elige un archivo',
         none: 'Ningún archivo seleccionado',
       },

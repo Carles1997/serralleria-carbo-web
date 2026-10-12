@@ -53,7 +53,7 @@ Peces i sèries de ferro i inoxidable, amb subministrament o muntatge segons l'e
 
 Alguns exemples del que pots encarregar a cada camí.
 
-[Portes i motors](/particulars/automatismes/) · [Baranes i estructures](/particulars/estructures/) · [Mobiliari a mida](/contacte/?tipus=particular&servei=mobiliari) · [Reparacions](/particulars/urgencies/) · [Fabricació industrial](/industrial/#produccio)
+[Portes i motors](/particulars/automatismes/) · [Baranes i estructures](/particulars/estructures/) · [Mobiliari a mida](/contacte/?tipus=particular&servei=mobiliari) · [Reparacions](/particulars/reparacions/) · [Fabricació industrial](/industrial/#produccio)
 
 ## Parlem del teu encàrrec
 

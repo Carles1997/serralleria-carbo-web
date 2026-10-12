@@ -1,6 +1,6 @@
 ---
 pageId: particulars-urgencies
-route: /es/particulares/urgencias/
+route: /es/particulares/reparaciones/
 lang: es
 status: draft
 seoTitle: "Reparación de puertas en Vilafranca | Serralleria Carbó"
@@ -9,7 +9,7 @@ seoDescription: "¿Tienes una incidencia con una puerta o un automatismo? Contac
 
 # Reparación de puertas y automatismos en Vilafranca
 
-Si una puerta, una persiana o un motor ha dejado de funcionar, llámanos y cuéntanos qué ha pasado y dónde está la instalación. Trabajamos sobre todo en Vilafranca del Penedès y alrededores.
+Reparaciones de puertas, persianas y automatismos en Vilafranca del Penedès y alrededores. Contacta con nosotros para valorar la intervención.
 
 ## Cuéntanos la incidencia
 
@@ -17,9 +17,9 @@ Si una puerta, una persiana o un motor ha dejado de funcionar, llámanos y cuén
 
 Si prefieres el formulario, indica:
 
-- **La puerta** · Puerta, persiana o motor.
-- **Qué pasa** · Qué ha dejado de funcionar.
-- **Dónde está** · Dónde está la instalación.
+- **Elemento** · Puerta, persiana o motor.
+- **Incidencia** · Describe el problema.
+- **Ubicación** · Municipio y lugar de la instalación.
 
 Si puedes, adjunta una fotografía.
 

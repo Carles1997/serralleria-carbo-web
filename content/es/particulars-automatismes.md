@@ -35,7 +35,7 @@ Hemos fabricado, instalado y motorizado una puerta de parking de una comunidad d
 
 Si la puerta o el motor fallan, llámanos y cuéntanos la incidencia.
 
-[Ver urgencias](/es/particulares/urgencias/) · [Enviar una consulta](/es/contacto/)
+[Ver reparaciones](/es/particulares/reparaciones/) · [Enviar una consulta](/es/contacto/)
 
 ## Para empresas y obra
 

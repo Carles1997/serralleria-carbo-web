@@ -19,7 +19,7 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 ## Navegació Particulars
 
 - Inici
-- Urgències
+- Reparacions
 - Estructures
 - Automatismes
 - Mobiliari
@@ -32,6 +32,7 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 - Capacitats
 - Sectors
 - Fabricació en sèrie
+- Manteniment
 - Procés
 - Projectes
 - Contacte
@@ -41,7 +42,7 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 - Acció principal: **Escriu-nos per WhatsApp**
 - Número general: **630 661 908** (`+34 630 661 908` per a l'enllaç internacional)
 - Missatge inicial proposat: **Hola, us escric des de la web de Serralleria Carbó. Voldria fer una consulta.**
-- A Urgències, conservar també **Truca al 630 661 908** com a acció directa de trucada.
+- A Reparacions, conservar també **Truca al 630 661 908** com a acció directa de trucada.
 - Les consultes particulars i industrials comparteixen el 630 661 908 i carbo@serralleriacarbo.com; el formulari identifica la branca seleccionada en l’assumpte ([Particulars] o [Industrial]) quan s’implementi l’enviament.
 - Traduir el missatge inicial a ES/EN després de validar el català. El visitant el pot editar abans d'enviar-lo; obrir WhatsApp no envia cap missatge automàticament.
 
@@ -63,19 +64,19 @@ usage: "Textos compartits de navegació, botons i formulari; no és una pàgina 
 
 ## Camps de Particular
 
-- Servei: Urgències · Estructures · Automatismes · Mobiliari
+- Servei: Reparacions · Estructures · Automatismes · Mobiliari
 - On cal fer la feina?
 - Pots adjuntar una fotografia, un esbós o les mesures que tinguis.
 
 ## Camps d'Empresa
 
-- Què cal fabricar?: Estructures, baranes i escales · Portes i tancaments, amb instal·lació · Mobiliari · Carros industrials · Peces i conjunts a mida
+- Tipus d'encàrrec: Estructures, baranes i escales · Portes i tancaments, amb instal·lació · Mobiliari · Carros industrials · Peces i conjunts a mida · Manteniment industrial
 - Empresa (opcional)
 - Sector
 - Material
 - Unitats previstes
 - Termini desitjat
-- Adjunta un plànol o la documentació tècnica disponible.
+- Adjunta un plànol, documentació o fotografies, si en tens.
 
 ## Estats del formulari
 

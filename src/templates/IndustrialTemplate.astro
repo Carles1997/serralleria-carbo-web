@@ -8,6 +8,8 @@
 // ajornades (config/routes.ts) resolen a seccions d'aquesta mateixa pàgina i no es mostren; quan
 // les rutes es publiquin, tornaran a aparèixer.
 // Bloc 2: rols tipogràfics comuns; la línia del mètode es manté en plata (decisió del director).
+// Canvis del client (12/10/2026, fases/fase-7/CANVIS-CLIENT-2026-10-12.md): franja de manteniment
+// industrial entre «Què fabriquem» i el taller, i quatre sectors (sense Tecnologies duals).
 import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
@@ -31,12 +33,13 @@ const locale = page.data.lang;
 const ui = useUi(locale);
 const t = ui.industrial;
 
-// Estructura d'industrial.md: H1, un paràgraf d'entrada i set seccions H2 en aquest ordre. La
+// Estructura d'industrial.md: H1, un paràgraf d'entrada i vuit seccions H2 en aquest ordre. La
 // primera, «Què fabriquem en sèrie», diu que Industrial fa en diverses unitats els productes de
-// Particulars i qualsevol peça a mida (reunió amb el client, 03/10/2026).
+// Particulars i qualsevol peça a mida (reunió amb el client, 03/10/2026); la segona és el manteniment
+// industrial (12/10/2026).
 const doc = parseMarkdown(page.body ?? '');
-if (doc.sections.length !== 7) throw new Error(`industrial.md ha de tenir 7 seccions H2; en té ${doc.sections.length}.`);
-const [production, workshop, quality, sectors, method, project, contact] = doc.sections;
+if (doc.sections.length !== 8) throw new Error(`industrial.md ha de tenir 8 seccions H2; en té ${doc.sections.length}.`);
+const [production, maintenance, workshop, quality, sectors, method, project, contact] = doc.sections;
 
 if (`${t.hero.title.join('. ')}.` !== doc.title) {
   throw new Error(`El titular compost («${t.hero.title.join(' / ')}») no coincideix amb la H1 d'industrial.md.`);
@@ -48,6 +51,7 @@ if (paragraphs(doc.intro).length) throw new Error("L'entrada d'industrial.md nom
 // titulars es reparteixen en línies a i18n/ui.ts i el build comprova que diguin el mateix. Els
 // enllaços a les quatre interiors ajornades ja no són al contingut.
 sameText(t.production.heading, production.heading, 'industrial.md');
+sameText(t.maintenance.heading, maintenance.heading, 'industrial.md');
 sameText(t.workshop.heading, workshop.heading, 'industrial.md');
 sameText(t.workshop.progress.label, quality.heading, 'industrial.md');
 sameText(t.sectors.heading, sectors.heading, 'industrial.md');
@@ -72,6 +76,14 @@ const seriesLead = one(paragraphs(method.blocks), `un paràgraf a «${method.hea
 if (method.subsections.length) throw new Error(`«${method.heading}» ja no porta apartats H3: el mètode són els quatre passos.`);
 const steps = listItems(method.blocks).map(labelledItem);
 if (steps.length !== 4) throw new Error(`«${method.heading}» ha de tenir quatre passos; en té ${steps.length}.`);
+
+// Manteniment: text general aprovat pel director i una acció cap al formulari d'Industrial amb el
+// manteniment preseleccionat. Sense catàleg d'intervencions fins que el client el concreti.
+const maintenanceText = one(paragraphs(maintenance.blocks), `un paràgraf a «${maintenance.heading}»`);
+const maintenanceLink = one(links(maintenance.blocks), `un enllaç a «${maintenance.heading}»`);
+if (!/[?&]tipus=empresa(&|$)/.test(maintenanceLink.href) || !/[?&]servei=manteniment(&|$)/.test(maintenanceLink.href)) {
+  throw new Error(`L'acció de «${maintenance.heading}» ha de preseleccionar Industrial i el manteniment.`);
+}
 
 const projectText = one(paragraphs(project.blocks), `un paràgraf a «${project.heading}»`);
 const projectAction = one(links(project.blocks), `un enllaç a «${project.heading}»`);
@@ -170,6 +182,22 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
             <Inlines inlines={productionCross} />{' '}
             <a class="i-text-link" href={productionCrossLink.href}>{productionCrossLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
           </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="i-maintenance" id="manteniment" aria-labelledby="i-maintenance-title">
+      <div class="section-shell i-maintenance-layout">
+        <div class="i-maintenance-head" data-reveal>
+          <p class="i-maintenance-label">{t.maintenance.label}</p>
+          <h2 id="i-maintenance-title">{t.maintenance.heading[0]}{' '}<br /><em>{t.maintenance.heading[1]}</em></h2>
+        </div>
+        <div class="i-maintenance-copy" data-reveal style="--i:1">
+          <p><Inlines inlines={maintenanceText} /></p>
+          <div class="i-maintenance-actions">
+            <a class="i-button i-button-solid" href={maintenanceLink.href}>{maintenanceLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="i-text-link" href={company.phone.href}>{ui.contact.call(company.phone.display)} <span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
         </div>
       </div>
     </section>
@@ -289,9 +317,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
                   src={sitePhotography.sectors[sector.art as keyof typeof sitePhotography.sectors]}
                   alt=""
                   widths={[320, 480, 720, 960]}
-                  sizes={index === t.sectors.items.length - 1
-                    ? '(max-width: 760px) 100vw, (max-width: 1000px) 33vw, 20vw'
-                    : '(max-width: 760px) 50vw, (max-width: 1000px) 33vw, 20vw'}
+                  sizes="(max-width: 350px) 100vw, (max-width: 1000px) 50vw, 25vw"
                   formats={['avif', 'webp']}
                   fallbackFormat="jpg"
                   loading="lazy"

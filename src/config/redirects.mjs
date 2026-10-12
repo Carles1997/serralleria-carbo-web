@@ -78,6 +78,20 @@ export const redirects = [
     to: { pageId: 'home', lang: 'ca' },
     note: "Pàgina retirada pel director (06/10/2026): xifres, taller i zones de treball són a la Home.",
   },
+  // Reparacions en lloc d'Urgències (client, 12/10/2026, fases/fase-7/CANVIS-CLIENT-2026-10-12.md): les
+  // rutes de la previsualització canvien de nom; 301 directe perquè no quedin dues pàgines equivalents.
+  {
+    from: '/particulars/urgencies/',
+    status: 301,
+    to: { pageId: 'particulars-urgencies', lang: 'ca' },
+    note: 'Ruta anterior del servei, rebatejat «Reparacions» per decisió del client (12/10/2026).',
+  },
+  {
+    from: '/es/particulares/urgencias/',
+    status: 301,
+    to: { pageId: 'particulars-urgencies', lang: 'es' },
+    note: 'Ruta anterior del servei en castellà, rebatejat «Reparaciones» per decisió del client (12/10/2026).',
+  },
   // Adreces citades als textos legals de l'advocat del client (06/10/2026), que el lloc nou publica a /legal/.
   {
     from: '/politica-de-privacitat/',

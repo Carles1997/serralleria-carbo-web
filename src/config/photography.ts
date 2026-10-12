@@ -25,7 +25,6 @@ import sectorFood from '../../assets/imatges-conceptuals/sector-alimentacio-v1.p
 import sectorHealth from '../../assets/imatges-conceptuals/sector-sanitari-v1.png';
 import sectorPackaging from '../../assets/imatges-conceptuals/sector-packaging-v1.png';
 import sectorWine from '../../assets/imatges-conceptuals/sector-cellers-v2.png';
-import sectorDual from '../../assets/imatges-conceptuals/sector-tecnologies-duals-v2.png';
 import capSteel from '../../assets/imatges-conceptuals/capacitats-acer-taller-v1.png';
 import capStainless from '../../assets/imatges-conceptuals/capacitats-inox-taller-v1.png';
 import capPressBrake from '../../assets/imatges-conceptuals/capacitats-plegadora-taller-v1.png';
@@ -132,7 +131,6 @@ export const sitePhotography = {
     sanitari: sectorHealth,
     packaging: sectorPackaging,
     cellers: sectorWine,
-    duals: sectorDual,
   },
   serviceScope: {
     barana: baranes01,

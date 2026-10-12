@@ -56,7 +56,7 @@ main.industrial-page :is(h1,h2,h3) em {
   -webkit-text-fill-color:transparent;
 }
 /* Sobre plata i boira, reflex metàl·lic fosc amb lectura estable (contrast en tota la gamma). */
-main.industrial-page :is(.i-capabilities,.i-sectors,.i-contact,.c-overview,.c-requirements,.c-contact) h2 em {
+main.industrial-page :is(.i-maintenance,.i-capabilities,.i-sectors,.i-contact,.c-overview,.c-requirements,.c-contact) h2 em {
   color:var(--palette-dark);
   background-image:linear-gradient(105deg,var(--palette-dark) 0%,var(--palette-dark) 18%,var(--palette-dark) 35%,var(--palette-dark) 53%,var(--palette-dark) 72%,var(--palette-dark) 87%,var(--palette-dark) 100%);
 }

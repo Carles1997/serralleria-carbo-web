@@ -3,8 +3,8 @@
 **Data:** 12/10/2026 · **Especificació:** [CANVIS-CLIENT-2026-10-12.md](CANVIS-CLIENT-2026-10-12.md)
 
 **Estat:**
-- Implementat en local i preparat per revisar.
-- Sense commit ni desplegament.
+- Commit `bf6af34`, desplegat a `revisio-client` per ordre del director (12/10/2026; desplegament `6acd156faadcd952b80051a1`, sense producció).
+- Resultats en viu al §5.1.
 - El formulari continua en demostració: no s'ha enviat cap correu.
 - No s'han modificat el DNS, la producció ni la indexació.
 
@@ -82,9 +82,18 @@ El banner «Tens una avaria? / ¿Tienes una avería?» es conserva sense canvis.
 | **Cerca al text visible, metadades i noms accessibles** de les pàgines generades | Cap «Urgències / Urgencias / urgent» i cap «dual». Les úniques coincidències de «dual» són dins d'«individualitzades / individualizadas» als textos legals |
 | **Desbordament horitzontal** a 1440, 390 i 320 px (Home, Particulars, Reparacions, Automatismes, Industrial i Contacte, en català i castellà) | 0 px a totes |
 
+### 5.1 Comprovacions a `revisio-client` (12/10/2026)
+
+| Comprovació | Resultat |
+|---|---|
+| `npm run check:redirects:live` | Totes correctes. `/particulars/urgencies/` i `/es/particulares/urgencias/`, amb barra final i sense, fan un sol salt 301 a les rutes noves, que responen 200 |
+| Home, Particulars, Reparacions, Industrial i Contacte, en català i castellà | 200 i `X-Robots-Tag: noindex`; textos nous presents; cap «Urgències / Urgencias» ni «Tecnologies duals / Tecnologías duales» al text |
+| Consulta de manteniment a Industrial (POST a la funció) | `200`, `state=dry-run`; cap correu |
+| `manteniment` a Particulars | `400`, error al camp `servei` |
+| Dades temporals de la prova | 2 entrades esborrades amb `netlify blobs:delete`; el magatzem ha quedat buit |
+
 ## 6. Pendents
 
-- **Redireccions en viu:** les 301 són a `dist/_redirects`, però **no s'han comprovat en viu**. Cal executar `npm run check:redirects:live` després d'un desplegament autoritzat a `revisio-client`.
 - **Validació:** el director ha de validar les propostes del §2 i el to de la franja de manteniment.
 - **Catàleg d'intervencions de manteniment:** el client encara l'ha de concretar. Fins aleshores, la secció només porta el text general.
 - **Castellà:** continua pendent l'aprovació editorial de les traduccions castellanes.

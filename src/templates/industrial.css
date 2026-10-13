@@ -74,18 +74,21 @@
    etiqueta, titular, frase i accions; a la dreta, tres línies breus separades per filets fins, centrades
    amb el bloc de l'esquerra. Sense targetes, fotografia ni ratlles sobre els titulars. Text grafit sobre
    plata: contrast 11,5:1. */
-.i-maintenance { padding-block:clamp(2.5rem,1.5rem + 3vw,4.5rem); background:var(--i-silver); color:var(--i-light-ink); }
+.i-maintenance { padding-block:clamp(2.25rem,1.3rem + 2.4vw,3.75rem); background:var(--i-silver); color:var(--i-light-ink); }
 .i-maintenance-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:2rem clamp(2.5rem,6vw,6.5rem); align-items:center; }
-.i-maintenance-label { margin:0 0 .85rem; font-size:var(--type-meta); font-weight:700; letter-spacing:var(--tracking-meta); line-height:1.3; text-transform:uppercase; }
-.i-maintenance h2 { margin:0; font-size:clamp(2rem,1.15rem + 2.7vw,3.75rem); font-weight:700; letter-spacing:var(--display-tracking); line-height:var(--display-leading); text-transform:uppercase; }
-.i-maintenance-lead { max-width:36ch; margin:1.1rem 0 0; font-size:var(--type-intro); line-height:1.5; }
-.i-maintenance-actions { display:flex; flex-wrap:wrap; align-items:center; gap:1rem 2rem; margin-top:var(--space-block); }
+.i-maintenance-label { margin:0 0 .7rem; font-size:var(--type-meta); font-weight:700; letter-spacing:var(--tracking-meta); line-height:1.3; text-transform:uppercase; }
+.i-maintenance h2 { margin:0; font-size:clamp(1.9rem,1.1rem + 2.3vw,3.25rem); font-weight:700; letter-spacing:var(--display-tracking); line-height:var(--display-leading); text-transform:uppercase; }
+.i-maintenance-lead { max-width:36ch; margin:.9rem 0 0; font-size:var(--type-intro); line-height:1.5; }
+.i-maintenance-actions { display:flex; flex-wrap:wrap; align-items:center; gap:1rem 2rem; margin-top:1.5rem; }
 .i-maintenance .i-button-solid { background:var(--i-button-dark); color:var(--palette-white); }
 .i-maintenance .i-button-solid:hover { background:var(--i-button-dark-hover); }
 .i-maintenance .i-text-link:hover { color:var(--i-light-ink); }
 .i-maintenance-facts { margin:0; }
-.i-maintenance-facts div { display:grid; grid-template-columns:minmax(7.5rem,.38fr) minmax(0,1fr); gap:.35rem 1.5rem; align-items:baseline; padding-block:1.1rem; border-top:1px solid rgb(43 43 43 / .28); }
-.i-maintenance-facts div:last-child { border-bottom:1px solid rgb(43 43 43 / .28); }
+/* Filets fins com a pseudoelements (no vores) perquè es puguin dibuixar a l'entrada. */
+.i-maintenance-facts div { position:relative; display:grid; grid-template-columns:minmax(7.5rem,.38fr) minmax(0,1fr); gap:.35rem 1.5rem; align-items:baseline; padding-block:.85rem; }
+.i-maintenance-facts div::before, .i-maintenance-facts div:last-child::after { position:absolute; left:0; right:0; height:1px; background:rgb(43 43 43 / .28); content:''; transform-origin:left center; }
+.i-maintenance-facts div::before { top:0; }
+.i-maintenance-facts div:last-child::after { bottom:0; }
 .i-maintenance-facts dt { font-size:var(--type-meta); font-weight:700; letter-spacing:var(--tracking-meta); line-height:1.4; text-transform:uppercase; }
 .i-maintenance-facts dd { margin:0; font-size:1.05rem; line-height:1.5; }
 
@@ -210,7 +213,16 @@
 }
 @media (prefers-reduced-motion:no-preference) {
   .industrial-page .i-hero-image img { animation:settle-image 1100ms var(--ease-out-strong) backwards; }
+  /* Fitxa del manteniment (director, 13/10/2026): entrada escalonada i sòbria. Cada filet es dibuixa
+     d'esquerra a dreta i, just darrere, l'etiqueta i el text apareixen amb un lleuger lliscament en la
+     mateixa direcció. Un sol cop, en entrar a la pantalla; sense moviment reduït, tot queda fix. */
+  .i-maintenance-facts.is-revealed > div { animation:none; }
+  .i-maintenance-facts.is-revealed > div::before { animation:rule-grow 700ms var(--ease-in-out-strong) calc(var(--i, 0) * 140ms) backwards; }
+  .i-maintenance-facts.is-revealed > div:last-child::after { animation:rule-grow 700ms var(--ease-in-out-strong) calc((var(--i, 0) + 1) * 140ms) backwards; }
+  .i-maintenance-facts.is-revealed dt { animation:i-fact-in 560ms var(--ease-out-strong) calc(var(--i, 0) * 140ms + 180ms) backwards; }
+  .i-maintenance-facts.is-revealed dd { animation:i-fact-in 560ms var(--ease-out-strong) calc(var(--i, 0) * 140ms + 250ms) backwards; }
 }
+@keyframes i-fact-in { from { opacity:0; translate:-.6rem 0; } }
 @media (prefers-reduced-motion:reduce) {
   .i-cap-arrow, .i-cap-showcase article .i-media img, .i-series-step, .i-series-step::before, .i-product, .i-product::before, .i-product-arrow, .i-proof a, .i-contact-main { transition:none; }
   .has-series-motion .i-series-step { opacity:1; transform:none; }
@@ -274,7 +286,8 @@
   .i-maintenance-layout { grid-template-columns:1fr; }
   /* Mòbil: sense filets horitzontals decoratius (mobile-lines.css); les línies se separen amb espai. */
   .i-maintenance-facts { display:grid; gap:1.1rem; }
-  .i-maintenance-facts div, .i-maintenance-facts div:last-child { grid-template-columns:1fr; gap:.25rem; padding:0; border:0; }
+  .i-maintenance-facts div { grid-template-columns:1fr; gap:.25rem; padding:0; }
+  .i-maintenance-facts div::before, .i-maintenance-facts div:last-child::after { display:none; }
   .i-project-layout, .i-contact-grid { grid-template-columns:1fr; }
 }
 @media (max-width:480px) {

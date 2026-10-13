@@ -33,7 +33,7 @@ Indicació del director (12/10/2026): la barra de dalt mostra els mateixos enlla
 - Inici
 - Capacitats
 - Sectors
-- Fabricació en sèrie
+- Sèries curtes i mitjanes
 - Manteniment
 - Procés
 - Projectes
@@ -42,10 +42,10 @@ Indicació del director (12/10/2026): la barra de dalt mostra els mateixos enlla
 ## Contacte principal i WhatsApp
 
 - Acció principal: **Escriu-nos per WhatsApp**
-- Número general: **630 661 908** (`+34 630 661 908` per a l'enllaç internacional)
+- Número general: **93 890 27 94**, el fix (`+34 938 90 27 94` per a l'enllaç internacional; director, 13/10/2026). El mòbil **630 661 908** queda com a secundari: només es mostra a la pàgina de contacte i és el número de WhatsApp.
 - Missatge inicial proposat: **Hola, us escric des de la web de Serralleria Carbó. Voldria fer una consulta.**
-- A Reparacions, conservar també **Truca al 630 661 908** com a acció directa de trucada.
-- Les consultes particulars i industrials comparteixen el 630 661 908 i carbo@serralleriacarbo.com; el formulari identifica la branca seleccionada en l’assumpte ([Particulars] o [Industrial]) quan s’implementi l’enviament.
+- A Reparacions, conservar també **Truca al 93 890 27 94** com a acció directa de trucada.
+- Les consultes particulars i industrials comparteixen el 93 890 27 94 i carbo@serralleriacarbo.com; el formulari identifica la branca seleccionada en l’assumpte ([Particulars] o [Industrial]) quan s’implementi l’enviament.
 - Traduir el missatge inicial a ES/EN després de validar el català. El visitant el pot editar abans d'enviar-lo; obrir WhatsApp no envia cap missatge automàticament.
 
 ## Selecció del formulari

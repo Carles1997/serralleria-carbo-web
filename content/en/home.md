@@ -17,7 +17,7 @@ Installations, repairs and made-to-measure pieces for your space: railings, stai
 
 ## Industrial
 
-Series fabrication. Demanding parts. Industrial response.
+Short and medium runs. Demanding parts. Industrial response.
 
 Structures for construction, series, technical parts to drawing and industrial trolleys, also as a single unit.
 

@@ -17,7 +17,7 @@ Instalaciones, reparaciones y piezas a medida para tu espacio: barandillas, esca
 
 ## Industrial
 
-Fabricación en serie. Piezas exigentes. Respuesta industrial.
+Series cortas y medianas. Piezas exigentes. Respuesta industrial.
 
 Estructuras para obra, series, piezas técnicas según plano y carros industriales, también de una sola unidad.
 

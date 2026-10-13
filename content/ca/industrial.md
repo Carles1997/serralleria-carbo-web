@@ -7,7 +7,7 @@ seoTitle: "Fabricació metàl·lica per a tercers | Serralleria Carbó"
 seoDescription: "Fabricació metàl·lica per a tercers a Vilafranca del Penedès: estructures, portes, mobiliari, peces a plànol i carros industrials, en sèrie o a mida."
 ---
 
-# Fabricació en sèrie. Peces exigents. Resposta industrial.
+# Sèries curtes i mitjanes. Peces exigents. Resposta industrial.
 
 ## Manteniment industrial
 
@@ -64,6 +64,6 @@ Fabricació i subministrament de deu gàbies per a un client industrial.
 
 ## Parlem del teu encàrrec
 
-Si en tens, adjunta un plànol o documentació. Per a fabricació en sèrie, podem valorar encàrrecs d'arreu de Catalunya.
+Si en tens, adjunta un plànol o documentació. Per a sèries curtes i mitjanes, podem valorar encàrrecs d'arreu de Catalunya.
 
 [Formulari de consulta tècnica](/contacte/?tipus=empresa)

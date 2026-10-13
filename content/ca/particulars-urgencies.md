@@ -13,7 +13,7 @@ Reparacions de portes, persianes i automatismes a Vilafranca del Penedès i la r
 
 ## Explica'ns la incidència
 
-[Truca al 630 661 908](tel:+34630661908) · [Escriu-nos per WhatsApp](https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.)
+[Truca al 93 890 27 94](tel:+34938902794) · [Escriu-nos per WhatsApp](https://wa.me/34630661908?text=Hola%2C%20us%20escric%20des%20de%20la%20web%20de%20Serralleria%20Carb%C3%B3.%20Voldria%20fer%20una%20consulta.)
 
 Si prefereixes el formulari, indica:
 

@@ -164,10 +164,10 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
             <a class="i-text-link" href={company.phone.href}>{ui.contact.call(company.phone.display)} <span class="arrow" aria-hidden="true">↗</span></a>
           </div>
         </div>
-        <dl class="i-maintenance-facts" data-reveal style="--i:1">
+        <dl class="i-maintenance-facts" data-reveal="group">
           {
-            maintenanceFacts.map((fact) => (
-              <div>
+            maintenanceFacts.map((fact, index) => (
+              <div style={`--i:${index}`}>
                 <dt>{fact.value}</dt>
                 <dd>{fact.label}</dd>
               </div>

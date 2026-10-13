@@ -228,6 +228,16 @@ const VALIDATED_REVISIONS = [
       'content/ca/industrial.md': 'ec96f5fbda66313cfb66424958f3ec64a0ba6c49dae3aa6a07e03db9b564d396',
     },
   },
+  {
+    label: 'sèries curtes i mitjanes i telèfon fix com a principal, indicació del director (13/10/2026)',
+    bodies: {
+      'content/ca/contacte.md': '8369d76032182149a2d680d42a8f535ba38435e0ac11f664f0096699fd27ee29',
+      'content/ca/home.md': '7341bd5b584f640f4866304873f7691be683e52eeb3a82a2054d6d4ad5826307',
+      'content/ca/industrial.md': '3fa568fd83ce1b337857af83cac3cccbf9d2dda0db4bf0061f6f54acf2c8d055',
+      'content/ca/particulars-urgencies.md': '315c983354537a3ca198a5d20b3af4fab56772946d31e3d06176144465849d76',
+      'content/ca/ui.md': '3b9327436a2b47c653aa880108b64d9d17509f28c55333f46c5ceaeefffc14b4',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

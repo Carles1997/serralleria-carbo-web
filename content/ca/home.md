@@ -17,7 +17,7 @@ Instal·lacions, reparacions i peces a mida per al teu espai: baranes, escales, 
 
 ## Industrial
 
-Fabricació en sèrie. Peces exigents. Resposta industrial.
+Sèries curtes i mitjanes. Peces exigents. Resposta industrial.
 
 Estructures per a obra, sèries, peces tècniques a plànol i carros industrials, també d'una sola unitat.
 

@@ -2,8 +2,8 @@
 // Capçalera compartida (maqueta Home de Fase 4). Sense JavaScript, el menú mòbil
 // queda desplegat com a llista d'enllaços; amb JavaScript es converteix en botó.
 // Indicació del director (12/10/2026): la barra de dalt mostra sempre els mateixos enllaços
-// (Particulars, Industrial, Serveis i Projectes, de ui.home.nav) a totes les pàgines, i el selector
-// d'idioma és un desplegable amb els tres idiomes.
+// (Particulars, Industrial, Serveis, Projectes i, des del 13/10/2026, Contacte, de ui.home.nav) a totes
+// les pàgines. El selector d'idioma és un desplegable petit amb els codis CA, ES i EN (13/10/2026).
 import { company } from '../config/site';
 import BrandLogo from './BrandLogo.astro';
 import { getCollection, render } from 'astro:content';
@@ -31,7 +31,6 @@ interface Props {
 const { ui, homeHref, collapse = 'standard', phoneLabel = ui.headerPhoneLabel } = Astro.props;
 const tone = Astro.props.tone ?? (collapse === 'industrial' ? 'dark' : 'light');
 const nav = ui.home.nav;
-const mobileExtra = ui.home.mobileExtra;
 // Pàgina actual: «page» si és l'enllaç exacte; «true» per a la branca (l'enllaç més llarg que la conté),
 // p. ex. Industrial a Capacitats o Particulars a Reparacions. Els enllaços a una àncora no compten.
 const current = Astro.props.current ?? Astro.props.page?.data.route;
@@ -80,11 +79,11 @@ const languages = page
   : [];
 // Desplegable: els tres idiomes sempre en el mateix ordre (català, castellà, anglès), amb l'actual marcat.
 const currentLang = page?.data.lang;
-type MenuLanguage = { lang: string; name: string; current: boolean; href?: string; anchorMap?: string };
+type MenuLanguage = { lang: string; code: string; name: string; current: boolean; href?: string; anchorMap?: string };
 const menuLanguages: MenuLanguage[] = locales.flatMap((lang): MenuLanguage[] => {
-  if (lang === currentLang) return [{ lang, name: ui.language.name, current: true }];
+  if (lang === currentLang) return [{ lang, code: ui.language.code, name: ui.language.name, current: true }];
   const target = languages.find((language) => language.lang === lang);
-  return target ? [{ lang: target.lang, name: target.name, href: target.href, anchorMap: target.anchorMap, current: false }] : [];
+  return target ? [{ lang: target.lang, code: target.code, name: target.name, href: target.href, anchorMap: target.anchorMap, current: false }] : [];
 });
 ---
 
@@ -109,12 +108,14 @@ const menuLanguages: MenuLanguage[] = locales.flatMap((lang): MenuLanguage[] => 
               {menuLanguages.map((language) =>
                 language.current ? (
                   <li>
-                    <span class="header-lang-current" aria-current="true">{language.name}</span>
+                    <span class="header-lang-current" aria-current="true">
+                      <span aria-hidden="true">{language.code}</span><span class="sr-only">{language.name}</span>
+                    </span>
                   </li>
                 ) : (
                   <li>
                     <a href={language.href} hreflang={language.lang} lang={language.lang} data-lang-switch data-anchor-map={language.anchorMap}>
-                      {language.name}
+                      <span aria-hidden="true">{language.code}</span><span class="sr-only">{language.name}</span>
                     </a>
                   </li>
                 ),
@@ -140,7 +141,7 @@ const menuLanguages: MenuLanguage[] = locales.flatMap((lang): MenuLanguage[] => 
     </div>
   </div>
   <nav class="mobile-nav" id="mobile-nav" aria-label={ui.menu.mobile}>
-    {[...nav, ...mobileExtra].map((item) => <a href={item.href} aria-current={currentAttr(item.href)}>{item.label}</a>)}
+    {nav.map((item) => <a href={item.href} aria-current={currentAttr(item.href)}>{item.label}</a>)}
   </nav>
 </header>
 
@@ -331,8 +332,9 @@ const menuLanguages: MenuLanguage[] = locales.flatMap((lang): MenuLanguage[] => 
     gap: 0.8rem;
   }
 
-  /* Selector d'idioma (12/10/2026): desplegable amb el codi de l'idioma actual i els noms dels tres
-     idiomes, cadascun en la seva llengua. */
+  /* Selector d'idioma (director, 13/10/2026): discret i petit. El botó mostra el codi de l'idioma
+     actual i una fletxa fina; el panell, de la mateixa amplada, només els codis CA, ES i EN (el nom
+     sencer de cada idioma queda per als lectors de pantalla). */
   .header-lang {
     position: relative;
   }
@@ -341,12 +343,12 @@ const menuLanguages: MenuLanguage[] = locales.flatMap((lang): MenuLanguage[] => 
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.4rem;
+    gap: 0.35rem;
     min-width: var(--target-min);
     min-height: var(--target-min);
-    padding-inline: 0.5rem;
+    padding-inline: 0.4rem;
     color: inherit;
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     list-style: none;
@@ -363,58 +365,58 @@ const menuLanguages: MenuLanguage[] = locales.flatMap((lang): MenuLanguage[] => 
   }
 
   .header-lang-caret {
-    width: 0.4rem;
-    height: 0.4rem;
-    border-right: 1.5px solid currentColor;
-    border-bottom: 1.5px solid currentColor;
-    translate: 0 -0.12rem;
+    width: 0.32rem;
+    height: 0.32rem;
+    border-right: 1.25px solid currentColor;
+    border-bottom: 1.25px solid currentColor;
+    opacity: 0.7;
+    translate: 0 -0.1rem;
     rotate: 45deg;
     transition: rotate var(--motion-fast) var(--motion-ease);
   }
 
   .header-lang[open] .header-lang-caret {
     rotate: 225deg;
-    translate: 0 0.1rem;
+    translate: 0 0.08rem;
   }
 
   .header-lang-list {
     position: absolute;
     z-index: 60;
-    top: calc(100% + 0.35rem);
+    top: calc(100% + 0.2rem);
     right: 0;
+    left: 0;
     display: grid;
-    min-width: 11rem;
     margin: 0;
-    padding: 0.35rem 0;
+    padding: 0.2rem 0;
     border: 1px solid var(--header-line);
     background: var(--header-panel);
-    box-shadow: 0 12px 28px -16px rgb(43 43 43 / 0.45);
+    box-shadow: 0 8px 18px -14px rgb(43 43 43 / 0.4);
     list-style: none;
   }
 
   .site-header[data-tone='dark'] .header-lang-list {
-    border-color: rgb(255 255 255 / 0.24);
+    border-color: rgb(255 255 255 / 0.2);
   }
 
+  /* 36 px d'alçada per opció: per sobre del mínim tàctil de WCAG 2.2 (24 px). */
   .header-lang-list a,
   .header-lang-current {
     display: flex;
     align-items: center;
-    min-height: var(--target-min);
-    padding: 0.35rem 1rem;
-    font-size: 0.92rem;
-    font-weight: 600;
-    white-space: nowrap;
+    justify-content: center;
+    min-height: 2.25rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
   }
 
   .header-lang-current {
-    color: var(--header-muted);
+    color: var(--color-accent);
   }
 
-  .header-lang-current::after {
-    margin-left: auto;
-    padding-left: 1rem;
-    content: '✓';
+  .site-header[data-tone='dark'] .header-lang-current {
+    color: var(--header-muted);
   }
 
   .header-lang-list a:hover,

@@ -48,7 +48,7 @@ const ca = {
   sent: (ref: string) => `La consulta s'ha enviat (ref. ${ref}). Et respondrem al correu que ens has indicat. Si no tens resposta, truca al ${phone} i indica la referència.`,
   inProgress: 'La consulta s\'està enviant. Espera uns segons.',
   rateLimited: `Hem rebut diverses consultes seguides des d'aquesta connexió. Torna-ho a provar d'aquí a una estona o truca al ${phone}.`,
-  failed: `No hem pogut enviar la consulta. Torna-ho a provar o escriu-nos a ${company.email} o per WhatsApp al ${phone}.`,
+  failed: `No hem pogut enviar la consulta. Torna-ho a provar o escriu-nos a ${company.email} o truca al ${phone}.`,
   badRequest: `No hem pogut llegir la consulta. Torna-ho a provar des del formulari o escriu-nos a ${company.email}.`,
   page: {
     title: 'Consulta',
@@ -96,7 +96,7 @@ const es: typeof ca = {
   sent: (ref: string) => `La consulta se ha enviado (ref. ${ref}). Te responderemos al correo que nos has indicado. Si no tienes respuesta, llama al ${phone} e indica la referencia.`,
   inProgress: 'La consulta se está enviando. Espera unos segundos.',
   rateLimited: `Hemos recibido varias consultas seguidas desde esta conexión. Vuelve a intentarlo dentro de un rato o llama al ${phone}.`,
-  failed: `No hemos podido enviar la consulta. Vuelve a intentarlo o escríbenos a ${company.email} o por WhatsApp al ${phone}.`,
+  failed: `No hemos podido enviar la consulta. Vuelve a intentarlo o escríbenos a ${company.email} o llama al ${phone}.`,
   badRequest: `No hemos podido leer la consulta. Vuelve a intentarlo desde el formulario o escríbenos a ${company.email}.`,
   page: {
     title: 'Consulta',
@@ -145,7 +145,7 @@ const en: typeof ca = {
   sent: (ref: string) => `Your enquiry has been sent (ref. ${ref}). We will reply to the email address you gave us. If you do not hear from us, call ${phone} and quote the reference.`,
   inProgress: 'Your enquiry is being sent. Please wait a few seconds.',
   rateLimited: `We have received several enquiries in a row from this connection. Try again in a while or call ${phone}.`,
-  failed: `We could not send your enquiry. Try again or email us at ${company.email} or message us on WhatsApp at ${phone}.`,
+  failed: `We could not send your enquiry. Try again or email us at ${company.email} or call ${phone}.`,
   badRequest: `We could not read your enquiry. Try again from the form or email us at ${company.email}.`,
   page: {
     title: 'Enquiry',

@@ -7,7 +7,7 @@ seoTitle: "Contract metal fabrication | Serralleria Carbó"
 seoDescription: "Contract metal fabrication in Vilafranca del Penedès: structures, doors, furniture, parts to drawing and industrial trolleys, in series or made to measure."
 ---
 
-# Series fabrication. Demanding parts. Industrial response.
+# Short and medium runs. Demanding parts. Industrial response.
 
 ## Industrial maintenance
 
@@ -64,6 +64,6 @@ Fabrication and supply of ten cages for an industrial client.
 
 ## Let's talk about your job
 
-If you have them, attach a drawing or documentation. For series fabrication, we can quote jobs anywhere in Catalonia.
+If you have them, attach a drawing or documentation. For short and medium runs, we can quote jobs anywhere in Catalonia.
 
 [Technical enquiry form](/en/contact/?tipus=empresa)

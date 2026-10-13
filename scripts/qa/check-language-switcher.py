@@ -149,13 +149,14 @@ with sync_playwright() as pw:
     landed = p.evaluate('() => [location.pathname + decodeURIComponent(location.hash), !!document.getElementById(decodeURIComponent(location.hash.slice(1)))]')
     check('9. àncora amb accents', landed == ['/es/legal/aviso-legal/#ley-aplicable-y-jurisdicción', True], {'destí': landed})
 
-    # 10. Desplegable (12/10/2026): tres idiomes en ordre fix, l'actual marcat; Escape el tanca i torna el focus.
+    # 10. Desplegable (12/10/2026; codis des del 13/10/2026): CA, ES i EN en ordre fix, amb el nom sencer per
+    # als lectors de pantalla i l'actual marcat; Escape el tanca i torna el focus.
     p.goto(B + '/particulars/reparacions/', wait_until='load')
     p.click('.header-lang summary')
-    menu = p.evaluate('() => { const d = document.querySelector("[data-lang-menu]"); return [d.open, [...d.querySelectorAll("li")].map((li) => li.textContent.trim()), d.querySelector("summary").getAttribute("aria-label")]; }')
+    menu = p.evaluate('() => { const d = document.querySelector("[data-lang-menu]"); return [d.open, [...d.querySelectorAll("li")].map((li) => [li.querySelector("[aria-hidden]").textContent, li.querySelector(".sr-only").textContent, li.querySelector("[aria-current]") ? "actual" : ""].join("|")), d.querySelector("summary").getAttribute("aria-label")]; }')
     p.keyboard.press('Escape')
     closed = p.evaluate('() => [document.querySelector("[data-lang-menu]").open, document.activeElement.tagName]')
-    check('10. desplegable: tres idiomes, actual marcat, Escape tanca', menu[0] and menu[1] == ['Català', 'Castellano', 'English'] and menu[2] == 'Idioma: Català' and closed == [False, 'SUMMARY'], {'menú': menu, 'després d\'Escape': closed})
+    check('10. desplegable: tres idiomes, actual marcat, Escape tanca', menu[0] and menu[1] == ['CA|Català|actual', 'ES|Castellano|', 'EN|English|'] and menu[2] == 'Idioma: Català' and closed == [False, 'SUMMARY'], {'menú': menu, 'després d\'Escape': closed})
 
     # 11. Anglès: de Reparacions a Repairs, amb els paràmetres del formulari conservats a Contact.
     p.goto(B + '/contacte/?tipus=empresa&servei=manteniment', wait_until='load')

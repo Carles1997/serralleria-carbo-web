@@ -146,3 +146,41 @@ Indicació: el bloc de text de «La sèrie comença amb una peça» ha de quedar
 
 **Pendent:** validació del text nou del manteniment en els tres idiomes.
 
+## 9. Sèries curtes i mitjanes, telèfon fix, Contacte i selector d'idioma (director, 13/10/2026)
+
+Fet després del desplegament de `9b9ba77`, **sense commit ni desplegament**.
+
+| Indicació | Implementació |
+|---|---|
+| **«Sèries curtes i mitjanes» en comptes de «Fabricació en sèrie»** | Lema de la Home i H1 d'Industrial: «Sèries curtes i mitjanes. Peces exigents. Resposta industrial.» (ES «Series cortas y medianas…», EN «Short and medium runs…»). També a la crida final d'Industrial i a la nota d'àmbit de Contacte. Es mantenen les mencions genèriques («en sèrie o a mida», «sèries»). **Discrepància resolta:** CLAUDE.md fixava «Fabricació en sèrie» (06/10/2026); preval la indicació del director i s'hi actualitza |
+| **Telèfon fix com a principal** | `company.phone` passa a ser el fix 93 890 27 94: capçalera, blocs de contacte, Particulars, serveis, Reparacions, Industrial, Capacitats, missatges del formulari i dades estructurades. Coincideix amb el Perfil d'Empresa de Google |
+| **Mòbil només com a secundari** | `company.mobile` (630 661 908) només es mostra a la pàgina de contacte, a la fila «Mòbil». WhatsApp continua obrint el mòbil sense mostrar-ne el número. Les dades estructurades el mantenen com a segon punt de contacte |
+| **Contacte a la barra de dalt** | Afegit al costat de Projectes en els tres idiomes, amb la pàgina actual marcada; el menú mòbil ja no necessita l'enllaç extra. Hi cap sense salts de línia de 1001 a 1440 px |
+| **Selector d'idioma més subtil** | El panell té l'amplada del botó i només mostra CA, ES i EN. El nom sencer de cada idioma queda per als lectors de pantalla, i l'actual surt en bordeus (gris clar a Industrial). Opcions de 36 px d'alçada. Funciona igual sense JavaScript, amb Escape i amb un clic a fora |
+
+**Comprovacions (locals):**
+- **Verificació:** `astro check` sense errors; build correcte; referències intactes, amb la revisió nova registrada (`contacte.md`, `home.md`, `industrial.md`, `particulars-urgencies.md` i `ui.md`).
+- **Idiomes i enllaços:** `check:i18n` correcte; `check:links` correcte (39 pàgines i 1.124 enllaços).
+- **Formulari:** 58 proves unitàries i 37 de navegador.
+- **Selector d'idioma:** 15/15; la prova 10 ara comprova els codis, els noms accessibles i l'idioma actual.
+- **Mòbil:** el número només apareix a `/contacte/`, `/es/contacto/` i `/en/contact/`.
+- **Lectura:** capçalera a 1440, 1100, 1001, 768, 390 i 320 px, sense desbordament. A 320 px, la primera línia del lema ocupa dues línies.
+
+**Pendent:** que el client confirmi que el fix atén les urgències de Reparacions; fins ara, aquesta acció de trucada anava al mòbil.
+
+## 10. Manteniment més compacte i entrada animada de la fitxa (director, 13/10/2026)
+
+- **Menys espai:** menys marge vertical, titular una mica més petit i files més juntes. La secció passa de 440 a 391 px d'alçada a 1440 px, i de ~550 a 403 px a 1880 px.
+- **Entrada de la fitxa:** cada filet es dibuixa d'esquerra a dreta, escalonat 140 ms per fila. Just darrere, l'etiqueta i el text apareixen amb un lliscament de 0,6 rem en la mateixa direcció. L'entrada es fa un sol cop i dura uns 1,1 s en total.
+  - Els filets passen a ser pseudoelements perquè es puguin animar.
+  - Amb moviment reduït o sense JavaScript, tot queda visible i fix.
+  - En mòbil no hi ha filets; només apareix el text.
+- **Formulari:** es manté la informació bàsica de protecció de dades. És la primera capa que exigeix l'art. 11 de la LOPDGDD i és el redactat de l'advocat del client. Retirar-la o escurçar-la necessita la conformitat de l'advocat.
+  - **Més discreta (director, 13/10/2026), sense canviar el text:** lletra petita (0,75 rem), sagnada sota la casella i en grafit translúcid (contrast 5,3:1). També la nota de revocació.
+
+**Comprovacions:**
+- **Verificació:** `astro check` sense errors i referències intactes.
+- **Enllaços:** `check:links` correcte.
+- **Formulari:** 58 proves unitàries i 37 de navegador.
+- **Selector d'idioma:** 15/15.
+- **Animació:** fotogrames de l'entrada revisats a 1440 px; lectura a 1880, 1440, 390 i 320 px, sense desbordament.

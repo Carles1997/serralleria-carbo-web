@@ -4,8 +4,10 @@
 // que no tinguin aquestes fonts.
 export const company = {
   legalName: 'Serralleria Carbó S.L.',
-  phone: { display: '630 661 908', href: 'tel:+34630661908' },
-  landline: { display: '93 890 27 94', href: 'tel:+34938902794' },
+  // Telèfon principal: el fix (director, 13/10/2026), el mateix del Perfil d'Empresa de Google. El mòbil
+  // queda com a secundari i només es mostra a la pàgina de contacte; WhatsApp continua al mòbil.
+  phone: { display: '93 890 27 94', href: 'tel:+34938902794' },
+  mobile: { display: '630 661 908', href: 'tel:+34630661908' },
   email: 'carbo@serralleriacarbo.com',
   address: ["Carrer d'Eugeni d'Ors, 59", '08720 Vilafranca del Penedès, Barcelona'],
   mapUrl: "https://www.google.com/maps/search/?api=1&query=Carrer%20d'Eugeni%20d'Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s",

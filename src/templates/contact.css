@@ -119,8 +119,13 @@
 
 /* Privacitat: casella obligatòria, informació bàsica de l'advocat i casella comercial voluntària. */
 .form-privacy { padding: .8rem 0; border-top: 1px solid var(--line-on-light); color: var(--palette-dark); font-size: .86rem; line-height: 1.45; }
-.form-privacy-info { margin-block: .6rem; }
-.form-privacy-title { margin: 0 0 .3rem; color: var(--ink); font-size: .84rem; font-weight: 700; }
+/* Informació bàsica (primera capa, text de l'advocat): present però discreta (director, 13/10/2026).
+   Lletra petita, sagnada sota el text de la casella i en grafit translúcid (#2b2b2b al 72 % sobre
+   blanc: contrast 5,3:1, AA). */
+.form-privacy-info { margin: .45rem 0 .7rem calc(20px + .6rem); color: rgb(43 43 43 / .72); font-size: .75rem; line-height: 1.45; }
+.form-privacy-title { margin: 0 0 .15rem; color: inherit; font-size: .75rem; font-weight: 600; }
+.form-privacy-info strong { font-weight: 600; }
+.form-privacy .form-privacy-info a, .form-privacy .form-privacy-note a { color: inherit; font-weight: 600; }
 .form-privacy-info p { margin: 0 0 .3rem; }
 .form-privacy-info p:last-child { margin-bottom: 0; }
 .form-privacy ul { margin: 0 0 .4rem; padding-left: 1.1rem; list-style: disc; }
@@ -129,7 +134,7 @@
 .field-consent:last-child label { font-weight: 400; }
 .field-consent input { flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--action); }
 .field-consent input:focus-visible { outline: 3px solid var(--action); outline-offset: 2px; }
-.form-privacy-note { margin: .2rem 0 0 calc(20px + .6rem); color: var(--palette-dark); font-size: .8rem; }
+.form-privacy-note { margin: .2rem 0 0 calc(20px + .6rem); color: rgb(43 43 43 / .72); font-size: .75rem; }
 
 /* Enviament: un únic botó; inactiu fins que el JavaScript valida i mai no envia (contact-form.ts). */
 .form-finish { display: flex; align-items: center; }

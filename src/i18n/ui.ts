@@ -49,8 +49,9 @@ const ca = {
       { label: 'Serveis', href: '/#serveis' },
       // «Projectes» (director, 12/10/2026): la barra de dalt és la mateixa a totes les pàgines.
       { label: 'Projectes', href: '/particulars/projectes/' },
+      // Contacte a la barra de dalt, al costat de Projectes (director, 13/10/2026).
+      { label: 'Contacte', href: '/contacte/' },
     ],
-    mobileExtra: [{ label: 'Contacte', href: '/contacte/' }],
     // Doble accés i xifres: textos de la maqueta Home validada, per indicació del
     // director de projecte (27/09/2026). home.md en conserva la versió llarga.
     paths: {
@@ -183,7 +184,7 @@ const ca = {
       overline: ['Industrial', 'Fabricació metàl·lica per a tercers'],
       // Missatge aprovat (H1 d'industrial.md) en tres línies sense punt final, com a la maqueta;
       // l'última porta el reflex metàl·lic.
-      title: ['Fabricació en sèrie', 'Peces exigents', 'Resposta industrial'],
+      title: ['Sèries curtes i mitjanes', 'Peces exigents', 'Resposta industrial'],
       primary: 'Veure les capacitats del taller',
       bottom: 'Vilafranca del Penedès · Catalunya',
     },
@@ -341,7 +342,7 @@ const ca = {
       email: 'Correu',
       address: 'Adreça',
       map: 'Veure el mapa',
-      landline: 'Telèfon fix',
+      mobile: 'Mòbil',
     },
     form: {
       label: 'Formulari de consulta',
@@ -548,8 +549,8 @@ const es: UiStrings = {
       { label: 'Industrial', href: '/es/industrial/' },
       { label: 'Servicios', href: '/es/#serveis' },
       { label: 'Proyectos', href: '/es/particulares/proyectos/' },
+      { label: 'Contacto', href: '/es/contacto/' },
     ],
-    mobileExtra: [{ label: 'Contacto', href: '/es/contacto/' }],
     paths: {
       label: 'Elige tu ámbito',
       heading: 'Elige tu camino',
@@ -654,7 +655,7 @@ const es: UiStrings = {
     home: { label: 'Inicio', href: '/es/industrial/' },
     hero: {
       overline: ['Industrial', 'Fabricación metálica para terceros'],
-      title: ['Fabricación en serie', 'Piezas exigentes', 'Respuesta industrial'],
+      title: ['Series cortas y medianas', 'Piezas exigentes', 'Respuesta industrial'],
       primary: 'Ver las capacidades del taller',
       bottom: 'Vilafranca del Penedès · Cataluña',
     },
@@ -786,7 +787,7 @@ const es: UiStrings = {
       email: 'Correo',
       address: 'Dirección',
       map: 'Ver el mapa',
-      landline: 'Teléfono fijo',
+      mobile: 'Móvil',
     },
     form: {
       label: 'Formulario de consulta',
@@ -970,8 +971,8 @@ const en: UiStrings = {
       { label: 'Industrial', href: '/en/industrial/' },
       { label: 'Services', href: '/en/#serveis' },
       { label: 'Projects', href: '/en/residential/projects/' },
+      { label: 'Contact', href: '/en/contact/' },
     ],
-    mobileExtra: [{ label: 'Contact', href: '/en/contact/' }],
     paths: {
       label: 'Choose your area',
       heading: 'Choose your path',
@@ -1076,7 +1077,7 @@ const en: UiStrings = {
     home: { label: 'Home', href: '/en/industrial/' },
     hero: {
       overline: ['Industrial', 'Contract metal fabrication'],
-      title: ['Series fabrication', 'Demanding parts', 'Industrial response'],
+      title: ['Short and medium runs', 'Demanding parts', 'Industrial response'],
       primary: 'See the workshop capabilities',
       bottom: 'Vilafranca del Penedès · Catalonia',
     },
@@ -1208,7 +1209,7 @@ const en: UiStrings = {
       email: 'Email',
       address: 'Address',
       map: 'See the map',
-      landline: 'Landline',
+      mobile: 'Mobile',
     },
     form: {
       label: 'Enquiry form',

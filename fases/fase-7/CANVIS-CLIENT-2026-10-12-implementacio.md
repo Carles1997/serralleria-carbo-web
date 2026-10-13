@@ -166,7 +166,7 @@ Fet després del desplegament de `9b9ba77`, **sense commit ni desplegament**.
 - **Mòbil:** el número només apareix a `/contacte/`, `/es/contacto/` i `/en/contact/`.
 - **Lectura:** capçalera a 1440, 1100, 1001, 768, 390 i 320 px, sense desbordament. A 320 px, la primera línia del lema ocupa dues línies.
 
-**Pendent:** que el client confirmi que el fix atén les urgències de Reparacions; fins ara, aquesta acció de trucada anava al mòbil.
+**Confirmat pel director (13/10/2026):** el fix atén les urgències de Reparacions, i WhatsApp es queda al mòbil.
 
 ## 10. Manteniment més compacte i entrada animada de la fitxa (director, 13/10/2026)
 

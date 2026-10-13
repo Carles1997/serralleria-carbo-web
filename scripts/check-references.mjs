@@ -222,6 +222,12 @@ const VALIDATED_REVISIONS = [
       'content/ca/ui.md': '010c7abe202971ed179107d240fcb64fda1dcfaf13951b7ae9874f38e57784e2',
     },
   },
+  {
+    label: 'manteniment en format de fitxa, proposta del director (13/10/2026)',
+    bodies: {
+      'content/ca/industrial.md': 'ec96f5fbda66313cfb66424958f3ec64a0ba6c49dae3aa6a07e03db9b564d396',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

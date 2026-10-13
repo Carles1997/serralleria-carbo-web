@@ -10,7 +10,7 @@
 // Bloc 2: rols tipogràfics comuns; la línia del mètode es manté en plata (decisió del director).
 // Canvis del client (12/10/2026, fases/fase-7/CANVIS-CLIENT-2026-10-12.md): quatre sectors (sense
 // Tecnologies duals) i manteniment industrial. Indicació del director (12/10/2026): el manteniment és
-// la primera secció, davant de «Què fabriquem», explicat en tres passos; menys accessos repetits al
+// la primera secció, davant de «Què fabriquem», amb una fitxa breu (13/10/2026); menys accessos repetits al
 // formulari (sense «Envia una consulta», «Explica'ns el teu projecte» ni «Consultar una sèrie»).
 import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -78,11 +78,11 @@ if (method.subsections.length) throw new Error(`«${method.heading}» ja no port
 const steps = listItems(method.blocks).map(labelledItem);
 if (steps.length !== 4) throw new Error(`«${method.heading}» ha de tenir quatre passos; en té ${steps.length}.`);
 
-// Manteniment: una frase, els tres passos del servei (com funciona, sense catàleg d'intervencions fins
+// Manteniment: una frase, una fitxa breu (què fem, on, com començar; sense catàleg d'intervencions fins
 // que el client el concreti) i una acció cap al formulari d'Industrial amb el manteniment preseleccionat.
 const maintenanceText = one(paragraphs(maintenance.blocks), `un paràgraf a «${maintenance.heading}»`);
-const maintenanceSteps = listItems(maintenance.blocks).map(labelledItem);
-if (maintenanceSteps.length !== 3) throw new Error(`«${maintenance.heading}» ha de tenir tres passos; en té ${maintenanceSteps.length}.`);
+const maintenanceFacts = listItems(maintenance.blocks).map(labelledItem);
+if (maintenanceFacts.length !== 3) throw new Error(`«${maintenance.heading}» ha de tenir tres línies de fitxa; en té ${maintenanceFacts.length}.`);
 const maintenanceLink = one(links(maintenance.blocks), `un enllaç a «${maintenance.heading}»`);
 if (!/[?&]tipus=empresa(&|$)/.test(maintenanceLink.href) || !/[?&]servei=manteniment(&|$)/.test(maintenanceLink.href)) {
   throw new Error(`L'acció de «${maintenance.heading}» ha de preseleccionar Industrial i el manteniment.`);
@@ -154,32 +154,26 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
     </div>
 
     <section class="i-maintenance" id="manteniment" aria-labelledby="i-maintenance-title">
-      <div class="section-shell">
-        <div class="i-maintenance-intro">
-          <div data-reveal>
-            <p class="i-maintenance-label">{t.maintenance.label}</p>
-            <h2 id="i-maintenance-title">{t.maintenance.heading[0]}{' '}<br /><em>{t.maintenance.heading[1]}</em></h2>
-          </div>
-          <div class="i-maintenance-copy" data-reveal style="--i:1">
-            <p><Inlines inlines={maintenanceText} /></p>
-            <div class="i-maintenance-actions">
-              <a class="i-button i-button-solid" href={maintenanceLink.href}>{maintenanceLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
-              <a class="i-text-link" href={company.phone.href}>{ui.contact.call(company.phone.display)} <span class="arrow" aria-hidden="true">↗</span></a>
-            </div>
+      <div class="section-shell i-maintenance-layout">
+        <div class="i-maintenance-intro" data-reveal>
+          <p class="i-maintenance-label">{t.maintenance.label}</p>
+          <h2 id="i-maintenance-title">{t.maintenance.heading[0]}{' '}<br /><em>{t.maintenance.heading[1]}</em></h2>
+          <p class="i-maintenance-lead"><Inlines inlines={maintenanceText} /></p>
+          <div class="i-maintenance-actions">
+            <a class="i-button i-button-solid" href={maintenanceLink.href}>{maintenanceLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="i-text-link" href={company.phone.href}>{ui.contact.call(company.phone.display)} <span class="arrow" aria-hidden="true">↗</span></a>
           </div>
         </div>
-        <p class="i-maintenance-label i-maintenance-steps-label" id="i-maintenance-steps">{t.maintenance.stepsLabel}</p>
-        <ol class="i-maintenance-steps" aria-labelledby="i-maintenance-steps">
+        <dl class="i-maintenance-facts" data-reveal style="--i:1">
           {
-            maintenanceSteps.map((step, index) => (
-              <li data-reveal style={`--i:${index}`}>
-                <span class="i-maintenance-number" aria-hidden="true">{pad(index + 1)}</span>
-                <h3>{step.value}</h3>
-                <p>{step.label}</p>
-              </li>
+            maintenanceFacts.map((fact) => (
+              <div>
+                <dt>{fact.value}</dt>
+                <dd>{fact.label}</dd>
+              </div>
             ))
           }
-        </ol>
+        </dl>
       </div>
     </section>
 

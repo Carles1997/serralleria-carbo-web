@@ -126,3 +126,23 @@ Fets després del desplegament de `bf6af34`, **sense commit ni desplegament**:
 - validació jurídica dels textos legals anglesos, inclosa la paraula clau UNSUBSCRIBE per revocar les comunicacions;
 - validació del text nou del manteniment;
 - decisió sobre la resta d'enllaços al formulari.
+
+## 8. Redisseny del manteniment i alineació del mètode (director, 13/10/2026)
+
+Indicació: el bloc de text de «La sèrie comença amb una peça» ha de quedar centrat amb la caixa del mètode, i el manteniment necessita una proposta més elegant i professional, sense targetes grans i amb un contingut més clar. **Sense commit ni desplegament.**
+
+| Element | Implementació |
+|---|---|
+| **Mètode de la sèrie** | El bloc del titular passa de `align-self:end` a `center`; en escriptori queda centrat verticalment amb la caixa (desviació 0 px a 1440 px) |
+| **Composició del manteniment** | Fitxa en dues columnes sobre plata clara: a l'esquerra, etiqueta, titular (una mica més contingut), frase i accions; a la dreta, tres línies breus en una llista de definicions (`<dl>`), separades per filets fins i centrades amb el bloc de l'esquerra. Sense targetes, números grans ni el títol «Com funciona». Per sota de 1000 px, cada etiqueta queda sobre el seu text; fins a 760 px, una columna sense filets horitzontals (`mobile-lines.css`) |
+| **Contingut (proposta per validar)** | Frase: «A més de fabricar, també fem el manteniment en l'àmbit industrial.» Fitxa: **Què fem** · Revisions i reparacions a les instal·lacions de la teva empresa. **On** · Ens desplacem fins a la instal·lació, amb equip i vehicles propis. **Com començar** · Explica'ns què cal revisar o reparar i on és. Si en tens, envia'ns fotografies. Equivalents en castellà i anglès. Només fa servir dades ja confirmades; sense catàleg d'intervencions, terminis ni zona de servei |
+| **Alçada** | La secció passa a 440 px a 1440 px (abans, amb les targetes, era molt més alta) |
+
+**Comprovacions (locals):**
+- **Verificació:** `astro check` sense errors; build correcte; referències intactes, amb la revisió nova registrada per a `content/ca/industrial.md`.
+- **Idiomes i enllaços:** `check:i18n` (38 pàgines) i `check:links` (39 pàgines, 1.086 enllaços) correctes.
+- **Selector d'idioma:** el test continua passant, inclòs el pas al formulari anglès amb el manteniment preseleccionat.
+- **Lectura i desbordament:** revisió visual a 1440, 768, 390 i 320 px (català i anglès), sense desbordament horitzontal.
+
+**Pendent:** validació del text nou del manteniment en els tres idiomes.
+

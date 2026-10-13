@@ -210,11 +210,10 @@ const ca = {
       action: 'Envia una consulta tècnica',
     },
     // Manteniment industrial (client, 12/10/2026): primera secció de la portada (director, 12/10/2026).
-    // Frase, passos i acció principal d'industrial.md; aquí l'etiqueta, el titular en línies i el títol dels passos.
+    // Frase, fitxa de tres línies i acció principal d'industrial.md; aquí l'etiqueta i el titular en línies.
     maintenance: {
       label: 'Servei per a empreses',
       heading: ['Manteniment', 'industrial'],
-      stepsLabel: 'Com funciona',
     },
     workshop: {
       heading: ['El taller', 'en primer pla'],
@@ -677,7 +676,6 @@ const es: UiStrings = {
     maintenance: {
       label: 'Servicio para empresas',
       heading: ['Mantenimiento', 'industrial'],
-      stepsLabel: 'Cómo funciona',
     },
     workshop: {
       heading: ['El taller', 'en primer plano'],
@@ -1100,7 +1098,6 @@ const en: UiStrings = {
     maintenance: {
       label: 'Service for companies',
       heading: ['Industrial', 'maintenance'],
-      stepsLabel: 'How it works',
     },
     workshop: {
       heading: ['The workshop', 'up close'],

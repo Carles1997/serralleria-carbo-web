@@ -11,11 +11,11 @@ seoDescription: "Fabricación metálica para terceros en Vilafranca del Penedès
 
 ## Mantenimiento industrial
 
-Nos encargamos del mantenimiento en el ámbito industrial: revisiones y reparaciones en las instalaciones de tu empresa.
+Además de fabricar, también hacemos el mantenimiento en el ámbito industrial.
 
-- **Nos lo explicas** · Qué hay que revisar o reparar y dónde está la instalación. Si tienes, envíanos fotografías.
-- **Lo valoramos** · Estudiamos la intervención con la información que nos hagas llegar.
-- **Nos desplazamos** · Hacemos el trabajo con equipo y vehículos propios.
+- **Qué hacemos** · Revisiones y reparaciones en las instalaciones de tu empresa.
+- **Dónde** · Nos desplazamos hasta la instalación, con equipo y vehículos propios.
+- **Cómo empezar** · Cuéntanos qué hay que revisar o reparar y dónde está. Si tienes, envíanos fotografías.
 
 [Consulta un mantenimiento](/es/contacto/?tipus=empresa&servei=manteniment)
 

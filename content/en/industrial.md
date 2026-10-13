@@ -11,11 +11,11 @@ seoDescription: "Contract metal fabrication in Vilafranca del Penedès: structur
 
 ## Industrial maintenance
 
-We take care of maintenance in industrial settings: inspections and repairs at your company's facilities.
+As well as fabricating, we also carry out maintenance in industrial settings.
 
-- **You tell us** · What needs inspecting or repairing and where the installation is. If you have any, send us photos.
-- **We assess it** · We study the job with the information you send us.
-- **We come to you** · We do the work with our own team and vehicles.
+- **What we do** · Inspections and repairs at your company's facilities.
+- **Where** · We travel to the installation with our own team and vehicles.
+- **How to start** · Tell us what needs inspecting or repairing and where it is. If you have any, send us photos.
 
 [Ask about maintenance](/en/contact/?tipus=empresa&servei=manteniment)
 

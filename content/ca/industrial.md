@@ -11,11 +11,11 @@ seoDescription: "Fabricació metàl·lica per a tercers a Vilafranca del Penedè
 
 ## Manteniment industrial
 
-Ens encarreguem del manteniment en l'àmbit industrial: revisions i reparacions a les instal·lacions de la teva empresa.
+A més de fabricar, també fem el manteniment en l'àmbit industrial.
 
-- **Ens ho expliques** · Què cal revisar o reparar i on és la instal·lació. Si en tens, envia'ns fotografies.
-- **Ho valorem** · Estudiem la intervenció amb la informació que ens facis arribar.
-- **Ens hi desplacem** · Fem la feina amb equip i vehicles propis.
+- **Què fem** · Revisions i reparacions a les instal·lacions de la teva empresa.
+- **On** · Ens desplacem fins a la instal·lació, amb equip i vehicles propis.
+- **Com començar** · Explica'ns què cal revisar o reparar i on és. Si en tens, envia'ns fotografies.
 
 [Consulta un manteniment](/contacte/?tipus=empresa&servei=manteniment)
 

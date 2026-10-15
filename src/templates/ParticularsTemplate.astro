@@ -136,7 +136,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
         <div class="p-service-grid">
           {
             services.map((service, index) => (
-              <article class={`p-service p-service-${service.art}`} data-reveal style={`--i:${index}`}>
+              <article class={`p-service p-service-${service.art}`} data-reveal="clip" style={`--i:${index}`}>
                 <div class={`p-service-art p-service-art-${service.art}`} aria-hidden="true">
                   <Picture src={service.image} alt="" widths={[240, 400, 640, 960]} sizes="(max-width: 350px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
                 </div>

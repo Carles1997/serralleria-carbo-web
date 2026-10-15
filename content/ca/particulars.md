@@ -27,13 +27,13 @@ Fabriquem i instal·lem baranes, escales, passarel·les i altres estructures met
 
 ### Mobiliari
 
-Fabriquem mobiliari amb estructura de ferro o inoxidable a mida de l'ús i de l'espai. Treballem tant per a particulars com per a decoradors que busquen peces metàl·liques per als seus projectes.
+Mobiliari amb estructura de ferro o inoxidable, a mida de l'ús i de l'espai. Per a particulars i decoradors.
 
 [Consulta el teu mobiliari a mida](/contacte/?tipus=particular&servei=mobiliari)
 
 ### Reparacions
 
-Portes, persianes i motors que han deixat de funcionar.
+Reparem portes, persianes i automatismes d'habitatges, comunitats i negocis.
 
 [Veure reparacions](/particulars/reparacions/)
 

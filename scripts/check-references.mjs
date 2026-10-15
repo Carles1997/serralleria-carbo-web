@@ -238,6 +238,12 @@ const VALIDATED_REVISIONS = [
       'content/ca/ui.md': '3b9327436a2b47c653aa880108b64d9d17509f28c55333f46c5ceaeefffc14b4',
     },
   },
+  {
+    label: 'textos de les targetes de mobiliari i reparacions, proposta per al director (15/10/2026)',
+    bodies: {
+      'content/ca/particulars.md': '5f833480d0b6fa106f782a5f165f8a72d5263ae7ba1da5bc32422c022ef2b62e',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

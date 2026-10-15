@@ -44,6 +44,13 @@ const originLabel = originYear ? titleSmall.slice(0, -originYear.length).trim() 
 
 const particularsCopy = one(paragraphs(particulars.blocks), 'un paràgraf a la secció Particulars');
 const particularsLink = one(links(particulars.blocks), 'un enllaç a la secció Particulars');
+// Particulars en dues línies, com Industrial (director, 15/10/2026): el que fem, fins als dos punts, amb
+// l'estil del missatge d'Industrial, i la llista de feines amb l'estil de l'abast. home.md no canvia.
+const particularsText = particularsCopy.length === 1 && particularsCopy[0].type === 'text' ? particularsCopy[0].value : '';
+const particularsColon = particularsText.indexOf(': ');
+if (particularsColon < 0) throw new Error('El paràgraf de Particulars de home.md ha de tenir la forma «què fem: llista de feines».');
+const particularsSlogan = particularsText.slice(0, particularsColon + 1);
+const particularsScope = particularsText.slice(particularsColon + 2);
 const [industrialSlogan, industrialScope] = paragraphs(industrial.blocks);
 if (!industrialSlogan || !industrialScope) throw new Error("La secció Industrial necessita el missatge de marca i l'abast de la producció.");
 const industrialLink = one(links(industrial.blocks), 'un enllaç a la secció Industrial');
@@ -150,7 +157,10 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
           </span>
           <span class="path-kicker">{t.paths.particulars.kicker}</span>
           <strong class="path-title">{particulars.heading}</strong>
-          <span class="path-copy"><Inlines inlines={particularsCopy} /></span>
+          <span class="path-copy">
+            <span class="path-slogan">{particularsSlogan}</span>{' '}
+            <span class="path-scope">{particularsScope}</span>
+          </span>
           <span class="path-action">{particularsLink.label} <span class="arrow" aria-hidden="true">↗</span></span>
         </a>
         <a class="path path-industrial" href={industrialLink.href} data-reveal="clip" style="--i:2" data-surface="dark">
@@ -162,7 +172,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
           <span class="path-kicker">{t.paths.industrial.kicker}</span>
           <strong class="path-title">{industrial.heading}</strong>
           <span class="path-copy">
-            <span class="path-slogan"><Inlines inlines={industrialSlogan} /></span>
+            <span class="path-slogan"><Inlines inlines={industrialSlogan} /></span>{' '}
             <span class="path-scope"><Inlines inlines={industrialScope} /></span>
           </span>
           <span class="path-action">{industrialLink.label} <span class="arrow" aria-hidden="true">↗</span></span>
@@ -483,7 +493,16 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
   /* Doble accés fotogràfic. Files fixes (capçalera, espai, etiqueta, títol, text i acció); en dues
      columnes, subgrid comparteix les files i els títols queden alineats. */
+  /* Text de les targetes (director, 15/10/2026): la primera línia de cada camí (Particulars: el que
+     fem, fins als dos punts; Industrial: el missatge de marca) va en una sola línia, amb la mateixa
+     mida i to a les dues targetes, i la segona línia fa servir l'estil de l'abast. La línia de
+     l'acció fa la llargada de la primera línia més llarga de l'idioma, i cap text la supera.
+     --slogan-em: amplada mesurada d'aquesta línia en em (semibold), amb un petit marge. Si els
+     textos de home.md canvien, cal tornar-la a mesurar. */
   .paths-grid {
+    --path-copy-size: clamp(1rem, 0.9rem + 0.35vw, 1.15rem);
+    --slogan-em: 26;
+    --path-measure: calc(var(--slogan-em) * var(--path-copy-size));
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1px;
@@ -576,32 +595,41 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     text-transform: uppercase;
   }
 
+  .paths-grid:lang(es) {
+    --slogan-em: 28;
+  }
+
+  .paths-grid:lang(en) {
+    --slogan-em: 28.4;
+  }
+
   .path-copy {
     grid-row: 5;
-    max-width: 44ch;
+    /* Mida de la primera línia; cqi es resol als fills, respecte d'aquest contenidor. */
+    --slogan-size: clamp(1rem, 100cqi / var(--slogan-em), var(--path-copy-size));
+    container-type: inline-size;
+    width: min(100%, var(--path-measure));
     margin-top: 0.9rem;
-    font-size: clamp(1rem, 0.9rem + 0.35vw, 1.15rem);
+    font-size: var(--path-copy-size);
     line-height: 1.4;
     text-shadow: 0 1px 12px rgb(43 43 43 / 0.4);
   }
 
-  /* Missatge de marca en una línia quan la targeta ho permet; en pantalles estretes es parteix. */
-  .path-industrial .path-copy {
-    max-width: none;
-  }
-
+  /* Una sola línia: si la targeta és més estreta que la línia, la lletra s'hi ajusta. Per sota de
+     16 px (mòbils i tauleta vertical, la mida d'abans) es manté llegible i es parteix en línies equilibrades. */
   .path-slogan {
     display: block;
+    font-size: var(--slogan-size);
     font-weight: 600;
     text-wrap: balance;
   }
 
   .path-scope {
     display: block;
-    max-width: 46ch;
     margin-top: 0.5rem;
     color: var(--palette-light);
-    font-size: 0.9em;
+    /* Sempre un 10 % més petita que la primera línia, també quan aquesta s'ajusta a la targeta. */
+    font-size: calc(var(--slogan-size) * 0.9);
     line-height: 1.45;
   }
 
@@ -611,7 +639,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    width: min(100%, 420px);
+    width: min(100%, var(--path-measure));
     min-height: 48px;
     margin-top: 1.1rem;
     padding: 0.6rem 0;

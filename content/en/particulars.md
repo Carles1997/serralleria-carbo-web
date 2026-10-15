@@ -27,13 +27,13 @@ We fabricate and install railings, staircases, walkways and other metal structur
 
 ### Furniture
 
-We make furniture with an iron or stainless steel structure, made to measure for its use and its space. We work both for private clients and for interior decorators looking for metal pieces for their projects.
+Furniture with an iron or stainless steel structure, made to measure for its use and space. For private clients and interior decorators.
 
 [Ask about your made-to-measure furniture](/en/contact/?tipus=particular&servei=mobiliari)
 
 ### Repairs
 
-Doors, roller shutters and motors that have stopped working.
+We repair doors, roller shutters and automation systems for homes, communities and businesses.
 
 [See repairs](/en/residential/repairs/)
 

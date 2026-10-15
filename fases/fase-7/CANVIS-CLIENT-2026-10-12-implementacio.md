@@ -184,3 +184,23 @@ Fet després del desplegament de `9b9ba77`, **sense commit ni desplegament**.
 - **Formulari:** 58 proves unitàries i 37 de navegador.
 - **Selector d'idioma:** 15/15.
 - **Animació:** fotogrames de l'entrada revisats a 1440 px; lectura a 1880, 1440, 390 i 320 px, sense desbordament.
+
+## 11. Targetes de la Home i de Particulars (director, 15/10/2026)
+
+Sense commit ni desplegament.
+
+| Indicació | Implementació |
+|---|---|
+| **Home · targetes dels dos camins** | La frase de Particulars es parteix als dos punts, sense canviar `home.md`. «Instal·lacions, reparacions i peces a mida per al teu espai:» pren l'estil de «Sèries curtes i mitjanes…», i la llista de feines, el de l'abast d'Industrial. La primera línia de cada targeta va en una sola línia de 1001 a 1880 px, amb la mateixa mida a les dues targetes. La línia de l'acció fa la llargada de la frase més llarga de cada idioma (a 1440 px, 478 px en català, 515 en castellà i 523 en anglès), i cap text la supera. En mòbil i tauleta vertical, la primera línia es parteix en dues, a 16 px |
+| **Particulars · text de Mobiliari (proposta)** | «Mobiliari amb estructura de ferro o inoxidable, a mida de l'ús i de l'espai. Per a particulars i decoradors.» Equivalents en castellà i anglès |
+| **Particulars · text de Reparacions (proposta)** | «Reparem portes, persianes i automatismes d'habitatges, comunitats i negocis.» Ja no parla de feines que «han deixat de funcionar». Equivalents en castellà i anglès |
+| **Particulars · entrada de les quatre targetes** | Fos escalonat de 110 ms per targeta. La fotografia s'assenta lentament (escala 1,06 → 1, 1,4 s) i el títol, el text i l'enllaç pugen 12 px un darrere l'altre. Sense cortina ni desenfocament, d'acord amb el sistema de moviment. Amb moviment reduït o sense JavaScript, les targetes queden fixes |
+
+**Comprovacions:**
+- **Verificació:** `astro check` sense errors; referències intactes, amb la revisió nova de `content/ca/particulars.md`.
+- **Idiomes i enllaços:** `check:i18n` i `check:links` correctes.
+- **Lectura:** mesures i captures a 1880, 1440, 1100, 1001, 768, 390 i 320 px, sense desbordament.
+- **Animació:** fotogrames de l'entrada revisats a 1440 px.
+
+**Pendent:** validació dels dos textos nous de les targetes.
+

@@ -114,6 +114,19 @@
 }
 @keyframes p-story-reveal { from { translate: 0 10px; } }
 @media (prefers-reduced-motion: reduce) { .p-story-frame, .p-service-art img { transition: none; } }
+/* Entrada de les targetes de serveis (director, 15/10/2026): sense cortina ni desenfocament (sistema de
+   moviment). Cada targeta es fon escalonada, la fotografia s'assenta lentament (escala 1,06 → 1) i, just
+   després, el títol, el text i l'enllaç pugen 12 px un darrere l'altre. Un sol cop, en entrar a la
+   pantalla; amb moviment reduït o sense JavaScript, les targetes queden fixes. */
+@keyframes p-service-settle { from { scale: 1.06; } }
+@media (prefers-reduced-motion: no-preference) {
+  .p-service[data-reveal='clip'].is-revealed { animation: reveal-fade 600ms var(--ease-out-strong) calc(var(--i, 0) * 110ms) backwards; }
+  .p-service.is-revealed .p-service-art img { animation: p-service-settle 1400ms var(--ease-out-strong) calc(var(--i, 0) * 110ms) backwards; }
+  .p-service.is-revealed .p-service-copy > * { animation: reveal-rise 560ms var(--ease-settle) backwards; }
+  .p-service.is-revealed .p-service-copy > :nth-child(1) { animation-delay: calc(var(--i, 0) * 110ms + 180ms); }
+  .p-service.is-revealed .p-service-copy > :nth-child(2) { animation-delay: calc(var(--i, 0) * 110ms + 260ms); }
+  .p-service.is-revealed .p-service-copy > :nth-child(3) { animation-delay: calc(var(--i, 0) * 110ms + 340ms); }
+}
 
 /* Responsive */
 @media (max-width: 1100px) {

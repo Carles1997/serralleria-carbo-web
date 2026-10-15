@@ -243,12 +243,10 @@ if PART == 'tot':
 pace()
 status, headers, body = post(fields(ref=ref()))
 parsed = json.loads(body) if body.startswith('{') else None
-if status == 200 and parsed and parsed.get('state') == 'dry-run':
-    # En dry-run sense RL_SECRET cada instància té el seu secret provisional: si l'atén una altra
-    # instància, l'empremta és diferent i el comptador també (comprovat al magatzem el 09/10/2026).
-    sys.stdout.buffer.write(('AVÍS  Sisena consulta acceptada: l\'ha atesa una altra instància (dry-run sense RL_SECRET; comptador per instància)' + chr(10)).encode('utf-8'))
-else:
-    check('Sisena consulta vàlida de l\'hora: 429 de la funció', status == 429 and parsed and parsed.get('state') == 'rate-limited', {'estat': status, 'cos': body[:200]})
+# Amb RL_SECRET configurat per a revisio-client (15/10/2026), totes les instàncies comparteixen el
+# comptador: una sisena consulta acceptada és una falla, no un avís. La prova detallada (instàncies
+# observades i concurrència) és check-contact-form-remote-limits.py.
+check('Sisena consulta vàlida de l\'hora: 429 de la funció', status == 429 and parsed and parsed.get('state') == 'rate-limited', {'estat': status, 'cos': body[:200]})
 
 # 10. Petició de més de 6 MB (sense passar pel navegador): resposta de la plataforma.
 pace()

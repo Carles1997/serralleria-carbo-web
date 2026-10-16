@@ -1,6 +1,60 @@
 # Fase 8 · Tasca 8.5 · Formulari real amb Microsoft 365
 
-**Data:** 09/10/2026 (tercera versió del dia, amb les correccions de la revisió de Codex).
+**Data:** 09/10/2026 (tercera versió del dia, amb les correccions de la revisió de Codex). **Actualitzat el 15/10/2026** (proves pendents a Netlify; preparació de Microsoft 365 i de la prova real).
+
+## Estat actual (15/10/2026)
+
+**Previsualització:** https://revisio-client--serralleriacarbo.netlify.app/:
+- desplegament `6ad06234e068abb8a07f67ad` (15/10/2026, amb `RL_SECRET` secreta);
+- `FORM_MODE=dry-run`, `noindex` i avís de demostració;
+- **cap correu enviat** i cap credencial de Microsoft 365 a Netlify.
+
+**Fora d'abast:** producció, DNS i registres de correu no s'han tocat.
+
+**Implementat (codi del repositori):**
+- **Funció `/api/contacte`:** validació al servidor, antispam, límits de freqüència en dues capes, referències i duplicats, adjunts de fins a 3.000.000 bytes, i enviament amb Microsoft Graph per certificat o secret, amb reintents. Modes `dry-run`, `test` i `live`; `live` només funciona en producció (§4, §5).
+- **Neteja:** funció programada `neteja-temporals` i neteja oportunista.
+- **Registres de la funció:** sense dades personals; identifiquen la instància i l'origen del secret.
+- **Proves:**
+  - **unitàries:** 58;
+  - **de navegador en local:** 37;
+  - **a Netlify en `dry-run`:** `check-contact-form-remote.py` i `check-contact-form-remote-limits.py`.
+- **Eina per desar variables a Netlify des d'un fitxer**, sense mostrar-ne el valor: `scripts/netlify/set-env-from-file.py` (§6.4).
+
+**Comprovat:**
+
+| On | Què | Quan |
+|---|---|---|
+| **Local** | Validació, antispam, adjunts al màxim exacte, duplicats, errors, modes, Graph fals (`202`, reintents, credencial rebutjada, asserció RS256), conservació. Amb JavaScript i sense | 09/10/2026 (§6) |
+| **Netlify, `dry-run`** | Pàgines, `405`, validació, adjunts de 3.000.000 i 3.000.001 bytes, petició de 7 MB, Industrial sense JavaScript, duplicats, capa 1, neteja oportunista | 09/10/2026 (§6.1) |
+| **Netlify, `dry-run`, amb `RL_SECRET`** | Comptador únic per IP i hora, compartit per quatre instàncies observades; cinc acceptacions; concurrència; pujada lenta; tall de connexió | 15/10/2026 (§6.2 A i B). **No es repeteixen** si no canvia el codi relacionat |
+| **Netlify** | Neteja programada amb «Run now» a la previsualització (registres caducats i vigents): elimina només els caducats | 15/10/2026 (§6.2 C) |
+| **Netlify** | `RL_SECRET` convertida en secreta sense canviar-ne el valor: la mateixa IP i el mateix dia donen la mateixa empremta (`4e7629b4…`) després del redesplegament `6ad06234e068abb8a07f67ad` | 15/10/2026 (§6.4) |
+| **Local** | Generació del certificat (`scripts/m365/generate-certificate.py`) amb un certificat d'un sol ús: PKCS#8, parella clau-certificat, empremta, rebuig d'una carpeta dins del repositori. `clientAssertion()` de `graph.ts` signa amb aquesta clau: signatura RS256 verificada amb la part pública i `x5t` igual a l'empremta. Els fitxers d'un sol ús s'han esborrat | 15/10/2026 (§6.5) |
+| **Producció** | Execució automàtica de `neteja-temporals` segons l'horari | **Pendent:** només es pot comprovar al desplegament publicat (§11.6) |
+| **Microsoft Graph real** | Cap prova | Pendent de l'administrador i de l'autorització (§11) |
+
+**Depèn de l'administrador de Microsoft 365** (missatge del §10):
+- registrar l'aplicació sense permisos de Graph d'abast general;
+- carregar-hi la part pública del certificat;
+- limitar `Application Mail.Send` a `carbo@` amb RBAC d'Exchange;
+- enviar el resultat de `Test-ServicePrincipalAuthorization` i els identificadors (no secrets);
+- respondre les preguntes sobre la bústia.
+
+**Depèn del director:**
+1. ~~Prémer «Run now» de `neteja-temporals` (§6.2 C).~~ Fet el 15/10/2026.
+2. ~~Decidir si `RL_SECRET` passa a ser secreta.~~ Autoritzat i fet el 15/10/2026 (§6.4).
+3. ~~Generar el certificat amb `scripts/m365/generate-certificate.py`.~~ Fet el 15/10/2026: caduca el 15/10/2027 (§6.5).
+4. Enviar el missatge del §10 a l'administrador, amb `formulari-web-20261015.cer.pem` adjunt.
+5. Quan l'administrador respongui, autoritzar que es desin les credencials a Netlify, només per a `revisio-client` i com a secretes (§6.5).
+6. Autoritzar, amb el client, la data de la prova real. Jordi confirma la recepció (§11).
+7. Confirmar el saldo de crèdits per a producció.
+
+**Altres pendents:**
+- l'aprovació editorial dels textos (client);
+- la validació jurídica dels textos castellans i anglesos;
+- DKIM i DMARC;
+- els consentiments de dret d'imatge de les persones identificables. Els permisos d'ús de les fotografies ja estan confirmats.
 
 **Decisions del director (09/10/2026):**
 1. **Microsoft 365 és l'opció escollida** i substitueix Netlify Forms (decisió del 02/10/2026).
@@ -59,13 +113,13 @@
 | **Formulari** | Un sol formulari en català i castellà, amb les branques Particulars i Industrial. Ara envia a `/api/contacte`, amb JavaScript i sense. En mode `dry-run` respon «La consulta no s'ha enviat: el formulari encara no està actiu…» i no envia res |
 | **Privacitat** | Primera capa i caselles de l'advocat, aprovades en català el 06/10/2026. El castellà està pendent de validació jurídica. La política cita Netlify (allotjament i recepció dels formularis) i Microsoft 365 (correu) com a encarregats |
 | **Correu del domini** | MX i SPF de Microsoft 365. **Sense DKIM ni DMARC** (consulta de només lectura, 09/10/2026) |
-| **Netlify** | El 09/10/2026 els desplegaments de producció s'ometien per manca de crèdits, però el desplegament no productiu a `revisio-client` es va completar i el lloc responia: **no hi havia una pausa completa**. El saldo, el pla i el motiu del bloqueig estan pendents de confirmar al panell. La recàrrega automàtica és opcional |
+| **Netlify** | **Pla Free** (compte `carles1997`, un sol membre; consulta de l'API, 15/10/2026). El desplegament publicat de producció és del 06/10/2026 i **no té cap funció**. El 09/10/2026 els desplegaments de producció s'ometien per manca de crèdits; el saldo està pendent de confirmar al panell. Les opcions de les variables d'entorn són al §6.4 |
 
 ## 2. Condicions del contracte
 
 | Condició (`CLAUDE.md` i FASE8 8.5) | Estat |
 |---|---|
-| Backend real | Funció de Netlify implementada; no desplegada |
+| Backend real | Funció implementada i desplegada a `revisio-client` en `dry-run` |
 | Validació al servidor | Implementada i provada (§4.3) |
 | Antispam sense galetes | Implementat i provat (§4.4) |
 | Límit d'adjunt | 3.000.000 bytes, provat al servidor i al navegador. **Pendent de validar amb Microsoft Graph** (§4.1) |
@@ -205,27 +259,34 @@ Per als dos camps, només s'accepten claus pròpies de la llista: «toString», 
 - revisió dels inicis de sessió de l'aplicació (Entra) i de la traça de missatges si se sospita un abús;
 - procediment de revocació: eliminar la credencial a Entra (pregunta 5).
 
-**Credencials:**
-- **Certificat (recomanat):** `M365_CERT_THUMBPRINT` (empremta SHA-1 que mostra Entra) i `M365_PRIVATE_KEY_PEM` (clau privada **PKCS#8**, `BEGIN PRIVATE KEY`).
+**Credencials (revisat el 15/10/2026):**
+- **Certificat (recomanat):** `M365_CERT_THUMBPRINT` (empremta SHA-1) i `M365_PRIVATE_KEY_PEM` (clau privada **PKCS#8**, `BEGIN PRIVATE KEY`).
+  - **El parell de claus el genera el director a la seva màquina, fora del repositori** (§6.5).
+  - L'administrador només en rep la **part pública** (`.cer` o `.pem`), que no és secreta, i la carrega a Entra.
+  - La clau privada va directament del fitxer local a Netlify com a variable secreta i després s'esborra.
+  - **Cap secret no passa per correu, xat ni repositori**, i l'administrador no ha d'accedir a Netlify. El pla Free té un sol membre.
 - **Alternativa:** `M365_CLIENT_SECRET`, amb una durada proposada de 12 mesos (el portal permet fins a 24).
+  - El secret el crea l'administrador i l'ha d'escriure ell mateix a Netlify, per exemple en una sessió compartida amb el director. Mai per correu ni per xat.
+  - Per això és l'opció menys recomanable.
 - **Altres variables:**
   - `M365_TENANT_ID`;
   - `M365_CLIENT_ID`;
   - `FORM_MODE`, que continua sent `dry-run` fins a l'autorització;
   - `RL_SECRET`: valor aleatori **estable** d'almenys 32 caràcters, compartit per totes les instàncies. Obligatori en `test` i `live`. No és una credencial de Microsoft 365: el genera i l'introdueix a Netlify el propietari de l'equip.
     - **Configurat el 15/10/2026 per a `revisio-client`:** 32 bytes del generador criptogràfic del sistema (64 caràcters hexadecimals), amb un valor específic de la branca. Per a producció se n'haurà de generar un altre quan s'autoritzi.
-- **Limitació del pla actual de Netlify (comprovada el 15/10/2026):**
-  - **Abast:** l'API rebutja crear una variable limitada a l'abast «Functions» (`403 Forbidden`). La documentació de Netlify diu que els abastos són dels plans Pro i Enterprise.
-  - **Variable secreta:** sense abast, tampoc no l'accepta (`422 Unprocessable Entity`).
-  - **Conseqüència:** `RL_SECRET` i `FORM_MODE` són variables normals, amb tots els abastos, però limitades a la branca `revisio-client`. En aquest projecte no hi ha compilacions remotes ni funcions Edge, i només les funcions les fan servir.
-  - **Credencials de Microsoft 365:** valen les mateixes limitacions (§10, punt 4).
-- **Com s'introdueixen:** l'administrador les escriu **directament a Netlify**, mai per xat ni per correu.
+- **Pla actual de Netlify (Free; detall i proves al §6.4):**
+  - **Abast:** no es pot limitar una variable a l'abast «Functions» (`403`). Requereix el pla Pro.
+  - **Variable secreta:** **sí que es pot crear**, si s'hi declaren els abastos `builds`, `functions` i `runtime`. Sense abastos explícits, Netlify la rebutja (`422`) perquè els secrets no poden tenir el de postprocessament. Aquesta correcció és de la segona sessió del 15/10/2026; la primera havia conclòs que no era possible.
+  - **`RL_SECRET`:** variable secreta des del 15/10/2026, amb el mateix valor (§6.4).
+  - **`FORM_MODE`:** variable normal. No és cap secret.
+  - Totes dues només per a la branca `revisio-client`.
+- **Com s'introdueixen:** amb el procediment del §6.4, directament a Netlify, mai per xat, per correu ni al repositori. Els identificadors (`M365_TENANT_ID`, `M365_CLIENT_ID` i l'empremta) no són secrets.
 - **Renovació:** un canvi de variable requereix un desplegament nou. Cada desplegament de producció costa 15 crèdits.
 
 | Tasca | Responsable |
 |---|---|
 | Crear, renovar i revocar la credencial; mantenir l'àmbit d'Exchange | Administrador de Microsoft 365 (**persona pendent de designar**) |
-| Introduir la credencial a Netlify | L'administrador, amb un accés que permeti editar variables d'entorn, o el propietari de l'equip de Netlify amb ell |
+| Generar el certificat i desar la clau privada a Netlify | Director (propietari de l'equip de Netlify), §6.4. Amb un secret de client, l'administrador l'escriu ell mateix a Netlify |
 | Desplegar després de renovar i fer un enviament de prova | Director o desenvolupament, amb autorització |
 | Recordatori de caducitat | Client: avís 30 dies abans. La data es registra en aquest document (no el valor de la credencial) |
 
@@ -337,7 +398,8 @@ Font única: `src/lib/contact/messages.ts`, en català i castellà. `ui.ts` la r
 | `scripts/test-contact.mjs` (`npm run test:contact`) | 55 proves unitàries |
 | `scripts/qa/serve-contact.mjs` i `scripts/qa/check-contact-form.py` | Servidor local (dry-run o enviador fals) i 31 proves de navegador |
 | `scripts/qa/check-contact-form-remote.py` | Proves a Netlify del 09/10/2026. Des del 15/10/2026, una sisena consulta acceptada és una falla, no un avís |
-| `scripts/qa/check-contact-form-remote-limits.py` (15/10/2026) | Proves pendents a Netlify: límit horari i concurrència amb `RL_SECRET`, xarxa lenta, registres sintètics per a la neteja programada i esborrat selectiu de les claus de la prova |
+| `scripts/qa/check-contact-form-remote-limits.py` (15/10/2026) | Proves pendents a Netlify: límit horari i concurrència amb `RL_SECRET`, xarxa lenta, registres sintètics per a la neteja programada (amb marge d'unes 22 h i comprovació a partir de l'hora real de l'execució) i esborrat selectiu de les claus de la prova |
+| `scripts/netlify/set-env-from-file.py` (15/10/2026) | Desa una variable de Netlify, normal o secreta, d'un context o d'una branca, llegint-ne el valor d'un fitxer local i sense mostrar-lo mai |
 | `netlify/functions/contacte.mts` (15/10/2026) | Els registres hi afegeixen `instance` (identificador aleatori de la instància) i `secret` («estable», «instancia» o «cap»), sense cap valor del secret ni dades personals |
 
 **Dependència nova: `@netlify/blobs` 10.7.13** (client oficial de Netlify Blobs).
@@ -396,7 +458,7 @@ Font única: `src/lib/contact/messages.ts`, en català i castellà. `ui.ts` la r
 
 | Fase | Prova | Criteri |
 |---|---|---|
-| **5.2 bis** | ~~Configurar `RL_SECRET` i repetir el límit horari amb diverses instàncies; pujada en xarxa lenta~~ **Fet el 15/10/2026 (§6.2).** Pendent: «Run now» de `neteja-temporals` amb registres sintètics (§6.2 C) | Un sol comptador per IP i hora; la sisena consulta, `429`. La neteja esborra els caducats i conserva els vigents |
+| **5.2 bis** | ~~Configurar `RL_SECRET` i repetir el límit horari amb diverses instàncies; pujada en xarxa lenta~~ **Fet el 15/10/2026 (§6.2)**, inclòs el «Run now» de `neteja-temporals` amb registres sintètics (§6.2 C) | Un sol comptador per IP i hora; la sisena consulta, `429`. La neteja esborra els caducats i conserva els vigents |
 | ~~**5.2 `dry-run` a `revisio-client`**~~ **Fet el 09/10/2026 (§6.1)**, excepte els punts de 5.2 bis | Repetir les proves de navegador contra Netlify; adjunt d'exactament 3.000.000 bytes i de 3.000.001; petició de més de 6 MB sense JavaScript; `429` de la capa 1; pujada en xarxa lenta; adaptador de Blobs; «Run now» de la neteja i comprovació que el magatzem queda buit | Mateixos resultats que en local. Documentar què mostra Netlify amb més de 6 MB i amb el `429` de la capa 1 |
 | **Comprovació de l'administrador** | `Test-ServicePrincipalAuthorization` amb `carbo@` i amb una altra bústia | `True` i `False` |
 | **5.3 `test` a `revisio-client`** (correus «[PROVA]» a `carbo@`, amb autorització del director i del client) | 4 enviaments: Particulars i Industrial, en català i castellà. Un porta un adjunt d'**exactament 3.000.000 bytes** | A la safata d'entrada de `carbo@`, no a la brossa ni a la quarantena; traça del missatge per referència; Reply-To, accents, adjunt íntegre, consentiment, data i referència correctes; cap còpia a Enviats. Si Graph rebutja els 3.000.000 bytes, es baixa el límit i es repeteixen el màxim exacte, un byte per sota i un per sobre |
@@ -456,32 +518,71 @@ Quatre instàncies diferents van llegir i escriure **el mateix comptador**: les 
 
 **Sobre B2:** amb CDP, posar el navegador fora de línia no talla una petició que ja s'està enviant. En el primer intent, la pujada va arribar sencera i es va acceptar (`48UUAVGMG3`, a la instància `87b7698d`). La prova definitiva injecta el tall al navegador: Playwright reté la petició 8 s, la meitat de la pujada de B1, i la talla amb `connectionreset`. Aquesta petició no arriba a Netlify. Comprova la resposta del formulari a un tall, no la xarxa real.
 
-#### C. Neteja programada: **pendent**
+#### C. Neteja programada: **superada** (15/10/2026, «Run now» del director)
 
-1. **Registres sintètics.** Es van crear amb la part `plantar` a les 01:51 UTC:
-   - **caducats:** un comptador de l'hora `2026101423` i una referència de fa 2 h;
-   - **vigents:** un comptador de l'hora actual i una referència de fa 5 minuts.
-2. **«Run now».** No s'ha pogut executar:
-   - Netlify no permet invocar les funcions programades amb una URL i no les executa als desplegaments no publicats. L'única via és el botó «Run now» del panell.
-   - Des del navegador de l'entorn de proves, el panell es queda en blanc amb la verificació reCAPTCHA i sense sessió. No s'hi ha iniciat sessió ni s'ha intentat superar la verificació.
-   - Tampoc no s'ha creat cap punt d'accés públic per substituir-lo.
-3. **Neteja dels sintètics.** Es van esborrar a mà sense haver provat la neteja. **La prova no està superada.**
-4. **Diferència amb la neteja oportunista.** La neteja que fa la funció de contacte a cada instància nova ja es va comprovar el 09/10/2026 (§6.1). Aquesta prova és diferent: verifica la funció `neteja-temporals`. Mentre dura, no es fa cap petició a `/api/contacte`. El registre ha de mostrar l'esdeveniment `neteja-temporals`, i no el de `contacte`.
+**Primer intent (15/10/2026, 01:51 UTC):** registres sintètics creats, però «Run now» no es va poder executar.
+- Netlify no permet invocar les funcions programades amb una URL i no les executa als desplegaments no publicats.
+- El panell no és accessible des de l'entorn de proves: es queda en blanc, amb la verificació reCAPTCHA i sense sessió.
+- Els sintètics es van esborrar sense haver provat la neteja.
+- No s'ha creat cap punt d'accés públic.
 
-**Pas exacte pendent.** El fa una persona amb sessió a Netlify, dins d'una mateixa hora UTC i sense cap petició al formulari mentrestant:
+**Procediment actual (15/10/2026, segona sessió):**
+1. **Registres sintètics.** Es creen amb la part `plantar`, amb el format real de la funció:
+   - **caducats:** un comptador de fa dues hores i una referència de fa dues hores;
+   - **vigents amb marge:** un comptador d'una hora futura i una referència amb data futura. Continuen vigents unes 22 h, perquè «Run now» no s'hagi de prémer dins de la mateixa hora;
+   - **recents:** un comptador de l'hora actual i una referència d'ara. El resultat esperat depèn de l'hora de l'execució.
+2. **«Run now».** El prem el director:
+   - al panell de Netlify, a la funció `neteja-temporals` del desplegament `6ad02e32041dc6f8e15c72ba` (`revisio-client`);
+   - **no** a producció: el desplegament publicat no té funcions;
+   - sense cap enviament del formulari mentrestant.
+3. **Comprovació.** La fa la part `neteja`:
+   - localitza l'execució al registre de `neteja-temporals` (esdeveniment i hora exacta);
+   - comprova que no hi ha cap petició a `contacte` entre els registres i l'execució, perquè la neteja oportunista no hi intervingui;
+   - calcula, amb l'hora de l'execució i les mateixes regles que `sweep()`, quins sintètics havien de desaparèixer;
+   - comprova que han desaparegut els caducats, que es conserven els vigents i que el registre en compta almenys els caducats.
+   - **No és vàlid executar la funció amb el magatzem buit:** la prova exigeix registres caducats i vigents presents abans de l'execució.
+4. **Neteja final.** La part `netejar` esborra només els sintètics que quedin.
 
-```bash
-python -I scripts/qa/check-contact-form-remote-limits.py https://revisio-client--serralleriacarbo.netlify.app plantar estat.json
-```
+**Diferència amb la neteja oportunista:**
+- **Oportunista:** la fa la funció de contacte, i ja es va comprovar el 09/10/2026 (§6.1).
+- **Programada:** aquesta prova verifica la funció `neteja-temporals`, i el registre ho identifica amb l'esdeveniment `neteja-temporals`.
 
-Netlify → `serralleriacarbo` → Logs → Functions → `neteja-temporals` (desplegament `revisio-client` actual) → **Run now**.
+**Registres sintètics actuals:** creats el **15/10/2026 a les 03:20 UTC (05:20, hora de Barcelona)** amb el magatzem buit:
+- **caducats:** `rl/2026101501/…/sintetic-caducat` i `sub/…/SINTCADUCAT`;
+- **vigents amb marge:** `rl/2026101602/…/sintetic-vigent-marge` i `sub/…/SINTVIGENTMARGE`;
+- **recents:** `rl/2026101503/…/sintetic-recent` i `sub/…/SINTRECENT`. S'han de conservar si «Run now» es prem abans de les 04:00 UTC; després, també han de desaparèixer.
 
-```bash
-python -I scripts/qa/check-contact-form-remote-limits.py https://revisio-client--serralleriacarbo.netlify.app neteja estat.json
-python -I scripts/qa/check-contact-form-remote-limits.py https://revisio-client--serralleriacarbo.netlify.app netejar estat.json
-```
+**Termini per prémer «Run now»:** fins al 16/10/2026 a les 01:20 UTC (03:20, hora de Barcelona).
 
-**Criteri:** desapareixen els dos caducats, es conserven els dos vigents i el registre de `neteja-temporals` indica `counters: 1` i `references: 1`.
+**Resultat:**
+
+| Comprovació | Resultat |
+|---|---|
+| **Execució** | El director va prémer «Run now» al desplegament `6ad02e32041dc6f8e15c72ba`. El registre de `neteja-temporals` mostra l'execució el **15/10/2026 a les 04:32:11 UTC** (693 ms): `{"event":"neteja-temporals","counters":2,"references":2}` |
+| **Sense neteja oportunista entremig** | Cap petició a `contacte` entre els registres sintètics i l'execució |
+| **Esborrats** (caducats a l'hora de l'execució) | `rl/2026101501/…/sintetic-caducat`, `sub/…/SINTCADUCAT` i, en ser més de les 04:00 UTC, també `rl/2026101503/…/sintetic-recent` i `sub/…/SINTRECENT` (72 minuts d'antiguitat). **Superada** |
+| **Conservats** (vigents) | `rl/2026101602/…/sintetic-vigent-marge` i `sub/…/SINTVIGENTMARGE`. **Superada** |
+| **Recompte del registre** | 2 comptadors i 2 referències: exactament els quatre sintètics caducats. El magatzem no tenia res més |
+| **Neteja final** | Els dos sintètics vigents s'han esborrat amb la part `netejar`. El magatzem ha quedat buit, com abans de la prova |
+
+**Detall:** el registre de l'execució va trigar uns minuts a mostrar el missatge. Al principi la CLI en mostrava la línia buida, com amb les peticions simultànies de la prova A.
+
+**Revisió de Codex (16/10/2026) i prova decisiva.**
+
+Troballa: la comprovació només buscava l'esdeveniment `contacte`. Una petició a `/api/contacte` que no el deixa, com un GET (`405`) o un cos il·legible, també pot llançar la neteja oportunista.
+
+Correccions de l'script:
+- ara compta qualsevol línia del registre de la funció de contacte;
+- falla si no pot llegir els registres.
+
+Els registres del 15/10 ja no es poden tornar a consultar: la finestra de control amb peticions conegudes també surt buida, perquè Netlify en conserva aproximadament un dia. El resultat, però, no en depèn:
+- `neteja-temporals` va registrar l'esborrat de 2 comptadors i 2 referències, exactament els quatre sintètics caducats;
+- el magatzem era buit abans de crear-los;
+- si una neteja oportunista els hagués esborrat abans, l'execució programada no els hauria pogut comptar.
+
+La comprovació de l'script ara es presenta com aquesta prova. **La prova continua superada.**
+
+**Lliçó:** els registres de les funcions s'han de llegir el mateix dia de la prova.
 
 #### Tancament
 
@@ -495,15 +596,110 @@ python -I scripts/qa/check-contact-form-remote-limits.py https://revisio-client-
 
 ### 6.3 Següent pas per connectar Microsoft 365
 
-1. **Netlify:**
-   - decidir si es passa al pla Pro, perquè les credencials puguin ser secretes i limitades a «Functions», o si s'accepten com a variables normals limitades al context de producció (§4.5);
-   - confirmar el saldo de crèdits per als desplegaments de producció.
-2. **Administrador de Microsoft 365:**
-   - enviar-li el missatge del §10, amb el punt 4 ajustat al pla escollit;
-   - rebre només el resultat de `Test-ServicePrincipalAuthorization`.
-3. **`RL_SECRET` de producció:** generar-ne un de nou, diferent del de `revisio-client`, abans de qualsevol mode `test` o `live`.
-4. **Neteja programada:** fer el «Run now» pendent (§6.2 C).
-5. **Prova 5.3:** amb l'autorització del director i del client, `FORM_MODE=test` a `revisio-client`, amb les credencials introduïdes per l'administrador, i els quatre enviaments «[PROVA]» del §6.1.
+Ordre proposat:
+1. ~~**Director:** «Run now» de la neteja (§6.2 C).~~ Fet el 15/10/2026.
+2. **Director:** enviar el missatge del §10 a l'administrador. Abans, generar el certificat i adjuntar-ne la part pública (§6.5).
+3. **Administrador:** configuració a Entra i a Exchange. Respon amb `Test-ServicePrincipalAuthorization` i els identificadors.
+4. **Director:** desar les credencials a Netlify **només per a la branca `revisio-client`** i com a secretes (§6.5). Encara no s'incorporen a producció.
+5. **Director i client:** acordar la prova real controlada (§11).
+6. **Producció**, després de la prova:
+   - un altre `RL_SECRET` i les credencials al context de producció;
+   - saldo de crèdits;
+   - autorització de `live`.
+
+### 6.4 Opcions del pla de Netlify per a les variables d'entorn
+
+**Dades del compte** (API de Netlify, 15/10/2026):
+- **Pla:** Free, amb un sol membre.
+- **Capacitats:** `env_var_scopes` no inclòs; `env_var_secrets` inclòs; `shared_env_variables` no inclòs.
+
+**Proves fetes:**
+- amb variables temporals `QA_PROBE_*`, sense cap valor real, només per a la branca `revisio-client`, esborrades tot seguit;
+- amb les variables reals del 15/10/2026.
+
+| Opció | Disponible al pla Free | Què protegeix | Limitacions reals |
+|---|---|---|---|
+| **Variable normal** | Sí (creada: `RL_SECRET`, `FORM_MODE`) | Es pot limitar a un context de desplegament o a una branca concreta | Té **tots els abastos**: compilacions, funcions, execució i postprocessament (injecció de fragments). El valor es pot tornar a llegir al panell, a l'API i a la CLI, per qualsevol persona amb accés al projecte |
+| **Restricció d'abast a «Functions»** | **No**: `403 Forbidden`, tant per a una variable normal com per a una de secreta | Només la llegeixen les funcions | Requereix el **pla Pro** (documentació de Netlify i prova de l'API). No impedeix que algú amb accés al projecte llegeixi el valor si no és secret |
+| **Variable secreta** (Secrets Controller) | **Sí, amb els abastos `builds`, `functions` i `runtime`**: creada i esborrada amb èxit. Sense abastos explícits, `422`: Netlify obliga a excloure el postprocessament | El valor és **només d'escriptura**: després de desar-lo, no es pot llegir al panell, a l'API ni a la CLI. Només el codi que s'executa a Netlify llegeix el valor real. Es pot limitar a una branca | També arriba a les compilacions i a l'execució, no només a les funcions. Aquest projecte es desplega amb la CLI i sense compilacions remotes, i no té funcions Edge. El marcatge **no es pot desfer**. L'escaneig de secrets de Netlify atura el desplegament si troba el valor als fitxers publicats. La documentació no diu que el valor s'emmascari als registres; la funció no el registra mai |
+
+**Altres comprovacions:**
+- **Mida:** les funcions d'aquest projecte fan servir el format modern de Netlify. El límit de 4 KB del total de variables només s'aplica al mode de compatibilitat amb Lambda, i una clau RSA de 2048 bits fa uns 1,7 KB.
+- **Canvis de valor:** requereixen un desplegament nou.
+- **CLI:** `netlify env:set` va retornar èxit sense desar res en aquest projecte. Per això `scripts/netlify/set-env-from-file.py` fa servir l'API. L'eina s'ha provat amb una variable temporal: creació i actualització d'una variable secreta d'una branca sense mostrar-ne el valor; després es va esborrar.
+
+**Recomanació:**
+- **No cal ampliar el pla.** Les credencials de Microsoft 365 es desen com a **variables secretes** (abastos `builds`, `functions` i `runtime`) i limitades primer a la branca `revisio-client` i, després, a producció.
+- Només caldria el pla Pro si es vol la restricció estricta a «Functions», que aquí no afegeix protecció real perquè no hi ha compilacions remotes ni funcions Edge.
+- **`RL_SECRET` convertida en secreta (autorització del director, 15/10/2026):**
+  - **Mètode:** el valor es va llegir dins del procés, sense mostrar-lo, i es va reescriure igual amb `updateEnvVar`: `is_secret: true`, abastos `builds`, `functions` i `runtime`, i el mateix context exclusiu (`branch:revisio-client`).
+  - **Després del canvi:** l'API ja no en retorna el valor.
+  - **Redesplegament:** `6ad06234e068abb8a07f67ad`, sense `--prod`.
+  - **Comprovació del valor:** una consulta `dry-run` va generar la mateixa clau de comptador que les proves de les 01:39 UTC (`4e7629b4…`, mateixa IP i mateix dia). Amb un valor diferent, l'empremta hauria canviat. Les dues claus de la consulta es van esborrar.
+- **No s'ha incorporat cap credencial de Microsoft 365.**
+
+### 6.5 Certificat de l'aplicació: generació, caducitat i renovació
+
+**Paràmetres:**
+- **Clau:** RSA de 2048 bits, en PKCS#8 (`BEGIN PRIVATE KEY`), el format que llegeix `graph.ts`.
+- **Certificat:** X.509 autosignat, amb SHA-256 i el subjecte `CN=Formulari web Serralleria Carbo`.
+- **Caducitat: 365 dies** des de la generació. Entra admet certificats autosignats per a la credencial de l'aplicació.
+
+**Generació** (la llança el director; la clau privada no surt de la seva màquina):
+
+```bash
+python -I scripts/m365/generate-certificate.py
+```
+
+- **Carpeta:** crea `~/m365-formulari/` i hi deixa `formulari-web-AAAAMMDD.cer.pem` (part pública) i `formulari-web-AAAAMMDD.key.pem` (clau privada).
+- **Seguretat:**
+  - es nega a escriure dins de qualsevol repositori Git;
+  - no sobreescriu fitxers;
+  - restringeix els permisos de la clau a l'usuari actual i s'atura si no ho aconsegueix. Correcció de la revisió de Codex del 16/10/2026: abans se n'ignorava el resultat. La clau del 15/10/2026 té els permisos correctes: només hi té accés l'usuari del director, sense herència (`icacls`, consultat sense llegir-ne el contingut);
+  - no en mostra mai el contingut.
+- **Sortida:** només dades públiques:
+  - el fitxer que s'ha d'adjuntar;
+  - la data de caducitat i la data a partir de la qual cal renovar;
+  - l'empremta SHA-1 (`M365_CERT_THUMBPRINT`);
+  - la comprovació que la clau és PKCS#8 i que fa parella amb el certificat.
+
+**Desar les credencials a Netlify** (quan l'administrador hagi retornat els identificadors, i amb l'autorització del director):
+
+```bash
+python -I scripts/netlify/set-env-from-file.py M365_PRIVATE_KEY_PEM ~/m365-formulari/formulari-web-AAAAMMDD.key.pem branch:revisio-client --secret
+```
+
+- **Identificadors:** `M365_TENANT_ID`, `M365_CLIENT_ID` i `M365_CERT_THUMBPRINT` es desen de la mateixa manera des d'un fitxer de text. No són secrets, però es poden marcar com a tals.
+- **Comprovació:** l'eina només mostra la clau, el marcatge, els abastos i els contextos.
+- **Desplegament:** cal un desplegament nou de `revisio-client`, sense `--prod`. `FORM_MODE` es manté a `dry-run` fins a la prova (§11).
+- **Clau local:** quan la variable és a Netlify, s'esborra. Netlify no la torna a mostrar. Si mai cal, es genera un parell nou: no se'n guarda cap còpia.
+
+**Certificat vigent** (generat pel director el 15/10/2026; dades públiques llegides del `.cer.pem`):
+
+| Dada | Valor |
+|---|---|
+| Fitxer públic | `~/m365-formulari/formulari-web-20261015.cer.pem` |
+| Subjecte | `CN=Formulari web Serralleria Carbo` |
+| Clau i signatura | RSA de 2048 bits, `sha256WithRSAEncryption` |
+| Vàlid | Del 15/10/2026, 05:28 UTC, al **15/10/2027, 05:28 UTC** (07:28, hora de Barcelona) |
+| Empremta SHA-1 (`M365_CERT_THUMBPRINT`) | `6F8105BCA611FD808E0EEF668034287B9E0B9E34` |
+| Avís de renovació | **15/09/2027** |
+| Clau privada | `~/m365-formulari/formulari-web-20261015.key.pem`: no s'ha llegit, no s'ha copiat i no és al repositori. Es desarà a Netlify quan l'administrador acabi |
+
+**Renovació** (anual; responsables: el director i l'administrador):
+1. **Avís:** 30 dies abans de la caducitat, al calendari del director i del client. La data es registra en aquest document quan es generi el certificat. El valor no es registra mai.
+2. **Nou parell:** el director genera un parell nou amb el mateix script. El nom porta la data, i no trepitja l'anterior.
+3. **Entra:** l'administrador **afegeix** la part pública nova a la mateixa aplicació sense treure l'antiga. Entra admet diversos certificats alhora. L'àmbit d'Exchange no canvia.
+4. **Netlify:** el director actualitza `M365_PRIVATE_KEY_PEM` i `M365_CERT_THUMBPRINT` amb `set-env-from-file.py` (el valor d'un secret es pot substituir) i redesplega.
+5. **Comprovació:** un enviament de prova autoritzat, o la primera consulta real, amb resultat `sent`.
+6. **Retirada:** l'administrador treu el certificat antic d'Entra i el director esborra la clau nova del seu disc.
+
+**Si caduca sense renovar:**
+- la funció respon `502`;
+- el registre anota `auth_failed`;
+- el visitant veu el missatge amb el telèfon i el correu.
+
+**Revocació en cas d'incidència:** l'administrador treu el certificat de l'aplicació a Entra o l'assignació de rol a Exchange. La funció deixa d'enviar a l'instant.
 
 ## 7. Dades i accessos necessaris
 
@@ -525,10 +721,10 @@ python -I scripts/qa/check-contact-form-remote-limits.py https://revisio-client-
   - **Navegadors sense `:has()`:** es veuen els camps de les dues branques. La funció només llegeix els de la branca triada.
 - **Proves sense JavaScript:** Playwright no pot comprovar l'estabilitat dels elements (en aquest context no avancen els fotogrames d'animació), així que els enviaments es fan amb el teclat. No afecta els usuaris.
 - **El màxim de 3.000.000 bytes no està validat amb Graph** fins a la prova 5.3.
-- **Neteja programada:** Netlify no l'executa en desplegaments no publicats. Funcionen la neteja oportunista i la CLI (§6.1). L'execució manual amb «Run now» encara no s'ha provat (§6.2 C).
+- **Neteja programada:** Netlify no l'executa en desplegaments no publicats. A `revisio-client` funcionen la neteja oportunista (§6.1) i «Run now» (§6.2 C). En producció s'executarà cada hora.
 - **Regla de Netlify amb un POST:** pot tallar la connexió en lloc de respondre `429` (§6.1).
 - **En `dry-run` sense `RL_SECRET`,** el límit horari és per instància (§6.1). A `revisio-client` ja hi ha `RL_SECRET`, i el comptador es comparteix (§6.2).
-- **Pla actual de Netlify:** no permet limitar l'abast de les variables ni marcar-les com a secretes (§4.5). Les credencials de Microsoft 365 hi quedarien visibles per a qui gestioni les variables del projecte.
+- **Pla actual de Netlify:** no permet l'abast exclusiu «Functions». Les credencials es desen com a secretes amb els abastos `builds`, `functions` i `runtime` (§6.4).
 - **Credencial de `carbo@`:** permet enviar com la bústia principal (§4.5).
 - **Correu brossa:** sense Akismet en pot arribar més. Es revisarà el primer mes.
 - **Duplicats:** són possibles en errors ambigus i en reenviaments nadius, i es poden identificar per la referència.
@@ -544,62 +740,168 @@ Cap resposta no ha d'incloure secrets ni contrasenyes.
    - Quina mida màxima té en enviament i en recepció?
    - Hi ha regles de flux de correu, quarantena o filtres que afectin un missatge que la bústia s'envia a si mateixa amb un adjunt?
 3. Pot registrar l'aplicació **sense** consentir `Mail.Send` a Entra i assignar el rol `Application Mail.Send` amb un àmbit d'Exchange limitat a `carbo@`? Pot compartir el resultat de `Test-ServicePrincipalAuthorization` per a `carbo@` i per a una altra bústia?
-4. Certificat o secret? Quina durada? Qui la renova, qui la introdueix a Netlify i qui avisa per desplegar?
+4. Accepta el certificat que li enviem (només la part pública, 365 dies)? Qui el carregarà a Entra quan s'hagi de renovar? Si prefereix un secret de client, l'haurà d'escriure ell mateix a Netlify (§4.5).
 5. Pot revisar els inicis de sessió de l'aplicació i la traça de missatges si se sospita un ús anòmal? Qui revocaria la credencial?
 6. Es pot aplicar una retenció a les consultes web de `carbo@` (termini pendent de l'advocat), o es farà manualment?
 7. Pot activar el DKIM de Microsoft 365 quan el client autoritzi el canvi de DNS?
 
-## 10. Missatge definitiu per a l'administrador de Microsoft 365
+## 10. Missatge per a l'administrador de Microsoft 365
 
-Versió definitiva del 09/10/2026, per enviar-la tal com és.
+Versió del 15/10/2026: substitueix la del 09/10/2026.
 
-> **Assumpte:** Serralleria Carbó · Autorització d'enviament del formulari web des de carbo@serralleriacarbo.com
+**Canvis:**
+- el certificat el genera el director i l'administrador només en rep la part pública;
+- l'administrador ja no ha d'entrar a Netlify;
+- el missatge diu exactament què cal retornar.
+
+**Abans d'enviar-lo:**
+- generar el certificat (§6.5);
+- adjuntar només `formulari-web-20261015.cer.pem`, la part pública que va crear l'script a `~/m365-formulari/`. **Mai el `.key.pem`.**
+
+> **Assumpte:** Serralleria Carbó · Microsoft Graph per al formulari web, limitat a carbo@serralleriacarbo.com
 >
 > Bon dia,
 >
-> El nou web de Serralleria Carbó té un formulari de contacte que enviarà cada consulta per correu amb Microsoft Graph. El remitent i el destinatari seran sempre `carbo@serralleriacarbo.com`, i el Reply-To serà el correu del visitant. El destinatari està fixat al codi del servidor: el formulari no el pot canviar.
+> El nou web de Serralleria Carbó té un formulari de contacte que enviarà cada consulta per correu amb Microsoft Graph (`sendMail`).
+> - **Remitent i destinatari:** sempre `carbo@serralleriacarbo.com`.
+> - **Reply-To:** el correu que el visitant escriu al formulari, validat al servidor.
+> - **Destinatari fixat:** és al codi del servidor; el formulari no el pot canviar.
 >
-> Us demanem que autoritzeu aquest enviament amb un permís **limitat exclusivament a la bústia carbo@**:
+> Us demanem una configuració que permeti a l'aplicació enviar **exclusivament des de la bústia carbo@**.
 >
 > **1. Aplicació a Microsoft Entra**
-> - Registreu una aplicació, per exemple «Formulari web Serralleria Carbó», d'un sol inquilí.
-> - **No hi concediu cap permís d'aplicació de Microsoft Graph amb consentiment de l'administrador** (ni `Mail.Send` ni cap altre). Els permisos d'Entra s'afegirien a l'àmbit d'Exchange i donarien accés a totes les bústies.
-> - **Credencial:** preferiblement un certificat (a l'aplicació només s'hi carrega la part pública). Si no és possible, un secret de 12 mesos com a màxim.
+> - Registreu una aplicació d'un sol inquilí, per exemple «Formulari web Serralleria Carbó».
+> - **No hi afegiu cap permís de Microsoft Graph** ni hi concediu consentiment d'administrador: ni `Mail.Send` ni cap altre, ni d'aplicació ni delegat. Un permís d'Entra s'afegiria a l'àmbit d'Exchange i donaria accés a totes les bústies.
+> - **Credencial:** carregueu el certificat adjunt (`formulari-web-20261015.cer.pem`) a «Certificats i secrets → Certificats».
+>   - És només la part pública. La clau privada no surt de la nostra màquina i la desem directament al nostre allotjament (Netlify) com a valor secret de només escriptura.
+>   - Caduca el 15/10/2027. Empremta SHA-1 esperada: `6F8105BCA611FD808E0EEF668034287B9E0B9E34`. Si la que mostra Entra no coincideix, no continueu i aviseu-nos.
+>   - No cal crear cap secret de client.
 >
-> **2. Permís limitat a carbo@ (RBAC per a aplicacions d'Exchange Online, PowerShell)**
+> **2. Permís limitat a carbo@** (RBAC per a aplicacions d'Exchange Online, Exchange Online PowerShell):
 > ```powershell
 > New-ServicePrincipal -AppId <Application (client) ID> -ObjectId <Object ID de l'aplicació a Enterprise applications> -DisplayName "Formulari web Serralleria Carbó"
 > New-ManagementScope -Name "Formulari web - carbo" -RecipientRestrictionFilter "PrimarySmtpAddress -eq 'carbo@serralleriacarbo.com'"
 > New-ManagementRoleAssignment -App <Object ID> -Role "Application Mail.Send" -CustomResourceScope "Formulari web - carbo"
 > ```
-> Fan falta el rol *Exchange Administrator* a Entra i la pertinença a *Organization Management* a Exchange Online. Els canvis poden trigar fins a 2 hores a aplicar-se.
+> - **Rols necessaris:** *Exchange Administrator* a Entra i pertinença a *Organization Management* a Exchange Online.
+> - **Temps:** els canvis poden trigar fins a 2 hores a aplicar-se.
 >
 > **3. Comprovació**
 > ```powershell
 > Test-ServicePrincipalAuthorization -Identity <Object ID> -Resource carbo@serralleriacarbo.com
-> Test-ServicePrincipalAuthorization -Identity <Object ID> -Resource <una altra bústia>
+> Test-ServicePrincipalAuthorization -Identity <Object ID> -Resource <una altra bústia del domini>
 > ```
-> El primer ha de donar `InScope = True` i el segon, `False`. Envieu-nos només aquest resultat.
+> El primer ha de donar `InScope = True` i el segon, `False`.
 >
-> **4. Credencials, directament a Netlify**
-> Quan acordem el moment, introduïu-les **vosaltres mateixos** a les variables d'entorn del projecte de Netlify `serralleriacarbo`, només per al context de producció o per al que us indiquem. Si el pla de Netlify ho permet, marqueu-les com a secretes i amb l'abast «Functions». Amb el pla actual, Netlify no ho permet: us ho confirmarem abans (vegeu la nota del §4.5):
-> - `M365_TENANT_ID` i `M365_CLIENT_ID`;
-> - amb certificat: `M365_CERT_THUMBPRINT` (empremta SHA-1 que mostra Entra) i `M365_PRIVATE_KEY_PEM` (clau privada en format PKCS#8, «BEGIN PRIVATE KEY»);
-> - amb secret: `M365_CLIENT_SECRET`.
+> **4. Què ens heu de retornar** (cap d'aquestes dades no és secreta; es poden enviar per correu):
+> - l'identificador de l'inquilí (*Directory (tenant) ID*);
+> - l'identificador de l'aplicació (*Application (client) ID*);
+> - l'empremta del certificat que mostra Entra (*Thumbprint*), per comprovar que coincideix amb la nostra;
+> - el resultat de les dues ordres `Test-ServicePrincipalAuthorization`.
 >
-> **No ens envieu cap secret, contrasenya, clau privada ni certificat per correu, per xat ni per cap altre canal.** Si cal accés a Netlify, el propietari de l'equip us el facilitarà.
+> **No ens envieu cap secret, contrasenya, clau privada ni testimoni**, ni per correu, ni per xat, ni per cap altre canal. No en necessitem cap, i no cal que accediu a Netlify.
 >
 > **5. El que no cal fer**
 > - No cal crear cap bústia nova.
 > - No cal bloquejar els enviaments externs de carbo@: la bústia ha de continuar funcionant amb normalitat.
 >
 > **6. Ens podeu confirmar, si us plau:**
-> 1. si carbo@ té alguna regla de flux de correu, quarantena, filtre o límit de mida que afecti un missatge que la bústia s'envia a si mateixa amb un adjunt de fins a 3 MB;
-> 2. la data de caducitat de la credencial i qui la renovarà; i qui la revocaria en cas d'incidència (eliminant-la a Entra);
-> 3. si podreu revisar els inicis de sessió de l'aplicació i la traça dels missatges de prova;
-> 4. si es pot aplicar una retenció a les consultes web de carbo@ (el termini el fixarà l'assessor) o si es gestionarà manualment;
-> 5. si podreu activar el DKIM de Microsoft 365 quan el client autoritzi el canvi de DNS.
+> 1. si carbo@ és una bústia d'usuari o compartida, i la mida màxima en enviament i en recepció;
+> 2. si hi ha alguna regla de flux de correu, quarantena o filtre que afecti un missatge que carbo@ s'envia a si mateixa amb un adjunt de fins a 3 MB (uns 4 MB codificat);
+> 3. qui podrà consultar la traça dels missatges (*message trace*) el dia de la prova;
+> 4. com es revocaria l'accés en cas d'incidència (treure el certificat de l'aplicació o l'assignació de rol) i qui ho faria;
+> 5. si es pot aplicar una retenció a les consultes web de carbo@ (el termini el fixarà l'assessor) o si es gestionarà manualment;
+> 6. si podreu activar el DKIM de Microsoft 365 quan el client autoritzi el canvi de DNS.
 >
-> El formulari és ara en mode de demostració i **no envia cap correu**. Només s'activarà amb l'autorització del director. Les primeres proves arribaran a carbo@ amb «[PROVA]» a l'assumpte.
+> **7. Prova controlada.** Quan ho tingueu, acordarem una data per enviar 4 o 5 consultes de prova amb «[PROVA]» a l'assumpte i comprovar-ne la recepció i la traça.
+>
+> El formulari és ara en mode de demostració i **no envia cap correu**.
 >
 > Moltes gràcies.
+
+## 11. Procediment de la prova real controlada (preparat, no executat)
+
+**Objectiu:** comprovar que una consulta arriba de veritat a `carbo@`, amb adjunt i sense, i que la resposta va al visitant. Sense tocar producció ni el DNS.
+
+**Dues comprovacions diferents:**
+- **Acceptació:** la funció respon `state: "sent"` amb una referència. Vol dir que **Microsoft Graph ha retornat `202 Accepted`**: Exchange ha acceptat el missatge per processar-lo. **No vol dir que s'hagi lliurat.**
+- **Recepció efectiva:** es confirma a la bústia `carbo@`, a la safata d'entrada i no a la brossa ni a la quarantena, i a la traça del missatge (*message trace*) amb l'estat «Delivered». Només això compta com a recepció.
+
+### 11.1 Condicions prèvies
+
+| Condició | Responsable |
+|---|---|
+| `Test-ServicePrincipalAuthorization`: `True` per a `carbo@` i `False` per a una altra bústia | Administrador |
+| Data i hora acordades. El client sap que arribaran 4 o 5 correus «[PROVA]» a `carbo@` | Director i client |
+| Jordi, amb accés a `carbo@`, disponible per confirmar la recepció; l'administrador, per a la traça | Client i administrador |
+| Una adreça de prova del director (visitant de prova) per comprovar el Reply-To | Director |
+| Neteja programada comprovada (§6.2 C) | **Fet** el 15/10/2026 |
+
+### 11.2 Configuració (només la branca `revisio-client`)
+
+1. **Credencials secretes**, desades amb `scripts/netlify/set-env-from-file.py … branch:revisio-client --secret` (§6.5):
+   - `M365_TENANT_ID`;
+   - `M365_CLIENT_ID`;
+   - `M365_CERT_THUMBPRINT`;
+   - `M365_PRIVATE_KEY_PEM`.
+2. **`FORM_MODE=test`** per a la branca `revisio-client` (modificar el valor existent).
+   - `live` no és possible fora de producció: el codi torna a `dry-run`.
+3. **`RL_SECRET`:** ja hi és (§6.2).
+4. **Redesplegament:** a `revisio-client`, **sense `--prod`**. Les funcions llegeixen les variables al moment del desplegament.
+5. **Abans d'enviar res:**
+   - les pàgines continuen amb `noindex`;
+   - producció continua sense variables.
+   - L'avís de demostració es manté durant la prova: només es retira quan l'enviament real està implementat i provat (`CLAUDE.md`).
+
+### 11.3 Enviaments
+
+Com a màxim cinc consultes vàlides per hora i connexió, i com a mínim 21 s entre peticions. Per a cada enviament es registren la referència, l'hora, l'estat de la resposta i el resultat del registre de la funció (`sent`, intents).
+
+| # | Formulari | Adjunt |
+|---|---|---|
+| 1 | Català, Particulars, amb JavaScript | Sense adjunt |
+| 2 | Castellà, Industrial amb producte, amb JavaScript | JPG d'**exactament 3.000.000 bytes** |
+| 3 | Català, Industrial, **sense JavaScript** | PDF petit |
+| 4 | Anglès, Particulars, amb JavaScript | Sense adjunt |
+
+**Si Graph rebutja l'adjunt de 3.000.000 bytes:**
+- s'atura la prova;
+- es rebaixa el límit (§4.1);
+- es tornen a provar el màxim exacte, un byte per sota i un per sobre.
+
+**Si hi ha un `502` o un `auth_failed`:** s'atura la prova i es torna a `dry-run` (§11.5).
+
+### 11.4 Comprovacions de recepció i de resposta
+
+1. **Recepció:** cada correu és a la safata d'entrada de `carbo@`, no a la brossa ni a la quarantena. Es busca per «Ref. …» a l'assumpte.
+2. **Traça:** l'administrador hi troba cada referència amb l'estat «Delivered» (remitent `carbo@`, hora de la prova).
+3. **Contingut:**
+   - accents correctes;
+   - totes les dades de la consulta;
+   - data en hora de Barcelona i referència (també a la capçalera `X-Carbo-Ref`);
+   - consentiment i versió del text;
+   - comunicacions comercials;
+   - assumpte amb «[PROVA]» i sense el nom del visitant.
+4. **Adjunt:** s'obre, i el de la prova 2 fa exactament 3.000.000 bytes.
+5. **Enviats:** cap còpia a la carpeta Enviats de `carbo@` (`saveToSentItems: false`).
+6. **Resposta al visitant:**
+   - des de `carbo@`, «Respon» a la prova 1;
+   - el camp «Per a» ha de ser l'adreça de prova del director, amb el nom de la consulta;
+   - la resposta arriba a aquesta adreça.
+
+### 11.5 Retorn a `dry-run`
+
+1. **`FORM_MODE=dry-run`** per a la branca `revisio-client` i redesplegament sense `--prod`.
+2. **Comprovació:** una consulta vàlida respon `state: "dry-run"` i el registre de la funció diu `mode: "dry-run"`.
+3. **Credencials:** decidir si es conserven a la branca o si s'esborren fins a producció. **Proposta:** esborrar-les de la branca i tornar-les a desar, amb un certificat nou si cal, al context de producció quan s'autoritzi `live`.
+4. **Neteja de dades:** esborrar només les claus de la prova (referències i comptador) del magatzem `formulari-contacte`.
+5. **Registre de resultats:** al §6, sense dades personals: referències, estats, «Delivered», mida de l'adjunt i incidències.
+
+### 11.6 Comprovacions que només es poden fer a producció
+
+Es fan quan s'autoritzi el pas a producció. No formen part de la prova controlada.
+
+1. **Neteja automàtica:** el registre de `neteja-temporals` mostra una execució cada hora (minut 5) al desplegament publicat, i el magatzem no conserva comptadors d'hores anteriors ni referències de més de 2 hores. A la previsualització només s'ha pogut comprovar amb «Run now» (§6.2 C).
+2. **Secret de producció:** un `RL_SECRET` nou, secret i limitat a producció, diferent del de `revisio-client`.
+3. **Credencials:** desades al context de producció (§6.5) i `FORM_MODE=live`, amb autorització. `live` només s'activa al context `production`.
+4. **Primera consulta real:** recepció confirmada i registres sense dades personals la primera setmana.

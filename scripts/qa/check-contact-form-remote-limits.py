@@ -12,8 +12,11 @@ Parts:
               s'accepten més de cinc consultes o si la capa 1 emmascara el resultat.
   lenta       Pujada d'un adjunt vàlid amb la xarxa limitada (CDP de Chromium) i, després, la mateixa
               pujada interrompuda: missatge final i dades conservades.
-  plantar     Registres sintètics caducats i vigents per provar la neteja programada.
-  neteja      Comprova el magatzem després d'executar neteja-temporals («Run now» al panell de Netlify).
+  plantar     Registres sintètics caducats i vigents per provar la neteja programada (dos dels vigents
+              tenen un marge d'unes 22 h perquè «Run now» no s'hagi de prémer dins de la mateixa hora).
+  neteja      Després de «Run now» al panell de Netlify: localitza l'execució de neteja-temporals al seu
+              registre, comprova que no hi ha hagut cap petició al formulari entremig i calcula, amb l'hora
+              exacta de l'execució, quins sintètics havien d'esborrar-se i quins s'havien de conservar.
   netejar     Esborra només les claus creades per aquestes proves (llista desada a l'estat).
 
 Ús:
@@ -352,27 +355,89 @@ elif PART == 'lenta':
     out(f'Comptadors d\'aquesta hora després de «lenta»: {[short(k) for k in counters]} {[blob(k) for k in counters]}')
 
 elif PART == 'plantar':
+    # Registres sintètics (claus i valors amb el format real de la funció). Els «vigents amb marge» tenen
+    # una hora o una data futures: continuen vigents unes 22 h, perquè «Run now» no s'hagi de prémer
+    # dins de la mateixa hora. Els «recents» fan servir l'hora i la data reals: el resultat esperat
+    # d'aquests es calcula amb l'hora exacta de l'execució, que consta al registre de neteja-temporals.
     now = time.time()
-    hour, old_hour = hour_key(now), hour_key(now - 2 * 3600)
+    ms = lambda t: int(t * 1000)
     records = {
-        f'rl/{old_hour}/{SCOPE}/sintetic-caducat': {'count': 1},
-        f'rl/{hour}/{SCOPE}/sintetic-vigent': {'count': 1},
-        f'sub/{SCOPE}/SINTCADUCAT': {'state': 'dry-run', 'mode': 'dry-run', 'at': int((now - 2 * 3600) * 1000)},
-        f'sub/{SCOPE}/SINTVIGENT': {'state': 'dry-run', 'mode': 'dry-run', 'at': int((now - 300) * 1000)},
+        f'rl/{hour_key(now - 2 * 3600)}/{SCOPE}/sintetic-caducat': {'count': 1},
+        f'sub/{SCOPE}/SINTCADUCAT': {'state': 'dry-run', 'mode': 'dry-run', 'at': ms(now - 2 * 3600)},
+        f'rl/{hour_key(now + 23 * 3600)}/{SCOPE}/sintetic-vigent-marge': {'count': 1},
+        f'sub/{SCOPE}/SINTVIGENTMARGE': {'state': 'dry-run', 'mode': 'dry-run', 'at': ms(now + 22 * 3600)},
+        f'rl/{hour_key(now)}/{SCOPE}/sintetic-recent': {'count': 1},
+        f'sub/{SCOPE}/SINTRECENT': {'state': 'dry-run', 'mode': 'dry-run', 'at': ms(now)},
     }
     for key, value in records.items():
         code, _ = cli('blobs:set', STORE, key, json.dumps(value), '--force')
         remember(key)
         out(f"{'plantat' if code == 0 else 'ERROR'} {key}")
-    state['sintetics'] = {'caducats': [k for k in records if 'CADUC' in k.upper()], 'vigents': [k for k in records if 'VIGENT' in k.upper()],
-                          'plantats_a': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}
+    state['sintetics'] = {'registres': records, 'plantats_a': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}
     save_state()
+    present = set(keys('rl/')) | set(keys('sub/'))
+    check('C. Registres sintètics presents abans de «Run now»', all(k in present for k in records), {'claus al magatzem': sorted(short(k) for k in present)})
+    deadline = datetime.datetime.fromtimestamp(now + 22 * 3600, datetime.timezone.utc)
+    out(f"Premeu «Run now» abans de {deadline:%d/%m/%Y %H:%M} UTC; sense cap enviament del formulari mentrestant.")
 
 elif PART == 'neteja':
-    present = set(keys('rl/')) | set(keys('sub/'))
-    expired, current = state['sintetics']['caducats'], state['sintetics']['vigents']
-    check('C. Neteja programada: elimina els caducats', not any(k in present for k in expired), {'caducats encara presents': [k for k in expired if k in present]})
-    check('C. Neteja programada: conserva els vigents', all(k in present for k in current), {'vigents absents': [k for k in current if k not in present]})
+    # 1. Execució de neteja-temporals posterior als registres sintètics (registre de la funció).
+    since = state['sintetics']['plantats_a']
+    args = ['logs', '--source', 'functions', '--function', 'neteja-temporals', '--since', since, '--json']
+    if DEPLOY_ID:
+        args += ['--deploy-id', DEPLOY_ID]
+    code, text = cli(*args)
+    if code != 0:
+        check('C. Lectura del registre de neteja-temporals', False, {'codi de la CLI': code})
+        raise SystemExit(1)
+    runs = []
+    for line in text.splitlines():
+        try:
+            item = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        match = re.search(r'\{"event":"neteja-temporals".*?\}', item.get('message', ''))
+        if match:
+            runs.append({'moment': item.get('timestamp'), **json.loads(match.group(0))})
+    check('C. Hi ha una execució de neteja-temporals després de plantar els registres', bool(runs), {'execucions': runs})
+    # 2. Cap invocació de la funció de contacte entre els registres i l'execució: qualsevol petició a
+    #    /api/contacte (també un GET o un cos il·legible, que no deixen l'esdeveniment «contacte») pot
+    #    llançar-ne la neteja oportunista i esborrar els caducats. Es compta qualsevol línia del registre
+    #    de la funció (cada invocació en deixa almenys una de «Duration»). Si no es pot llegir, falla.
+    args = ['logs', '--source', 'functions', '--function', 'contacte', '--since', since, '--json']
+    if DEPLOY_ID:
+        args += ['--deploy-id', DEPLOY_ID]
+    code, text = cli(*args)
+    if code != 0:
+        check('C. Lectura del registre de la funció de contacte', False, {'codi de la CLI': code})
+        raise SystemExit(1)
+    contact_calls = []
+    for line in text.splitlines():
+        try:
+            contact_calls.append(json.loads(line)['timestamp'])
+        except (json.JSONDecodeError, KeyError, TypeError):
+            continue
+    # Si s'ha premut més d'un cop, el magatzem reflecteix l'última execució.
+    run_at = runs[-1]['moment'] if runs else None
+    before_run = [t for t in contact_calls if run_at and t < run_at]
+    check('C. Cap invocació de la funció de contacte entre els registres i l\'execució (no hi intervé la neteja oportunista)', not before_run, {'invocacions': before_run})
+    # 3. Resultat esperat a l'hora exacta de l'execució, amb les mateixes regles que sweep().
+    if runs:
+        moment = datetime.datetime.fromisoformat(run_at.replace('Z', '+00:00')).timestamp()
+        current_hour = hour_key(moment)
+        expired, kept = [], []
+        for key, value in state['sintetics']['registres'].items():
+            gone = key.split('/')[1] < current_hour if key.startswith('rl/') else moment * 1000 - value['at'] >= 3_600_000
+            (expired if gone else kept).append(key)
+        present = set(keys('rl/')) | set(keys('sub/'))
+        check('C. Neteja programada: elimina els caducats', not any(k in present for k in expired), {'caducats': expired, 'encara presents': [k for k in expired if k in present]})
+        check('C. Neteja programada: conserva els vigents', all(k in present for k in kept), {'vigents': kept, 'absents': [k for k in kept if k not in present]})
+        # Prova decisiva que els ha esborrat neteja-temporals i no una neteja oportunista anterior: si una
+        # altra neteja els hagués tret abans, l'execució programada no els podria comptar. Amb el magatzem
+        # buit abans de plantar-los, el recompte ha de ser com a mínim el nombre de caducats sintètics.
+        counted = sum(run.get('counters', 0) + run.get('references', 0) for run in runs)
+        check('C. El registre de neteja-temporals compta com a esborrats tots els caducats sintètics (els ha esborrat aquesta funció)', counted >= len(expired),
+              {'esborrats segons el registre': [{k: run.get(k) for k in ('moment', 'counters', 'references')} for run in runs], 'caducats sintètics': len(expired)})
 
 elif PART == 'netejar':
     present = set(keys('rl/')) | set(keys('sub/'))

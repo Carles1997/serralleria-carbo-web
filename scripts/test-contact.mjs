@@ -86,6 +86,8 @@ describe('validació al servidor', () => {
     assert.equal(h.sent.length, 0);
     assert.equal(headers.get('x-robots-tag'), 'noindex');
     assert.equal(headers.get('cache-control'), 'no-store');
+    assert.equal(headers.get('x-content-type-options'), 'nosniff');
+    assert.equal(headers.get('content-security-policy'), "default-src 'none'; frame-ancestors 'none'");
   });
 
   test('castellà: els missatges segueixen el camp idioma', async () => {
@@ -100,6 +102,12 @@ describe('validació al servidor', () => {
     assert.equal(ok.status, 200);
     assert.match(ok.body, /<html lang="es">/);
     assert.match(ok.body, /<meta name="robots" content="noindex">/);
+    // CSP de la pàgina sense JavaScript (8.9): cap script ni recurs extern; només el bloc d'estil propi.
+    const csp = ok.headers.get('content-security-policy');
+    assert.match(csp, /default-src 'none'/);
+    assert.match(csp, /frame-ancestors 'none'/);
+    assert.doesNotMatch(csp, /script-src/);
+    assert.doesNotMatch(ok.body, /<script|<img|<link|style="/);
     assert.ok(ok.body.includes(contactMessages.es.notSent));
     assert.ok(ok.body.includes('href="/es/contacto/"'));
     const ko = await harness().call(valid({ correu: 'no-es-correu', descripcio: '' }), { json: false });

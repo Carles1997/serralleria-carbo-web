@@ -71,7 +71,7 @@
 
 | Àmbit | Element | Estat |
 |---|---|---|
-| Seguretat | HTTPS, redirecció del domini sense `www`, capçaleres de seguretat (HSTS, CSP, `X-Content-Type-Options`, `Referrer-Policy` i `Permissions-Policy`) | Pendent de l'allotjament |
+| Seguretat | HTTPS, redirecció del domini sense `www`, capçaleres de seguretat (HSTS, CSP, `X-Content-Type-Options`, `Referrer-Policy` i `Permissions-Policy`) | **Capçaleres implementades i comprovades a `revisio-client` (16/10/2026, apartat 7).** Pendent a producció: HSTS al domini propi, HTTPS i redirecció del domini |
 | Formulari | Enviament real; validació al servidor; antispam sense galetes (camp parany i límit d'enviaments); límit d'adjunt; correu del domini amb SPF, DKIM i DMARC perquè no vagi a correu brossa | Pendent de l'allotjament |
 | Migració | Redireccions 301/410 de la web antiga, generades del mapa i provades després del desplegament | Mapa preparat |
 | SEO | Search Console, sitemap enviat, fitxa de Google Business Profile coherent amb la web | Fase 6 |
@@ -125,7 +125,7 @@ Proposo una **Fase 8 · Compliment legal, privacitat i accessibilitat** abans de
 | 8.6 | Drets d'imatge: confirmació de propietat i consentiments de les persones identificables | Client i director | **Decisió del director (09/10/2026): les fotografies visibles actuals són definitives.** No se substitueixen les imatges conceptuals. **Continua vigent:** cap text no pot presentar una imatge conceptual com a obra real de l'empresa (`CLAUDE.md`). **Permisos d'ús de les fotografies actuals: confirmats pel director el 15/10/2026** (registre sense cap canvi a les imatges). **Continuen pendents:** (2) els consentiments de dret d'imatge de les persones identificables, que la confirmació dels permisos d'ús no cobreix expressament; (3) si cal indicar que algunes imatges són generades, ho decideix l'assessor a 8.10. **Pendent separat:** què fer amb les URL antigues de les 12 fotografies de WordPress ([FASE6-bloc4-redireccions.md](../fase-6/FASE6-bloc4-redireccions.md), apartat 2). Aquesta decisió no el resol |
 | 8.7 | Consentiment de cookies i analítica (només si s'activa la Fase 6): bloqueig previ, «Acceptar» i «Rebutjar» igual de visibles, opció de canviar | Claude | Fase 6 |
 | 8.8 | Accessibilitat: prova amb lector de pantalla, revisió del text sobre fotografia i, si es vol, declaració d'accessibilitat | Claude i director | Fotografies definitives |
-| 8.9 | Capçaleres de seguretat i HTTPS a l'allotjament | Claude | Allotjament |
+| 8.9 | Capçaleres de seguretat i HTTPS a l'allotjament | Claude | Allotjament · **Implementat i comprovat a `revisio-client` (16/10/2026, apartat 7):** CSP amb empremtes a totes les pàgines, `frame-ancestors`, CSP de les respostes del formulari i la resta de capçaleres ja existents. **Pendent a producció:** HSTS al domini propi, HTTPS i redirecció de `www` |
 | 8.10 | Revisió final de l'assessor sobre la web completa | Assessor | 8.3–8.9 |
 
 **Criteri de sortida:**
@@ -184,3 +184,88 @@ El web es publica també en castellà. No hi ha cap versió castellana aprovada 
 - **Finalitats genèriques:** la política inclou finalitats que el web nou no fa servir (pagaments, concursos i sortejos, valoracions automàtiques i perfils). No és incorrecte, però l'advocat pot decidir si les manté.
 - **Domicili:** el domicili social és el 59-61. El web i el Perfil d'Empresa mostren el 59 com a adreça de contacte. Cal confirmar si el contacte també ha de dir 59-61 (decisió C5 de la Fase 6).
 - **Comunicacions comercials:** si es marquen consentiments de màrqueting, l'empresa ha de conservar la prova del consentiment i atendre les baixes.
+
+## 7. Capçaleres de seguretat (tasca 8.9, 16/10/2026)
+
+### 7.1 Estat de partida
+
+Capçaleres de la previsualització (`revisio-client`), consultades el 16/10/2026:
+
+| Capçalera | Valor | Origen |
+|---|---|---|
+| `Strict-Transport-Security` | `max-age=31536000; includeSubDomains; preload` | Netlify, al domini `netlify.app` |
+| `X-Content-Type-Options` | `nosniff` | `public/_headers` |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` | `public/_headers` |
+| `Permissions-Policy` | Càmera, micròfon, ubicació, pagaments, USB i `interest-cohort` desactivats | `public/_headers` |
+| `X-Frame-Options` | `SAMEORIGIN` | `public/_headers` |
+| `X-Robots-Tag` | `noindex` | Build no definitiu (`netlify-files.mjs`) |
+| `Content-Security-Policy` | **No n'hi havia** | Pendent: calia provar-la abans d'activar-la |
+
+### 7.2 Implementació
+
+**Content-Security-Policy de les pàgines** (`astro.config.mjs`, `security.csp` d'Astro 7):
+- **Generació:** cada pàgina porta un `<meta http-equiv="content-security-policy">`.
+- **`script-src 'self'` més l'empremta SHA-256 de cada script de la pàgina.** **Sense `'unsafe-inline'`:** un script injectat no s'executa.
+- **Script inicial de `BaseLayout`** (marques `js` i `motion-ready` abans del primer pintat):
+  - és ara a `src/scripts/early-flags.inline.js` i la plantilla l'insereix tal qual com a **primer element del `<body>`**;
+  - Astro no en calcula l'empremta: la calcula `src/config/csp-hashes.mjs` a partir del mateix fitxer i s'afegeix amb `scriptDirective.hashes`.
+- **Correcció de la revisió de Codex (16/10/2026):** el script era al `<head>`, abans del `<meta>` que Astro insereix al final del `<head>`, i un `<meta>` només s'aplica als elements posteriors. Per tant, aquell script s'executava fora de la política.
+  - **Efecte del canvi:** en moure'l sota la política va quedar bloquejat, i això va revelar que no en tenia l'empremta.
+  - **Ara:** cap pàgina no té cap script executable abans de la política, i la comprovació `check-csp.py` ho vigila.
+- **`style-src 'self'` més les empremtes dels estils de la pàgina.**
+- **`style-src-attr 'unsafe-inline'`:** és l'única excepció. Les plantilles fan servir atributs `style` amb variables CSS (`--i` per a les entrades escalonades, `--chars` per als titulars ajustats, etc.). Només afecta estils i no permet executar codi.
+- **Resta de directives:**
+  - `default-src 'self'`, `img-src 'self'`, `font-src 'self'`, `connect-src 'self'` i `manifest-src 'self'`;
+  - `media-src 'none'` i `object-src 'none'`;
+  - `form-action 'self'` i `base-uri 'self'`;
+  - `upgrade-insecure-requests`.
+- **`frame-src https://www.google.com https://maps.google.com`:** el mapa de Google, que només es carrega si el visitant el demana.
+- **Shiki desactivat** (`markdown.syntaxHighlight: false`). Cap contingut no té blocs de codi, i Shiki fa servir estils en línia incompatibles amb la CSP.
+
+**`frame-ancestors 'self'`** (`public/_headers`):
+- un `<meta>` no admet aquesta directiva, per això va en una capçalera `Content-Security-Policy` que no restringeix res més;
+- `X-Frame-Options: SAMEORIGIN` es manté per als navegadors antics.
+
+**Respostes de la funció del formulari** (`src/lib/contact/handler.ts`):
+- **JSON:** `default-src 'none'; frame-ancestors 'none'`.
+- **Pàgina sense JavaScript:** `default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'`. Només hi ha el bloc d'estil fix de la pàgina i enllaços: cap script, imatge ni formulari.
+- **A totes dues:** `X-Content-Type-Options: nosniff`.
+
+### 7.3 Comprovacions (local, 16/10/2026)
+
+| Prova | Resultat |
+|---|---|
+| `scripts/qa/check-csp.py` (Chromium, amb JavaScript) | **41/41.** Les 38 pàgines tenen la CSP sense `'unsafe-inline'` a `script-src` i sense cap script executable abans de la política; cap bloqueig (esdeveniments `securitypolicyviolation` ni consola); els scripts s'executen i els atributs `style` s'apliquen. Les tres interaccions passen sense bloquejos: menú mòbil, desplegable d'idioma, mapa de Google sota demanda i filtres del portafoli |
+| **Control negatiu** | Un script inserit i una imatge externa afegits des de la consola de proves **es bloquegen** (`script-src-elem` i `img-src`), i la prova ho detecta |
+| `check-contact-form.py` | **37/37** amb la CSP activa, amb JavaScript i sense |
+| `check-language-switcher.py` | **15/15** |
+| `npm run test:contact` | **58/58**, amb comprovacions noves de la CSP de les respostes |
+| `npm run verify`, `check:i18n` i `check:links` | Correctes |
+
+**Incidència aliena a la CSP:**
+- **Símptoma:** la prova del formulari sense JavaScript s'aturava en marcar el consentiment amb `page.check()` (element «no estable»).
+- **Causa:** el mateix error es va reproduir amb la CSP desactivada. És la limitació coneguda de Playwright sense JavaScript.
+- **Correcció:** la funció d'emplenar la prova ara marca la casella amb el teclat, com la resta de proves sense JavaScript.
+
+**A Netlify** (desplegament `6ad2056351da11907bfdc55c` a `revisio-client`, sense `--prod`, autoritzat pel director):
+
+| Comprovació | Resultat |
+|---|---|
+| **Capçaleres d'una pàgina** | `Content-Security-Policy: frame-ancestors 'self'`, `X-Frame-Options: SAMEORIGIN`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `Permissions-Policy` i `Strict-Transport-Security: max-age=31536000; includeSubDomains; preload` (de Netlify, al domini `netlify.app`). `X-Robots-Tag: noindex` es manté |
+| **Respostes de la funció** | Una petició il·legible respon `400` amb `Content-Security-Policy: default-src 'none'; frame-ancestors 'none'` i `nosniff`. No envia cap correu: el mode continua sent `dry-run` |
+| **`check-csp.py` contra la previsualització** | **41/41.** Netlify no injecta cap codi que la política bloquegi |
+
+**Revisió de Codex (16/10/2026):**
+- **Troballa:** el script inicial s'executava abans de la política (apartat 7.2).
+- **Correcció:** s'ha mogut sota la política i se n'ha afegit l'empremta. La comprovació `check-csp.py` vigila que cap script executable no quedi abans de la política.
+- **Comprovacions posteriors:** totes s'han tornat a passar.
+- **Desplegament intermedi:** el `6ad201fafd30f66b43f838ec` tenia la versió anterior a la correcció i ha quedat substituït.
+
+### 7.4 Pendent
+
+1. **Producció:**
+   - HSTS al domini propi (Netlify l'activa amb HTTPS; cal comprovar el valor);
+   - certificat HTTPS;
+   - redirecció entre `www` i el domini sense `www`;
+   - capçaleres a la resposta real.
+2. **Si s'activa l'analítica (8.7) o s'afegeix algun recurs extern,** cal ampliar la CSP de manera explícita i tornar a passar `check-csp.py`.

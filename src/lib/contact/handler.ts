@@ -82,15 +82,23 @@ ${list}
 </html>`;
 }
 
+// Content-Security-Policy de les respostes de la funció (tasca 8.9, 16/10/2026). El JSON no carrega res. La
+// pàgina sense JavaScript només té el bloc <style> fix d'htmlPage() i enllaços: cap script, imatge,
+// font ni formulari, i no es pot incrustar en cap marc.
+const CSP_JSON = "default-src 'none'; frame-ancestors 'none'";
+const CSP_HTML = "default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'";
+
 function respond(request: Request, locale: FormLocale, outcome: Outcome) {
-  const headers = new Headers({ 'cache-control': 'no-store', 'x-robots-tag': 'noindex' });
+  const headers = new Headers({ 'cache-control': 'no-store', 'x-robots-tag': 'noindex', 'x-content-type-options': 'nosniff' });
   if (outcome.status === 405) headers.set('allow', 'POST');
   if ((request.headers.get('accept') ?? '').includes('application/json')) {
     headers.set('content-type', 'application/json; charset=utf-8');
+    headers.set('content-security-policy', CSP_JSON);
     const { status, ...body } = outcome;
     return new Response(JSON.stringify({ ok: status === 200, ...body }), { status, headers });
   }
   headers.set('content-type', 'text/html; charset=utf-8');
+  headers.set('content-security-policy', CSP_HTML);
   return new Response(htmlPage(locale, outcome), { status: outcome.status, headers });
 }
 

@@ -69,7 +69,11 @@ def fill(page, locale='ca', descripcio=None):
     page.fill('#correu', 'anna@example.com')
     page.select_option('#servei', 'estructures')
     page.fill('#descripcio', descripcio or ('Necessito una barana per a una escala interior.' if locale == 'ca' else 'Necesito una barandilla para una escalera interior.'))
-    page.check('#consentiment')
+    # Amb el teclat: sense JavaScript, page.check() espera uns fotogrames d'animació que en aquest context
+    # no avancen (element «no estable»). Funciona igual amb JavaScript.
+    if not page.is_checked('#consentiment'):
+        page.focus('#consentiment')
+        page.keyboard.press('Space')
 
 
 def status_text(page):

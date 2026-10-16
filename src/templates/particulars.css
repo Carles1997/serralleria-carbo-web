@@ -16,7 +16,8 @@
 .p-hero-image { position: absolute; z-index: -1; inset: 0; }
 .p-hero-image picture { display: contents; }
 .p-hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 48%; filter: sepia(.12) saturate(1.02) brightness(1.1) contrast(1.03); }
-.p-hero-image::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(43 43 43 / .78) 0%, rgb(43 43 43 / .5) 38%, rgb(43 43 43 / .05) 75%), linear-gradient(0deg, rgb(43 43 43 / .6), transparent 50%); content: ""; }
+/* Vel reforçat on hi ha text (accessibilitat 8.8, 16/10/2026): contrast WCAG AA del text blanc sobre la fotografia. La franja superior enfosqueix la frase d'accés a Industrial. */
+.p-hero-image::after { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(43 43 43 / .75), transparent 24%), linear-gradient(90deg, rgb(43 43 43 / .78) 0%, rgb(43 43 43 / .5) 38%, rgb(43 43 43 / .05) 75%), linear-gradient(0deg, rgb(43 43 43 / .6), transparent 50%); content: ""; }
 .p-hero-copy { position: relative; display: flex; flex-direction: column; min-height: inherit; padding-block: 1rem clamp(1.5rem, 1rem + 1.5vw, 2.5rem); }
 .p-hero-top { display: flex; justify-content: flex-end; padding-bottom: .5rem; border-bottom: 1px solid rgb(255 255 255 / .45); }
 .p-hero-top a { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; font-size: .85rem; font-weight: 700; white-space: nowrap; }
@@ -44,7 +45,8 @@
 .p-services { padding-block: var(--space-section); background: var(--surface-white); color: var(--ink); }
 .p-service-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--line-on-light); background: var(--line-on-light); }
 .p-service { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; min-height: clamp(260px, 22vw, 330px); overflow: hidden; padding: clamp(1.1rem, 2vw, 2rem); background: var(--palette-dark); color: var(--palette-white); contain: paint; transition: scale 160ms var(--motion-ease); }
-.p-service::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg, rgb(43 43 43 / .12), transparent 30%, rgb(43 43 43 / .5) 58%, rgb(43 43 43 / .88)); content: ""; }
+/* Vel reforçat on hi ha text (accessibilitat 8.8, 16/10/2026): contrast WCAG AA del text blanc sobre la fotografia. */
+.p-service::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg, rgb(43 43 43 / .15), rgb(43 43 43 / .04) 24%, rgb(43 43 43 / .6) 48%, rgb(43 43 43 / .9)); content: ""; }
 .p-service:has(.p-service-actions a:active) { scale: .99; }
 .p-service-art { position: absolute; z-index: -2; inset: 0; overflow: hidden; background: var(--palette-dark); }
 .p-service-art picture { display: contents; }
@@ -136,7 +138,7 @@
 @media (max-width: 760px) {
   .p-hero { min-height: 420px; }
   .p-hero-image img { object-position: 58% center; }
-  .p-hero-image::after { background: linear-gradient(0deg, rgb(43 43 43 / .85) 0%, rgb(43 43 43 / .45) 45%, rgb(43 43 43 / .1) 80%); }
+  .p-hero-image::after { background: linear-gradient(180deg, rgb(43 43 43 / .84), transparent 26%), linear-gradient(0deg, rgb(43 43 43 / .85) 0%, rgb(43 43 43 / .5) 45%, rgb(43 43 43 / .12) 80%); }
   .p-hero h1 { font-size: min(var(--type-hero), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .56))); }
   .p-series-inner { grid-template-columns: 1fr; }
   .p-series a { justify-self: start; }

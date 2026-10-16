@@ -12,7 +12,8 @@
 .folio-hero-image { position: absolute; z-index: -1; inset: 0; }
 .folio-hero-image picture { display: contents; }
 .folio-hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: 54% center; filter: saturate(.85) contrast(1.05); }
-.folio-hero-image::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(43 43 43 / .8), rgb(43 43 43 / .5) 48%, rgb(43 43 43 / .1)), linear-gradient(0deg, rgb(43 43 43 / .55), transparent 50%); content: ""; }
+/* Vel reforçat on hi ha text (accessibilitat 8.8, 16/10/2026): contrast WCAG AA del text blanc sobre la fotografia. La franja superior enfosqueix les molles de pa. */
+.folio-hero-image::after { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(43 43 43 / .5), transparent 20%), linear-gradient(90deg, rgb(43 43 43 / .8), rgb(43 43 43 / .5) 48%, rgb(43 43 43 / .1)), linear-gradient(0deg, rgb(43 43 43 / .55), transparent 50%); content: ""; }
 .folio-hero-content { position: relative; display: flex; flex-direction: column; min-height: inherit; padding-block: .5rem clamp(1.5rem, 1rem + 1.5vw, 2.5rem); }
 .folio-breadcrumb { display: flex; align-items: center; gap: .6rem; min-height: 44px; padding-bottom: .4rem; border-bottom: 1px solid rgb(255 255 255 / .45); color: var(--palette-white); font-size: .82rem; font-weight: 600; }
 .folio-breadcrumb a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
@@ -97,7 +98,7 @@
 }
 @media (max-width: 760px) {
   .folio-hero { min-height: 440px; }
-  .folio-hero-image::after { background: linear-gradient(0deg, rgb(43 43 43 / .88), rgb(43 43 43 / .5) 50%, rgb(43 43 43 / .15)); }
+  .folio-hero-image::after { background: linear-gradient(180deg, rgb(43 43 43 / .66), transparent 26%), linear-gradient(0deg, rgb(43 43 43 / .9), rgb(43 43 43 / .7) 50%, rgb(43 43 43 / .32)); }
   .folio-hero h1 { font-size: min(var(--type-hero), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .56))); }
   .folio-work-top h2, .folio-more h2 { font-size: min(var(--type-h2), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .56))); }
   .folio-filters { flex-direction: column; align-items: stretch; gap: .4rem; padding-block: .5rem; }

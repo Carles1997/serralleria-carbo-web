@@ -48,7 +48,8 @@
 .c-plate { position:relative; display:flex; flex-direction:column; justify-content:space-between; min-height:110px; overflow:hidden; padding:.9rem; border:1px solid rgb(255 255 255 / .4); background:var(--i-graphite-card); }
 .c-plate picture { position:absolute; z-index:0; inset:0; display:block; }
 .c-plate img { width:100%; height:100%; object-fit:cover; object-position:center; filter:saturate(.75) contrast(1.04); }
-.c-plate::after { position:absolute; z-index:0; inset:0; background:linear-gradient(180deg,rgb(43 43 43 / .55),rgb(43 43 43 / .1) 42%,rgb(43 43 43 / .7)); content:""; }
+/* Vel reforçat on hi ha text (accessibilitat 8.8, 16/10/2026): contrast WCAG AA del text blanc sobre la fotografia. */
+.c-plate::after { position:absolute; z-index:0; inset:0; background:linear-gradient(180deg,rgb(43 43 43 / .62),rgb(43 43 43 / .15) 42%,rgb(43 43 43 / .75)); content:""; }
 .c-plate span, .c-plate strong { position:relative; z-index:1; color:var(--palette-white); text-shadow:0 1px 8px rgb(43 43 43 / .48); }
 .c-plate span { font-size:var(--type-meta); font-weight:700; letter-spacing:var(--tracking-meta); text-transform:uppercase; }
 .c-plate strong { font-size:var(--type-h4); font-weight:700; letter-spacing:-.03em; line-height:1; text-transform:uppercase; }
@@ -140,7 +141,7 @@
 @media (max-width:760px) {
   .c-hero { min-height:340px; }
   .c-hero-image img { object-position:70% center; }
-  .c-hero-shade { background:linear-gradient(0deg,rgb(43 43 43 / .82),rgb(43 43 43 / .45) 55%,rgb(43 43 43 / .2)); }
+  .c-hero-shade { background:linear-gradient(0deg,rgb(43 43 43 / .85),rgb(43 43 43 / .68) 55%,rgb(43 43 43 / .38)); }
   .c-hero h1 { font-size:min(var(--type-hero), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .56))); }
   .capacity-page :is(.c-section-head, .c-production-lead, .c-contact-copy) h2 { font-size:min(var(--type-h2), calc((100vw - 2 * var(--page-gutter)) / (var(--chars, 12) * .56))); }
   .c-local-inner { grid-template-columns:1fr 1fr; }
@@ -149,7 +150,7 @@
   .c-workshop-photo { grid-row:auto; min-height:240px; }
   .c-plan-note { grid-template-columns:1fr; padding:1rem; }
   .c-production-inner, .c-requirements-inner, .c-contact-inner { grid-template-columns:1fr; }
-  .c-production-shade { background:linear-gradient(180deg,rgb(43 43 43 / .65),rgb(43 43 43 / .3) 40%,rgb(43 43 43 / .6)); }
+  .c-production-shade { background:linear-gradient(180deg,rgb(43 43 43 / .78),rgb(43 43 43 / .64) 40%,rgb(43 43 43 / .74)); }
   .c-machine strong { min-height:54px; padding:.35rem .4rem; }
 }
 @media (max-width:480px) {

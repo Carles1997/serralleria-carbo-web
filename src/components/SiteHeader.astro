@@ -90,7 +90,8 @@ const menuLanguages: MenuLanguage[] = locales.flatMap((lang): MenuLanguage[] => 
 <a class="skip-link" href="#contingut">{ui.skipLink}</a>
 <header class="site-header" id="inici" data-surface={tone} data-tone={tone}>
   <div class="header-inner">
-    <a class="wordmark" href={homeHref} aria-label={ui.brandHome}>
+    {/* El nom accessible conté el text visible (WCAG 2.5.3): a Industrial, el logotip mostra «Industrial». */}
+    <a class="wordmark" href={homeHref} aria-label={collapse === 'industrial' ? ui.brandHomeIndustrial : ui.brandHome}>
       <BrandLogo variant={collapse === 'industrial' ? 'industrial' : 'serralleria'} place="header" />
     </a>
     <nav class="desktop-nav" aria-label={ui.menu.main}>
@@ -100,8 +101,9 @@ const menuLanguages: MenuLanguage[] = locales.flatMap((lang): MenuLanguage[] => 
       {
         languages.length > 0 && (
           <details class="header-lang" data-lang-menu>
-            <summary aria-label={`${ui.language.selector}: ${ui.language.name}`}>
-              <span aria-hidden="true">{ui.language.code}</span>
+            {/* Nom accessible «CA, Idioma: Català»: comença pel codi visible (WCAG 2.5.3, tasca 8.8). */}
+            <summary>
+              <span>{ui.language.code}</span><span class="sr-only">, {ui.language.selector}: {ui.language.name}</span>
               <span class="header-lang-caret" aria-hidden="true"></span>
             </summary>
             <ul class="header-lang-list">

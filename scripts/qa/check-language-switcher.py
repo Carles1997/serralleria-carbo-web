@@ -153,10 +153,10 @@ with sync_playwright() as pw:
     # als lectors de pantalla i l'actual marcat; Escape el tanca i torna el focus.
     p.goto(B + '/particulars/reparacions/', wait_until='load')
     p.click('.header-lang summary')
-    menu = p.evaluate('() => { const d = document.querySelector("[data-lang-menu]"); return [d.open, [...d.querySelectorAll("li")].map((li) => [li.querySelector("[aria-hidden]").textContent, li.querySelector(".sr-only").textContent, li.querySelector("[aria-current]") ? "actual" : ""].join("|")), d.querySelector("summary").getAttribute("aria-label")]; }')
+    menu = p.evaluate('() => { const d = document.querySelector("[data-lang-menu]"); return [d.open, [...d.querySelectorAll("li")].map((li) => [li.querySelector("[aria-hidden]").textContent, li.querySelector(".sr-only").textContent, li.querySelector("[aria-current]") ? "actual" : ""].join("|")), d.querySelector("summary").textContent.replace(/\\s+/g, " ").trim()]; }')
     p.keyboard.press('Escape')
     closed = p.evaluate('() => [document.querySelector("[data-lang-menu]").open, document.activeElement.tagName]')
-    check('10. desplegable: tres idiomes, actual marcat, Escape tanca', menu[0] and menu[1] == ['CA|Català|actual', 'ES|Castellano|', 'EN|English|'] and menu[2] == 'Idioma: Català' and closed == [False, 'SUMMARY'], {'menú': menu, 'després d\'Escape': closed})
+    check('10. desplegable: tres idiomes, actual marcat, Escape tanca', menu[0] and menu[1] == ['CA|Català|actual', 'ES|Castellano|', 'EN|English|'] and menu[2] == 'CA, Idioma: Català' and closed == [False, 'SUMMARY'], {'menú': menu, 'després d\'Escape': closed})
 
     # 11. Anglès: de Reparacions a Repairs, amb els paràmetres del formulari conservats a Contact.
     p.goto(B + '/contacte/?tipus=empresa&servei=manteniment', wait_until='load')

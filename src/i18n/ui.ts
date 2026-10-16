@@ -8,6 +8,8 @@ import { contactMessages } from '../lib/contact/messages';
 const ca = {
   skipLink: 'Vés al contingut',
   brandHome: "Serralleria Carbó, torna a l'inici",
+  // Logotip d'Industrial: el nom accessible inclou «Industrial», que es veu al costat del logotip (WCAG 2.5.3).
+  brandHomeIndustrial: "Serralleria Carbó Industrial, torna a l'inici",
   brand: { small: 'Serralleria', main: 'Carbó', tagline: 'Vilafranca del Penedès · Des de 1989' },
   // Selector d'idioma: cada diccionari descriu el seu idioma, i l'enllaç cap a aquest idioma es mostra
   // amb aquests textos (en el mateix idioma de destí).
@@ -515,6 +517,7 @@ export type UiStrings = typeof ca;
 const es: UiStrings = {
   skipLink: 'Ir al contenido',
   brandHome: 'Serralleria Carbó, volver al inicio',
+  brandHomeIndustrial: 'Serralleria Carbó Industrial, volver al inicio',
   brand: { small: 'Serralleria', main: 'Carbó', tagline: 'Vilafranca del Penedès · Desde 1989' },
   language: { code: 'ES', name: 'Castellano', switchLabel: 'Ver esta página en castellano', selector: 'Idioma' },
   routes: {
@@ -937,6 +940,7 @@ const es: UiStrings = {
 const en: UiStrings = {
   skipLink: 'Skip to content',
   brandHome: 'Serralleria Carbó, back to home',
+  brandHomeIndustrial: 'Serralleria Carbó Industrial, back to home',
   brand: { small: 'Serralleria', main: 'Carbó', tagline: 'Vilafranca del Penedès · Since 1989' },
   language: { code: 'EN', name: 'English', switchLabel: 'View this page in English', selector: 'Language' },
   routes: {

@@ -104,7 +104,8 @@
 .i-cap-showcase article { position:relative; isolation:isolate; display:flex; flex-direction:column; justify-content:space-between; gap:1rem; min-width:0; min-height:clamp(220px,19vw,280px); overflow:hidden; padding:clamp(1.1rem,1.5vw,1.5rem); background:var(--i-graphite); color:var(--palette-white); }
 .i-cap-showcase article .i-media { z-index:-2; }
 .i-cap-showcase article .i-media img { filter:saturate(.75) contrast(1.04); transition:transform 700ms var(--motion-ease); }
-.i-cap-showcase article::after { position:absolute; z-index:-1; inset:0; background:linear-gradient(180deg,rgb(43 43 43 / .45),rgb(43 43 43 / .08) 32%,rgb(43 43 43 / .45) 62%,rgb(43 43 43 / .85)); content:""; }
+/* Vel reforçat on hi ha text (accessibilitat 8.8, 16/10/2026): contrast WCAG AA del text blanc sobre la fotografia. Fosc a dalt (etiquetes) i a baix (títol i text). */
+.i-cap-showcase article::after { position:absolute; z-index:-1; inset:0; background:linear-gradient(180deg,rgb(43 43 43 / .66),rgb(43 43 43 / .42) 14%,rgb(43 43 43 / .32) 28%,rgb(43 43 43 / .66) 46%,rgb(43 43 43 / .9)); content:""; }
 .i-cap-materials img { object-position:60% center; }
 .i-cap-machines img { object-position:63% center; }
 .i-cap-welding img { object-position:45% center; }
@@ -253,7 +254,9 @@
   .i-section-heading h2, .i-production-head h2, .i-cap-intro h2, .i-series-head h2, .i-project-copy h2, .i-contact-heading h2 { font-size:min(var(--type-h2), calc((100vw - 2 * var(--page-gutter)) / (var(--chars, 12) * .56))); }
   .i-hero { min-height:440px; }
   .i-hero-image img { object-position:70% center; }
-  .i-hero-shade { background:linear-gradient(0deg,rgb(43 43 43 / .82),rgb(43 43 43 / .45) 50%,rgb(43 43 43 / .2)); }
+  .i-hero-shade { background:linear-gradient(180deg,rgb(43 43 43 / .55),transparent 18%),linear-gradient(0deg,rgb(43 43 43 / .85),rgb(43 43 43 / .68) 50%,rgb(43 43 43 / .4)); }
+  /* Mòbil: targetes de capacitats més baixes, amb el text repartit per tota l'alçada (8.8). */
+  .i-cap-showcase article::after { background:linear-gradient(180deg,rgb(43 43 43 / .72),rgb(43 43 43 / .55) 18%,rgb(43 43 43 / .58) 34%,rgb(43 43 43 / .8) 52%,rgb(43 43 43 / .92)); }
   .i-hero h1 { font-size:min(var(--type-hero), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .56))); }
   .i-proof-inner > div { padding:.75rem 0 0; border-top:1px solid var(--i-dark-line); border-left:0; }
   .i-proof p { grid-column:1 / -1; }
@@ -273,7 +276,7 @@
   .i-quality-list li + li { padding-left:.5rem; }
   .i-quality-list strong { font-size:.88rem; }
   .i-quality-list span:last-child { font-size:.82rem; }
-  .i-series-image::after { background:linear-gradient(180deg,rgb(43 43 43 / .7),rgb(43 43 43 / .45) 40%,rgb(43 43 43 / .65)); }
+  .i-series-image::after { background:linear-gradient(180deg,rgb(43 43 43 / .8),rgb(43 43 43 / .7) 40%,rgb(43 43 43 / .76)); }
   /* Mètode en columna: la línia es dibuixa per trams entre nodes amb el mateix centre horitzontal
      (--node) i vertical (--dot-y); cada tram s'omple amb --fill. Sense JavaScript, trams plens. */
   .i-series-steps { --node:1rem; --dot-y:1.55rem; display:flex; flex-direction:column; padding-left:0; }

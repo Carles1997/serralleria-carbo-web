@@ -124,7 +124,7 @@ Proposo una **Fase 8 · Compliment legal, privacitat i accessibilitat** abans de
 | 8.5 | Formulari operatiu: servei triat, validació al servidor, antispam sense galetes, límit d'adjunt, correu del domini (SPF, DKIM i DMARC) i prova real | Claude i director | Allotjament · **Decisió del director (09/10/2026): Microsoft 365** (funció de Netlify + Microsoft Graph), que substitueix Netlify Forms. `carbo@serralleriacarbo.com` és remitent i destinatari (subjecte a l'administrador), el Reply-To és el correu validat del visitant i el destinatari està fixat al servidor. **Implementat en local en mode de demostració i provat (55 proves unitàries i 31 de navegador, incloses les correccions de la revisió de Codex: referències per mode i entorn, serveis amb claus pròpies, Industrial sense JavaScript i `RL_SECRET` obligatori en `test` i `live`)**. **Desplegat a `revisio-client` en mode de demostració (09/10/2026, commit `8ba62b0`)**, comprovat a Netlify (formularis català i castellà, adjunts, límits, duplicats i neteja; pla, §6.1). Cap correu enviat. Pendents: administrador de Microsoft 365 (missatge definitiu al pla, §10), `RL_SECRET`, DKIM i DMARC, prova real. [FASE8-formulari-real-pla.md](FASE8-formulari-real-pla.md) |
 | 8.6 | Drets d'imatge: confirmació de propietat i consentiments de les persones identificables | Client i director | **Decisió del director (09/10/2026): les fotografies visibles actuals són definitives.** No se substitueixen les imatges conceptuals. **Continua vigent:** cap text no pot presentar una imatge conceptual com a obra real de l'empresa (`CLAUDE.md`). **Permisos d'ús de les fotografies actuals: confirmats pel director el 15/10/2026** (registre sense cap canvi a les imatges). **Continuen pendents:** (2) els consentiments de dret d'imatge de les persones identificables, que la confirmació dels permisos d'ús no cobreix expressament; (3) si cal indicar que algunes imatges són generades, ho decideix l'assessor a 8.10. **Pendent separat:** què fer amb les URL antigues de les 12 fotografies de WordPress ([FASE6-bloc4-redireccions.md](../fase-6/FASE6-bloc4-redireccions.md), apartat 2). Aquesta decisió no el resol |
 | 8.7 | Consentiment de cookies i analítica (només si s'activa la Fase 6): bloqueig previ, «Acceptar» i «Rebutjar» igual de visibles, opció de canviar | Claude | Fase 6 |
-| 8.8 | Accessibilitat: prova amb lector de pantalla, revisió del text sobre fotografia i, si es vol, declaració d'accessibilitat | Claude i director | Fotografies definitives |
+| 8.8 | Accessibilitat: prova amb lector de pantalla, revisió del text sobre fotografia i, si es vol, declaració d'accessibilitat | Claude i director | Fotografies definitives · **En curs (16/10/2026, apartat 8):** auditoria automàtica de les 38 pàgines, correccions sense canvi visual i vel reforçat al text sobre fotografia (tot el text mesurat compleix). «1989» en bordeus mantingut per decisió del director. **Pendent:** prova manual amb lector de pantalla i decisió sobre la declaració |
 | 8.9 | Capçaleres de seguretat i HTTPS a l'allotjament | Claude | Allotjament · **Implementat i comprovat a `revisio-client` (16/10/2026, apartat 7):** CSP amb empremtes a totes les pàgines, `frame-ancestors`, CSP de les respostes del formulari i la resta de capçaleres ja existents. **Pendent a producció:** HSTS al domini propi, HTTPS i redirecció de `www` |
 | 8.10 | Revisió final de l'assessor sobre la web completa | Assessor | 8.3–8.9 |
 
@@ -269,3 +269,139 @@ Capçaleres de la previsualització (`revisio-client`), consultades el 16/10/202
    - redirecció entre `www` i el domini sense `www`;
    - capçaleres a la resposta real.
 2. **Si s'activa l'analítica (8.7) o s'afegeix algun recurs extern,** cal ampliar la CSP de manera explícita i tornar a passar `check-csp.py`.
+
+## 8. Accessibilitat (tasca 8.8, 16/10/2026)
+
+### 8.1 Eines i mètode
+
+**`scripts/qa/check-a11y.py`** (Chromium):
+- **axe-core 4.14.0:** dependència de desenvolupament amb versió fixa. No té dependències pròpies i no arriba a la web publicada.
+- **Pàgines i amplades:** les 38 pàgines, a 1280 i 390 px.
+- **Regles:** WCAG 2.0, 2.1 i 2.2, nivells A i AA.
+- **Mode ràpid:** `… - axe` només passa axe.
+
+**Text sobre fotografia:** axe no pot calcular el contrast quan el fons és una imatge. Per a aquests textos, la prova:
+1. fa una captura amb el text i una altra sense;
+2. pren com a lletres els píxels que canvien, amb un marge de 2 px;
+3. calcula el contrast del color del text amb el fons real que hi ha just sota les lletres (fotografia i vels).
+- **Criteri:** el 95 % d'aquest fons ha d'arribar a 4,5:1, o a 3:1 en text gran. Es mesura sense l'ombra del text.
+- **Dues versions anteriors del mètode** donaven falsos positius i es van descartar:
+  - als titulars amb reflex (degradat retallat), el text no s'amagava;
+  - les vores o línies del fons allunyades de les lletres (per exemple, el quadrat de la fletxa del peu) penalitzaven la mesura.
+
+**Arbre d'accessibilitat** (el que anuncia un lector de pantalla) de sis pàgines clau:
+- encapçalaments;
+- regions;
+- noms dels enllaços;
+- imatges;
+- idioma;
+- enllaç per saltar al contingut.
+
+### 8.2 Correccions fetes (sense canvi visual)
+
+| Troballa | Criteri | Correcció |
+|---|---|---|
+| Selector d'idioma: el botó mostra «CA», però el nom accessible era «Idioma: Català» | WCAG 2.5.3 (el nom ha de contenir el text visible) | Nom accessible «CA, Idioma: Català» (codi visible i text només per al lector). Prova del selector actualitzada |
+| Logotip d'Industrial: mostra «Industrial», però el nom era «Serralleria Carbó, torna a l'inici» | WCAG 2.5.3 | «Serralleria Carbó Industrial, torna a l'inici» (`brandHomeIndustrial`, en els tres idiomes) |
+| H1 de la Home: el lector només anunciava «Serralleria Carbó,» | WCAG 1.3.1 i 2.4.6 | L'H1 inclou, només per al lector, «a Vilafranca del Penedès des de 1989». El paràgraf visual de la ubicació queda amagat per al lector, perquè no es llegeixi dues vegades |
+| Titulars partits en línies sense el punt del text original | Llegibilitat amb lector | Punt només per al lector entre línies: Home («Fabriquem al nostre taller. Muntem al teu projecte»), Industrial (H1 i «Un encàrrec real. Deu gàbies») i Particulars («Feines a mida. Respostes clares») |
+
+**Resultat de l'arbre d'accessibilitat:**
+- un H1 per pàgina i encapçalaments sense salts;
+- regions;
+- enllaç per saltar al contingut (`#contingut`);
+- cap enllaç sense nom;
+- `lang` correcte;
+- imatges decoratives amb `alt` buit i imatges de projectes amb text alternatiu;
+- les fletxes `↗` dels enllaços estan amagades per al lector.
+
+Dos noms d'enllaç es repeteixen amb destins diferents, però el context els distingeix: «Formulari de contacte» (Particulars) i «Contacte» (Industrial).
+
+**Comprovacions posteriors:**
+- **axe:** 70/76 (les 6 restants són el «1989»);
+- **`check-csp.py`:** 41/41;
+- **formulari:** 37/37;
+- **selector:** 15/15;
+- **projecte:** `verify`, `check:i18n` i `check:links` correctes.
+
+### 8.3 Decisions del director i vel reforçat (16/10/2026)
+
+**1. «1989» de l'entrada de la Home: es manté en bordeus** (decisió del director).
+- **Contrast:** bordeus `#7c2a30` sobre grafit `#2b2b2b`, 1,5:1. Incompleix la WCAG 1.4.3: és un **incompliment conegut i acceptat**.
+- **Lector de pantalla:** l'any hi és igualment, dins de l'H1 complet («… des de 1989»).
+- **Prova:** `check-a11y.py` el registra com a excepció acceptada (taula `ACCEPTED`). Surt a la sortida de cada execució, però no fa fallar la prova. Qualsevol altra infracció de contrast continua fallant.
+- **Declaració d'accessibilitat:** si se'n fa, l'ha d'esmentar com a limitació.
+
+**2. Text sobre fotografia: vel reforçat.**
+
+Cap fotografia, color de la paleta ni composició no canvia. Només s'enfosqueix el vel de grafit **a la zona on hi ha text**, i la resta de la fotografia es manté com estava:
+
+| Component | Canvi |
+|---|---|
+| **Home:** targetes dels camins | Vel més dens des del terç superior i cap a l'esquerra, on hi ha el text; la fotografia queda clara a dalt a la dreta. En mòbil, una mica més dens |
+| **Home:** mosaic de serveis i targeta d'Industrial | Vel inferior més dens sota el títol i el text |
+| **Particulars:** entrada | Franja fosca a dalt per a la frase d'accés a Industrial (escriptori i mòbil) |
+| **Particulars:** targetes de serveis | Vel inferior més dens |
+| **Serveis:** entrada | Franja a dalt per a les molles de pa i base més fosca per al botó de WhatsApp |
+| **Serveis:** panells d'abast | Fosc a dalt (etiqueta) i a baix (títol i text); en mòbil, més uniforme |
+| **Projectes:** entrada | Franja a dalt per a les molles de pa; en mòbil, vel central més dens per al títol |
+| **Industrial:** entrada (mòbil) | Franja a dalt per a l'etiqueta i vel central més dens per al titular amb reflex |
+| **Industrial:** capacitats | Fosc a dalt (etiquetes) i a baix (títol i text); en mòbil, més dens |
+| **Industrial:** mètode (mòbil) | Vel més dens |
+| **Capacitats:** entrada i producció (mòbil), plaques de materials | Vel més dens |
+
+**Comprovació:** s'ha anat mesurant amb `check-a11y.py` fins que tots els textos sobre fotografia arriben al criteri.
+
+| Pas | Textos per sota del criteri |
+|---|---|
+| Inicial (38 pàgines × 2 amplades) | 147 de 945 |
+| Primera passada (pàgines en català) | 13 de 281 |
+| Segona passada | 4 de 281 |
+| Tercera passada | 0 de 161, a les quatre pàgines on en quedaven |
+| Auditoria completa (38 × 2) | 3 de 898: textos més llargs en anglès i castellà, que ocupen més línies |
+| Correcció final | 0 de 438, a les nou pàgines afectades. Els vels només s'han enfosquit, de manera que els textos que ja complien no poden empitjorar |
+
+**Mesura afinada:**
+- **Text centrat a la pantalla:** la prova el centra abans de capturar-lo.
+- **Text tapat:** si un altre element el tapa, es descarta.
+- **Exemple:** la fotografia enganxada de la història de Particulars, a 390 px, tapava els capítols mentre es fa desplaçament, i això donava falsos positius.
+
+**Resultat final:**
+- **axe:** 76/76, amb l'excepció del «1989» declarada;
+- **`check-csp.py`:** 41/41;
+- **formulari:** 37/37;
+- **selector:** 15/15;
+- **proves unitàries:** 58/58;
+- **projecte:** `verify`, `check:i18n` i `check:links` correctes.
+
+### 8.4 Prova manual amb lector de pantalla (director)
+
+NVDA no és instal·lat en aquest equip, i una prova real l'ha de fer una persona. És gratuït per a Windows (nvaccess.org) i el pot instal·lar el director si ho decideix.
+
+**Configuracions:**
+- NVDA amb Chrome o Firefox a l'ordinador;
+- VoiceOver a l'iPhone (Safari).
+
+**Tasques, a la Home, a Particulars, a Industrial i a Contacte:**
+1. **Encapçalaments:** recórrer-los (NVDA: `H`; VoiceOver: rotor «Encapçalaments»). Han de tenir sentit en ordre i fora de context.
+2. **Regions** (NVDA: `D`): capçalera, navegació, contingut i peu.
+3. **Enllaç per saltar al contingut:** amb el tabulador des de l'inici, el primer element ha de ser «Salta al contingut», i ha de funcionar.
+4. **Menú mòbil i selector d'idioma:** s'anuncien com a botó i com a desplegable (amb l'estat obert o tancat), i Escape els tanca.
+5. **Formulari de contacte:**
+   - cada camp anuncia l'etiqueta i l'ajuda;
+   - en enviar-lo buit, s'anuncien els errors i el focus va al primer;
+   - en enviar-lo bé, s'anuncia el missatge final (regió d'estat).
+6. **Mapa:** el botó «Veure el mapa» s'anuncia, i en activar-lo el mapa té títol.
+7. **Imatges:** les de projectes s'anuncien amb el text alternatiu, i les decoratives no s'anuncien.
+
+**Registre de resultats:** a cada tasca, «correcte» o la frase exacta que s'ha sentit.
+
+### 8.5 Declaració d'accessibilitat
+
+**És opcional** (vegeu la nota de l'apartat 2). Si el director la vol, es pot preparar una pàgina de declaració amb:
+- el nivell que es pretén (WCAG 2.1 AA, 2.2 AA com a referència);
+- les limitacions conegudes;
+- la data de l'última revisió;
+- un contacte per notificar problemes d'accessibilitat.
+
+La declaració hauria d'esmentar l'excepció del «1989» (apartat 8.3) i el resultat de la prova manual amb lector de pantalla.

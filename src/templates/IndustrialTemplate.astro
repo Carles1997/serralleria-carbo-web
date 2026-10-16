@@ -122,7 +122,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
         <div class="i-hero-overline enter"><span>{t.hero.overline[0]}</span><span>{t.hero.overline[1]}</span></div>
         <div class="i-hero-copy">
           <h1 id="i-title" style={fit(...t.hero.title)}>
-            <span class="enter" style="--i:2">{t.hero.title[0]}</span>{' '}<br /><span class="enter" style="--i:3">{t.hero.title[1]}</span>{' '}<br /><em class="enter" style="--i:4">{t.hero.title[2]}</em>
+            <span class="enter" style="--i:2">{t.hero.title[0]}</span><span class="sr-only">.</span>{' '}<br /><span class="enter" style="--i:3">{t.hero.title[1]}</span><span class="sr-only">.</span>{' '}<br /><em class="enter" style="--i:4">{t.hero.title[2]}</em><span class="sr-only">.</span>
           </h1>
           <div class="i-hero-actions enter" style="--i:6">
             <a class="i-button i-button-solid" href={workshopLink.href}>{t.hero.primary} <span class="arrow" aria-hidden="true">↗</span></a>
@@ -344,7 +344,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
         </figure>
         <div class="i-project-copy">
           <h2 id="i-project-title" style={fit(...t.project.heading)} data-reveal>
-            {t.project.heading[0]}{' '}<br /><em>{t.project.heading[1]}</em>
+            {t.project.heading[0]}<span class="sr-only">.</span>{' '}<br /><em>{t.project.heading[1]}</em>
           </h2>
           <p data-reveal style="--i:2"><Inlines inlines={projectText} /></p>
           <a class="i-section-link" href={projectAction.href} data-reveal style="--i:3">{projectAction.label} <span class="arrow" aria-hidden="true">↗</span></a>

@@ -14,7 +14,8 @@
 .s-hero-image { position: absolute; z-index: -1; inset: 0; }
 .s-hero-image picture { display: contents; }
 .s-hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 42%; filter: saturate(.85) contrast(1.05); }
-.s-hero-image::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(43 43 43 / .8) 0%, rgb(43 43 43 / .5) 42%, rgb(43 43 43 / .08) 82%), linear-gradient(0deg, rgb(43 43 43 / .55), transparent 50%); content: ""; }
+/* Vel reforçat on hi ha text (accessibilitat 8.8, 16/10/2026): contrast WCAG AA del text blanc sobre la fotografia. La franja superior enfosqueix les molles de pa. */
+.s-hero-image::after { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(43 43 43 / .55), transparent 20%), linear-gradient(90deg, rgb(43 43 43 / .8) 0%, rgb(43 43 43 / .5) 42%, rgb(43 43 43 / .08) 82%), linear-gradient(0deg, rgb(43 43 43 / .65), transparent 50%); content: ""; }
 .s-hero-content { position: relative; display: flex; flex-direction: column; min-height: inherit; padding-block: .5rem clamp(1.5rem, 1rem + 1.5vw, 2.5rem); }
 .s-breadcrumb { display: flex; align-items: center; gap: .6rem; min-height: 44px; padding-bottom: .4rem; border-bottom: 1px solid rgb(255 255 255 / .45); color: var(--palette-white); font-size: .82rem; font-weight: 600; }
 .s-breadcrumb a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
@@ -43,7 +44,8 @@
 .s-section-heading p { max-width: 40ch; margin: 0; color: var(--ink-muted); font-size: var(--type-intro); line-height: 1.5; }
 .s-scope-gallery { display: grid; grid-template-columns: 1.13fr .87fr 1fr; gap: 1px; min-height: clamp(280px, 26vw, 360px); border: 1px solid var(--line-on-light); background: var(--line-on-light); }
 .s-scope-panel { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; overflow: hidden; padding: clamp(1rem, 1.8vw, 1.75rem); background: var(--palette-dark); color: var(--palette-white); }
-.s-scope-panel::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg, rgb(43 43 43 / .3), transparent 30%, rgb(43 43 43 / .45) 65%, rgb(43 43 43 / .88)); content: ""; }
+/* Vel reforçat on hi ha text (accessibilitat 8.8, 16/10/2026): contrast WCAG AA del text blanc sobre la fotografia. */
+.s-scope-panel::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg, rgb(43 43 43 / .68), rgb(43 43 43 / .24) 18%, rgb(43 43 43 / .1) 32%, rgb(43 43 43 / .62) 55%, rgb(43 43 43 / .9)); content: ""; }
 .s-scope-panel picture { display: contents; }
 .s-scope-panel img { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.8) contrast(1.04); }
 .s-panel-escala img { object-position: 60% center; }
@@ -128,7 +130,9 @@
 @media (max-width: 760px) {
   .s-hero { min-height: 440px; }
   .s-hero-image img { object-position: 55% center; }
-  .s-hero-image::after { background: linear-gradient(0deg, rgb(43 43 43 / .88), rgb(43 43 43 / .5) 50%, rgb(43 43 43 / .15)); }
+  .s-hero-image::after { background: linear-gradient(180deg, rgb(43 43 43 / .62), transparent 22%), linear-gradient(0deg, rgb(43 43 43 / .88), rgb(43 43 43 / .64) 50%, rgb(43 43 43 / .28)); }
+  /* Mòbil: panells més baixos, amb el text repartit per tota l'alçada (8.8). */
+  .s-scope-panel::after { background: linear-gradient(180deg, rgb(43 43 43 / .7), rgb(43 43 43 / .5) 20%, rgb(43 43 43 / .5) 40%, rgb(43 43 43 / .76) 60%, rgb(43 43 43 / .92)); }
   .s-hero h1 { font-size: min(var(--type-hero), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .56))); }
   .s-section-heading, .s-related-inner { grid-template-columns: 1fr; }
   .s-section-heading h2, .s-brief-head h2, .s-related h2 { font-size: min(var(--type-h2), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * .56))); }

@@ -117,9 +117,12 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
               </span>
             ))
           }
+          {/* Lector de pantalla (tasca 8.8): l'H1 complet de home.md. La ubicació es veu al paràgraf de sota,
+              que queda amagat per al lector perquè no es llegeixi dues vegades. */}
+          {titleSmall && <span class="sr-only">{titleSmall}</span>}
         </h1>
         {titleSmall && (
-          <p class="hero-origin enter" style={`--i:${titleWords.length}`}>
+          <p class="hero-origin enter" style={`--i:${titleWords.length}`} aria-hidden="true">
             <span>{originLabel}{' '}</span>
             {originYear && <strong>{originYear}</strong>}
           </p>
@@ -215,7 +218,8 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
       </div>
       <div class="company-content">
         <h2 id="company-title" data-reveal style={fit(workshop.heading)}>
-          {workshopHeading.map((line, index) => (index ? [' ', <br />, line] : line))}
+          {/* El punt entre línies només per al lector de pantalla (tasca 8.8): visualment, cada frase és una línia. */}
+          {workshopHeading.map((line, index) => (index ? [<span class="sr-only">.</span>, ' ', <br />, line] : line))}
         </h2>
         <p class="workshop-text" data-reveal style="--i:1"><Inlines inlines={workshopText} /></p>
         <dl class="workshop-rows" data-reveal style="--i:2">
@@ -546,11 +550,15 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   /* Ombra concentrada darrere del text (baix) i molt suau a dalt, perquè la fotografia es reconegui. */
+  /* Vel reforçat on hi ha text (accessibilitat 8.8, 16/10/2026): contrast WCAG AA del text blanc sobre la fotografia.
+     Fosc a l'esquerra i a la meitat inferior, on hi ha el text; la fotografia es manté clara a dalt a la dreta. */
   .path-shade {
     position: absolute;
     z-index: -2;
     inset: 0;
-    background: linear-gradient(180deg, rgb(43 43 43 / 0.32), rgb(43 43 43 / 0.04) 28%, rgb(43 43 43 / 0.3) 52%, rgb(43 43 43 / 0.86));
+    background:
+      linear-gradient(90deg, rgb(43 43 43 / 0.45), rgb(43 43 43 / 0) 78%),
+      linear-gradient(180deg, rgb(43 43 43 / 0.3), rgb(43 43 43 / 0.08) 18%, rgb(43 43 43 / 0.5) 30%, rgb(43 43 43 / 0.78) 52%, rgb(43 43 43 / 0.9));
   }
 
   .path-top {
@@ -959,7 +967,8 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     position: absolute;
     z-index: -2;
     inset: 0;
-    background: linear-gradient(180deg, rgb(43 43 43 / 0.3), rgb(43 43 43 / 0.05) 36%, rgb(43 43 43 / 0.85));
+    /* Vel reforçat on hi ha text (accessibilitat 8.8, 16/10/2026): contrast WCAG AA del text blanc sobre la fotografia. */
+    background: linear-gradient(180deg, rgb(43 43 43 / 0.3), rgb(43 43 43 / 0.06) 26%, rgb(43 43 43 / 0.68) 54%, rgb(43 43 43 / 0.92));
   }
 
   .tile-industrial {
@@ -968,7 +977,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   .tile-industrial .tile-shade {
-    background: linear-gradient(180deg, rgb(43 43 43 / 0.35), rgb(43 43 43 / 0.04) 32%, rgb(43 43 43 / 0.7) 70%, rgb(43 43 43 / 0.92));
+    background: linear-gradient(180deg, rgb(43 43 43 / 0.35), rgb(43 43 43 / 0.1) 22%, rgb(43 43 43 / 0.72) 50%, rgb(43 43 43 / 0.94));
   }
 
   .industrial-content {
@@ -1218,6 +1227,13 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   @media (max-width: 760px) {
+    /* Mòbil: el text de la targeta ocupa més alçada; vel més dens des del terç superior (8.8). */
+    .path-shade {
+      background:
+        linear-gradient(90deg, rgb(43 43 43 / 0.58), rgb(43 43 43 / 0.12) 85%),
+        linear-gradient(180deg, rgb(43 43 43 / 0.3), rgb(43 43 43 / 0.1) 14%, rgb(43 43 43 / 0.64) 28%, rgb(43 43 43 / 0.82) 50%, rgb(43 43 43 / 0.92));
+    }
+
     h1 { font-size: min(16vw, calc((100vw - 2 * var(--page-gutter)) / 6)); }
 
     .paths-grid {

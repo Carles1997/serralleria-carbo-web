@@ -130,7 +130,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
     <section class="p-services" id="serveis" aria-labelledby="p-services-title" data-surface="light">
       <div class="section-shell">
         <div class="section-lead">
-          <h2 id="p-services-title" data-reveal style={fit(...t.services.heading)}>{t.services.heading[0]}<br />{' '}{t.services.heading[1]}</h2>
+          <h2 id="p-services-title" data-reveal style={fit(...t.services.heading)}>{t.services.heading[0]}<span class="sr-only">.</span><br />{' '}{t.services.heading[1]}</h2>
           <p data-reveal style="--i:2"><Inlines inlines={introWorks} /></p>
         </div>
         <div class="p-service-grid">

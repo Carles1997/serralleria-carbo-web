@@ -239,7 +239,7 @@ const VALIDATED_REVISIONS = [
     },
   },
   {
-    label: 'textos de les targetes de mobiliari i reparacions, proposta per al director (15/10/2026)',
+    label: 'textos de les targetes de mobiliari i reparacions, validats pel director (15/10/2026)',
     bodies: {
       'content/ca/particulars.md': '5f833480d0b6fa106f782a5f165f8a72d5263ae7ba1da5bc32422c022ef2b62e',
     },

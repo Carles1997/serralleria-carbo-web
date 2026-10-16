@@ -202,5 +202,5 @@ Sense commit ni desplegament.
 - **Lectura:** mesures i captures a 1880, 1440, 1100, 1001, 768, 390 i 320 px, sense desbordament.
 - **Animació:** fotogrames de l'entrada revisats a 1440 px.
 
-**Pendent:** validació dels dos textos nous de les targetes.
+**Validat pel director (15/10/2026):** els textos nous de Mobiliari i Reparacions, en els tres idiomes.
 

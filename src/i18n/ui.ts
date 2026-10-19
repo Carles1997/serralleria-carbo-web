@@ -45,9 +45,10 @@ const ca = {
     backTop: "Torna a l'inici",
   },
   home: {
+    // Industrial primer (director, 19/10/2026), com a la Home.
     nav: [
-      { label: 'Particulars', href: '/particulars/' },
       { label: 'Industrial', href: '/industrial/' },
+      { label: 'Particulars', href: '/particulars/' },
       { label: 'Serveis', href: '/#serveis' },
       // «Projectes» (director, 12/10/2026): la barra de dalt és la mateixa a totes les pàgines.
       { label: 'Projectes', href: '/particulars/projectes/' },
@@ -548,8 +549,8 @@ const es: UiStrings = {
   },
   home: {
     nav: [
-      { label: 'Particulares', href: '/es/particulares/' },
       { label: 'Industrial', href: '/es/industrial/' },
+      { label: 'Particulares', href: '/es/particulares/' },
       { label: 'Servicios', href: '/es/#serveis' },
       { label: 'Proyectos', href: '/es/particulares/proyectos/' },
       { label: 'Contacto', href: '/es/contacto/' },
@@ -971,8 +972,8 @@ const en: UiStrings = {
   },
   home: {
     nav: [
-      { label: 'Residential', href: '/en/residential/' },
       { label: 'Industrial', href: '/en/industrial/' },
+      { label: 'Residential', href: '/en/residential/' },
       { label: 'Services', href: '/en/#serveis' },
       { label: 'Projects', href: '/en/residential/projects/' },
       { label: 'Contact', href: '/en/contact/' },

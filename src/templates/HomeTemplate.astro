@@ -66,6 +66,8 @@ const guidePaths = [
 ];
 const strayBranch = guidePaths.find((path) => path.branch !== path.expected);
 if (strayBranch) throw new Error(`«${guide.heading}»: «${strayBranch.branch}» ha de ser el nom de la branca («${strayBranch.expected}»).`);
+// Ordre de presentació (director, 19/10/2026): Industrial primer. home.md conserva l'ordre del text.
+const guideOrder = [guidePaths[1], guidePaths[0]];
 
 // Xifres: dada i etiqueta de home.md; ui.ts només hi afegeix el valor numèric per al comptador.
 sameText(t.numbers.heading, numbers.heading, 'home.md');
@@ -135,7 +137,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
         <h2 id="path-guide-title" class="path-guide-title">{guide.heading}</h2>
         <ul class="path-guide-list">
           {
-            guidePaths.map((path) => (
+            guideOrder.map((path) => (
               <li>
                 <a href={path.href}>
                   <span class="path-guide-question">{path.question}</span>
@@ -152,21 +154,8 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
         </p>
       </div>
       <div class="paths-grid">
-        <a class="path path-particulars" href={particularsLink.href} data-surface="dark">
-          <Picture src={sitePhotography.home.particulars} alt="" widths={[640, 960, 1280, 1672]} sizes={pathSizes} formats={['avif', 'webp']} fallbackFormat="jpg" priority />
-          <span class="path-shade" aria-hidden="true"></span>
-          <span class="path-top">
-            <span class="corner" aria-hidden="true"><span class="arrow">↗</span></span>
-          </span>
-          <span class="path-kicker">{t.paths.particulars.kicker}</span>
-          <strong class="path-title">{particulars.heading}</strong>
-          <span class="path-copy">
-            <span class="path-slogan">{particularsSlogan}</span>{' '}
-            <span class="path-scope">{particularsScope}</span>
-          </span>
-          <span class="path-action">{particularsLink.label} <span class="arrow" aria-hidden="true">↗</span></span>
-        </a>
-        <a class="path path-industrial" href={industrialLink.href} data-reveal="clip" style="--i:2" data-surface="dark">
+        {/* Industrial a l'esquerra (director, 19/10/2026): és la primera targeta i la de càrrega ràpida (path-lead). */}
+        <a class="path path-industrial path-lead" href={industrialLink.href} data-surface="dark">
           <Picture src={sitePhotography.home.industrial} alt="" widths={[640, 960, 1280, 1536]} sizes={pathSizes} formats={['avif', 'webp']} fallbackFormat="jpg" priority />
           <span class="path-shade" aria-hidden="true"></span>
           <span class="path-top">
@@ -179,6 +168,20 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
             <span class="path-scope"><Inlines inlines={industrialScope} /></span>
           </span>
           <span class="path-action">{industrialLink.label} <span class="arrow" aria-hidden="true">↗</span></span>
+        </a>
+        <a class="path path-particulars" href={particularsLink.href} data-reveal="clip" style="--i:2" data-surface="dark">
+          <Picture src={sitePhotography.home.particulars} alt="" widths={[640, 960, 1280, 1672]} sizes={pathSizes} formats={['avif', 'webp']} fallbackFormat="jpg" priority />
+          <span class="path-shade" aria-hidden="true"></span>
+          <span class="path-top">
+            <span class="corner" aria-hidden="true"><span class="arrow">↗</span></span>
+          </span>
+          <span class="path-kicker">{t.paths.particulars.kicker}</span>
+          <strong class="path-title">{particulars.heading}</strong>
+          <span class="path-copy">
+            <span class="path-slogan">{particularsSlogan}</span>{' '}
+            <span class="path-scope">{particularsScope}</span>
+          </span>
+          <span class="path-action">{particularsLink.label} <span class="arrow" aria-hidden="true">↗</span></span>
         </a>
       </div>
     </section>
@@ -235,8 +238,30 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
           <p data-reveal style="--i:2"><Inlines inlines={servicesLead} /></p>
         </div>
         <div class="offer-grid">
+          {/* Industrial primer (director, 19/10/2026), com als camins de dalt. */}
           <div class="offer-branch">
             <div class="offer-branch-heading" data-reveal>
+              <span>{t.services.industrial.eyebrow}</span>
+              <h3>{t.services.industrial.title}</h3>
+            </div>
+            <a class="tile tile-photo tile-industrial" href={industrialTile.href} data-reveal="clip" style="--i:1">
+              <Picture src={sitePhotography.home.industrialTile} alt="" widths={[640, 960, 1280]} sizes="(max-width: 1000px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+              <span class="tile-shade" aria-hidden="true"></span>
+              <span class="tile-top"><span class="corner" aria-hidden="true"><span class="arrow">↗</span></span></span>
+              <span class="industrial-content">
+                <strong>{industrialTile.label}</strong>
+                <span class="industrial-detail">{industrialTile.detail}</span>
+                <span class="industrial-products">
+                  {t.services.industrial.products.map((product) => <span>{product}</span>)}
+                </span>
+              </span>
+            </a>
+            <a class="offer-overview" href={industrialLink.href}>
+              {t.services.industrial.overview} <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div class="offer-branch">
+            <div class="offer-branch-heading" data-reveal style="--i:1">
               <span>{t.services.particulars.eyebrow}</span>
               <h3>{t.services.particulars.title}</h3>
             </div>
@@ -268,27 +293,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
             </div>
             <a class="offer-overview" href={particularsLink.href}>
               {t.services.particulars.overview} <span class="arrow" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          <div class="offer-branch">
-            <div class="offer-branch-heading" data-reveal style="--i:1">
-              <span>{t.services.industrial.eyebrow}</span>
-              <h3>{t.services.industrial.title}</h3>
-            </div>
-            <a class="tile tile-photo tile-industrial" href={industrialTile.href} data-reveal="clip" style="--i:2">
-              <Picture src={sitePhotography.home.industrialTile} alt="" widths={[640, 960, 1280]} sizes="(max-width: 1000px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
-              <span class="tile-shade" aria-hidden="true"></span>
-              <span class="tile-top"><span class="corner" aria-hidden="true"><span class="arrow">↗</span></span></span>
-              <span class="industrial-content">
-                <strong>{industrialTile.label}</strong>
-                <span class="industrial-detail">{industrialTile.detail}</span>
-                <span class="industrial-products">
-                  {t.services.industrial.products.map((product) => <span>{product}</span>)}
-                </span>
-              </span>
-            </a>
-            <a class="offer-overview" href={industrialLink.href}>
-              {t.services.industrial.overview} <span class="arrow" aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
@@ -1117,20 +1121,21 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
       animation-delay: calc(var(--i, 0) * var(--stagger) + 120ms + var(--j, 0) * 45ms);
     }
 
-    /* L'accés de Particulars és l'element LCP en mòbil i escriptori i sempre és a la primera pantalla.
+    /* La primera targeta (path-lead; Industrial des del 19/10/2026) és l'element LCP en mòbil i escriptori i
+       sempre és a la primera pantalla.
        Entra amb CSS des del primer pintat, amb la mateixa animació que [data-reveal='clip'] (fos breu,
        fotografia que s'assenta i textos escalonats), sense esperar el JavaScript de revelació: amb
        l'ocultació fins a la revelació, l'LCP mòbil arribava uns 2 s després del primer pintat
-       (fases/fase-6/FASE6-bloc2-rendiment.md). L'accés d'Industrial conserva la revelació. */
-    .path-particulars {
+       (fases/fase-6/FASE6-bloc2-rendiment.md). La segona targeta conserva la revelació. */
+    .path-lead {
       animation: reveal-fade 520ms var(--ease-out-strong) backwards;
     }
 
-    .path-particulars :global(img) {
+    .path-lead :global(img) {
       animation: settle-image 900ms var(--ease-out-strong) backwards;
     }
 
-    .path-particulars :is(.path-top, .path-kicker, .path-title, .path-copy, .path-action) {
+    .path-lead :is(.path-top, .path-kicker, .path-title, .path-copy, .path-action) {
       animation: reveal-rise-soft 520ms var(--ease-out-strong) backwards;
       animation-delay: calc(120ms + var(--j, 0) * 45ms);
     }

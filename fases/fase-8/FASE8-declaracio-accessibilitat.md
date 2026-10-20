@@ -1,6 +1,6 @@
 # Fase 8 · Tasca 8.8 · Declaració d'accessibilitat (esborrany)
 
-**Data:** 20/10/2026 · **Estat:** esborrany per al director i l'advocat. No s'ha publicat i no s'ha creat cap pàgina ni cap adreça nova.
+**Data:** 20/10/2026 · **Estat:** arxivat. **Decisió del director (20/10/2026): no es publica cap declaració d'accessibilitat a la web.** L'accessibilitat queda implementada i comprovada (apartat 8). Aquest esborrany es conserva per si en el futur es vol publicar o l'advocat ho considera necessari (8.10). No s'ha creat cap pàgina ni cap adreça nova.
 
 ## 1. Context i decisions pendents
 

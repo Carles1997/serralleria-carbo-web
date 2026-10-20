@@ -398,6 +398,8 @@ NVDA no és instal·lat en aquest equip, i una prova real l'ha de fer una person
 
 ### 8.5 Declaració d'accessibilitat
 
+**Esborrany preparat el 20/10/2026:** [FASE8-declaracio-accessibilitat.md](FASE8-declaracio-accessibilitat.md), en català, amb les decisions pendents (on es publica, quan i termini de resposta) i les dades marcades «[PENDENT …]». Pendent del director i de l'advocat.
+
 **És opcional** (vegeu la nota de l'apartat 2). Si el director la vol, es pot preparar una pàgina de declaració amb:
 - el nivell que es pretén (WCAG 2.1 AA, 2.2 AA com a referència);
 - les limitacions conegudes;

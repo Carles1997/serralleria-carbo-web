@@ -253,3 +253,34 @@ Medianes en ms.
    - **Riscos:** baixos.
    - **Benefici:** depèn de quant s'assemblin les mètriques.
 3. **Després de publicar:** validar amb dades reals. L'informe de Core Web Vitals de Search Console necessita unes setmanes de trànsit; l'objectiu és un LCP de 2,5 s o menys al percentil 75. **No es prenen decisions de disseny només amb el laboratori.**
+
+### 7.5 Prova de les dues optimitzacions (20/10/2026): no s'apliquen
+
+**Variants:** compilacions experimentals, servides en local i comparades alternadament amb la mateixa base, 9 parells per combinació. `src/styles/global.css` es va modificar només de manera temporal i es va restaurar:
+- **cv:** `content-visibility: auto` i `contain-intrinsic-size: auto 900px` a partir de la tercera secció de la Home i d'Industrial;
+- **fs:** font de reserva ajustada a Arial, calculada amb fontTools sobre `CarboText-VF.woff2`, amb `font-display: swap`:
+  - `size-adjust` 87,96 %;
+  - `ascent-override` 113,68 %;
+  - `descent-override` 37,06 %;
+  - `line-gap-override` 0 %;
+- **fo:** la mateixa font de reserva, amb `font-display: optional`. És l'única manera d'evitar la segona maquetació quan la font arriba tard.
+
+| Variant | LCP Home, base → variant | Parells en què millora | LCP Industrial, base → variant | Parells en què millora |
+|---|---|---|---|---|
+| cv | 3580 → 3440 | 5 de 9 | 2592 → 2284 | 4 de 9 |
+| fo | 1748 → 2472 | 3 de 9 | 1504 → 1476 | 5 de 9 |
+| fs | 1704 → 2728 | **1 de 9** | — | — |
+
+**Lectura:**
+- **cv:** cap millora clara. Les tasques llargues baixen poc (261 → 190 i 294 → 183 ms). Té riscos coneguts:
+  - àncores com `/#serveis` de la barra de dalt, amb alçades estimades;
+  - el mètode de sèries d'Industrial, que calcula posicions en desplaçar;
+  - les animacions de revelació.
+- **fs i fo:** no milloren l'LCP. A la Home, sovint l'empitjoren: amb la font de reserva, el text de les targetes (`path-scope`) es converteix un moment en candidat a l'LCP, i això endarrereix la mesura. A més, `optional` faria que, en una primera visita lenta, la web es veiés amb Arial ajustada en lloc de la tipografia de marca.
+- **Soroll:** dins de cada sèrie, la màquina va canviar de velocitat (el primer pintat de la base va d'1,3 a 2,4 s). Cap variant no supera aquest soroll.
+
+**Decisió proposada:**
+- No aplicar cap de les dues optimitzacions.
+- Mantenir la web tal com és: CLS 0, i LCP millor que a la Fase 6 a la Home.
+- Revisar-ho amb les dades reals de Core Web Vitals de Search Console quan hi hagi trànsit, que és el criteri que val (§7.4, punt 3).
+

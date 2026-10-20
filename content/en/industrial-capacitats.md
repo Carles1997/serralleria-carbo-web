@@ -2,7 +2,7 @@
 pageId: industrial-capacitats
 route: /en/industrial/capabilities/
 lang: en
-status: draft
+status: approved
 seoTitle: "Welding and metal fabrication | Serralleria Carbó"
 seoDescription: "950 m² workshop in Vilafranca del Penedès with press brake, shear and punching machine. Carbon steel and 304/316 stainless steel, MIG/MAG and TIG welding."
 ---

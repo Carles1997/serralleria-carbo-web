@@ -2,7 +2,7 @@
 pageId: particulars-estructures
 route: /particulars/estructures/
 lang: ca
-status: draft
+status: approved
 seoTitle: "Estructures metàl·liques a mida | Serralleria Carbó"
 seoDescription: "Baranes, escales i passarel·les metàl·liques per a habitatges i espais compartits. Descobreix treballs reals de Serralleria Carbó."
 ---

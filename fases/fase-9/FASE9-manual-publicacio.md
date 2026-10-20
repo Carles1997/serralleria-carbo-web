@@ -39,16 +39,16 @@
 
 Després es va refer el build normal (amb `noindex`).
 
-**Conseqüència:** sense l'aprovació editorial, publicar deixaria fora de Google la Home i totes les pàgines comercials. És la porta principal (§2).
+**Actualització del 20/10/2026:** aprovació editorial registrada a [FASE9-aprovacio-continguts-2026-10-20.md](FASE9-aprovacio-continguts-2026-10-20.md). Les pàgines comercials CA/ES/EN estan aprovades; Contacte manté `noindex` fins a la prova real. Les xifres de la simulació del 19/10 anterior són històriques.
 
 ## 2. Portes: tot ha d'estar resolt abans del dia D
 
 | # | Porta | Estat (19/10/2026) | Responsable | Com es comprova |
 |---|---|---|---|---|
-| P1 | **Aprovació editorial** de les pàgines que s'indexaran: `status: approved` | Pendent. Aprovades: Projectes i legals (CA) | Client i director; canvi de fitxers, Claude | `npm run check:links` (recompte del sitemap) i build definitiu simulat |
+| P1 | **Aprovació editorial** de les pàgines que s'indexaran: `status: approved` | Aprovació editorial comercial CA/ES/EN registrada el 20/10. Contacte continua noindex per P3; legals ES/EN aprovats posteriorment pel director (20/10) | Client i director; canvi de fitxers, Claude | `npm run check:links` (recompte del sitemap) i build definitiu simulat |
 | P2 | **Idiomes del llançament** (decisió C11): només català, o català, castellà i anglès | Pendent | Director | Si ES i EN no es publiquen, les seves pàgines continuen `noindex` i s'hi decideix la solució de `/estructuras/` i `/motores/` (C2) |
 | P3 | **Formulari real** provat amb Microsoft 365 (prova controlada §11 del pla 8.5) i **avís de demostració retirat** | Pendent de l'administrador | Administrador, Jordi, director i Claude | Recepció confirmada a `carbo@` i traça «Delivered». Avís retirat i provat (`check-contact-form.py`) |
-| P4 | **Textos legals:** advocat (ES i EN) i dades legals de l'empresa (8.1) | Pendent | Client i advocat | `status` dels fitxers legals; sense `[PENDENT` |
+| P4 | **Textos legals ES/EN** | Aprovats expressament pel director el 20/10/2026; estats actualitzats. No es declara una revisió jurídica independent nova | Director | `status: approved` als vuit fitxers legals ES/EN |
 | P5 | **Drets d'imatge:** consentiments de les persones identificables (8.6) | Pendent; els permisos d'ús ja estan confirmats | Client | Registre a FASE8 |
 | P6 | **Revisió final de l'advocat** (8.10) | Pendent | Advocat | — |
 | P7 | **NAP definitiu:** telèfon i adreça 59 o 59-61 (C3 i C5) | Telèfon fix decidit (13/10/2026); adreça pendent | Client | Coincidència web, dades estructurades i Perfil d'Empresa |

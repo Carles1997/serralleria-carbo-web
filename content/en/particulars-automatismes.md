@@ -2,11 +2,9 @@
 pageId: particulars-automatismes
 route: /en/residential/door-automation/
 lang: en
-status: draft
+status: approved
 seoTitle: "Door automation and motors | Serralleria Carbó"
 seoDescription: "Door installation and motorisation in Vilafranca del Penedès. Discover Serralleria Carbó's automation work and tell us about your case."
-reviewNeeded:
-  - "Confirmar les marques de motors abans de publicar-ne cap nom o logotip."
 ---
 
 # Automation for doors

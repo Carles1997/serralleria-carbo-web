@@ -2,12 +2,12 @@
 pageId: legal-cookies
 route: /es/legal/cookies/
 lang: es
-status: draft-review
+status: approved
 publishReady: true
 seoTitle: "Política de cookies | Serralleria Carbó"
 seoDescription: "Qué son las cookies, cuáles utiliza el sitio web de Serralleria Carbó, cómo funciona el mapa de Google Maps y cómo puedes gestionarlas desde el navegador."
 updated: 2026-10-06
-requiredSource: "Traducció al castellà (08/10/2026) de content/ca/legal-cookies.md, el text de l'advocat aprovat el 06/10/2026 amb les adaptacions al lloc web nou. Pendent de validació jurídica: fins que el client i el seu advocat la validin, es mostra amb l'avís de revisió i noindex."
+requiredSource: "Traducció al castellà (08/10/2026) de content/ca/legal-cookies.md, el text de l'advocat aprovat el 06/10/2026 amb les adaptacions al lloc web nou. Versió aprovada expressament pel director el 20/10/2026 per publicar-la. Aquesta anotació registra la seva aprovació, no una revisió jurídica independent nova."
 ---
 
 # Política de cookies

@@ -407,3 +407,7 @@ NVDA no és instal·lat en aquest equip, i una prova real l'ha de fer una person
 - un contacte per notificar problemes d'accessibilitat.
 
 La declaració hauria d'esmentar l'excepció del «1989» (apartat 8.3) i el resultat de la prova manual amb lector de pantalla.
+
+## Aprovació dels textos legals ES/EN (20/10/2026)
+
+El director confirma els vuit documents legals ES/EN (avís legal, privacitat, cookies i primera capa del formulari). Es registren com a approved, sense alterar els textos. Aquesta aprovació substitueix les indicacions anteriors de traduccions pendents i no acredita una revisió externa nova. Detall: [registre d’aprovació](../fase-9/FASE9-aprovacio-continguts-2026-10-20.md). L’activació real del formulari continua pendent.

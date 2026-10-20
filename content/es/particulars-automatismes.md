@@ -2,11 +2,9 @@
 pageId: particulars-automatismes
 route: /es/particulares/automatismos/
 lang: es
-status: draft
+status: approved
 seoTitle: "Automatismos y motores para puertas | Serralleria Carbó"
 seoDescription: "Instalación y motorización de puertas en Vilafranca del Penedès. Conoce los automatismos de Serralleria Carbó y cuéntanos tu caso."
-reviewNeeded:
-  - "Confirmar les marques de motors abans de publicar-ne cap nom o logotip."
 ---
 
 # Automatismos para puertas

@@ -2,7 +2,7 @@
 pageId: industrial
 route: /en/industrial/
 lang: en
-status: draft
+status: approved
 seoTitle: "Contract metal fabrication | Serralleria Carbó"
 seoDescription: "Contract metal fabrication in Vilafranca del Penedès: structures, doors, furniture, parts to drawing and industrial trolleys, in series or made to measure."
 ---

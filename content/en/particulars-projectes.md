@@ -2,7 +2,7 @@
 pageId: particulars-projectes
 route: /en/residential/projects/
 lang: en
-status: draft
+status: approved
 seoTitle: "Real metalwork projects | Serralleria Carbó"
 seoDescription: "Railings, an indoor walkway, a lift structure, a car park door and a business's motorised roller shutters: five real jobs by Serralleria Carbó."
 projectIds: "passarella-interior,estructura-ascensor,porta-parquing,persianes-negoci,baranes-interior-casa"

@@ -2,7 +2,7 @@
 pageId: particulars-estructures
 route: /en/residential/structures/
 lang: en
-status: draft
+status: approved
 seoTitle: "Made-to-measure metal structures | Serralleria Carbó"
 seoDescription: "Metal railings, staircases and walkways for homes and shared spaces. Discover real work by Serralleria Carbó."
 ---

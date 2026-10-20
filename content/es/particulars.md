@@ -2,7 +2,7 @@
 pageId: particulars
 route: /es/particulares/
 lang: es
-status: draft
+status: approved
 seoTitle: "Cerrajería para particulares en Vilafranca | Serralleria Carbó"
 seoDescription: "Barandillas, estructuras, puertas y automatismos a medida para viviendas y comunidades. Trabajos reales de Serralleria Carbó en Vilafranca y alrededores."
 ---

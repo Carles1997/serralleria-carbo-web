@@ -2,7 +2,7 @@
 pageId: home
 route: /en/
 lang: en
-status: draft
+status: approved
 seoTitle: "Metalwork in Vilafranca del Penedès | Serralleria Carbó"
 seoDescription: "Serralleria Carbó: since 1989, metalwork for homes and businesses and metal fabrication for companies in Vilafranca del Penedès."
 ---

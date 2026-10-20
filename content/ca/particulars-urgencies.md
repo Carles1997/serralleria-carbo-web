@@ -2,7 +2,7 @@
 pageId: particulars-urgencies
 route: /particulars/reparacions/
 lang: ca
-status: draft
+status: approved
 seoTitle: "Reparació de portes a Vilafranca | Serralleria Carbó"
 seoDescription: "Tens una incidència amb una porta o un automatisme? Contacta amb Serralleria Carbó a Vilafranca del Penedès i explica'ns què ha passat."
 ---

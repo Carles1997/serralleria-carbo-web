@@ -2,7 +2,7 @@
 pageId: industrial-capacitats
 route: /es/industrial/capacidades/
 lang: es
-status: draft
+status: approved
 seoTitle: "Soldadura y fabricación metálica | Serralleria Carbó"
 seoDescription: "Taller de 950 m² en Vilafranca del Penedès con plegadora, cizalla y punzonadora. Acero al carbono e inox 304/316, soldadura MIG/MAG y TIG."
 ---

@@ -2,7 +2,7 @@
 pageId: particulars-estructures
 route: /es/particulares/estructuras/
 lang: es
-status: draft
+status: approved
 seoTitle: "Estructuras metálicas a medida | Serralleria Carbó"
 seoDescription: "Barandillas, escaleras y pasarelas metálicas para viviendas y espacios compartidos. Descubre trabajos reales de Serralleria Carbó."
 ---

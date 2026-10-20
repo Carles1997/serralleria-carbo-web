@@ -2,12 +2,12 @@
 pageId: legal-privacitat
 route: /en/legal/privacy/
 lang: en
-status: draft-review
+status: approved
 publishReady: true
 seoTitle: "Privacy policy | Serralleria Carbó"
 seoDescription: "How Serralleria Carbó S.L. processes the personal data of website users, for what purpose and on what legal basis, and how to exercise your rights."
 updated: 2026-10-06
-requiredSource: "Traducció a l'anglès (12/10/2026, indicació del director) de content/ca/legal-privacitat.md, el text de l'advocat aprovat el 06/10/2026 amb les adaptacions al lloc web nou. Pendent de validació jurídica: fins que el client i el seu advocat la validin, es mostra amb l'avís de revisió i noindex. Els punts oberts del text català (empreses del grup, finalitats genèriques) també s'apliquen a aquesta versió."
+requiredSource: "Traducció a l'anglès (12/10/2026, indicació del director) de content/ca/legal-privacitat.md, el text de l'advocat aprovat el 06/10/2026 amb les adaptacions al lloc web nou. Versió aprovada expressament pel director el 20/10/2026 per publicar-la. Aquesta anotació registra la seva aprovació, no una revisió jurídica independent nova."
 ---
 
 # Privacy policy

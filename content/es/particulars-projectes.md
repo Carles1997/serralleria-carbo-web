@@ -2,7 +2,7 @@
 pageId: particulars-projectes
 route: /es/particulares/proyectos/
 lang: es
-status: draft
+status: approved
 seoTitle: "Proyectos de cerrajería reales | Serralleria Carbó"
 seoDescription: "Barandillas, pasarela interior, estructura de ascensor, puerta de parking y persianas motorizadas de un negocio: cinco trabajos reales de Serralleria Carbó."
 projectIds: "passarella-interior,estructura-ascensor,porta-parquing,persianes-negoci,baranes-interior-casa"

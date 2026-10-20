@@ -2,12 +2,12 @@
 pageId: legal-avis-legal
 route: /en/legal/legal-notice/
 lang: en
-status: draft-review
+status: approved
 publishReady: true
 seoTitle: "Legal notice | Serralleria Carbó"
 seoDescription: "Legal notice of the Serralleria Carbó S.L. website: company identification details, terms of use, intellectual property and liability."
 updated: 2026-10-06
-requiredSource: "Traducció a l'anglès (12/10/2026, indicació del director) de content/ca/legal-avis-legal.md, el text de l'advocat aprovat el 06/10/2026. Pendent de validació jurídica: fins que el client i el seu advocat la validin, es mostra amb l'avís de revisió i noindex."
+requiredSource: "Traducció a l'anglès (12/10/2026, indicació del director) de content/ca/legal-avis-legal.md, el text de l'advocat aprovat el 06/10/2026. Versió aprovada expressament pel director el 20/10/2026 per publicar-la. Aquesta anotació registra la seva aprovació, no una revisió jurídica independent nova."
 ---
 
 # Legal notice

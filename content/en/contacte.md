@@ -2,7 +2,8 @@
 pageId: contacte
 route: /en/contact/
 lang: en
-status: draft
+status: approved
+noindex: true
 seoTitle: "Contact and quotes | Serralleria Carbó"
 seoDescription: "Contact Serralleria Carbó in Vilafranca del Penedès. Describe a residential job or send drawings and requirements to Industrial."
 ---

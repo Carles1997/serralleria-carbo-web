@@ -2,7 +2,7 @@
 pageId: industrial
 route: /industrial/
 lang: ca
-status: draft
+status: approved
 seoTitle: "Fabricació metàl·lica per a tercers | Serralleria Carbó"
 seoDescription: "Fabricació metàl·lica per a tercers a Vilafranca del Penedès: estructures, portes, mobiliari, peces a plànol i carros industrials, en sèrie o a mida."
 ---

@@ -2,7 +2,7 @@
 pageId: particulars
 route: /particulars/
 lang: ca
-status: draft
+status: approved
 seoTitle: "Serralleria per a particulars a Vilafranca | Serralleria Carbó"
 seoDescription: "Baranes, estructures, portes i automatismes a mida per a habitatges i comunitats. Treballs reals de Serralleria Carbó a Vilafranca i rodalia."
 ---

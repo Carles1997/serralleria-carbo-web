@@ -2,7 +2,7 @@
 pageId: home
 route: /es/
 lang: es
-status: draft
+status: approved
 seoTitle: "Cerrajería en Vilafranca del Penedès | Serralleria Carbó"
 seoDescription: "Serralleria Carbó: desde 1989, trabajos de cerrajería para particulares y fabricación metálica para empresas en Vilafranca del Penedès."
 ---

@@ -1,10 +1,10 @@
 ---
 pageId: legal-formulari
 lang: en
-status: draft-review
+status: approved
 publishReady: true
 usage: "Informació bàsica de protecció de dades (primera capa) i caselles del formulari de contacte en anglès, just abans del botó d'enviar. No és una pàgina: no té ruta."
-requiredSource: "Traducció a l'anglès (12/10/2026, indicació del director) de content/ca/legal-formulari.md, el redactat del formulari de l'advocat aprovat el 06/10/2026 (opció B). Pendent de validació jurídica, inclosa la paraula clau per revocar el consentiment (UNSUBSCRIBE)."
+requiredSource: "Traducció a l'anglès (12/10/2026, indicació del director) de content/ca/legal-formulari.md, el redactat del formulari de l'advocat aprovat el 06/10/2026 (opció B). Versió aprovada expressament pel director el 20/10/2026 per publicar-la. Aquesta anotació registra la seva aprovació, no una revisió jurídica independent nova."
 consent: true
 consentLabel: "I have read, understood and accept the [privacy policy](/en/legal/privacy/)"
 marketingLabel: "I consent to receiving subsequent commercial communications by email and other electronic means of communication, as established by Spanish Law 34/2002 (LSSI)."

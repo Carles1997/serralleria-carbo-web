@@ -2,7 +2,7 @@
 pageId: particulars
 route: /en/residential/
 lang: en
-status: draft
+status: approved
 seoTitle: "Residential metalwork in Vilafranca | Serralleria Carbó"
 seoDescription: "Made-to-measure railings, structures, doors and automation for homes and residential communities. Real work by Serralleria Carbó in Vilafranca and the surrounding area."
 ---

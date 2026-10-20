@@ -2,7 +2,7 @@
 pageId: particulars-urgencies
 route: /en/residential/repairs/
 lang: en
-status: draft
+status: approved
 seoTitle: "Door repairs in Vilafranca | Serralleria Carbó"
 seoDescription: "Do you have a problem with a door or an automation system? Contact Serralleria Carbó in Vilafranca del Penedès and tell us what has happened."
 ---

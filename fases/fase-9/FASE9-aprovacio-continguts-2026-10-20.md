@@ -8,14 +8,14 @@ Nou pàgines per idioma: Home, Particulars, Estructures, Automatismes, Reparacio
 
 - **Contacte:** aprovació editorial amb `noindex: true` explícit als tres idiomes. Quan Microsoft 365 estigui configurat i l’enviament real comprovat, es podrà retirar aquest bloqueig en la tasca d’activació del formulari. L’avís de demostració continua.
 - **Automatismes:** es tanca `reviewNeeded` de les marques perquè el contingut aprovat no en publica noms ni logotips. No s’autoritza afegir marques sense confirmació posterior.
-- **Legals ES/EN:** conserven `draft-review` i la revisió jurídica pendent. Els legals CA no canvien.
+- **Legals ES/EN:** conserven `draft-review` i la revisió jurídica pendent. Els legals CA no canvien. *(Substituït el mateix dia per l’[aprovació posterior del director](#aprovació-posterior-dels-textos-legals-esen-20102026).)*
 - **404, rutes ajornades i fitxes internes de projectes:** fora de l’abast d’aquesta aprovació de pàgines; conserven els seus estats.
 
 ## Protecció i comprovacions
 
 La capçalera global `X-Robots-Tag: noindex` continua en builds locals i previsualitzacions. No s’ha desplegat, canviat el DNS ni activat Microsoft 365.
 
-S’esperen 27 URL al sitemap: 24 pàgines comercials (8 per idioma) i 3 legals CA. Contacte queda fora. Les 24 pàgines comercials aprovades poden declarar alternatives CA/ES/EN.
+S’esperen 27 URL al sitemap: 24 pàgines comercials (8 per idioma) i 3 legals CA. Contacte queda fora. Les 24 pàgines comercials aprovades poden declarar alternatives CA/ES/EN. *(Xifra d’aquesta primera aprovació; després de l’aprovació dels legals ES/EN són 33 URL.)*
 
 Els camps modificats (`status`, `noindex`, `reviewNeeded`) ja estan permesos a `APPROVAL_KEYS` de `check-references.mjs`; no cal canviar empremtes, excepcions ni la línia base.
 
@@ -30,3 +30,8 @@ El director confirma expressament els documents legals en castellà i anglès. S
 Aquesta decisió substitueix el pendent ES/EN dels apartats anteriors: les sis pàgines legals traduïdes s’incorporen al sitemap i als hreflang; els dos textos del formulari no tenen ruta pròpia. Resultat esperat: 33 URL al sitemap i 33 pàgines amb alternatives d’idioma. Contacte manté el noindex fins a la prova real i la previsualització manté el noindex global.
 
 **Comprovació posterior:** verify, check:links i check:i18n correctes; 33 URL al sitemap i 33 pàgines amb hreflang. Cossos legals intactes; sis pàgines legals ES/EN sense meta noindex individual. Es conserva la capçalera global noindex de la previsualització. Sense commit, push ni desplegament.
+
+## Què no decideix aquest registre
+
+- **Idiomes del llançament (porta P2):** aprovar els continguts ES i EN no decideix quins idiomes es publiquen el dia D. Falta la decisió explícita del director, que ha de tenir en compte la del 08/10/2026 (català i castellà des del primer dia, anglès ajornat).
+- **Revisió de l’advocat (porta P6, tasca 8.10):** l’aprovació del director dels legals ES/EN no l’acredita; continua pendent.

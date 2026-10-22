@@ -1,6 +1,6 @@
 # Fase 9 · Manual de publicació
 
-**Data:** 19/10/2026 · **Estat:** preparat; no s'ha executat cap pas de producció, DNS ni registres de correu.
+**Data:** 19/10/2026 (estat de les portes actualitzat el 22/10/2026) · **Estat:** preparat; no s'ha executat cap pas de producció, DNS ni registres de correu.
 
 **Objectiu.** Publicar la web nova a `https://www.serralleriacarbo.com`:
 - sense perdre posicionament ni correu;
@@ -39,20 +39,20 @@
 
 Després es va refer el build normal (amb `noindex`).
 
-**Actualització del 20/10/2026:** aprovació editorial registrada a [FASE9-aprovacio-continguts-2026-10-20.md](FASE9-aprovacio-continguts-2026-10-20.md). Les pàgines comercials CA/ES/EN estan aprovades; Contacte manté `noindex` fins a la prova real. Les xifres de la simulació del 19/10 anterior són històriques.
+**Actualització del 20/10/2026:** aprovació editorial registrada a [FASE9-aprovacio-continguts-2026-10-20.md](FASE9-aprovacio-continguts-2026-10-20.md). Les pàgines comercials CA/ES/EN estan aprovades; Contacte manté `noindex` fins a la prova real. El mateix dia, el director aprova els textos legals ES/EN, que s'afegeixen als tres legals CA. Comprovació d'aquell registre: 33 URL al sitemap (24 comercials i 9 legals) i 33 pàgines amb `hreflang`. Les xifres de la simulació del 19/10 anterior són històriques.
 
 ## 2. Portes: tot ha d'estar resolt abans del dia D
 
-| # | Porta | Estat (19/10/2026) | Responsable | Com es comprova |
+| # | Porta | Estat (actualitzat el 22/10/2026) | Responsable | Com es comprova |
 |---|---|---|---|---|
-| P1 | **Aprovació editorial** de les pàgines que s'indexaran: `status: approved` | Aprovació editorial comercial CA/ES/EN registrada el 20/10. Contacte continua noindex per P3; legals ES/EN aprovats posteriorment pel director (20/10) | Client i director; canvi de fitxers, Claude | `npm run check:links` (recompte del sitemap) i build definitiu simulat |
-| P2 | **Idiomes del llançament** (decisió C11): només català, o català, castellà i anglès | Pendent | Director | Si ES i EN no es publiquen, les seves pàgines continuen `noindex` i s'hi decideix la solució de `/estructuras/` i `/motores/` (C2) |
+| P1 | **Aprovació editorial** de les pàgines que s'indexaran: `status: approved` | **Feta (20/10/2026)** per autorització del director ([registre](FASE9-aprovacio-continguts-2026-10-20.md)): les 8 pàgines comercials de cada idioma (CA/ES/EN) i Contacte. Contacte continua `noindex` fins a P3. Legals: CA aprovats el 06/10 (textos de l'advocat) i ES/EN pel director el 20/10 (P4). Fora d'abast i sense aprovar: 404, rutes ajornades i fitxes internes de projectes | Client i director; canvi de fitxers, Claude | `npm run check:links`: 33 URL al sitemap. Falta repetir el build definitiu simulat amb els estats actuals |
+| P2 | **Idiomes del llançament** (decisió C11) | **Pendent de registrar.** El 08/10/2026 el director va decidir català i castellà des del primer dia i l'anglès ajornat ([FASE6-bloc5-castella.md](../fase-6/FASE6-bloc5-castella.md)). Des d'aleshores s'han creat i aprovat els continguts EN (20/10), que el build ja inclou al sitemap i als `hreflang`. Aprovar un contingut no decideix si es publica el dia D: falta la decisió explícita del director sobre quins idiomes es llancen | Director | Decisió registrada. Si un idioma no es publica, les seves pàgines no han de ser indexables ni declarar-se a `hreflang`; si fos el castellà, cal revisar també les regles de `/estructuras/` i `/motores/` (R6 i C2), que hi apunten |
 | P3 | **Formulari real** provat amb Microsoft 365 (prova controlada §11 del pla 8.5) i **avís de demostració retirat** | Pendent de l'administrador | Administrador, Jordi, director i Claude | Recepció confirmada a `carbo@` i traça «Delivered». Avís retirat i provat (`check-contact-form.py`) |
-| P4 | **Textos legals ES/EN** | Aprovats expressament pel director el 20/10/2026; estats actualitzats. No es declara una revisió jurídica independent nova | Director | `status: approved` als vuit fitxers legals ES/EN |
+| P4 | **Textos legals ES/EN** (aprovació del director) | **Feta (20/10/2026):** aprovats expressament pel director; estats actualitzats sense canviar els textos. És una aprovació del director, no una revisió de l'advocat: aquesta continua a P6 | Director | `status: approved` als vuit fitxers legals ES/EN |
 | P5 | **Drets d'imatge:** consentiments de les persones identificables (8.6) | Pendent; els permisos d'ús ja estan confirmats | Client | Registre a FASE8 |
-| P6 | **Revisió final de l'advocat** (8.10) | Pendent | Advocat | — |
+| P6 | **Revisió final de l'advocat** (8.10) | Pendent. L'aprovació del director dels legals ES/EN (P4) no la substitueix ni l'acredita | Advocat | Vistiplau de l'advocat registrat a FASE8 |
 | P7 | **NAP definitiu:** telèfon i adreça 59 o 59-61 (C3 i C5) | Telèfon fix decidit (13/10/2026); adreça pendent | Client | Coincidència web, dades estructurades i Perfil d'Empresa |
-| P8 | **Decisions de redirecció:** `/estructuras/`, `/motores/` (C2), feeds, `/cat/` i 12 adreces de fotos del WordPress | Pendent | Director i client | `npm run check:redirects` sense regles «per decidir» |
+| P8 | **Decisions de redirecció** | **Decidides (director, 08/10/2026, R1–R6 de [FASE6-bloc4-redireccions.md](../fase-6/FASE6-bloc4-redireccions.md)):** `/estructuras/` i `/motores/` amb 301 a les pàgines castellanes, feeds amb 410, `/cat/` amb 301 a `/`, `/sample-page/` amb 301 a Contacte, `/hello-world/` i `/category/uncategorized/` amb 410; `/es/` es manté. El mapa té 23 regles llestes i cap per decidir. **Pendents:** (1) destí de les 12 URL antigues de fotos del WordPress (bloc 4, apartat 2), director; no tenen regla al mapa i `check:redirects` no les detecta; (2) comprovar amb el client si hi ha campanyes de Google Ads o Meta que apuntin a `/estructuras/` o `/motores/` i actualitzar-ne la destinació abans del tall | Director (fotos) i client (campanyes) | `npm run check:redirects` (23 llestes, 0 per decidir, i mostra la comprovació de campanyes). Les fotos, amb la decisió registrada al bloc 4 |
 | P9 | **Crèdits de Netlify** per als desplegaments de producció | Pendent de confirmar | Director o client | El panell mostra saldo i els desplegaments de producció no es salten |
 | P10 | **Search Console:** accés, exportació de dades del WordPress i verificació per registre TXT de domini | Pendent d'accés | Client | Exportació desada i propietat de domini verificada |
 | P11 | **Inventari DNS** complet i finestra de canvi acordada amb mayasystems.net | Pendent | Client | Taula de registres actuals (§3.2) |
@@ -63,7 +63,7 @@ Després es va refer el build normal (amb `noindex`).
 
 ### 3.1 Codi i continguts
 
-1. **Aprovació (P1).** Les pàgines aprovades passen a `status: approved` als fitxers de `content/{ca,es,en}/`:
+1. **Aprovació (P1).** Feta el 20/10/2026; el procediment queda per a futures aprovacions. Les pàgines aprovades passen a `status: approved` als fitxers de `content/{ca,es,en}/`:
    - es registra la revisió a `scripts/check-references.mjs`;
    - es comprova amb `npm run verify`, `check:i18n` i `check:links`;
    - el sitemap s'actualitza sol.

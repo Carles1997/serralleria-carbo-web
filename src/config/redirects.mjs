@@ -12,8 +12,11 @@
 // - launchChecks: comprovacions que s'han de fer abans del llançament però que no impedeixen
 //   activar la regla (es llisten a npm run check:redirects).
 //
-// Decisions del director del 08/10/2026 (fases/fase-6/FASE6-bloc4-redireccions.md): el web es publica
-// en català i castellà des del primer dia (l'anglès queda ajornat). R1–R6 tancades.
+// Decisions del director del 08/10/2026 (fases/fase-6/FASE6-bloc4-redireccions.md): R1–R6 tancades, sobre
+// la base d'un llançament en català i castellà amb l'anglès ajornat. Els continguts EN es van aprovar el
+// 20/10/2026, però la decisió explícita dels idiomes del llançament continua pendent (porta P2 de
+// fases/fase-9/FASE9-manual-publicacio.md). Pendents: el destí de les 12 URL antigues de fotos de
+// WordPress, sense regla en aquest mapa (bloc 4, apartat 2), i la comprovació de campanyes (CAMPAIGNS).
 
 /**
  * @typedef {{ pageId: string, lang: 'ca' | 'es' | 'en' }} Target

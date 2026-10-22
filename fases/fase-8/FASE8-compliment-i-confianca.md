@@ -75,7 +75,7 @@
 | Formulari | Enviament real; validació al servidor; antispam sense galetes (camp parany i límit d'enviaments); límit d'adjunt; correu del domini amb SPF, DKIM i DMARC perquè no vagi a correu brossa | Pendent de l'allotjament |
 | Migració | Redireccions 301/410 de la web antiga, generades del mapa i provades després del desplegament | Mapa preparat |
 | SEO | Search Console, sitemap enviat, fitxa de Google Business Profile coherent amb la web | Fase 6 |
-| Idiomes | Castellà i anglès validats, si es publiquen | Pendent |
+| Idiomes | Castellà i anglès validats, si es publiquen | **Continguts aprovats** (comercials i legals ES/EN, director, 20/10/2026). **Pendent:** la decisió explícita dels idiomes del llançament (porta P2 de [FASE9-manual-publicacio.md](../fase-9/FASE9-manual-publicacio.md)) |
 | Operació | Còpies de seguretat del repositori; actualització de dependències; responsable de mantenir els textos legals; revisió anual | Per definir |
 
 ## 4. Valoració sincera
@@ -177,6 +177,8 @@ Les caselles s'envien amb els noms `consentiment` i `comunicacions`. El formular
 ### Versions en castellà (08/10/2026)
 
 El web es publica també en castellà. No hi ha cap versió castellana aprovada dels textos de l'advocat. S'han preparat traduccions fidels de l'avís legal, la privacitat, les cookies i el text del formulari (`content/es/legal-*.md`). Es mostren amb l'avís «Traducción pendiente de revisión jurídica» i `noindex` fins que el client i el seu advocat les validin. Cal fer-ho abans del llançament. Detall: [FASE6-bloc5-castella](../fase-6/FASE6-bloc5-castella.md#4-textos-legals).
+
+**Actualització (20/10/2026):** el director ha aprovat els textos legals ES i EN (vegeu l'[apartat final](#aprovació-dels-textos-legals-esen-20102026)); l'estat d'aquest paràgraf és històric. La validació de l'advocat no queda acreditada i continua dins la revisió final 8.10.
 
 ### Punts per confirmar amb el client o l'advocat
 
@@ -411,3 +413,5 @@ La declaració hauria d'esmentar l'excepció del «1989» (apartat 8.3) i el res
 ## Aprovació dels textos legals ES/EN (20/10/2026)
 
 El director confirma els vuit documents legals ES/EN (avís legal, privacitat, cookies i primera capa del formulari). Es registren com a approved, sense alterar els textos. Aquesta aprovació substitueix les indicacions anteriors de traduccions pendents i no acredita una revisió externa nova. Detall: [registre d’aprovació](../fase-9/FASE9-aprovacio-continguts-2026-10-20.md). L’activació real del formulari continua pendent.
+
+Continuen pendents la revisió final de l’advocat (8.10, porta P6 del manual de publicació) i la decisió explícita dels idiomes del llançament (porta P2). L’aprovació dels textos no decideix quins idiomes es publiquen.

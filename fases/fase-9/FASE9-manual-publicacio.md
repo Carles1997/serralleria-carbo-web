@@ -43,7 +43,7 @@ Després es va refer el build normal (amb `noindex`).
 
 ## 2. Portes: tot ha d'estar resolt abans del dia D
 
-| # | Porta | Estat (actualitzat el 22/10/2026) | Responsable | Com es comprova |
+| # | Porta | Estat (actualitzat el 23/10/2026) | Responsable | Com es comprova |
 |---|---|---|---|---|
 | P1 | **Aprovació editorial** de les pàgines que s'indexaran: `status: approved` | **Feta (20/10/2026)** per autorització del director ([registre](FASE9-aprovacio-continguts-2026-10-20.md)): les 8 pàgines comercials de cada idioma (CA/ES/EN) i Contacte. Contacte continua `noindex` fins a P3. Legals: CA aprovats el 06/10 (textos de l'advocat) i ES/EN pel director el 20/10 (P4). Fora d'abast i sense aprovar: 404, rutes ajornades i fitxes internes de projectes | Client i director; canvi de fitxers, Claude | `npm run check:links`: 33 URL al sitemap. Falta repetir el build definitiu simulat amb els estats actuals |
 | P2 | **Idiomes del llançament** (decisió C11) | **Pendent de registrar.** El 08/10/2026 el director va decidir català i castellà des del primer dia i l'anglès ajornat ([FASE6-bloc5-castella.md](../fase-6/FASE6-bloc5-castella.md)). Des d'aleshores s'han creat i aprovat els continguts EN (20/10), que el build ja inclou al sitemap i als `hreflang`. Aprovar un contingut no decideix si es publica el dia D: falta la decisió explícita del director sobre quins idiomes es llancen | Director | Decisió registrada. Si un idioma no es publica, les seves pàgines no han de ser indexables ni declarar-se a `hreflang`; si fos el castellà, cal revisar també les regles de `/estructuras/` i `/motores/` (R6 i C2), que hi apunten |
@@ -57,7 +57,7 @@ Després es va refer el build normal (amb `noindex`).
 | P10 | **Search Console:** accés, exportació de dades del WordPress i verificació per registre TXT de domini | Pendent d'accés | Client | Exportació desada i propietat de domini verificada |
 | P11 | **Inventari DNS** complet i finestra de canvi acordada amb mayasystems.net | Pendent | Client | Taula de registres actuals (§3.2) |
 | P12 | **Validació final del client** sobre la web completa | Pendent | Client | — |
-| P13 | **Prova amb lector de pantalla** (8.8). Recomanada; no bloqueja la publicació. La declaració d'accessibilitat no es publica (director, 20/10/2026) | Pendent | Director | Protocol de FASE8 §8.4 |
+| P13 | **Prova amb lector de pantalla** (8.8). Recomanada; no bloqueja la publicació. La declaració d'accessibilitat no es publica (director, 20/10/2026) | **Tancada sense prova (decisió del revisor humà del pilot, 23/10/2026):** la prova no s'ha fet i la fase es dona per vàlida sense aquesta comprovació; no s'acredita l'ús amb lector de pantalla. La declaració d'accessibilitat continua sense publicar-se | Director | [Protocol de FASE8 §8.4](../fase-8/FASE8-compliment-i-confianca.md#84-prova-manual-amb-lector-de-pantalla-director) i [FASE9-prova-lector-pantalla.md](FASE9-prova-lector-pantalla.md) |
 
 ## 3. Preparació (de D−7 a D−1)
 

@@ -56,7 +56,7 @@ Després es va refer el build normal (amb `noindex`).
 | P9 | **Crèdits de Netlify** per als desplegaments de producció | Pendent de confirmar | Director o client | El panell mostra saldo i els desplegaments de producció no es salten |
 | P10 | **Search Console:** accés, exportació de dades del WordPress i verificació per registre TXT de domini | Pendent d'accés | Client | Exportació desada i propietat de domini verificada |
 | P11 | **Inventari DNS** complet i finestra de canvi acordada amb mayasystems.net | Pendent | Client | Taula de registres actuals (§3.2) |
-| P12 | **Validació final del client** sobre la web completa | Pendent | Client | — |
+| P12 | **Validació final del client** sobre la web completa | Pendent | Client | [Protocol de QA final](FASE9-QA-final-acceptacio.md) i acta d'acceptació signada |
 | P13 | **Prova amb lector de pantalla** (8.8). Recomanada; no bloqueja la publicació. La declaració d'accessibilitat no es publica (director, 20/10/2026) | Pendent | Director | Protocol de FASE8 §8.4 |
 
 ## 3. Preparació (de D−7 a D−1)

@@ -244,6 +244,12 @@ const VALIDATED_REVISIONS = [
       'content/ca/particulars.md': '5f833480d0b6fa106f782a5f165f8a72d5263ae7ba1da5bc32422c022ef2b62e',
     },
   },
+  {
+    label: 'adreça definitiva 59-61, indicació del director (23/10/2026)',
+    bodies: {
+      'content/ca/empresa.md': '8adc12fc51c338bd98fd76cff516d92cff0a95fb5d337e480c7a98e7d5dadff8',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

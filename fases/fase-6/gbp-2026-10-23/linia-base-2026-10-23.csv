@@ -1,0 +1,45 @@
+metrica,periode,valor,font,nota
+interaccions_perfil,2026-05,118,Rendiment (hl=en) > Overview,
+interaccions_perfil,2026-06,115,Rendiment (hl=en) > Overview,
+interaccions_perfil,2026-07,127,Rendiment (hl=en) > Overview,
+interaccions_perfil,2026-08,137,Rendiment (hl=en) > Overview,
+interaccions_perfil,2026-09,114,Rendiment (hl=en) > Overview,El 02/10/2026 el panell en donava 105: Google revisa les dades a posteriori
+interaccions_perfil,2026-10,77,Rendiment (hl=en) > Overview,Mes incomplet (consulta del 23/10/2026)
+interaccions_perfil,2026-05..2026-10,688,Rendiment (hl=en) > Overview,Total del període
+trucades,2026-05,52,Rendiment (hl=en) > Calls,
+trucades,2026-06,46,Rendiment (hl=en) > Calls,
+trucades,2026-07,65,Rendiment (hl=en) > Calls,
+trucades,2026-08,67,Rendiment (hl=en) > Calls,
+trucades,2026-09,51,Rendiment (hl=en) > Calls,
+trucades,2026-10,22,Rendiment (hl=en) > Calls,Mes incomplet
+trucades,2026-05..2026-10,303,Rendiment (hl=en) > Calls,
+indicacions,2026-05,50,Rendiment (hl=en) > Directions,
+indicacions,2026-06,51,Rendiment (hl=en) > Directions,
+indicacions,2026-07,34,Rendiment (hl=en) > Directions,
+indicacions,2026-08,57,Rendiment (hl=en) > Directions,
+indicacions,2026-09,34,Rendiment (hl=en) > Directions,
+indicacions,2026-10,49,Rendiment (hl=en) > Directions,Mes incomplet
+indicacions,2026-05..2026-10,275,Rendiment (hl=en) > Directions,
+clics_web,2026-05,16,Rendiment (hl=en) > Website clicks,
+clics_web,2026-06,18,Rendiment (hl=en) > Website clicks,
+clics_web,2026-07,28,Rendiment (hl=en) > Website clicks,
+clics_web,2026-08,13,Rendiment (hl=en) > Website clicks,
+clics_web,2026-09,29,Rendiment (hl=en) > Website clicks,
+clics_web,2026-10,6,Rendiment (hl=en) > Website clicks,Mes incomplet
+clics_web,2026-05..2026-10,110,Rendiment (hl=en) > Website clicks,
+reserves,2026-05..2026-10,0,Rendiment (hl=en) > Bookings,Interaccions - trucades - indicacions - clics = 0
+persones_que_han_vist_el_perfil,2026-05..2026-10,3064,Rendiment > How people discovered you,
+visualitzacions_google_maps_mobil,2026-05..2026-10,1434,Rendiment > plataforma i dispositiu,47 %
+visualitzacions_cerca_google_mobil,2026-05..2026-10,1121,Rendiment > plataforma i dispositiu,37 %
+visualitzacions_cerca_google_ordinador,2026-05..2026-10,332,Rendiment > plataforma i dispositiu,11 %
+visualitzacions_google_maps_ordinador,2026-05..2026-10,177,Rendiment > plataforma i dispositiu,6 %
+cerques_que_mostren_el_perfil,2026-05..2026-10,488,Rendiment > Searches breakdown,Suma dels 5 primers termes; Google no dona el número dels termes amb menys de 15
+cerca_ferreteria,2026-05..2026-10,237,Rendiment > Searches breakdown,
+cerca_ferreteria_vilafranca,2026-05..2026-10,86,Rendiment > Searches breakdown,
+cerca_carbo,2026-05..2026-10,64,Rendiment > Searches breakdown,
+cerca_serralleria_carbo_adreca,2026-05..2026-10,61,Rendiment > Searches breakdown,serralleria carbó; carrer d'eugeni d'ors; vilafranca del penedès
+cerca_ferreteria_accent,2026-05..2026-10,40,Rendiment > Searches breakdown,ferretería
+termes_de_cerca_llistats,2026-05..2026-10,36,Rendiment > Searches breakdown,31 termes amb menys de 15 cerques
+ressenyes_total,2026-10-23,59,Ressenyes,Mitjana 3;7
+ressenyes_respostes,2026-10-23,0,Ressenyes,
+fotos_propietari,2026-10-23,8,Fotos i vídeos,Més el logotip; sense portada (abans dels canvis)

@@ -51,7 +51,7 @@ Després es va refer el build normal (amb `noindex`).
 | P4 | **Textos legals ES/EN** | Aprovats expressament pel director el 20/10/2026; estats actualitzats. No es declara una revisió jurídica independent nova | Director | `status: approved` als vuit fitxers legals ES/EN |
 | P5 | **Drets d'imatge:** consentiments de les persones identificables (8.6) | Pendent; els permisos d'ús ja estan confirmats | Client | Registre a FASE8 |
 | P6 | **Revisió final de l'advocat** (8.10) | Pendent | Advocat | — |
-| P7 | **NAP definitiu:** telèfon i adreça 59 o 59-61 (C3 i C5) | Telèfon fix decidit (13/10/2026); adreça pendent | Client | Coincidència web, dades estructurades i Perfil d'Empresa |
+| P7 | **NAP definitiu:** telèfon i adreça 59 o 59-61 (C3 i C5) | **Fet:** telèfon fix (13/10/2026) i adreça definitiva 59-61 (director, 23/10/2026), aplicada al web i enviada al Perfil d'Empresa. Falten els directoris (D6) | Client | Coincidència web, dades estructurades i Perfil d'Empresa |
 | P8 | **Decisions de redirecció:** `/estructuras/`, `/motores/` (C2), feeds, `/cat/` i 12 adreces de fotos del WordPress | Pendent | Director i client | `npm run check:redirects` sense regles «per decidir» |
 | P9 | **Crèdits de Netlify** per als desplegaments de producció | Pendent de confirmar | Director o client | El panell mostra saldo i els desplegaments de producció no es salten |
 | P10 | **Search Console:** accés, exportació de dades del WordPress i verificació per registre TXT de domini | Pendent d'accés | Client | Exportació desada i propietat de domini verificada |

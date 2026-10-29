@@ -29,6 +29,6 @@ Per a particulars, fabriquem i instal·lem estructures, treballem amb portes i a
 
 ## Contacta amb l'equip
 
-Ens trobaràs al carrer d'Eugeni d'Ors, 59, 08720 Vilafranca del Penedès, Barcelona. Si tens un projecte o una incidència, el formulari et permet dirigir la consulta a la branca corresponent.
+Ens trobaràs al carrer d'Eugeni d'Ors, 59-61, 08720 Vilafranca del Penedès, Barcelona. Si tens un projecte o una incidència, el formulari et permet dirigir la consulta a la branca corresponent.
 
 [Contacta amb nosaltres](/contacte/)

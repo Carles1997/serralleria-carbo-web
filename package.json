@@ -15,18 +15,23 @@
     "verify": "npm run check && npm run build && npm run check:references",
     "astro": "astro",
     "check:links": "node scripts/check-links.mjs",
-    "check:redirects": "node scripts/check-redirects.mjs"
+    "check:redirects": "node scripts/check-redirects.mjs",
+    "check:redirects:live": "node scripts/check-live-redirects.mjs",
+    "check:i18n": "node scripts/check-i18n.mjs",
+    "test:contact": "node --test scripts/test-contact.mjs"
   },
   "allowScripts": {
     "esbuild": true
   },
   "dependencies": {
+    "@netlify/blobs": "10.7.13",
     "@tailwindcss/vite": "4.3.3",
     "astro": "7.3.5",
     "tailwindcss": "4.3.3"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
+    "axe-core": "4.14.0",
     "typescript": "6.0.3"
   }
 }

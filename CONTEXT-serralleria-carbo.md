@@ -106,7 +106,7 @@ Les quatre categories de particulars (Urgències, Estructures, Automatismes, Mob
 - Contacte industrial: Jordi Mas · 605 779 694 · gerencia@serralleriacarbo.com · Vilafranca del Penedès.
 
 **Dades de contacte generals (CONFIRMADES a l'auditoria de la Fase 0):**
-- Adreça: Carrer d'Eugeni d'Ors, 59, 08720 Vilafranca del Penedès, Barcelona.
+- Adreça: Carrer d'Eugeni d'Ors, 59-61, 08720 Vilafranca del Penedès, Barcelona (adreça definitiva, director, 23/10/2026; abans constava el 59).
 - Telèfon fix: 93 890 27 94 · Mòbil/WhatsApp: 630 661 908.
 - **Telèfon principal de la nova web:** 630 661 908. Acció principal cap a WhatsApp amb missatge inicial preemplenat; el text exacte queda proposat a `content/ca/ui.md`. A Urgències també ha d'existir una acció de trucada directa, d'acord amb el user journey validat. El fix continua com a dada de contacte secundària. El contacte industrial de Jordi Mas continua separat.
 - Correu general: carbo@serralleriacarbo.com.

@@ -1,0 +1,26 @@
+Fil principal (9764, 30028), fins a 6000 ms des de la navegació
+Temps propi per esdeveniment (ms):
+    3626.2  Layout
+     433.4  Paint
+     419.2  UpdateLayoutTree
+     383.8  RunTask
+     215.1  DocumentLoader::CreateParserPostCommit
+      78.0  PrePaint
+      67.8  ParseHTML
+      47.4  HTMLDocumentParser::MaybeFetchQueuedPreloads
+      36.0  DecodedDataDocumentParser::AppendBytes
+      32.7  PaintImage
+      23.6  Layerize
+      18.7  EvaluateScript
+      18.1  ParseAuthorStyleSheet
+      16.5  RunMicrotasks
+      15.0  DocumentLoader::CommitNavigation
+      11.6  v8.evaluateModule
+      11.3  v8.compileModule
+      10.5  v8.compile
+Tasques de més de 50 ms (inici ms, durada ms, fills principals):
+      414     429  DocumentLoader::CommitNavigation 333, DocumentLoader::StartLoadingResponse 310, DocumentLoader::CreateParserPostCommit 309, NavigationBodyLoader::StartLoadingBody 93
+      900      65  ParseHTML 63, EvaluateScript 29, v8.compile 11, HTMLDocumentParser::DocumentElementAvailable 2
+     1211     265  UpdateLayoutTree 261, v8.evaluateModule 1, EventDispatch 0, RunMicrotasks 0
+     1487    2466  Layout 1813, Paint 507, PrePaint 77, PaintImage 33
+     4003    1977  Layout 1812, UpdateLayoutTree 150, EventDispatch 1

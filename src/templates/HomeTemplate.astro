@@ -8,7 +8,7 @@
 // Bloc 1 del pla d'afinament (fases/fase-5/FASE5-pla-millora-integral.md): sense rètols numerats
 // decoratius ni etiquetes que repeteixen el nom de la rajola; el mosaic de serveis no torna a
 // presentar les branques del doble accés.
-import { Picture, getImage } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -18,7 +18,6 @@ import Inlines from '../components/Inlines.astro';
 import type { Page } from '../i18n/pages';
 import { useUi } from '../i18n/ui';
 import { sitePhotography } from '../config/photography';
-import logo from '../assets/branding/carbo-logo.png';
 import { labelledItem, links, listItems, one, paragraphs, parseMarkdown, sameText } from '../lib/markdown';
 
 interface Props {
@@ -40,9 +39,18 @@ const [particulars, industrial, guide, numbers, workshop, services, contact] = d
 const [titleMain, ...titleRest] = doc.title.split(',');
 const titleWords = titleMain.trim().split(' ');
 const titleSmall = titleRest.join(',').trim();
+const originYear = titleSmall.match(/\b\d{4}$/)?.[0];
+const originLabel = originYear ? titleSmall.slice(0, -originYear.length).trim() : titleSmall;
 
 const particularsCopy = one(paragraphs(particulars.blocks), 'un paràgraf a la secció Particulars');
 const particularsLink = one(links(particulars.blocks), 'un enllaç a la secció Particulars');
+// Particulars en dues línies, com Industrial (director, 15/10/2026): el que fem, fins als dos punts, amb
+// l'estil del missatge d'Industrial, i la llista de feines amb l'estil de l'abast. home.md no canvia.
+const particularsText = particularsCopy.length === 1 && particularsCopy[0].type === 'text' ? particularsCopy[0].value : '';
+const particularsColon = particularsText.indexOf(': ');
+if (particularsColon < 0) throw new Error('El paràgraf de Particulars de home.md ha de tenir la forma «què fem: llista de feines».');
+const particularsSlogan = particularsText.slice(0, particularsColon + 1);
+const particularsScope = particularsText.slice(particularsColon + 2);
 const [industrialSlogan, industrialScope] = paragraphs(industrial.blocks);
 if (!industrialSlogan || !industrialScope) throw new Error("La secció Industrial necessita el missatge de marca i l'abast de la producció.");
 const industrialLink = one(links(industrial.blocks), 'un enllaç a la secció Industrial');
@@ -58,6 +66,8 @@ const guidePaths = [
 ];
 const strayBranch = guidePaths.find((path) => path.branch !== path.expected);
 if (strayBranch) throw new Error(`«${guide.heading}»: «${strayBranch.branch}» ha de ser el nom de la branca («${strayBranch.expected}»).`);
+// Ordre de presentació (director, 19/10/2026): Industrial primer. home.md conserva l'ordre del text.
+const guideOrder = [guidePaths[1], guidePaths[0]];
 
 // Xifres: dada i etiqueta de home.md; ui.ts només hi afegeix el valor numèric per al comptador.
 sameText(t.numbers.heading, numbers.heading, 'home.md');
@@ -88,40 +98,46 @@ const [doorTile, structuresTile, furnitureTile, repairsTile, industrialTile] = t
 const contactText = one(paragraphs(contact.blocks), 'un paràgraf a la secció de contacte');
 const contactLink = one(links(contact.blocks), 'un enllaç a la secció de contacte');
 
-// Logotip en marca d'aigua a l'entrada (identitat, director 06/10/2026): mateixa màscara que BrandLogo.
-const heroMark = await getImage({ src: logo, width: 840, format: 'webp' });
 const pathSizes = '(max-width: 760px) 100vw, 50vw';
 const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split(/\s+/).map((word) => word.length))}`;
 const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 ---
 
 <BaseLayout page={page}>
-  <SiteHeader ui={ui} homeHref={page.data.route ?? '/'} nav={t.nav} mobileExtra={t.mobileExtra} />
+  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} />
 
   <main id="contingut" class="home">
-    <section class="hero-intro" aria-labelledby="home-title" data-surface="light">
-      <span class="hero-mark" aria-hidden="true" style={`--brand-mask: url("${heroMark.src}")`}></span>
+    <section class="hero-intro" aria-labelledby="home-title" data-surface="dark">
       <div class="hero-main shell">
         <h1 id="home-title">
           {
             titleWords.map((word, index) => (
               <span class="hero-line" style={`--i:${index}`}>
                 {word}
-                {index === titleWords.length - 1 && titleSmall && <span class="hero-stop">,</span>}{' '}
+                {index === titleWords.length - 1 && <span class="hero-stop">,</span>}
+                {' '}
               </span>
             ))
           }
-          {titleSmall && <small class="enter" style={`--i:${titleWords.length}`}>{titleSmall}</small>}
+          {/* Lector de pantalla (tasca 8.8): l'H1 complet de home.md. La ubicació es veu al paràgraf de sota,
+              que queda amagat per al lector perquè no es llegeixi dues vegades. */}
+          {titleSmall && <span class="sr-only">{titleSmall}</span>}
         </h1>
+        {titleSmall && (
+          <p class="hero-origin enter" style={`--i:${titleWords.length}`} aria-hidden="true">
+            <span>{originLabel}{' '}</span>
+            {originYear && <strong>{originYear}</strong>}
+          </p>
+        )}
       </div>
     </section>
 
-    <section class="paths" aria-label={t.paths.label} data-surface="light">
+    <section class="paths" aria-label={t.paths.label} data-surface="dark">
       <div class="path-guide shell">
         <h2 id="path-guide-title" class="path-guide-title">{guide.heading}</h2>
         <ul class="path-guide-list">
           {
-            guidePaths.map((path) => (
+            guideOrder.map((path) => (
               <li>
                 <a href={path.href}>
                   <span class="path-guide-question">{path.question}</span>
@@ -138,18 +154,8 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
         </p>
       </div>
       <div class="paths-grid">
-        <a class="path path-particulars" href={particularsLink.href} data-reveal="clip">
-          <Picture src={sitePhotography.home.particulars} alt="" widths={[640, 960, 1280, 1672]} sizes={pathSizes} formats={['avif', 'webp']} fallbackFormat="jpg" priority />
-          <span class="path-shade" aria-hidden="true"></span>
-          <span class="path-top">
-            <span class="corner" aria-hidden="true"><span class="arrow">↗</span></span>
-          </span>
-          <span class="path-kicker">{t.paths.particulars.kicker}</span>
-          <strong class="path-title">{particulars.heading}</strong>
-          <span class="path-copy"><Inlines inlines={particularsCopy} /></span>
-          <span class="path-action">{particularsLink.label} <span class="arrow" aria-hidden="true">↗</span></span>
-        </a>
-        <a class="path path-industrial" href={industrialLink.href} data-reveal="clip" style="--i:2">
+        {/* Industrial a l'esquerra (director, 19/10/2026): és la primera targeta i la de càrrega ràpida (path-lead). */}
+        <a class="path path-industrial path-lead" href={industrialLink.href} data-surface="dark">
           <Picture src={sitePhotography.home.industrial} alt="" widths={[640, 960, 1280, 1536]} sizes={pathSizes} formats={['avif', 'webp']} fallbackFormat="jpg" priority />
           <span class="path-shade" aria-hidden="true"></span>
           <span class="path-top">
@@ -158,10 +164,24 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
           <span class="path-kicker">{t.paths.industrial.kicker}</span>
           <strong class="path-title">{industrial.heading}</strong>
           <span class="path-copy">
-            <span class="path-slogan"><Inlines inlines={industrialSlogan} /></span>
+            <span class="path-slogan"><Inlines inlines={industrialSlogan} /></span>{' '}
             <span class="path-scope"><Inlines inlines={industrialScope} /></span>
           </span>
           <span class="path-action">{industrialLink.label} <span class="arrow" aria-hidden="true">↗</span></span>
+        </a>
+        <a class="path path-particulars" href={particularsLink.href} data-reveal="clip" style="--i:2" data-surface="dark">
+          <Picture src={sitePhotography.home.particulars} alt="" widths={[640, 960, 1280, 1672]} sizes={pathSizes} formats={['avif', 'webp']} fallbackFormat="jpg" priority />
+          <span class="path-shade" aria-hidden="true"></span>
+          <span class="path-top">
+            <span class="corner" aria-hidden="true"><span class="arrow">↗</span></span>
+          </span>
+          <span class="path-kicker">{t.paths.particulars.kicker}</span>
+          <strong class="path-title">{particulars.heading}</strong>
+          <span class="path-copy">
+            <span class="path-slogan">{particularsSlogan}</span>{' '}
+            <span class="path-scope">{particularsScope}</span>
+          </span>
+          <span class="path-action">{particularsLink.label} <span class="arrow" aria-hidden="true">↗</span></span>
         </a>
       </div>
     </section>
@@ -197,11 +217,12 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
     <section class="company workshop" id="empresa" aria-labelledby="company-title" data-surface="light">
       <div class="company-image" data-reveal="clip">
-        <Picture src={sitePhotography.home.company} alt="" widths={[480, 720, 960, 1200]} sizes="(max-width: 760px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+        <Picture src={sitePhotography.home.company} alt="" widths={[480, 720, 960, 1200]} sizes="(max-width: 760px) 100vw, 58vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
       </div>
       <div class="company-content">
         <h2 id="company-title" data-reveal style={fit(workshop.heading)}>
-          {workshopHeading.map((line, index) => (index ? [' ', <br />, line] : line))}
+          {/* El punt entre línies només per al lector de pantalla (tasca 8.8): visualment, cada frase és una línia. */}
+          {workshopHeading.map((line, index) => (index ? [<span class="sr-only">.</span>, ' ', <br />, line] : line))}
         </h2>
         <p class="workshop-text" data-reveal style="--i:1"><Inlines inlines={workshopText} /></p>
         <dl class="workshop-rows" data-reveal style="--i:2">
@@ -210,15 +231,37 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
       </div>
     </section>
 
-    <section class="services" id="serveis" aria-labelledby="services-title" data-surface="light">
+    <section class="services surface-brand-grey" id="serveis" aria-labelledby="services-title" data-surface="light">
       <div class="shell">
         <div class="section-lead services-lead">
           <h2 id="services-title" data-reveal style={fit(services.heading)}>{services.heading}</h2>
           <p data-reveal style="--i:2"><Inlines inlines={servicesLead} /></p>
         </div>
         <div class="offer-grid">
+          {/* Industrial primer (director, 19/10/2026), com als camins de dalt. */}
           <div class="offer-branch">
             <div class="offer-branch-heading" data-reveal>
+              <span>{t.services.industrial.eyebrow}</span>
+              <h3>{t.services.industrial.title}</h3>
+            </div>
+            <a class="tile tile-photo tile-industrial" href={industrialTile.href} data-reveal="clip" style="--i:1">
+              <Picture src={sitePhotography.home.industrialTile} alt="" widths={[640, 960, 1280]} sizes="(max-width: 1000px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+              <span class="tile-shade" aria-hidden="true"></span>
+              <span class="tile-top"><span class="corner" aria-hidden="true"><span class="arrow">↗</span></span></span>
+              <span class="industrial-content">
+                <strong>{industrialTile.label}</strong>
+                <span class="industrial-detail">{industrialTile.detail}</span>
+                <span class="industrial-products">
+                  {t.services.industrial.products.map((product) => <span>{product}</span>)}
+                </span>
+              </span>
+            </a>
+            <a class="offer-overview" href={industrialLink.href}>
+              {t.services.industrial.overview} <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div class="offer-branch">
+            <div class="offer-branch-heading" data-reveal style="--i:1">
               <span>{t.services.particulars.eyebrow}</span>
               <h3>{t.services.particulars.title}</h3>
             </div>
@@ -250,27 +293,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
             </div>
             <a class="offer-overview" href={particularsLink.href}>
               {t.services.particulars.overview} <span class="arrow" aria-hidden="true">↗</span>
-            </a>
-          </div>
-          <div class="offer-branch">
-            <div class="offer-branch-heading" data-reveal style="--i:1">
-              <span>{t.services.industrial.eyebrow}</span>
-              <h3>{t.services.industrial.title}</h3>
-            </div>
-            <a class="tile tile-photo tile-industrial" href={industrialTile.href} data-reveal="clip" style="--i:2">
-              <Picture src={sitePhotography.home.industrialTile} alt="" widths={[640, 960, 1280]} sizes="(max-width: 1000px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
-              <span class="tile-shade" aria-hidden="true"></span>
-              <span class="tile-top"><span class="corner" aria-hidden="true"><span class="arrow">↗</span></span></span>
-              <span class="industrial-content">
-                <strong>{industrialTile.label}</strong>
-                <span class="industrial-detail">{industrialTile.detail}</span>
-                <span class="industrial-products">
-                  {t.services.industrial.products.map((product) => <span>{product}</span>)}
-                </span>
-              </span>
-            </a>
-            <a class="offer-overview" href={industrialLink.href}>
-              {t.services.industrial.overview} <span class="arrow" aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
@@ -307,38 +329,22 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     display: inline-block;
   }
 
-  /* Entrada: només el titular de marca, en gris clar. */
+  /* Entrada de la referència: marca blanca, coma bordeus i origen discret a la dreta. */
   .hero-intro {
     position: relative;
     isolation: isolate;
     overflow: hidden;
     padding-block: clamp(1.75rem, 1.1rem + 2vw, 3rem) clamp(1.5rem, 1rem + 1.4vw, 2.25rem);
-    background: var(--surface-grey);
-    color: var(--ink);
-  }
-
-  /* Identitat: el logotip, molt suau, ocupa l'espai buit de la dreta de l'entrada. Decoratiu. */
-  .hero-mark {
-    position: absolute;
-    z-index: -1;
-    right: max(var(--page-gutter), calc((100vw - 1600px) / 2 + var(--page-gutter)));
-    bottom: 50%;
-    width: clamp(260px, 34vw, 560px);
-    aspect-ratio: 1983 / 793;
-    background-color: var(--action);
-    opacity: 0.09;
-    translate: 0 50%;
-    -webkit-mask: var(--brand-mask) center / contain no-repeat;
-    mask: var(--brand-mask) center / contain no-repeat;
-    pointer-events: none;
+    background: var(--palette-dark);
+    color: var(--palette-white);
   }
 
   /* Titular de marca a la mida de la maqueta validada (director, 06/10/2026: és l'únic titular que
      conserva l'escala anterior). */
   h1 {
-    font-size: clamp(4.1rem, 7.1vw, 7.4rem);
+    font-size: clamp(4.1rem, 7.1vw, 9rem);
     font-weight: 700;
-    letter-spacing: -0.075em;
+    letter-spacing: -0.06em;
     /* Interlineat amb aire per a l'accent de «CARBÓ» (director, 06/10/2026). */
     line-height: 0.9;
     text-transform: uppercase;
@@ -349,36 +355,52 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     white-space: nowrap;
   }
 
-  .hero-stop {
-    color: var(--action);
+  .hero-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: clamp(1.5rem, 4vw, 4rem);
   }
 
-  h1 small {
-    display: block;
-    margin-top: 1.75rem;
-    color: var(--ink-muted);
-    font-size: clamp(1.15rem, 1.7vw, 1.75rem);
+  .hero-stop { color: var(--action); }
+
+  /* Ubicació i any en una sola línia, sense requadre ni una segona escala de titular. */
+  .hero-origin {
+    margin: 0;
+    padding: 0 0 .25rem;
+    color: var(--palette-white);
+    font-size: clamp(1rem, 1.45vw, 1.5rem);
     font-weight: 500;
-    letter-spacing: -0.015em;
-    line-height: 1.15;
-    text-transform: none;
+    letter-spacing: -.015em;
+    line-height: 1.3;
+    text-align: right;
+    white-space: nowrap;
   }
 
-  /* Entrada del titular: cada línia puja des de darrere d'una màscara a la seva pròpia base, una
-     després de l'altra; el subtítol arriba quan acaben. Només amb CSS i sense moviment reduït. */
+  .hero-origin strong {
+    color: var(--action);
+    font-size: 1.755em;
+    font-weight: 600;
+  }
+
+  /* Cada línia entra primer; el bloc d'origen arriba després. Sense moviment reduït. */
   @media (prefers-reduced-motion: no-preference) {
     .hero-line {
       animation: title-rise 900ms var(--ease-out-strong) calc(var(--i, 0) * 120ms + 60ms) backwards;
     }
 
-    h1 small.enter {
+    .hero-origin.enter {
       animation-delay: 360ms;
     }
   }
 
   /* Com triar el camí: una sola banda a escriptori; per sota de 1100 px les opcions s'apilen. */
   .paths {
-    background: var(--surface-grey);
+    --ink: var(--palette-white);
+    --ink-muted: var(--palette-light);
+    --line-on-light: var(--palette-mid);
+    --line-strong-on-light: var(--palette-light);
+    background: var(--palette-dark);
   }
 
   .path-guide {
@@ -415,10 +437,10 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
   .path-guide-list a {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 0.6rem;
     min-height: 44px;
-    padding-block: 0.35rem;
+    padding-block: 0;
     white-space: nowrap;
   }
 
@@ -432,21 +454,25 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    padding-bottom: 0.1rem;
-    border-bottom: 1px solid var(--action);
     color: var(--ink);
     font-size: 0.95rem;
     font-weight: 700;
+    line-height: 1.35;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong-on-light);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
     white-space: nowrap;
   }
 
   .path-guide-branch .arrow {
-    color: var(--action);
+    color: var(--ink);
   }
 
   .path-guide-list a:hover .path-guide-branch,
   .path-guide-list a:focus-visible .path-guide-branch {
-    color: var(--action);
+    color: var(--ink);
+    text-decoration-color: currentColor;
   }
 
   .path-guide-help {
@@ -460,6 +486,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     min-height: 44px;
     color: var(--ink-muted);
     font-size: 0.88rem;
+    line-height: 1.35;
     text-decoration: underline;
     text-decoration-color: var(--line-strong-on-light);
     text-underline-offset: 0.25em;
@@ -474,7 +501,16 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
   /* Doble accés fotogràfic. Files fixes (capçalera, espai, etiqueta, títol, text i acció); en dues
      columnes, subgrid comparteix les files i els títols queden alineats. */
+  /* Text de les targetes (director, 15/10/2026): la primera línia de cada camí (Particulars: el que
+     fem, fins als dos punts; Industrial: el missatge de marca) va en una sola línia, amb la mateixa
+     mida i to a les dues targetes, i la segona línia fa servir l'estil de l'abast. La línia de
+     l'acció fa la llargada de la primera línia més llarga de l'idioma, i cap text la supera.
+     --slogan-em: amplada mesurada d'aquesta línia en em (semibold), amb un petit marge. Si els
+     textos de home.md canvien, cal tornar-la a mesurar. */
   .paths-grid {
+    --path-copy-size: clamp(1rem, 0.9rem + 0.35vw, 1.15rem);
+    --slogan-em: 26;
+    --path-measure: calc(var(--slogan-em) * var(--path-copy-size));
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1px;
@@ -491,8 +527,8 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     min-height: clamp(340px, 30vw, 440px);
     overflow: hidden;
     padding: clamp(1.25rem, 2.4vw, 2.5rem);
-    background: #3c4245;
-    color: #fff;
+    background: var(--palette-dark);
+    color: var(--palette-white);
   }
 
   .path :global(img),
@@ -518,11 +554,15 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   /* Ombra concentrada darrere del text (baix) i molt suau a dalt, perquè la fotografia es reconegui. */
+  /* Vel reforçat on hi ha text (accessibilitat 8.8, 16/10/2026): contrast WCAG AA del text blanc sobre la fotografia.
+     Fosc a l'esquerra i a la meitat inferior, on hi ha el text; la fotografia es manté clara a dalt a la dreta. */
   .path-shade {
     position: absolute;
     z-index: -2;
     inset: 0;
-    background: linear-gradient(180deg, rgb(9 10 12 / 0.32), rgb(9 10 12 / 0.04) 28%, rgb(9 10 12 / 0.3) 52%, rgb(9 10 12 / 0.86));
+    background:
+      linear-gradient(90deg, rgb(43 43 43 / 0.45), rgb(43 43 43 / 0) 78%),
+      linear-gradient(180deg, rgb(43 43 43 / 0.3), rgb(43 43 43 / 0.08) 18%, rgb(43 43 43 / 0.5) 30%, rgb(43 43 43 / 0.78) 52%, rgb(43 43 43 / 0.9));
   }
 
   .path-top {
@@ -548,31 +588,13 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     font-size: 1.3rem;
   }
 
-  /* Identitat: filet de color abans del públic de cada camí (bordeus a Particulars, plata a Industrial). */
-  .path-kicker::before {
-    display: block;
-    width: 2.25rem;
-    height: 3px;
-    margin-bottom: 0.65rem;
-    background: var(--action);
-    content: "";
-  }
-
-  .path-industrial .path-kicker::before {
-    background: linear-gradient(90deg, #f8faf7 0%, #a2aca5 35%, #fbfdf9 60%, #7e8983 100%);
-  }
-
-  .path-particulars .path-kicker::before {
-    background: #a3474e;
-  }
-
   .path-kicker {
     grid-row: 3;
     margin-bottom: 0.6rem;
     font-size: var(--type-meta);
     font-weight: 700;
     letter-spacing: var(--tracking-meta);
-    text-shadow: 0 1px 10px rgb(0 0 0 / 0.45);
+    text-shadow: 0 1px 10px rgb(43 43 43 / 0.45);
     text-transform: uppercase;
   }
 
@@ -585,32 +607,41 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     text-transform: uppercase;
   }
 
+  .paths-grid:lang(es) {
+    --slogan-em: 28;
+  }
+
+  .paths-grid:lang(en) {
+    --slogan-em: 28.4;
+  }
+
   .path-copy {
     grid-row: 5;
-    max-width: 44ch;
+    /* Mida de la primera línia; cqi es resol als fills, respecte d'aquest contenidor. */
+    --slogan-size: clamp(1rem, 100cqi / var(--slogan-em), var(--path-copy-size));
+    container-type: inline-size;
+    width: min(100%, var(--path-measure));
     margin-top: 0.9rem;
-    font-size: clamp(1rem, 0.9rem + 0.35vw, 1.15rem);
+    font-size: var(--path-copy-size);
     line-height: 1.4;
-    text-shadow: 0 1px 12px rgb(0 0 0 / 0.4);
+    text-shadow: 0 1px 12px rgb(43 43 43 / 0.4);
   }
 
-  /* Missatge de marca en una línia quan la targeta ho permet; en pantalles estretes es parteix. */
-  .path-industrial .path-copy {
-    max-width: none;
-  }
-
+  /* Una sola línia: si la targeta és més estreta que la línia, la lletra s'hi ajusta. Per sota de
+     16 px (mòbils i tauleta vertical, la mida d'abans) es manté llegible i es parteix en línies equilibrades. */
   .path-slogan {
     display: block;
+    font-size: var(--slogan-size);
     font-weight: 600;
     text-wrap: balance;
   }
 
   .path-scope {
     display: block;
-    max-width: 46ch;
     margin-top: 0.5rem;
-    color: #e4e7e6;
-    font-size: 0.9em;
+    color: var(--palette-light);
+    /* Sempre un 10 % més petita que la primera línia, també quan aquesta s'ajusta a la targeta. */
+    font-size: calc(var(--slogan-size) * 0.9);
     line-height: 1.45;
   }
 
@@ -620,7 +651,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    width: min(100%, 420px);
+    width: min(100%, var(--path-measure));
     min-height: 48px;
     margin-top: 1.1rem;
     padding: 0.6rem 0;
@@ -649,10 +680,21 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
   /* Xifres i taller: un sol grup en blanc trencat («qui som»). */
   .numbers {
-    padding-block: var(--space-section);
+    padding-block: clamp(1.5rem, 2.5vw, 2.25rem);
     background: var(--surface-paper);
     color: var(--ink);
   }
+
+  /* La confiança és una franja de dades; no repeteix la composició de les seccions d'oferta. */
+  .numbers > .shell {
+    display: grid;
+    grid-template-columns: minmax(150px, .65fr) minmax(0, 3fr);
+    align-items: center;
+    gap: 1.5rem clamp(2rem, 4vw, 4rem);
+  }
+
+  .numbers .section-lead { display: block; padding: 0; }
+  .numbers .section-lead h2 { font-size: var(--type-h4); line-height: 1.1; letter-spacing: -.02em; }
 
   .section-lead {
     display: grid;
@@ -680,7 +722,6 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   .number-grid {
     display: grid;
     grid-template-columns: 1.3fr repeat(3, minmax(0, 1fr));
-    border-top: 1px solid var(--line-on-light);
   }
 
   .number-item {
@@ -688,7 +729,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     flex-direction: column;
     justify-content: space-between;
     gap: 0.6rem;
-    padding: 1.1rem 1.2rem 0;
+    padding: 0 1.2rem;
     border-left: 1px solid var(--line-on-light);
   }
 
@@ -734,8 +775,8 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   /* Taller: fotografia aprovada a l'esquerra i, a la dreta, fabricació, muntatge i àrea en un grup. */
   .workshop {
     display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    background: var(--surface-paper);
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    background: var(--surface-white);
     color: var(--ink);
   }
 
@@ -745,7 +786,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     min-width: 0;
     min-height: clamp(260px, 24vw, 360px);
     overflow: hidden;
-    background: #c9cecc;
+    background: var(--palette-light);
   }
 
   .company-image :global(img) {
@@ -754,7 +795,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: saturate(0.85) contrast(1.04);
+    filter: saturate(0.98) contrast(1.02);
   }
 
   .company-content {
@@ -770,7 +811,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
      línies a escriptori. */
   .company-content h2 {
     margin: 0 0 var(--space-lead);
-    font-size: clamp(1.75rem, 1.1rem + 2vw, 2.9rem);
+    font-size: clamp(1.75rem, 1.1rem + 1.5vw, 2.25rem);
     font-weight: 700;
     letter-spacing: var(--display-tracking);
     line-height: var(--display-leading);
@@ -837,7 +878,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   .offer-branch-heading > span:first-child {
-    color: var(--action);
+    color: var(--ink-muted);
     font-size: var(--type-meta);
     font-weight: 700;
     letter-spacing: var(--tracking-meta);
@@ -874,8 +915,8 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     min-height: clamp(190px, 16vw, 240px);
     overflow: hidden;
     padding: clamp(1rem, 1.5vw, 1.5rem);
-    background: #3c4245;
-    color: #fff;
+    background: var(--palette-dark);
+    color: var(--palette-white);
   }
 
   .tile-top {
@@ -913,7 +954,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
 
   .tile-bottom > span {
     min-height: calc(2 * 1.28em);
-    color: #e2e5e4;
+    color: var(--palette-light);
     font-size: 0.87rem;
     line-height: 1.28;
   }
@@ -930,7 +971,8 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     position: absolute;
     z-index: -2;
     inset: 0;
-    background: linear-gradient(180deg, rgb(8 10 11 / 0.3), rgb(8 10 11 / 0.05) 36%, rgb(8 10 11 / 0.85));
+    /* Vel reforçat on hi ha text (accessibilitat 8.8, 16/10/2026): contrast WCAG AA del text blanc sobre la fotografia. */
+    background: linear-gradient(180deg, rgb(43 43 43 / 0.3), rgb(43 43 43 / 0.06) 26%, rgb(43 43 43 / 0.68) 54%, rgb(43 43 43 / 0.92));
   }
 
   .tile-industrial {
@@ -939,7 +981,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   .tile-industrial .tile-shade {
-    background: linear-gradient(180deg, rgb(8 10 11 / 0.35), rgb(8 10 11 / 0.04) 32%, rgb(8 10 11 / 0.7) 70%, rgb(8 10 11 / 0.92));
+    background: linear-gradient(180deg, rgb(43 43 43 / 0.35), rgb(43 43 43 / 0.1) 22%, rgb(43 43 43 / 0.72) 50%, rgb(43 43 43 / 0.94));
   }
 
   .industrial-content {
@@ -961,7 +1003,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   .industrial-detail {
     max-width: 44ch;
     margin-top: 0.6rem;
-    color: #e2e5e4;
+    color: var(--palette-light);
     font-size: 0.93rem;
     line-height: 1.4;
   }
@@ -977,7 +1019,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   .industrial-products > span {
     padding: 0.3rem 0.6rem;
     border: 1px solid rgb(255 255 255 / 0.55);
-    color: #f0f2f1;
+    color: var(--palette-white);
     font-size: 0.82rem;
     font-weight: 600;
     line-height: 1.2;
@@ -997,12 +1039,13 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   }
 
   .offer-overview .arrow {
-    color: var(--action);
+    color: var(--ink);
     font-size: 1.15rem;
   }
 
   .offer-overview:hover {
-    color: var(--action);
+    color: var(--ink);
+    border-bottom-color: currentColor;
   }
 
   /* Fotografia: el pas de blanc i negre a color queda al doble accés, on comunica una elecció.
@@ -1054,15 +1097,13 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
   .path:focus-visible .corner,
   .tile:hover .corner,
   .tile:focus-visible .corner {
-    background: #fff;
-    color: var(--ink);
+    background: var(--palette-white);
+    color: var(--palette-dark);
   }
 
-  @media (hover: none) {
-    .path :global(img) {
-      filter: grayscale(0.25);
-    }
-  }
+  /* La icona no hereta la tinta del bloc pare: blanc sobre foto, grafit sobre el requadre blanc. */
+  .corner .arrow { color: inherit; }
+  .corner { color: var(--palette-white); }
 
   @media (prefers-reduced-motion: reduce) {
     .path:hover :global(img),
@@ -1078,6 +1119,25 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     .path.is-revealed :is(.path-top, .path-kicker, .path-title, .path-copy, .path-action) {
       animation: reveal-rise-soft 520ms var(--ease-out-strong) backwards;
       animation-delay: calc(var(--i, 0) * var(--stagger) + 120ms + var(--j, 0) * 45ms);
+    }
+
+    /* La primera targeta (path-lead; Industrial des del 19/10/2026) és l'element LCP en mòbil i escriptori i
+       sempre és a la primera pantalla.
+       Entra amb CSS des del primer pintat, amb la mateixa animació que [data-reveal='clip'] (fos breu,
+       fotografia que s'assenta i textos escalonats), sense esperar el JavaScript de revelació: amb
+       l'ocultació fins a la revelació, l'LCP mòbil arribava uns 2 s després del primer pintat
+       (fases/fase-6/FASE6-bloc2-rendiment.md). La segona targeta conserva la revelació. */
+    .path-lead {
+      animation: reveal-fade 520ms var(--ease-out-strong) backwards;
+    }
+
+    .path-lead :global(img) {
+      animation: settle-image 900ms var(--ease-out-strong) backwards;
+    }
+
+    .path-lead :is(.path-top, .path-kicker, .path-title, .path-copy, .path-action) {
+      animation: reveal-rise-soft 520ms var(--ease-out-strong) backwards;
+      animation-delay: calc(120ms + var(--j, 0) * 45ms);
     }
 
     .path-kicker {
@@ -1166,15 +1226,20 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     }
   }
 
+  @media (max-width: 1000px) {
+    .hero-main { grid-template-columns: 1fr; gap: 1.5rem; }
+    .hero-origin { font-size: clamp(.8rem, 2.8vw, 1.1rem); }
+  }
+
   @media (max-width: 760px) {
-    h1 small {
-      margin-top: 1.25rem;
-      font-size: 1.18rem;
+    /* Mòbil: el text de la targeta ocupa més alçada; vel més dens des del terç superior (8.8). */
+    .path-shade {
+      background:
+        linear-gradient(90deg, rgb(43 43 43 / 0.58), rgb(43 43 43 / 0.12) 85%),
+        linear-gradient(180deg, rgb(43 43 43 / 0.3), rgb(43 43 43 / 0.1) 14%, rgb(43 43 43 / 0.64) 28%, rgb(43 43 43 / 0.82) 50%, rgb(43 43 43 / 0.92));
     }
 
-    .hero-mark {
-      display: none;
-    }
+    h1 { font-size: min(16vw, calc((100vw - 2 * var(--page-gutter)) / 6)); }
 
     .paths-grid {
       grid-template-columns: 1fr;
@@ -1252,7 +1317,7 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
      mida de la maqueta per a mòbils petits. */
   @media (max-width: 360px) {
     h1 {
-      font-size: 3.42rem;
+      font-size: calc((100vw - 2 * var(--page-gutter)) / 6);
     }
 
     .path-kicker {
@@ -1263,5 +1328,11 @@ const tileSizes = '(max-width: 760px) 50vw, (max-width: 1000px) 50vw, 25vw';
     .tile {
       padding: 0.75rem;
     }
+  }
+
+  @media (max-width: 900px) {
+    .numbers > .shell { grid-template-columns: 1fr; gap: 1rem; }
+    .numbers .section-lead h2 { font-size: var(--type-h4); }
+    .numbers h2 br { display: none; }
   }
 </style>

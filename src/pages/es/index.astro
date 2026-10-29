@@ -1,0 +1,9 @@
+---
+// Versió en castellà (08/10/2026): mateixa plantilla que la ruta catalana, amb content/es/.
+import HomeTemplate from '../../templates/HomeTemplate.astro';
+import { getPage } from '../../i18n/pages';
+
+const page = await getPage('home', 'es');
+---
+
+<HomeTemplate page={page} />

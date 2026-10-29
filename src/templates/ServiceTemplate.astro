@@ -9,6 +9,7 @@
 //   urgent   sortida per avaries amb text del contingut
 //   direct   trucada i WhatsApp com a accions principals (variant d'incidència)
 //   contact  text i enllaç del bloc final de contacte
+//   series   pont editorial propi cap a fabricació per a empreses i obra
 // Seccions: entrada → [galeria, clar] → procés (fosc) → [relacionat, clar] → [avaries] → contacte.
 import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -31,7 +32,7 @@ import './service.css';
 // Bloc 3 del pla d'afinament: sense etiquetes sobre la H1 i els H2 (repetien el titular o el títol
 // del contingut) ni rètol al bloc de contacte; rols tipogràfics i superfícies de styles/roles.css.
 
-type Role = 'process' | 'works' | 'related' | 'urgent' | 'direct' | 'contact';
+type Role = 'process' | 'works' | 'related' | 'urgent' | 'direct' | 'contact' | 'series';
 interface ServiceConfig {
   sections: Role[];
   hero: { title: string[]; cta?: string; hours?: string };
@@ -77,7 +78,7 @@ const briefService = pageId.replace('particulars-', '');
 if (!ui.contactPage.form.fields.services.some((service) => service.value === briefService)) {
   throw new Error(`El servei «${briefService}» no existeix al desplegable del formulari de contacte.`);
 }
-const briefHref = `/contacte/?tipus=particular&servei=${briefService}`;
+const briefHref = `${ui.routes.contact}?tipus=particular&servei=${briefService}`;
 const byRole = new Map<Role, Section>(config.sections.map((role, index) => [role, doc.sections[index]]));
 const intro = one(paragraphs(doc.intro), "un paràgraf d'entrada");
 const allLinks = doc.sections.flatMap((section) => links(section.blocks));
@@ -107,7 +108,16 @@ if (relatedText && relatedText.length > 1) throw new Error(`«${relatedSection?.
 const related = relatedSection && {
   heading: relatedSection.heading,
   text: relatedText?.[0],
-  links: links(relatedSection.blocks).filter((link) => !link.href.startsWith('/contacte/')),
+  links: links(relatedSection.blocks).filter((link) => !link.href.startsWith(ui.routes.contact)),
+};
+
+// El pont industrial és editorial i específic de cada servei: no fabrica «serveis» ni motors.
+const seriesSection = byRole.get('series');
+if (config.series && !seriesSection) throw new Error(`${pageId}.md necessita el pont industrial validat.`);
+const series = seriesSection && {
+  heading: seriesSection.heading,
+  text: one(paragraphs(seriesSection.blocks), `un paràgraf a «${seriesSection.heading}»`),
+  link: one(links(seriesSection.blocks), `un enllaç a «${seriesSection.heading}»`),
 };
 
 // Sortida per avaries: amb text propi si el contingut en té (urgent); si no, la compartida.
@@ -116,7 +126,7 @@ const repair = urgentSection
   ? {
       index: urgentSection.heading,
       text: one(paragraphs(urgentSection.blocks), `un paràgraf a «${urgentSection.heading}»`),
-      link: links(urgentSection.blocks).find((link) => !link.href.startsWith('/contacte/')),
+      link: links(urgentSection.blocks).find((link) => !link.href.startsWith(ui.routes.contact)),
     }
   : config.repair === false
     ? undefined
@@ -129,8 +139,8 @@ const whatsapp = directLinks.find((link) => link.href.startsWith('https://wa.me/
 const contactSection = byRole.get('contact');
 const contactText = contactSection ? one(paragraphs(contactSection.blocks), 'un paràgraf a la secció de contacte') : undefined;
 if (contactSection) sameText(config.contactHeading, contactSection.heading, `${pageId}.md`);
-const contactLink = allLinks.find((link) => link.href.startsWith('/contacte/'));
-if (!contactLink) throw new Error(`${pageId}.md necessita un enllaç a /contacte/.`);
+const contactLink = allLinks.find((link) => link.href.startsWith(ui.routes.contact));
+if (!contactLink) throw new Error(`${pageId}.md necessita un enllaç a ${ui.routes.contact}.`);
 
 const nav = ui.particulars.nav;
 const current = nav.find((item) => item.href === route);
@@ -141,7 +151,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
 ---
 
 <BaseLayout page={page}>
-  <SiteHeader ui={ui} homeHref="/" nav={nav} mobileExtra={ui.particulars.mobileExtra} collapse="wide" current={route} />
+  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} />
 
   <main id="contingut" class="structures-page">
     <section class="s-hero" aria-labelledby="s-title" data-surface="dark">
@@ -150,13 +160,13 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
       </div>
       <div class="section-shell s-hero-content">
         <nav class="s-breadcrumb enter" aria-label={shared.breadcrumb.label}>
-          <a href="/">{shared.breadcrumb.home}</a><span aria-hidden="true">/</span>
+          <a href={ui.routes.home}>{shared.breadcrumb.home}</a><span aria-hidden="true">/</span>
           <a href={shared.breadcrumb.branch.href}>{shared.breadcrumb.branch.label}</a><span aria-hidden="true">/</span>
           <span aria-current="page">{current?.label ?? doc.title}</span>
         </nav>
         <BreadcrumbData
           items={[
-            { name: shared.breadcrumb.home, href: '/' },
+            { name: shared.breadcrumb.home, href: ui.routes.home },
             { name: shared.breadcrumb.branch.label, href: shared.breadcrumb.branch.href },
             { name: current?.label ?? doc.title, href: route },
           ]}
@@ -280,7 +290,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
 
     {
       related && (
-        <section class="s-related" aria-labelledby="related-title" data-surface="light">
+        <section class:list={['s-related', { 'is-compact': !related.text }]} aria-labelledby="related-title" data-surface="light">
           <div class="section-shell s-related-inner">
             <h2 id="related-title" data-reveal style={fit(related.heading)}>
               {related.heading}
@@ -326,15 +336,15 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
     }
 
     {
-      config.series && (
-        <aside class="s-series" aria-label={shared.series.index} data-surface="dark">
+      series && (
+        <aside class="s-series" aria-label={series.heading} data-surface="dark">
           <div class="section-shell s-series-inner" data-reveal>
             <div>
-              <span class="index">{shared.series.index}</span>
-              <p>{shared.series.text}</p>
+              <span class="index">{series.heading}</span>
+              <p><Inlines inlines={series.text} /></p>
             </div>
-            <a href={shared.series.link.href}>
-              {shared.series.link.label} <span class="arrow" aria-hidden="true">↗</span>
+            <a href={series.link.href}>
+              {series.link.label} <span class="arrow" aria-hidden="true">↗</span>
             </a>
           </div>
         </aside>

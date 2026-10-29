@@ -22,13 +22,18 @@ const builtRoutes = new Set(
   Object.keys(import.meta.glob('../pages/**/*.astro'))
     .filter((file) => !file.includes('['))
     .map((file) => file.replace(/^\.\.\/pages/, '').replace(/index\.astro$/, '').replace(/\.astro$/, '/'))
-    .filter((route) => route !== '/404/'),
+    // La 404 de cada idioma (/404/, /es/404/) no és una ruta publicada.
+    .filter((route) => !/^\/([a-z]{2}\/)?404\/$/.test(route)),
 );
+
+/** La ruta la genera una pàgina .astro estàtica d'aquest build (sense comptar les legals). */
+export const isBuiltRoute = (route: string | undefined) => Boolean(route) && builtRoutes.has(route as string);
 
 // Pàgines legals: les genera src/pages/legal/[page].astro, però només si el contingut és publicable
 // (status: approved, sense publishReady: false). Com que isPublishedRoute sempre es combina amb
 // isIndexable (que exigeix aquest mateix estat), una ruta legal compta com a publicada.
-const legalRoute = /^\/legal\/[a-z0-9-]+\/$/;
+// Amb el prefix de l'idioma per a les versions no catalanes (/es/legal/…).
+const legalRoute = /^\/([a-z]{2}\/)?legal\/[a-z0-9-]+\/$/;
 
 /**
  * Una ruta és publicada si una pàgina la genera en aquest build i no està ajornada. Només les

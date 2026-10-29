@@ -2,7 +2,7 @@
 pageId: home
 route: /
 lang: ca
-status: draft
+status: approved
 seoTitle: "Serralleria a Vilafranca del Penedès | Serralleria Carbó"
 seoDescription: "Serralleria Carbó: des de 1989, treballs de serralleria per a particulars i fabricació metàl·lica per a empreses a Vilafranca del Penedès."
 ---
@@ -17,7 +17,7 @@ Instal·lacions, reparacions i peces a mida per al teu espai: baranes, escales, 
 
 ## Industrial
 
-Fabricació en sèrie. Peces exigents. Resposta industrial.
+Sèries curtes i mitjanes. Peces exigents. Resposta industrial.
 
 Estructures per a obra, sèries, peces tècniques a plànol i carros industrials, també d'una sola unitat.
 
@@ -53,7 +53,7 @@ Peces i sèries de ferro i inoxidable, amb subministrament o muntatge segons l'e
 
 Alguns exemples del que pots encarregar a cada camí.
 
-[Portes i motors](/particulars/automatismes/) · [Baranes i estructures](/particulars/estructures/) · [Mobiliari a mida](/contacte/?tipus=particular&servei=mobiliari) · [Reparacions](/particulars/urgencies/) · [Fabricació industrial](/industrial/#produccio)
+[Portes i motors](/particulars/automatismes/) · [Baranes i estructures](/particulars/estructures/) · [Mobiliari a mida](/contacte/?tipus=particular&servei=mobiliari) · [Reparacions](/particulars/reparacions/) · [Fabricació industrial](/industrial/#produccio)
 
 ## Parlem del teu encàrrec
 

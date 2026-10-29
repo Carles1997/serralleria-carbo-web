@@ -1,6 +1,7 @@
 // Direcció fotogràfica de Fase 5. Les fotos de projectes són documentals;
 // les conceptuals ambienten serveis i portades i mai no documenten un cas.
 // La procedència de cada original real és a assets/fotografies-recuperades/cataleg.csv.
+import type { Locale } from '../i18n/config';
 import homeParticulars from '../../assets/imatges-conceptuals/home-particulars-acces-v2.png';
 import homeIndustrial from '../../assets/imatges-conceptuals/home-industrial-acces-v2.png';
 import metalDetail from '../../fases/fase-4/FASE4-mockups/home/metal-detail-concept.png';
@@ -24,7 +25,6 @@ import sectorFood from '../../assets/imatges-conceptuals/sector-alimentacio-v1.p
 import sectorHealth from '../../assets/imatges-conceptuals/sector-sanitari-v1.png';
 import sectorPackaging from '../../assets/imatges-conceptuals/sector-packaging-v1.png';
 import sectorWine from '../../assets/imatges-conceptuals/sector-cellers-v2.png';
-import sectorDual from '../../assets/imatges-conceptuals/sector-tecnologies-duals-v2.png';
 import capSteel from '../../assets/imatges-conceptuals/capacitats-acer-taller-v1.png';
 import capStainless from '../../assets/imatges-conceptuals/capacitats-inox-taller-v1.png';
 import capPressBrake from '../../assets/imatges-conceptuals/capacitats-plegadora-taller-v1.png';
@@ -53,36 +53,39 @@ export const projectPhotography = {
   'baranes-interior-casa': {
     stage: baranes02,
     primary: baranes01,
-    alt: "Barana metàl·lica d'una escala interior durant una reforma",
+    alt: { ca: "Barana metàl·lica d'una escala interior durant una reforma", es: 'Barandilla metálica de una escalera interior durante una reforma', en: 'Metal railing on an indoor staircase during a renovation' },
   },
   'estructura-ascensor': {
     stage: ascensor03,
     primary: ascensor04,
-    alt: "Estructura metàl·lica per a un ascensor vista des del pati interior",
+    alt: { ca: 'Estructura metàl·lica per a un ascensor vista des del pati interior', es: 'Estructura metálica para un ascensor vista desde el patio interior', en: 'Metal lift structure seen from the inner courtyard' },
   },
   'passarella-interior': {
     stage: passarella01,
     primary: passarella02,
-    alt: 'Passarel·la interior amb baranes de ferro',
+    alt: { ca: 'Passarel·la interior amb baranes de ferro', es: 'Pasarela interior con barandillas de hierro', en: 'Indoor walkway with iron railings' },
   },
   'persianes-negoci': {
     stage: persianes02,
     primary: persianes01,
-    alt: 'Persianes metàl·liques instal·lades a la façana d’un negoci',
+    alt: { ca: 'Persianes metàl·liques instal·lades a la façana d’un negoci', es: 'Persianas metálicas instaladas en la fachada de un negocio', en: 'Metal roller shutters installed on the front of a business' },
   },
   'porta-parquing': {
     stage: parquing03,
     primary: parquing03,
-    alt: 'Porta metàl·lica de pàrquing vista des de l’interior',
+    alt: { ca: 'Porta metàl·lica de pàrquing vista des de l’interior', es: 'Puerta metálica de parking vista desde el interior', en: 'Metal car park door seen from the inside' },
   },
   'gavia-industrial': {
     stage: gavia01,
     primary: gavia02,
-    alt: 'Gàbia metàl·lica fabricada per a un client industrial al taller',
+    alt: { ca: 'Gàbia metàl·lica fabricada per a un client industrial al taller', es: 'Jaula metálica fabricada para un cliente industrial en el taller', en: 'Metal cage fabricated for an industrial client in the workshop' },
   },
 } as const;
 
 export type ProjectPhotoId = keyof typeof projectPhotography;
+
+/** Text alternatiu de la fotografia informativa d'un cas, en l'idioma de la pàgina (castellà afegit el 09/10/2026). */
+export const projectPhotoAlt = (id: ProjectPhotoId, locale: Locale) => projectPhotography[id].alt[locale];
 
 export const sitePhotography = {
   home: {
@@ -128,7 +131,6 @@ export const sitePhotography = {
     sanitari: sectorHealth,
     packaging: sectorPackaging,
     cellers: sectorWine,
-    duals: sectorDual,
   },
   serviceScope: {
     barana: baranes01,

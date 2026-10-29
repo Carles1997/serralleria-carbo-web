@@ -1,0 +1,9 @@
+---
+// Versió en castellà (08/10/2026): mateixa plantilla que la ruta catalana, amb content/es/.
+import ServiceTemplate from '../../../../templates/ServiceTemplate.astro';
+import { getPage } from '../../../../i18n/pages';
+
+const page = await getPage('particulars-urgencies', 'es');
+---
+
+<ServiceTemplate page={page} />

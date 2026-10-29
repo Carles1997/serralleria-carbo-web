@@ -2,7 +2,7 @@
 pageId: particulars-estructures
 route: /particulars/estructures/
 lang: ca
-status: draft
+status: approved
 seoTitle: "Estructures metàl·liques a mida | Serralleria Carbó"
 seoDescription: "Baranes, escales i passarel·les metàl·liques per a habitatges i espais compartits. Descobreix treballs reals de Serralleria Carbó."
 ---
@@ -28,6 +28,12 @@ Si en tens, adjunta fotografies o plànols a la consulta.
 Entre els treballs documentats hi ha una passarel·la interior amb baranes de ferro negre, baranes per a la reforma d'un habitatge i una estructura per incorporar un ascensor a una comunitat.
 
 [Veure projectes d'estructures](/particulars/projectes/?servei=estructures)
+
+## Per a empreses i obra
+
+També fabriquem estructures per a sèries i projectes de constructores i promotores.
+
+[Fabricació industrial](/industrial/#produccio)
 
 ## Comencem pel teu espai
 

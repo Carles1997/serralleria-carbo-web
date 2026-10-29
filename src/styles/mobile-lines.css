@@ -1,0 +1,95 @@
+/* Correcció mòbil del director (06/10/2026): sense separadors decoratius repetits.
+   Llista explícita, sense afectar controls, focus, taules tècniques, la línia del mètode,
+   el logotip ni els subratllats curts dels enllaços. !important permet sobreescriure els
+   estils locals d'Astro; aquesta capa només s'aplica fins a 760 px. */
+@media (max-width: 760px) {
+  :is(
+    .home .path-guide,
+    .home .path-guide-list a,
+    .home .path-guide-help,
+    .home .path-action,
+    .home .number-item,
+    .home .workshop-rows > div,
+    .home .services,
+    .home .offer-branch-heading,
+    .home .offer-overview,
+    .contact,
+    .contact-note,
+    .contact-actions a,
+    .site-footer,
+    .p-hero-top,
+    .p-urgent,
+    .p-projects,
+    .p-project-story,
+    .p-story-chapter,
+    .p-story-chapter-top,
+    .s-breadcrumb,
+    .s-hero-bottom,
+    .s-hero-cta,
+    .s-approach,
+    .s-brief-list,
+    .s-brief-list li,
+    .s-repair,
+    .folio-breadcrumb,
+    .folio-hero-bottom,
+    .folio-hero-bottom a,
+    .folio-case,
+    .folio-case-meta,
+    .folio-more,
+    .folio-more-links,
+    .folio-more-links a,
+    .underlined-link,
+    .i-hero-bottom,
+    .i-proof,
+    .i-proof-inner > div,
+    .i-proof a,
+    .i-quality,
+    .i-quality-list li,
+    .i-project,
+    .i-contact,
+    .i-contact-grid,
+    .i-contact-guide li,
+    .i-section-link,
+    .i-text-link,
+    .c-crumb a,
+    .c-local-nav,
+    .c-logistics-data,
+    .c-contact,
+    .c-contact-return,
+    .c-contact-detail,
+    .c-contact-fields li,
+    .contact-info > div,
+    .contact-place,
+    .place-info > a,
+    .legal-hero,
+    .legal-crumb,
+    .legal-aside nav > span
+  ) {
+    border-top-width: 0 !important;
+    border-bottom-width: 0 !important;
+  }
+
+  /* No recuperar els filets eliminats amb l'animació d'un enllaç o el seu focus.
+     El focus continua indicat pel contorn accessible compartit. */
+  :is(
+    .underlined-link,
+    .offer-overview,
+    .contact-actions a,
+    .s-hero-cta,
+    .folio-hero-bottom a,
+    .folio-more-links a,
+    .place-info > a,
+    .i-text-link,
+    .i-section-link,
+    .i-proof a,
+    .c-crumb a,
+    .c-contact-return,
+    .path-action
+  )::after {
+    content: none !important;
+  }
+
+  /* La separació es fa amb aire, sense afegir alçada excessiva a les seccions. */
+  .home .workshop-rows { display: grid; gap: .35rem; }
+  .home .path-guide { padding-block: .75rem; }
+}

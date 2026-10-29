@@ -17,7 +17,7 @@ import Inlines from '../components/Inlines.astro';
 import type { Page } from '../i18n/pages';
 import { useUi } from '../i18n/ui';
 import { links, one, paragraphs, parseInlines, parseMarkdown, plainText, sameText } from '../lib/markdown';
-import { projectPhotography, sitePhotography, type ProjectPhotoId } from '../config/photography';
+import { projectPhotoAlt, projectPhotography, sitePhotography, type ProjectPhotoId } from '../config/photography';
 import './mockup-base.css';
 import './portfolio.css';
 
@@ -56,7 +56,7 @@ const cases = await Promise.all(
   projectIds.map(async (id, index) => {
     const project = await getEntry('projects', `${locale}/projects/${id}`);
     if (!project || project.data.branch !== 'particulars') throw new Error(`El cas «${id}» no existeix a Particulars.`);
-    const service = nav.find((item) => item.href === `/particulars/${project.data.category}/`);
+    const service = nav.find((item) => item.href === ui.routes.services[project.data.category]);
     const context = ui.projectContexts[id];
     const linkLabel = t.caseLink[project.data.category];
     if (!service || !context || !linkLabel) throw new Error(`Falten el servei, el context o l'enllaç del cas «${id}».`);
@@ -69,7 +69,7 @@ const cases = await Promise.all(
       service,
       context,
       linkLabel,
-      photo: projectPhotography[id as ProjectPhotoId],
+      photo: { ...projectPhotography[id as ProjectPhotoId], alt: projectPhotoAlt(id as ProjectPhotoId, locale) },
     };
   }),
 );
@@ -78,7 +78,7 @@ const filters = [
   { value: 'tots', label: t.filters.all, count: cases.length },
   ...[...new Set(cases.map((item) => item.category))].map((category) => ({
     value: category,
-    label: nav.find((item) => item.href === `/particulars/${category}/`)?.label ?? category,
+    label: nav.find((item) => item.href === ui.routes.services[category])?.label ?? category,
     count: cases.filter((item) => item.category === category).length,
   })),
 ];
@@ -87,7 +87,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
 ---
 
 <BaseLayout page={page}>
-  <SiteHeader ui={ui} homeHref="/" nav={nav} mobileExtra={ui.particulars.mobileExtra} collapse="wide" current={route} />
+  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} />
 
   <main id="contingut" class="portfolio-page">
     <section class="folio-hero" aria-labelledby="folio-title" data-surface="dark">
@@ -96,13 +96,13 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
       </div>
       <div class="section-shell folio-hero-content">
         <nav class="folio-breadcrumb enter" aria-label={ui.service.breadcrumb.label}>
-          <a href="/">{ui.service.breadcrumb.home}</a><span aria-hidden="true">/</span>
+          <a href={ui.routes.home}>{ui.service.breadcrumb.home}</a><span aria-hidden="true">/</span>
           <a href={ui.service.breadcrumb.branch.href}>{ui.service.breadcrumb.branch.label}</a><span aria-hidden="true">/</span>
           <span aria-current="page">{nav.find((item) => item.href === route)?.label ?? doc.title}</span>
         </nav>
         <BreadcrumbData
           items={[
-            { name: ui.service.breadcrumb.home, href: '/' },
+            { name: ui.service.breadcrumb.home, href: ui.routes.home },
             { name: ui.service.breadcrumb.branch.label, href: ui.service.breadcrumb.branch.href },
             { name: nav.find((item) => item.href === route)?.label ?? doc.title, href: route },
           ]}

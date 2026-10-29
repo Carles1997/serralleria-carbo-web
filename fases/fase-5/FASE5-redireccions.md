@@ -46,6 +46,14 @@ Els destins s'indiquen per pàgina de contingut (`pageId` + idioma), no per URL.
   - fer una redirecció temporal (302) a les pàgines catalanes equivalents i passar al 301 definitiu quan existeixin les ES;
   - acceptar el 404 temporal.
   En qualsevol cas, primer cal comprovar amb el client si hi ha campanyes actives.
+- **URL sense tractament decidit (08/10/2026).** La línia base de la web WordPress ([linia-base-wordpress-2026-10-08](../fase-6/linia-base-wordpress-2026-10-08/README.md)) ha trobat quatre adreces que no eren a l'inventari:
+  - `/feed/`: feed RSS amb una sola entrada («Hello world!»);
+  - `/comments/feed/`: feed de comentaris buit;
+  - `/cat/` i `/es/`: prefixos de TranslatePress, que WordPress redirigeix a `/`. `/es/` és el prefix previst de la futura versió en castellà.
+
+  Són a `undecided` de `src/config/redirects.mjs`, sense regla ni destí, fins que el director en decideixi el tractament. El web nou hi respon 404. No s'han de redirigir a la Home per defecte.
+- **Decidit el 08/10/2026 (R1–R6):** totes les URL obertes tenen tractament al mapa. El detall és a [FASE6-bloc4-redireccions](../fase-6/FASE6-bloc4-redireccions.md): 21 regles llestes, `/es/` com a portada castellana, i `/estructuras/` i `/motores/` amb 301 directe a les pàgines castellanes. La comprovació de campanyes queda a `launchChecks`.
+- **Propostes anteriors per a totes les URL obertes, segons el contingut antic i l'equivalent actual:** [FASE6-bloc2-rendiment.md](../fase-6/FASE6-bloc2-rendiment.md#7-propostes-per-a-les-redireccions-obertes-no-decidides). Cal tenir en compte que `/sample-page/` és la pàgina de manteniment «Disculpeu les molèsties», amb dades de contacte, no una plantilla buida.
 
 ## Requisits quan es triï l'allotjament
 
@@ -67,3 +75,18 @@ Els destins s'indiquen per pàgina de contingut (`pageId` + idioma), no per URL.
 - que les regles 301 i 410 siguin coherents.
 
 També mostra l'estat de cada regla: llesta, en espera o per decidir. Un destí en esborrany (`noindex`) s'indica però no bloqueja, perquè la publicació de cada pàgina la controlen el sitemap i `check:links`.
+
+### Comprovació en viu (08/10/2026)
+
+`npm run build && npm run check:redirects:live -- <adreça>` ([script](../../scripts/check-live-redirects.mjs)) demana cada URL antiga a una adreça publicada, sense seguir les redireccions automàticament, i comprova:
+- **301:** una sola resposta 301, `Location` exacta cap al destí i destí que respon 200, amb barra final i sense;
+- **410:** resposta 410 directa, sense `Location`;
+- **URL que es mantenen** (`/` i `/contacte/`): 200 sense redirecció;
+- **indexació:** `X-Robots-Tag: noindex` a qualsevol adreça de prova i cap `noindex` per capçalera al domini definitiu ([FASE5-indexacio](FASE5-indexacio.md#protecció-dindexació-per-adreça)).
+
+Les regles en espera, per decidir o sense tractament es llisten amb la resposta actual, com a informació. S'executa:
+- sobre la previsualització abans de publicar;
+- al domini el dia del llançament;
+- l'endemà i al cap d'una setmana.
+
+El 08/10/2026, a `revisio-client`, les 26 comprovacions de redirecció (13 regles × 2 variants), les dues URL que es mantenen i les quatre d'indexació són correctes.

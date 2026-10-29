@@ -1,0 +1,158 @@
+---
+// 404 per idioma (Fase 1: «404 personalitzada»). Fase 7 (01/10/2026): fa servir la capçalera, el peu i
+// el llenguatge visual de les entrades interiors perquè qui arribi des d'una adreça antiga o
+// equivocada no perdi el context. Text de content/{idioma}/404.md: H1, un paràgraf i els enllaços.
+// La generen src/pages/404.astro (català) i src/pages/es/404.astro (castellà, 08/10/2026).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Inlines from '../components/Inlines.astro';
+import type { Page } from '../i18n/pages';
+import { useUi } from '../i18n/ui';
+import { links, one, paragraphs, parseMarkdown } from '../lib/markdown';
+import './mockup-base.css';
+
+interface Props {
+  page: Page;
+}
+
+const { page } = Astro.props;
+const ui = useUi(page.data.lang);
+const doc = parseMarkdown(page.body ?? '');
+const text = one(paragraphs(doc.intro), "un paràgraf a 404.md");
+const ways = links(doc.intro);
+if (!ways.length) throw new Error('404.md necessita els enllaços per continuar.');
+const chars = Math.max(...doc.title.split(/\s+/).map((word) => word.length));
+---
+
+<BaseLayout page={page}>
+  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} />
+
+  <main id="contingut" class="nf-page">
+    <section class="nf-hero" aria-labelledby="nf-title" data-surface="light">
+      <div class="section-shell nf-grid">
+        <div class="nf-copy">
+          <h1 id="nf-title" class="enter" style={`--chars:${chars}`}>{doc.title}</h1>
+          <p class="enter" style="--i:1"><Inlines inlines={text} /></p>
+        </div>
+        <nav class="nf-ways enter" style="--i:2" aria-label={ui.notFound.waysLabel}>
+          {
+            ways.map((way) => (
+              <a href={way.href}>
+                {way.label} <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+      <span class="nf-code" aria-hidden="true">404</span>
+    </section>
+  </main>
+
+  <SiteFooter ui={ui} locale={page.data.lang} contactHref={ui.routes.contact} />
+</BaseLayout>
+
+<style>
+  /* 404 clara (refinament del director, 06/10/2026), amb la família de la Home. */
+  .nf-page {
+    background: var(--surface-grey);
+    color: var(--ink);
+  }
+
+  .nf-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+  }
+
+  .nf-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+    align-items: end;
+    gap: clamp(2rem, 5vw, 5rem);
+    min-height: clamp(320px, 48svh, 460px);
+    padding-block: var(--space-section);
+  }
+
+  h1 {
+    max-width: 16ch;
+    margin: 0 0 var(--space-lead);
+    font-size: var(--type-hero);
+    font-weight: 700;
+    letter-spacing: -0.055em;
+    line-height: 0.92;
+    text-transform: uppercase;
+  }
+
+  .nf-copy p {
+    max-width: 46ch;
+    margin: 0;
+    color: var(--ink-muted);
+    font-size: var(--type-intro);
+    line-height: 1.46;
+  }
+
+  .nf-ways {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--line-strong-on-light);
+  }
+
+  .nf-ways a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 52px;
+    border-bottom: 1px solid var(--line-strong-on-light);
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .nf-ways .arrow {
+    display: inline-block;
+    color: var(--action);
+    font-size: 1.15rem;
+  }
+
+  /* Xifra en traç, molt discreta: indica l'error sense competir amb el titular. */
+  .nf-code {
+    position: absolute;
+    z-index: -1;
+    right: -0.04em;
+    bottom: -0.18em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgb(32 38 39 / 0.1);
+    font-size: clamp(10rem, 28vw, 24rem);
+    font-weight: 700;
+    letter-spacing: -0.08em;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .nf-ways .arrow {
+      transition: translate 220ms var(--motion-ease);
+    }
+
+    .nf-ways a:hover .arrow {
+      translate: 3px -3px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .nf-grid {
+      grid-template-columns: 1fr;
+      align-items: start;
+      min-height: 0;
+      padding-block: 3rem 3.5rem;
+    }
+
+    /* La paraula més llarga del titular ha de cabre a l'amplada útil. */
+    h1 {
+      font-size: min(var(--type-hero), calc((100vw - 2 * var(--page-gutter)) / (var(--chars) * 0.56)));
+    }
+  }
+</style>

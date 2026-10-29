@@ -6,6 +6,8 @@
 - [mapa de redireccions](../fase-5/FASE5-redireccions.md);
 - [pendents de la Fase 5](../fase-5/FASE5-pendents.md).
 
+**Revisió del 08/10/2026:** s'actualitzen els punts que havien quedat desfasats per decisions posteriors del director. La pàgina Empresa es va retirar el 06/10/2026 i `/empresa/` redirigeix a `/` (A6, C1, C10, D1.5). L'oferta d'Industrial ja no es limita a sèries curtes (D1.1, D1.9). Vegeu també la [proposta de skills SEO](FASE6-skills-seo-proposta.md).
+
 Aquest document és el pla de referència de la Fase 6 i substitueix l'[ACTION-PLAN.md](auditoria-seo/ACTION-PLAN.md) de l'auditoria, que queda com a foto del 02/10/2026. Les accions es divideixen en quatre blocs, segons qui les pot fer:
 
 | Bloc | Qui | Estat |
@@ -34,7 +36,7 @@ Tot passa `npm run verify` (0 errors) i `npm run check:redirects`.
 | A3 | **Capçaleres de Netlify** | `public/_headers` | `/_astro/*` amb memòria cau d'un any i `immutable`. A totes les respostes: `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options` i `Permissions-Policy`. La CSP queda per al bloc B. |
 | A4 | **Open Graph i targeta social** | `src/layouts/BaseLayout.astro`, `public/og/serralleria-carbo.png`, `scripts/make-og-image.py` | `og:type`, `og:site_name`, `og:locale`, `og:title` i `og:description` (els mateixos que el SEO), `og:url`, `og:image` amb mides i text alternatiu, i `twitter:card`. La imatge per defecte és el logotip sobre el color paper del sistema visual. No fa servir cap foto. Les imatges per branca són la decisió C9. |
 | A5 | **`LocalBusiness` complet** | `src/components/StructuredData.astro`, `src/config/site.ts` | S'hi afegeixen l'horari (dilluns a divendres, de 08:00 a 13:00 i de 15:00 a 18:00; validat i coincident amb el Perfil d'Empresa), les coordenades de la fitxa verificada, `hasMap` i `sameAs` amb l'enllaç estable de la fitxa (`?cid=`), i `logo`/`image`. No hi ha ressenyes, valoracions ni zones de servei. |
-| A6 | **`BreadcrumbList`** | `src/components/BreadcrumbData.astro` i plantilles de servei, portafoli, capacitats i empresa | Té els mateixos elements que les molles de pa visibles. |
+| A6 | **`BreadcrumbList`** | `src/components/BreadcrumbData.astro` i plantilles de servei, portafoli i capacitats | Té els mateixos elements que les molles de pa visibles. La plantilla d'empresa es va retirar amb la pàgina (06/10/2026). |
 | A7 | Documentació | `fases/fase-5/FASE5-redireccions.md` | S'hi anota que el fitxer de Netlify ja es genera i que falta comprovar el 410 en el primer desplegament. |
 
 ---
@@ -43,11 +45,11 @@ Tot passa `npm run verify` (0 errors) i `npm run check:redirects`.
 
 | # | Prio. | Acció | Com |
 |---|---|---|---|
-| B1 | P0 | ~~Comprovar les redireccions al staging~~ **Fet el 05/10/2026:** quatre 301 en un sol salt i cinc 410. Les regles en espera o per decidir responen 404, com estava previst | Demanar cada URL antiga a `serralleriacarbo.netlify.app`: estat 301 o 410, capçalera `Location` i cap cadena. Si Netlify no serveix el 410 amb la reescriptura, documentar-ho i proposar una alternativa (Fase 5). |
-| B2 | P0 | ~~Comprovar les capçaleres~~ **Fet el 05/10/2026:** `/_astro/*` amb memòria cau `immutable` d'un any i les quatre capçaleres de seguretat | `curl -I` a una pàgina i a un fitxer de `/_astro/`: memòria cau `immutable` i capçaleres de seguretat. |
-| B3 | P1 | Validar les dades estructurades i l'Open Graph | Prova de resultats enriquits de Google i depurador de previsualització de Facebook sobre el staging. Comprovar també una previsualització real a WhatsApp. |
+| B1 | P0 | ~~Comprovar les redireccions al staging~~ **Fet el 05/10/2026:** quatre 301 en un sol salt i cinc 410. **Ampliat el 08/10/2026:** les 13 regles llestes (8 × 301 i 5 × 410), amb barra final i sense, correctes a `revisio-client` amb `npm run check:redirects:live` ([resultats del bloc 1](FASE6-bloc1-resultats.md)) | Demanar cada URL antiga a `serralleriacarbo.netlify.app`: estat 301 o 410, capçalera `Location` i cap cadena. Si Netlify no serveix el 410 amb la reescriptura, documentar-ho i proposar una alternativa (Fase 5). |
+| B2 | P0 | ~~Comprovar les capçaleres~~ **Fet el 05/10/2026:** `/_astro/*` amb memòria cau `immutable` d'un any i les quatre capçaleres de seguretat. **08/10/2026:** Netlify serveix Brotli i HSTS; les adreces de prova porten `X-Robots-Tag: noindex` (bloc 1) | `curl -I` a una pàgina i a un fitxer de `/_astro/`: memòria cau `immutable` i capçaleres de seguretat. |
+| B3 | P1 | Validar les dades estructurades i l'Open Graph. **Parcial (08/10/2026):** Rich Results Test a la previsualització, `LocalBusiness` i `BreadcrumbList` vàlids, sense errors. Pendents: Open Graph i repetició al domini | Prova de resultats enriquits de Google i depurador de previsualització de Facebook sobre el staging. Comprovar també una previsualització real a WhatsApp. |
 | B4 | P2 | Content-Security-Policy | Redactar una CSP amb hashes dels scripts inserits i amb l'origen del mapa de Google sota demanda. Provar-la primer en mode `Report-Only` al staging i activar-la quan no hi hagi bloquejos. |
-| B5 | P1 | Repetir l'auditoria SEO | Amb claude-seo, quan els continguts estiguin aprovats (C1), per confirmar la indexació, el sitemap i la puntuació. |
+| B5 | P1 | Repetir l'auditoria SEO. **Parcial (08/10/2026):** auditoria tècnica i rendiment de laboratori sobre la previsualització ([resultats](FASE6-bloc1-resultats.md#4-validacions)). Pendent al domini | Amb claude-seo, quan els continguts estiguin aprovats (C1), per confirmar la indexació, el sitemap i la puntuació. |
 | B6 | Continu | Tall mensual del Perfil d'Empresa | Al principi de cada mes, afegir a `FASE6-gbp-metriques.csv` les interaccions, trucades, indicacions, clics i cerques del mes anterior. Cal accés al compte des de Chrome. El panell només deixa veure sis mesos i, en castellà, les pestanyes no es carreguen: s'ha d'obrir amb `hl=en`. |
 
 ---
@@ -58,7 +60,7 @@ Cada decisió indica la proposta concreta i què passa després. Quan estigui va
 
 ### C1 · P0 · Aprovar els continguts que es publicaran indexables (director)
 
-**Situació:** 8 de 10 pàgines són `status: draft` i porten `noindex`. Si el web es publica així, Google deixaria d'indexar la Home i els serveis del domini.
+**Situació (08/10/2026):** 8 de les 9 pàgines comercials publicades són `status: draft` i porten `noindex`. Si el web es publica així, Google deixaria d'indexar la Home i els serveis del domini.
 
 | Pàgina | Fitxer | Estat |
 |---|---|---|
@@ -70,14 +72,18 @@ Cada decisió indica la proposta concreta i què passa després. Quan estigui va
 | Industrial | `content/ca/industrial.md` | draft |
 | Capacitats | `content/ca/industrial-capacitats.md` | draft |
 | Contacte | `content/ca/contacte.md` | draft |
-| Empresa | `content/ca/empresa.md` | approved |
 | Projectes | `content/ca/particulars-projectes.md` | approved |
+
+La pàgina Empresa ja no forma part de la llista: el director la va retirar el 06/10/2026, `/empresa/` redirigeix a `/` amb un 301 i les seves dades (1989, 950 m², 12 persones) són a la Home i a Capacitats. `content/ca/empresa.md` queda com a esborrany de referència i no es publica.
 
 **Cal decidir:** quines pàgines s'aproven per al llançament, d'acord amb els pendents de [FASE5-pendents.md](../fase-5/FASE5-pendents.md).
 
 **Després:** Claude canvia `status` i registra la revisió validada a `check-references`, i el sitemap les inclou automàticament.
 
-### C2 · P0 · Redireccions pendents (director i client)
+### C2 · P0 · Redireccions pendents (director i client) · Decidit (08/10/2026)
+
+Decisions R1–R6 del director implementades al mapa ([bloc 4](FASE6-bloc4-redireccions.md)): `/sample-page/` → 301 a `/contacte/`; plantilles i feeds → 410; `/cat/` → 301 a `/`; `/es/` és la portada castellana; `/estructuras/` i `/motores/` → 301 directe a les pàgines castellanes. Queda la comprovació de campanyes abans del llançament. Text original:
+
 
 1. **Plantilles de WordPress** (`/sample-page/`, `/hello-world/`, `/category/uncategorized/`).
    - **Proposta:** 410, perquè no tenen contingut i SEO-F3 demana no enviar-les a la Home.
@@ -140,7 +146,9 @@ Hi ha 58 ressenyes, cap de respondre i només 3 en 12 mesos. Les respostes les h
 
 **Cal validar:** el to de les respostes i qui les signa (per exemple, «L'equip de Serralleria Carbó»).
 
-### C8 · P2 · Títols d'Industrial (director)
+### C8 · P2 · Títols d'Industrial (director) · Resolt (08/10/2026)
+
+El director va aprovar el títol d'Industrial proposat i, per a Capacitats, «Soldadura i fabricació metàl·lica | Serralleria Carbó». Implementat al [bloc 3](FASE6-bloc3-proposta-editorial.md). Proposta original:
 
 | Pàgina | Títol actual | Proposta | Caràcters |
 |---|---|---|---|
@@ -160,17 +168,23 @@ Ara hi ha una imatge per defecte amb el logotip. **Proposta:** una per branca, f
 
 **Cal:** triar les fotos. Claude prepara les imatges de 1200 × 630 i les assigna per branca.
 
-### C10 · P2 · Enllaços cap a `/empresa/` (director)
+### C10 · ~~P2 · Enllaços cap a `/empresa/`~~ · Anul·lada (06/10/2026)
 
-Ara només hi enllacen dues pàgines. **Proposta:** afegir «Empresa» als enllaços del peu de pàgina. És un canvi d'estructura visible.
+El director va retirar la pàgina Empresa i `/empresa/` redirigeix a `/` amb un 301. No s'hi han d'afegir enllaços. Les dades de la pàgina (1989, 950 m², 12 persones) són a la Home i a Capacitats.
 
-### C11 · P2 · Versió en castellà (director)
+### C11 · P2 · Versió en castellà (director) · Decidit (08/10/2026)
+
+**Decisió del director:** el web es publica en català i castellà des del primer dia; l'anglès queda ajornat. Substitueix les propostes de llançament només en català i de redireccions provisionals. Implementació: [bloc 5](FASE6-bloc5-castella.md). Les traduccions queden pendents d'aprovació, i els textos legals castellans, de validació jurídica. Text original:
+
 
 Està prevista al contracte i18n i resoldria `/estructuras/` i `/motores/` (C2). Al perfil hi ha cerques en castellà («herrero vilafranca», «herreros en vilafranca del penedes», «vigas acero vilafranca», «duplicado de llaves vilafranca del penedes»).
 
 **Cal:** validar la traducció de Particulars, Estructures i Automatismes (FASE5-idiomes.md).
 
-### C12 · P2 · Ampliar les pàgines curtes amb dades reals (client i director)
+### C12 · ~~P2 · Ampliar les pàgines curtes amb dades reals~~ · Obsoleta en el seu objectiu (08/10/2026)
+
+El director ha reduït el text de tota la web (06/10/2026, [FASE7-menys-text](../fase-7/FASE7-menys-text.md)) i no s'han d'allargar textos per arribar a un nombre de paraules. Les preguntes 3 (municipis) i 8 (duplicats o comandaments) continuen sent útils com a dades per al perfil, no per ampliar pàgines. Text original:
+
 
 Les pàgines de servei tenen entre 176 i 262 paraules. Per ampliar-les sense inventar res, cal que el client respongui:
 
@@ -210,9 +224,9 @@ Les ha de fer el client o el director amb el seu accés. Claude no hi fa canvis.
 
 ### D1 · Fitxa del perfil
 
-**D1.1 · P1 · Descripció.** Editar perfil → Información → Descripción. Proposta de 652 caràcters (el màxim és 750), feta només amb textos validats del web:
+**D1.1 · P1 · Descripció.** Editar perfil → Información → Descripción. Proposta de 745 caràcters (el màxim és 750), feta només amb textos validats del web (Home, Particulars, Industrial i Capacitats). Revisada el 08/10/2026: l'oferta d'Industrial ja no es limita a sèries curtes.
 
-> Serralleria Carbó és una empresa de Vilafranca del Penedès fundada el 1989. Des del nostre taller de 950 m² fabriquem i instal·lem portes, baranes, escales, passarel·les, estructures metàl·liques i automatismes per a habitatges, comunitats i negocis, i reparem portes, persianes i motors. Amb Industrial, la nostra línia de fabricació per a tercers, fem peces, carros i conjunts metàl·lics en sèries curtes: acer al carboni i inox 304/316, soldadura MIG/MAG i TIG, plegat, cisallat i punxonat. Treballem sobretot a Vilafranca i la rodalia i fins a Barcelona; per a sèries industrials valorem encàrrecs d'arreu de Catalunya. Som un equip de 12 persones.
+> Serralleria Carbó és a Vilafranca del Penedès des de 1989. Des del nostre taller de 950 m² fabriquem i instal·lem portes, baranes, escales, passarel·les, estructures metàl·liques i automatismes per a habitatges, comunitats i negocis, i reparem portes, persianes i motors. Amb Industrial, la nostra línia de fabricació per a tercers, fabriquem per a empreses, constructores i promotores estructures, portes i mobiliari en sèrie o a mida, peces a partir d'un plànol i carros industrials, també d'una sola unitat: acer al carboni i inox 304/316, soldadura MIG/MAG i TIG, plegat, cisallat i punxonat. Treballem sobretot a Vilafranca i la rodalia i fins a Barcelona; la fabricació en sèrie, la valorem arreu de Catalunya. Som un equip de 12 persones.
 
 Google no hi admet enllaços, preus ni promocions. **Validació:** director (text) i client (publicació).
 
@@ -224,7 +238,7 @@ Google no hi admet enllaços, preus ni promocions. **Validació:** director (tex
 - **Ara:** canviar `http://serralleriacarbo.com/` per `https://www.serralleriacarbo.com/`. Ja és l'adreça final del web actual i estalvia dues redireccions.
 - **Quan hi hagi Analytics:** posar `https://www.serralleriacarbo.com/?utm_source=google&utm_medium=organic&utm_campaign=perfil-empresa`, per separar el trànsit del perfil de la resta.
 
-**D1.5 · P1 · Data d'obertura.** Editar perfil → Información → Fecha de apertura → **desembre de 1989** (dada validada a `content/ca/empresa.md`).
+**D1.5 · P1 · Data d'obertura.** Editar perfil → Información → Fecha de apertura → **desembre de 1989** (dada validada a `content/ca/empresa.md`, que es conserva com a referència tot i que la pàgina s'ha retirat; la Home publica l'any 1989).
 
 **D1.6 · P3 · Perfils socials.** Editar perfil → Contacto → Perfiles sociales. Només els perfils que es mantinguin actius (C15).
 
@@ -246,7 +260,7 @@ Google no hi admet enllaços, preus ni promocions. **Validació:** director (tex
 | Estructures metàl·liques a mida | Estructures per a habitatges, comunitats i negocis, com la d'un ascensor en una comunitat. |
 | Carros industrials | Carros adaptats a una necessitat concreta, d'una unitat o en sèrie. |
 | Mobiliari amb estructura metàl·lica | Mobiliari a mida de l'ús i de l'espai. Explica'ns la peça. |
-| Fabricació per a tercers en sèries curtes | Peces, carros i conjunts metàl·lics en sèries curtes per a fabricants, enginyeries i integradors. |
+| Fabricació en sèrie per a tercers | Estructures, portes i mobiliari en sèrie o a mida, i peces a partir d'un plànol o d'una especificació, per a empreses i obra. També encàrrecs d'una sola unitat. |
 | Soldadura MIG/MAG i TIG | Acer al carboni i inox 304/316, amb equip propi de soldadura i muntatge. |
 | Plegat, cisallat i punxonat | Taller de 950 m² amb plegadora, cisalla i punxonadora. |
 | Estructures per a constructores i promotores | Escales, baranes i estructures per a ascensors en projectes de gran escala. |
@@ -292,6 +306,8 @@ Publicaciones → Crear publicación. Ara no n'hi ha cap. **Proposta:**
 
 ### D4 · Search Console (P0, abans del llançament)
 
+**Actualització (08/10/2026):** la web WordPress porta Site Kit by Google, una etiqueta de Google i un contenidor de Tag Manager. És un indici que pot existir una propietat, no una confirmació. Primer s'ha de preguntar al client qui la controla i demanar-hi accés ([preguntes](FASE6-bloc1-resultats.md#2-search-console-què-hem-de-demanar)). Els passos següents s'apliquen si no n'hi ha cap.
+
 1. Obrir https://search.google.com/search-console amb el compte de l'empresa → Añadir propiedad → **Dominio** → `serralleriacarbo.com`.
 2. Google dona un registre **TXT**. Demanar a **mayasystems.net** que l'afegeixi al DNS del domini.
 3. Quan estigui verificat:
@@ -301,13 +317,13 @@ Publicaciones → Crear publicación. Ara no n'hi ha cap. **Proposta:**
 
 ### D5 · Netlify (P0)
 
-1. **Branca de producció.** ~~Ha de ser `main`.~~ **Fet el 05/10/2026:** publicava des de `fase-5/base-astro`, una branca esborrada de GitHub després de la fusió. Ara és `main` i s'ha desplegat `main@d88c140`. Cada fusió a `main` es publica automàticament.
+1. **Branca de producció.** ~~Ha de ser `main`.~~ **Fet el 05/10/2026:** publicava des de `fase-5/base-astro`, una branca esborrada de GitHub després de la fusió. Ara és `main` i s'ha desplegat `main@d88c140`. Cada fusió a `main` es publica automàticament. **08/10/2026:** des del 06/10/2026, els desplegaments de producció se salten per falta de crèdits. La producció publicada és la del 06/10/2026, i la producció s'ha de construir sempre a Netlify ([protecció d'indexació](../fase-5/FASE5-indexacio.md#protecció-dindexació-per-adreça)).
 2. **Ordre de build.** `npm run build`, directori de publicació `dist`. El fitxer `_redirects` el genera el build.
 3. **Domini, al llançament.**
    - Domain management → Add domain → `www.serralleriacarbo.com`, com a domini principal.
    - A **mayasystems.net**, els registres DNS que indiqui Netlify (normalment un CNAME de `www` cap al lloc de Netlify i el domini arrel cap a Netlify).
    - Comprovar que el certificat HTTPS s'emet i que `serralleriacarbo.com` redirigeix a `https://www.`.
-4. **Formularis.** Netlify Forms (límit de 8 MB). Prova d'enviament real abans del llançament (pendent de la Fase 5).
+4. **Formularis.** ~~Netlify Forms (límit de 8 MB).~~ **09/10/2026:** Microsoft 365 amb una funció de Netlify (adjunt de 3.000.000 bytes com a màxim), vegeu [FASE8-formulari-real-pla.md](../fase-8/FASE8-formulari-real-pla.md). Prova d'enviament real abans del llançament.
 
 ### D6 · Directoris (P2)
 

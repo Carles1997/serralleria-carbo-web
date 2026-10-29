@@ -1,47 +1,131 @@
 ---
 // Capçalera compartida (maqueta Home de Fase 4). Sense JavaScript, el menú mòbil
 // queda desplegat com a llista d'enllaços; amb JavaScript es converteix en botó.
+// Indicació del director (12/10/2026): la barra de dalt mostra sempre els mateixos enllaços
+// (Particulars, Industrial, Serveis, Projectes i, des del 13/10/2026, Contacte, de ui.home.nav) a totes
+// les pàgines. El selector d'idioma és un desplegable petit amb els codis CA, ES i EN (13/10/2026).
 import { company } from '../config/site';
 import BrandLogo from './BrandLogo.astro';
-import type { UiStrings } from '../i18n/ui';
-
-interface NavItem {
-  label: string;
-  href: string;
-}
+import { getCollection, render } from 'astro:content';
+import { useUi, type UiStrings } from '../i18n/ui';
+import { isLegalVisible, type Page } from '../i18n/pages';
+import { isBuiltRoute } from '../config/routes';
+import { locales } from '../i18n/config';
 
 interface Props {
   ui: UiStrings;
   homeHref: string;
-  nav: NavItem[];
-  mobileExtra?: NavItem[];
-  /** «wide»: navegació llarga de branca (maqueta de Particulars), menú fins a 1270 px.
-   *  «industrial»: navegació d'Industrial (maqueta d'Industrial), menú fins a 1320 px. */
-  collapse?: 'standard' | 'wide' | 'industrial';
-  /** Ruta de la pàgina actual: l'enllaç corresponent porta aria-current="page". */
+  /** «industrial»: capçalera de grafit amb el logotip d'Industrial. La navegació és la mateixa a tot arreu. */
+  collapse?: 'standard' | 'industrial';
+  /** Ruta de la pàgina actual (per defecte, la de `page`): marca l'enllaç de la pàgina o de la seva branca. */
   current?: string;
   /** Etiqueta sobre el telèfon (per defecte, la general). */
   phoneLabel?: string;
   /** To de la capçalera: clar a Home, Particulars i Contacte; grafit a Industrial (refinament del
    *  director, 06/10/2026). Per defecte, el de la branca. */
   tone?: 'light' | 'dark';
+  /** Pàgina actual: el selector d'idioma hi busca la versió equivalent en els altres idiomes. */
+  page?: Page;
 }
 
-const { ui, homeHref, nav, mobileExtra = [], collapse = 'standard', current, phoneLabel = ui.headerPhoneLabel } = Astro.props;
+const { ui, homeHref, collapse = 'standard', phoneLabel = ui.headerPhoneLabel } = Astro.props;
 const tone = Astro.props.tone ?? (collapse === 'industrial' ? 'dark' : 'light');
-const currentAttr = (href: string) => (href === current ? 'page' : undefined);
+const nav = ui.home.nav;
+// Pàgina actual: «page» si és l'enllaç exacte; «true» per a la branca (l'enllaç més llarg que la conté),
+// p. ex. Industrial a Capacitats o Particulars a Reparacions. Els enllaços a una àncora no compten.
+const current = Astro.props.current ?? Astro.props.page?.data.route;
+const section = current
+  ? nav
+      .filter((item) => !item.href.includes('#') && item.href !== homeHref && current.startsWith(item.href))
+      .sort((a, b) => b.href.length - a.href.length)[0]?.href
+  : undefined;
+const currentAttr = (href: string) => (href === current ? 'page' : href === section ? 'true' : undefined);
+
+// Selector d'idioma (08/10/2026): enllaç a la mateixa pàgina en cada altre idioma, si es genera en
+// aquest build. La 404 porta a l'inici de l'altre idioma. Els textos són els de l'idioma de destí.
+// Àncores (09/10/2026): les de les plantilles són iguals en tots els idiomes (npm run check:i18n ho
+// comprova); les pàgines legals tenen àncores derivades dels títols del contingut, i l'equivalència
+// es resol per la posició de cada apartat H2 (les traduccions conserven l'estructura).
+const page = Astro.props.page;
+const ownSections = page?.data.pageId.startsWith('legal-') ? (await render(page)).headings.filter((heading) => heading.depth === 2) : undefined;
+const languages = page
+  ? (
+      await Promise.all(
+        (
+          await getCollection(
+            'pages',
+            ({ data }) => data.pageId === page.data.pageId && data.lang !== page.data.lang && Boolean(data.route),
+          )
+        ).map(async (version) => {
+          const target = useUi(version.data.lang);
+          const route = version.data.pageId === '404' ? target.routes.home : (version.data.route as string);
+          const generated = version.data.pageId.startsWith('legal-') ? isLegalVisible(version) : isBuiltRoute(route);
+          if (!generated) return undefined;
+          let anchorMap: string | undefined;
+          if (ownSections) {
+            const targetSections = (await render(version)).headings.filter((heading) => heading.depth === 2);
+            // Sense la mateixa estructura no hi ha equivalència fiable: el selector no copia cap àncora.
+            anchorMap = JSON.stringify(
+              targetSections.length === ownSections.length
+                ? Object.fromEntries(ownSections.map((heading, index) => [heading.slug, targetSections[index].slug]))
+                : {},
+            );
+          }
+          return { href: route, lang: version.data.lang, anchorMap, ...target.language };
+        }),
+      )
+    )
+      .filter((item) => item !== undefined)
+  : [];
+// Desplegable: els tres idiomes sempre en el mateix ordre (català, castellà, anglès), amb l'actual marcat.
+const currentLang = page?.data.lang;
+type MenuLanguage = { lang: string; code: string; name: string; current: boolean; href?: string; anchorMap?: string };
+const menuLanguages: MenuLanguage[] = locales.flatMap((lang): MenuLanguage[] => {
+  if (lang === currentLang) return [{ lang, code: ui.language.code, name: ui.language.name, current: true }];
+  const target = languages.find((language) => language.lang === lang);
+  return target ? [{ lang: target.lang, code: target.code, name: target.name, href: target.href, anchorMap: target.anchorMap, current: false }] : [];
+});
 ---
 
 <a class="skip-link" href="#contingut">{ui.skipLink}</a>
-<header class="site-header" id="inici" data-surface={tone} data-tone={tone} data-collapse={collapse}>
+<header class="site-header" id="inici" data-surface={tone} data-tone={tone}>
   <div class="header-inner">
-    <a class="wordmark" href={homeHref} aria-label={ui.brandHome}>
-      <BrandLogo variant={collapse === "industrial" ? "industrial" : "serralleria"} place="header" />
+    {/* El nom accessible conté el text visible (WCAG 2.5.3): a Industrial, el logotip mostra «Industrial». */}
+    <a class="wordmark" href={homeHref} aria-label={collapse === 'industrial' ? ui.brandHomeIndustrial : ui.brandHome}>
+      <BrandLogo variant={collapse === 'industrial' ? 'industrial' : 'serralleria'} place="header" />
     </a>
     <nav class="desktop-nav" aria-label={ui.menu.main}>
       {nav.map((item) => <a href={item.href} aria-current={currentAttr(item.href)}>{item.label}</a>)}
     </nav>
     <div class="header-actions">
+      {
+        languages.length > 0 && (
+          <details class="header-lang" data-lang-menu>
+            {/* Nom accessible «CA, Idioma: Català»: comença pel codi visible (WCAG 2.5.3, tasca 8.8). */}
+            <summary>
+              <span>{ui.language.code}</span><span class="sr-only">, {ui.language.selector}: {ui.language.name}</span>
+              <span class="header-lang-caret" aria-hidden="true"></span>
+            </summary>
+            <ul class="header-lang-list">
+              {menuLanguages.map((language) =>
+                language.current ? (
+                  <li>
+                    <span class="header-lang-current" aria-current="true">
+                      <span aria-hidden="true">{language.code}</span><span class="sr-only">{language.name}</span>
+                    </span>
+                  </li>
+                ) : (
+                  <li>
+                    <a href={language.href} hreflang={language.lang} lang={language.lang} data-lang-switch data-anchor-map={language.anchorMap}>
+                      <span aria-hidden="true">{language.code}</span><span class="sr-only">{language.name}</span>
+                    </a>
+                  </li>
+                ),
+              )}
+            </ul>
+          </details>
+        )
+      }
       <a class="header-phone" href={company.phone.href}>
         <span class="header-phone-label">{phoneLabel}</span><span>{company.phone.display}</span>
       </a>
@@ -59,11 +143,66 @@ const currentAttr = (href: string) => (href === current ? 'page' : undefined);
     </div>
   </div>
   <nav class="mobile-nav" id="mobile-nav" aria-label={ui.menu.mobile}>
-    {[...nav, ...mobileExtra].map((item) => <a href={item.href} aria-current={currentAttr(item.href)}>{item.label}</a>)}
+    {nav.map((item) => <a href={item.href} aria-current={currentAttr(item.href)}>{item.label}</a>)}
   </nav>
 </header>
 
 <script>
+  // Selector d'idioma: l'href sempre és la pàgina equivalent (vàlid sense JavaScript). Amb JavaScript,
+  // just abans de fer-lo servir (clic, clic del mig, menú contextual, teclat) s'hi afegeix l'estat
+  // actual: els paràmetres funcionals (branca i servei del formulari, filtre del portafoli, que
+  // portfolio.ts canvia amb replaceState) i l'àncora, si la pàgina de destí la té. La navegació
+  // continua sent nativa, inclosa l'obertura en una altra pestanya.
+  const kept = ['tipus', 'servei'];
+  // Una àncora mal codificada (p. ex. #100%) fa fallar decodeURIComponent: s'omet del destí i la
+  // capçalera continua inicialitzant-se (menú mòbil inclòs).
+  const decodeHash = (hash: string) => {
+    try {
+      return decodeURIComponent(hash.slice(1));
+    } catch {
+      return '';
+    }
+  };
+  const syncLanguageLink = (link: HTMLAnchorElement) => {
+    const target = new URL(link.dataset.base ?? link.href, window.location.href);
+    const current = new URLSearchParams(window.location.search);
+    kept.forEach((key) => {
+      const value = current.get(key);
+      if (value) target.searchParams.set(key, value);
+      else target.searchParams.delete(key);
+    });
+    const id = decodeHash(window.location.hash);
+    const map = link.dataset.anchorMap ? (JSON.parse(link.dataset.anchorMap) as Record<string, string>) : undefined;
+    // Sense mapa, les àncores són de la plantilla i iguals als dos idiomes: només es copia si existeix aquí.
+    const anchor = id ? (map ? map[id] : document.getElementById(id) ? id : '') : '';
+    target.hash = anchor ? `#${anchor}` : '';
+    link.href = target.toString();
+  };
+  const languageLinks = [...document.querySelectorAll<HTMLAnchorElement>('a[data-lang-switch]')];
+  languageLinks.forEach((link) => {
+    link.dataset.base = link.getAttribute('href') ?? '';
+    syncLanguageLink(link);
+    ['pointerenter', 'pointerdown', 'focus', 'click', 'auxclick', 'contextmenu'].forEach((type) =>
+      link.addEventListener(type, () => syncLanguageLink(link)),
+    );
+  });
+  window.addEventListener('hashchange', () => languageLinks.forEach(syncLanguageLink));
+
+  // Desplegable d'idioma (<details>): funciona sense JavaScript; amb JavaScript es tanca en fer clic
+  // a fora o amb Escape (el focus torna al botó).
+  const languageMenu = document.querySelector<HTMLDetailsElement>('[data-lang-menu]');
+  if (languageMenu) {
+    document.addEventListener('click', (event) => {
+      if (languageMenu.open && !languageMenu.contains(event.target as Node)) languageMenu.open = false;
+    });
+    languageMenu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && languageMenu.open) {
+        languageMenu.open = false;
+        languageMenu.querySelector('summary')?.focus();
+      }
+    });
+  }
+
   const button = document.querySelector<HTMLButtonElement>('.menu-toggle');
   const nav = document.getElementById('mobile-nav');
 
@@ -83,10 +222,7 @@ const currentAttr = (href: string) => (href === current ? 'page' : undefined);
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && nav.classList.contains('is-open')) setOpen(false, true);
     });
-    const header = button.closest<HTMLElement>('.site-header');
-    const breakpoints: Record<string, string> = { wide: '(min-width: 1271px)', industrial: '(min-width: 1321px)' };
-    const desktop = breakpoints[header?.dataset.collapse ?? ''] ?? '(min-width: 1001px)';
-    window.matchMedia(desktop).addEventListener('change', (event) => {
+    window.matchMedia('(min-width: 1001px)').addEventListener('change', (event) => {
       if (event.matches) setOpen(false);
     });
   }
@@ -99,7 +235,7 @@ const currentAttr = (href: string) => (href === current ? 'page' : undefined);
     top: -5rem;
     left: 1rem;
     padding: 0.7rem 1rem;
-    background: #fff;
+    background: var(--palette-white);
     color: var(--color-accent);
     font-weight: 700;
   }
@@ -118,28 +254,28 @@ const currentAttr = (href: string) => (href === current ? 'page' : undefined);
     z-index: 50;
     top: 0;
     border-bottom: 1px solid var(--header-line);
-    background: rgb(223 224 223 / 0.97);
+    background: var(--palette-white);
     color: var(--ink);
   }
 
   .site-header[data-tone='dark'] {
-    --header-line: #5d6767;
-    --header-muted: #c9d0ce;
-    --header-panel: #3a4243;
-    background: rgb(58 66 67 / 0.97);
-    color: #f3f4f2;
+    --header-line: var(--palette-dark);
+    --header-muted: var(--palette-light);
+    --header-panel: var(--palette-dark);
+    background: var(--palette-dark);
+    color: var(--palette-white);
   }
 
   /* Vidre (profunditat): el contingut es percep difuminat sota la capçalera en fer scroll; la
      opacitat manté el contrast del text sobre qualsevol secció. */
   @supports (backdrop-filter: blur(1px)) {
     .site-header {
-      background: rgb(223 224 223 / 0.9);
+      background: var(--palette-white);
       backdrop-filter: blur(18px) saturate(1.3);
     }
 
     .site-header[data-tone='dark'] {
-      background: rgb(58 66 67 / 0.9);
+      background: var(--palette-dark);
     }
   }
 
@@ -182,12 +318,12 @@ const currentAttr = (href: string) => (href === current ? 'page' : undefined);
     transition: border-color 200ms ease;
   }
 
-  /* Pàgina actual: línia sencera. En passar-hi, la línia es carrega (styles/interactions.css). */
-  .desktop-nav a[aria-current='page'] {
+  /* Pàgina o branca actual: línia sencera. En passar-hi, la línia es carrega (styles/interactions.css). */
+  .desktop-nav a[aria-current] {
     border-color: currentColor;
   }
 
-  .mobile-nav a[aria-current='page'] {
+  .mobile-nav a[aria-current] {
     text-decoration: underline;
     text-underline-offset: 0.3em;
   }
@@ -196,6 +332,112 @@ const currentAttr = (href: string) => (href === current ? 'page' : undefined);
     display: flex;
     align-items: center;
     gap: 0.8rem;
+  }
+
+  /* Selector d'idioma (director, 13/10/2026): discret i petit. El botó mostra el codi de l'idioma
+     actual i una fletxa fina; el panell, de la mateixa amplada, només els codis CA, ES i EN (el nom
+     sencer de cada idioma queda per als lectors de pantalla). */
+  .header-lang {
+    position: relative;
+  }
+
+  .header-lang summary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-width: var(--target-min);
+    min-height: var(--target-min);
+    padding-inline: 0.4rem;
+    color: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .header-lang summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .header-lang summary:hover > span:first-child {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  .header-lang-caret {
+    width: 0.32rem;
+    height: 0.32rem;
+    border-right: 1.25px solid currentColor;
+    border-bottom: 1.25px solid currentColor;
+    opacity: 0.7;
+    translate: 0 -0.1rem;
+    rotate: 45deg;
+    transition: rotate var(--motion-fast) var(--motion-ease);
+  }
+
+  .header-lang[open] .header-lang-caret {
+    rotate: 225deg;
+    translate: 0 0.08rem;
+  }
+
+  .header-lang-list {
+    position: absolute;
+    z-index: 60;
+    top: calc(100% + 0.2rem);
+    right: 0;
+    left: 0;
+    display: grid;
+    margin: 0;
+    padding: 0.2rem 0;
+    border: 1px solid var(--header-line);
+    background: var(--header-panel);
+    box-shadow: 0 8px 18px -14px rgb(43 43 43 / 0.4);
+    list-style: none;
+  }
+
+  .site-header[data-tone='dark'] .header-lang-list {
+    border-color: rgb(255 255 255 / 0.2);
+  }
+
+  /* 36 px d'alçada per opció: per sobre del mínim tàctil de WCAG 2.2 (24 px). */
+  .header-lang-list a,
+  .header-lang-current {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.25rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .header-lang-current {
+    color: var(--color-accent);
+  }
+
+  .site-header[data-tone='dark'] .header-lang-current {
+    color: var(--header-muted);
+  }
+
+  .header-lang-list a:hover,
+  .header-lang-list a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .header-lang[open] .header-lang-list {
+      transition:
+        opacity 160ms var(--motion-ease),
+        translate 160ms var(--motion-ease);
+
+      @starting-style {
+        opacity: 0;
+        translate: 0 -0.25rem;
+      }
+    }
   }
 
   .header-phone {
@@ -347,67 +589,18 @@ const currentAttr = (href: string) => (href === current ? 'page' : undefined);
     }
   }
 
-  /* Variants «wide» i «industrial»: mateixa lògica que a 1000 px, aplicada fins a 1270 i
-     1320 px respectivament. */
-  :is([data-collapse='wide'], [data-collapse='industrial']) .header-inner {
-    gap: clamp(1rem, 1.8vw, 2rem);
-  }
-
-  [data-collapse='wide'] .desktop-nav {
-    gap: clamp(0.75rem, 1.25vw, 1.35rem);
-  }
-
-  [data-collapse='industrial'] .desktop-nav {
-    gap: clamp(0.7rem, 1.2vw, 1.25rem);
-  }
-
-  :is([data-collapse='wide'], [data-collapse='industrial']) .desktop-nav a {
-    font-size: 0.82rem;
-  }
-
-  @media (max-width: 1320px) {
-    [data-collapse='industrial'] .desktop-nav {
-      display: none;
+  /* Amb el selector d'idioma, a 320 px la capçalera no hi cabia (08/10/2026): menys separació entre
+     accions i selector més estret, amb un objectiu tàctil de 32 × 44 px (mínim WCAG 2.2: 24 px). */
+  @media (max-width: 400px) {
+    .header-actions {
+      gap: 0.35rem;
     }
 
-    [data-collapse='industrial'] .header-actions {
-      margin-left: auto;
-    }
-
-    :global(html:not(.js)) [data-collapse='industrial'].site-header {
-      position: static;
-    }
-
-    :global(html:not(.js)) [data-collapse='industrial'] .mobile-nav,
-    [data-collapse='industrial'] .mobile-nav.is-open {
-      display: grid;
-    }
-
-    :global(html.js) [data-collapse='industrial'] .menu-toggle {
-      display: flex;
+    .header-lang summary {
+      min-width: 2rem;
+      gap: 0.3rem;
+      padding-inline: 0.25rem;
     }
   }
 
-  @media (max-width: 1270px) {
-    [data-collapse='wide'] .desktop-nav {
-      display: none;
-    }
-
-    [data-collapse='wide'] .header-actions {
-      margin-left: auto;
-    }
-
-    :global(html:not(.js)) [data-collapse='wide'].site-header {
-      position: static;
-    }
-
-    :global(html:not(.js)) [data-collapse='wide'] .mobile-nav,
-    [data-collapse='wide'] .mobile-nav.is-open {
-      display: grid;
-    }
-
-    :global(html.js) [data-collapse='wide'] .menu-toggle {
-      display: flex;
-    }
-  }
 </style>

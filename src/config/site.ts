@@ -4,16 +4,19 @@
 // que no tinguin aquestes fonts.
 export const company = {
   legalName: 'Serralleria Carbó S.L.',
-  phone: { display: '630 661 908', href: 'tel:+34630661908' },
-  landline: { display: '93 890 27 94', href: 'tel:+34938902794' },
+  // Telèfon principal: el fix (director, 13/10/2026), el mateix del Perfil d'Empresa de Google. El mòbil
+  // queda com a secundari i només es mostra a la pàgina de contacte; WhatsApp continua al mòbil.
+  phone: { display: '93 890 27 94', href: 'tel:+34938902794' },
+  mobile: { display: '630 661 908', href: 'tel:+34630661908' },
   email: 'carbo@serralleriacarbo.com',
-  address: ["Carrer d'Eugeni d'Ors, 59", '08720 Vilafranca del Penedès, Barcelona'],
-  mapUrl: "https://www.google.com/maps/search/?api=1&query=Carrer%20d'Eugeni%20d'Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s",
+  // Adreça definitiva: 59-61 (director, 23/10/2026), la mateixa del domicili social i del Perfil d'Empresa.
+  address: ["Carrer d'Eugeni d'Ors, 59-61", '08720 Vilafranca del Penedès, Barcelona'],
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=Carrer%20d'Eugeni%20d'Ors%2059-61%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s",
   // Mapa interactiu de Google Maps amb la mateixa adreça. Només es carrega si el visitant ho demana
   // (src/scripts/place-map.ts): fins aleshores no es fa cap petició a Google.
-  mapEmbedUrl: "https://maps.google.com/maps?q=Carrer%20d'Eugeni%20d'Ors%2059%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s&z=16&hl=ca&output=embed",
+  mapEmbedUrl: "https://maps.google.com/maps?q=Carrer%20d'Eugeni%20d'Ors%2059-61%2C%2008720%20Vilafranca%20del%20Pened%C3%A8s&z=16&hl=ca&output=embed",
   // Mateixa adreça, per camps (dades estructurades). Fundació i plantilla: content/ca/home.md.
-  postalAddress: { street: "Carrer d'Eugeni d'Ors, 59", postalCode: '08720', locality: 'Vilafranca del Penedès', region: 'Barcelona', country: 'ES' },
+  postalAddress: { street: "Carrer d'Eugeni d'Ors, 59-61", postalCode: '08720', locality: 'Vilafranca del Penedès', region: 'Barcelona', country: 'ES' },
   foundingDate: '1989-12',
   employees: 12,
   // Horari d'atenció: traspàs de Fase 4 (25/09/2026) i director (30/09/2026); coincideix amb el

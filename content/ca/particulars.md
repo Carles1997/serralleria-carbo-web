@@ -2,7 +2,7 @@
 pageId: particulars
 route: /particulars/
 lang: ca
-status: draft
+status: approved
 seoTitle: "Serralleria per a particulars a Vilafranca | Serralleria Carbó"
 seoDescription: "Baranes, estructures, portes i automatismes a mida per a habitatges i comunitats. Treballs reals de Serralleria Carbó a Vilafranca i rodalia."
 ---
@@ -27,15 +27,15 @@ Fabriquem i instal·lem baranes, escales, passarel·les i altres estructures met
 
 ### Mobiliari
 
-Fabriquem mobiliari amb estructura metàl·lica, a mida de l'ús i de l'espai.
+Mobiliari amb estructura de ferro o inoxidable, a mida de l'ús i de l'espai. Per a particulars i decoradors.
 
-[Descriu la peça al formulari](/contacte/?tipus=particular&servei=mobiliari)
+[Consulta el teu mobiliari a mida](/contacte/?tipus=particular&servei=mobiliari)
 
 ### Reparacions
 
-Portes, persianes i motors que han deixat de funcionar.
+Reparem portes, persianes i automatismes d'habitatges, comunitats i negocis.
 
-[Veure reparacions](/particulars/urgencies/)
+[Veure reparacions](/particulars/reparacions/)
 
 ## Una sèrie, una peça tècnica o un projecte constructiu?
 

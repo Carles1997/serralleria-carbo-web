@@ -1,0 +1,9 @@
+---
+// Versió en anglès (director, 12/10/2026): mateixa plantilla que la ruta catalana, amb content/en/.
+import ParticularsTemplate from '../../../templates/ParticularsTemplate.astro';
+import { getPage } from '../../../i18n/pages';
+
+const page = await getPage('particulars', 'en');
+---
+
+<ParticularsTemplate page={page} />

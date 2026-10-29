@@ -60,10 +60,40 @@ L'esquema de [`src/content.config.ts`](../../src/content.config.ts) rebutja el b
   - una pàgina no indexable no declara `hreflang`;
   - una traducció en esborrany o `noindex` no apareix com a alternativa;
   - la 404 i les legals bloquejades no declaren canonical.
-- **Pendent abans de publicar.**
-  - `sitemap.xml` i `robots.txt` s'han de generar amb la mateixa funció `isIndexable`, sense cap llista manual.
-  - Redireccions 301 del mapa de Fase 3.
-  - Enviament del sitemap a Search Console i comprovació de cobertura. L'enviament no equival a indexació confirmada.
+- **Fet després (28/09 a 08/10/2026).**
+  - `sitemap.xml` i `robots.txt` es generen amb `isIndexable` i `isPublishedRoute`, sense cap llista manual.
+  - Redireccions del mapa de Fase 3 a `dist/_redirects` (13 regles llestes el 08/10/2026).
+  - Protecció d'indexació per adreça (apartat següent).
+- **Pendent abans de publicar:** enviament del sitemap a Search Console i comprovació de cobertura. L'enviament no equival a indexació confirmada.
+
+## Protecció d'indexació per adreça
+
+**Afegit el 08/10/2026 (Fase 6, bloc 1).** L'estat de cada pàgina només s'ha d'aplicar al domini definitiu. Netlify serveix el mateix desplegament de producció a diverses adreces, i `_headers` no pot distingir-les. Per això hi ha una segona capa, a [`scripts/lib/indexing-policy.mjs`](../../scripts/lib/indexing-policy.mjs), que aplica [`src/integrations/netlify-files.mjs`](../../src/integrations/netlify-files.mjs) en acabar el build:
+
+- **Build definitiu:** `CONTEXT=production` i `URL` igual a `siteUrl` ([`src/config/site-url.mjs`](../../src/config/site-url.mjs)). Netlify defineix totes dues variables al build. `URL` només passa a ser el domini quan aquest és el domini principal del lloc.
+  - No hi ha capçalera global: cada pàgina segueix el seu `status`.
+  - `_redirects` comença amb tres regles de domini que porten al domini amb `www`, amb un 301 forçat i conservant el camí:
+    - el subdomini principal `serralleriacarbo.netlify.app`;
+    - el domini sense `www`, en `http` i en `https`.
+  - Si falta `SITE_NAME`, el build falla.
+- **Qualsevol altre build** (local, àlies `revisio-client`, previsualitzacions, branques, o producció abans del llançament): `dist/_headers` rep `X-Robots-Tag: noindex` per a totes les respostes.
+
+| Adreça | Abans del llançament | Després del llançament |
+|---|---|---|
+| `https://www.serralleriacarbo.com` (principal) | Web WordPress (no és a Netlify) | Sense capçalera; `noindex` només a les pàgines no aprovades |
+| `serralleriacarbo.com` (sense `www`) | Web WordPress | 301 a `https://www.` (regla de domini; Netlify també redirigeix els àlies de domini) |
+| `serralleriacarbo.netlify.app` (subdomini principal) | `X-Robots-Tag: noindex` | 301 al domini |
+| `revisio-client--serralleriacarbo.netlify.app` | `X-Robots-Tag: noindex` (build local) | Igual |
+| Previsualitzacions i branques (`deploy-preview-N--…`, `branca--…`) | `X-Robots-Tag: noindex` (`CONTEXT` ≠ `production`) | Igual |
+| Enllaç permanent de cada desplegament (`<id>--…`) | Netlify hi afegeix `X-Robots-Tag: noindex` pel seu compte (comprovat el 08/10/2026) | Igual (cal comprovar-ho el dia del llançament) |
+
+`robots.txt` no canvia: si es bloquegés el rastreig, Google no podria llegir el `noindex`.
+
+**Regles d'operació:**
+- La producció s'ha de construir a Netlify, a partir de `main`.
+- Un `netlify deploy --prod` des d'un build local publicaria el web amb `noindex`, perquè el build local no té `CONTEXT`. No s'ha de fer.
+- Després d'establir el domini principal, cal un nou desplegament de producció perquè el build reconegui l'adreça.
+- Es comprova amb `npm run check:redirects:live -- <adreça>` ([FASE5-redireccions](FASE5-redireccions.md#comprovació-en-viu-08102026)).
 
 ## Línia base de referències
 

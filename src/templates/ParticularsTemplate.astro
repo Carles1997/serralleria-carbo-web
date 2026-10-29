@@ -3,8 +3,9 @@
 // amb identitat.css i revisio-client.css (vegeu particulars.css). Text i enllaços:
 // content/{idioma}/particulars.md; casos: content/{idioma}/projects/. Etiquetes i
 // titulars de la maqueta: i18n/ui.ts. Imatges sense llegendes (director, 28/09/2026).
-// Bloc 1 del pla d'afinament (fases/fase-5/FASE5-pla-millora-integral.md): accés a Urgències a
-// l'entrada i franja d'urgències just després; el primer paràgraf del contingut obre Serveis (sense
+// Bloc 1 del pla d'afinament (fases/fase-5/FASE5-pla-millora-integral.md): franja d'avaries just
+// després de l'entrada («Tens una avaria?»; el servei es diu Reparacions des del 12/10/2026 i l'àncora
+// #urgencies es conserva per compatibilitat); el primer paràgraf del contingut obre Serveis (sense
 // secció d'introducció pròpia); l'àrea de treball s'integra al contacte; sense rètols numerats.
 // Bloc 2: sense etiquetes que repeteixen el titular (branca, «Atenció directa», títols del contingut
 // sobre l'H2, categories, peu dels casos); es mantenen el número i el tipus d'obra de cada cas.
@@ -77,7 +78,7 @@ const chapters = await Promise.all(
   t.projects.featured.map(async (id, index) => {
     const project = await getEntry('projects', `${locale}/projects/${id}`);
     if (!project || project.data.branch !== 'particulars') throw new Error(`El cas «${id}» no existeix a Particulars.`);
-    const serviceHref = `/particulars/${project.data.category}/`;
+    const serviceHref = ui.routes.services[project.data.category];
     const service = t.nav.find((item) => item.href === serviceHref);
     if (!service) throw new Error(`No hi ha ruta de servei per a la categoria «${project.data.category}».`);
     return {
@@ -96,7 +97,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
 ---
 
 <BaseLayout page={page}>
-  <SiteHeader ui={ui} homeHref="/" nav={t.nav} mobileExtra={t.mobileExtra} collapse="wide" />
+  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} />
 
   <main id="contingut" class="particulars-page">
     <section class="p-hero" aria-labelledby="p-title" data-surface="dark">
@@ -115,7 +116,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
       </div>
     </section>
 
-    <section class="p-urgent" id="urgencies" aria-labelledby="p-urgent-title" data-surface="light">
+    <section class="p-urgent surface-brand-grey" id="urgencies" aria-labelledby="p-urgent-title" data-surface="light">
       <div class="section-shell p-urgent-inner">
         <div data-reveal>
           <h2 id="p-urgent-title">{t.urgent.heading}</h2>
@@ -129,15 +130,15 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
     <section class="p-services" id="serveis" aria-labelledby="p-services-title" data-surface="light">
       <div class="section-shell">
         <div class="section-lead">
-          <h2 id="p-services-title" data-reveal style={fit(...t.services.heading)}>{t.services.heading[0]}<br />{' '}{t.services.heading[1]}</h2>
+          <h2 id="p-services-title" data-reveal style={fit(...t.services.heading)}>{t.services.heading[0]}<span class="sr-only">.</span><br />{' '}{t.services.heading[1]}</h2>
           <p data-reveal style="--i:2"><Inlines inlines={introWorks} /></p>
         </div>
         <div class="p-service-grid">
           {
             services.map((service, index) => (
-              <article class={`p-service p-service-${service.art}`} data-reveal style={`--i:${index}`}>
+              <article class={`p-service p-service-${service.art}`} data-reveal="clip" style={`--i:${index}`}>
                 <div class={`p-service-art p-service-art-${service.art}`} aria-hidden="true">
-                  <Picture src={service.image} alt="" widths={[400, 640, 960]} sizes="(max-width: 560px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                  <Picture src={service.image} alt="" widths={[240, 400, 640, 960]} sizes="(max-width: 350px) 100vw, 50vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
                 </div>
                 <div class="p-service-copy">
                   <h3>{service.title}</h3>
@@ -167,7 +168,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
       </div>
     </section>
 
-    <section class="p-projects" id="projectes" aria-labelledby="p-projects-title" data-surface="light">
+    <section class="p-projects surface-brand-grey" id="projectes" aria-labelledby="p-projects-title" data-surface="light">
       <div class="section-shell">
         <div class="section-lead">
           <h2 id="p-projects-title" data-reveal style={fit(...t.projects.heading)}>{t.projects.heading[0]}<br />{' '}{t.projects.heading[1]}</h2>
@@ -184,7 +185,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           <div class="p-story-stage-shade"></div>
           <div class="p-story-progress"><span data-story-progress style={`scale:${1 / chapters.length} 1`}></span></div>
         </div>
-        <div class="p-story-chapters">
+        <div class="p-story-chapters" data-surface="light">
           {
             chapters.map((chapter) => (
               <article class="p-story-chapter" data-story-chapter={chapter.number}>

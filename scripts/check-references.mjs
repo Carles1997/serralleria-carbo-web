@@ -167,6 +167,89 @@ const VALIDATED_REVISIONS = [
       'content/ca/industrial.md': '1496d3a2040d6fd3df29eaf019dde74491d462ddb5e86a4d641621e8338c9d80',
     },
   },
+  {
+    // Implementació de l'auditoria integral demanada pel director (06/10/2026).
+    // Resum comercial del taller, ponts industrials específics i etiquetes de demostració.
+    label: 'auditoria integral: refinament autoritzat pel director (06/10/2026)',
+    bodies: {
+      'content/ca/industrial.md': 'f6434acc85013bcd3dd60bef1a25292fd1f5855b76a65597bb61b66cb2c67273',
+      'content/ca/particulars-estructures.md': '0153e6c970cda15ab7db9f3be59896683d3e31a51b96552f1146c292d6f9e391',
+      'content/ca/particulars-automatismes.md': 'caa5fe329b97f70ee2dbe70118ab96511f56d78f4d2e81c320248bf2cef1cf9b',
+      'content/ca/ui.md': 'f90385d900291dadc5aa922ab649d1a7476fba7330fd67bbf4f8e314819f5f8a',
+    },
+  },
+  {
+    // Fase 6, bloc 3 (fases/fase-6/FASE6-bloc3-proposta-editorial.md): E1–E4 validats pel director el
+    // 08/10/2026. Abast exacte: només seoTitle i seoDescription d'aquests dos fitxers (el cos i la resta
+    // del frontmatter no canvien; els estats continuen sota APPROVAL_KEYS). E6 queda ajornat.
+    label: 'metadades SEO d\'Industrial i Capacitats, validades pel director (08/10/2026)',
+    bodies: {},
+    frontmatter: {
+      'content/ca/industrial.md': '0ec758702a2b4aeb5e75e6a560f8f76da7c0e9f21ac0fbf3c4019173a992628e',
+      'content/ca/industrial-capacitats.md': '4d5a9e40953fb130508a47e1807fe5e156ca460d6e2be1be1b6614fc4eb2ad1b',
+    },
+  },
+  {
+    // Canvis del client (fases/fase-7/CANVIS-CLIENT-2026-10-12.md), per ordre del director (12/10/2026).
+    // Abast exacte: Reparacions en lloc d'Urgències (ruta, introducció, dades per contactar i enllaços),
+    // Tecnologies duals retirat (quatre sectors), mobiliari també per a decoradors i manteniment
+    // industrial a Industrial (secció, frase al resum d'oferta i crida final «Parlem del teu encàrrec»).
+    // Frontmatter: la ruta de Reparacions i les descripcions dels documents ajornats de mobiliari i sectors.
+    label: 'canvis del client: reparacions, sectors, decoradors i manteniment (12/10/2026)',
+    bodies: {
+      'content/ca/home.md': 'c5e0763d8ce16bb513c648df854f2b7f2369d6c753514a4da701858708eb3faa',
+      'content/ca/industrial-sectors.md': '38ad19c5d92ce1f50af25b6efc712c8101365b18355aa5754ffc7a31301adcdf',
+      'content/ca/industrial.md': '0a40588238705716aa2912487bc3ce058e1a82c86730a711b9844ac97b358f32',
+      'content/ca/particulars-automatismes.md': 'fadc6ee25ea059d3047c9e627f1021ca20a409c2dc4b901973ecc26fca1245f5',
+      'content/ca/particulars-mobiliari.md': '177589ada25deeacaf7fae3516ac3ab9685f4449ab829d81d69befe7d32ad010',
+      'content/ca/particulars-urgencies.md': '94e43b70c08a9ac1104697a1b6d38b0b4f4c3d535feb52663a548c8774c0b078',
+      'content/ca/particulars.md': '64ae77ef762edf628ad044a7b6b02c89164a37271e6d3d3c3749de8808ebe0e1',
+      'content/ca/ui.md': 'd2d3b1270f75367ec454dcb3912dd5b117251588e35540b730ab1cd8789fe254',
+    },
+    frontmatter: {
+      'content/ca/industrial-sectors.md': '6c29e1006e5d89c1c0087ffa4b9c936288b91abf6332ccf0b1061fe0c59609c6',
+      'content/ca/particulars-mobiliari.md': '63ab033b34192b822255f3b32621ab352a9195bc2942460cd4864091bba3bed4',
+      'content/ca/particulars-urgencies.md': 'ec5a8d1bf2fe78d53b2fb3e4e91ef2027f25166ac9538b301378e0c30132bdf4',
+    },
+  },
+  {
+    // Indicació del director (12/10/2026): el manteniment industrial passa a ser la primera secció
+    // d'Industrial, explicat en tres passos, i es retira «També oferim manteniment industrial.» de
+    // «Què fabriquem»; navegació general idèntica a totes les pàgines amb selector d'idioma desplegable.
+    label: 'manteniment destacat i navegació general, indicació del director (12/10/2026)',
+    bodies: {
+      'content/ca/industrial.md': '58233e5ed46710a326441c097115164a77235032febd1bbcd088f7bbfee84077',
+      'content/ca/ui.md': '010c7abe202971ed179107d240fcb64fda1dcfaf13951b7ae9874f38e57784e2',
+    },
+  },
+  {
+    label: 'manteniment en format de fitxa, proposta del director (13/10/2026)',
+    bodies: {
+      'content/ca/industrial.md': 'ec96f5fbda66313cfb66424958f3ec64a0ba6c49dae3aa6a07e03db9b564d396',
+    },
+  },
+  {
+    label: 'sèries curtes i mitjanes i telèfon fix com a principal, indicació del director (13/10/2026)',
+    bodies: {
+      'content/ca/contacte.md': '8369d76032182149a2d680d42a8f535ba38435e0ac11f664f0096699fd27ee29',
+      'content/ca/home.md': '7341bd5b584f640f4866304873f7691be683e52eeb3a82a2054d6d4ad5826307',
+      'content/ca/industrial.md': '3fa568fd83ce1b337857af83cac3cccbf9d2dda0db4bf0061f6f54acf2c8d055',
+      'content/ca/particulars-urgencies.md': '315c983354537a3ca198a5d20b3af4fab56772946d31e3d06176144465849d76',
+      'content/ca/ui.md': '3b9327436a2b47c653aa880108b64d9d17509f28c55333f46c5ceaeefffc14b4',
+    },
+  },
+  {
+    label: 'textos de les targetes de mobiliari i reparacions, validats pel director (15/10/2026)',
+    bodies: {
+      'content/ca/particulars.md': '5f833480d0b6fa106f782a5f165f8a72d5263ae7ba1da5bc32422c022ef2b62e',
+    },
+  },
+  {
+    label: 'adreça definitiva 59-61, indicació del director (23/10/2026)',
+    bodies: {
+      'content/ca/empresa.md': '8adc12fc51c338bd98fd76cff516d92cff0a95fb5d337e480c7a98e7d5dadff8',
+    },
+  },
 ];
 const printHashes = process.argv.includes('--hashes');
 const bodyHash = (body) => createHash('sha256').update(body).digest('hex');

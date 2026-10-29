@@ -8,6 +8,10 @@
 // ajornades (config/routes.ts) resolen a seccions d'aquesta mateixa pàgina i no es mostren; quan
 // les rutes es publiquin, tornaran a aparèixer.
 // Bloc 2: rols tipogràfics comuns; la línia del mètode es manté en plata (decisió del director).
+// Canvis del client (12/10/2026, fases/fase-7/CANVIS-CLIENT-2026-10-12.md): quatre sectors (sense
+// Tecnologies duals) i manteniment industrial. Indicació del director (12/10/2026): el manteniment és
+// la primera secció, davant de «Què fabriquem», amb una fitxa breu (13/10/2026); menys accessos repetits al
+// formulari (sense «Envia una consulta», «Explica'ns el teu projecte» ni «Consultar una sèrie»).
 import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
@@ -17,7 +21,7 @@ import type { Page } from '../i18n/pages';
 import { useUi } from '../i18n/ui';
 import { company } from '../config/site';
 import { labelledItem, links, listItems, one, paragraphs, parseMarkdown, plainText, sameText } from '../lib/markdown';
-import { projectPhotography, sitePhotography } from '../config/photography';
+import { projectPhotoAlt, sitePhotography } from '../config/photography';
 import './mockup-base.css';
 import './industrial-base.css';
 import './industrial.css';
@@ -31,12 +35,12 @@ const locale = page.data.lang;
 const ui = useUi(locale);
 const t = ui.industrial;
 
-// Estructura d'industrial.md: H1, un paràgraf d'entrada i set seccions H2 en aquest ordre. La
-// primera, «Què fabriquem en sèrie», diu que Industrial fa en diverses unitats els productes de
-// Particulars i qualsevol peça a mida (reunió amb el client, 03/10/2026).
+// Estructura d'industrial.md: H1 i vuit seccions H2 en aquest ordre. La primera és el manteniment
+// industrial (12/10/2026); la segona, «Què fabriquem», diu que Industrial fa en diverses unitats els
+// productes de Particulars i qualsevol peça a mida (reunió amb el client, 03/10/2026).
 const doc = parseMarkdown(page.body ?? '');
-if (doc.sections.length !== 7) throw new Error(`industrial.md ha de tenir 7 seccions H2; en té ${doc.sections.length}.`);
-const [production, workshop, quality, sectors, method, project, contact] = doc.sections;
+if (doc.sections.length !== 8) throw new Error(`industrial.md ha de tenir 8 seccions H2; en té ${doc.sections.length}.`);
+const [maintenance, production, workshop, quality, sectors, method, project, contact] = doc.sections;
 
 if (`${t.hero.title.join('. ')}.` !== doc.title) {
   throw new Error(`El titular compost («${t.hero.title.join(' / ')}») no coincideix amb la H1 d'industrial.md.`);
@@ -48,6 +52,7 @@ if (paragraphs(doc.intro).length) throw new Error("L'entrada d'industrial.md nom
 // titulars es reparteixen en línies a i18n/ui.ts i el build comprova que diguin el mateix. Els
 // enllaços a les quatre interiors ajornades ja no són al contingut.
 sameText(t.production.heading, production.heading, 'industrial.md');
+sameText(t.maintenance.heading, maintenance.heading, 'industrial.md');
 sameText(t.workshop.heading, workshop.heading, 'industrial.md');
 sameText(t.workshop.progress.label, quality.heading, 'industrial.md');
 sameText(t.sectors.heading, sectors.heading, 'industrial.md');
@@ -73,6 +78,16 @@ if (method.subsections.length) throw new Error(`«${method.heading}» ja no port
 const steps = listItems(method.blocks).map(labelledItem);
 if (steps.length !== 4) throw new Error(`«${method.heading}» ha de tenir quatre passos; en té ${steps.length}.`);
 
+// Manteniment: una frase, una fitxa breu (què fem, on, com començar; sense catàleg d'intervencions fins
+// que el client el concreti) i una acció cap al formulari d'Industrial amb el manteniment preseleccionat.
+const maintenanceText = one(paragraphs(maintenance.blocks), `un paràgraf a «${maintenance.heading}»`);
+const maintenanceFacts = listItems(maintenance.blocks).map(labelledItem);
+if (maintenanceFacts.length !== 3) throw new Error(`«${maintenance.heading}» ha de tenir tres línies de fitxa; en té ${maintenanceFacts.length}.`);
+const maintenanceLink = one(links(maintenance.blocks), `un enllaç a «${maintenance.heading}»`);
+if (!/[?&]tipus=empresa(&|$)/.test(maintenanceLink.href) || !/[?&]servei=manteniment(&|$)/.test(maintenanceLink.href)) {
+  throw new Error(`L'acció de «${maintenance.heading}» ha de preseleccionar Industrial i el manteniment.`);
+}
+
 const projectText = one(paragraphs(project.blocks), `un paràgraf a «${project.heading}»`);
 const projectAction = one(links(project.blocks), `un enllaç a «${project.heading}»`);
 
@@ -95,7 +110,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
 ---
 
 <BaseLayout page={page} surface="dark">
-  <SiteHeader ui={ui} homeHref="/" nav={t.nav} mobileExtra={t.mobileExtra} collapse="industrial" phoneLabel={t.phoneLabel} />
+  <SiteHeader ui={ui} page={page} homeHref={ui.routes.home} collapse="industrial" phoneLabel={t.phoneLabel} />
 
   <main id="contingut" class="industrial-page">
     <section class="i-hero" aria-labelledby="i-title">
@@ -107,11 +122,10 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
         <div class="i-hero-overline enter"><span>{t.hero.overline[0]}</span><span>{t.hero.overline[1]}</span></div>
         <div class="i-hero-copy">
           <h1 id="i-title" style={fit(...t.hero.title)}>
-            <span class="enter" style="--i:2">{t.hero.title[0]}</span>{' '}<br /><span class="enter" style="--i:3">{t.hero.title[1]}</span>{' '}<br /><em class="enter" style="--i:4">{t.hero.title[2]}</em>
+            <span class="enter" style="--i:2">{t.hero.title[0]}</span><span class="sr-only">.</span>{' '}<br /><span class="enter" style="--i:3">{t.hero.title[1]}</span><span class="sr-only">.</span>{' '}<br /><em class="enter" style="--i:4">{t.hero.title[2]}</em><span class="sr-only">.</span>
           </h1>
           <div class="i-hero-actions enter" style="--i:6">
             <a class="i-button i-button-solid" href={workshopLink.href}>{t.hero.primary} <span class="arrow" aria-hidden="true">↗</span></a>
-            <a class="i-text-link" href="#contacte">{t.hero.secondary} <span class="arrow" aria-hidden="true">↗</span></a>
           </div>
         </div>
         <div class="i-hero-bottom enter" style="--i:7"><span>{t.hero.bottom}</span></div>
@@ -136,9 +150,32 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
             </div>
           ))
         }
-        <a href="#contacte" data-reveal style="--i:3">{t.proof.action} <span class="arrow" aria-hidden="true">↗</span></a>
       </div>
     </div>
+
+    <section class="i-maintenance" id="manteniment" aria-labelledby="i-maintenance-title">
+      <div class="section-shell i-maintenance-layout">
+        <div class="i-maintenance-intro" data-reveal>
+          <p class="i-maintenance-label">{t.maintenance.label}</p>
+          <h2 id="i-maintenance-title">{t.maintenance.heading[0]}{' '}<br /><em>{t.maintenance.heading[1]}</em></h2>
+          <p class="i-maintenance-lead"><Inlines inlines={maintenanceText} /></p>
+          <div class="i-maintenance-actions">
+            <a class="i-button i-button-solid" href={maintenanceLink.href}>{maintenanceLink.label} <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="i-text-link" href={company.phone.href}>{ui.contact.call(company.phone.display)} <span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <dl class="i-maintenance-facts" data-reveal="group">
+          {
+            maintenanceFacts.map((fact, index) => (
+              <div style={`--i:${index}`}>
+                <dt>{fact.value}</dt>
+                <dd>{fact.label}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </section>
 
     <section class="i-production" id="produccio" aria-labelledby="i-production-title">
       <div class="section-shell">
@@ -218,23 +255,25 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
           </article>
         </div>
         <div class="i-cap-close">
-          <div class="i-quality" data-reveal style="--i:1">
-            <div class="i-quality-copy">
-              <h3>{t.workshop.progress.label}</h3>
-              <p><Inlines inlines={qualityText} /></p>
+          <details class="i-quality" data-reveal style="--i:1">
+            <summary>{t.workshop.progress.label}</summary>
+            <div class="i-quality-body">
+              <div class="i-quality-copy">
+                <p><Inlines inlines={qualityText} /></p>
+              </div>
+              <ul class="i-quality-list">
+                {
+                  t.workshop.progress.items.map((item) => (
+                    <li>
+                      <span class="i-quality-mark" aria-hidden="true"></span>
+                      <strong>{item.title}</strong>
+                      <span>{item.state}</span>
+                    </li>
+                  ))
+                }
+              </ul>
             </div>
-            <ul class="i-quality-list">
-              {
-                t.workshop.progress.items.map((item) => (
-                  <li>
-                    <span class="i-quality-mark" aria-hidden="true"></span>
-                    <strong>{item.title}</strong>
-                    <span>{item.state}</span>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
+          </details>
         </div>
       </div>
     </section>
@@ -265,9 +304,6 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
             }
           </ol>
         </div>
-        <div class="i-series-foot" data-reveal>
-          <a class="i-button i-button-outline" href="#contacte">{t.series.action} <span class="arrow" aria-hidden="true">↗</span></a>
-        </div>
       </div>
     </section>
 
@@ -287,9 +323,7 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
                   src={sitePhotography.sectors[sector.art as keyof typeof sitePhotography.sectors]}
                   alt=""
                   widths={[320, 480, 720, 960]}
-                  sizes={index === t.sectors.items.length - 1
-                    ? '(max-width: 760px) 100vw, (max-width: 1000px) 33vw, 20vw'
-                    : '(max-width: 760px) 50vw, (max-width: 1000px) 33vw, 20vw'}
+                  sizes="(max-width: 350px) 100vw, (max-width: 1000px) 50vw, 25vw"
                   formats={['avif', 'webp']}
                   fallbackFormat="jpg"
                   loading="lazy"
@@ -306,11 +340,11 @@ const fit = (...lines: string[]) => `--chars:${Math.max(...lines.join(' ').split
     <section class="i-project" id="projectes" aria-labelledby="i-project-title">
       <div class="section-shell i-project-layout">
         <figure class="i-project-art" data-reveal="clip">
-          <Picture src={sitePhotography.industrial.project} alt={projectPhotography['gavia-industrial'].alt} widths={[400, 640, 960, 1200]} sizes="(max-width: 760px) 100vw, 55vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+          <Picture src={sitePhotography.industrial.project} alt={projectPhotoAlt('gavia-industrial', locale)} widths={[400, 640, 960, 1200]} sizes="(max-width: 760px) 100vw, 55vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
         </figure>
         <div class="i-project-copy">
           <h2 id="i-project-title" style={fit(...t.project.heading)} data-reveal>
-            {t.project.heading[0]}{' '}<br /><em>{t.project.heading[1]}</em>
+            {t.project.heading[0]}<span class="sr-only">.</span>{' '}<br /><em>{t.project.heading[1]}</em>
           </h2>
           <p data-reveal style="--i:2"><Inlines inlines={projectText} /></p>
           <a class="i-section-link" href={projectAction.href} data-reveal style="--i:3">{projectAction.label} <span class="arrow" aria-hidden="true">↗</span></a>

@@ -2,12 +2,22 @@
 pageId: industrial
 route: /industrial/
 lang: ca
-status: draft
-seoTitle: "Fabricació metàl·lica per a tercers | Industrial"
-seoDescription: "Fabricació metàl·lica per a tercers a Vilafranca del Penedès: fabricació en sèrie en acer al carboni i inox 304/316, soldadura MIG/MAG i TIG."
+status: approved
+seoTitle: "Fabricació metàl·lica per a tercers | Serralleria Carbó"
+seoDescription: "Fabricació metàl·lica per a tercers a Vilafranca del Penedès: estructures, portes, mobiliari, peces a plànol i carros industrials, en sèrie o a mida."
 ---
 
-# Fabricació en sèrie. Peces exigents. Resposta industrial.
+# Sèries curtes i mitjanes. Peces exigents. Resposta industrial.
+
+## Manteniment industrial
+
+A més de fabricar, també fem el manteniment en l'àmbit industrial.
+
+- **Què fem** · Revisions i reparacions a les instal·lacions de la teva empresa.
+- **On** · Ens desplacem fins a la instal·lació, amb equip i vehicles propis.
+- **Com començar** · Explica'ns què cal revisar o reparar i on és. Si en tens, envia'ns fotografies.
+
+[Consulta un manteniment](/contacte/?tipus=empresa&servei=manteniment)
 
 ## Què fabriquem
 
@@ -25,7 +35,7 @@ Una feina per a casa, la comunitat o el negoci?
 
 ## El taller en primer pla
 
-Taller de 950 m² amb plegadora, cisalla i punxonadora. Acer al carboni i inox 304/316. Soldadura MIG/MAG i TIG, i muntatge amb equip propi.
+Del material al muntatge, treballem amb equip propi. Consulta els materials, els processos i els mitjans disponibles a la fitxa de capacitats.
 
 [Consulta la fitxa de capacitats](/industrial/capacitats/)
 
@@ -33,9 +43,9 @@ Taller de 950 m² amb plegadora, cisalla i punxonadora. Acer al carboni i inox 3
 
 Podem valorar projectes que requereixin suport d'arquitectura tècnica. Estem implantant l'ISO 9001 i estudiem l'ISO 3834.
 
-## Experiència en cinc sectors
+## Experiència en quatre sectors
 
-L’experiència de l’empresa inclou alimentació, sanitari, packaging, cellers i tecnologies duals. Per a la construcció a gran escala també podem valorar escales, baranes, estructures per a ascensors i altres elements metàl·lics.
+L’experiència de l’empresa inclou alimentació, sanitari, packaging i cellers. Per a la construcció a gran escala també podem valorar escales, baranes, estructures per a ascensors i altres elements metàl·lics.
 
 ## La sèrie comença amb una peça
 
@@ -52,8 +62,8 @@ Fabricació i subministrament de deu gàbies per a un client industrial.
 
 [Parlem d'un projecte semblant](#contacte)
 
-## Parlem de la peça
+## Parlem del teu encàrrec
 
-Si en tens, adjunta un plànol o documentació. Per a fabricació en sèrie, podem valorar encàrrecs d'arreu de Catalunya.
+Si en tens, adjunta un plànol o documentació. Per a sèries curtes i mitjanes, podem valorar encàrrecs d'arreu de Catalunya.
 
 [Formulari de consulta tècnica](/contacte/?tipus=empresa)

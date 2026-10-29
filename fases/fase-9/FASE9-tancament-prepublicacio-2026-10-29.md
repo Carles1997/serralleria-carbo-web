@@ -44,3 +44,7 @@ La confirmació general de permisos d’ús de les fotos està registrada. No s�
 ## Comprovació de navegador
 
 84/84 comprovacions en Chrome headless correctes: 36 pàgines a 1440 i 390 px, i Contacte CA/ES/EN a 1440/768/390/320 px. Sense errors JS no previstos, violacions CSP o desbordaments; H1 únic, camps visibles, menú mòbil funcional i avisos de demostració correctes segons el build. No s’han fet enviaments en aquesta prova local. Informe JSON al mateix directori.
+
+## Actualitzacions de seguretat
+
+L’auditoria del 29/10 ha detectat cinc dependències transitives amb avisos high. S’ha executat npm audit fix --ignore-scripts, sense --force ni canviar les versions directes de package.json. S’han actualitzat 12 paquets de la resolució del lockfile; l’auditoria posterior retorna zero vulnerabilitats conegudes. verify, enllaços, idiomes, redireccions, 58 proves del formulari, build definitiu simulat i 84 comprovacions de navegador correctes després de l’actualització.

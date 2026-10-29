@@ -1,6 +1,6 @@
 # Fase 9 · Manual de publicació
 
-**Data:** 19/10/2026 · **Estat:** preparat; no s'ha executat cap pas de producció, DNS ni registres de correu.
+**Data:** 19/10/2026 · **Actualitzat:** 29/10/2026. Producció autoritzada, configurada i en desplegament; DNS i registres de correu sense modificar. Vegeu el registre de tancament del 29/10 per al resultat final.
 
 **Objectiu.** Publicar la web nova a `https://www.serralleriacarbo.com`:
 - sense perdre posicionament ni correu;
@@ -47,7 +47,7 @@ Després es va refer el build normal (amb `noindex`).
 |---|---|---|---|---|
 | P1 | **Aprovació editorial** de les pàgines que s'indexaran: `status: approved` | Aprovació editorial comercial CA/ES/EN registrada el 20/10. Contacte continua noindex per P3; legals ES/EN aprovats posteriorment pel director (20/10) | Client i director; canvi de fitxers, Claude | `npm run check:links` (recompte del sitemap) i build definitiu simulat |
 | P2 | **Idiomes del llançament** (decisió C11): només català, o català, castellà i anglès | **Fet:** CA/ES/EN aprovats pel director el 20/10/2026 i comprovats en la preparació del 29/10 | Director | Si ES i EN no es publiquen, les seves pàgines continuen `noindex` i s'hi decideix la solució de `/estructuras/` i `/motores/` (C2) |
-| P3 | **Formulari real** provat amb Microsoft 365 (prova controlada §11 del pla 8.5) i **avís de demostració retirat** | **Prova funcional completada:** quatre correus rebuts/respostos i adjunts oberts. Codi preparat: Contacte indexable i avís només al build no definitiu. Pendent configurar/desplegar producció | Administrador, Jordi, director i Claude | Recepció i Reply-To acreditats per les quatre respostes del client; traça «Delivered» complementària. Avís per retirar i provar abans del llançament (`check-contact-form.py`) |
+| P3 | **Formulari real** provat amb Microsoft 365 (prova controlada §11 del pla 8.5) i **avís de demostració retirat** | **Prova funcional completada:** quatre correus rebuts/respostos i adjunts oberts. Codi preparat: Contacte indexable i avís només al build no definitiu. Producció configurada i desplegament iniciat el 29/10; comprovació final al registre de tancament | Administrador, Jordi, director i Claude | Recepció i Reply-To acreditats per les quatre respostes del client; traça «Delivered» complementària. Avís per retirar i provar abans del llançament (`check-contact-form.py`) |
 | P4 | **Textos legals ES/EN** | Aprovats expressament pel director el 20/10/2026; estats actualitzats. No es declara una revisió jurídica independent nova | Director | `status: approved` als vuit fitxers legals ES/EN |
 | P5 | **Drets d'imatge:** consentiments de les persones identificables (8.6) | Pendent; els permisos d'ús ja estan confirmats | Client | Registre a FASE8 |
 | P6 | **Revisió final de l'advocat** (8.10) | Pendent | Advocat | — |
@@ -56,7 +56,7 @@ Després es va refer el build normal (amb `noindex`).
 | P9 | **Crèdits de Netlify** per als desplegaments de producció | **Compte Personal comprovat el 29/10/2026:** 1.000 crèdits de pla, sense operational mode ni usos excedits. No s’ha fet cap compra ni canvi de pla | Director o client | El panell mostra saldo i els desplegaments de producció no es salten |
 | P10 | **Search Console:** accés, exportació de dades del WordPress i verificació per registre TXT de domini | Verificació i accés no confirmats. Seguiment SEO pendent; no impedeix publicar tècnicament el web i el sitemap | Client | Exportació desada i propietat de domini verificada |
 | P11 | **Inventari DNS** complet i finestra de canvi acordada amb mayasystems.net | Captura pública de DNS desada el 29/10. Falta la confirmació de còpia completa de WordPress i la finestra de canvi amb Xavi | Client | Taula de registres actuals (§3.2) |
-| P12 | **Validació final del client** sobre la web completa | El director demana tancar la preparació i publicar el 29/10/2026. L’acció de producció requereix la confirmació explícita pendent de la revisió automàtica | Client | — |
+| P12 | **Validació final del client** sobre la web completa | El director demana tancar la preparació i publicar el 29/10/2026. Autorització explícita de secrets, FORM_MODE=live, dominis i publicació rebuda el 29/10/2026 | Client | — |
 | P13 | **Prova amb lector de pantalla** (8.8). Recomanada; no bloqueja la publicació. La declaració d'accessibilitat no es publica (director, 20/10/2026) | Pendent | Director | Protocol de FASE8 §8.4 |
 
 ## 3. Preparació (de D−7 a D−1)

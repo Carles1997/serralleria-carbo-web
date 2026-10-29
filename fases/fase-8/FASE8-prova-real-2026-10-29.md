@@ -2,7 +2,7 @@
 
 ## Configuració i abast
 
-L’administrador comunica la creació d’una aplicació empresarial nova amb RBAC operatiu. S’utilitza el mateix tenant i el mateix certificat. Nou Client ID: `f915260d-6409-4a77-ac5c-7468a3b61e23`. Autenticació comprovada amb el certificat existent: HTTP 200, tenant i aplicació correctes, audience Graph i sense rols globals declarats. Això no prova per si sol l’exclusió d’altres bústies del scope RBAC.
+L’administrador comunica la creació d’una aplicació empresarial nova amb RBAC operatiu. S’utilitza el mateix tenant i el mateix certificat. Nou Client ID: `[M365_CLIENT_ID configurat a Netlify]`. Autenticació comprovada amb el certificat existent: HTTP 200, tenant i aplicació correctes, audience Graph i sense rols globals declarats. Això no prova per si sol l’exclusió d’altres bústies del scope RBAC.
 
 M365_CLIENT_ID actualitzat com a secret només de branch:revisio-client. Producció i DNS no modificats. La prova real estava autoritzada pel director en aquesta conversa.
 

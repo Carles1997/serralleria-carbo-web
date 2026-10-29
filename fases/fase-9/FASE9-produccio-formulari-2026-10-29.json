@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-29",
+  "deployment": "https://6ae36ff8594fe3f80209a4e5--serralleriacarbo.netlify.app",
+  "status": 200,
+  "reference": "BGFD9SBT6T",
+  "response": {
+    "ok": true,
+    "state": "sent",
+    "message": "La consulta s'ha enviat (ref. BGFD9SBT6T). Et respondrem al correu que ens has indicat. Si no tens resposta, truca al 93 890 27 94 i indica la referència.",
+    "ref": "BGFD9SBT6T",
+    "duplicate": false
+  },
+  "delivery": "Pending human confirmation for this production smoke; prior four real integration messages already confirmed by Laura."
+}

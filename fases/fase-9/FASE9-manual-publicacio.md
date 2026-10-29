@@ -1,6 +1,6 @@
 # Fase 9 · Manual de publicació
 
-**Data:** 19/10/2026 · **Actualitzat:** 29/10/2026. Producció autoritzada, configurada i en desplegament; DNS i registres de correu sense modificar. Vegeu el registre de tancament del 29/10 per al resultat final.
+**Data:** 19/10/2026 · **Actualitzat:** 29/10/2026. Producció autoritzada, configurada i publicada a Netlify; DNS i registres de correu sense modificar. Vegeu el registre de tancament del 29/10 per al resultat final.
 
 **Objectiu.** Publicar la web nova a `https://www.serralleriacarbo.com`:
 - sense perdre posicionament ni correu;
@@ -45,12 +45,12 @@ Després es va refer el build normal (amb `noindex`).
 
 | # | Porta | Estat (19/10/2026) | Responsable | Com es comprova |
 |---|---|---|---|---|
-| P1 | **Aprovació editorial** de les pàgines que s'indexaran: `status: approved` | Aprovació editorial comercial CA/ES/EN registrada el 20/10. Contacte continua noindex per P3; legals ES/EN aprovats posteriorment pel director (20/10) | Client i director; canvi de fitxers, Claude | `npm run check:links` (recompte del sitemap) i build definitiu simulat |
+| P1 | **Aprovació editorial** de les pàgines que s'indexaran: `status: approved` | Aprovació editorial comercial CA/ES/EN registrada el 20/10. Contacte també aprovat després de la prova real del 29/10; legals ES/EN aprovats pel director (20/10) | Client i director; canvi de fitxers, Claude | `npm run check:links` (recompte del sitemap) i build definitiu simulat |
 | P2 | **Idiomes del llançament** (decisió C11): només català, o català, castellà i anglès | **Fet:** CA/ES/EN aprovats pel director el 20/10/2026 i comprovats en la preparació del 29/10 | Director | Si ES i EN no es publiquen, les seves pàgines continuen `noindex` i s'hi decideix la solució de `/estructuras/` i `/motores/` (C2) |
-| P3 | **Formulari real** provat amb Microsoft 365 (prova controlada §11 del pla 8.5) i **avís de demostració retirat** | **Prova funcional completada:** quatre correus rebuts/respostos i adjunts oberts. Codi preparat: Contacte indexable i avís només al build no definitiu. Producció configurada i desplegament iniciat el 29/10; comprovació final al registre de tancament | Administrador, Jordi, director i Claude | Recepció i Reply-To acreditats per les quatre respostes del client; traça «Delivered» complementària. Avís per retirar i provar abans del llançament (`check-contact-form.py`) |
+| P3 | **Formulari real** provat amb Microsoft 365 (prova controlada §11 del pla 8.5) i **avís de demostració retirat** | **Prova funcional completada:** quatre correus rebuts/respostos i adjunts oberts. Codi preparat: Contacte indexable i avís només al build no definitiu. Producció publicada el 29/10 i prova live BGFD9SBT6T acceptada; domini definitiu pendent del DNS i comprovació posterior | Administrador, Jordi, director i Claude | Recepció i Reply-To acreditats per les quatre respostes del client; traça «Delivered» complementària. Avís per retirar i provar abans del llançament (`check-contact-form.py`) |
 | P4 | **Textos legals ES/EN** | Aprovats expressament pel director el 20/10/2026; estats actualitzats. No es declara una revisió jurídica independent nova | Director | `status: approved` als vuit fitxers legals ES/EN |
-| P5 | **Drets d'imatge:** consentiments de les persones identificables (8.6) | Pendent; els permisos d'ús ja estan confirmats | Client | Registre a FASE8 |
-| P6 | **Revisió final de l'advocat** (8.10) | Pendent | Advocat | — |
+| P5 | **Drets d'imatge:** consentiments de les persones identificables (8.6) | Permisos d’ús confirmats pel director el 15/10; no s’aporten documents addicionals en aquest tancament | Client | Registre a FASE8 |
+| P6 | **Textos legals** (8.10) | Català aportat per l’advocat; ES/EN aprovats pel director el 20/10. No es declara una revisió jurídica independent posterior | Director | Registre d’aprovació |
 | P7 | **NAP definitiu:** telèfon i adreça 59 o 59-61 (C3 i C5) | **Fet:** telèfon fix (13/10/2026) i adreça definitiva 59-61 (director, 23/10/2026), aplicada al web i enviada al Perfil d'Empresa. Falten els directoris (D6) | Client | Coincidència web, dades estructurades i Perfil d'Empresa |
 | P8 | **Decisions de redirecció:** `/estructuras/`, `/motores/` (C2), feeds, `/cat/` i 12 adreces de fotos del WordPress | **Fet en local:** 23 regles de pàgines validades i 23 URL de 12 fotografies/miniatures conservades amb els mateixos bytes i resposta 200. Comprovació en viu el dia del tall | Director i client | `npm run check:redirects` sense regles «per decidir» |
 | P9 | **Crèdits de Netlify** per als desplegaments de producció | **Compte Personal comprovat el 29/10/2026:** 1.000 crèdits de pla, sense operational mode ni usos excedits. No s’ha fet cap compra ni canvi de pla | Director o client | El panell mostra saldo i els desplegaments de producció no es salten |

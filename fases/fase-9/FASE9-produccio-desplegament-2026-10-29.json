@@ -1,0 +1,151 @@
+{
+  "date": "2026-10-29",
+  "published_deploy": {
+    "id": "6ae36ff8594fe3f80209a4e5",
+    "state": "ready",
+    "published_at": "2026-10-29T16:15:26.500Z",
+    "context": "production",
+    "commit_ref": "136ac24913485c511f0cf2259967b6a73e8e67b5",
+    "function_schedules": [
+      {
+        "cron": "5 * * * *",
+        "name": "neteja-temporals"
+      }
+    ]
+  },
+  "custom_domain": "www.serralleriacarbo.com",
+  "aliases": [
+    "serralleriacarbo.com"
+  ],
+  "environment_metadata_only": [
+    {
+      "key": "RL_SECRET",
+      "is_secret": true,
+      "scopes": [
+        "builds",
+        "functions",
+        "runtime"
+      ],
+      "contexts": [
+        {
+          "context": "production",
+          "branch": null
+        },
+        {
+          "context": "branch",
+          "branch": "revisio-client"
+        }
+      ]
+    },
+    {
+      "key": "FORM_MODE",
+      "is_secret": false,
+      "scopes": [
+        "builds",
+        "functions",
+        "post_processing",
+        "runtime"
+      ],
+      "contexts": [
+        {
+          "context": "production",
+          "branch": null,
+          "mode": "live"
+        },
+        {
+          "context": "branch",
+          "branch": "revisio-client",
+          "mode": "dry-run"
+        }
+      ]
+    },
+    {
+      "key": "M365_CERT_THUMBPRINT",
+      "is_secret": true,
+      "scopes": [
+        "builds",
+        "functions",
+        "runtime"
+      ],
+      "contexts": [
+        {
+          "context": "production",
+          "branch": null
+        },
+        {
+          "context": "branch",
+          "branch": "revisio-client"
+        }
+      ]
+    },
+    {
+      "key": "M365_CLIENT_ID",
+      "is_secret": true,
+      "scopes": [
+        "builds",
+        "functions",
+        "runtime"
+      ],
+      "contexts": [
+        {
+          "context": "production",
+          "branch": null
+        },
+        {
+          "context": "branch",
+          "branch": "revisio-client"
+        }
+      ]
+    },
+    {
+      "key": "M365_PRIVATE_KEY_PEM",
+      "is_secret": true,
+      "scopes": [
+        "builds",
+        "functions",
+        "runtime"
+      ],
+      "contexts": [
+        {
+          "context": "production",
+          "branch": null
+        },
+        {
+          "context": "branch",
+          "branch": "revisio-client"
+        }
+      ]
+    },
+    {
+      "key": "M365_TENANT_ID",
+      "is_secret": true,
+      "scopes": [
+        "builds",
+        "functions",
+        "runtime"
+      ],
+      "contexts": [
+        {
+          "context": "production",
+          "branch": null
+        },
+        {
+          "context": "branch",
+          "branch": "revisio-client"
+        }
+      ]
+    }
+  ],
+  "ssl": null,
+  "dns_cutover": "Pending Xavi; no DNS changed in this task",
+  "form_smoke": {
+    "reference": "BGFD9SBT6T",
+    "http": 200,
+    "response_state": "sent",
+    "blob_record": {
+      "state": "sent",
+      "mode": "live"
+    },
+    "delivery_confirmation": "Pending for this last production test; four earlier integration tests confirmed by client"
+  }
+}

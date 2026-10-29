@@ -1,6 +1,6 @@
 # Correu preparat per a Xavi · canvi de DNS
 
-Estat: esborrany, no enviat. Enviar quan el desplegament de producció superi les comprovacions.
+Estat: esborrany preparat per enviar, no enviat. Producció publicada a Netlify i 66/66 comprovacions correctes.
 
 A: xavi@maya.cat
 Assumpte: Publicació de la nova web de Serralleria Carbó

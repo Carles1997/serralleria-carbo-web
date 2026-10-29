@@ -13,16 +13,22 @@
 - verify, check:links, check:i18n, check:redirects i 58 proves del formulari correctes.
 - Build definitiu simulat només en local: sense noindex global, Contacte sense avís, regles de domini presents. La carpeta dist de preview conserva noindex i avís.
 
-## Producció autoritzada i en desplegament
+## Producció publicada a Netlify · 29/10/2026
 
-El director ha autoritzat explícitament els secrets de producció, FORM_MODE=live, l’associació dels dos dominis i la publicació. L’intent inicial havia estat rebutjat per la revisió automàtica; després de rebre l’autorització s’ha executat la configuració i comprovat per API.
+El director ha autoritzat explícitament els secrets de producció, FORM_MODE=live, l’associació dels dos dominis i la publicació. Després de l’autorització s’ha executat la configuració i comprovat per API.
 
-- Secrets Microsoft 365 i RL_SECRET presents al context production; cap valor secret queda al repositori.
-- FORM_MODE=live a production i dry-run a la branca revisio-client.
+- Secrets Microsoft 365 i RL_SECRET presents al context production; cap valor secret queda al repositori. FORM_MODE=live a production i dry-run a revisio-client.
 - Domini principal: www.serralleriacarbo.com; àlies: serralleriacarbo.com.
-- PR #10 integrada a main amb commit be874bb8b2e760488f694e3a82d0ba18258531d6.
-- Desplegament automàtic iniciat: 6ae36e640fd4c1dfaf15e9f8. Aturat pel control de secrets: el Client ID i l’empremta del certificat coincidien amb valors documentats als fitxers Markdown. El web i les funcions havien compilat correctament. S’han retirat aquestes coincidències de la documentació sense desactivar ni excloure cap clau del control de secrets. Cal repetir el desplegament.
-- Els DNS no s’han modificat: Xavi continua sent el responsable del tall.
+- PR #10 integrada; PR #11 resol la coincidència de Client ID i empremta del certificat en la documentació que aturava el control de secrets. No s’ha desactivat el control ni afegit exclusions.
+- Desplegament publicat: **6ae36ff8594fe3f80209a4e5**, commit **136ac24913485c511f0cf2259967b6a73e8e67b5**, estat ready. Publicació a les 17:15:26 (Barcelona).
+- Funcions contacte i neteja-temporals desplegades. Neteja programada: minut 5 de cada hora; primera execució automàtica posterior a aquest desplegament pendent d’observar.
+- **66/66 controls HTTP correctes:** 36 pàgines, 23 fotografies amb els bytes esperats i 7 comprovacions de migració/404. Sitemap de 36 URL i Contacte sense avís de demostració en CA/ES/EN.
+- Netlify afegeix noindex automàtic als enllaços immutables. L’HTML aprovat no té noindex individual; l’àlies main confirma l’absència de capçalera noindex global. Al domini definitiu s’ha de tornar a comprovar després del DNS.
+- **Prova única de producció BGFD9SBT6T:** HTTP 200, state sent; registre de Blobs verificat en sub/live/production amb mode live i estat sent. Microsoft ha acceptat l’enviament. Recepció humana d’aquesta última prova pendent; els quatre correus d’integració anteriors i els adjunts ja estan confirmats per Laura.
+- Previsualització habitual conservada a https://revisio-client--serralleriacarbo.netlify.app/.
+- **No s’ha canviat cap DNS.** Consulta pública posterior: l’arrel encara apunta a 213.158.86.105. Netlify encara no ha emès el certificat del domini; cal comprovar-lo després del tall.
+
+Comprovants: FASE9-produccio-comprovacions-2026-10-29.json, FASE9-produccio-desplegament-2026-10-29.json i FASE9-produccio-formulari-2026-10-29.json. No contenen secrets.
 
 ## Dades per coordinar amb Xavi
 
@@ -38,7 +44,7 @@ Font oficial: https://docs.netlify.com/manage/domains/configure-domains/configur
 
 Xavi ha de confirmar que conserva una còpia completa de l’allotjament antic i de la base de dades i acordar el moment del canvi. Guardar l’estat de la zona abans de tocar-lo i mantenir el WordPress antic disponible per tornar enrere.
 
-## Després del DNS
+## Pendent per completar la publicació al domini
 
 HTTPS emès i vàlid, domini arrel cap a www, redireccions antigues, 23 imatges amb 200, sitemap de 36 URL, noindex retirat només de producció, formulari en live i una consulta real confirmada pel client. Revisar la neteja programada després de l’hora següent. Confirmar que el correu corporatiu continua operatiu. Search Console i directoris es poden completar després del tall.
 

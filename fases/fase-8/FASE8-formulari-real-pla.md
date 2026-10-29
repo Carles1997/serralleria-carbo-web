@@ -4,7 +4,7 @@
 
 ## Actualització del 29/10/2026 · Nova aplicació i quatre enviaments acceptats
 
-Nou Client ID facilitat per l’administrador: f915260d-6409-4a77-ac5c-7468a3b61e23. Certificat existent acceptat i variable secreta de revisio-client actualitzada. Quatre enviaments reals [PROVA] acceptats per Microsoft, inclosos JPG de 3.000.000 bytes, PDF i versions CA/ES/EN. No ha calgut canviar el transport d’enviament. El 403 anterior no s’ha reproduït.
+Nou Client ID facilitat per l’administrador: [M365_CLIENT_ID configurat a Netlify]. Certificat existent acceptat i variable secreta de revisio-client actualitzada. Quatre enviaments reals [PROVA] acceptats per Microsoft, inclosos JPG de 3.000.000 bytes, PDF i versions CA/ES/EN. No ha calgut canviar el transport d’enviament. El 403 anterior no s’ha reproduït.
 
 Previsualització restaurada a dry-run, noindex conservat i desplegament test eliminat. **Confirmació posterior de Laura aportada pel director:** els quatre correus rebuts i respostos al correu del visitant de prova; PDF i fotografia adjunts rebuts. El director confirma també que Laura ha pogut obrir els dos adjunts. **Prova funcional a la previsualització completada:** enviament, recepció, adjunts (inclòs JPG de 3 MB) i Reply-To. Pendent: confirmar l’abast RBAC i preparar l’activació de producció. La traça Delivered és complementària; no s’ha aportat. Resultats i referències: [FASE8-prova-real-2026-10-29.md](FASE8-prova-real-2026-10-29.md).
 
@@ -701,7 +701,7 @@ python -I scripts/netlify/set-env-from-file.py M365_PRIVATE_KEY_PEM ~/m365-formu
 | Subjecte | `CN=Formulari web Serralleria Carbo` |
 | Clau i signatura | RSA de 2048 bits, `sha256WithRSAEncryption` |
 | Vàlid | Del 15/10/2026, 05:28 UTC, al **15/10/2027, 05:28 UTC** (07:28, hora de Barcelona) |
-| Empremta SHA-1 (`M365_CERT_THUMBPRINT`) | `6F8105BCA611FD808E0EEF668034287B9E0B9E34` |
+| Empremta SHA-1 (`M365_CERT_THUMBPRINT`) | `[M365_CERT_THUMBPRINT configurat a Netlify]` |
 | Avís de renovació | **15/09/2027** |
 | Clau privada | `~/m365-formulari/formulari-web-20261015.key.pem`: no s'ha llegit, no s'ha copiat i no és al repositori. Es desarà a Netlify quan l'administrador acabi |
 
@@ -793,7 +793,7 @@ Versió del 15/10/2026: substitueix la del 09/10/2026.
 > - **No hi afegiu cap permís de Microsoft Graph** ni hi concediu consentiment d'administrador: ni `Mail.Send` ni cap altre, ni d'aplicació ni delegat. Un permís d'Entra s'afegiria a l'àmbit d'Exchange i donaria accés a totes les bústies.
 > - **Credencial:** carregueu el certificat adjunt (`formulari-web-20261015.cer.pem`) a «Certificats i secrets → Certificats».
 >   - És només la part pública. La clau privada no surt de la nostra màquina i la desem directament al nostre allotjament (Netlify) com a valor secret de només escriptura.
->   - Caduca el 15/10/2027. Empremta SHA-1 esperada: `6F8105BCA611FD808E0EEF668034287B9E0B9E34`. Si la que mostra Entra no coincideix, no continueu i aviseu-nos.
+>   - Caduca el 15/10/2027. Empremta SHA-1 esperada: `[M365_CERT_THUMBPRINT configurat a Netlify]`. Si la que mostra Entra no coincideix, no continueu i aviseu-nos.
 >   - No cal crear cap secret de client.
 >
 > **2. Permís limitat a carbo@** (RBAC per a aplicacions d'Exchange Online, Exchange Online PowerShell):

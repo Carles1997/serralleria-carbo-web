@@ -13,11 +13,16 @@
 - verify, check:links, check:i18n, check:redirects i 58 proves del formulari correctes.
 - Build definitiu simulat només en local: sense noindex global, Contacte sense avís, regles de domini presents. La carpeta dist de preview conserva noindex i avís.
 
-## Preparació externa pendent
+## Producció autoritzada i en desplegament
 
-La revisió automàtica ha rebutjat l’escriptura de secrets de producció, FORM_MODE=live i l’associació del domini, perquè requereix una autorització explícita d’aquests efectes. L’ordre rebutjada no s’ha executat. Hi ha una pregunta enviada al director. No s’ha de saltar aquest bloqueig amb un altre mecanisme.
+El director ha autoritzat explícitament els secrets de producció, FORM_MODE=live, l’associació dels dos dominis i la publicació. L’intent inicial havia estat rebutjat per la revisió automàtica; després de rebre l’autorització s’ha executat la configuració i comprovat per API.
 
-Quan s’autoritzi: associar www.serralleriacarbo.com i l’arrel al projecte, desar secrets de producció (Client ID nou, certificat i RL_SECRET nou), integrar el codi a main i desplegar la versió definitiva. Cal comprovar el desplegament abans d’indicar el canvi de DNS.
+- Secrets Microsoft 365 i RL_SECRET presents al context production; cap valor secret queda al repositori.
+- FORM_MODE=live a production i dry-run a la branca revisio-client.
+- Domini principal: www.serralleriacarbo.com; àlies: serralleriacarbo.com.
+- PR #10 integrada a main amb commit be874bb8b2e760488f694e3a82d0ba18258531d6.
+- Desplegament automàtic iniciat: 6ae36e640fd4c1dfaf15e9f8. Aturat pel control de secrets: el Client ID i l’empremta del certificat coincidien amb valors documentats als fitxers Markdown. El web i les funcions havien compilat correctament. S’han retirat aquestes coincidències de la documentació sense desactivar ni excloure cap clau del control de secrets. Cal repetir el desplegament.
+- Els DNS no s’han modificat: Xavi continua sent el responsable del tall.
 
 ## Dades per coordinar amb Xavi
 

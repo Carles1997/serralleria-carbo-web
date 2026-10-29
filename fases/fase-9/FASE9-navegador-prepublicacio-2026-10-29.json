@@ -1,0 +1,7 @@
+{
+  "date": "2026-10-29",
+  "checks": 84,
+  "passed": 84,
+  "failed": [],
+  "scope": "Local Chrome headless: CSP, JS errors, overflow, H1, contact controls, mobile menu, production/preview notice. No mail submissions."
+}

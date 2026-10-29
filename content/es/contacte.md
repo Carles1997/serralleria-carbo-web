@@ -3,7 +3,6 @@ pageId: contacte
 route: /es/contacto/
 lang: es
 status: approved
-noindex: true
 seoTitle: "Contacto y presupuestos | Serralleria Carbó"
 seoDescription: "Contacta con Serralleria Carbó en Vilafranca del Penedès. Explica un trabajo particular o envía plano y requisitos a Industrial."
 ---

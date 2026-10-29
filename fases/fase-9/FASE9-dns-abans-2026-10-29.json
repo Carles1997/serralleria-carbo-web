@@ -1,0 +1,144 @@
+{
+  "capturedUTC": "2026-10-29T15:39:41.354374+00:00",
+  "source": "Public DNS; not a complete authoritative zone export",
+  "queries": [
+    {
+      "name": "serralleriacarbo.com",
+      "type": "A",
+      "status": 0,
+      "answers": [
+        {
+          "name": "serralleriacarbo.com.",
+          "type": 1,
+          "TTL": 900,
+          "data": "213.158.86.105"
+        }
+      ]
+    },
+    {
+      "name": "serralleriacarbo.com",
+      "type": "AAAA",
+      "status": 0,
+      "answers": []
+    },
+    {
+      "name": "serralleriacarbo.com",
+      "type": "NS",
+      "status": 0,
+      "answers": [
+        {
+          "name": "serralleriacarbo.com.",
+          "type": 2,
+          "TTL": 3600,
+          "data": "ns1.cdmon.net."
+        },
+        {
+          "name": "serralleriacarbo.com.",
+          "type": 2,
+          "TTL": 3600,
+          "data": "ns4.cdmondns-01.org."
+        },
+        {
+          "name": "serralleriacarbo.com.",
+          "type": 2,
+          "TTL": 3600,
+          "data": "ns2.cdmon.net."
+        },
+        {
+          "name": "serralleriacarbo.com.",
+          "type": 2,
+          "TTL": 3600,
+          "data": "ns3.cdmon.net."
+        },
+        {
+          "name": "serralleriacarbo.com.",
+          "type": 2,
+          "TTL": 3600,
+          "data": "ns5.cdmondns-01.com."
+        }
+      ]
+    },
+    {
+      "name": "serralleriacarbo.com",
+      "type": "MX",
+      "status": 0,
+      "answers": [
+        {
+          "name": "serralleriacarbo.com.",
+          "type": 15,
+          "TTL": 900,
+          "data": "0 serralleriacarbo-com.mail.protection.outlook.com."
+        }
+      ]
+    },
+    {
+      "name": "serralleriacarbo.com",
+      "type": "TXT",
+      "status": 0,
+      "answers": [
+        {
+          "name": "serralleriacarbo.com.",
+          "type": 16,
+          "TTL": 900,
+          "data": "MS=ms80688567"
+        },
+        {
+          "name": "serralleriacarbo.com.",
+          "type": 16,
+          "TTL": 900,
+          "data": "v=spf1 include:spf.protection.outlook.com -all"
+        }
+      ]
+    },
+    {
+      "name": "serralleriacarbo.com",
+      "type": "CAA",
+      "status": 0,
+      "answers": []
+    },
+    {
+      "name": "www.serralleriacarbo.com",
+      "type": "CNAME",
+      "status": 0,
+      "answers": [
+        {
+          "name": "www.serralleriacarbo.com.",
+          "type": 5,
+          "TTL": 900,
+          "data": "serralleriacarbo.com."
+        }
+      ]
+    },
+    {
+      "name": "autodiscover.serralleriacarbo.com",
+      "type": "CNAME",
+      "status": 0,
+      "answers": [
+        {
+          "name": "autodiscover.serralleriacarbo.com.",
+          "type": 5,
+          "TTL": 900,
+          "data": "autodiscover.outlook.com."
+        }
+      ]
+    },
+    {
+      "name": "_dmarc.serralleriacarbo.com",
+      "type": "TXT",
+      "status": 3,
+      "answers": []
+    },
+    {
+      "name": "selector1._domainkey.serralleriacarbo.com",
+      "type": "CNAME",
+      "status": 3,
+      "answers": []
+    },
+    {
+      "name": "selector2._domainkey.serralleriacarbo.com",
+      "type": "CNAME",
+      "status": 3,
+      "answers": []
+    }
+  ]
+}

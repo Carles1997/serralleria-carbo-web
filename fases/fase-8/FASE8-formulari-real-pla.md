@@ -2,6 +2,25 @@
 
 **Data:** 09/10/2026 (tercera versió del dia, amb les correccions de la revisió de Codex). **Actualitzat el 15/10/2026** (proves pendents a Netlify; preparació de Microsoft 365 i de la prova real).
 
+## Actualització del 29/10/2026 · Nova aplicació i quatre enviaments acceptats
+
+Nou Client ID facilitat per l’administrador: f915260d-6409-4a77-ac5c-7468a3b61e23. Certificat existent acceptat i variable secreta de revisio-client actualitzada. Quatre enviaments reals [PROVA] acceptats per Microsoft, inclosos JPG de 3.000.000 bytes, PDF i versions CA/ES/EN. No ha calgut canviar el transport d’enviament. El 403 anterior no s’ha reproduït.
+
+Previsualització restaurada a dry-run, noindex conservat i desplegament test eliminat. **Confirmació posterior de Laura aportada pel director:** els quatre correus rebuts i respostos al correu del visitant de prova; PDF i fotografia adjunts rebuts. El director confirma també que Laura ha pogut obrir els dos adjunts. **Prova funcional a la previsualització completada:** enviament, recepció, adjunts (inclòs JPG de 3 MB) i Reply-To. Pendent: confirmar l’abast RBAC i preparar l’activació de producció. La traça Delivered és complementària; no s’ha aportat. Resultats i referències: [FASE8-prova-real-2026-10-29.md](FASE8-prova-real-2026-10-29.md).
+
+## Actualització del 22/10/2026 · Connexió amb Microsoft 365
+
+Autorització del director: implementar la configuració amb els identificadors rebuts de l’administrador i el certificat existent.
+
+- **Autenticació real comprovada:** Microsoft Entra accepta l’assertió signada amb el certificat del 15/10/2026 i retorna un access token per a Microsoft Graph. Tenant i aplicació coincideixen amb els identificadors rebuts. Ni la clau ni el token es mostren o es desen al repositori.
+- **Permisos:** el token no declara rols globals (`roles` buit). Això no prova l’abast RBAC sobre Exchange. Continua pendent la confirmació de l’administrador o el resultat de `Test-ServicePrincipalAuthorization` per a carbo@ i una altra bústia.
+- **Netlify:** `M365_TENANT_ID`, `M365_CLIENT_ID`, `M365_CERT_THUMBPRINT` i `M365_PRIVATE_KEY_PEM` desats com a secrets exclusius de la branca `revisio-client`. Abastos builds/functions/runtime, segons el pla disponible. No s’ha configurat producció ni s’ha utilitzat el secret de client rebut per correu.
+- **Mode:** `FORM_MODE=dry-run`, RL_SECRET existent i protecció noindex conservats. Cap correu real enviat.
+- **Registre del consentiment:** les versions ES/EN de `CONSENT_VERSION` reflecteixen l’aprovació del director del 20/10/2026, sense canviar les caselles ni el text visible del formulari.
+- **Clau local:** es conserva l’original fora del repositori perquè encara s’ha de preparar la configuració de producció i no s’ha comprovat cap enviament real. No s’elimina l’única còpia en aquesta fase.
+
+**Per activar la prova:** confirmar els permisos limitats a carbo@ i coordinar la recepció amb Jordi; habilitar temporalment `FORM_MODE=test` només a la previsualització, redesplegar, executar la prova controlada del §11 i tornar a dry-run. Autenticació correcta no equival a permís d’enviament ni a lliurament del correu.
+
 ## Estat actual (15/10/2026)
 
 **Previsualització:** https://revisio-client--serralleriacarbo.netlify.app/:
@@ -905,3 +924,19 @@ Es fan quan s'autoritzi el pas a producció. No formen part de la prova controla
 2. **Secret de producció:** un `RL_SECRET` nou, secret i limitat a producció, diferent del de `revisio-client`.
 3. **Credencials:** desades al context de producció (§6.5) i `FORM_MODE=live`, amb autorització. `live` només s'activa al context `production`.
 4. **Primera consulta real:** recepció confirmada i registres sense dades personals la primera setmana.
+
+## Resultat de la configuració i redesplegament (22/10/2026)
+
+- Desplegament de `revisio-client`: `6ada38f18834defee20d0d88`, amb les credencials de certificat configurades; sense --prod.
+- Comprovacions locals: `test:contact` 58/58, `verify`, `check:links` i `check:i18n` correctes; sitemap de 33 URL.
+- Comprovació en viu: Home i Contacte CA/ES/EN responen 200 amb noindex; avís de demostració conservat; GET /api/contacte respon 405.
+- Autenticació amb Microsoft comprovada des de l’equip local amb el mateix codi `clientAssertion`; la configuració s’ha carregat en un nou desplegament de Netlify. No s’ha fet cap enviament real des de la funció ni es declara provat el lliurament.
+- Pendents: confirmació de l’abast RBAC i prova real coordinada amb Jordi. Producció i DNS no modificats. Canvis de codi i documentació encara sense commit.
+
+## Prova real autoritzada del 22/10/2026: aturada per error
+
+Primera consulta HTTP 502 (Ref. FYWZEJ6428). Comprovació directa de Graph sense destinataris: autenticació correcta, però 403 ErrorAccessDenied. No es confirma lliurament i no es proven els adjunts. Previsualització restaurada a dry-run al desplegament 6ada3ad77f41cd1ff7000fb3 i desplegament temporal test eliminat. Detall i límits de la prova a [FASE8-prova-real-2026-10-22.md](FASE8-prova-real-2026-10-22.md). Cal revisió de l’administrador abans de repetir.
+
+## Auditoria posterior del bloqueig (22/10/2026)
+
+Diagnosi protegida des del runtime de Netlify amb el codi real: credencials coincidents, OAuth 200 i Graph 403 ErrorAccessDenied. Cal revisar RBAC i confirmar UPN/Object ID de la bústia amb l’administrador. No hi ha enviament a destinataris en aquesta diagnosi. Evidències i límits a [FASE8-auditoria-M365-2026-10-22.md](FASE8-auditoria-M365-2026-10-22.md).

@@ -61,3 +61,9 @@ L'absència de dades de Search Console no demostra que aquests fitxers no tingui
 - ~~`npm run check:redirects:live` a `revisio-client`~~ **Fet el 09/10/2026** (desplegament `6ac81d8fe0c9024a8068e5c2`, commit `a29d067`): totes les regles correctes, inclosos els 301 de `/estructuras/` i `/motores/` cap a les pàgines castellanes. La 404 de `/es/…` respon 404 en castellà.
 - Al domini, el dia del llançament, l'endemà i al cap d'una setmana ([pla executable, 5.3](FASE6-pla-executable.md#53-verificacions)).
 - Campanyes actives a `/estructuras/` i `/motores/` (client), abans del llançament.
+
+## Tancament de les fotografies antigues (29/10/2026)
+
+En preparar la publicació definitiva per ordre del director es conserva la identitat original de les URL: les 12 fotografies reutilitzades i les seves 11 miniatures conegudes es serveixen directament amb resposta 200 als mateixos camins de WordPress. El catàleg no té miniatura per a l’ID 23. No cal un 301 quan la URL i els bytes de la imatge es conserven.
+
+S’han copiat a public/wp-content/uploads els originals i les miniatures exactes, comprovats amb les empremtes del catàleg. No s’ha modificat cap imatge del disseny ni s’afegeixen càrregues a les pàgines actuals. Manifest: [FASE9-imatges-antigues-conservades.json](../fase-9/FASE9-imatges-antigues-conservades.json). Aquesta decisió resol el pendent de les 12 fotos, i substitueix les opcions anteriors d’aquell apartat. La resta de fitxers sense equivalent no reben una redirecció genèrica.

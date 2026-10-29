@@ -16,6 +16,8 @@
 // Els textos que depenen de la branca (etiqueta i ajuda de l'adjunt, desplegable de dades i ajuda de
 // la descripció) surten en les dues variants aprovades de ui.ts i el CSS mostra la de la branca.
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { indexingMode } from '../../scripts/lib/indexing-policy.mjs';
+import { siteUrl } from '../config/site-url.mjs';
 import StructuredData from '../components/StructuredData.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -81,6 +83,8 @@ for (const field of ['nom', 'empresa', 'correu', 'telefon', 'ubicacio', 'descrip
 }
 if (server.contactPath !== ui.routes.contact) throw new Error(`La ruta de contacte de messages.ts (${server.contactPath}) no és ${ui.routes.contact}.`);
 const fileHint = (help: string) => `${help} ${server.fileHint}`;
+// L’avís només es retira al build definitiu amb el backend live.
+const showDemoNotice = !(indexingMode(siteUrl).definitive && import.meta.env.FORM_MODE === 'live');
 ---
 
 <BaseLayout page={page}>
@@ -153,10 +157,10 @@ const fileHint = (help: string) => `${help} ${server.fileHint}`;
               <label for={HONEYPOT_FIELD}>{server.honeypot}</label>
               <input id={HONEYPOT_FIELD} name={HONEYPOT_FIELD} type="text" tabindex="-1" autocomplete="off" />
             </div>
-            <div class="form-demo" role="note" id="form-pending">
+            {showDemoNotice && <div class="form-demo" role="note" id="form-pending">
               <strong>{f.demo}</strong>
               <p>{f.pending}{!privacy && ` ${f.pendingPrivacy}`}</p>
-            </div>
+            </div>}
             <fieldset class="branch-picker">
               <legend>{f.branch.legend} <span aria-hidden="true">*</span></legend>
               <div class="branch-options">

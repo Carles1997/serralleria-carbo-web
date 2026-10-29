@@ -61,8 +61,8 @@ export const ACCEPT_ATTRIBUTE = Object.values(ACCEPTED_FILES)
 /** Versió del text de consentiment que consta al correu (FASE8, apartat 6). */
 export const CONSENT_VERSION = {
   ca: 'text del formulari en català aprovat el 06/10/2026',
-  es: 'traducció castellana del 08/10/2026, pendent de validació jurídica',
-  en: 'traducció anglesa del 12/10/2026, pendent de validació jurídica',
+  es: 'traducció castellana del 08/10/2026, aprovada pel director el 20/10/2026',
+  en: 'traducció anglesa del 12/10/2026, aprovada pel director el 20/10/2026',
 } as const;
 
 export const LOCALES = ['ca', 'es', 'en'] as const;
